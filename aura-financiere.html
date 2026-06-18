@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ton Aura Financière — Economya.fr</title>
+<meta name="description" content="Découvrez votre aura financière ! 5 questions pour révéler votre couleur et votre énergie financière unique. Partagez sur Instagram !">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;min-height:100vh;background:#0a0a0a;color:white;overflow-x:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:rgba(0,0,0,.8);border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:99;backdrop-filter:blur(10px)}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#1D9E75;text-decoration:none}
+.logo span{color:#EF9F27}
+.nav-back{text-decoration:none;color:rgba(255,255,255,.6);font-size:.82rem}
+
+/* HERO */
+.hero{text-align:center;padding:2.5rem 1.5rem 1.5rem;background:linear-gradient(180deg,#1a0a2e,#0a0a0a)}
+.hero-badge{display:inline-block;background:rgba(168,85,247,.2);border:1px solid #a855f7;color:#a855f7;padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3rem);font-weight:900;margin-bottom:.4rem}
+.hero h1 em{color:#EF9F27;font-style:normal}
+.hero p{color:rgba(255,255,255,.6);font-size:.95rem}
+
+.container{max-width:600px;margin:0 auto;padding:1.5rem}
+
+/* QUIZ */
+.quiz-wrap{display:block}
+.q-num{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;text-align:center}
+.progress{height:4px;background:rgba(255,255,255,.1);border-radius:50px;overflow:hidden;margin-bottom:1.5rem}
+.progress-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,#a855f7,#EF9F27);transition:width .4s ease}
+.q-text{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;text-align:center;margin-bottom:1.5rem;line-height:1.4}
+.options{display:flex;flex-direction:column;gap:.7rem}
+.option-btn{background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);border-radius:14px;padding:1rem 1.2rem;cursor:pointer;font-family:inherit;color:white;font-size:.9rem;text-align:left;transition:all .2s;display:flex;align-items:center;gap:.8rem}
+.option-btn:hover{border-color:rgba(168,85,247,.6);background:rgba(168,85,247,.1);transform:translateX(4px)}
+.option-emoji{font-size:1.5rem;min-width:2rem}
+
+/* RESULT */
+.result-wrap{display:none;text-align:center}
+
+/* AURA VISUEL */
+.aura-visual{position:relative;width:280px;height:280px;margin:0 auto 1.5rem}
+.aura-outer{position:absolute;inset:0;border-radius:50%;animation:pulse 2s infinite}
+.aura-mid{position:absolute;inset:20px;border-radius:50%;animation:pulse 2s infinite .3s}
+.aura-inner{position:absolute;inset:40px;border-radius:50%;animation:pulse 2s infinite .6s}
+.aura-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.aura-emoji{font-size:4rem;display:block;margin-bottom:.3rem}
+.aura-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:900;color:white}
+@keyframes pulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+
+/* INFO */
+.aura-card{border-radius:20px;padding:1.5rem;margin-bottom:1rem;border:2px solid transparent}
+.aura-title{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;margin-bottom:.3rem}
+.aura-subtitle{font-size:.85rem;margin-bottom:1rem;opacity:.7}
+.aura-desc{font-size:.9rem;line-height:1.7;margin-bottom:1.2rem;opacity:.85}
+
+/* TRAITS */
+.traits{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.2rem}
+.trait{border-radius:12px;padding:.7rem;text-align:center}
+.trait-icon{font-size:1.3rem;display:block;margin-bottom:.2rem}
+.trait-text{font-size:.72rem;font-weight:600;opacity:.8}
+
+/* CONSEIL */
+.conseil-box{border-radius:14px;padding:1rem 1.2rem;margin-bottom:1.2rem;font-size:.85rem;line-height:1.6}
+.conseil-box strong{display:block;margin-bottom:.3rem;font-size:.9rem}
+
+/* SHARE */
+.share-section{background:rgba(255,255,255,.05);border-radius:16px;border:1px solid rgba(255,255,255,.1);padding:1.2rem;margin-bottom:1rem;text-align:center}
+.share-section p{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.8rem}
+.share-text{background:rgba(255,255,255,.07);border-radius:10px;padding:.8rem;font-size:.8rem;color:rgba(255,255,255,.7);margin-bottom:.8rem;line-height:1.5;font-style:italic}
+.share-btns{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
+.sbtn{padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;font-weight:700;cursor:pointer;border:none;font-family:inherit}
+.sbtn-tw{background:#000;color:white}
+.sbtn-copy{background:rgba(255,255,255,.1);color:white;border:1px solid rgba(255,255,255,.2)}
+.sbtn-restart{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;cursor:pointer;font-family:inherit;width:100%;margin-top:.5rem}
+
+footer{background:#050505;color:rgba(255,255,255,.3);text-align:center;padding:1.5rem;font-size:.78rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
+footer strong{color:rgba(255,255,255,.6)}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<link rel="canonical" href="https://economya.fr/aura-financiere.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="jeux.html">← Jeux</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero">
+  <div class="hero-badge">✨ Instagrammable</div>
+  <h1>Ton <em>Aura</em> Financière</h1>
+  <p>5 questions pour révéler votre couleur et énergie financière unique ✨</p>
+</div>
+
+<div class="container">
+  <div class="quiz-wrap" id="quiz">
+    <div class="q-num" id="q-num">Question 1 / 5</div>
+    <div class="progress"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+    <div class="q-text" id="q-text">—</div>
+    <div class="options" id="options"></div>
+  </div>
+
+  <div class="result-wrap" id="result"></div>
+</div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France
+</footer>
+
+<script>
+const QUESTIONS = [
+  {
+    text: "Vous trouvez 200€ inattendus dans votre vieux manteau. Vous...",
+    options: [
+      {emoji:'🛍️', text:'Les dépensez immédiatement pour vous faire plaisir', val:'rouge'},
+      {emoji:'🏦', text:'Les versez directement sur votre épargne', val:'bleu'},
+      {emoji:'⚖️', text:'En gardez 100€ et épargnez 100€', val:'vert'},
+      {emoji:'📈', text:'Les investissez dans un ETF ou des actions', val:'or'},
+      {emoji:'🌙', text:'Les oubliez dans un tiroir... au cas où', val:'violet'},
+    ]
+  },
+  {
+    text: "Votre application bancaire vous envoie une alerte. Vous réagissez comment ?",
+    options: [
+      {emoji:'😰', text:'Panique totale — je regarde immédiatement', val:'bleu'},
+      {emoji:'😤', text:'Je supprime l\'alerte sans regarder', val:'rouge'},
+      {emoji:'🤔', text:'Je regarde quand j\'ai le temps', val:'vert'},
+      {emoji:'📊', text:'Je l\'analyse calmement et prends note', val:'or'},
+      {emoji:'🌀', text:'Je l\'oublie et j\'y pense plus tard', val:'violet'},
+    ]
+  },
+  {
+    text: "Comment décririez-vous votre rapport à l'argent ?",
+    options: [
+      {emoji:'🔥', text:'L\'argent c\'est fait pour être dépensé et profiter', val:'rouge'},
+      {emoji:'🛡️', text:'L\'argent c\'est ma sécurité, je le protège', val:'bleu'},
+      {emoji:'🌿', text:'L\'argent c\'est un outil pour vivre sereinement', val:'vert'},
+      {emoji:'🚀', text:'L\'argent c\'est un levier pour créer de la richesse', val:'or'},
+      {emoji:'🌊', text:'L\'argent vient et repart, je suis dans le flow', val:'violet'},
+    ]
+  },
+  {
+    text: "Vos amis vous proposent un weekend spontané à 500€. Vous...",
+    options: [
+      {emoji:'✈️', text:'Foncez sans hésiter — YOLO !', val:'rouge'},
+      {emoji:'❌', text:'Refusez — c\'est pas prévu au budget', val:'bleu'},
+      {emoji:'💭', text:'Calculez si vous pouvez vous le permettre', val:'vert'},
+      {emoji:'💡', text:'Cherchez comment optimiser le coût pour y aller', val:'or'},
+      {emoji:'🌙', text:'Hésitez longtemps puis décidez au dernier moment', val:'violet'},
+    ]
+  },
+  {
+    text: "Quelle phrase vous ressemble le plus ?",
+    options: [
+      {emoji:'🎯', text:'"On n\'a qu\'une vie, autant en profiter maintenant"', val:'rouge'},
+      {emoji:'🏰', text:'"Un sou est un sou, mieux vaut prévenir que guérir"', val:'bleu'},
+      {emoji:'🌱', text:'"Petit à petit l\'oiseau fait son nid"', val:'vert'},
+      {emoji:'👑', text:'"L\'argent appelle l\'argent — faites travailler votre capital"', val:'or'},
+      {emoji:'🌊', text:'"L\'univers pourvoit à mes besoins, je fais confiance"', val:'violet'},
+    ]
+  },
+];
+
+const AURAS = {
+  rouge: {
+    nom: 'Aura Rouge Flamme',
+    emoji: '🔥',
+    desc: 'Votre énergie financière est intense et vivante. Vous vivez dans le présent, dépensez avec passion et savez profiter de la vie. Votre défi : canaliser cette énergie pour construire aussi votre futur.',
+    conseil: 'Automatisez un virement épargne le 1er du mois. Vous ne le remarquerez pas mais dans 10 ans vous aurez un capital solide.',
+    traits: [
+      {emoji:'⚡', text:'Spontané'},
+      {emoji:'🎉', text:'Généreux'},
+      {emoji:'💫', text:'Vit l\'instant'},
+      {emoji:'🌶️', text:'Passionné'},
+    ],
+    colors: {outer:'rgba(239,68,68,0.15)', mid:'rgba(239,68,68,0.25)', inner:'rgba(239,68,68,0.4)', card:'rgba(239,68,68,0.1)', border:'rgba(239,68,68,0.4)', trait:'rgba(239,68,68,0.15)', conseil:'rgba(239,68,68,0.1)'},
+    gradient: 'linear-gradient(135deg,#1a0505,#7f1d1d,#ef4444)',
+  },
+  bleu: {
+    nom: 'Aura Bleue Cristal',
+    emoji: '💎',
+    desc: 'Votre énergie financière est pure et protectrice. Vous gérez avec rigueur, anticipez les risques et construisez des bases solides. Votre défi : faire travailler votre argent plutôt que de le garder dormant.',
+    conseil: 'Placez votre épargne dormante dans un ETF World. Votre capital bien protégé mérite aussi de croître.',
+    traits: [
+      {emoji:'🛡️', text:'Prudent'},
+      {emoji:'📋', text:'Organisé'},
+      {emoji:'🔒', text:'Sécurisant'},
+      {emoji:'❄️', text:'Méthodique'},
+    ],
+    colors: {outer:'rgba(59,130,246,0.15)', mid:'rgba(59,130,246,0.25)', inner:'rgba(59,130,246,0.4)', card:'rgba(59,130,246,0.1)', border:'rgba(59,130,246,0.4)', trait:'rgba(59,130,246,0.15)', conseil:'rgba(59,130,246,0.1)'},
+    gradient: 'linear-gradient(135deg,#0a0a1a,#1e3a8a,#3b82f6)',
+  },
+  vert: {
+    nom: 'Aura Verte Équilibre',
+    emoji: '🌿',
+    desc: 'Votre énergie financière est harmonieuse et stable. Vous avez trouvé l\'équilibre entre plaisir et sagesse, entre aujourd\'hui et demain. Vous êtes le profil le plus épanoui financièrement.',
+    conseil: 'Vous avez les fondations. La prochaine étape : diversifiez vos investissements pour amplifier votre croissance.',
+    traits: [
+      {emoji:'⚖️', text:'Équilibré'},
+      {emoji:'🌱', text:'Patient'},
+      {emoji:'☯️', text:'Serein'},
+      {emoji:'🍀', text:'Chanceux'},
+    ],
+    colors: {outer:'rgba(29,158,117,0.15)', mid:'rgba(29,158,117,0.25)', inner:'rgba(29,158,117,0.4)', card:'rgba(29,158,117,0.1)', border:'rgba(29,158,117,0.4)', trait:'rgba(29,158,117,0.15)', conseil:'rgba(29,158,117,0.1)'},
+    gradient: 'linear-gradient(135deg,#0a1a0a,#065f46,#1D9E75)',
+  },
+  or: {
+    nom: 'Aura Dorée Puissance',
+    emoji: '👑',
+    desc: 'Votre énergie financière est rayonnante et ambitieuse. Vous pensez en termes de création de richesse, d\'opportunités et de croissance. Vous êtes dans le top 5% des profils financiers.',
+    conseil: 'Votre prochaine étape : la diversification internationale. ETF monde + immobilier + revenus passifs = liberté financière.',
+    traits: [
+      {emoji:'🚀', text:'Ambitieux'},
+      {emoji:'💡', text:'Stratège'},
+      {emoji:'📈', text:'Investisseur'},
+      {emoji:'👑', text:'Leader'},
+    ],
+    colors: {outer:'rgba(239,159,39,0.15)', mid:'rgba(239,159,39,0.25)', inner:'rgba(239,159,39,0.4)', card:'rgba(239,159,39,0.1)', border:'rgba(239,159,39,0.4)', trait:'rgba(239,159,39,0.15)', conseil:'rgba(239,159,39,0.1)'},
+    gradient: 'linear-gradient(135deg,#1a1000,#92400e,#EF9F27)',
+  },
+  violet: {
+    nom: 'Aura Violette Mystère',
+    emoji: '🌙',
+    desc: 'Votre énergie financière est intuitive et profonde. Vous avez une relation complexe à l\'argent, parfois dans le flow, parfois dans l\'évitement. Votre force cachée : une grande adaptabilité.',
+    conseil: 'Commencez par noter vos dépenses pendant 30 jours. La clarté transforme l\'intuition en stratégie.',
+    traits: [
+      {emoji:'🌊', text:'Intuitif'},
+      {emoji:'🌙', text:'Mystérieux'},
+      {emoji:'🦋', text:'Adaptable'},
+      {emoji:'✨', text:'Créatif'},
+    ],
+    colors: {outer:'rgba(168,85,247,0.15)', mid:'rgba(168,85,247,0.25)', inner:'rgba(168,85,247,0.4)', card:'rgba(168,85,247,0.1)', border:'rgba(168,85,247,0.4)', trait:'rgba(168,85,247,0.15)', conseil:'rgba(168,85,247,0.1)'},
+    gradient: 'linear-gradient(135deg,#1a0a2e,#4c1d95,#a855f7)',
+  },
+};
+
+let currentQ = 0, scores = {rouge:0, bleu:0, vert:0, or:0, violet:0};
+
+function showQuestion() {
+  const q = QUESTIONS[currentQ];
+  document.getElementById('q-num').textContent = `Question ${currentQ+1} / 5`;
+  document.getElementById('progress').style.width = (currentQ/5*100) + '%';
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('options').innerHTML = q.options.map((o,i) => `
+    <button class="option-btn" onclick="selectOption('${o.val}')">
+      <span class="option-emoji">${o.emoji}</span>
+      <span>${o.text}</span>
+    </button>
+  `).join('');
+}
+
+function selectOption(val) {
+  scores[val] += 1;
+  currentQ++;
+  if(currentQ < QUESTIONS.length) {
+    showQuestion();
+  } else {
+    showResult();
+  }
+}
+
+function showResult() {
+  const top = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+  const aura = AURAS[top];
+  const c = aura.colors;
+
+  document.getElementById('quiz').style.display = 'none';
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+
+  result.innerHTML = `
+    <div style="background:${aura.gradient};border-radius:24px;padding:2rem;margin-bottom:1rem;text-align:center">
+      <div style="font-size:.72rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1rem">TON AURA FINANCIÈRE</div>
+      
+      <div style="position:relative;width:220px;height:220px;margin:0 auto 1.5rem">
+        <div style="position:absolute;inset:0;border-radius:50%;background:${c.outer};animation:pulse 2s infinite"></div>
+        <div style="position:absolute;inset:20px;border-radius:50%;background:${c.mid};animation:pulse 2s infinite .3s"></div>
+        <div style="position:absolute;inset:40px;border-radius:50%;background:${c.inner};animation:pulse 2s infinite .6s"></div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <span style="font-size:4rem">${aura.emoji}</span>
+          <span style="font-family:'Playfair Display',serif;font-size:.9rem;font-weight:900;color:white;margin-top:.3rem">${aura.nom.split(' ').slice(0,2).join(' ')}</span>
+        </div>
+      </div>
+
+      <div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;margin-bottom:.3rem">${aura.nom}</div>
+      <div style="font-size:.85rem;color:rgba(255,255,255,.7);margin-bottom:1.2rem;line-height:1.6">${aura.desc}</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:1.2rem">
+        ${aura.traits.map(t => `
+          <div style="background:rgba(255,255,255,.1);border-radius:10px;padding:.6rem;text-align:center">
+            <span style="font-size:1.3rem;display:block">${t.emoji}</span>
+            <span style="font-size:.72rem;color:rgba(255,255,255,.7)">${t.text}</span>
+          </div>
+        `).join('')}
+      </div>
+
+      <div style="background:rgba(255,255,255,.1);border-radius:14px;padding:1rem;font-size:.85rem;color:rgba(255,255,255,.85);line-height:1.6;text-align:left">
+        <strong style="display:block;margin-bottom:.3rem;color:white">💡 Conseil personnalisé</strong>
+        ${aura.conseil}
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,.05);border-radius:16px;border:1px solid rgba(255,255,255,.1);padding:1.2rem;text-align:center;margin-bottom:1rem">
+      <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">📸 Faites une capture d'écran et partagez !</p>
+      <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:.8rem;font-size:.8rem;color:rgba(255,255,255,.7);margin-bottom:.8rem;line-height:1.5;font-style:italic">
+        "Mon Aura Financière vient d'être révélée ✨ Je suis ${aura.nom} ${aura.emoji} — Découvrez la vôtre sur economya.fr #AuraFinancière #Economya"
+      </div>
+      <div style="display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap">
+        <button onclick="shareTwitter('${aura.nom}','${aura.emoji}')" style="background:#000;color:white;border:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">𝕏 Partager</button>
+        <button onclick="copyAura('${aura.nom}','${aura.emoji}')" style="background:rgba(255,255,255,.1);color:white;border:1px solid rgba(255,255,255,.2);padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">📋 Copier</button>
+      </div>
+      <button onclick="restart()" style="background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;cursor:pointer;font-family:inherit;width:100%;margin-top:.5rem">🔄 Refaire le test</button>
+    </div>
+  `;
+}
+
+function shareTwitter(nom, emoji) {
+  const text = `Mon Aura Financière vient d'être révélée ✨ Je suis "${nom}" ${emoji} — Découvrez la vôtre sur economya.fr #AuraFinancière #Economya`;
+  window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+}
+
+function copyAura(nom, emoji) {
+  const text = `Mon Aura Financière ✨\nJe suis "${nom}" ${emoji}\nDécouvrez la vôtre sur economya.fr`;
+  navigator.clipboard.writeText(text).then(() => alert('Copié ! 📋'));
+}
+
+function restart() {
+  currentQ = 0;
+  scores = {rouge:0, bleu:0, vert:0, or:0, violet:0};
+  document.getElementById('quiz').style.display = 'block';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('result').innerHTML = '';
+  showQuestion();
+}
+
+showQuestion();
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>

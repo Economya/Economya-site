@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#04342C"/>
+      <stop offset="50%" style="stop-color:#0F6E56"/>
+      <stop offset="100%" style="stop-color:#1D9E75"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#EF9F27"/>
+      <stop offset="100%" style="stop-color:#F5C842"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fond -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Motif décoratif -->
+  <circle cx="1100" cy="80" r="200" fill="rgba(255,255,255,0.03)"/>
+  <circle cx="100" cy="550" r="150" fill="rgba(255,255,255,0.03)"/>
+  <circle cx="1050" cy="500" r="100" fill="rgba(255,255,255,0.02)"/>
+
+  <!-- Ligne décorative dorée -->
+  <rect x="80" y="280" width="6" height="80" rx="3" fill="url(#gold)"/>
+
+  <!-- Logo / Nom -->
+  <text x="80" y="120" font-family="Georgia, serif" font-size="52" font-weight="900" fill="white">Econom<tspan fill="#EF9F27">ya</tspan>.fr</text>
+
+  <!-- Tagline -->
+  <text x="86" y="170" font-family="Arial, sans-serif" font-size="22" fill="rgba(255,255,255,0.7)">Le blog des économies du quotidien</text>
+
+  <!-- Titre principal -->
+  <text x="86" y="260" font-family="Georgia, serif" font-size="48" font-weight="700" fill="white">Conseils, outils et astuces</text>
+  <text x="86" y="320" font-family="Georgia, serif" font-size="48" font-weight="700" fill="white">pour <tspan fill="#EF9F27">économiser</tspan> au quotidien</text>
+
+  <!-- Stats -->
+  <rect x="86" y="390" width="220" height="80" rx="12" fill="rgba(255,255,255,0.1)"/>
+  <text x="196" y="425" font-family="Georgia, serif" font-size="32" font-weight="900" fill="#EF9F27" text-anchor="middle">500+</text>
+  <text x="196" y="455" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.7)" text-anchor="middle">articles</text>
+
+  <rect x="326" y="390" width="220" height="80" rx="12" fill="rgba(255,255,255,0.1)"/>
+  <text x="436" y="425" font-family="Georgia, serif" font-size="32" font-weight="900" fill="#EF9F27" text-anchor="middle">23</text>
+  <text x="436" y="455" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.7)" text-anchor="middle">outils gratuits</text>
+
+  <rect x="566" y="390" width="220" height="80" rx="12" fill="rgba(255,255,255,0.1)"/>
+  <text x="676" y="425" font-family="Georgia, serif" font-size="32" font-weight="900" fill="#EF9F27" text-anchor="middle">100%</text>
+  <text x="676" y="455" font-family="Arial, sans-serif" font-size="16" fill="rgba(255,255,255,0.7)" text-anchor="middle">gratuit</text>
+
+  <!-- Graphique décoratif -->
+  <polyline points="900,480 940,440 980,400 1020,360 1060,300 1100,240" fill="none" stroke="url(#gold)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="900" cy="480" r="6" fill="#EF9F27"/>
+  <circle cx="940" cy="440" r="6" fill="#EF9F27"/>
+  <circle cx="980" cy="400" r="6" fill="#EF9F27"/>
+  <circle cx="1020" cy="360" r="6" fill="#EF9F27"/>
+  <circle cx="1060" cy="300" r="6" fill="#EF9F27"/>
+  <circle cx="1100" cy="240" r="8" fill="#EF9F27"/>
+
+  <!-- URL -->
+  <text x="86" y="590" font-family="Arial, sans-serif" font-size="20" fill="rgba(255,255,255,0.5)">economya.fr</text>
+</svg>

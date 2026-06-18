@@ -1,0 +1,20 @@
+Articles potentiellement incohérents : 18
+
+article-105.html | Score: 0.00 | Titre: négocier son salaire sans complexe : le guide complet
+article-129.html | Score: 0.17 | Titre: soutien scolaire gratuit ou pas cher : toutes les options
+article-13.html | Score: 0.00 | Titre: netflix, spotify et prime pour moins cher
+article-131.html | Score: 0.00 | Titre: ski pas cher : profiter de la montagne sans se ruiner
+article-141.html | Score: 0.00 | Titre: logiciels gratuits pour remplacer les suites payantes
+article-155.html | Score: 0.14 | Titre: billets de sport moins chers : foot, tennis et concerts
+article-161.html | Score: 0.00 | Titre: tablette reconditionnée : le bon plan high-tech
+article-30.html | Score: 0.14 | Titre: déductions fiscales méconnues pour payer moins d'impôts
+article-31.html | Score: 0.00 | Titre: vin et spiritueux : boire bien pour moins cher
+article-350.html | Score: 0.00 | Titre: parkings et caves : les petits investissements immobiliers r
+article-399.html | Score: 0.00 | Titre: ruralité choisie : économiser en quittant la ville
+article-476.html | Score: 0.14 | Titre: vieilles charrues, hellfest, rock en seine : festivals pas c
+article-507.html | Score: 0.17 | Titre: télétravailler depuis le portugal : fiscalité et économies e
+article-508.html | Score: 0.14 | Titre: nomade digital débutant : vivre et travailler de n'importe o
+article-515.html | Score: 0.00 | Titre: panier anti-inflation : faire ses courses intelligemment en 
+article-70.html | Score: 0.00 | Titre: ménage à domicile pas cher : toutes les options
+article-78.html | Score: 0.00 | Titre: cosmétiques et soins pas chers : le guide complet
+article-95.html | Score: 0.17 | Titre: voyager avec des miles et des points : le guide débutant

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Home staging : valoriser son bien pour vendre — +10% sur le prix de vente. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home staging : valoriser son bien pour vendre — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#2C2C2A;line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#085041;text-decoration:none}
+  .logo span{color:#EF9F27}
+  .back{font-size:.82rem;color:#5F5E5A;text-decoration:none}
+  .back:hover{color:#1D9E75}
+
+  /* HERO — sable chaud → terracotta → rose pêche */
+  .hero{background:linear-gradient(135deg,#1A0A00 0%,#5C2800 30%,#C05010 62%,#E8803A 84%,#F5C9A8 100%);padding:3.8rem 2rem 3.2rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'🖼️';position:absolute;font-size:14rem;opacity:.05;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+  .hero-cat{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.05em}
+  .hero-cat strong{color:#fff}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:900;color:#fff;line-height:1.1;max-width:640px;margin:.3rem auto .9rem}
+  .hero-badge{display:inline-block;background:linear-gradient(90deg,#F5C9A8,#E8803A);color:#1A0A00;font-size:.82rem;font-weight:700;padding:.35rem 1.1rem;border-radius:50px}
+  .hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+  .hero-meta span{font-size:.73rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.09);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300;line-height:1.75}
+  h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#5C2800;margin:2.2rem 0 .8rem}
+
+  /* STAT IMPACT VISUEL */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1.5rem 0}
+  .stat{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:1.1rem .9rem;text-align:center}
+  .stat-val{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:#C05010;line-height:1}
+  .stat-label{font-size:.74rem;font-weight:300;color:#5F5E5A;margin-top:.3rem;line-height:1.35}
+
+  /* AVANT / APRÈS PAR PIÈCE */
+  .pieces{display:flex;flex-direction:column;gap:.8rem;margin:1.5rem 0}
+  .piece{border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,.08)}
+  .piece-head{display:flex;align-items:center;gap:.7rem;padding:.75rem 1.1rem;background:linear-gradient(90deg,#5C2800,#C05010);color:#fff}
+  .piece-ico{font-size:1.3rem}
+  .piece-nom{font-weight:600;font-size:.9rem}
+  .piece-budget{margin-left:auto;font-size:.78rem;font-weight:600;background:rgba(255,255,255,.2);padding:.15rem .55rem;border-radius:50px;white-space:nowrap}
+  .piece-body{display:grid;grid-template-columns:1fr 1fr;background:#fff}
+  .piece-col{padding:.8rem 1rem}
+  .piece-col:first-child{border-right:1px solid rgba(0,0,0,.06);background:#FFF8F5}
+  .piece-label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.5rem}
+  .piece-col:first-child .piece-label{color:#9B1D1D}
+  .piece-col:last-child .piece-label{color:#085041}
+  .piece-item{font-size:.81rem;font-weight:300;color:#2C2C2A;padding:.2rem 0;line-height:1.4;border-bottom:1px dotted rgba(0,0,0,.07)}
+  .piece-item:last-child{border-bottom:none}
+  .piece-item.avant::before{content:'✗ ';color:#C05010;font-weight:700}
+  .piece-item.apres::before{content:'✓ ';color:#085041;font-weight:700}
+
+  /* BUDGET GLOBAL */
+  .budget{background:linear-gradient(135deg,#1A0A00,#5C2800);border-radius:13px;padding:1.3rem 1.5rem;margin:1.5rem 0;color:#fff}
+  .budget h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#F5C9A8;margin-bottom:.9rem}
+  .budget-row{display:flex;justify-content:space-between;padding:.38rem 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:.84rem}
+  .budget-row:last-child{border-bottom:none;padding-top:.55rem;margin-top:.2rem}
+  .budget-label{font-weight:300;color:rgba(255,255,255,.8)}
+  .budget-val{font-weight:600;color:#F5C9A8;white-space:nowrap}
+  .budget-label.total{font-weight:600;color:#fff}
+  .budget-val.total{font-size:1rem}
+
+  /* CHECKLIST PHOTOS */
+  .photos{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1.5rem 0}
+  .photo-item{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:.75rem .9rem;display:flex;gap:.6rem;align-items:flex-start}
+  .photo-ico{font-size:1.1rem;flex-shrink:0}
+  .photo-text{font-size:.81rem;font-weight:300;color:#2C2C2A;line-height:1.45}
+  .photo-text strong{display:block;font-weight:500;color:#5C2800;margin-bottom:.1rem;font-size:.84rem}
+
+  .encadre{border-left:4px solid #E8803A;background:#FFF5EE;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+  .encadre strong{display:block;color:#5C2800;font-size:.9rem;margin-bottom:.3rem}
+  .encadre p{font-size:.84rem;font-weight:300;color:#7C3A10;margin:0;line-height:1.6}
+
+  .conseil{background:linear-gradient(135deg,#1A0A00,#5C2800);border-radius:13px;padding:1.3rem 1.5rem;margin:2rem 0;color:#fff;border:1px solid rgba(245,201,168,.12)}
+  .conseil strong{display:block;color:#F5C9A8;font-weight:500;font-size:.93rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:#085041;color:rgba(255,255,255,.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:#fff}
+  footer a{color:#EF9F27;text-decoration:none}
+  @media(max-width:500px){.stats{grid-template-columns:1fr 1fr}.piece-body{grid-template-columns:1fr}.piece-col:first-child{border-right:none;border-bottom:1px solid rgba(0,0,0,.06)}.photos{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBK8GHCDT5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795"
+     crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Home staging : valoriser son bien pour vendre",
+  "description": "Home staging : valoriser son bien pour vendre — +10% sur le prix de vente. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-209.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Home staging : valoriser son bien pour vendre">
+  <meta property="og:description" content="Home staging : valoriser son bien pour vendre — +10% sur le prix de vente. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-209.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Home staging : valoriser son bien pour vendre">
+  <meta name="twitter:description" content="Home staging : valoriser son bien pour vendre — +10% sur le prix de vente. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-209.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero">
+  <div class="hero-cat">🖼️ <strong>Immobilier</strong></div>
+  <h1>Home staging : valoriser son bien pour vendre</h1>
+  <div class="hero-badge">💰 +10 % sur le prix de vente</div>
+  <div class="hero-meta">
+    <span>📖 5 min de lecture</span>
+    <span>✅ Vérifié juin 2025</span>
+    <span>🏠 Vente immobilière</span>
+  </div>
+</div>
+
+<article>
+  <p>Le home staging, c'est l'art de préparer un logement pour qu'il se vende plus vite et plus cher — sans grands travaux, avec un budget souvent inférieur à 1 000 euros. Des études menées sur le marché français montrent qu'un bien correctement mis en scène se vend en moyenne 2 à 3 fois plus vite qu'un bien non préparé, et souvent 5 à 10 % au-dessus du prix initial. Le principe : dépersonnaliser, désencombrer, sublimer la lumière et créer un coup de cœur dès les premières photos.</p>
+
+  <h2>L'impact en chiffres</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-val">-63 %</div>
+      <div class="stat-label">de jours sur le marché pour un bien mis en scène</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">+7 %</div>
+      <div class="stat-label">de prix de vente moyen obtenu après home staging</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val">3×</div>
+      <div class="stat-label">plus de visites générées grâce à de meilleures photos</div>
+    </div>
+  </div>
+
+  <h2>Pièce par pièce : ce qui fait la différence</h2>
+
+  <div class="pieces">
+
+    <div class="piece">
+      <div class="piece-head">
+        <span class="piece-ico">🚪</span>
+        <span class="piece-nom">Entrée & couloir</span>
+        <span class="piece-budget">Budget : 50–150 €</span>
+      </div>
+      <div class="piece-body">
+        <div class="piece-col">
+          <div class="piece-label">À éviter</div>
+          <div class="piece-item avant">Tas de chaussures visible</div>
+          <div class="piece-item avant">Manteaux entassés sur portemanteau</div>
+          <div class="piece-item avant">Éclairage vieillot jaune</div>
+          <div class="piece-item avant">Murs surchargés de photos</div>
+        </div>
+        <div class="piece-col">
+          <div class="piece-label">À faire</div>
+          <div class="piece-item apres">Rangement minimal, sol dégagé</div>
+          <div class="piece-item apres">Miroir pour agrandir l'espace</div>
+          <div class="piece-item apres">Ampoule LED blanc chaud 3000K</div>
+          <div class="piece-item apres">1 seul élément déco épuré</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-head">
+        <span class="piece-ico">🛋️</span>
+        <span class="piece-nom">Salon & séjour</span>
+        <span class="piece-budget">Budget : 100–300 €</span>
+      </div>
+      <div class="piece-body">
+        <div class="piece-col">
+          <div class="piece-label">À éviter</div>
+          <div class="piece-item avant">Mobilier surdimensionné</div>
+          <div class="piece-item avant">Couleurs de murs trop marquées</div>
+          <div class="piece-item avant">Câbles TV apparents</div>
+          <div class="piece-item avant">Tapis usé ou trop personnel</div>
+        </div>
+        <div class="piece-col">
+          <div class="piece-label">À faire</div>
+          <div class="piece-item apres">Repeindre en blanc cassé (Dulux Valentine)</div>
+          <div class="piece-item apres">Dégager 30 cm autour des meubles</div>
+          <div class="piece-item apres">Coussins neutres, plaid jeté</div>
+          <div class="piece-item apres">1 plante verte d'intérieur</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-head">
+        <span class="piece-ico">🍳</span>
+        <span class="piece-nom">Cuisine</span>
+        <span class="piece-budget">Budget : 80–200 €</span>
+      </div>
+      <div class="piece-body">
+        <div class="piece-col">
+          <div class="piece-label">À éviter</div>
+          <div class="piece-item avant">Plan de travail encombré</div>
+          <div class="piece-item avant">Porte-torchons surchargés</div>
+          <div class="piece-item avant">Joints de carrelage noircis</div>
+          <div class="piece-item avant">Électroménager daté visible</div>
+        </div>
+        <div class="piece-col">
+          <div class="piece-label">À faire</div>
+          <div class="piece-item apres">Plan de travail dégagé (1 objet max)</div>
+          <div class="piece-item apres">Nettoyage joints avec stylo blanc</div>
+          <div class="piece-item apres">Façades repeintes si vieillies</div>
+          <div class="piece-item apres">Corbeille de fruits en déco</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-head">
+        <span class="piece-ico">🛁</span>
+        <span class="piece-nom">Salle de bain</span>
+        <span class="piece-budget">Budget : 60–150 €</span>
+      </div>
+      <div class="piece-body">
+        <div class="piece-col">
+          <div class="piece-label">À éviter</div>
+          <div class="piece-item avant">Produits de soin visibles partout</div>
+          <div class="piece-item avant">Joints moisis ou jaunis</div>
+          <div class="piece-item avant">Rideau de douche usé</div>
+          <div class="piece-item avant">Miroir sans éclairage</div>
+        </div>
+        <div class="piece-col">
+          <div class="piece-label">À faire</div>
+          <div class="piece-item apres">Tout ranger dans les placards</div>
+          <div class="piece-item apres">Refaire les joints (8 € le tube)</div>
+          <div class="piece-item apres">Nouveau rideau blanc (15 €)</div>
+          <div class="piece-item apres">Serviettes neuves pliées nickel</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="piece">
+      <div class="piece-head">
+        <span class="piece-ico">🛏️</span>
+        <span class="piece-nom">Chambre</span>
+        <span class="piece-budget">Budget : 80–200 €</span>
+      </div>
+      <div class="piece-body">
+        <div class="piece-col">
+          <div class="piece-label">À éviter</div>
+          <div class="piece-item avant">Linge visible, chaises surchargées</div>
+          <div class="piece-item avant">Tête de lit absente ou abîmée</div>
+          <div class="piece-item avant">Rideaux opaques qui bloquent la lumière</div>
+          <div class="piece-item avant">Photos de famille sur les murs</div>
+        </div>
+        <div class="piece-col">
+          <div class="piece-label">À faire</div>
+          <div class="piece-item apres">Lit fait avec linge blanc repassé</div>
+          <div class="piece-item apres">Tête de lit sobre (DIY ou Ikea)</div>
+          <div class="piece-item apres">Rideaux légers translucides</div>
+          <div class="piece-item apres">2 tables de chevet symétriques</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Le budget complet d'un home staging DIY</h2>
+
+  <div class="budget">
+    <h3>💰 Appartement 60 m² — budget home staging réaliste</h3>
+    <div class="budget-row"><span class="budget-label">Peinture blanc cassé (2 pots 10L)</span><span class="budget-val">80 €</span></div>
+    <div class="budget-row"><span class="budget-label">Coussins, plaids, linge de lit neuf</span><span class="budget-val">120 €</span></div>
+    <div class="budget-row"><span class="budget-label">Ampoules LED, luminaires</span><span class="budget-val">60 €</span></div>
+    <div class="budget-row"><span class="budget-label">Accessoires déco neutres</span><span class="budget-val">80 €</span></div>
+    <div class="budget-row"><span class="budget-label">Produits de nettoyage, joints</span><span class="budget-val">30 €</span></div>
+    <div class="budget-row"><span class="budget-label">Location meuble si vide (optionnel)</span><span class="budget-val">200 €</span></div>
+    <div class="budget-row">
+      <span class="budget-label total">Total investi</span>
+      <span class="budget-val total">370–570 € pour +15 000 € sur le prix</span>
+    </div>
+  </div>
+
+  <h2>Les photos : le vrai levier en 2025</h2>
+
+  <div class="photos">
+    <div class="photo-item">
+      <span class="photo-ico">☀️</span>
+      <div class="photo-text"><strong>Photographier en pleine journée</strong>Volets ouverts, lumières allumées même de jour. La lumière naturelle est irremplaçable — évitez les soirées et les jours de pluie.</div>
+    </div>
+    <div class="photo-item">
+      <span class="photo-ico">📱</span>
+      <div class="photo-text"><strong>Utiliser un grand angle</strong>Un objectif 16–24 mm (ou mode grand angle smartphone) donne l'impression d'espace. Évitez les zooms qui rapetissent les pièces.</div>
+    </div>
+    <div class="photo-item">
+      <span class="photo-ico">📐</span>
+      <div class="photo-text"><strong>Photographier depuis les coins</strong>Positionner l'appareil dans les coins de la pièce, à hauteur de poitrine, capture un maximum de volume et de profondeur.</div>
+    </div>
+    <div class="photo-item">
+      <span class="photo-ico">✏️</span>
+      <div class="photo-text"><strong>Retoucher avec Lightroom Mobile</strong>Gratuit, rapide. Augmentez légèrement la clarté et réduisez les ombres. Évitez de sur-exposer — ça fait faux et méfiant.</div>
+    </div>
+    <div class="photo-item">
+      <span class="photo-ico">🏠</span>
+      <div class="photo-text"><strong>La photo de façade : obligatoire</strong>Une façade propre, filmée en légère contre-plongée, rassure immédiatement. Sortez les poubelles, coupez l'herbe avant.</div>
+    </div>
+    <div class="photo-item">
+      <span class="photo-ico">🔢</span>
+      <div class="photo-text"><strong>Nombre idéal : 15 à 20 photos</strong>En dessous de 10, les acheteurs suspectent un défaut caché. Au-delà de 25, l'attention baisse. 15 à 20 photos bien sélectionnées est la norme.</div>
+    </div>
+  </div>
+
+  <div class="encadre">
+    <strong>📌 Faire appel à un home stager professionnel : quand ça vaut le coup</strong>
+    <p>Un home stager professionnel facture entre 500 et 2 000 euros pour un appartement. C'est rentable pour les biens à plus de 300 000 euros, ou si le logement est vide (la mise en scène avec mobilier loué est indispensable dans ce cas). Pour les biens moins chers ou déjà meublés, le DIY avec ce guide produit 80 % du résultat pour 10 % du budget professionnel.</p>
+  </div>
+
+  <div class="conseil">
+    <strong>👁️ L'odeur : le détail que tout le monde oublie</strong>
+    <p>Les acheteurs ne décrivent pas les odeurs mais les ressentent immédiatement. Une maison qui sent le tabac froid, le chien ou l'humidité perd 5 à 10 % de sa valeur perçue instantanément — et les acheteurs partent sans le dire. La solution : aérez 30 minutes avant chaque visite, faites cuire du pain ou du café juste avant l'arrivée, et évitez absolument les désodorisants chimiques qui signalent qu'on cherche à masquer quelque chose. Un diffuseur de citron ou de pin naturel, discret, est le plus universel.</p>
+  </div>
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · Mentions légales · Contact · Cet article contient des liens partenaires.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-201.html"><div class="sim-card-cat">Immobilier</div><div class="sim-card-title">Acheter sa résidence principale : le guide 2025</div></a><a class="sim-card" href="article-202.html"><div class="sim-card-cat">Immobilier</div><div class="sim-card-title">Renégocier son crédit immobilier</div></a><a class="sim-card" href="article-203.html"><div class="sim-card-cat">Immobilier</div><div class="sim-card-title">PTZ 2025 : conditions et simulation</div></a><a class="sim-card" href="article-204.html"><div class="sim-card-cat">Immobilier</div><div class="sim-card-title">Frais de notaire : comment les calculer</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>
