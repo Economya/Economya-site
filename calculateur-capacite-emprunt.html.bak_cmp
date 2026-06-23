@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur Capacité d'Emprunt Immobilier 2026 — Economya.fr</title>
+<meta name="description" content="Calculez votre capacité d'emprunt immobilier selon vos revenus et charges. Combien pouvez-vous emprunter ? Gratuit sur Economya.fr">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#064e3b,#065f46,#059669);color:white;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'🏠';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:#EF9F27;font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:500px;margin:0 auto}
+.container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:var(--gd)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.field label{display:block;font-size:.78rem;font-weight:600;color:var(--m);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em}
+.field input[type=range]{width:100%;accent-color:var(--g);height:6px;margin:.5rem 0}
+.field .val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--gd)}
+.field .val span{font-size:.85rem;font-weight:400;color:var(--m)}
+.result-big{background:linear-gradient(135deg,#064e3b,#059669);border-radius:var(--r);padding:2.5rem;color:white;text-align:center;margin-bottom:1.5rem}
+.result-big h2{font-family:'Playfair Display',serif;font-size:1.1rem;color:rgba(255,255,255,.8);margin-bottom:.5rem}
+.result-big .montant{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:#86efac;display:block;line-height:1}
+.result-big .sous{font-size:.9rem;color:rgba(255,255,255,.7);margin-top:.5rem}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1.5rem}
+.res-item{background:rgba(255,255,255,.1);border-radius:12px;padding:1rem;text-align:center}
+.res-item .num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--a);display:block}
+.res-item .lbl{font-size:.72rem;color:rgba(255,255,255,.65);margin-top:.2rem}
+.detail{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.detail h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem;color:var(--gd)}
+.detail-row{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--b);font-size:.86rem}
+.detail-row:last-child{border-bottom:none;font-weight:700;font-size:.95rem;color:var(--gd)}
+.detail-row .lbl{color:var(--m)}
+.biens{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:1.5rem}
+.bien-card{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center}
+.bien-card.possible{border-color:var(--g);background:var(--gl)}
+.bien-card.impossible{opacity:.5}
+.bien-icon{font-size:1.8rem;margin-bottom:.4rem}
+.bien-nom{font-size:.82rem;font-weight:700;color:var(--gd);margin-bottom:.2rem}
+.bien-prix{font-size:.75rem;color:var(--m)}
+.bien-statut{font-size:.72rem;font-weight:700;margin-top:.4rem}
+.bien-statut.oui{color:var(--g)}
+.bien-statut.non{color:#dc2626}
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1rem 1.4rem;font-size:.9rem;color:var(--gd);margin-bottom:1.5rem}
+.tip strong{font-weight:600}
+.cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
+.cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:1px solid var(--b);font-size:.86rem;font-family:inherit}
+.cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}.result-big .montant{font-size:3rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Calculateur Capacité d'Emprunt Immobilier 2026">
+  <meta property="og:description" content="Calculez votre capacité d'emprunt immobilier selon vos revenus et charges. Combien pouvez-vous emprunter ? Gratuit sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/calculateur-capacite-emprunt.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculateur Capacité d'Emprunt Immobilier 2026">
+  <meta name="twitter:description" content="Calculez votre capacité d'emprunt immobilier selon vos revenus et charges. Combien pouvez-vous emprunter ? Gratuit sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/calculateur-capacite-emprunt.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="hero">
+  <h1>Calculateur <em>Capacité d'Emprunt</em> 2026</h1>
+  <p>Découvrez combien vous pouvez emprunter pour votre projet immobilier selon vos revenus et vos charges.</p>
+</div>
+<div class="container">
+  <div class="card">
+    <h2>💶 Vos revenus & charges</h2>
+    <div class="grid">
+      <div class="field">
+        <label>Revenus nets mensuels du foyer</label>
+        <div class="val" id="v-revenus">3 500 <span>€/mois</span></div>
+        <input type="range" id="revenus" min="500" max="15000" step="100" value="3500">
+      </div>
+      <div class="field">
+        <label>Autres crédits en cours</label>
+        <div class="val" id="v-credits">0 <span>€/mois</span></div>
+        <input type="range" id="credits" min="0" max="2000" step="50" value="0">
+      </div>
+      <div class="field">
+        <label>Apport personnel</label>
+        <div class="val" id="v-apport">20 000 <span>€</span></div>
+        <input type="range" id="apport" min="0" max="200000" step="1000" value="20000">
+      </div>
+      <div class="field">
+        <label>Durée du prêt souhaitée</label>
+        <div class="val" id="v-duree">20 <span>ans</span></div>
+        <input type="range" id="duree" min="5" max="30" step="1" value="20">
+      </div>
+    </div>
+  </div>
+
+  <div class="result-big">
+    <h2>🏠 Votre capacité d'emprunt</h2>
+    <span class="montant" id="r-capacite">—</span>
+    <div class="sous" id="r-sous">budget total avec apport</div>
+    <div class="res-grid">
+      <div class="res-item">
+        <span class="num" id="r-mensualite">—</span>
+        <div class="lbl">Mensualité max</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-emprunt">—</span>
+        <div class="lbl">Montant empruntable</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-taux-endettement">—</span>
+        <div class="lbl">Taux d'endettement</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail">
+    <h2>📋 Détail du calcul</h2>
+    <div class="detail-row"><span class="lbl">Revenus nets mensuels</span><span id="d-revenus">—</span></div>
+    <div class="detail-row"><span class="lbl">Taux d'endettement max (35%)</span><span id="d-max">—</span></div>
+    <div class="detail-row"><span class="lbl">Autres crédits en cours</span><span id="d-credits">—</span></div>
+    <div class="detail-row"><span class="lbl">Mensualité disponible pour l'immo</span><span id="d-mensualite">—</span></div>
+    <div class="detail-row"><span class="lbl">Montant empruntable (taux 3,5%)</span><span id="d-emprunt">—</span></div>
+    <div class="detail-row"><span class="lbl">Apport personnel</span><span id="d-apport">—</span></div>
+    <div class="detail-row"><span class="lbl"><strong>Budget total acquisition</strong></span><span id="d-total">—</span></div>
+  </div>
+
+  <div style="margin-bottom:1.5rem">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--gd);margin-bottom:1rem">🏘️ Ce que vous pouvez vous offrir</h2>
+    <div class="biens" id="biens-grid"></div>
+  </div>
+
+  <div class="tip" id="tip-text">Chargement...</div>
+
+  <div class="cta">
+    <h3>📬 Conseils immobilier personnalisés</h3>
+    <p>Taux en temps réel, aides disponibles et stratégies pour acheter moins cher.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr">
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Simulation indicative basée sur un taux de 3,5%. Consultez votre banque pour une offre personnalisée.</span>
+</footer>
+<script>
+const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+
+const BIENS = [
+  { icon:'🏠', nom:'Studio Paris', prix:250000 },
+  { icon:'🏡', nom:'Appart 2 pièces province', prix:150000 },
+  { icon:'🏘️', nom:'Maison campagne', prix:200000 },
+  { icon:'🏙️', nom:'Appart 3 pièces grande ville', prix:300000 },
+  { icon:'🏰', nom:'Maison avec jardin', prix:400000 },
+  { icon:'🌟', nom:'Villa bord de mer', prix:600000 },
+];
+
+function calculate() {
+  const revenus = +document.getElementById('revenus').value;
+  const credits = +document.getElementById('credits').value;
+  const apport = +document.getElementById('apport').value;
+  const duree = +document.getElementById('duree').value;
+
+  document.getElementById('v-revenus').innerHTML = revenus.toLocaleString('fr-FR') + ' <span>€/mois</span>';
+  document.getElementById('v-credits').innerHTML = credits.toLocaleString('fr-FR') + ' <span>€/mois</span>';
+  document.getElementById('v-apport').innerHTML = apport.toLocaleString('fr-FR') + ' <span>€</span>';
+  document.getElementById('v-duree').innerHTML = duree + ' <span>ans</span>';
+
+  const mensualiteMax = revenus * 0.35;
+  const mensualiteImmo = Math.max(0, mensualiteMax - credits);
+  const tauxMensuel = 0.035 / 12;
+  const n = duree * 12;
+
+  // Calcul montant empruntable
+  const emprunt = mensualiteImmo * (1 - Math.pow(1 + tauxMensuel, -n)) / tauxMensuel;
+  const budgetTotal = emprunt + apport;
+  const tauxEndettement = ((mensualiteImmo + credits) / revenus * 100).toFixed(0);
+
+  document.getElementById('r-capacite').textContent = fmt(budgetTotal);
+  document.getElementById('r-sous').textContent = `budget total avec apport de ${fmt(apport)}`;
+  document.getElementById('r-mensualite').textContent = fmt(mensualiteImmo);
+  document.getElementById('r-emprunt').textContent = fmt(emprunt);
+  document.getElementById('r-taux-endettement').textContent = tauxEndettement + '%';
+
+  document.getElementById('d-revenus').textContent = fmt(revenus);
+  document.getElementById('d-max').textContent = fmt(mensualiteMax);
+  document.getElementById('d-credits').textContent = '- ' + fmt(credits);
+  document.getElementById('d-mensualite').textContent = fmt(mensualiteImmo);
+  document.getElementById('d-emprunt').textContent = fmt(emprunt);
+  document.getElementById('d-apport').textContent = '+ ' + fmt(apport);
+  document.getElementById('d-total').textContent = fmt(budgetTotal);
+
+  // Biens
+  const biensGrid = document.getElementById('biens-grid');
+  biensGrid.innerHTML = '';
+  BIENS.forEach(b => {
+    const possible = budgetTotal >= b.prix * 0.92; // avec frais de notaire
+    biensGrid.innerHTML += `
+      <div class="bien-card ${possible ? 'possible' : 'impossible'}">
+        <div class="bien-icon">${b.icon}</div>
+        <div class="bien-nom">${b.nom}</div>
+        <div class="bien-prix">~${fmt(b.prix)}</div>
+        <div class="bien-statut ${possible ? 'oui' : 'non'}">${possible ? '✅ Accessible' : '❌ Hors budget'}</div>
+      </div>
+    `;
+  });
+
+  // Conseil
+  const tip = document.getElementById('tip-text');
+  if(credits > revenus * 0.15) {
+    tip.innerHTML = `<strong>⚠️ Crédits existants élevés :</strong> Vos crédits en cours réduisent fortement votre capacité d'emprunt immobilier. Envisagez de les rembourser avant votre achat pour augmenter votre budget de ${fmt(credits * n / 1.5)}.`;
+  } else if(apport < emprunt * 0.1) {
+    tip.innerHTML = `<strong>💡 Augmentez votre apport :</strong> Avec seulement ${(apport/budgetTotal*100).toFixed(0)}% d'apport, certaines banques peuvent refuser. Visez 10% minimum. Chaque tranche de 10 000 € d'apport supplémentaire améliore votre dossier.`;
+  } else {
+    tip.innerHTML = `<strong>✅ Bonne capacité :</strong> Avec ${fmt(budgetTotal)} de budget, vous avez accès à un bon choix de biens. Comparez les offres de plusieurs banques — un écart de 0,2% sur le taux représente ${fmt(emprunt * 0.002 * duree)} d'économies sur la durée totale.`;
+  }
+}
+
+document.querySelectorAll('input[type=range]').forEach(el => el.addEventListener('input', calculate));
+calculate();
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
+Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
+</div>
+</body>
+</html>

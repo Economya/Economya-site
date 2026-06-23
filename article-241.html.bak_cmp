@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="PUMA : protection universelle maladie — Droits automatiques à la Sécu. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PUMA : protection universelle maladie — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--emerald:#059669;--emerald-l:#ecfdf5;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#052e16,#065f46,#059669);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🛡️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a7f3d0;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#6ee7b7;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#059669);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(5,150,105,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#059669,#0891b2);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--emerald);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* QUI EST CONCERNÉ — grille de profils */
+.profils{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.9rem;margin:1.5rem 0}
+.profil{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem;text-align:center;transition:transform .2s,box-shadow .2s}
+.profil:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(5,150,105,.1)}
+.profil .pico{font-size:2rem;margin-bottom:.5rem}
+.profil .ptitle{font-weight:700;font-size:.88rem;margin-bottom:.25rem}
+.profil .pdesc{font-size:.78rem;color:var(--m);font-weight:300;line-height:1.4}
+
+/* LISTE Q&A */
+.qa{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+.qa-item{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden}
+.qa-q{background:var(--emerald-l);padding:.9rem 1.2rem;font-weight:600;font-size:.92rem;color:var(--gd);display:flex;align-items:center;gap:.6rem}
+.qa-q .qi{font-size:1.1rem}
+.qa-a{padding:.9rem 1.2rem;font-size:.88rem;color:var(--m);font-weight:300;line-height:1.6}
+.qa-a strong{color:var(--t);font-weight:600}
+
+/* ÉTAPES */
+.steps{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
+.step{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem}
+.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#065f46,#059669);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc h3{font-size:.9rem;font-weight:600;margin-bottom:.2rem}
+.sc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--emerald-l);border-left:4px solid var(--emerald);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#065f46}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#052e16,#065f46);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#059669,#0891b2);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "PUMA : protection universelle maladie",
+  "description": "PUMA : protection universelle maladie — Droits automatiques à la Sécu. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-241.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="PUMA : protection universelle maladie">
+  <meta property="og:description" content="PUMA : protection universelle maladie — Droits automatiques à la Sécu. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-241.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PUMA : protection universelle maladie">
+  <meta name="twitter:description" content="PUMA : protection universelle maladie — Droits automatiques à la Sécu. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-241.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">🛡️ Santé</div>
+    <h1>PUMA :<br><em>droits automatiques à la Sécu</em></h1>
+    <div class="savings-badge">💰 Protection universelle maladie</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="theme-tag">🩺 Couverture santé</span>
+    </div>
+  </div>
+</div>
+
+<div class="ab">
+
+  <p class="lead">Depuis 2016, la PUMA (Protection Universelle Maladie) garantit à toute personne résidant en France de manière stable et régulière un droit à la prise en charge de ses frais de santé — sans condition de situation professionnelle. Un droit encore trop peu connu.</p>
+
+  <h2>👥 Qui est concerné ?</h2>
+
+  <p>La PUMA remplace l'ancienne CMU de base. Elle s'applique <strong>automatiquement</strong> à toute personne résidant en France depuis plus de 3 mois, quelle que soit sa situation :</p>
+
+  <div class="profils">
+    <div class="profil">
+      <div class="pico">👔</div>
+      <div class="ptitle">Salarié</div>
+      <div class="pdesc">Affilié automatiquement via l'employeur dès le premier jour de travail.</div>
+    </div>
+    <div class="profil">
+      <div class="pico">🧑‍💼</div>
+      <div class="ptitle">Indépendant</div>
+      <div class="pdesc">Affilié via la SSI (ex-RSI). Les cotisations sont calculées sur le revenu.</div>
+    </div>
+    <div class="profil">
+      <div class="pico">🎓</div>
+      <div class="ptitle">Étudiant</div>
+      <div class="pdesc">Rattaché automatiquement à la Sécu des étudiants depuis 2019. Aucune démarche.</div>
+    </div>
+    <div class="profil">
+      <div class="pico">🏡</div>
+      <div class="ptitle">Sans activité</div>
+      <div class="pdesc">Affilié sur critère de résidence après 3 mois en France. Démarche à faire auprès de la CPAM.</div>
+    </div>
+    <div class="profil">
+      <div class="pico">🌍</div>
+      <div class="ptitle">Étranger en France</div>
+      <div class="pdesc">Droit ouvert avec titre de séjour valide et résidence stable depuis 3 mois.</div>
+    </div>
+    <div class="profil">
+      <div class="pico">👶</div>
+      <div class="ptitle">Enfant à charge</div>
+      <div class="pdesc">Couvert automatiquement via les droits du parent, sans cotisation supplémentaire.</div>
+    </div>
+  </div>
+
+  <h2>❓ Les questions fréquentes</h2>
+
+  <div class="qa">
+    <div class="qa-item">
+      <div class="qa-q"><span class="qi">❓</span> Je viens de perdre mon emploi — suis-je encore couvert ?</div>
+      <div class="qa-a">Oui. La PUMA maintient vos droits à la prise en charge des soins <strong>sans interruption</strong>, même en cas de perte d'emploi, de divorce, ou de changement de situation. C'est précisément le sens de "protection universelle".</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q"><span class="qi">❓</span> La PUMA, c'est la même chose que la CSS (ancienne CMU-C) ?</div>
+      <div class="qa-a">Non. La PUMA remplace la CMU de base (couverture maladie de base pour tous). La CSS (Complémentaire Santé Solidaire) est une mutuelle gratuite ou à 1 €/jour pour les personnes à faibles revenus — c'est un niveau de couverture supplémentaire.</div>
+    </div>
+    <div class="qa-item">
+      <div class="qa-q"><span class="qi">❓</span> Dois-je payer une cotisation ?</div>
+      <div class="qa-a">Si vous avez une activité professionnelle, oui, via vos charges sociales habituelles. Si vous n'avez <strong>aucun revenu d'activité</strong>, la PUMA est gratuite. Si vos revenus du patrimoine dépassent 20 % du PASS (environ 9 000 €/an), une cotisation spécifique s'applique.</div>
+    </div>
+  </div>
+
+  <h2>🪜 Comment s'affilier si ce n'est pas automatique</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="sn">1</div>
+      <div class="sc">
+        <h3>Contactez votre CPAM</h3>
+        <p>Par téléphone (3646), via ameli.fr ou en vous rendant à l'accueil. Précisez votre situation (sans emploi, étranger, inactif).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">2</div>
+      <div class="sc">
+        <h3>Fournissez les justificatifs de résidence</h3>
+        <p>Justificatif de domicile de moins de 3 mois, pièce d'identité, et selon votre situation : titre de séjour, justificatif de ressources.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">3</div>
+      <div class="sc">
+        <h3>Recevez votre numéro de Sécurité sociale</h3>
+        <p>Sous 2 à 4 semaines. Vous pouvez alors utiliser votre carte Vitale et accéder à tous les remboursements.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Complétez avec la CSS</strong>
+    La PUMA couvre la base — mais sans mutuelle, vous avancez encore une partie des frais. Si vos revenus sont modestes, demandez la CSS sur ameli.fr : c'est gratuit ou quasi gratuit, et couvre le 100% Santé.
+  </div>
+
+  <div class="warn">
+    <strong>ℹ️ Vérifiez vos droits sur ameli.fr</strong>
+    Connectez-vous à votre espace ameli.fr pour vérifier que vos droits sont bien ouverts avant tout soin. En cas de rupture de droits, un régulariseur automatique existe — signalez-le à votre CPAM sans attendre.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Vos droits santé dans votre boîte mail</h3>
+    <p>Chaque semaine, les aides méconnues pour payer moins cher vos soins.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-231.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">100% Santé : ce qui est vraiment remboursé</div></a><a class="sim-card" href="article-232.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">ALD : droits, prise en charge à 100%</div></a><a class="sim-card" href="article-233.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Complémentaire santé solidaire (CSS) gratuite</div></a><a class="sim-card" href="article-234.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Remboursement lunettes : toutes les aides</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

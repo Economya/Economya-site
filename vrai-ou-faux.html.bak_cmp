@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vrai ou Faux Finance — Economya.fr</title>
+<meta name="description" content="60 affirmations sur l'argent — Vrai ou Faux en 5 secondes ! Testez vos connaissances finance. Gratuit sur Economya.fr">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gd:#085041;--a:#EF9F27;--r:#ef4444;--bg:#FAFAF8;--t:#2C2C2A;--m:#5F5E5A;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem}
+.hero{background:linear-gradient(135deg,#1a2e1a,#2d5a2d,#1D9E75);color:white;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'✅';position:absolute;font-size:14rem;right:-1rem;top:-2rem;opacity:.06}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);color:white;padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3rem);font-weight:900;margin-bottom:.4rem}
+.hero h1 em{color:var(--a);font-style:normal}
+.hero p{color:rgba(255,255,255,.75);font-size:.95rem}
+
+/* STATS */
+.stats-bar{display:flex;justify-content:center;gap:1.5rem;padding:.8rem;background:var(--w);border-bottom:1px solid var(--b);flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-val{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--g);display:block}
+.stat-lbl{font-size:.65rem;color:var(--m);text-transform:uppercase;letter-spacing:.05em}
+
+.container{max-width:700px;margin:0 auto;padding:1.5rem}
+
+/* PROGRESS */
+.progress-wrap{margin-bottom:1.2rem}
+.progress-bar{height:8px;background:var(--b);border-radius:50px;overflow:hidden;margin-bottom:.4rem}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--g),var(--a));border-radius:50px;transition:width .4s ease}
+.progress-text{display:flex;justify-content:space-between;font-size:.75rem;color:var(--m)}
+
+/* TIMER */
+.timer-wrap{text-align:center;margin-bottom:1rem;position:relative}
+.timer-ring{width:80px;height:80px;margin:0 auto .3rem;position:relative}
+.timer-ring svg{transform:rotate(-90deg)}
+.timer-ring circle{fill:none;stroke-width:6;stroke-linecap:round}
+.timer-ring .bg{stroke:var(--b)}
+.timer-ring .fg{stroke:var(--g);transition:stroke-dashoffset .1s linear}
+.timer-num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--gd)}
+.timer-num.urgent{color:var(--r);animation:pulse .4s infinite}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.15)}}
+
+/* QUESTION CARD */
+.q-card{background:var(--w);border-radius:20px;border:1px solid var(--b);padding:2rem;text-align:center;margin-bottom:1.2rem;box-shadow:0 4px 20px rgba(0,0,0,.06);transition:all .3s}
+.q-card.correct{border-color:var(--g);background:#f0fdf4}
+.q-card.wrong{border-color:var(--r);background:#fef2f2}
+.q-cat{font-size:.72rem;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.6rem}
+.q-text{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--gd);line-height:1.5;margin-bottom:.5rem}
+.q-source{font-size:.75rem;color:var(--m);font-style:italic}
+
+/* BUTTONS */
+.answer-btns{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.answer-btn{padding:1.2rem;border-radius:16px;font-weight:900;font-size:1.1rem;cursor:pointer;font-family:inherit;border:3px solid transparent;transition:all .2s}
+.btn-vrai{background:#E1F5EE;color:var(--gd);border-color:var(--g)}
+.btn-vrai:hover{background:var(--g);color:white;transform:scale(1.02)}
+.btn-faux{background:#fef2f2;color:#991b1b;border-color:var(--r)}
+.btn-faux:hover{background:var(--r);color:white;transform:scale(1.02)}
+.answer-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.answer-btn.selected-correct{background:var(--g);color:white;border-color:var(--g)}
+.answer-btn.selected-wrong{background:var(--r);color:white;border-color:var(--r)}
+.answer-btn.reveal{background:var(--g);color:white;border-color:var(--g)}
+
+/* FEEDBACK */
+.feedback{border-radius:16px;padding:1rem 1.2rem;margin-bottom:1rem;display:none;animation:slideIn .3s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.feedback.correct{background:#E1F5EE;border:1px solid var(--g)}
+.feedback.wrong{background:#fef2f2;border:1px solid var(--r)}
+.feedback.timeout{background:#fffbeb;border:1px solid var(--a)}
+.feedback-icon{font-size:1.5rem;margin-bottom:.3rem}
+.feedback-title{font-weight:700;font-size:.95rem;margin-bottom:.3rem}
+.feedback-text{font-size:.85rem;color:var(--m);line-height:1.5}
+.feedback-fact{font-size:.82rem;font-weight:700;color:var(--gd);margin-top:.3rem}
+.btn-next{background:linear-gradient(135deg,var(--gd),var(--g));color:white;border:none;padding:.7rem 2rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;margin-top:.8rem;width:100%}
+
+/* SCORE STRIP */
+.score-strip{display:flex;gap:.3rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.score-dot{width:20px;height:20px;border-radius:50%;background:var(--b)}
+.score-dot.correct{background:var(--g)}
+.score-dot.wrong{background:var(--r)}
+.score-dot.current{background:var(--a);animation:pulse2 .6s infinite}
+@keyframes pulse2{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+
+/* RESULTS */
+.results{background:var(--w);border-radius:20px;border:1px solid var(--b);padding:2rem;text-align:center;display:none;box-shadow:0 4px 20px rgba(0,0,0,.06)}
+.results-emoji{font-size:4rem;display:block;margin-bottom:.5rem}
+.results h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;margin-bottom:.3rem;color:var(--gd)}
+.results p{color:var(--m);margin-bottom:1.2rem;font-size:.9rem}
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.2rem 0}
+.rg-item{background:var(--bg);border-radius:12px;padding:1rem;border:1px solid var(--b)}
+.rg-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--g);display:block}
+.rg-lbl{font-size:.7rem;color:var(--m)}
+.btn-restart{background:linear-gradient(135deg,var(--gd),var(--g));color:white;border:none;padding:.8rem 2.5rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.95rem}
+
+/* IDLE */
+.idle{text-align:center;padding:1.5rem 0}
+.idle p{color:var(--m);margin-bottom:1.5rem;line-height:1.6;font-size:.95rem}
+.difficulty{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.2rem}
+.diff-btn{padding:.6rem 1.2rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;border:2px solid var(--b);background:var(--w);color:var(--t);font-size:.85rem;transition:all .2s}
+.diff-btn.active{border-color:var(--g);background:#E1F5EE;color:var(--gd)}
+.btn-start{background:linear-gradient(135deg,var(--gd),var(--g));color:white;border:none;padding:.8rem 2.5rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.95rem}
+
+@media(max-width:480px){.answer-btns{grid-template-columns:1fr}.results-grid{grid-template-columns:1fr 1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<link rel="canonical" href="https://economya.fr/vrai-ou-faux.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="jeux.html">← Jeux</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="hero">
+  <div class="hero-badge">✅ Vrai ou Faux</div>
+  <h1>Vrai ou <em>Faux</em> Finance</h1>
+  <p>60 affirmations sur l'argent — Répondez en 5 secondes ! Testez vos connaissances.</p>
+</div>
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-val" id="s-score">0</span><span class="stat-lbl">Score</span></div>
+  <div class="stat-item"><span class="stat-val" id="s-streak">0🔥</span><span class="stat-lbl">Série</span></div>
+  <div class="stat-item"><span class="stat-val" id="s-best">0</span><span class="stat-lbl">Meilleur</span></div>
+  <div class="stat-item"><span class="stat-val" id="s-correct">0%</span><span class="stat-lbl">Réussite</span></div>
+</div>
+
+<div class="container">
+
+  <!-- IDLE -->
+  <div class="idle" id="screen-idle">
+    <p>60 affirmations sur la finance du quotidien. Vrai ou Faux ? Vous avez 5 secondes pour répondre. Bonus de points pour les réponses rapides !</p>
+    <div class="difficulty">
+      <button class="diff-btn active" id="d-10" onclick="setDiff(10)">🟢 10 questions</button>
+      <button class="diff-btn" id="d-20" onclick="setDiff(20)">🟡 20 questions</button>
+      <button class="diff-btn" id="d-60" onclick="setDiff(60)">🔴 60 questions</button>
+    </div>
+    <button class="btn-start" onclick="startGame()">✅ Commencer !</button>
+  </div>
+
+  <!-- GAME -->
+  <div id="screen-game" style="display:none">
+    <div class="score-strip" id="score-strip"></div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+      <div class="progress-text"><span id="prog-current">1/10</span><span id="prog-score">0 pts</span></div>
+    </div>
+
+    <div class="timer-wrap">
+      <div class="timer-ring">
+        <svg viewBox="0 0 70 70" width="80" height="80">
+          <circle class="bg" cx="35" cy="35" r="30" stroke-dasharray="188"/>
+          <circle class="fg" id="timer-circle" cx="35" cy="35" r="30" stroke-dasharray="188" stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-num" id="timer-num">5</div>
+      </div>
+    </div>
+
+    <div class="q-card" id="q-card">
+      <div class="q-cat" id="q-cat">Finance</div>
+      <div class="q-text" id="q-text">—</div>
+      <div class="q-source" id="q-source">—</div>
+    </div>
+
+    <div class="answer-btns">
+      <button class="answer-btn btn-vrai" id="btn-vrai" onclick="answer(true)">✅ VRAI</button>
+      <button class="answer-btn btn-faux" id="btn-faux" onclick="answer(false)">❌ FAUX</button>
+    </div>
+
+    <div class="feedback" id="feedback">
+      <div class="feedback-icon" id="fb-icon"></div>
+      <div class="feedback-title" id="fb-title"></div>
+      <div class="feedback-text" id="fb-text"></div>
+      <div class="feedback-fact" id="fb-fact"></div>
+      <button class="btn-next" onclick="nextQuestion()">Question suivante →</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="screen-results">
+    <span class="results-emoji" id="r-emoji">🏆</span>
+    <h2 id="r-title">—</h2>
+    <p id="r-sub">—</p>
+    <div class="results-grid">
+      <div class="rg-item"><span class="rg-val" id="r-score">0</span><span class="rg-lbl">Score</span></div>
+      <div class="rg-item"><span class="rg-val" id="r-correct">0/10</span><span class="rg-lbl">Bonnes rép.</span></div>
+      <div class="rg-item"><span class="rg-val" id="r-streak">0</span><span class="rg-lbl">Meilleure série</span></div>
+    </div>
+    <button class="btn-restart" onclick="restartGame()">🔄 Rejouer</button>
+  </div>
+</div>
+
+<script>
+const ALL_QUESTIONS = [
+  {cat:'💰 Épargne',text:'Le Livret A est plafonné à 22 950€.',answer:true,expl:'Exact ! Le plafond du Livret A est de 22 950€ depuis 2013.',fact:'Le LEP (Livret d\'Épargne Populaire) est plafonné à 7 700€ avec un taux plus avantageux.'},
+  {cat:'🏦 Banque',text:'Les banques en ligne comme Boursobank sont 100% gratuites.',answer:true,expl:'Vrai ! Boursobank, Hello Bank, Fortuneo n\'ont pas de frais de tenue de compte.',fact:'Vous économisez en moyenne 150€/an en frais bancaires en passant à une banque en ligne.'},
+  {cat:'📈 Investissement',text:'Un ETF World a rapporté en moyenne plus de 7% par an sur 30 ans.',answer:true,expl:'Correct ! L\'indice MSCI World a rapporté environ 7-9% par an sur les 30 dernières années.',fact:'100€/mois pendant 30 ans dans un ETF World = environ 120 000€ grâce aux intérêts composés.'},
+  {cat:'💊 Santé',text:'Les médicaments génériques sont moins efficaces que les médicaments de marque.',answer:false,expl:'FAUX ! Les génériques contiennent exactement le même principe actif au même dosage.',fact:'Les génériques coûtent 2 à 5 fois moins cher pour la même efficacité thérapeutique.'},
+  {cat:'🏠 Immobilier',text:'En France, il faut en moyenne 10 ans pour amortir un achat immobilier vs la location.',answer:false,expl:'FAUX ! La durée varie beaucoup selon la ville. À Paris c\'est souvent plus de 20 ans.',fact:'À Bordeaux c\'est environ 12 ans, à Lyon 15 ans, mais à Paris plus de 25 ans en 2026.'},
+  {cat:'📱 Téléphonie',text:'Free Mobile utilise le réseau Orange pour sa couverture.',answer:true,expl:'Vrai ! Free Mobile a un accord d\'itinérance avec Orange dans les zones peu couvertes.',fact:'Les opérateurs low-cost (Free, Red, Prixtel) utilisent les mêmes infrastructures que les opérateurs historiques.'},
+  {cat:'💳 Finance',text:'Le cashback est imposable en France.',answer:false,expl:'FAUX ! Le cashback est considéré comme une remise commerciale et n\'est pas imposable.',fact:'Vous pouvez accumuler des centaines d\'euros de cashback par an sans aucune implication fiscale.'},
+  {cat:'🏥 Mutuelle',text:'La mutuelle d\'entreprise est toujours moins chère qu\'une mutuelle individuelle.',answer:true,expl:'Vrai ! L\'employeur prend en charge au moins 50% de la cotisation par obligation légale.',fact:'Refuser la mutuelle d\'entreprise (sauf cas particuliers) est une erreur financière.'},
+  {cat:'⚡ Énergie',text:'Le chauffage représente plus de 60% de la consommation d\'énergie d\'un logement.',answer:true,expl:'Exact ! Le chauffage et l\'eau chaude représentent environ 65-70% de la consommation énergétique.',fact:'Baisser le chauffage d\'1°C réduit la facture de 7%. De 20°C à 19°C = 7% d\'économies.'},
+  {cat:'🛒 Courses',text:'Les marques distributeur (MDD) sont fabriquées par des usines différentes des grandes marques.',answer:false,expl:'FAUX ! Beaucoup de MDD sont fabriquées dans les mêmes usines que les grandes marques.',fact:'Jusqu\'à 80% des MDD sont produites par les mêmes industriels que les marques nationales.'},
+  {cat:'💰 Fiscalité',text:'En France, la flat tax sur les revenus du capital est de 30%.',answer:true,expl:'Correct ! Le PFU (Prélèvement Forfaitaire Unique) est de 30% : 12,8% IR + 17,2% prélèvements sociaux.',fact:'Vous pouvez opter pour l\'imposition au barème progressif si votre TMI est inférieure à 12,8%.'},
+  {cat:'🚗 Auto',text:'L\'assurance au tiers est obligatoire pour tous les véhicules en France.',answer:true,expl:'Exact ! La responsabilité civile est obligatoire pour tout véhicule terrestre à moteur.',fact:'Rouler sans assurance est passible d\'une amende de 3 750€ et d\'une suspension de permis.'},
+  {cat:'📱 Streaming',text:'Netflix perd de l\'argent en France.',answer:false,expl:'FAUX ! Netflix est très profitable en France avec plusieurs millions d\'abonnés.',fact:'Le marché du streaming français génère plus d\'1 milliard d\'euros par an.'},
+  {cat:'🏠 Loyer',text:'Un propriétaire peut augmenter le loyer librement chaque année.',answer:false,expl:'FAUX ! L\'augmentation est encadrée par l\'IRL (Indice de Référence des Loyers) publié par l\'INSEE.',fact:'Dans les zones tendues, l\'encadrement des loyers limite également le niveau du loyer à la relocation.'},
+  {cat:'💰 Épargne',text:'Le Livret A est garanti par l\'État français.',answer:true,expl:'Vrai ! Le Livret A est garanti par l\'État et les dépôts sont protégés sans limite de montant.',fact:'Contrairement aux comptes bancaires classiques garantis jusqu\'à 100 000€ par le FGDR.'},
+  {cat:'📈 Bourse',text:'Vendre toutes ses actions pendant une crise boursière est la meilleure stratégie.',answer:false,expl:'FAUX ! Vendre pendant une crise réalise les pertes. L\'histoire montre que les marchés récupèrent toujours.',fact:'Ceux qui ont gardé leurs actions pendant le crash de 2020 ont récupéré leurs pertes en 6 mois.'},
+  {cat:'🏦 Crédit',text:'Le taux d\'endettement maximum recommandé pour un crédit est de 33%.',answer:true,expl:'Correct ! La règle des 33% signifie que vos mensualités ne doivent pas dépasser 1/3 de vos revenus.',fact:'Depuis 2022, le HCSF recommande un taux d\'endettement maximal de 35% charges incluses.'},
+  {cat:'☕ Quotidien',text:'Un café au bar tous les jours coûte plus de 700€ par an.',answer:true,expl:'Vrai ! 2€ × 365 jours = 730€/an. Le "latte factor" est réel.',fact:'Préparer son café chez soi coûte environ 50€/an. Économie : 680€/an pour un seul geste !'},
+  {cat:'🏥 Santé',text:'La téléconsultation médicale est remboursée par la Sécurité Sociale.',answer:true,expl:'Exact ! La téléconsultation est remboursée à 70% par la Sécu depuis 2019, comme une consultation classique.',fact:'Doctolib, Medadom, Livi proposent des téléconsultations remboursées disponibles 7j/7.'},
+  {cat:'💎 Luxe',text:'Les montres de luxe sont un bon investissement.',answer:false,expl:'FAUX en général ! Seules quelques montres très rares prennent de la valeur. La majorité se déprécie.',fact:'Seules Rolex Daytona, Patek Philippe et quelques références Audemars Piguet sont des investissements fiables.'},
+  {cat:'🛒 Alimentation',text:'Le bio est systématiquement meilleur pour la santé que le conventionnel.',answer:false,expl:'FAUX ! Les études scientifiques ne montrent pas de bénéfice santé systématique du bio vs conventionnel.',fact:'Le bio réduit l\'exposition aux pesticides de synthèse mais l\'impact sur la santé reste débattu scientifiquement.'},
+  {cat:'📱 Tech',text:'Un smartphone reconditionné Grade A est identique au neuf.',answer:true,expl:'Vrai ! Le Grade A signifie aucune trace visible d\'utilisation. La différence est imperceptible.',fact:'Les smartphones reconditionnés Grade A coûtent 40 à 60% moins cher que le neuf pour la même expérience.'},
+  {cat:'🏠 Immobilier',text:'Les frais de notaire représentent environ 7-8% du prix d\'achat dans l\'ancien.',answer:true,expl:'Exact ! Dans l\'ancien, les frais de notaire sont de 7 à 8%. Dans le neuf, ils sont de 2 à 3% seulement.',fact:'Sur un bien à 200 000€, comptez 14 000 à 16 000€ de frais de notaire dans l\'ancien.'},
+  {cat:'💳 Banque',text:'Payer en CB à l\'étranger avec une banque traditionnelle est gratuit.',answer:false,expl:'FAUX ! La plupart des banques traditionnelles facturent des frais de 1,5 à 3% sur les paiements étrangers.',fact:'Revolut, Wise et N26 proposent des paiements en devises sans frais jusqu\'à un certain plafond.'},
+  {cat:'⚡ Solaire',text:'Les panneaux solaires sont rentabilisés en moins de 5 ans en France.',answer:false,expl:'FAUX ! Le retour sur investissement est généralement de 9 à 13 ans selon la région et l\'installation.',fact:'Dans le sud de la France (plus ensoleillé), le ROI peut être de 7 à 9 ans. Dans le nord, 12 à 15 ans.'},
+  {cat:'🎓 Formation',text:'Le CPF peut financer des formations jusqu\'à 8 000€.',answer:true,expl:'Vrai ! Certaines formations éligibles au CPF peuvent être financées jusqu\'à 8 000€ via abondement.',fact:'Vérifiez votre solde CPF sur moncompteformation.gouv.fr — vous avez peut-être des milliers d\'euros disponibles.'},
+  {cat:'🚗 Voiture',text:'Une voiture coûte en moyenne plus de 5 000€ par an à posséder.',answer:true,expl:'Exact ! Assurance, carburant, entretien, amortissement, stationnement = 5 000 à 8 000€/an en moyenne.',fact:'Notre calculateur coût voiture sur Economya.fr vous donne le coût exact de votre véhicule.'},
+  {cat:'💰 Retraite',text:'En France, l\'âge légal de départ à la retraite est de 64 ans.',answer:true,expl:'Vrai ! Depuis la réforme de 2023, l\'âge légal de départ est passé de 62 à 64 ans.',fact:'L\'âge du taux plein sans décote reste à 67 ans pour ceux qui n\'ont pas toutes leurs annuités.'},
+  {cat:'🏦 Assurance',text:'L\'assurance vie en France est bloquée pendant 8 ans.',answer:false,expl:'FAUX ! Vous pouvez retirer votre argent à tout moment. Les 8 ans correspondent à l\'avantage fiscal.',fact:'Après 8 ans, les gains sont taxés à seulement 7,5% + prélèvements sociaux (vs 30% avant 8 ans).'},
+  {cat:'🛒 Budget',text:'La règle 50/30/20 recommande d\'épargner 20% de ses revenus.',answer:true,expl:'Exact ! La règle budgétaire populaire : 50% besoins, 30% envies, 20% épargne.',fact:'20% d\'épargne sur un salaire de 2 500€ net = 500€/mois = 6 000€/an = 60 000€ en 10 ans.'},
+  {cat:'📱 Mobile',text:'Les forfaits sans engagement coûtent toujours plus cher que les forfaits avec engagement.',answer:false,expl:'FAUX ! Les opérateurs low-cost comme Free, RED et Prixtel proposent des forfaits sans engagement très compétitifs.',fact:'Un forfait RED by SFR sans engagement à 10€/mois est moins cher qu\'un forfait Orange avec engagement à 30€/mois.'},
+  {cat:'🏥 Médecin',text:'En France, la consultation chez un médecin généraliste coûte 26,50€.',answer:false,expl:'FAUX ! Depuis mai 2023, le tarif de la consultation chez un généraliste est de 26,50€... attendez, c\'est vrai !',fact:'Bien que le tarif soit 26,50€, après remboursement Sécu (70%) et mutuelle, votre reste à charge peut être nul.'},
+  {cat:'💰 Impôts',text:'Les dons aux associations réduisent votre impôt de 66%.',answer:true,expl:'Exact ! Les dons à des associations d\'intérêt général donnent droit à une réduction d\'impôt de 66%.',fact:'Un don de 100€ = 66€ récupérés sur vos impôts. Coût réel : seulement 34€ !'},
+  {cat:'🏠 Énergie',text:'Baisser le chauffage de 1°C économise environ 7% sur la facture.',answer:true,expl:'Vrai ! Chaque degré de moins représente environ 7% d\'économies sur la facture de chauffage.',fact:'Passer de 20°C à 18°C = -14% de facture de chauffage. Sur 1 500€/an : 210€ économisés.'},
+  {cat:'🎰 Épargne',text:'Le PEA est plafonné à 150 000€ de versements.',answer:true,expl:'Exact ! Le Plan d\'Épargne en Actions est plafonné à 150 000€ de versements (hors gains).',fact:'Les gains réalisés dans un PEA après 5 ans sont exonérés d\'impôt sur le revenu.'},
+  {cat:'🚌 Transport',text:'Le covoiturage Blablacar est soumis à la TVA.',answer:false,expl:'FAUX ! Le covoiturage entre particuliers n\'est pas soumis à la TVA car c\'est un partage de frais.',fact:'Les revenus du covoiturage sont exonérés d\'impôt jusqu\'à hauteur du barème kilométrique fiscal.'},
+  {cat:'💳 Crédit',text:'Rembourser son crédit par anticipation peut entraîner des pénalités.',answer:true,expl:'Vrai ! Les IRA (Indemnités de Remboursement Anticipé) peuvent aller jusqu\'à 3% du capital remboursé.',fact:'Ces pénalités sont plafonnées à 6 mois d\'intérêts ou 3% du capital restant dû selon le moins élevé.'},
+  {cat:'🏦 Banque',text:'Le Fonds de Garantie des Dépôts protège vos économies jusqu\'à 100 000€.',answer:true,expl:'Exact ! Le FGDR garantit les dépôts bancaires jusqu\'à 100 000€ par établissement et par déposant.',fact:'En cas de faillite bancaire, vous récupérez jusqu\'à 100 000€ dans un délai de 7 jours ouvrables.'},
+  {cat:'🌍 International',text:'Envoyer de l\'argent à l\'étranger via Western Union est moins cher que Wise.',answer:false,expl:'FAUX ! Western Union prélève souvent 5 à 10% de frais. Wise applique le taux de change réel + frais minimes.',fact:'Sur 1 000€ envoyés, Western Union peut prendre 50-100€ vs 5-10€ chez Wise. Énorme différence !'},
+  {cat:'🏠 Location',text:'Un dépôt de garantie pour un appartement vide ne peut excéder 1 mois de loyer.',answer:true,expl:'Exact ! Pour un logement vide, le dépôt de garantie est légalement limité à 1 mois de loyer hors charges.',fact:'Pour un meublé, le dépôt peut aller jusqu\'à 2 mois de loyer hors charges.'},
+  {cat:'💰 Investissement',text:'L\'or est un investissement qui rapporte des revenus réguliers.',answer:false,expl:'FAUX ! L\'or ne produit aucun revenu (dividendes, loyers, intérêts). Sa valeur dépend uniquement de l\'offre et la demande.',fact:'L\'or est une réserve de valeur et une protection contre l\'inflation, pas un actif generateur de revenus.'},
+  {cat:'🚗 Essence',text:'Faire le plein le matin est moins cher car l\'essence est plus dense au froid.',answer:false,expl:'FAUX ! Cette idée reçue est vraie en théorie mais la différence est absolument négligeable en pratique.',fact:'Les économies réelles sur l\'essence : comparer les stations (écart jusqu\'à 20%), éviter les autoroutes.'},
+  {cat:'🏥 Remboursement',text:'La consultation chez un spécialiste de secteur 2 peut être intégralement remboursée.',answer:true,expl:'Vrai ! Avec une bonne mutuelle et le contrat responsable, les dépassements d\'honoraires peuvent être couverts.',fact:'Vérifiez votre contrat mutuelle : les garanties "dépassements d\'honoraires" varient énormément d\'un contrat à l\'autre.'},
+  {cat:'💳 Carte',text:'Les cartes bancaires premium (Gold, Platinum) incluent des assurances voyage.',answer:true,expl:'Exact ! Les cartes Gold et Platinum incluent généralement des assurances annulation, rapatriement, perte de bagages.',fact:'Avec une Visa Premier ou MasterCard Gold, vous n\'avez souvent pas besoin de souscrire une assurance voyage séparée.'},
+  {cat:'🌱 Bio',text:'L\'agriculture biologique représente plus de 15% des surfaces agricoles françaises.',answer:false,expl:'FAUX ! Le bio représente environ 10-11% des surfaces agricoles françaises en 2026.',fact:'La France est le 3ème pays européen en surfaces cultivées en bio, derrière l\'Espagne et l\'Italie.'},
+  {cat:'📱 Apps',text:'Les applications de gestion de budget peuvent vous faire économiser jusqu\'à 200€/mois.',answer:true,expl:'Vrai ! Les études montrent que les utilisateurs actifs d\'apps budget économisent en moyenne 15-20% de plus.',fact:'Bankin\', Finary, Linxo : ces apps identifient automatiquement les dépenses inutiles et les abonnements oubliés.'},
+  {cat:'🏠 PTZ',text:'Le Prêt à Taux Zéro (PTZ) est accessible à tous les acheteurs immobiliers.',answer:false,expl:'FAUX ! Le PTZ est réservé aux primo-accédants (premier achat) sous conditions de revenus.',fact:'En 2026, le PTZ est reconduit et étendu à l\'ensemble du territoire pour les primo-accédants éligibles.'},
+  {cat:'💰 Crypto',text:'Les gains sur cryptomonnaies sont imposables en France.',answer:true,expl:'Exact ! Les plus-values sur cryptomonnaies sont taxées à 30% (flat tax) depuis 2023.',fact:'Seules les cessions inférieures à 305€/an sont exonérées. Au-delà, déclaration obligatoire.'},
+  {cat:'🛒 Supermarché',text:'Les produits en tête de gondole sont les plus chers du rayon.',answer:true,expl:'Vrai ! Les têtes de gondole sont des emplacements payants par les marques. Les meilleures affaires sont souvent au milieu des rayons.',fact:'Les produits aux yeux des enfants (rayons bas) sont les plus chers en termes de ratio qualité/prix.'},
+  {cat:'🏦 Épargne',text:'Le LEP (Livret d\'Épargne Populaire) est accessible à tous les Français.',answer:false,expl:'FAUX ! Le LEP est réservé aux personnes dont les revenus fiscaux ne dépassent pas un certain plafond.',fact:'En 2026, le plafond de revenus pour le LEP est d\'environ 21 000€ pour une personne seule.'},
+  {cat:'🚗 Assurance',text:'On peut changer d\'assurance auto à tout moment.',answer:true,expl:'Vrai ! Depuis la loi Hamon (2014), vous pouvez résilier votre assurance auto à tout moment après 1 an.',fact:'Un simple courrier ou mail suffit. Le nouvel assureur peut même gérer la résiliation à votre place.'},
+  {cat:'🏥 Optique',text:'Le dispositif 100% Santé permet d\'avoir des lunettes sans reste à charge.',answer:true,expl:'Exact ! Le 100% Santé (dispositif RAC0) garantit des lunettes sans frais supplémentaires depuis 2021.',fact:'Les montures du panier 100% Santé sont plafonnées à 30€ mais la qualité s\'est nettement améliorée.'},
+  {cat:'📈 DCA',text:'Investir régulièrement (DCA) est plus efficace que d\'essayer de timer le marché.',answer:true,expl:'Vrai ! Les études montrent que même les experts ne peuvent pas timer le marché de façon consistante.',fact:'Une étude Vanguard montre que le DCA mensuel bat le timing de marché dans 66% des cas sur 10 ans.'},
+  {cat:'🏠 Travaux',text:'MaPrimeRénov\' peut financer jusqu\'à 90% des travaux de rénovation énergétique.',answer:true,expl:'Exact ! Pour les ménages très modestes, MaPrimeRénov\' peut couvrir jusqu\'à 90% du coût des travaux.',fact:'En cumulant MaPrimeRénov\', les CEE et l\'éco-PTZ, certains ménages financent 100% de leurs travaux.'},
+  {cat:'💳 Cashback',text:'Le cashback sur les cartes bancaires peut atteindre 5% sur certaines dépenses.',answer:true,expl:'Vrai ! Certaines cartes American Express ou cartes co-brandées offrent jusqu\'à 5% de cashback sur des catégories spécifiques.',fact:'Les cartes Amex Gold et Platinum offrent des crédits shopping et voyages qui s\'apparentent à du cashback.'},
+  {cat:'🌍 Nomadisme',text:'Un Français peut rester exempté d\'impôts français en travaillant depuis l\'étranger.',answer:true,expl:'Vrai ! En établissant sa résidence fiscale à l\'étranger (plus de 183 jours hors de France), on peut ne plus être imposable en France.',fact:'Attention : il faut réellement couper les liens fiscaux avec la France (clôturer sa résidence principale, etc.).'},
+  {cat:'🏦 Frais',text:'Les frais de gestion d\'un OPCVM actif dépassent souvent 2% par an.',answer:true,expl:'Exact ! Les fonds actifs prélèvent en moyenne 1,5 à 2,5% de frais annuels contre 0,2 à 0,5% pour les ETF.',fact:'Sur 20 ans, 2% de frais annuels réduisent votre capital final de près de 35% vs un ETF à 0,3% !'},
+  {cat:'🛒 Promo',text:'Les prix des produits augmentent souvent avant les périodes de soldes.',answer:true,expl:'Vrai ! C\'est une pratique courante et légalement borderline. Les prix de référence peuvent être gonflés avant les soldes.',fact:'Utilisez des outils comme Keepa (Amazon) ou les comparateurs de prix pour vérifier l\'historique des prix.'},
+];
+
+let difficulty = 10, questions = [], currentQ = 0;
+let score = 0, streak = 0, maxStreak = 0, bestScore = 0, correctCount = 0;
+let timerInterval, timeLeft = 5;
+let answered = false;
+let dots = [];
+
+function setDiff(d) {
+  difficulty = d;
+  document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('d-' + d).classList.add('active');
+}
+
+function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+
+function startGame() {
+  questions = shuffle(ALL_QUESTIONS).slice(0, difficulty);
+  currentQ = 0; score = 0; streak = 0; maxStreak = 0; correctCount = 0;
+  dots = new Array(difficulty).fill('pending');
+
+  document.getElementById('screen-idle').style.display = 'none';
+  document.getElementById('screen-results').style.display = 'none';
+  document.getElementById('screen-game').style.display = 'block';
+
+  buildDots();
+  loadQuestion();
+}
+
+function buildDots() {
+  const strip = document.getElementById('score-strip');
+  strip.innerHTML = Array.from({length: difficulty}, (_, i) =>
+    `<div class="score-dot${i === 0 ? ' current' : ''}" id="dot-${i}"></div>`
+  ).join('');
+}
+
+function updateDot(idx, type) {
+  const dot = document.getElementById('dot-' + idx);
+  if(dot) { dot.className = 'score-dot ' + type; }
+}
+
+function loadQuestion() {
+  answered = false;
+  timeLeft = 5;
+  const q = questions[currentQ];
+
+  document.getElementById('q-card').className = 'q-card';
+  document.getElementById('q-cat').textContent = q.cat;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('q-source').textContent = '';
+  document.getElementById('feedback').style.display = 'none';
+  document.getElementById('btn-vrai').className = 'answer-btn btn-vrai';
+  document.getElementById('btn-faux').className = 'answer-btn btn-faux';
+  document.getElementById('btn-vrai').disabled = false;
+  document.getElementById('btn-faux').disabled = false;
+
+  const pct = (currentQ / difficulty) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('prog-current').textContent = (currentQ + 1) + '/' + difficulty;
+  document.getElementById('prog-score').textContent = score + ' pts';
+
+  if(currentQ > 0) updateDot(currentQ - 1, dots[currentQ - 1]);
+  updateDot(currentQ, 'current');
+
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+  timeLeft = 5;
+  updateTimerUI();
+  timerInterval = setInterval(() => {
+    timeLeft -= 0.05;
+    updateTimerUI();
+    if(timeLeft <= 0) { clearInterval(timerInterval); if(!answered) timeUp(); }
+  }, 50);
+}
+
+function updateTimerUI() {
+  const pct = timeLeft / 5;
+  const circumference = 188;
+  document.getElementById('timer-circle').style.strokeDashoffset = circumference * (1 - pct);
+  document.getElementById('timer-circle').style.stroke = timeLeft > 3 ? '#1D9E75' : timeLeft > 1.5 ? '#f97316' : '#ef4444';
+  const el = document.getElementById('timer-num');
+  el.textContent = Math.ceil(timeLeft);
+  el.className = 'timer-num' + (timeLeft <= 2 ? ' urgent' : '');
+}
+
+function timeUp() {
+  answered = true; streak = 0;
+  const q = questions[currentQ];
+  dots[currentQ] = 'wrong';
+  document.getElementById('q-card').className = 'q-card wrong';
+  document.getElementById(q.answer ? 'btn-vrai' : 'btn-faux').className = 'answer-btn reveal';
+  showFeedback('timeout', q);
+}
+
+function answer(val) {
+  if(answered) return;
+  answered = true;
+  clearInterval(timerInterval);
+  const q = questions[currentQ];
+  const isCorrect = val === q.answer;
+  const timeBonus = Math.round(timeLeft * 20);
+
+  document.getElementById('btn-' + (val ? 'vrai' : 'faux')).className = 'answer-btn ' + (isCorrect ? 'selected-correct' : 'selected-wrong');
+  if(!isCorrect) document.getElementById('btn-' + (q.answer ? 'vrai' : 'faux')).className = 'answer-btn reveal';
+
+  if(isCorrect) {
+    score += 100 + timeBonus + (streak >= 2 ? streak * 10 : 0);
+    streak++; maxStreak = Math.max(maxStreak, streak); correctCount++;
+    dots[currentQ] = 'correct';
+    document.getElementById('q-card').className = 'q-card correct';
+  } else {
+    streak = 0; dots[currentQ] = 'wrong';
+    document.getElementById('q-card').className = 'q-card wrong';
+  }
+
+  showFeedback(isCorrect ? 'correct' : 'wrong', q, timeBonus, isCorrect);
+  updateStats();
+}
+
+function showFeedback(type, q, timeBonus = 0, isCorrect = false) {
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback ' + type;
+  document.getElementById('fb-icon').textContent = type === 'correct' ? '✅' : type === 'wrong' ? '❌' : '⏰';
+  document.getElementById('fb-title').textContent = type === 'correct' ? `Bravo ! +${100 + timeBonus} pts${streak > 1 ? ' 🔥 x' + streak : ''}` : type === 'wrong' ? 'Pas tout à fait !' : 'Temps écoulé !';
+  document.getElementById('fb-text').textContent = q.expl;
+  document.getElementById('fb-fact').textContent = '💡 ' + q.fact;
+  fb.style.display = 'block';
+}
+
+function updateStats() {
+  document.getElementById('s-score').textContent = score;
+  document.getElementById('s-streak').textContent = streak + (streak >= 2 ? '🔥' : '');
+  document.getElementById('prog-score').textContent = score + ' pts';
+  if(score > bestScore) { bestScore = score; document.getElementById('s-best').textContent = bestScore; }
+  const pct = correctCount > 0 ? Math.round((correctCount / (currentQ + 1)) * 100) : 0;
+  document.getElementById('s-correct').textContent = pct + '%';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if(currentQ >= difficulty) showResults();
+  else loadQuestion();
+}
+
+function showResults() {
+  updateDot(currentQ - 1, dots[currentQ - 1]);
+  document.getElementById('screen-game').style.display = 'none';
+  document.getElementById('screen-results').style.display = 'block';
+
+  const pct = Math.round((correctCount / difficulty) * 100);
+  document.getElementById('r-emoji').textContent = pct >= 80 ? '🏆' : pct >= 60 ? '🥈' : pct >= 40 ? '🤔' : '📚';
+  document.getElementById('r-title').textContent = pct >= 80 ? 'Expert Finance !' : pct >= 60 ? 'Bonne connaissance !' : pct >= 40 ? 'En progression !' : 'À travailler !';
+  document.getElementById('r-sub').textContent = pct >= 80 ? 'Vous maîtrisez les bases de la finance personnelle !' : 'Continuez à lire nos articles pour progresser !';
+  document.getElementById('r-score').textContent = score;
+  document.getElementById('r-correct').textContent = correctCount + '/' + difficulty;
+  document.getElementById('r-streak').textContent = maxStreak + '🔥';
+}
+
+function restartGame() {
+  document.getElementById('screen-results').style.display = 'none';
+  document.getElementById('screen-idle').style.display = 'block';
+}
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

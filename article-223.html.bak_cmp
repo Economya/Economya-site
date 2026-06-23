@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Prime de partage de la valeur 2025 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime de partage de la valeur 2025 — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#2C2C2A;line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#085041;text-decoration:none}
+  .logo span{color:#EF9F27}
+  .back{font-size:.82rem;color:#5F5E5A;text-decoration:none}
+  .back:hover{color:#1D9E75}
+
+  /* HERO — ambre profond → safran → champagne doré */
+  .hero{background:linear-gradient(135deg,#180E00 0%,#6B3A00 32%,#C07800 62%,#E8B030 84%,#F5E090 100%);padding:3.8rem 2rem 3.2rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'🎁';position:absolute;font-size:14rem;opacity:.05;top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none}
+  .hero-cat{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.05em}
+  .hero-cat strong{color:#fff}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:900;color:#fff;line-height:1.1;max-width:640px;margin:.3rem auto .9rem}
+  .hero-badge{display:inline-block;background:linear-gradient(90deg,#F5E090,#E8B030);color:#180E00;font-size:.82rem;font-weight:700;padding:.35rem 1.1rem;border-radius:50px}
+  .hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+  .hero-meta span{font-size:.73rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.09);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300;line-height:1.75}
+  h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#6B3A00;margin:2.2rem 0 .8rem}
+
+  /* PLAFONDS VISUELS */
+  .plafonds{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1.5rem 0}
+  .plaf{border-radius:13px;overflow:hidden;border:1px solid rgba(0,0,0,.08)}
+  .plaf-head{padding:.75rem 1rem;color:#fff;font-weight:700;font-size:.88rem}
+  .plaf-head.standard{background:linear-gradient(135deg,#6B3A00,#C07800)}
+  .plaf-head.majore{background:linear-gradient(135deg,#065F46,#1A9E70)}
+  .plaf-body{background:#fff;padding:.85rem 1rem}
+  .plaf-montant{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;text-align:center;margin:.3rem 0 .1rem}
+  .plaf-montant.gold{color:#C07800}
+  .plaf-montant.green{color:#065F46}
+  .plaf-sous{font-size:.72rem;text-align:center;color:#5F5E5A;margin-bottom:.6rem}
+  .plaf-row{display:flex;justify-content:space-between;padding:.25rem 0;border-bottom:1px dotted rgba(0,0,0,.07);font-size:.81rem}
+  .plaf-row:last-child{border-bottom:none}
+  .plaf-label{font-weight:300;color:#5F5E5A}
+  .plaf-val{font-weight:500;color:#2C2C2A}
+
+  /* COMPARATIF VERSEMENT DIRECT VS PLAN ÉPARGNE */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1.5rem 0}
+  .comp{border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,.08)}
+  .comp-head{padding:.65rem 1rem;color:#fff;font-weight:700;font-size:.87rem}
+  .comp-head.direct{background:linear-gradient(90deg,#6B3A00,#C07800)}
+  .comp-head.epargne{background:linear-gradient(90deg,#1A2E6B,#2952CC)}
+  .comp-body{background:#fff;padding:.8rem 1rem}
+  .comp-row{display:flex;justify-content:space-between;gap:.5rem;padding:.28rem 0;border-bottom:1px dotted rgba(0,0,0,.07);font-size:.81rem}
+  .comp-row:last-child{border-bottom:none}
+  .comp-label{font-weight:300;color:#5F5E5A}
+  .comp-val{font-weight:500;color:#2C2C2A;text-align:right}
+
+  /* SIMULATION NET */
+  .simul{background:linear-gradient(135deg,#180E00,#6B3A00);border-radius:13px;padding:1.3rem 1.5rem;margin:1.5rem 0;color:#fff}
+  .simul h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#F5E090;margin-bottom:.9rem}
+  .simul-row{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.84rem}
+  .simul-row:last-child{border-bottom:none;padding-top:.55rem;margin-top:.2rem}
+  .simul-lab{font-weight:300;color:rgba(255,255,255,.8)}
+  .simul-val{font-weight:600;color:#F5E090;white-space:nowrap}
+  .simul-lab.total{font-weight:600;color:#fff}
+  .simul-val.total{font-size:1rem}
+  .simul-val.green{color:#6EE7B7}
+
+  /* CONDITIONS */
+  .conditions{display:flex;flex-direction:column;gap:.5rem;margin:1.4rem 0}
+  .cond{display:flex;gap:.75rem;align-items:flex-start;padding:.7rem 1rem;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.07)}
+  .cond-ico{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+  .cond-text{font-size:.83rem;font-weight:300;color:#2C2C2A;line-height:1.5}
+  .cond-text strong{font-weight:500;color:#6B3A00;display:block;margin-bottom:.1rem}
+
+  /* FAQ QUESTIONS */
+  .faqs{display:flex;flex-direction:column;gap:.6rem;margin:1.5rem 0}
+  .faq{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;overflow:hidden}
+  .faq-q{padding:.75rem 1rem;font-weight:500;font-size:.87rem;color:#6B3A00;display:flex;align-items:center;gap:.6rem}
+  .faq-q::before{content:'❓';font-size:.85rem}
+  .faq-a{padding:.6rem 1rem .8rem 2.4rem;font-size:.83rem;font-weight:300;color:#5F5E5A;line-height:1.55;border-top:1px solid rgba(0,0,0,.06);background:#FFFDF5}
+
+  .encadre{border-left:4px solid #C07800;background:#FFF8E7;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+  .encadre strong{display:block;color:#6B3A00;font-size:.9rem;margin-bottom:.3rem}
+  .encadre p{font-size:.84rem;font-weight:300;color:#8B5000;margin:0;line-height:1.6}
+
+  .conseil{background:linear-gradient(135deg,#180E00,#6B3A00);border-radius:13px;padding:1.3rem 1.5rem;margin:2rem 0;color:#fff;border:1px solid rgba(245,224,144,.12)}
+  .conseil strong{display:block;color:#F5E090;font-weight:500;font-size:.93rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:#085041;color:rgba(255,255,255,.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:#fff}
+  footer a{color:#EF9F27;text-decoration:none}
+  @media(max-width:500px){.plafonds{grid-template-columns:1fr}.compare{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Prime de partage de la valeur 2025",
+  "description": "Prime de partage de la valeur 2025 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-223.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Prime de partage de la valeur 2025">
+  <meta property="og:description" content="Prime de partage de la valeur 2025 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-223.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Prime de partage de la valeur 2025">
+  <meta name="twitter:description" content="Prime de partage de la valeur 2025 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-223.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero">
+  <div class="hero-cat">🎁 <strong>Emploi</strong></div>
+  <h1>Prime de partage de la valeur 2025</h1>
+  <div class="hero-badge">💰 Jusqu'à 6 000 € exonérés</div>
+  <div class="hero-meta">
+    <span>📖 4 min de lecture</span>
+    <span>✅ Vérifié juin 2025</span>
+    <span>💼 Rémunération & fiscalité</span>
+  </div>
+</div>
+
+<article>
+  <p>La Prime de Partage de la Valeur (PPV) — anciennement prime Macron ou prime de pouvoir d'achat — est reconduite et pérennisée en 2025. Elle permet aux employeurs de verser une prime défiscalisée à leurs salariés, sans charges sociales ni impôt sur le revenu dans certaines limites. Pour les salariés, c'est de l'argent net immédiat. Pour les employeurs, c'est moins coûteux qu'une augmentation de salaire à valeur équivalente. Tour d'horizon complet des règles en vigueur.</p>
+
+  <h2>Les deux plafonds selon la situation</h2>
+
+  <div class="plafonds">
+    <div class="plaf">
+      <div class="plaf-head standard">💰 Cas standard</div>
+      <div class="plaf-body">
+        <div class="plaf-montant gold">3 000 €</div>
+        <div class="plaf-sous">par an et par salarié</div>
+        <div class="plaf-row"><span class="plaf-label">Exonération cotisations</span><span class="plaf-val">✅ Oui</span></div>
+        <div class="plaf-row"><span class="plaf-label">Exonération IR (si salaire &lt; 3 SMIC)</span><span class="plaf-val">✅ Jusqu'à fin 2026</span></div>
+        <div class="plaf-row"><span class="plaf-label">Au-delà du plafond</span><span class="plaf-val">Soumis à charges + IR</span></div>
+        <div class="plaf-row"><span class="plaf-label">Conditions entreprise</span><span class="plaf-val">Toutes tailles</span></div>
+      </div>
+    </div>
+    <div class="plaf">
+      <div class="plaf-head majore">🚀 Avec accord intéressement</div>
+      <div class="plaf-body">
+        <div class="plaf-montant green">6 000 €</div>
+        <div class="plaf-sous">par an et par salarié</div>
+        <div class="plaf-row"><span class="plaf-label">Exonération cotisations</span><span class="plaf-val">✅ Oui</span></div>
+        <div class="plaf-row"><span class="plaf-label">Exonération IR (si salaire &lt; 3 SMIC)</span><span class="plaf-val">✅ Jusqu'à fin 2026</span></div>
+        <div class="plaf-row"><span class="plaf-label">Condition</span><span class="plaf-val">Accord intéressement actif</span></div>
+        <div class="plaf-row"><span class="plaf-label">Accès PME</span><span class="plaf-val">Possible dès 1 salarié</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Versement direct ou placement sur plan d'épargne ?</h2>
+
+  <div class="compare">
+    <div class="comp">
+      <div class="comp-head direct">💵 Versement en cash</div>
+      <div class="comp-body">
+        <div class="comp-row"><span class="comp-label">Disponibilité</span><span class="comp-val">Immédiate</span></div>
+        <div class="comp-row"><span class="comp-label">Exonération IR (< 3 SMIC)</span><span class="comp-val">✅ Oui (jusqu'à fin 2026)</span></div>
+        <div class="comp-row"><span class="comp-label">Exonération cotisations</span><span class="comp-val">✅ Oui dans les plafonds</span></div>
+        <div class="comp-row"><span class="comp-label">CSG/CRDS</span><span class="comp-val">✅ Exonérée aussi</span></div>
+        <div class="comp-row"><span class="comp-label">Idéal pour</span><span class="comp-val">Besoin de liquidités</span></div>
+      </div>
+    </div>
+    <div class="comp">
+      <div class="comp-head epargne">📈 Placement PEE / PERCO</div>
+      <div class="comp-body">
+        <div class="comp-row"><span class="comp-label">Disponibilité</span><span class="comp-val">Bloqué 5 ans (PEE)</span></div>
+        <div class="comp-row"><span class="comp-label">Exonération IR</span><span class="comp-val">✅ Totale (tous salaires)</span></div>
+        <div class="comp-row"><span class="comp-label">Exonération cotisations</span><span class="comp-val">✅ Oui dans les plafonds</span></div>
+        <div class="comp-row"><span class="comp-label">CSG/CRDS</span><span class="comp-val">✅ Exonérée aussi</span></div>
+        <div class="comp-row"><span class="comp-label">Idéal pour</span><span class="comp-val">Épargne retraite ou projet</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p>Le versement sur un plan d'épargne salariale (PEE ou PERCO) exonère de toute imposition — y compris pour les salariés gagnant plus de 3 SMIC. C'est l'option la plus avantageuse fiscalement si vous n'avez pas besoin de liquidités immédiates.</p>
+
+  <h2>Simulation — ce que ça représente vraiment</h2>
+
+  <div class="simul">
+    <h3>🧮 Salarié à 2 500 € bruts — prime PPV de 3 000 € versée en cash</h3>
+    <div class="simul-row"><span class="simul-lab">Montant prime brute</span><span class="simul-val">3 000 €</span></div>
+    <div class="simul-row"><span class="simul-lab">Cotisations salariales</span><span class="simul-val green">0 € (exonérée)</span></div>
+    <div class="simul-row"><span class="simul-lab">CSG / CRDS</span><span class="simul-val green">0 € (exonérée)</span></div>
+    <div class="simul-row"><span class="simul-lab">Impôt sur le revenu (salaire &lt; 3 SMIC)</span><span class="simul-val green">0 € (exonérée)</span></div>
+    <div class="simul-row"><span class="simul-lab">Net reçu</span><span class="simul-val green">3 000 € nets</span></div>
+    <div class="simul-row"><span class="simul-lab">Coût employeur</span><span class="simul-val">3 000 € (pas de charges patronales)</span></div>
+    <div class="simul-row">
+      <span class="simul-lab total">Équivalent salaire brut pour même net</span>
+      <span class="simul-val total">≈ 4 800 € de salaire brut</span>
+    </div>
+  </div>
+
+  <h2>Conditions et modalités de versement</h2>
+
+  <div class="conditions">
+    <div class="cond">
+      <span class="cond-ico">📋</span>
+      <div class="cond-text"><strong>Décision unilatérale ou accord collectif</strong>L'employeur peut verser la PPV par décision unilatérale — sans négocier avec les syndicats. Il peut aussi la moduler selon le niveau de salaire, l'ancienneté, le temps de présence ou la classification du poste. Il ne peut pas la réserver à certains salariés seulement (elle doit bénéficier à tous les salariés liés par un CDI, CDD ou contrat d'apprentissage à la date de versement).</div>
+    </div>
+    <div class="cond">
+      <span class="cond-ico">📅</span>
+      <div class="cond-text"><strong>Versement possible plusieurs fois par an</strong>La PPV peut être versée en une ou plusieurs fois dans l'année civile. Chaque versement peut coïncider avec un événement (résultats trimestriels, fêtes de fin d'année…). La limite est le plafond annuel global — pas le nombre de versements.</div>
+    </div>
+    <div class="cond">
+      <span class="cond-ico">🚫</span>
+      <div class="cond-text"><strong>Ne peut pas remplacer un élément de salaire</strong>La PPV ne peut pas se substituer à une augmentation de salaire ou à une prime déjà prévue par le contrat ou la convention collective. Elle doit s'y ajouter — pas la remplacer. Cette règle est vérifiée par l'URSSAF.</div>
+    </div>
+    <div class="cond">
+      <span class="cond-ico">🏢</span>
+      <div class="cond-text"><strong>Accessible aux travailleurs indépendants non salariés</strong>Depuis 2023, les TNS (gérants majoritaires de SARL, entrepreneurs individuels…) peuvent bénéficier de la PPV pour eux-mêmes et leurs conjoints collaborateurs, dans les mêmes plafonds d'exonération.</div>
+    </div>
+  </div>
+
+  <h2>Questions fréquentes</h2>
+
+  <div class="faqs">
+    <div class="faq">
+      <div class="faq-q">Mon employeur est-il obligé de verser la PPV ?</div>
+      <div class="faq-a">Non. La PPV est entièrement facultative pour l'employeur. Il peut décider de ne pas la verser, quel que soit le bénéfice de l'entreprise. En revanche, s'il décide de la verser, il doit la verser à tous les salariés éligibles — pas seulement à certains.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q">Je gagne plus de 3 SMIC — ai-je droit à l'exonération fiscale ?</div>
+      <div class="faq-a">Pas directement en cash. Si votre salaire dépasse 3 SMIC (environ 5 400 € bruts/mois), la PPV versée en cash est soumise à l'IR. En revanche, si vous la placez sur un PEE ou PERCO, l'exonération est totale quel que soit votre salaire.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q">Peut-on cumuler PPV et intéressement la même année ?</div>
+      <div class="faq-a">Oui. La PPV est distincte de l'intéressement et de la participation. Les plafonds ne se cumulent pas entre eux — chaque dispositif a son propre plafond d'exonération. Une entreprise peut donc verser de l'intéressement ET une PPV dans la même année.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-q">Jusqu'à quand l'exonération IR est-elle valable ?</div>
+      <div class="faq-a">L'exonération d'impôt sur le revenu pour les salaires inférieurs à 3 SMIC est prolongée jusqu'au 31 décembre 2026. Au-delà, la PPV reste exonérée de cotisations sociales mais redevient imposable à l'IR — sauf si placée sur un plan d'épargne salariale.</div>
+    </div>
+  </div>
+
+  <div class="encadre">
+    <strong>📌 Comment demander la PPV à son employeur</strong>
+    <p>Si votre employeur n'a pas encore mis en place la PPV, vous pouvez le suggérer — de préférence via les délégués syndicaux ou le CSE (Comité Social et Économique). Mettez en avant que le coût pour l'entreprise est inférieur à une augmentation de salaire équivalente (pas de charges patronales), et que c'est un outil de fidélisation reconnu. Un email concis au RH suffit souvent à lancer la discussion.</p>
+  </div>
+
+  <div class="conseil">
+    <strong>💡 Négociez le versement sur PEE si vous gagnez plus de 3 SMIC</strong>
+    <p>Si votre salaire dépasse 3 SMIC, la PPV en cash sera soumise à l'impôt — et selon votre tranche marginale, vous pouvez en perdre 30 à 45 %. En demandant à votre employeur de la verser directement sur votre PEE ou PERCO, vous conservez 100 % du montant, investi sur des supports de votre choix. Après 5 ans de blocage sur PEE (ou à la retraite pour le PERCO), les plus-values sont elles aussi exonérées d'IR. C'est l'option la plus puissante fiscalement — et elle est trop rarement utilisée.</p>
+  </div>
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-216.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Bulletin de salaire : décrypter chaque ligne</div></a><a class="sim-card" href="article-217.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Négocier son salaire : scripts qui marchent</div></a><a class="sim-card" href="article-218.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Chômage ARE : calculer ses droits en 2025</div></a><a class="sim-card" href="article-219.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Rupture conventionnelle : tout savoir</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

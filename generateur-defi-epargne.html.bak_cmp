@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Générateur de Défi Épargne — Economya.fr</title>
+<meta name="description" content="Choisissez votre objectif et obtenez un plan d'épargne personnalisé semaine par semaine. Vacances, voiture, apport immo... Gratuit sur Economya.fr">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#1e1b4b,#4338ca,#6366f1);color:white;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'🎯';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:#EF9F27;font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:500px;margin:0 auto}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:var(--gd)}
+.objectifs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.8rem;margin-bottom:1.5rem}
+.obj-btn{background:var(--bg);border:2px solid var(--b);border-radius:var(--r);padding:1rem;text-align:center;cursor:pointer;transition:all .2s;font-family:inherit}
+.obj-btn:hover{border-color:var(--g);background:var(--gl)}
+.obj-btn.active{border-color:var(--g);background:var(--gl)}
+.obj-icon{font-size:2rem;display:block;margin-bottom:.4rem}
+.obj-nom{font-size:.82rem;font-weight:600;color:var(--t)}
+.field{margin-bottom:1.2rem}
+.field label{display:block;font-size:.78rem;font-weight:600;color:var(--m);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em}
+.field input[type=range]{width:100%;accent-color:var(--g);height:6px;margin:.5rem 0}
+.field .val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--gd)}
+.field .val span{font-size:.85rem;font-weight:400;color:var(--m)}
+.btn-generer{background:linear-gradient(135deg,#1e1b4b,#4338ca);color:white;border:none;padding:.9rem 2.5rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;font-size:1rem;width:100%;margin-top:.5rem}
+.defi-result{display:none}
+.defi-result.show{display:block;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.defi-header{background:linear-gradient(135deg,#1e1b4b,#4338ca);border-radius:var(--r);padding:2rem;color:white;text-align:center;margin-bottom:1.5rem}
+.defi-header .emoji{font-size:3rem;display:block;margin-bottom:.5rem}
+.defi-header h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.3rem}
+.defi-header .sous{font-size:.85rem;color:rgba(255,255,255,.75)}
+.defi-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.defi-stat{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center}
+.defi-stat .num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--gd);display:block}
+.defi-stat .lbl{font-size:.72rem;color:var(--m)}
+.plan-table{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.plan-table h2{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--gd)}
+.semaines{display:flex;flex-direction:column;gap:.5rem;max-height:400px;overflow-y:auto}
+.semaine-item{display:flex;align-items:center;gap:.8rem;padding:.6rem .8rem;border-radius:10px;font-size:.85rem;background:var(--bg)}
+.semaine-item.milestone{background:var(--gl);font-weight:600}
+.sem-num{width:80px;flex-shrink:0;font-weight:600;color:var(--m);font-size:.78rem}
+.sem-bar{flex:1;height:10px;background:var(--b);border-radius:50px;overflow:hidden}
+.sem-fill{height:100%;background:linear-gradient(90deg,#4338ca,var(--g));border-radius:50px}
+.sem-montant{width:70px;text-align:right;font-weight:700;color:var(--gd);font-size:.82rem;flex-shrink:0}
+.sem-cumul{width:90px;text-align:right;color:var(--m);font-size:.75rem;flex-shrink:0}
+.astuces{background:var(--gl);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem}
+.astuces h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gd);margin-bottom:1rem}
+.astuce-list{display:flex;flex-direction:column;gap:.6rem}
+.astuce-item{display:flex;align-items:flex-start;gap:.7rem;font-size:.85rem;color:var(--t)}
+.cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
+.cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:1px solid var(--b);font-size:.86rem;font-family:inherit}
+.cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}.defi-stats{grid-template-columns:1fr 1fr}.semaine-item{flex-wrap:wrap}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Générateur de Défi Épargne",
+  "description": "Choisissez votre objectif et obtenez un plan d'épargne personnalisé semaine par semaine. Vacances, voiture, apport immo... Gratuit sur Economya.fr",
+  "url": "https://economya.fr/generateur-defi-epargne.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr"
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Générateur de Défi Épargne">
+  <meta property="og:description" content="Choisissez votre objectif et obtenez un plan d'épargne personnalisé semaine par semaine. Vacances, voiture, apport immo... Gratuit sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/generateur-defi-epargne.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Générateur de Défi Épargne">
+  <meta name="twitter:description" content="Choisissez votre objectif et obtenez un plan d'épargne personnalisé semaine par semaine. Vacances, voiture, apport immo... Gratuit sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/generateur-defi-epargne.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="hero">
+  <h1>Générateur de <em>Défi Épargne</em></h1>
+  <p>Choisissez votre objectif et obtenez un plan d'épargne semaine par semaine. Simple, motivant, efficace.</p>
+</div>
+<div class="container">
+  <div class="card">
+    <h2>🎯 Choisissez votre objectif</h2>
+    <div class="objectifs-grid" id="objectifs-grid">
+      <button class="obj-btn active" data-obj="vacances" data-montant="1500" onclick="selectObj(this)"><span class="obj-icon">✈️</span><span class="obj-nom">Vacances</span></button>
+      <button class="obj-btn" data-obj="voiture" data-montant="5000" onclick="selectObj(this)"><span class="obj-icon">🚗</span><span class="obj-nom">Voiture</span></button>
+      <button class="obj-btn" data-obj="apport" data-montant="20000" onclick="selectObj(this)"><span class="obj-icon">🏠</span><span class="obj-nom">Apport immo</span></button>
+      <button class="obj-btn" data-obj="mariage" data-montant="8000" onclick="selectObj(this)"><span class="obj-icon">💍</span><span class="obj-nom">Mariage</span></button>
+      <button class="obj-btn" data-obj="urgence" data-montant="3000" onclick="selectObj(this)"><span class="obj-icon">🛡️</span><span class="obj-nom">Fonds urgence</span></button>
+      <button class="obj-btn" data-obj="formation" data-montant="2000" onclick="selectObj(this)"><span class="obj-icon">🎓</span><span class="obj-nom">Formation</span></button>
+      <button class="obj-btn" data-obj="bebe" data-montant="3000" onclick="selectObj(this)"><span class="obj-icon">👶</span><span class="obj-nom">Bébé</span></button>
+      <button class="obj-btn" data-obj="retraite" data-montant="50000" onclick="selectObj(this)"><span class="obj-icon">🌅</span><span class="obj-nom">Retraite</span></button>
+      <button class="obj-btn" data-obj="custom" data-montant="0" onclick="selectObj(this)"><span class="obj-icon">✏️</span><span class="obj-nom">Mon objectif</span></button>
+    </div>
+
+    <div class="field">
+      <label>Montant à atteindre</label>
+      <div class="val" id="v-montant">1 500 <span>€</span></div>
+      <input type="range" id="montant" min="100" max="100000" step="100" value="1500">
+    </div>
+
+    <div class="field">
+      <label>Épargne mensuelle possible</label>
+      <div class="val" id="v-epargne">200 <span>€/mois</span></div>
+      <input type="range" id="epargne" min="10" max="3000" step="10" value="200">
+    </div>
+
+    <button class="btn-generer" onclick="generer()">🎯 Générer mon défi épargne</button>
+  </div>
+
+  <div class="defi-result" id="defi-result">
+
+    <div class="defi-header" id="defi-header">
+      <span class="emoji" id="defi-emoji">✈️</span>
+      <h2 id="defi-titre">Mon défi vacances</h2>
+      <div class="sous" id="defi-sous">Chargement...</div>
+    </div>
+
+    <div class="defi-stats">
+      <div class="defi-stat"><span class="num" id="ds-objectif">—</span><div class="lbl">Objectif</div></div>
+      <div class="defi-stat"><span class="num" id="ds-duree">—</span><div class="lbl">Durée</div></div>
+      <div class="defi-stat"><span class="num" id="ds-semaine">—</span><div class="lbl">Par semaine</div></div>
+    </div>
+
+    <div class="plan-table">
+      <h2>📅 Votre plan semaine par semaine</h2>
+      <div class="semaines" id="semaines-list"></div>
+    </div>
+
+    <div class="astuces" id="astuces-block">
+      <h3>💡 Astuces pour réussir votre défi</h3>
+      <div class="astuce-list" id="astuces-list"></div>
+    </div>
+
+    <div class="cta">
+      <h3>📬 Recevez votre suivi défi chaque semaine</h3>
+      <p>Rappels, encouragements et astuces pour tenir votre défi épargne jusqu'au bout.</p>
+      <div class="cta-form">
+        <input type="email" placeholder="votre@email.fr">
+        <button>Je participe !</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Outil indicatif à titre éducatif.</span>
+</footer>
+
+<script>
+const OBJECTIFS = {
+  vacances: { emoji: '✈️', nom: 'Vacances', astuces: ['Ouvrez un livret dédié "Vacances" pour ne pas piocher dedans', 'Cuisinez plus souvent à la maison pour dégager 50-100 €/mois', 'Revendez des affaires inutiles sur Vinted pour booster le défi'] },
+  voiture: { emoji: '🚗', nom: 'Voiture', astuces: ['Comparez les prix voiture + assurance avant d\'acheter', 'Envisagez une voiture reconditionnée — même fiabilité, prix divisé par 2', 'Calculez le coût total réel avec notre calculateur voiture'] },
+  apport: { emoji: '🏠', nom: 'Apport immobilier', astuces: ['Placez votre épargne sur un PEL pour préparer votre achat', 'Chaque 1 000 € d\'apport supplémentaire réduit vos mensualités', 'Consultez notre simulateur crédit immobilier pour estimer votre projet'] },
+  mariage: { emoji: '💍', nom: 'Mariage', astuces: ['Établissez un budget détaillé dès le début pour éviter les dépassements', 'Priorisez ce qui compte vraiment pour vous deux', 'Comparez plusieurs prestataires — les prix varient du simple au triple'] },
+  urgence: { emoji: '🛡️', nom: 'Fonds d\'urgence', astuces: ['Placez ce fonds sur un Livret A — disponible immédiatement', 'Ne touchez à ce fonds que pour de vraies urgences', 'Objectif : 3 à 6 mois de dépenses fixes'] },
+  formation: { emoji: '🎓', nom: 'Formation', astuces: ['Vérifiez si votre formation est éligible au CPF avant de payer', 'Comparez les prix entre différents organismes', 'Certaines formations sont 100% remboursables via votre employeur'] },
+  bebe: { emoji: '👶', nom: 'Arrivée de bébé', astuces: ['Achetez beaucoup de matériel en seconde main — les bébés grandissent vite', 'Renseignez-vous sur la prime naissance CAF (jusqu\'à 1 000 €)', 'Faites une liste de naissance précise pour éviter les doublons'] },
+  retraite: { emoji: '🌅', nom: 'Retraite', astuces: ['Ouvrez un PER pour défiscaliser vos versements', 'Investissez en ETF World sur un PEA — idéal long terme', 'Commencez tôt — 100 €/mois pendant 30 ans = 120 000 € minimum'] },
+  custom: { emoji: '🎯', nom: 'Mon objectif', astuces: ['Écrivez votre objectif sur un post-it visible chaque jour', 'Automatisez votre virement le jour de votre paie', 'Célébrez chaque palier atteint — vous le méritez !'] },
+};
+
+let objActuel = 'vacances';
+
+function selectObj(btn) {
+  document.querySelectorAll('.obj-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  objActuel = btn.dataset.obj;
+  const montant = +btn.dataset.montant;
+  if(montant > 0) {
+    document.getElementById('montant').value = montant;
+    document.getElementById('v-montant').innerHTML = montant.toLocaleString('fr-FR') + ' <span>€</span>';
+  }
+}
+
+document.getElementById('montant').addEventListener('input', function() {
+  document.getElementById('v-montant').innerHTML = (+this.value).toLocaleString('fr-FR') + ' <span>€</span>';
+});
+
+document.getElementById('epargne').addEventListener('input', function() {
+  document.getElementById('v-epargne').innerHTML = this.value + ' <span>€/mois</span>';
+});
+
+function generer() {
+  const montant = +document.getElementById('montant').value;
+  const epargne = +document.getElementById('epargne').value;
+  const obj = OBJECTIFS[objActuel];
+  const epargneHebdo = epargne / 4.33;
+  const semaines = Math.ceil(montant / epargneHebdo);
+  const mois = Math.ceil(semaines / 4.33);
+
+  document.getElementById('defi-emoji').textContent = obj.emoji;
+  document.getElementById('defi-titre').textContent = `Mon défi : ${obj.nom}`;
+  document.getElementById('defi-sous').textContent = `${montant.toLocaleString('fr-FR')} € en ${semaines} semaines — vous pouvez le faire !`;
+
+  document.getElementById('ds-objectif').textContent = montant.toLocaleString('fr-FR') + ' €';
+  document.getElementById('ds-duree').textContent = mois > 12 ? Math.round(mois/12) + ' ans' : mois + ' mois';
+  document.getElementById('ds-semaine').textContent = Math.round(epargneHebdo) + ' €';
+
+  const list = document.getElementById('semaines-list');
+  list.innerHTML = '';
+  const maxSem = Math.min(semaines, 52);
+  for(let s = 1; s <= maxSem; s++) {
+    const cumul = Math.min(epargneHebdo * s, montant);
+    const pct = (cumul / montant * 100);
+    const milestone = pct >= 25 && pct < 25 + (epargneHebdo/montant*100) ||
+                      pct >= 50 && pct < 50 + (epargneHebdo/montant*100) ||
+                      pct >= 75 && pct < 75 + (epargneHebdo/montant*100) ||
+                      pct >= 100;
+    const milestoneText = pct >= 100 ? ' 🎉 OBJECTIF ATTEINT !' : pct >= 75 ? ' 🔥 75% — presque !' : pct >= 50 ? ' ⭐ Mi-parcours !' : pct >= 25 ? ' 👏 25% — bravo !' : '';
+    list.innerHTML += `
+      <div class="semaine-item ${milestone ? 'milestone' : ''}">
+        <span class="sem-num">Semaine ${s}${milestoneText}</span>
+        <div class="sem-bar"><div class="sem-fill" style="width:${Math.min(pct,100)}%"></div></div>
+        <span class="sem-montant">+${Math.round(epargneHebdo)} €</span>
+        <span class="sem-cumul">${Math.round(cumul).toLocaleString('fr-FR')} €</span>
+      </div>
+    `;
+  }
+  if(semaines > 52) {
+    list.innerHTML += `<div class="semaine-item" style="text-align:center;justify-content:center;color:var(--m)">... et ${semaines - 52} semaines supplémentaires</div>`;
+  }
+
+  const astucesList = document.getElementById('astuces-list');
+  astucesList.innerHTML = '';
+  obj.astuces.forEach(a => {
+    astucesList.innerHTML += `<div class="astuce-item"><span style="font-size:1.1rem">💡</span><span>${a}</span></div>`;
+  });
+
+  const result = document.getElementById('defi-result');
+  result.classList.add('show');
+  result.scrollIntoView({behavior:'smooth', block:'start'});
+}
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
+Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
+</div>
+</body>
+</html>

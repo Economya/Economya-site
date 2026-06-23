@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eau du robinet vs eau en bouteille — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --ocean:#0077B6;--ocean-mid:#0096C7;--ocean-light:#CAF0F8;
+    --aqua:#00B4D8;--foam:#90E0EF;--deep:#03045E;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#010B14 0%,#03045E 30%,#0077B6 60%,#00B4D8 85%,#90E0EF 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'💧';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--foam),var(--aqua));
+    color:#010B14;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--deep);margin:2rem 0 .7rem}
+
+  /* Comparatif chiffré */
+  .compar{display:grid;grid-template-columns:1fr auto 1fr;gap:.6rem;align-items:stretch;margin:1.5rem 0}
+  .compar-block{border-radius:13px;overflow:hidden;border:1px solid var(--b)}
+  .compar-head{padding:.75rem 1rem;text-align:center;color:#fff;font-weight:700;font-size:.88rem}
+  .compar-head.bouteille{background:linear-gradient(135deg,#4A1010,#C0392B)}
+  .compar-head.robinet{background:linear-gradient(135deg,#03045E,#0077B6)}
+  .compar-body{padding:.8rem 1rem;background:var(--w)}
+  .compar-item{display:flex;justify-content:space-between;padding:.3rem 0;border-bottom:1px dotted var(--b);font-size:.83rem}
+  .compar-item:last-child{border-bottom:none}
+  .compar-label{font-weight:300;color:var(--m)}
+  .compar-val{font-weight:600;color:var(--t)}
+  .compar-val.rouge{color:#B91C1C}
+  .compar-val.bleu{color:var(--ocean)}
+  .compar-mid{display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--ocean)}
+
+  /* Impact environnemental */
+  .impact{background:linear-gradient(135deg,#E8F8FF,#CAF0F8);border:1px solid rgba(0,119,182,.2);border-radius:13px;padding:1.2rem 1.4rem;margin:1.5rem 0}
+  .impact h3{font-family:'Playfair Display',serif;font-weight:700;color:var(--deep);font-size:.97rem;margin-bottom:.8rem}
+  .impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+  .impact-stat{text-align:center;background:rgba(255,255,255,.7);border-radius:10px;padding:.7rem .5rem}
+  .impact-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--ocean);line-height:1}
+  .impact-label{font-size:.72rem;font-weight:300;color:var(--m);margin-top:.25rem;line-height:1.3}
+
+  /* Alternatives filtrées */
+  .filtres{display:flex;flex-direction:column;gap:.7rem;margin:1.5rem 0}
+  .filtre{background:var(--w);border:1px solid var(--b);border-radius:11px;display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:.7rem;padding:.75rem .9rem}
+  .filtre-icon{font-size:1.5rem;text-align:center}
+  .filtre-body{}
+  .filtre-nom{font-weight:500;font-size:.9rem;color:var(--deep);margin-bottom:.15rem}
+  .filtre-desc{font-size:.8rem;font-weight:300;color:var(--m);line-height:1.4}
+  .filtre-prix{text-align:right;flex-shrink:0}
+  .filtre-badge{font-size:.72rem;font-weight:700;padding:.2rem .55rem;border-radius:50px;display:block;white-space:nowrap}
+  .filtre-badge.top{background:var(--ocean-light);color:var(--deep)}
+  .filtre-badge.mid{background:var(--al);color:var(--ad)}
+
+  .conseil{
+    background:linear-gradient(135deg,#010B14,#03045E);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff;
+    border:1px solid rgba(144,224,239,.15)
+  }
+  .conseil strong{display:block;color:var(--foam);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:500px){.compar{grid-template-columns:1fr}.compar-mid{display:none}.impact-grid{grid-template-columns:1fr 1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Eau du robinet vs eau en bouteille",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-177.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Eau du robinet vs eau en bouteille">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-177.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Eau du robinet vs eau en bouteille">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-177.html" />
+<meta name="description" content="Eau du robinet vs eau en bouteille — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero-art">
+  <div class="acat">💧 <strong>Alimentation</strong></div>
+  <h1>Eau du robinet vs eau en bouteille</h1>
+  <div class="abadge">💰 Économisez jusqu'à 300€/an par foyer</div>
+  <div class="meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié mai 2025</span>
+    <span>🌊 Consommation responsable</span>
+  </div>
+</div>
+
+<article>
+
+  <p>Un Français moyen dépense entre 200 et 400 euros par an en eau embouteillée. Sur un foyer de quatre personnes, ce chiffre peut dépasser 600 euros. Et pourtant, l'eau du robinet française est parmi les plus contrôlées au monde — analysée quotidiennement par des centaines de paramètres microbiologiques et chimiques, elle est parfaitement potable dans 97 % des communes françaises. L'industrie de l'eau en bouteille a construit un empire sur une peur largement infondée. Voici les chiffres réels.</p>
+
+  <h2>La comparaison qui parle d'elle-même</h2>
+
+  <div class="compar">
+    <div class="compar-block">
+      <div class="compar-head bouteille">🍶 Eau en bouteille</div>
+      <div class="compar-body">
+        <div class="compar-item"><span class="compar-label">Prix au litre</span><span class="compar-val rouge">0,20 – 0,60€</span></div>
+        <div class="compar-item"><span class="compar-label">Pour 4 pers. / jour (6L)</span><span class="compar-val rouge">1,20 – 3,60€</span></div>
+        <div class="compar-item"><span class="compar-label">Par an (foyer 4 pers.)</span><span class="compar-val rouge">438 – 1 314€</span></div>
+        <div class="compar-item"><span class="compar-label">Contrôles qualité</span><span class="compar-val">~60/an</span></div>
+        <div class="compar-item"><span class="compar-label">Plastique/an (foyer)</span><span class="compar-val rouge">~200 bouteilles</span></div>
+        <div class="compar-item"><span class="compar-label">Transport CO₂</span><span class="compar-val rouge">Élevé</span></div>
+      </div>
+    </div>
+    <div class="compar-mid">VS</div>
+    <div class="compar-block">
+      <div class="compar-head robinet">🚰 Eau du robinet</div>
+      <div class="compar-body">
+        <div class="compar-item"><span class="compar-label">Prix au litre</span><span class="compar-val bleu">0,003 – 0,005€</span></div>
+        <div class="compar-item"><span class="compar-label">Pour 4 pers. / jour (6L)</span><span class="compar-val bleu">0,02€</span></div>
+        <div class="compar-item"><span class="compar-label">Par an (foyer 4 pers.)</span><span class="compar-val bleu">7 – 10€</span></div>
+        <div class="compar-item"><span class="compar-label">Contrôles qualité</span><span class="compar-val bleu">>500/an</span></div>
+        <div class="compar-item"><span class="compar-label">Plastique/an (foyer)</span><span class="compar-val bleu">0 bouteille</span></div>
+        <div class="compar-item"><span class="compar-label">Transport CO₂</span><span class="compar-val bleu">Négligeable</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>L'impact environnemental de la bouteille plastique</h2>
+
+  <div class="impact">
+    <h3>🌍 Ce que représente la consommation d'eau en bouteille en France</h3>
+    <div class="impact-grid">
+      <div class="impact-stat">
+        <div class="impact-val">8 Mds</div>
+        <div class="impact-label">bouteilles d'eau plastique vendues chaque année en France</div>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-val">450 ans</div>
+        <div class="impact-label">durée de décomposition d'une bouteille PET dans la nature</div>
+      </div>
+      <div class="impact-stat">
+        <div class="impact-val">×500</div>
+        <div class="impact-label">l'eau en bouteille consomme 500× plus d'énergie que le robinet</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Si vous n'aimez pas le goût : les alternatives filtrées</h2>
+
+  <p>La principale raison invoquée pour préférer l'eau en bouteille est le goût — souvent lié au chlore résiduel, qui est paradoxalement la preuve que l'eau est saine. Ce goût disparaît en quelques minutes dans un carafe ouverte au réfrigérateur. Mais si le goût reste un problème, des alternatives existent.</p>
+
+  <div class="filtres">
+    <div class="filtre">
+      <div class="filtre-icon">🫙</div>
+      <div class="filtre-body">
+        <div class="filtre-nom">Carafe filtrante (Brita, Aquaphor)</div>
+        <div class="filtre-desc">Filtre le calcaire, le chlore et certains métaux lourds. Autonomie de 4 à 6 semaines par cartouche. Simple, efficace, peu encombrant.</div>
+      </div>
+      <div class="filtre-prix"><span class="filtre-badge top">25–40€ + 5€/mois cartouche</span></div>
+    </div>
+    <div class="filtre">
+      <div class="filtre-icon">🚰</div>
+      <div class="filtre-body">
+        <div class="filtre-nom">Filtre sous évier (osmose inverse ou charbon)</div>
+        <div class="filtre-desc">Solution permanente, eau filtrée directement au robinet. Très efficace sur le goût et les contaminants. Installation simple, cartouches annuelles.</div>
+      </div>
+      <div class="filtre-prix"><span class="filtre-badge top">80–200€ installation · 30–60€/an cartouches</span></div>
+    </div>
+    <div class="filtre">
+      <div class="filtre-icon">💦</div>
+      <div class="filtre-body">
+        <div class="filtre-nom">Gourde filtrante (LifeStraw, LARQ)</div>
+        <div class="filtre-desc">Filtre intégré dans la gourde. Parfaite pour les déplacements et le sport. Élimine bactéries et goût de chlore à chaque gorgée.</div>
+      </div>
+      <div class="filtre-prix"><span class="filtre-badge mid">30–80€ · Filtre annuel inclus</span></div>
+    </div>
+    <div class="filtre">
+      <div class="filtre-icon">🫧</div>
+      <div class="filtre-body">
+        <div class="filtre-nom">Gazéificateur maison (SodaStream)</div>
+        <div class="filtre-body">
+        <div class="filtre-desc">Pour ceux qui préfèrent l'eau pétillante. Vous gazéifiez votre eau du robinet. Cylinde CO₂ rechargeable, 60L par recharge. Économie de 90% vs eau pétillante en bouteille.</div>
+        </div>
+      </div>
+      <div class="filtre-prix"><span class="filtre-badge mid">70–100€ appareil · 10€/recharge gaz</span></div>
+    </div>
+  </div>
+
+  <div class="conseil">
+    <strong>🚰 Comment vérifier la qualité de votre eau du robinet</strong>
+    <p>Le site qualite.eaufrance.fr permet de consulter les résultats d'analyse de l'eau du robinet dans votre commune en temps réel — paramètres microbiologiques, nitrates, pesticides, calcaire, tout y est. Dans plus de 97 % des communes françaises, tous les paramètres sont dans les normes de l'OMS. Si vous habitez une zone avec des dépassements ponctuels (certaines zones rurales agricoles avec des nitrates élevés), une carafe filtrante suffit généralement à résoudre le problème. L'eau du robinet est la solution la moins chère, la moins polluante et, dans presque tous les cas, la plus sûre.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

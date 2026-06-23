@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assurance habitation : bien comparer — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --teal:#0B4F6C;--teal-mid:#1A7A9A;--teal-light:#E0F4F9;
+    --coral:#FF6B6B;--sun:#FFE66D;--mint:#43E8B0;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#020E16 0%,#0B4F6C 38%,#1A7A9A 68%,#43E8B0 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'🏠';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--sun),var(--mint));
+    color:#020E16;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--teal);margin:2rem 0 .7rem}
+
+  /* Garanties à comparer */
+  .garanties{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.84rem}
+  .garanties thead tr{background:linear-gradient(90deg,var(--teal),var(--teal-mid));color:#fff}
+  .garanties thead th{padding:.65rem .9rem;text-align:left;font-weight:500}
+  .garanties tbody tr:nth-child(even){background:var(--teal-light)}
+  .garanties tbody tr:nth-child(odd){background:var(--w)}
+  .garanties tbody td{padding:.6rem .9rem;border-bottom:1px solid var(--b);font-weight:300;vertical-align:top}
+  .garanties tbody td:first-child{font-weight:500;color:var(--teal)}
+  .garanties tbody td.essentiel{color:var(--gd);font-weight:500;text-align:center}
+  .garanties tbody td.option{color:var(--m);text-align:center;font-size:.8rem}
+  .garanties tbody td.attention{color:#B91C1C;text-align:center;font-size:.8rem}
+
+  /* Assureurs comparés */
+  .assureurs{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1.5rem 0}
+  .assureur{background:var(--w);border:1px solid var(--b);border-radius:11px;overflow:hidden}
+  .assureur-head{background:linear-gradient(90deg,var(--teal),var(--teal-mid));padding:.6rem .9rem;color:#fff;display:flex;justify-content:space-between;align-items:center}
+  .assureur-nom{font-weight:600;font-size:.88rem}
+  .assureur-prix{color:var(--sun);font-weight:700;font-size:.82rem}
+  .assureur-body{padding:.75rem .9rem;font-size:.81rem;font-weight:300;color:var(--m);line-height:1.5}
+  .assureur-tag{display:inline-block;margin-top:.35rem;font-size:.68rem;font-weight:500;padding:.1rem .45rem;border-radius:50px;background:var(--teal-light);color:var(--teal)}
+
+  /* Étapes résiliation */
+  .resil{display:flex;flex-direction:column;gap:0;margin:1.5rem 0;border:1px solid var(--b);border-radius:12px;overflow:hidden}
+  .resil-step{display:grid;grid-template-columns:44px 1fr;border-bottom:1px solid var(--b)}
+  .resil-step:last-child{border-bottom:none}
+  .resil-num{background:linear-gradient(180deg,var(--teal),var(--teal-mid));color:var(--mint);font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+  .resil-body{padding:.75rem 1rem;background:var(--w)}
+  .resil-title{font-weight:500;font-size:.88rem;color:var(--teal);margin-bottom:.15rem}
+  .resil-desc{font-size:.81rem;font-weight:300;color:var(--m);line-height:1.5}
+
+  .conseil{
+    background:linear-gradient(135deg,#020E16,#0B4F6C);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff;
+    border:1px solid rgba(67,232,176,.15)
+  }
+  .conseil strong{display:block;color:var(--mint);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:500px){.assureurs{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Assurance habitation : bien comparer",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-169.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Assurance habitation : bien comparer">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-169.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Assurance habitation : bien comparer">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-169.html" />
+<meta name="description" content="Assurance habitation : bien comparer — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero-art">
+  <div class="acat">🏠 <strong>Finance</strong></div>
+  <h1>Assurance habitation : bien comparer</h1>
+  <div class="abadge">💰 Économisez 100 à 300€/an</div>
+  <div class="meta">
+    <span>📖 Lecture 5 min</span>
+    <span>✅ Vérifié mai 2025</span>
+    <span>🛡️ Protection du logement</span>
+  </div>
+</div>
+
+<article>
+
+  <p>L'assurance habitation est obligatoire pour les locataires et fortement recommandée pour les propriétaires. C'est aussi l'un des contrats les plus faciles à optimiser : pour une couverture équivalente, les tarifs varient du simple au triple selon l'assureur choisi. Pourtant, la plupart des Français conservent leur contrat d'une année sur l'autre sans jamais le remettre en question. Résultat : des millions de foyers paient entre 100 et 300 euros de trop chaque année, pour une protection souvent inférieure à ce qu'ils pourraient obtenir ailleurs.</p>
+
+  <h2>Ce que votre contrat doit couvrir — et ce qui est superflu</h2>
+
+  <table class="garanties">
+    <thead>
+      <tr><th>Garantie</th><th>Indispensable ?</th><th>Remarque</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Incendie, explosion, dégâts des eaux</td>
+        <td class="essentiel">✅ Oui</td>
+        <td>Le socle de tout contrat. Vérifier les plafonds.</td>
+      </tr>
+      <tr>
+        <td>Responsabilité civile</td>
+        <td class="essentiel">✅ Oui</td>
+        <td>Couvre les dommages causés à des tiers. Obligatoire locataires.</td>
+      </tr>
+      <tr>
+        <td>Vol et vandalisme</td>
+        <td class="essentiel">✅ Recommandé</td>
+        <td>Vérifier les conditions de déclaration (effraction prouvée).</td>
+      </tr>
+      <tr>
+        <td>Bris de glace</td>
+        <td class="option">⚡ Optionnel</td>
+        <td>Utile si grandes baies vitrées. Souvent peu cher à ajouter.</td>
+      </tr>
+      <tr>
+        <td>Protection juridique</td>
+        <td class="option">⚡ Optionnel</td>
+        <td>Vérifiez si déjà incluse dans votre carte bancaire premium.</td>
+      </tr>
+      <tr>
+        <td>Garantie valeur à neuf</td>
+        <td class="essentiel">✅ Recommandé</td>
+        <td>Sinon, indemnisation à valeur vétuste — souvent insuffisante.</td>
+      </tr>
+      <tr>
+        <td>Assistance panne électroménager</td>
+        <td class="attention">🚫 Souvent inutile</td>
+        <td>Coût élevé pour couverture limitée. À éviter généralement.</td>
+      </tr>
+      <tr>
+        <td>Couverture objets nomades</td>
+        <td class="option">⚡ Selon profil</td>
+        <td>Utile si télétravail ou déplacements fréquents avec ordinateur.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Les assureurs à comparer en priorité</h2>
+
+  <div class="assureurs">
+    <div class="assureur">
+      <div class="assureur-head"><span class="assureur-nom">Luko / Lemonade</span><span class="assureur-prix">Dès 4€/mois</span></div>
+      <div class="assureur-body">Assurances 100% en ligne, souscription en 2 min, tarifs très compétitifs pour les appartements en ville. Gestion des sinistres par app. Idéal pour les locataires urbains.
+        <span class="assureur-tag">✅ Locataires / Studios</span>
+      </div>
+    </div>
+    <div class="assureur">
+      <div class="assureur-head"><span class="assureur-nom">Maif</span><span class="assureur-prix">Dès 8€/mois</span></div>
+      <div class="assureur-body">Référence qualité-service. SAV reconnu, peu de litiges. Légèrement plus chère mais couverture étendue et franchise souvent basse. Idéale familles.
+        <span class="assureur-tag">✅ Familles / Maisons</span>
+      </div>
+    </div>
+    <div class="assureur">
+      <div class="assureur-head"><span class="assureur-nom">Direct Assurance</span><span class="assureur-prix">Dès 6€/mois</span></div>
+      <div class="assureur-body">Filiale d'AXA, rapport qualité-prix solide. Interface claire, résiliation facile. Bon compromis entre prix et garanties pour appartements de taille moyenne.
+        <span class="assureur-tag">✅ Rapport qualité-prix</span>
+      </div>
+    </div>
+    <div class="assureur">
+      <div class="assureur-head"><span class="assureur-nom">Lovys / Assurup</span><span class="assureur-prix">Dès 3,50€/mois</span></div>
+      <div class="assureur-body">Néo-assureurs ultra-compétitifs. Sans engagement, sans paperasse. Parfaits pour petits logements ou profils sans antécédent de sinistre.
+        <span class="assureur-tag">✅ Budget serré / Petits logements</span>
+      </div>
+    </div>
+    <div class="assureur">
+      <div class="assureur-head"><span class="assureur-nom">Macif / MAAF</span><span class="assureur-prix">Dès 7€/mois</span></div>
+      <div class="assureur-body">Mutualistes solides, bonne couverture des risques atypiques (inondation, catastrophe naturelle). Moins compétitives sur les prix mais très fiables en cas de sinistre majeur.
+        <span class="assureur-tag">✅ Zones à risque / Maisons</span>
+      </div>
+    </div>
+    <div class="assureur">
+      <div class="assureur-head"><span class="assureur-nom">Banque en ligne (BNP, CA...)</span><span class="assureur-prix">Variable</span></div>
+      <div class="assureur-body">L'assurance proposée par votre banque est rarement la moins chère. Vérifiez toutefois — certains packages bancaires incluent une MRH correcte. Toujours comparer avant de souscrire.
+        <span class="assureur-tag">⚡ À comparer systématiquement</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Comment changer d'assureur sans galère</h2>
+
+  <div class="resil">
+    <div class="resil-step">
+      <div class="resil-num">1</div>
+      <div class="resil-body">
+        <div class="resil-title">Comparez sur un comparateur</div>
+        <div class="resil-desc">LeLynx.fr, Assurland ou Meilleurtaux permettent de comparer une dizaine d'offres en 5 minutes. Renseignez la superficie, le type de logement et les garanties souhaitées.</div>
+      </div>
+    </div>
+    <div class="resil-step">
+      <div class="resil-num">2</div>
+      <div class="resil-body">
+        <div class="resil-title">Souscrivez le nouveau contrat d'abord</div>
+        <div class="resil-desc">Ne résiliez jamais l'ancien avant d'avoir le nouveau en main. Vous ne devez jamais vous retrouver sans couverture, même une heure — notamment en copropriété.</div>
+      </div>
+    </div>
+    <div class="resil-step">
+      <div class="resil-num">3</div>
+      <div class="resil-body">
+        <div class="resil-title">Utilisez la loi Hamon pour résilier</div>
+        <div class="resil-desc">Depuis la loi Hamon, tout contrat d'assurance habitation peut être résilié à tout moment après la première année, sans frais ni pénalités. Un simple courrier recommandé suffit — ou votre nouvel assureur s'en charge pour vous.</div>
+      </div>
+    </div>
+    <div class="resil-step">
+      <div class="resil-num">4</div>
+      <div class="resil-body">
+        <div class="resil-title">Récupérez le prorata de cotisation</div>
+        <div class="resil-desc">Si vous résiliez en cours d'année, l'ancien assureur doit vous rembourser les primes non consommées sous 30 jours. N'oubliez pas de le réclamer explicitement si ce n'est pas fait automatiquement.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conseil">
+    <strong>💡 Le bon moment pour renégocier : après un déménagement ou un changement de situation</strong>
+    <p>Tout changement de situation — déménagement, mariage, naissance, achat immobilier — est une opportunité légale de résilier votre contrat actuel dans les 3 mois suivant l'événement, même en première année. C'est aussi le meilleur moment pour repartir sur des bases adaptées à votre nouvelle situation : surface, valeur du mobilier, profil de risque. Une révision annuelle de votre contrat, même sans événement particulier, peut révéler des doublons de garanties ou des couvertures devenues inadaptées — et économiser 50 à 150 euros sans changer quoi que ce soit à votre protection réelle.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

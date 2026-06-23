@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Amazon FBA en 2025 : encore rentable ? — Le vrai calcul de rentabilité. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amazon FBA en 2025 : encore rentable ? — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--amber:#d97706;--amber-l:#fffbeb;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'📦';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#fcd34d;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#d97706,#1d4ed8);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* CALCUL */
+.calcul{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;margin:1.5rem 0}
+.calc-header{background:linear-gradient(135deg,#92400e,#d97706);padding:.8rem 1.3rem}
+.calc-title{font-weight:700;color:white;font-size:.92rem}
+.calc-rows{display:flex;flex-direction:column}
+.calc-row{display:grid;grid-template-columns:1fr auto;padding:.65rem 1.3rem;border-bottom:1px solid var(--b);align-items:center;font-size:.85rem}
+.calc-row:last-child{border-bottom:none;font-weight:700;background:#fafafa}
+.calc-label{color:var(--t)}
+.calc-val{font-weight:600;text-align:right}
+.calc-val.rouge{color:#dc2626}
+.calc-val.vert{color:var(--g)}
+.calc-val.orange{color:var(--amber)}
+
+/* AVANTAGES / DÉFIS */
+.avdef{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
+@media(max-width:520px){.avdef{grid-template-columns:1fr}}
+.av{background:var(--gl);border:2px solid #86efac;border-radius:var(--r);padding:1.2rem}
+.def{background:#fef2f2;border:2px solid #fecaca;border-radius:var(--r);padding:1.2rem}
+.ad-title{font-weight:700;font-size:.92rem;margin-bottom:.6rem}
+.av .ad-title{color:var(--gd)}
+.def .ad-title{color:#dc2626}
+.ad-list{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.ad-list li{font-size:.82rem;font-weight:300;line-height:1.4;padding-left:.8rem;position:relative}
+.ad-list li::before{position:absolute;left:0;font-weight:700}
+.av .ad-list li{color:#166534}
+.av .ad-list li::before{content:'✓';color:var(--g)}
+.def .ad-list li{color:#7f1d1d}
+.def .ad-list li::before{content:'✗';color:#dc2626}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#1c1000,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#d97706,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.calc-row{grid-template-columns:1fr auto;gap:.5rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Amazon FBA en 2025 : encore rentable ?",
+  "description": "Amazon FBA en 2025 : encore rentable ? — Le vrai calcul de rentabilité. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-427.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Amazon FBA en 2025 : encore rentable ?">
+  <meta property="og:description" content="Amazon FBA en 2025 : encore rentable ? — Le vrai calcul de rentabilité. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-427.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Amazon FBA en 2025 : encore rentable ?">
+  <meta name="twitter:description" content="Amazon FBA en 2025 : encore rentable ? — Le vrai calcul de rentabilité. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-427.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">📦 Revenus</div>
+    <h1>Amazon FBA en 2025 :<br><em>encore rentable ?</em></h1>
+    <div class="savings-badge">💰 Le vrai calcul de rentabilité</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="theme-tag">📦 E-commerce & Amazon</span>
+    </div>
+  </div>
+</div>
+<div class="ab">
+  <p class="lead">Amazon FBA (Fulfilled By Amazon) consiste à envoyer vos stocks à Amazon qui gère le stockage, l'expédition et le service client. En 2025, la concurrence est intense et les frais d'Amazon ont augmenté. Est-ce encore rentable ? La réponse honnête : oui, mais les marges sont serrées et le capital initial est important.</p>
+
+  <h2>💰 Le calcul de rentabilité réel d'un produit FBA</h2>
+  <div class="calcul">
+    <div class="calc-header"><span class="calc-title">📊 Exemple : produit vendu 25 € sur Amazon.fr</span></div>
+    <div class="calc-rows">
+      <div class="calc-row"><span class="calc-label">Prix de vente Amazon</span><span class="calc-val">25,00 €</span></div>
+      <div class="calc-row"><span class="calc-label">Commission Amazon (15 %)</span><span class="calc-val rouge">−3,75 €</span></div>
+      <div class="calc-row"><span class="calc-label">Frais FBA (préparation + expédition)</span><span class="calc-val rouge">−4,50 €</span></div>
+      <div class="calc-row"><span class="calc-label">Frais de stockage mensuel</span><span class="calc-val rouge">−0,50 €</span></div>
+      <div class="calc-row"><span class="calc-label">Coût produit (fabrication + fret Chine)</span><span class="calc-val rouge">−7,00 €</span></div>
+      <div class="calc-row"><span class="calc-label">Budget publicité PPC (~10 % du CA)</span><span class="calc-val rouge">−2,50 €</span></div>
+      <div class="calc-row"><span class="calc-label">Frais divers (retours, photos, outils)</span><span class="calc-val rouge">−0,75 €</span></div>
+      <div class="calc-row"><span class="calc-label">Marge nette par vente</span><span class="calc-val vert">6,00 € (24 %)</span></div>
+    </div>
+  </div>
+  <p style="font-size:.8rem;color:var(--m)">* 24 % de marge nette est un bon résultat en FBA 2025. En dessous de 20 %, la rentabilité devient fragile (variations de frais Amazon, retours, avis négatifs).</p>
+
+  <h2>⚖️ Amazon FBA en 2025 : avantages vs défis réels</h2>
+  <div class="avdef">
+    <div class="av">
+      <div class="ad-title">✅ Avantages réels</div>
+      <ul class="ad-list">
+        <li>Accès immédiat à 300 millions d'acheteurs Amazon</li>
+        <li>Logistique entièrement externalisée</li>
+        <li>Badge Prime = meilleure conversion</li>
+        <li>Scalable sans limite logistique</li>
+        <li>Possible depuis le domicile</li>
+      </ul>
+    </div>
+    <div class="def">
+      <div class="ad-title">✗ Défis importants</div>
+      <ul class="ad-list">
+        <li>Capital initial 3 000–10 000 € minimum</li>
+        <li>Frais Amazon en hausse chaque année</li>
+        <li>Concurrence chinoise sur les prix</li>
+        <li>Risque de suspension de compte Amazon</li>
+        <li>Gestion des avis et faux avis concurrents</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Amazon FBA marche encore très bien sur les niches spécialisées</strong>
+    Les produits génériques (coque de téléphone, ustensile de cuisine basique) sont ultra-concurrentiels avec des marges de 5–10 %. En revanche, les niches spécialisées (équipement pour sport de niche, accessoires pour hobbies spécifiques, produits pour animaux atypiques) restent très rentables avec des marges de 30–50 %. La clé : trouver un produit peu concurrentiel mais avec une demande suffisante via Jungle Scout ou Helium10.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Amazon peut suspendre votre compte à tout moment</strong>
+    C'est le risque le moins médiatisé du FBA : Amazon peut suspendre votre compte vendeur en quelques heures sur la base de réclamations clients ou d'algorithmes automatiques. Des milliers d'euros de stock se retrouvent bloqués pendant des semaines. La dépendance totale à Amazon est le principal risque stratégique du FBA. Une stratégie multi-canal (votre propre boutique en parallèle) est indispensable dès que votre business atteint 5 000 €/mois de CA.
+  </div>
+
+  <div class="cta">
+    <h3>📬 E-commerce & revenus dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour lancer et développer votre activité e-commerce, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil financier.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-415.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Grenier en or :évaluer et vendre ses objets</div></a><a class="sim-card" href="article-416.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Vendre ses créations en ligne :plateformes gratuites</div></a><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne :devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting :avoir un 2e revenu légal</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>
