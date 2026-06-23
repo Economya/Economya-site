@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Allocations familiales 2026 : montants et conditions — Jusqu'à 545€/mois. Guide complet sur Economya.fr">
+<meta name="description" content="Allocations familiales 2025 : montants et conditions — Jusqu'à 350€/mois. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Allocations familiales 2025 : montants et conditions — Economya.fr</title>
@@ -131,7 +131,7 @@ window.economyaLoadAds = function() {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Allocations familiales 2025 : montants et conditions",
-  "description": "Allocations familiales 2026 : montants et conditions — Jusqu'à 545€/mois. Guide complet sur Economya.fr",
+  "description": "Allocations familiales 2025 : montants et conditions — Jusqu'à 350€/mois. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-306.html",
   "publisher": {
     "@type": "Organization",
@@ -150,7 +150,7 @@ window.economyaLoadAds = function() {
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
   <meta property="og:title" content="Allocations familiales 2025 : montants et conditions">
-  <meta property="og:description" content="Allocations familiales 2026 : montants et conditions — Jusqu'à 545€/mois. Guide complet sur Economya.fr">
+  <meta property="og:description" content="Allocations familiales 2025 : montants et conditions — Jusqu'à 350€/mois. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-306.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -159,7 +159,7 @@ window.economyaLoadAds = function() {
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Allocations familiales 2025 : montants et conditions">
-  <meta name="twitter:description" content="Allocations familiales 2026 : montants et conditions — Jusqu'à 545€/mois. Guide complet sur Economya.fr">
+  <meta name="twitter:description" content="Allocations familiales 2025 : montants et conditions — Jusqu'à 350€/mois. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-306.html" />
 </head>
@@ -176,7 +176,7 @@ window.economyaLoadAds = function() {
   <div class="hi">
     <div class="cat-pill">👶 Famille</div>
     <h1>Allocations familiales 2025 :<br><em>montants et conditions</em></h1>
-    <div class="savings-badge">💰 Jusqu'à 545 €/mois</div>
+    <div class="savings-badge">💰 Jusqu'à 350 €/mois</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié mai 2025</span>
@@ -187,9 +187,9 @@ window.economyaLoadAds = function() {
 
 <div class="ab">
 
-  <p class="lead">Les allocations familiales sont versées par la CAF à toutes les familles ayant au moins 2 enfants de moins de 20 ans. Leur montant dépend du nombre d'enfants et des revenus du foyer depuis la modulation mise en place en 2015. Voici les montants 2026 et toutes les conditions.</p>
+  <p class="lead">Les allocations familiales sont versées par la CAF à toutes les familles ayant au moins 2 enfants de moins de 20 ans. Leur montant dépend du nombre d'enfants et des revenus du foyer depuis la modulation mise en place en 2015. Voici les montants 2025 et toutes les conditions.</p>
 
-  <h2>💶 Montants des allocations familiales 2026</h2>
+  <h2>💶 Montants des allocations familiales 2025</h2>
 
   <div class="tw">
     <table>
@@ -203,9 +203,9 @@ window.economyaLoadAds = function() {
       </thead>
       <tbody>
         <tr><td>1 enfant</td><td colspan="3" style="text-align:center;color:var(--m);font-style:italic;font-size:.82rem">Pas d'allocations familiales (mais autres aides possibles)</td></tr>
-        <tr><td>2 enfants</td><td class="g">152 €/mois</td><td class="o">76 €/mois</td><td>38 €/mois</td></tr>
-        <tr><td>3 enfants</td><td class="g">349 €/mois</td><td class="o">174 €/mois</td><td>87 €/mois</td></tr>
-        <tr><td>4 enfants</td><td class="g">545 €/mois</td><td class="o">272 €/mois</td><td>136 €/mois</td></tr>
+        <tr><td>2 enfants</td><td class="g">176 €/mois</td><td class="o">88 €/mois</td><td>44 €/mois</td></tr>
+        <tr><td>3 enfants</td><td class="g">401 €/mois</td><td class="o">201 €/mois</td><td>100 €/mois</td></tr>
+        <tr><td>4 enfants</td><td class="g">627 €/mois</td><td class="o">313 €/mois</td><td>157 €/mois</td></tr>
         <tr><td>Par enfant supplémentaire</td><td class="g">+225 €/mois</td><td class="o">+112 €/mois</td><td>+57 €/mois</td></tr>
       </tbody>
     </table>
