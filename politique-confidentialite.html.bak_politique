@@ -99,7 +99,7 @@ footer strong{color:white}
   </div>
 
   <h2>1. Responsable du traitement</h2>
-  <p>Le responsable du traitement des données décrites dans cette politique est l'éditeur du site Economya.fr, dont l'identité figure dans nos <a href="mentions-legales.html">mentions légales</a>.<br>
+  <p><strong>L'équipe Economya</strong> — éditeur du site Economya.fr<br>
   Contact : <a href="mailto:contact@economya.fr">contact@economya.fr</a></p>
 
   <h2>2. Données collectées</h2>
@@ -158,7 +158,7 @@ footer strong{color:white}
 
   <h2>8. Durée de conservation</h2>
   <ul>
-    <li>Données de navigation : 13 mois (Google Analytics)</li>
+    <li>Données de navigation : 14 mois (Google Analytics)</li>
     <li>Adresse email newsletter : jusqu'à désinscription</li>
     <li>Cookies : 13 mois maximum</li>
   </ul>
