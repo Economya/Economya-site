@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Bilan patrimonial gratuit : comment le faire soi-même — Connaître sa situation nette. Guide complet sur Economya.fr">
+<meta name="description" content="SCPI : guide complet 2025 — Immobilier dès 200€. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bilan patrimonial gratuit : comment le faire soi-même — Economya.fr</title>
+<title>SCPI : guide complet 2025 — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -18,7 +18,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
 .ah{background:linear-gradient(135deg,#1a2e05,#365314,#65a30d);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🏦';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah::before{content:'🏢';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
 .cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#d9f99d;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
@@ -32,38 +32,39 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* TABLEAU ACTIF/PASSIF */
-.bilan{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
-@media(max-width:520px){.bilan{grid-template-columns:1fr}}
-.actif{background:var(--lime-l);border:2px solid #86efac;border-radius:var(--r);overflow:hidden}
-.passif{background:#fef2f2;border:2px solid #fecaca;border-radius:var(--r);overflow:hidden}
-.b-title{padding:.75rem 1.2rem;font-weight:700;font-size:.9rem;border-bottom:1px solid rgba(0,0,0,.1)}
-.actif .b-title{background:#16a34a;color:white}
-.passif .b-title{background:#dc2626;color:white}
-.b-items{display:flex;flex-direction:column}
-.b-item{display:flex;justify-content:space-between;padding:.55rem 1rem;border-bottom:1px solid rgba(0,0,0,.07);font-size:.83rem}
-.b-item:last-child{border-bottom:none}
-.b-label{color:var(--t)}
-.b-val{font-weight:600;text-align:right}
-.actif .b-val{color:#16a34a}
-.passif .b-val{color:#dc2626}
-.b-total{display:flex;justify-content:space-between;padding:.7rem 1rem;font-weight:700;font-size:.9rem;border-top:2px solid rgba(0,0,0,.1)}
-.actif .b-total{background:#dcfce7;color:#16a34a}
-.passif .b-total{background:#fee2e2;color:#dc2626}
+/* STAT BAND */
+.stat-band{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border-radius:var(--r);overflow:hidden;margin:1.5rem 0}
+.stat-cell{background:var(--w);padding:1.2rem 1rem;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--lime);display:block}
+.stat-lbl{font-size:.74rem;color:var(--m);margin-top:.2rem}
 
-/* PATRIMOINE NET */
-.pn{background:var(--w);border:2px solid var(--lime);border-radius:var(--r);padding:1.2rem 1.5rem;margin:1.2rem 0;display:flex;justify-content:space-between;align-items:center}
-.pn-label{font-weight:700;font-size:1rem}
-.pn-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--g)}
+/* AVANTAGES vs RISQUES */
+.avrisques{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
+@media(max-width:520px){.avrisques{grid-template-columns:1fr}}
+.av{background:var(--lime-l);border:2px solid #86efac;border-radius:var(--r);padding:1.2rem}
+.ri{background:#fef2f2;border:2px solid #fecaca;border-radius:var(--r);padding:1.2rem}
+.ar-title{font-weight:700;font-size:.92rem;margin-bottom:.6rem}
+.av .ar-title{color:#365314}
+.ri .ar-title{color:#dc2626}
+.ar-list{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.ar-list li{font-size:.82rem;font-weight:300;padding-left:.8rem;position:relative;line-height:1.4}
+.ar-list li::before{position:absolute;left:0;font-weight:700}
+.av .ar-list li{color:#365314}
+.av .ar-list li::before{content:'✓';color:var(--lime)}
+.ri .ar-list li{color:#7f1d1d}
+.ri .ar-list li::before{content:'·';color:#dc2626}
 
-/* ÉTAPES */
-.steps{display:flex;flex-direction:column;gap:.8rem;margin:1.5rem 0}
-.step{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.9rem 1.1rem}
-.step.top{border:2px solid var(--g)}
-.sico{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
-.step strong{display:block;font-size:.9rem;margin-bottom:.1rem}
-.step span{font-size:.84rem;color:var(--m);font-weight:300}
-.step .stag{display:inline-block;margin-top:.3rem;background:var(--lime-l);color:#365314;font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+/* SCPI TOP */
+.scpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin:1.5rem 0}
+.scpi{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s;position:relative}
+.scpi:hover{transform:translateY(-2px)}
+.scpi.top{border:2px solid var(--g)}
+.top-badge{position:absolute;top:-10px;left:50%;transform:translateX(jusqu'à -50%);background:var(--g);color:white;font-size:.64rem;font-weight:700;padding:.14rem .65rem;border-radius:50px;white-space:nowrap}
+.scpi-icon{font-size:1.6rem;margin-bottom:.4rem}
+.scpi-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+.scpi-rdt{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--lime);margin:.15rem 0}
+.scpi-prix{font-size:.75rem;color:var(--m);margin-bottom:.25rem}
+.scpi-desc{font-size:.76rem;color:var(--m);font-weight:300;line-height:1.35}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
@@ -79,7 +80,7 @@ p{margin-bottom:1rem;font-size:.95rem}
 .cta-form button{background:linear-gradient(135deg,#65a30d,#0284c7);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.stat-band{grid-template-columns:1fr}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -126,9 +127,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Bilan patrimonial gratuit : comment le faire soi-même",
-  "description": "Bilan patrimonial gratuit : comment le faire soi-même — Connaître sa situation nette. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-462.html",
+  "headline": "SCPI : guide complet 2025",
+  "description": "SCPI : guide complet 2025 — Immobilier dès 200€. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-341.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -145,19 +146,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Bilan patrimonial gratuit : comment le faire soi-même">
-  <meta property="og:description" content="Bilan patrimonial gratuit : comment le faire soi-même — Connaître sa situation nette. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-462.html">
+  <meta property="og:title" content="SCPI : guide complet 2025">
+  <meta property="og:description" content="SCPI : guide complet 2025 — Immobilier dès 200€. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-341.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bilan patrimonial gratuit : comment le faire soi-même">
-  <meta name="twitter:description" content="Bilan patrimonial gratuit : comment le faire soi-même — Connaître sa situation nette. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="SCPI : guide complet 2025">
+  <meta name="twitter:description" content="SCPI : guide complet 2025 — Immobilier dès 200€. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-462.html" />
+<link rel="canonical" href="https://economya.fr/article-341.html" />
 </head>
 <body>
 <nav>
@@ -169,110 +170,107 @@ window.economyaLoadAds = function() {
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🏦 Finance</div>
-    <h1>Bilan patrimonial gratuit :<br><em>comment le faire soi-même</em></h1>
-    <div class="savings-badge">💰 Connaître sa situation nette</div>
+    <div class="cat-pill">🏢 Investissement</div>
+    <h1>SCPI :<br><em>guide complet 2025</em></h1>
+    <div class="savings-badge">💰 Immobilier dès 200 €</div>
     <div class="meta-row">
-      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">⏱ 5 min de lecture</span>
       <span class="meta-item">📅 Vérifié mai 2025</span>
-      <span class="theme-tag">📋 Patrimoine personnel</span>
+      <span class="theme-tag">🏠 Immobilier papier</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Le bilan patrimonial est un état précis de ce que vous possédez (actifs) et de ce que vous devez (passifs). La différence est votre patrimoine net. Un bilan annuel permet de mesurer votre progression financière et d'identifier les axes d'optimisation. Voici comment le réaliser en moins d'une heure, gratuitement.</p>
+  <p class="lead">Les SCPI (Sociétés Civiles de Placement Immobilier) permettent d'investir dans l'immobilier professionnel (bureaux, commerces, entrepôts, santé) dès 200 €, sans gérer de locataires. Avec un rendement moyen de 4 à 5 % en 2025, elles offrent une alternative solide entre le Livret A et la Bourse.</p>
 
-  <h2>📊 Exemple de bilan patrimonial (famille type)</h2>
-  <div class="bilan">
-    <div class="actif">
-      <div class="b-title">✅ ACTIFS (ce que je possède)</div>
-      <div class="b-items">
-        <div class="b-item"><span class="b-label">Résidence principale</span><span class="b-val">280 000 €</span></div>
-        <div class="b-item"><span class="b-label">Livret A + LDDS</span><span class="b-val">15 000 €</span></div>
-        <div class="b-item"><span class="b-label">PEA (valeur actuelle)</span><span class="b-val">32 000 €</span></div>
-        <div class="b-item"><span class="b-label">Assurance-vie</span><span class="b-val">18 000 €</span></div>
-        <div class="b-item"><span class="b-label">Véhicule</span><span class="b-val">8 000 €</span></div>
-        <div class="b-item"><span class="b-label">Épargne salariale PEE</span><span class="b-val">7 000 €</span></div>
-      </div>
-      <div class="b-total"><span>Total actifs</span><span>360 000 €</span></div>
-    </div>
-    <div class="passif">
-      <div class="b-title">⚠️ PASSIFS (ce que je dois)</div>
-      <div class="b-items">
-        <div class="b-item"><span class="b-label">Capital restant dû (prêt immo)</span><span class="b-val">185 000 €</span></div>
-        <div class="b-item"><span class="b-label">Crédit auto restant</span><span class="b-val">4 200 €</span></div>
-        <div class="b-item"><span class="b-label">Crédit à la consommation</span><span class="b-val">1 800 €</span></div>
-      </div>
-      <div class="b-total"><span>Total passifs</span><span>191 000 €</span></div>
-    </div>
-  </div>
-  <div class="pn">
-    <span class="pn-label">💰 Patrimoine net (Actifs − Passifs)</span>
-    <span class="pn-val">169 000 €</span>
+  <div class="stat-band">
+    <div class="stat-cell"><span class="stat-num">4–5 %</span><span class="stat-lbl">rendement moyen SCPI 2025</span></div>
+    <div class="stat-cell"><span class="stat-num">200 €</span><span class="stat-lbl">investissement minimum (SCPI en ligne)</span></div>
+    <div class="stat-cell"><span class="stat-num">1 000 €</span><span class="stat-lbl">investissement typique d'une part</span></div>
   </div>
 
-  <h2>🪜 Comment réaliser votre bilan patrimonial</h2>
-  <div class="steps">
-    <div class="step top">
-      <span class="sico">📋</span>
-      <div>
-        <strong>Listez tous vos actifs avec leur valeur actuelle (pas d'achat)</strong>
-        <span>Immobilier : valeur vénale estimée actuelle (sites d'estimation comme MeilleursAgents ou Meilleurs Taux immo). Comptes bancaires : soldes actuels. Épargne financière : valeur de liquidation actuelle (pas le montant versé). Véhicules : cote Argus ou estimation. Mobilier et objets de valeur si significatifs.</span>
-        <span class="stag">📅 Valeur du jour, pas d'achat</span>
-      </div>
+  <h2>⚖️ Avantages et risques des SCPI</h2>
+  <div class="avrisques">
+    <div class="av">
+      <div class="ar-title">✅ Avantages</div>
+      <ul class="ar-list">
+        <li>Rendement supérieur au Livret A (4–5 %)</li>
+        <li>Revenus réguliers (loyers trimestriels)</li>
+        <li>Pas de gestion locative</li>
+        <li>Diversification géographique et sectorielle</li>
+        <li>Accessible dès quelques centaines d'euros</li>
+        <li>Investissement progressif possible</li>
+      </ul>
     </div>
-    <div class="step">
-      <span class="sico">💳</span>
-      <div>
-        <strong>Listez tous vos passifs (dettes restantes)</strong>
-        <span>Prêt immobilier : capital restant dû (sur votre tableau d'amortissement ou relevé bancaire). Crédit auto, crédit à la consommation, crédit revolving : encours restant. Découvert bancaire autorisé et utilisé. Impôts à payer. Pensez à toutes les dettes, même les petites.</span>
-      </div>
-    </div>
-    <div class="step">
-      <span class="sico">🧮</span>
-      <div>
-        <strong>Calculez votre patrimoine net = Actifs − Passifs</strong>
-        <span>C'est votre "valeur nette". Un patrimoine net positif signifie que vous possédez plus que vous ne devez. Un patrimoine net négatif (souvent en début de vie adulte avec des emprunts importants) n'est pas nécessairement alarmant si vous avez des actifs qui se valorisent (immobilier).</span>
-      </div>
-    </div>
-    <div class="step">
-      <span class="sico">📈</span>
-      <div>
-        <strong>Comparez avec le bilan de l'année précédente</strong>
-        <span>La progression de votre patrimoine net d'une année à l'autre est votre vraie mesure de progrès financier. Une progression de 5 000–15 000 € par an (épargne + valorisation des actifs − remboursement des dettes) est un bon indicateur pour un ménage médian.</span>
-        <span class="stag">📊 Progrès = variation annuelle du patrimoine net</span>
-      </div>
+    <div class="ri">
+      <div class="ar-title">⚠️ Risques</div>
+      <ul class="ar-list">
+        <li>Liquidité limitée (pas comme une action)</li>
+        <li>Frais d'entrée élevés (8–12 % au comptant)</li>
+        <li>Horizon recommandé : 8–10 ans minimum</li>
+        <li>Rendement non garanti</li>
+        <li>Imposition des revenus à l'IR (tranches)</li>
+        <li>Risque de baisse de la valeur des parts</li>
+      </ul>
     </div>
   </div>
+
+  <h2>🏆 Les SCPI les plus recommandées en 2025</h2>
+  <div class="scpis">
+    <div class="scpi top">
+      <span class="top-badge">⭐ Meilleur rendement</span>
+      <div class="scpi-icon">🏢</div>
+      <div class="scpi-name">Iroko Zen</div>
+      <div class="scpi-rdt">~7 % (2024)</div>
+      <div class="scpi-prix">Prix part : 200 €</div>
+      <div class="scpi-desc">Nouvelle génération, sans frais d'entrée. Diversifiée Europe. Accessible en ligne dès 200 €.</div>
+    </div>
+    <div class="scpi">
+      <div class="scpi-icon">🏥</div>
+      <div class="scpi-name">Primopierre</div>
+      <div class="scpi-rdt">~4,5 % (2024)</div>
+      <div class="scpi-prix">Prix part : ~202 €</div>
+      <div class="scpi-desc">Bureaux premium en Île-de-France. Gérée par Primonial. Solide et bien établie.</div>
+    </div>
+    <div class="scpi">
+      <div class="scpi-icon">🌍</div>
+      <div class="scpi-name">Novapierre Allemagne 2</div>
+      <div class="scpi-rdt">~4,8 % (2024)</div>
+      <div class="scpi-prix">Prix part : ~410 €</div>
+      <div class="scpi-desc">Commerce de détail en Allemagne. Avantage fiscal (revenus non imposés en France si convention fiscale).</div>
+    </div>
+    <div class="scpi">
+      <div class="scpi-icon">🏗️</div>
+      <div class="scpi-name">Remake Live</div>
+      <div class="scpi-rdt">~7,5 % (2024)</div>
+      <div class="scpi-prix">Prix part : 200 €</div>
+      <div class="scpi-desc">Sans frais d'entrée. Diversifiée Europe (santé, logistique, bureaux). Créée en 2022, forte croissance.</div>
+    </div>
+  </div>
+
+  <h2>💡 Les 3 façons d'investir en SCPI</h2>
+  <p><strong>Au comptant :</strong> achat direct de parts via un courtier ou la société de gestion. Frais d'entrée de 8 à 12 %. Revenus imposés à votre tranche marginale d'IR. Recommandé si vous êtes dans les tranches basses (11 ou 30 %).</p>
+  <p><strong>Via l'assurance-vie :</strong> SCPI accessibles comme unités de compte dans certains contrats (Linxea, Placement-direct.fr). Fiscalité avantageuse de l'assurance-vie après 8 ans. Frais de gestion supplémentaires mais fiscalité réduite.</p>
+  <p><strong>À crédit :</strong> si votre banque vous suit, investir à crédit en SCPI peut être intéressant (effet de levier). Les loyers remboursent partiellement les mensualités. Approche plus risquée, réservée aux investisseurs avertis.</p>
 
   <div class="tip">
-    <strong>💡 Tableur Google Sheets : le meilleur outil gratuit pour votre bilan</strong>
-    Créez un simple tableur Google Sheets avec deux colonnes (Actifs / Passifs) et une cellule "Patrimoine net". Dupliquez l'onglet chaque année pour suivre votre évolution. Des modèles gratuits existent sur Google Sheets Explore (cherchez "bilan patrimonial personnel"). Partagez-le avec votre conjoint pour une vision commune.
+    <strong>💡 SCPI sans frais d'entrée : la révolution récente</strong>
+    Des SCPI nouvelle génération (Iroko Zen, Remake Live, Corum Origin) proposent 0 % de frais d'entrée contre 8–12 % pour les SCPI traditionnelles. Sur un investissement de 10 000 €, c'est 800 à 1 200 € d'économies immédiates. Logique d'investir sur ces SCPI en priorité.
   </div>
 
   <div class="warn">
-    <strong>⚠️ N'oubliez pas les actifs immatériels importants</strong>
-    Votre capital humain (revenus futurs liés à votre formation et expérience), vos droits à la retraite acquis, vos droits à l'assurance chômage — ces éléments ne figurent pas dans un bilan classique mais sont économiquement très significatifs. Ne désespérez pas si votre patrimoine net est faible : si vous êtes jeune et qualifié, votre capital humain représente votre actif le plus précieux.
+    <strong>⚠️ Horizon minimum de 8–10 ans</strong>
+    Les SCPI ne sont pas liquides comme une action ou un ETF. La revente peut prendre plusieurs semaines à plusieurs mois. Les frais d'entrée (pour les SCPI classiques) ne s'amortissent qu'au bout de 5 à 8 ans. N'investissez en SCPI que de l'argent dont vous n'aurez pas besoin à court terme.
   </div>
 
   <div class="cta">
-    <h3>📬 Bilan patrimonial & finances dans votre boîte mail</h3>
-    <p>Les meilleures stratégies pour construire et développer votre patrimoine, chaque semaine.</p>
+    <h3>📬 Immobilier & investissement dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour investir dans l'immobilier sans se ruiner, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
     </div>
   </div>
-</div>
-
-<!-- Partenaire Linxea -->
-<div style="background:linear-gradient(135deg,#FAEEDA,#FFF8EE);border:1px solid #EF9F27;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-  <span style="font-size:2rem">📈</span>
-  <div style="flex:1;min-width:200px">
-    <div style="font-weight:700;color:#633806;font-size:.95rem;margin-bottom:.2rem">Optimisez votre épargne avec Linxea</div>
-    <div style="font-size:.82rem;color:#5F5E5A">Assurance-vie et épargne retraite à frais réduits, courtier ORIAS depuis 2001. Les unités de compte comportent un risque de perte en capital ; le fonds en euros est garanti.</div>
-  </div>
-  <a href="https://www.awin1.com/cread.php?awinmid=13275&awinaffid=2926395&ued=https%3A%2F%2Fwww.linxea.com" target="_blank" rel="noopener sponsored" style="background:#EF9F27;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Découvrir →</a>
 </div>
 
 <!-- Boutons partage -->
@@ -298,7 +296,7 @@ window.economyaLoadAds = function() {
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Informations indicatives.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil financier.</span>
 </footer>
 
 <style>
@@ -313,7 +311,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-387.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Désencombrement rentable :transformer ses placards en cash</div></a><a class="sim-card" href="article-388.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Consommation consciente :acheter moins et mieux</div></a><a class="sim-card" href="article-389.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Vivre avec 1 000 €/mois :méthodes et témoignages</div></a><a class="sim-card" href="article-390.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Burn-out :récupérer sans se ruiner</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-336.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">ETF World : comment investir simplement</div></a><a class="sim-card" href="article-337.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Livret A vs LEP vs LDDS : que choisir</div></a><a class="sim-card" href="article-338.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Ouvrir son premier PEA</div></a><a class="sim-card" href="article-339.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">PEA : ouvrir, gérer, optimiser</div></a></div>
 </div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">

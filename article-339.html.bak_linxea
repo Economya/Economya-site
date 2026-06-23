@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Ciclade : rechercher un contrat d'assurance-vie oublié — Des millions non réclamés chaque an. Guide complet sur Economya.fr">
+<meta name="description" content="PEA : ouvrir, gérer, optimiser — 0% d'impôt après 5 ans. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ciclade : rechercher un contrat d'assurance-vie oublié — Economya.fr</title>
+<title>PEA : ouvrir, gérer, optimiser — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -18,7 +18,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
 .ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🔎';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah::before{content:'💼';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
 .cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
@@ -32,25 +32,29 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* CHIFFRES */
-.chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1rem;margin:1.5rem 0}
-.chiffre{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s}
-.chiffre:hover{transform:translateY(-2px)}
-.chiffre.top{border:2px solid var(--g)}
-.ch-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--amber);margin-bottom:.25rem}
-.ch-label{font-size:.84rem;font-weight:600;margin-bottom:.15rem}
-.ch-note{font-size:.74rem;color:var(--m);font-weight:300;line-height:1.3}
+/* FISCALITÉ TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:.8rem;margin:1.5rem 0}
+.tl{display:grid;grid-template-columns:80px 1fr;gap:1rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem}
+.tl-date{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--amber);text-align:center;padding-top:.2rem}
+.tl-body h3{font-size:.92rem;font-weight:700;margin-bottom:.15rem}
+.tl-body p{font-size:.83rem;color:var(--m);font-weight:300;margin:0}
+.tl.best{border:2px solid var(--g)}
+.tl.best .tl-date{color:var(--g)}
 
-/* ÉTAPES */
-.steps{display:flex;flex-direction:column;gap:.85rem;margin:1.5rem 0}
-.step{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem;transition:box-shadow .2s}
-.step:hover{box-shadow:0 4px 14px rgba(217,119,6,.08)}
-.step.top{border:2px solid var(--g)}
-.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#92400e,#d97706);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.sc h3{font-size:.92rem;font-weight:600;margin-bottom:.2rem}
-.sc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
-.sc .stag{display:inline-block;margin-top:.35rem;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.12rem .55rem;border-radius:50px}
-.stag.a{background:var(--amber-l);color:var(--ad)}
+/* RÈGLES */
+.regles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0}
+.regle{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem}
+.regle-icon{font-size:1.5rem;margin-bottom:.4rem}
+.regle-name{font-weight:700;font-size:.9rem;margin-bottom:.3rem}
+.regle-val{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--amber);margin:.15rem 0}
+.regle-desc{font-size:.78rem;color:var(--m);font-weight:300;line-height:1.4}
+
+/* ERREURS */
+.erreurs{display:flex;flex-direction:column;gap:.75rem;margin:1.2rem 0}
+.erreur{background:#fef2f2;border:1px solid #fecaca;border-radius:var(--r);padding:.9rem 1.1rem;display:flex;gap:.9rem;align-items:flex-start}
+.erreur .eco{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
+.erreur strong{display:block;font-size:.9rem;color:#dc2626;margin-bottom:.1rem}
+.erreur span{font-size:.84rem;color:#7f1d1d;font-weight:300}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
@@ -66,7 +70,7 @@ p{margin-bottom:1rem;font-size:.95rem}
 .cta-form button{background:linear-gradient(135deg,#d97706,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.tl{grid-template-columns:60px 1fr}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -113,9 +117,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Ciclade : rechercher un contrat d'assurance-vie oublié",
-  "description": "Ciclade : rechercher un contrat d'assurance-vie oublié — Des millions non réclamés chaque an. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-449.html",
+  "headline": "PEA : ouvrir, gérer, optimiser",
+  "description": "PEA : ouvrir, gérer, optimiser — 0% d'impôt après 5 ans. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-339.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -132,19 +136,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Ciclade : rechercher un contrat d'assurance-vie oublié">
-  <meta property="og:description" content="Ciclade : rechercher un contrat d'assurance-vie oublié — Des millions non réclamés chaque an. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-449.html">
+  <meta property="og:title" content="PEA : ouvrir, gérer, optimiser">
+  <meta property="og:description" content="PEA : ouvrir, gérer, optimiser — 0% d'impôt après 5 ans. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-339.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ciclade : rechercher un contrat d'assurance-vie oublié">
-  <meta name="twitter:description" content="Ciclade : rechercher un contrat d'assurance-vie oublié — Des millions non réclamés chaque an. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="PEA : ouvrir, gérer, optimiser">
+  <meta name="twitter:description" content="PEA : ouvrir, gérer, optimiser — 0% d'impôt après 5 ans. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-449.html" />
+<link rel="canonical" href="https://economya.fr/article-339.html" />
 </head>
 <body>
 <nav>
@@ -156,107 +160,110 @@ window.economyaLoadAds = function() {
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🔎 Finance</div>
-    <h1>Ciclade :<br><em>rechercher un contrat d'assurance-vie oublié</em></h1>
-    <div class="savings-badge">💰 Des millions non réclamés chaque année</div>
+    <div class="cat-pill">💼 Investissement</div>
+    <h1>PEA :<br><em>ouvrir, gérer, optimiser</em></h1>
+    <div class="savings-badge">💰 0 % d'impôt après 5 ans</div>
     <div class="meta-row">
-      <span class="meta-item">⏱ 3 min de lecture</span>
+      <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié mai 2025</span>
-      <span class="theme-tag">💰 Contrats oubliés</span>
+      <span class="theme-tag">📊 PEA & optimisation fiscale</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Chaque année en France, plusieurs milliards d'euros d'assurances-vie restent non réclamés par les bénéficiaires — soit parce qu'ils ignorent l'existence du contrat, soit parce que le souscripteur est décédé sans le leur avoir signalé. La plateforme Ciclade (Caisse des Dépôts) permet de rechercher ces contrats oubliés gratuitement.</p>
+  <p class="lead">Le PEA est l'enveloppe fiscale bourse la plus efficiente pour un particulier français. Après 5 ans, vos plus-values ne sont taxées qu'à 17,2 % (prélèvements sociaux seulement) au lieu de 30 % en compte-titres ordinaire. Voici les règles essentielles pour l'optimiser.</p>
 
-  <h2>💰 L'ampleur du phénomène</h2>
-  <div class="chiffres">
-    <div class="chiffre top">
-      <div class="ch-val">8 Mds €</div>
-      <div class="ch-label">Montant estimé des contrats non réclamés</div>
-      <div class="ch-note">Total des avoirs en déshérence transférés à la Caisse des Dépôts depuis 2016</div>
+  <h2>📅 La fiscalité du PEA selon la durée</h2>
+  <div class="timeline">
+    <div class="tl">
+      <div class="tl-date">0–5 ans</div>
+      <div class="tl-body">
+        <h3>Tout retrait entraîne la clôture du PEA</h3>
+        <p>Plus-values soumises à la flat tax complète de 30 % (12,8 % IR + 17,2 % prélèvements sociaux). Évitez absolument tout retrait avant 5 ans.</p>
+      </div>
     </div>
-    <div class="chiffre">
-      <div class="ch-val">30 ans</div>
-      <div class="ch-label">Prescription des contrats</div>
-      <div class="ch-note">Les contrats sont définitivement acquis à l'État après 30 ans de déshérence</div>
+    <div class="tl best">
+      <div class="tl-date">+5 ans ⭐</div>
+      <div class="tl-body">
+        <h3>Retraits partiels possibles sans clôture</h3>
+        <p>Plus-values soumises uniquement aux prélèvements sociaux (17,2 %) — soit 12,8 % d'économie vs un CTO. Le PEA reste ouvert et vous pouvez continuer à investir.</p>
+      </div>
     </div>
-    <div class="chiffre">
-      <div class="ch-val">10 ans</div>
-      <div class="ch-label">Transfert à la Caisse des Dépôts</div>
-      <div class="ch-note">Après 10 ans d'inactivité suivant le décès, les fonds sont transférés à la CDC</div>
-    </div>
-    <div class="chiffre">
-      <div class="ch-val">Gratuit</div>
-      <div class="ch-label">Recherche sur Ciclade</div>
-      <div class="ch-note">Aucun frais pour rechercher un contrat. Méfiez-vous des services payants qui font la même chose</div>
+    <div class="tl">
+      <div class="tl-date">Rente viagère</div>
+      <div class="tl-body">
+        <h3>Option rente : totalement exonérée d'IR</h3>
+        <p>Si vous convertissez votre PEA en rente viagère, celle-ci est exonérée d'impôt sur le revenu (uniquement prélèvements sociaux). Option intéressante en retraite.</p>
+      </div>
     </div>
   </div>
 
-  <h2>🔍 Comment rechercher un contrat oublié sur Ciclade</h2>
-  <div class="steps">
-    <div class="step top">
-      <div class="sn">1</div>
-      <div class="sc">
-        <h3>Rendez-vous sur ciclade.caissedesdepots.fr</h3>
-        <p>Le site officiel de la Caisse des Dépôts pour la recherche de contrats en déshérence. Accessible gratuitement, 24h/24. Recense les contrats d'assurance-vie, contrats de capitalisation, comptes bancaires inactifs et contrats de retraite.</p>
-        <span class="stag">🌐 ciclade.caissedesdepots.fr</span>
-      </div>
+  <h2>📋 Les règles essentielles du PEA</h2>
+  <div class="regles">
+    <div class="regle">
+      <div class="regle-icon">💶</div>
+      <div class="regle-name">Plafond de versements</div>
+      <div class="regle-val">150 000 €</div>
+      <div class="regle-desc">Plafond de versements cumulés (les plus-values ne sont pas plafonnées — votre PEA peut valoir bien plus).</div>
     </div>
-    <div class="step">
-      <div class="sn">2</div>
-      <div class="sc">
-        <h3>Renseignez les informations du défunt</h3>
-        <p>Pour rechercher au nom d'un défunt : nom, prénom, date et lieu de naissance. Si vous cherchez un contrat sur vous-même (compte bancaire inactif) : vos propres informations. La recherche est croisée avec les registres officiels pour limiter les faux positifs.</p>
-        <span class="stag a">📋 Préparez l'état civil</span>
-      </div>
+    <div class="regle">
+      <div class="regle-icon">👤</div>
+      <div class="regle-name">1 PEA par personne</div>
+      <div class="regle-val">2 par foyer</div>
+      <div class="regle-desc">Chaque adulte du foyer fiscal peut avoir son propre PEA. Un couple peut donc investir jusqu'à 300 000 € en PEA.</div>
     </div>
-    <div class="step">
-      <div class="sn">3</div>
-      <div class="sc">
-        <h3>Si un résultat positif : contactez l'assureur ou la Caisse des Dépôts</h3>
-        <p>Si Ciclade indique qu'un contrat existe à votre nom ou au nom du défunt, vous recevez les coordonnées de l'assureur (si les fonds sont encore chez lui) ou de la Caisse des Dépôts (si transférés). Vous devrez justifier votre identité et votre qualité de bénéficiaire.</p>
-        <span class="stag">📂 Justificatifs d'identité requis</span>
-      </div>
+    <div class="regle">
+      <div class="regle-icon">🌍</div>
+      <div class="regle-name">Titres éligibles</div>
+      <div class="regle-val">Actions UE + ETF</div>
+      <div class="regle-desc">Actions européennes + ETF synthétiques répliquant des indices mondiaux (MSCI World, S&P 500) via des swaps.</div>
     </div>
-    <div class="step">
-      <div class="sn">4</div>
-      <div class="sc">
-        <h3>Pour les contrats encore chez l'assureur : utilisez Agira</h3>
-        <p>Si le décès est récent (moins de 10 ans) et les fonds pas encore transférés à la CDC, l'assureur détient peut-être un contrat. Utilisez l'Agira (agira.asso.fr) — le formulaire officiel de recherche auprès de tous les assureurs français. Réponse obligatoire sous 15 jours ouvrés.</p>
-        <span class="stag">🏦 agira.asso.fr</span>
-      </div>
+    <div class="regle">
+      <div class="regle-icon">🔄</div>
+      <div class="regle-name">Transfert possible</div>
+      <div class="regle-val">Sans clôture</div>
+      <div class="regle-desc">Transférer son PEA vers un autre courtier sans le clôturer ni perdre son ancienneté. Délai : 15 jours ouvrés maximum.</div>
+    </div>
+  </div>
+
+  <h2>⚠️ Les 4 erreurs à éviter absolument</h2>
+  <div class="erreurs">
+    <div class="erreur">
+      <span class="eco">🚫</span>
+      <div><strong>Retirer avant 5 ans</strong><span>Un retrait avant 5 ans clôture automatiquement le PEA et déclenche la flat tax (30 %). N'investissez dans le PEA que de l'argent dont vous n'avez pas besoin avant 5 ans.</span></div>
+    </div>
+    <div class="erreur">
+      <span class="eco">🚫</span>
+      <div><strong>Acheter des ETF non éligibles PEA</strong><span>Vérifiez toujours sur la fiche produit de l'ETF la mention "Éligible PEA". Les ETF MSCI World de BlackRock (IWDA) ne sont PAS éligibles PEA car physiques irlandais. Optez pour les versions synthétiques d'Amundi ou Lyxor.</span></div>
+    </div>
+    <div class="erreur">
+      <span class="eco">🚫</span>
+      <div><strong>Dépasser le plafond de versements (150 000 €)</strong><span>Tout versement au-delà du plafond entraîne des pénalités fiscales. Le plafond porte sur les versements, pas sur la valeur totale du PEA (qui peut dépasser 150 000 € grâce aux plus-values).</span></div>
+    </div>
+    <div class="erreur">
+      <span class="eco">🚫</span>
+      <div><strong>Multiplier les lignes avec des frais de courtage élevés</strong><span>Un ordre à 5 € de frais sur un achat de 50 € = 10 % de frais d'entrée ! Choisissez un courtier à frais réduits (Fortuneo, Boursobank) et investissez des montants suffisants (minimum 200–500 € par ordre).</span></div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Vous pouvez aussi rechercher vos propres comptes bancaires inactifs</strong>
-    Ciclade ne recense pas seulement les assurances-vie. Il répertorie aussi les comptes bancaires inactifs depuis plus de 3 ans (sans opération, sans contact du titulaire) et les comptes de livrets. Si vous avez ouvert un compte il y a longtemps et ne vous en souvenez plus, Ciclade peut retrouver votre argent.
+    <strong>💡 Optimisez avec le PEA-PME pour dépasser 150 000 €</strong>
+    Le PEA-PME est un PEA complémentaire dédié aux petites et moyennes entreprises européennes. Plafond : 225 000 € supplémentaires (soit 375 000 € au total avec le PEA classique). Même avantage fiscal. Les ETF éligibles PEA-PME sont plus rares, mais certains ETF Small Caps Europe le sont.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Méfiez-vous des services payants qui proposent de "rechercher pour vous"</strong>
-    Des entreprises proposent de rechercher vos contrats oubliés contre des commissions de 10 à 30 % du montant retrouvé. C'est légal mais inutile — la recherche sur Ciclade et Agira est totalement gratuite et accessible à tous. Ne payez jamais pour ce service.
+    <strong>⚠️ Le PEA est clôturé en cas de décès du titulaire</strong>
+    Le PEA est automatiquement clôturé au décès du titulaire. Les titres sont transmis aux héritiers, mais l'avantage fiscal cesse. Pour la transmission patrimoniale à long terme, l'assurance-vie (avec clause bénéficiaire) reste plus adaptée.
   </div>
 
   <div class="cta">
-    <h3>📬 Finances & droits dans votre boîte mail</h3>
-    <p>Les meilleures astuces pour retrouver et optimiser tous vos droits financiers, chaque semaine.</p>
+    <h3>📬 PEA & investissement dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour optimiser votre PEA et votre patrimoine, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
     </div>
   </div>
-</div>
-
-<!-- Partenaire Linxea -->
-<div style="background:linear-gradient(135deg,#FAEEDA,#FFF8EE);border:1px solid #EF9F27;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-  <span style="font-size:2rem">📈</span>
-  <div style="flex:1;min-width:200px">
-    <div style="font-weight:700;color:#633806;font-size:.95rem;margin-bottom:.2rem">Optimisez votre épargne avec Linxea</div>
-    <div style="font-size:.82rem;color:#5F5E5A">Assurance-vie et épargne retraite à frais réduits, courtier ORIAS depuis 2001. Les unités de compte comportent un risque de perte en capital ; le fonds en euros est garanti.</div>
-  </div>
-  <a href="https://www.awin1.com/cread.php?awinmid=13275&awinaffid=2926395&ued=https%3A%2F%2Fwww.linxea.com" target="_blank" rel="noopener sponsored" style="background:#EF9F27;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Découvrir →</a>
 </div>
 
 <!-- Boutons partage -->
@@ -282,8 +289,23 @@ window.economyaLoadAds = function() {
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Informations indicatives — vérifiez sur ciclade.caissedesdepots.fr.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil financier.</span>
 </footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-336.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">ETF World : comment investir simplement</div></a><a class="sim-card" href="article-337.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Livret A vs LEP vs LDDS : que choisir</div></a><a class="sim-card" href="article-341.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">SCPI :guide complet 2025</div></a><a class="sim-card" href="article-342.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Investir 100 €/mois en Bourse :simulation sur 20 ans</div></a></div>
+</div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
 <p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
