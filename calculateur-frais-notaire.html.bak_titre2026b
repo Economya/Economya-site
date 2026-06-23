@@ -4,7 +4,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calculateur Frais de Notaire 2026 — Economya.fr</title>
+<title>Calculateur Frais de Notaire 2025 — Economya.fr</title>
 <meta name="description" content="Calculez précisément vos frais de notaire selon le type de bien et le prix d'achat. Outil gratuit et précis sur Economya.fr">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -75,7 +75,7 @@ footer strong{color:white}
   {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Calculateur Frais de Notaire 2026",
+  "name": "Calculateur Frais de Notaire 2025",
   "description": "Calculez précisément vos frais de notaire selon le type de bien et le prix d'achat. Outil gratuit et précis sur Economya.fr",
   "url": "https://economya.fr/calculateur-frais-notaire.html",
   "applicationCategory": "FinanceApplication",
@@ -97,7 +97,7 @@ footer strong{color:white}
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Calculateur Frais de Notaire 2026">
+  <meta property="og:title" content="Calculateur Frais de Notaire 2025">
   <meta property="og:description" content="Calculez précisément vos frais de notaire selon le type de bien et le prix d'achat. Outil gratuit et précis sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/calculateur-frais-notaire.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
@@ -106,7 +106,7 @@ footer strong{color:white}
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Calculateur Frais de Notaire 2026">
+  <meta name="twitter:title" content="Calculateur Frais de Notaire 2025">
   <meta name="twitter:description" content="Calculez précisément vos frais de notaire selon le type de bien et le prix d'achat. Outil gratuit et précis sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/calculateur-frais-notaire.html" />
@@ -122,7 +122,7 @@ footer strong{color:white}
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 
 <div class="hero">
-  <h1>Calculateur <em>Frais de Notaire</em> 2026</h1>
+  <h1>Calculateur <em>Frais de Notaire</em> 2025</h1>
   <p>Estimez précisément vos frais de notaire selon le type de bien et le prix d'achat. Calcul détaillé inclus.</p>
 </div>
 
