@@ -189,7 +189,7 @@ window.economyaLoadAds = function() {
 
 <div class="ab">
 
-  <p class="lead">Acheter un véhicule électrique en 2026 peut rapporter jusqu'à 7 700 € d'aides cumulées grâce au bonus écologique et au surbonus batterie européenne. Des conditions de revenus et de résidence s'appliquent. Voici le guide complet pour ne rien rater.</p>
+  <p class="lead">Acheter un véhicule électrique en 2025 peut rapporter jusqu'à 7 000 € d'aides cumulées entre le bonus écologique et la prime à la conversion. Des conditions de revenus et de résidence s'appliquent. Voici le guide complet pour ne rien rater.</p>
 
   <h2>💶 Les aides disponibles en 2025</h2>
 
@@ -198,7 +198,7 @@ window.economyaLoadAds = function() {
       <span class="best-tag">⭐ Plus avantageux</span>
       <div class="bcard-icon">⚡</div>
       <div class="bcard-name">Bonus écologique voiture électrique</div>
-      <div class="bcard-amount">Jusqu'à 5 700 €</div>
+      <div class="bcard-amount">4 000 €</div>
       <div class="bcard-cond">Pour les revenus > 15 400 €/an. Leasing social et revenus modestes : jusqu'à 7 000 €. Véhicule ≤ 47 000 €, fabriqué en Europe.</div>
     </div>
     <div class="bcard">
@@ -206,6 +206,12 @@ window.economyaLoadAds = function() {
       <div class="bcard-name">Bonus vélo cargo électrique</div>
       <div class="bcard-amount">400 €</div>
       <div class="bcard-cond">Pour l'achat d'un vélo cargo électrique. Cumulable avec les aides régionales et locales.</div>
+    </div>
+    <div class="bcard">
+      <div class="bcard-icon">🔄</div>
+      <div class="bcard-name">Prime à la conversion</div>
+      <div class="bcard-amount">1 500 €</div>
+      <div class="bcard-cond">En échange de votre ancien véhicule thermique (critères d'ancienneté). Cumulable avec le bonus écologique.</div>
     </div>
     <div class="bcard">
       <div class="bcard-icon">🏘️</div>
