@@ -233,6 +233,7 @@ const ABONNEMENTS = {
     { nom: 'Canal+', detail: 'Tous programmes', prix: 26.99 },
     { nom: 'Apple TV+', detail: 'Séries Apple', prix: 9.99 },
     { nom: 'OCS / Max', detail: 'HBO & Warner', prix: 14.99 },
+    { nom: 'Salto', detail: 'TV française', prix: 6.99 },
   ],
   musique: [
     { nom: 'Spotify', detail: 'Premium individuel', prix: 10.99 },
