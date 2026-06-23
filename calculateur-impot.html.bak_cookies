@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur Impôt sur le Revenu 2026 — Economya.fr</title>
+<meta name="description" content="Estimez votre impôt sur le revenu 2026 en quelques secondes. Barème officiel, parts fiscales, réductions incluses. Gratuit sur Economya.fr">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#3b0764,#6d28d9,#7c3aed);color:white;padding:3rem 2rem 2.5rem;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:#EF9F27;font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:500px;margin:0 auto}
+.container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:var(--gd)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.field label{display:block;font-size:.78rem;font-weight:600;color:var(--m);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em}
+.field input[type=range]{width:100%;accent-color:var(--g);height:6px;margin:.5rem 0}
+.field .val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--gd)}
+.field .val span{font-size:.85rem;font-weight:400;color:var(--m)}
+.field select{width:100%;border:1px solid var(--b);border-radius:8px;padding:.5rem .8rem;font-family:inherit;font-size:.9rem;background:var(--bg);color:var(--t)}
+.results{background:linear-gradient(135deg,#3b0764,#6d28d9);border-radius:var(--r);padding:2rem;color:white;margin-bottom:1.5rem}
+.results h2{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1.5rem;color:rgba(255,255,255,.8)}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
+.res-item{background:rgba(255,255,255,.1);border-radius:12px;padding:1.2rem;text-align:center}
+.res-item.highlight{background:rgba(239,159,39,.2);border:1px solid rgba(239,159,39,.4)}
+.res-item .num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--a);display:block;margin-bottom:.2rem}
+.res-item .lbl{font-size:.72rem;color:rgba(255,255,255,.7)}
+.bareme{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.bareme h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem;color:var(--gd)}
+table{width:100%;border-collapse:collapse;font-size:.83rem}
+th{background:var(--gd);color:white;padding:.6rem .8rem;text-align:left;font-weight:600}
+td{padding:.55rem .8rem;border-bottom:1px solid var(--b)}
+tr.active td{background:var(--gl);font-weight:600;color:var(--gd)}
+tr:hover td{background:#f9f9f7}
+.detail{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.detail h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem;color:var(--gd)}
+.detail-row{display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--b);font-size:.86rem}
+.detail-row:last-child{border-bottom:none;font-weight:700;font-size:.95rem;padding-top:.8rem;color:var(--gd)}
+.detail-row .lbl{color:var(--m)}
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1rem 1.4rem;font-size:.9rem;color:var(--gd);margin-bottom:1.5rem}
+.tip strong{font-weight:600}
+.cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
+.cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:1px solid var(--b);font-size:.86rem;font-family:inherit}
+.cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculateur Impôt sur le Revenu 2026",
+  "description": "Estimez votre impôt sur le revenu 2026 en quelques secondes. Barème officiel, parts fiscales, réductions incluses. Gratuit sur Economya.fr",
+  "url": "https://economya.fr/calculateur-impot.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr"
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Calculateur Impôt sur le Revenu 2026">
+  <meta property="og:description" content="Estimez votre impôt sur le revenu 2026 en quelques secondes. Barème officiel, parts fiscales, réductions incluses. Gratuit sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/calculateur-impot.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculateur Impôt sur le Revenu 2026">
+  <meta name="twitter:description" content="Estimez votre impôt sur le revenu 2026 en quelques secondes. Barème officiel, parts fiscales, réductions incluses. Gratuit sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/calculateur-impot.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="hero">
+  <h1>Calculateur <em>Impôt sur le Revenu</em> 2026</h1>
+  <p>Estimez votre impôt 2026 en quelques secondes. Barème officiel, parts fiscales et taux marginal inclus.</p>
+</div>
+<div class="container">
+  <div class="card">
+    <h2>👤 Votre situation fiscale</h2>
+    <div class="grid">
+      <div class="field">
+        <label>Revenus nets annuels du foyer</label>
+        <div class="val" id="v-revenus">35 000 <span>€/an</span></div>
+        <input type="range" id="revenus" min="0" max="200000" step="1000" value="35000">
+      </div>
+      <div class="field">
+        <label>Situation familiale</label>
+        <select id="situation" onchange="calculate()">
+          <option value="1">Célibataire (1 part)</option>
+          <option value="2" selected>Couple marié/pacsé (2 parts)</option>
+          <option value="2.5">Couple + 1 enfant (2,5 parts)</option>
+          <option value="3">Couple + 2 enfants (3 parts)</option>
+          <option value="4">Couple + 3 enfants (4 parts)</option>
+          <option value="1.5">Parent isolé + 1 enfant (1,5 part)</option>
+          <option value="2">Parent isolé + 2 enfants (2 parts)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Déductions fiscales</label>
+        <div class="val" id="v-deductions">0 <span>€</span></div>
+        <input type="range" id="deductions" min="0" max="20000" step="500" value="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="results">
+    <h2>📊 Votre impôt estimé 2026</h2>
+    <div class="res-grid">
+      <div class="res-item highlight">
+        <span class="num" id="r-impot">—</span>
+        <div class="lbl">Impôt annuel</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-mensuel">—</span>
+        <div class="lbl">Prélèvement mensuel</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-tmi">—</span>
+        <div class="lbl">Taux marginal (TMI)</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-taux-moyen">—</span>
+        <div class="lbl">Taux moyen d'imposition</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bareme">
+    <h2>📋 Barème de l'impôt 2026 (revenus 2025)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Tranche de revenu (par part)</th>
+          <th>Taux</th>
+          <th>Votre statut</th>
+        </tr>
+      </thead>
+      <tbody id="bareme-body"></tbody>
+    </table>
+  </div>
+
+  <div class="detail">
+    <h2>🔢 Détail du calcul</h2>
+    <div class="detail-row"><span class="lbl">Revenus nets déclarés</span><span id="d-revenus">—</span></div>
+    <div class="detail-row"><span class="lbl">Abattement forfaitaire 10%</span><span id="d-abattement">—</span></div>
+    <div class="detail-row"><span class="lbl">Déductions supplémentaires</span><span id="d-deductions">—</span></div>
+    <div class="detail-row"><span class="lbl">Revenu imposable</span><span id="d-imposable">—</span></div>
+    <div class="detail-row"><span class="lbl">Nombre de parts fiscales</span><span id="d-parts">—</span></div>
+    <div class="detail-row"><span class="lbl">Revenu par part</span><span id="d-par-part">—</span></div>
+    <div class="detail-row"><span class="lbl">Impôt brut calculé</span><span id="d-brut">—</span></div>
+    <div class="detail-row"><span class="lbl"><strong>Impôt net à payer</strong></span><span id="d-net">—</span></div>
+  </div>
+
+  <div class="tip" id="tip-text">Chargement...</div>
+
+  <div class="cta">
+    <h3>📬 Optimisez votre fiscalité chaque année</h3>
+    <p>Déductions méconnues, niches fiscales légales, stratégies d'optimisation — chaque semaine dans votre boîte mail.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr">
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Simulation indicative basée sur le barème 2026. Résultat officiel sur impots.gouv.fr</span>
+</footer>
+<script>
+const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+
+// Barème IR 2026 (revenus 2025)
+const BAREME = [
+  { min: 0,      max: 11497,  taux: 0,    label: "Jusqu'à 11 497 €" },
+  { min: 11497,  max: 29315,  taux: 0.11, label: "11 497 € à 29 315 €" },
+  { min: 29315,  max: 83823,  taux: 0.30, label: "29 315 € à 83 823 €" },
+  { min: 83823,  max: 180294, taux: 0.41, label: "83 823 € à 180 294 €" },
+  { min: 180294, max: Infinity,taux: 0.45, label: "Au-delà de 180 294 €" },
+];
+
+function calcImpot(revenuParPart) {
+  let impot = 0;
+  for(const t of BAREME) {
+    if(revenuParPart <= t.min) break;
+    const tranche = Math.min(revenuParPart, t.max) - t.min;
+    impot += tranche * t.taux;
+  }
+  return impot;
+}
+
+function getTMI(revenuParPart) {
+  for(let i = BAREME.length - 1; i >= 0; i--) {
+    if(revenuParPart > BAREME[i].min) return BAREME[i].taux * 100;
+  }
+  return 0;
+}
+
+function calculate() {
+  const revenus = +document.getElementById('revenus').value;
+  const parts = +document.getElementById('situation').value;
+  const deductions = +document.getElementById('deductions').value;
+
+  document.getElementById('v-revenus').innerHTML = revenus.toLocaleString('fr-FR') + ' <span>€/an</span>';
+  document.getElementById('v-deductions').innerHTML = deductions.toLocaleString('fr-FR') + ' <span>€</span>';
+
+  // Abattement forfaitaire 10% (min 495€, max 14171€)
+  const abattement = Math.min(Math.max(revenus * 0.10, 495), 14171);
+  const revenuImposable = Math.max(0, revenus - abattement - deductions);
+  const revenuParPart = revenuImposable / parts;
+
+  const impotBrut = calcImpot(revenuParPart) * parts;
+
+  // Décote (si impôt < seuil)
+  let impotNet = impotBrut;
+  const seuilDecote = parts === 1 ? 1929 : 3191;
+  if(impotBrut < seuilDecote) {
+    const decote = parts === 1 ? 873 - impotBrut * 0.4525 : 1444 - impotBrut * 0.4525;
+    impotNet = Math.max(0, impotBrut - Math.max(0, decote));
+  }
+
+  const tmi = getTMI(revenuParPart);
+  const tauxMoyen = revenus > 0 ? (impotNet / revenus * 100).toFixed(1) : 0;
+
+  document.getElementById('r-impot').textContent = fmt(impotNet);
+  document.getElementById('r-mensuel').textContent = fmt(impotNet / 12);
+  document.getElementById('r-tmi').textContent = tmi + '%';
+  document.getElementById('r-taux-moyen').textContent = tauxMoyen + '%';
+
+  document.getElementById('d-revenus').textContent = fmt(revenus);
+  document.getElementById('d-abattement').textContent = '- ' + fmt(abattement);
+  document.getElementById('d-deductions').textContent = deductions > 0 ? '- ' + fmt(deductions) : fmt(0);
+  document.getElementById('d-imposable').textContent = fmt(revenuImposable);
+  document.getElementById('d-parts').textContent = parts + ' part' + (parts > 1 ? 's' : '');
+  document.getElementById('d-par-part').textContent = fmt(revenuParPart);
+  document.getElementById('d-brut').textContent = fmt(impotBrut);
+  document.getElementById('d-net').textContent = fmt(impotNet);
+
+  // Barème avec tranche active
+  const tbody = document.getElementById('bareme-body');
+  tbody.innerHTML = '';
+  BAREME.forEach(t => {
+    const active = revenuParPart > t.min;
+    const tr = document.createElement('tr');
+    if(active && revenuParPart <= t.max) tr.className = 'active';
+    tr.innerHTML = `
+      <td>${t.label}</td>
+      <td>${(t.taux * 100).toFixed(0)}%</td>
+      <td>${active ? (revenuParPart <= t.max ? '👈 Votre tranche' : '✅ Dépassée') : '—'}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+
+  // Conseil
+  const tip = document.getElementById('tip-text');
+  if(impotNet === 0) {
+    tip.innerHTML = '<strong>✅ Non imposable :</strong> Vos revenus sont en dessous du seuil d\'imposition. Vous n\'avez pas d\'impôt à payer cette année.';
+  } else if(tmi >= 30) {
+    tip.innerHTML = `<strong>💡 Optimisation possible :</strong> Avec un TMI de ${tmi}%, chaque euro versé sur un PER vous économise ${tmi} centimes d'impôt. Un versement de 5 000 € sur un PER = ${fmt(5000 * tmi/100)} d'impôt en moins.`;
+  } else {
+    tip.innerHTML = `<strong>💡 Conseil :</strong> Votre taux moyen est de ${tauxMoyen}%. Pensez à vérifier les déductions auxquelles vous avez droit : dons aux associations (66% déduit), emploi à domicile (50% déduit), frais réels si supérieurs à ${fmt(abattement)}.`;
+  }
+}
+
+document.querySelectorAll('input[type=range]').forEach(el => el.addEventListener('input', calculate));
+calculate();
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>

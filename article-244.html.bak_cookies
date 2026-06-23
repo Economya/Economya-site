@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Soins transfrontaliers : se faire soigner moins cher — Belgique, Espagne, moins cher. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soins transfrontaliers : se faire soigner moins cher — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--amber:#d97706;--amber-l:#fffbeb;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#1c1400,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🩺';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#fcd34d;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#d97706,#dc2626);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* PAYS CARDS */
+.pays{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0}
+.pays-card{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem;transition:transform .2s,box-shadow .2s}
+.pays-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(217,119,6,.12)}
+.pays-flag{font-size:2.2rem;margin-bottom:.5rem}
+.pays-name{font-weight:700;font-size:.95rem;margin-bottom:.4rem}
+.pays-eco{display:inline-block;background:var(--gl);color:var(--gd);font-size:.72rem;font-weight:700;padding:.15rem .55rem;border-radius:50px;margin-bottom:.5rem}
+.pays-desc{font-size:.82rem;color:var(--m);font-weight:300;line-height:1.5}
+.pays-soins{margin-top:.6rem;font-size:.8rem;color:var(--t)}
+.pays-soins strong{font-weight:600}
+
+/* ÉTAPES */
+.steps{display:flex;flex-direction:column;gap:.85rem;margin:1.2rem 0}
+.step{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem;transition:box-shadow .2s}
+.step:hover{box-shadow:0 4px 16px rgba(217,119,6,.1)}
+.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#92400e,#d97706);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc h3{font-size:.92rem;font-weight:600;margin-bottom:.2rem}
+.sc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
+
+/* TABLEAU */
+.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+thead tr{background:linear-gradient(135deg,#92400e,#d97706);color:white}
+thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.8rem}
+tbody tr{border-bottom:1px solid var(--b)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:#fafafa}
+tbody td{padding:.8rem 1rem;vertical-align:middle}
+.g{color:#16a34a;font-weight:600}
+.o{color:var(--ad);font-weight:500}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#1c1400,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#d97706,#dc2626);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBK8GHCDT5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795"
+     crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Soins transfrontaliers : se faire soigner moins cher",
+  "description": "Soins transfrontaliers : se faire soigner moins cher — Belgique, Espagne, moins cher. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-244.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Soins transfrontaliers : se faire soigner moins cher">
+  <meta property="og:description" content="Soins transfrontaliers : se faire soigner moins cher — Belgique, Espagne, moins cher. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-244.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Soins transfrontaliers : se faire soigner moins cher">
+  <meta name="twitter:description" content="Soins transfrontaliers : se faire soigner moins cher — Belgique, Espagne, moins cher. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-244.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">🩺 Santé</div>
+    <h1>Soins transfrontaliers :<br><em>se faire soigner moins cher</em></h1>
+    <div class="savings-badge">💰 Belgique, Espagne — jusqu'à −50 %</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="theme-tag">🌍 Soins en Europe</span>
+    </div>
+  </div>
+</div>
+
+<div class="ab">
+
+  <p class="lead">Une couronne dentaire à 400 € en Belgique contre 900 € en France. Un implant en Espagne à moitié prix, remboursé par la Sécu française. Les soins transfrontaliers sont légaux, encadrés par l'UE, et accessibles à tous les assurés. Voici comment en profiter.</p>
+
+  <h2>🌍 Les pays les plus intéressants</h2>
+
+  <div class="pays">
+    <div class="pays-card">
+      <div class="pays-flag">🇧🇪</div>
+      <div class="pays-name">Belgique</div>
+      <div class="pays-eco">−30 à −50 % sur le dentaire</div>
+      <div class="pays-desc">Frontaliers du Nord et des Ardennes, la Belgique est la destination reine pour les soins dentaires. Qualité excellente, praticiens francophones, délais courts.</div>
+      <div class="pays-soins"><strong>Points forts :</strong> dentaire, orthodontie, implants</div>
+    </div>
+    <div class="pays-card">
+      <div class="pays-flag">🇪🇸</div>
+      <div class="pays-name">Espagne</div>
+      <div class="pays-eco">−40 à −60 % sur les implants</div>
+      <div class="pays-desc">Barcelone et la Catalogne attirent de nombreux Français pour des implants ou des prothèses complexes. Cliniques modernes, personnel qualifié.</div>
+      <div class="pays-soins"><strong>Points forts :</strong> implants, prothèses, chirurgie</div>
+    </div>
+    <div class="pays-card">
+      <div class="pays-flag">🇵🇹</div>
+      <div class="pays-name">Portugal</div>
+      <div class="pays-eco">−35 à −55 % sur le dentaire</div>
+      <div class="pays-desc">Lisbonne et Porto proposent des soins dentaires et ophtalmologiques bien moins chers. Idéal si vous combinez avec un voyage.</div>
+      <div class="pays-soins"><strong>Points forts :</strong> dentaire, ophtalmologie</div>
+    </div>
+    <div class="pays-card">
+      <div class="pays-flag">🇩🇪</div>
+      <div class="pays-name">Allemagne</div>
+      <div class="pays-eco">Tarifs similaires ou + bas</div>
+      <div class="pays-desc">Pour les frontaliers alsaciens et mosellans, certains spécialistes allemands (orthopédie, ophtalmologie) sont accessibles rapidement avec des délais plus courts.</div>
+      <div class="pays-soins"><strong>Points forts :</strong> spécialistes, orthopédie</div>
+    </div>
+  </div>
+
+  <h2>📋 Ce que rembourse la Sécu française</h2>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Type de soin</th>
+          <th>Remboursement Sécu</th>
+          <th>Condition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Consultations, soins courants</td><td class="g">Oui, au tarif français</td><td>Praticien européen agréé</td></tr>
+        <tr><td>Soins dentaires</td><td class="g">Oui, au tarif français</td><td>Facture traduite si besoin</td></tr>
+        <tr><td>Hospitalisation programmée</td><td class="g">Oui, avec autorisation préalable</td><td>Accord CPAM obligatoire</td></tr>
+        <tr><td>Urgences à l'étranger</td><td class="g">Oui, avec Carte européenne</td><td>CEAM à demander avant départ</td></tr>
+        <tr><td>Implants dentaires</td><td class="o">Base tarifaire française seulement</td><td>Aucune autorisation requise</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>🪜 Comment procéder pas à pas</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="sn">1</div>
+      <div class="sc">
+        <h3>Choisissez votre praticien à l'étranger</h3>
+        <p>Vérifiez qu'il est bien inscrit à l'ordre professionnel de son pays et qu'il propose des devis détaillés en français. Demandez des références ou avis vérifiés.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">2</div>
+      <div class="sc">
+        <h3>Pour une hospitalisation : demandez l'autorisation à la CPAM</h3>
+        <p>Le formulaire S2 (anciennement E112) est obligatoire pour les soins hospitaliers programmés. Sans lui, le remboursement peut être refusé.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">3</div>
+      <div class="sc">
+        <h3>Conservez toutes les factures et ordonnances</h3>
+        <p>Faites traduire les documents si nécessaire (traducteur assermenté). Envoyez-les à votre CPAM avec le formulaire de remboursement de soins à l'étranger.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">4</div>
+      <div class="sc">
+        <h3>Complétez avec votre mutuelle</h3>
+        <p>Après le remboursement Sécu, transmettez le décompte à votre mutuelle. Certaines couvrent les dépassements sur les soins étrangers — vérifiez votre contrat.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 La Carte Européenne d'Assurance Maladie (CEAM)</strong>
+    Gratuite, à demander sur ameli.fr, elle permet d'être pris en charge directement par la Sécu locale en cas de maladie ou accident lors d'un séjour en Europe. Valable 2 ans, à renouveler en ligne.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Attention aux cliniques "tourisme médical" low cost</strong>
+    Évitez les cliniques qui ciblent exclusivement les touristes médicaux avec des prix anormalement bas. Privilégiez des établissements recommandés par des assurés français ou des associations de patients. La qualité et le suivi post-opératoire sont essentiels.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Bons plans santé dans votre boîte mail</h3>
+    <p>Chaque semaine, les astuces pour payer moins cher vos soins en France et en Europe.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · Mentions légales · Contact · Cet article contient des liens partenaires.</span>
+</footer>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>

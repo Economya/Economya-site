@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulateur Économies Énergie 2026 — Economya.fr</title>
+<meta name="description" content="Calculez combien vous pouvez économiser sur vos factures d'énergie. Électricité, gaz, chauffage — résultat en quelques secondes. Gratuit sur Economya.fr">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#052e16,#14532d,#16a34a);color:white;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'⚡';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:#EF9F27;font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:500px;margin:0 auto}
+.container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:var(--gd)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.field label{display:block;font-size:.78rem;font-weight:600;color:var(--m);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em}
+.field input[type=range]{width:100%;accent-color:var(--g);height:6px;margin:.5rem 0}
+.field .val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--gd)}
+.field .val span{font-size:.85rem;font-weight:400;color:var(--m)}
+.field select{width:100%;border:1px solid var(--b);border-radius:8px;padding:.5rem .8rem;font-family:inherit;font-size:.9rem;background:var(--bg);color:var(--t)}
+.results{background:linear-gradient(135deg,#052e16,#14532d);border-radius:var(--r);padding:2rem;color:white;margin-bottom:1.5rem}
+.results h2{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1.5rem;color:rgba(255,255,255,.8)}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
+.res-item{background:rgba(255,255,255,.1);border-radius:12px;padding:1.2rem;text-align:center}
+.res-item.highlight{background:rgba(239,159,39,.2);border:1px solid rgba(239,159,39,.4)}
+.res-item .num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--a);display:block;margin-bottom:.2rem}
+.res-item .lbl{font-size:.72rem;color:rgba(255,255,255,.7)}
+.actions{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.actions h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.2rem;color:var(--gd)}
+.action-item{display:flex;justify-content:space-between;align-items:center;padding:.8rem 0;border-bottom:1px solid var(--b);gap:1rem}
+.action-item:last-child{border-bottom:none}
+.action-left{display:flex;align-items:center;gap:.8rem}
+.action-icon{font-size:1.4rem;flex-shrink:0}
+.action-text h3{font-size:.88rem;font-weight:600;margin-bottom:.15rem}
+.action-text p{font-size:.75rem;color:var(--m)}
+.action-eco{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--g);white-space:nowrap}
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1rem 1.4rem;font-size:.9rem;color:var(--gd);margin-bottom:1.5rem}
+.tip strong{font-weight:600}
+.cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
+.cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:1px solid var(--b);font-size:.86rem;font-family:inherit}
+.cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}.action-item{flex-direction:column;align-items:flex-start}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Simulateur Économies Énergie 2026">
+  <meta property="og:description" content="Calculez combien vous pouvez économiser sur vos factures d'énergie. Électricité, gaz, chauffage — résultat en quelques secondes. Gratuit sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/simulateur-economies-energie.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Simulateur Économies Énergie 2026">
+  <meta name="twitter:description" content="Calculez combien vous pouvez économiser sur vos factures d'énergie. Électricité, gaz, chauffage — résultat en quelques secondes. Gratuit sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/simulateur-economies-energie.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="hero">
+  <h1>Combien pouvez-vous <em>économiser</em> sur l'énergie ?</h1>
+  <p>Électricité, gaz, chauffage — calculez vos économies potentielles avec quelques gestes simples.</p>
+</div>
+<div class="container">
+  <div class="card">
+    <h2>🏠 Votre logement</h2>
+    <div class="grid">
+      <div class="field">
+        <label>Facture électricité mensuelle</label>
+        <div class="val" id="v-elec">80 <span>€/mois</span></div>
+        <input type="range" id="elec" min="20" max="400" step="5" value="80">
+      </div>
+      <div class="field">
+        <label>Facture gaz mensuelle</label>
+        <div class="val" id="v-gaz">60 <span>€/mois</span></div>
+        <input type="range" id="gaz" min="0" max="300" step="5" value="60">
+      </div>
+      <div class="field">
+        <label>Type de logement</label>
+        <select id="logement" onchange="calculate()">
+          <option value="appart_petit">Appartement < 50m²</option>
+          <option value="appart_grand" selected>Appartement 50-100m²</option>
+          <option value="maison_petite">Maison < 100m²</option>
+          <option value="maison_grande">Maison > 100m²</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Chauffage principal</label>
+        <select id="chauffage" onchange="calculate()">
+          <option value="elec">Électrique</option>
+          <option value="gaz" selected>Gaz</option>
+          <option value="pompe">Pompe à chaleur</option>
+          <option value="fioul">Fioul</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="results">
+    <h2>💚 Vos économies potentielles</h2>
+    <div class="res-grid">
+      <div class="res-item highlight">
+        <span class="num" id="r-total">—</span>
+        <div class="lbl">Économies annuelles possibles</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-mensuel">—</span>
+        <div class="lbl">Par mois</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-actuel">—</span>
+        <div class="lbl">Facture actuelle/an</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-pct">—</span>
+        <div class="lbl">% d'économies possibles</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <h2>⚡ Actions recommandées pour votre logement</h2>
+    <div id="actions-list"></div>
+  </div>
+
+  <div class="tip" id="tip-text">Chargement...</div>
+
+  <div class="cta">
+    <h3>📬 Astuces énergie chaque semaine</h3>
+    <p>Les meilleurs gestes pour réduire vos factures sans effort dans votre boîte mail.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr">
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Estimations indicatives basées sur les moyennes françaises 2026.</span>
+</footer>
+<script>
+const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+
+const ACTIONS = [
+  { icon:'🌡️', titre:'Baisser le chauffage d\'1°C', desc:'Réduit la facture de 7% — passer de 20°C à 19°C', eco_pct: 0.07, categorie:'chauffage' },
+  { icon:'💡', titre:'Passer aux ampoules LED', desc:'Consommation divisée par 5 vs halogène', eco_pct: 0.05, categorie:'elec' },
+  { icon:'📺', titre:'Éteindre les veilles', desc:'Les veilles représentent 10% de la facture électrique', eco_pct: 0.10, categorie:'elec' },
+  { icon:'🚿', titre:'Douche froide ou courte', desc:'Réduire de 2 min = -10% sur la facture eau chaude', eco_pct: 0.04, categorie:'elec' },
+  { icon:'🧺', titre:'Laver à 30°C au lieu de 60°C', desc:'Économise 40% d\'énergie par lavage', eco_pct: 0.03, categorie:'elec' },
+  { icon:'🏠', titre:'Isoler les fenêtres', desc:'Joints, rideaux épais — jusqu\'à 15% d\'économies', eco_pct: 0.15, categorie:'chauffage' },
+  { icon:'🔄', titre:'Changer de fournisseur', desc:'Comparer sur energie-info.fr — jusqu\'à 20% moins cher', eco_pct: 0.20, categorie:'global' },
+  { icon:'🌙', titre:'Heures creuses', desc:'Programmer les appareils la nuit — -30% sur l\'électricité nocturne', eco_pct: 0.08, categorie:'elec' },
+];
+
+function calculate() {
+  const elec = +document.getElementById('elec').value;
+  const gaz = +document.getElementById('gaz').value;
+  const chauffage = document.getElementById('chauffage').value;
+
+  document.getElementById('v-elec').innerHTML = elec + ' <span>€/mois</span>';
+  document.getElementById('v-gaz').innerHTML = gaz + ' <span>€/mois</span>';
+
+  const totalMensuel = elec + gaz;
+  const totalAnnuel = totalMensuel * 12;
+
+  // Économies potentielles estimées
+  let ecoTotal = 0;
+  const actionsRendered = [];
+
+  ACTIONS.forEach(a => {
+    let base = 0;
+    if(a.categorie === 'elec') base = elec * 12;
+    else if(a.categorie === 'chauffage') base = (chauffage === 'elec' ? elec : gaz) * 12;
+    else base = totalAnnuel;
+
+    const eco = base * a.eco_pct;
+    ecoTotal += eco * 0.4; // On prend 40% des économies théoriques (réaliste)
+    actionsRendered.push({ ...a, eco });
+  });
+
+  const ecoMensuel = ecoTotal / 12;
+  const pct = (ecoTotal / totalAnnuel * 100).toFixed(0);
+
+  document.getElementById('r-total').textContent = fmt(ecoTotal);
+  document.getElementById('r-mensuel').textContent = fmt(ecoMensuel);
+  document.getElementById('r-actuel').textContent = fmt(totalAnnuel);
+  document.getElementById('r-pct').textContent = pct + '%';
+
+  // Actions
+  const list = document.getElementById('actions-list');
+  list.innerHTML = '';
+  actionsRendered.sort((a,b) => b.eco - a.eco).forEach(a => {
+    list.innerHTML += `
+      <div class="action-item">
+        <div class="action-left">
+          <span class="action-icon">${a.icon}</span>
+          <div class="action-text">
+            <h3>${a.titre}</h3>
+            <p>${a.desc}</p>
+          </div>
+        </div>
+        <div class="action-eco">-${fmt(a.eco)}/an</div>
+      </div>
+    `;
+  });
+
+  // Conseil
+  const tip = document.getElementById('tip-text');
+  if(totalAnnuel > 2400) {
+    tip.innerHTML = `<strong>💡 Facture élevée :</strong> Votre facture annuelle de ${fmt(totalAnnuel)} est au-dessus de la moyenne française (1 500 €/an). Commencez par changer de fournisseur sur energie-info.fr — c'est la plus grosse économie possible sans effort.`;
+  } else {
+    tip.innerHTML = `<strong>✅ Bonne maîtrise :</strong> Votre facture de ${fmt(totalAnnuel)}/an est dans la moyenne. Les gestes les plus impactants : baisser le chauffage d'1°C et éteindre les veilles.`;
+  }
+}
+
+document.querySelectorAll('input[type=range]').forEach(el => el.addEventListener('input', calculate));
+calculate();
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Couple et argent : gérer les finances à deux — Sans disputes, avec clarté. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Couple et argent : gérer les finances à deux — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--indigo:#4338ca;--indigo-l:#eef2ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#0f0c29,#1e1b5e,#4338ca);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'👫';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#c7d2fe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#a5b4fc;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#4338ca);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(67,56,202,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#4338ca,#be185d);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--indigo);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* MODÈLES */
+.modeles{display:flex;flex-direction:column;gap:1.1rem;margin:1.5rem 0}
+.modele{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;transition:box-shadow .2s}
+.modele:hover{box-shadow:0 4px 18px rgba(67,56,202,.1)}
+.modele.top{border:2px solid var(--g)}
+.m-header{padding:.8rem 1.3rem;display:flex;justify-content:space-between;align-items:center}
+.modele.fusion .m-header{background:linear-gradient(135deg,#065f46,#1D9E75)}
+.modele.mixte .m-header{background:linear-gradient(135deg,#1e1b5e,#4338ca)}
+.modele.separe .m-header{background:linear-gradient(135deg,#831843,#be185d)}
+.m-name{font-weight:700;color:white;font-size:.92rem}
+.m-tag{font-size:.72rem;color:rgba(255,255,255,.8);background:rgba(255,255,255,.15);padding:.1rem .5rem;border-radius:50px}
+.m-top-badge{display:inline-block;background:var(--g);color:white;font-size:.62rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-left:.5rem}
+.m-body{padding:1rem 1.3rem;display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.m-col-title{font-size:.72rem;font-weight:600;text-transform:uppercase;color:var(--m);margin-bottom:.4rem}
+.m-col-list{list-style:none;display:flex;flex-direction:column;gap:.25rem}
+.m-col-list li{font-size:.82rem;font-weight:300;padding-left:.7rem;position:relative;color:var(--t)}
+.m-col-list li::before{position:absolute;left:0}
+.m-desc{font-size:.84rem;color:var(--m);font-weight:300;padding:.6rem 1.3rem 1rem;border-top:1px solid var(--b)}
+
+/* RÈGLES */
+.regles{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
+.regle{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
+.regle .rico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+.regle strong{display:block;font-size:.92rem;margin-bottom:.15rem}
+.regle span{font-size:.85rem;color:var(--m);font-weight:300}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--indigo-l);border-left:4px solid var(--indigo);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#1e1b5e}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#0f0c29,#1e1b5e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#4338ca,#be185d);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.m-body{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBK8GHCDT5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795"
+     crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Couple et argent : gérer les finances à deux",
+  "description": "Couple et argent : gérer les finances à deux — Sans disputes, avec clarté. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-377.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Couple et argent : gérer les finances à deux">
+  <meta property="og:description" content="Couple et argent : gérer les finances à deux — Sans disputes, avec clarté. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-377.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Couple et argent : gérer les finances à deux">
+  <meta name="twitter:description" content="Couple et argent : gérer les finances à deux — Sans disputes, avec clarté. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-377.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">👫 Finance</div>
+    <h1>Couple et argent :<br><em>gérer les finances à deux</em></h1>
+    <div class="savings-badge">💰 Sans disputes, avec clarté</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="theme-tag">💑 Finances de couple</span>
+    </div>
+  </div>
+</div>
+<div class="ab">
+  <p class="lead">L'argent est la première source de conflits dans les couples. Pourtant, bien gérer les finances à deux est une compétence qui s'apprend. Les clés : transparence, accord sur un modèle de partage des charges, et autonomie financière individuelle maintenue. Trois modèles fonctionnent — voici comment choisir le vôtre.</p>
+
+  <h2>🏗️ Les 3 modèles de gestion financière en couple</h2>
+  <div class="modeles">
+    <div class="modele mixte top">
+      <div class="m-header"><span class="m-name">⚖️ Modèle mixte (compte joint + comptes perso) <span class="m-top-badge">⭐ Le plus recommandé</span></span></div>
+      <div class="m-body">
+        <div><div class="m-col-title">✅ Avantages</div><ul class="m-col-list"><li>:: Autonomie individuelle préservée</li><li>:: Charges communes bien visibles</li><li>:: Moins de tensions sur les dépenses perso</li><li>:: Adaptable si revenus inégaux</li></ul></div>
+        <div><div class="m-col-title">⚠️ Inconvénients</div><ul class="m-col-list"><li>:: 3 comptes à gérer</li><li>:: Nécessite un accord sur les contributions</li></ul></div>
+      </div>
+      <div class="m-desc">Chaque partenaire garde son compte courant personnel et on crée un compte joint pour les charges communes (loyer, alimentation, vacances, épargne commune). Chacun verse sa contribution mensuelle sur le compte joint. Ce qu'il reste sur le compte perso est de l'argent libre sans comptes à rendre.</div>
+    </div>
+    <div class="modele fusion">
+      <div class="m-header"><span class="m-name">🤝 Fusion totale (tout en commun)</span><span class="m-tag">Modèle traditionnel</span></div>
+      <div class="m-body">
+        <div><div class="m-col-title">✅ Avantages</div><ul class="m-col-list"><li>:: Simplicité maximale</li><li>:: Vision commune des finances</li><li>:: Solidarité totale</li></ul></div>
+        <div><div class="m-col-title">⚠️ Inconvénients</div><ul class="m-col-list"><li>:: Chaque achat visible par l'autre</li><li>:: Peu d'autonomie individuelle</li><li>:: Risqué si séparation</li></ul></div>
+      </div>
+      <div class="m-desc">Tous les revenus arrivent sur un compte commun, toutes les dépenses partent de ce compte. Fonctionne bien avec une grande confiance et des habitudes similaires. Peut créer des tensions sur les dépenses personnelles.</div>
+    </div>
+    <div class="modele separe">
+      <div class="m-header"><span class="m-name">🔀 Comptes séparés avec partage des charges</span><span class="m-tag">Modèle indépendant</span></div>
+      <div class="m-body">
+        <div><div class="m-col-title">✅ Avantages</div><ul class="m-col-title"><li>:: Autonomie maximale</li><li>:: Chacun garde le contrôle total</li><li>:: Risque financier limité</li></ul></div>
+        <div><div class="m-col-title">⚠️ Inconvénients</div><ul class="m-col-list"><li>:: Peut créer des inégalités si revenus différents</li><li>:: Moins de vision commune du patrimoine</li><li>:: Projets communs plus complexes</li></ul></div>
+      </div>
+      <div class="m-desc">Chacun garde ses comptes séparés et les charges communes sont partagées (50/50 ou au prorata des revenus). Adapté aux couples à hauts revenus similaires ou en début de relation.</div>
+    </div>
+  </div>
+
+  <h2>💡 Les règles d'or pour bien gérer l'argent à deux</h2>
+  <div class="regles">
+    <div class="regle">
+      <span class="rico">🗣️</span>
+      <div>
+        <strong>Parlez d'argent régulièrement (rendez-vous mensuel finances)</strong>
+        <span>Une fois par mois, 30 minutes ensemble pour passer en revue les comptes, les dépenses imprévues, les projets en cours. Ce "rendez-vous finances" normalise la conversation sur l'argent et prévient les surprises désagréables.</span>
+      </div>
+    </div>
+    <div class="regle">
+      <span class="rico">⚖️</span>
+      <div>
+        <strong>Ajustez les contributions au prorata des revenus si inégaux</strong>
+        <span>Si l'un gagne 2 000 € et l'autre 3 000 €, contribuer à 50/50 crée une inégalité réelle. Une contribution proportionnelle (40/60 ou 33/67) est souvent plus juste et évite les ressentiments à long terme.</span>
+      </div>
+    </div>
+    <div class="regle">
+      <span class="rico">🏦</span>
+      <div>
+        <strong>Maintenez chacun une épargne et un compte individuel</strong>
+        <span>Même dans le modèle fusion, conserver un compte individuel avec une petite épargne personnelle est une protection. Pas par méfiance, mais pour l'autonomie et la résilience en cas d'imprévus (maladie, perte d'emploi, séparation).</span>
+      </div>
+    </div>
+    <div class="regle">
+      <span class="rico">📝</span>
+      <div>
+        <strong>Fixez un seuil de discussion pour les grosses dépenses</strong>
+        <span>Définissez ensemble un seuil (par exemple 200 ou 500 €) au-delà duquel toute dépense nécessite l'accord des deux. En dessous, chacun est libre. Ce seuil respecte l'autonomie sans supprimer la transparence.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Le modèle mixte en pratique : combien verser sur le compte joint ?</strong>
+    Listez toutes les charges communes mensuelles (loyer, courses, électricité, internet, sorties communes, épargne commune). Divisez par deux (ou au prorata). Chacun vire ce montant automatiquement en début de mois. Le reste de chaque salaire reste sur le compte perso, sans justification à donner.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Attention à la dépendance financière totale</strong>
+    Quand l'un des partenaires arrête de travailler (congé parental, reconversion…), il peut se retrouver sans accès à ses propres ressources si tout est géré par l'autre. Assurez-vous que chacun a accès aux comptes communs et à une épargne personnelle, quelle que soit la situation professionnelle de chacun.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Finances de couple dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour gérer l'argent à deux sereinement, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · Mentions légales · Contact · Cet article contient des liens partenaires.</span>
+</footer>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>

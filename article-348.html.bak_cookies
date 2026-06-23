@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Airbnb vs Booking : quelle plateforme choisir pour louer — Le vrai calcul avant de se lancer. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airbnb vs Booking : quelle plateforme choisir pour louer — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--amber:#d97706;--amber-l:#fffbeb;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🏠';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#fcd34d;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#d97706,#be185d);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* TABLEAU COMPARATIF */
+.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+thead tr{background:linear-gradient(135deg,#92400e,#d97706);color:white}
+thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.8rem}
+tbody tr{border-bottom:1px solid var(--b)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:#fafafa}
+tbody td{padding:.8rem 1rem;vertical-align:middle}
+.g{color:#16a34a;font-weight:600}
+.o{color:var(--ad);font-weight:500}
+.r{color:#dc2626;font-weight:500}
+
+/* STRATÉGIE */
+.strategies{display:flex;flex-direction:column;gap:.85rem;margin:1.5rem 0}
+.strat{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start}
+.strat .sico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+.strat strong{display:block;font-size:.92rem;margin-bottom:.15rem}
+.strat span{font-size:.85rem;color:var(--m);font-weight:300}
+.strat .stag{display:inline-block;margin-top:.35rem;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#1c1000,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#d97706,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBK8GHCDT5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795"
+     crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Airbnb vs Booking : quelle plateforme choisir pour louer",
+  "description": "Airbnb vs Booking : quelle plateforme choisir pour louer — Le vrai calcul avant de se lancer. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-348.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Airbnb vs Booking : quelle plateforme choisir pour louer">
+  <meta property="og:description" content="Airbnb vs Booking : quelle plateforme choisir pour louer — Le vrai calcul avant de se lancer. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-348.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Airbnb vs Booking : quelle plateforme choisir pour louer">
+  <meta name="twitter:description" content="Airbnb vs Booking : quelle plateforme choisir pour louer — Le vrai calcul avant de se lancer. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-348.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">🏠 Investissement</div>
+    <h1>Airbnb vs Booking :<br><em>quelle plateforme choisir pour louer</em></h1>
+    <div class="savings-badge">💰 Le vrai calcul avant de se lancer</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="theme-tag">🏡 Location saisonnière</span>
+    </div>
+  </div>
+</div>
+<div class="ab">
+  <p class="lead">Airbnb et Booking.com sont les deux plateformes dominantes pour la location saisonnière courte durée. Leurs frais, leur clientèle, leurs fonctionnalités et leur modèle sont différents. Choisir la bonne plateforme — ou les deux — peut faire varier votre revenu locatif de 10 à 20 %.</p>
+
+  <h2>📊 Comparatif détaillé Airbnb vs Booking.com</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Critère</th><th>Airbnb</th><th>Booking.com</th></tr></thead>
+      <tbody>
+        <tr><td>Frais hôte</td><td class="g">3 % (modèle split) ou 14–16 % (tout hôte)</td><td class="o">15–20 % de commission</td></tr>
+        <tr><td>Frais voyageur</td><td class="o">10–14,2 % (modèle split)</td><td class="g">0 % (inclus dans la commission hôte)</td></tr>
+        <tr><td>Audience principale</td><td>Voyageurs "expérience", séjours loisirs</td><td>Voyageurs business, séjours flexibles</td></tr>
+        <tr><td>Type de biens</td><td>Logements entiers, chambres chez l'habitant</td><td>Hôtels, appartements, logements entiers</td></tr>
+        <tr><td>Durée moyenne séjour</td><td>3–5 nuits</td><td>2–3 nuits</td></tr>
+        <tr><td>Paiement hôte</td><td>24h après arrivée</td><td>Fin du mois suivant</td></tr>
+        <tr><td>Annulations voyageur</td><td>Politique choisie par l'hôte</td><td>Politique flexible par défaut</td></tr>
+        <tr><td>Visibilité SEO</td><td class="g">Fort (Airbnb.fr bien référencé)</td><td class="g">Très fort (Booking.com #1 mondial)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>🎯 Quelle stratégie adopter ?</h2>
+  <div class="strategies">
+    <div class="strat">
+      <span class="sico">🏡</span>
+      <div>
+        <strong>Commencez par Airbnb si c'est votre résidence principale</strong>
+        <span>Pour une location occasionnelle de votre résidence principale (vacances, week-ends), Airbnb est plus simple, l'interface est intuitive et le public est plus adapté à ce type d'offre. La plateforme propose aussi une assurance hôte incluse.</span>
+        <span class="stag">✅ Idéal pour débuter</span>
+      </div>
+    </div>
+    <div class="strat">
+      <span class="sico">🏨</span>
+      <div>
+        <strong>Ajoutez Booking.com pour maximiser le taux d'occupation</strong>
+        <span>Booking.com capte une clientèle différente d'Airbnb — notamment les voyageurs business et les courts séjours (1–2 nuits). En étant sur les deux plateformes avec un gestionnaire de canal (Smoobu, Lodgify), vous doublez votre visibilité sans double réservation.</span>
+        <span class="stag">💰 +10–20 % de réservations</span>
+      </div>
+    </div>
+    <div class="strat">
+      <span class="sico">⚙️</span>
+      <div>
+        <strong>Utilisez un channel manager pour gérer les deux sans doublon</strong>
+        <span>Des outils comme Smoobu, Lodgify ou Hostaway synchronisent votre calendrier en temps réel sur toutes les plateformes. Dès qu'une réservation est confirmée sur l'une, l'autre se bloque automatiquement. Coût : 15–30 €/mois, rentabilisé par l'occupation supplémentaire.</span>
+        <span class="stag">⚡ Gestion multi-plateforme automatisée</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Le prix dynamique : l'arme secrète du rendement</strong>
+    Airbnb et Booking proposent des outils de tarification dynamique qui ajustent automatiquement vos prix selon la demande, la saisonnalité et les événements locaux. Des outils tiers comme PriceLabs ou Beyond Pricing sont encore plus performants. Un logement bien tarifé peut générer 20–30 % de revenus supplémentaires vs un prix fixe.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Vérifiez les règles locales avant de vous lancer</strong>
+    Depuis 2024, de nombreuses villes françaises (Paris, Bordeaux, Lyon, Nice…) ont durci la réglementation sur la location de courte durée : enregistrement obligatoire, limitation à 120 jours/an pour la résidence principale, compensation si location d'un logement secondaire. Consultez l'article 349 de ce site sur le cadre légal 2025.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Location saisonnière & revenus dans votre boîte mail</h3>
+    <p>Les meilleures astuces pour optimiser vos revenus locatifs saisonniers, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · Mentions légales · Contact · Cet article est informatif, pas un conseil financier.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-336.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">ETF World : comment investir simplement</div></a><a class="sim-card" href="article-337.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Livret A vs LEP vs LDDS : que choisir</div></a><a class="sim-card" href="article-338.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Ouvrir son premier PEA</div></a><a class="sim-card" href="article-339.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">PEA : ouvrir, gérer, optimiser</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Éclairage LED : réduire sa facture d'électricité — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --amber:#A85C00;--amber-mid:#D4831A;--amber-light:#FFF6E5;
+    --yellow:#FFD700;--warm:#FF8C00;--cream:#FFFDF5;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#1A0E00 0%,#A85C00 35%,#D4831A 65%,#FFD700 88%,#FFFCCC 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'💡';position:absolute;font-size:13rem;opacity:.07;
+    top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.65);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,#FFFCCC,var(--yellow));
+    color:#1A0E00;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.12);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--amber);margin:2rem 0 .7rem}
+
+  /* Comparatif ampoules */
+  .ampoules{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.84rem}
+  .ampoules thead tr{background:linear-gradient(90deg,var(--amber),var(--amber-mid));color:#fff}
+  .ampoules thead th{padding:.62rem .9rem;text-align:left;font-weight:500}
+  .ampoules tbody tr:nth-child(even){background:var(--amber-light)}
+  .ampoules tbody tr:nth-child(odd){background:var(--w)}
+  .ampoules tbody td{padding:.55rem .9rem;border-bottom:1px solid var(--b);font-weight:300;vertical-align:middle}
+  .ampoules tbody td:first-child{font-weight:500;color:var(--amber)}
+  .ampoules td.mauvais{color:#B91C1C;font-weight:500}
+  .ampoules td.bien{color:var(--gd);font-weight:600}
+  .ampoules tr.led td{background:#ECFDF5;font-weight:500}
+  .ampoules tr.led td:first-child{color:var(--gd)}
+
+  /* Guide choix LED */
+  .guide{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1.5rem 0}
+  .guide-item{background:var(--w);border:1px solid var(--b);border-radius:11px;padding:.85rem 1rem}
+  .guide-emoji{font-size:1.3rem;margin-bottom:.3rem}
+  .guide-titre{font-weight:500;font-size:.88rem;color:var(--amber);margin-bottom:.2rem}
+  .guide-desc{font-size:.8rem;font-weight:300;color:var(--m);line-height:1.45}
+
+  /* Calcul économies foyer */
+  .simul{background:linear-gradient(135deg,#1A0E00,#A85C00);border-radius:13px;padding:1.2rem 1.4rem;margin:1.5rem 0;color:#fff}
+  .simul h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--yellow);margin-bottom:.9rem}
+  .simul-row{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:.84rem}
+  .simul-row:last-child{border-bottom:none;padding-top:.5rem;margin-top:.3rem}
+  .simul-label{font-weight:300;color:rgba(255,255,255,.85)}
+  .simul-val{font-weight:600;color:var(--yellow);white-space:nowrap}
+  .simul-label.total{font-weight:600;color:#fff}
+  .simul-val.total{font-size:.95rem}
+
+  /* Gestes complémentaires */
+  .gestes{display:flex;flex-direction:column;gap:0;border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
+  .geste{display:grid;grid-template-columns:44px 1fr;border-bottom:1px solid var(--b)}
+  .geste:last-child{border-bottom:none}
+  .geste-num{background:linear-gradient(180deg,var(--amber),var(--amber-mid));color:#FFFCCC;font-family:'Playfair Display',serif;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center}
+  .geste-body{padding:.7rem 1rem;background:var(--w)}
+  .geste-title{font-weight:500;font-size:.87rem;color:var(--amber);margin-bottom:.12rem}
+  .geste-desc{font-size:.8rem;font-weight:300;color:var(--m);line-height:1.45}
+
+  .conseil{
+    background:linear-gradient(135deg,#1A0E00,#A85C00);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff;
+    border:1px solid rgba(255,215,0,.15)
+  }
+  .conseil strong{display:block;color:var(--yellow);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:500px){.guide{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBK8GHCDT5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795"
+     crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Éclairage LED : réduire sa facture d'électricité",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-194.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Éclairage LED : réduire sa facture d'électricité">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-194.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Éclairage LED : réduire sa facture d'électricité">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-194.html" />
+<meta name="description" content="Éclairage LED : réduire sa facture d'électricité — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero-art">
+  <div class="acat">💡 <strong>Maison</strong></div>
+  <h1>Éclairage LED : réduire sa facture d'électricité</h1>
+  <div class="abadge">💰 -80% sur la facture éclairage</div>
+  <div class="meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié mai 2025</span>
+    <span>⚡ Efficacité énergétique</span>
+  </div>
+</div>
+
+<article>
+
+  <p>L'éclairage représente en moyenne 10 à 15 % de la facture électrique d'un foyer. Pour un appartement de 3 pièces avec une quinzaine d'ampoules allumées plusieurs heures par jour, le coût annuel peut dépasser 80 à 120 euros. La bonne nouvelle : le passage complet aux ampoules LED, aujourd'hui accessibles à moins de 2 euros pièce, réduit ce poste de 75 à 85 % sans aucun sacrifice de confort. Et contrairement aux ampoules à économie d'énergie d'ancienne génération, les LED modernes s'allument instantanément, restituent parfaitement les couleurs et durent 15 000 à 25 000 heures.</p>
+
+  <h2>La vérité sur les différentes technologies</h2>
+
+  <table class="ampoules">
+    <thead>
+      <tr><th>Type d'ampoule</th><th>Consommation (800 lm)</th><th>Durée de vie</th><th>Coût annuel*</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Incandescente (obsolète)</td>
+        <td class="mauvais">60 W</td>
+        <td class="mauvais">1 000 h</td>
+        <td class="mauvais">~13€/an</td>
+      </tr>
+      <tr>
+        <td>Halogène</td>
+        <td class="mauvais">42 W</td>
+        <td class="mauvais">2 000 h</td>
+        <td class="mauvais">~9€/an</td>
+      </tr>
+      <tr>
+        <td>Fluo-compacte (ancienne génération)</td>
+        <td>11 W</td>
+        <td>8 000 h</td>
+        <td>~2,40€/an</td>
+      </tr>
+      <tr class="led">
+        <td>LED standard</td>
+        <td class="bien">8 W</td>
+        <td class="bien">15 000 h</td>
+        <td class="bien">~1,75€/an</td>
+      </tr>
+      <tr class="led">
+        <td>LED haute efficacité (2025)</td>
+        <td class="bien">5–6 W</td>
+        <td class="bien">25 000 h</td>
+        <td class="bien">~1,10€/an</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:.78rem;color:var(--m);margin-top:-.8rem;margin-bottom:1.3rem">*Basé sur 4h d'utilisation/jour, prix kWh 0,25€</p>
+
+  <h2>Bien choisir ses ampoules LED : le guide pratique</h2>
+
+  <div class="guide">
+    <div class="guide-item">
+      <div class="guide-emoji">🔆</div>
+      <div class="guide-titre">Lumens, pas Watts</div>
+      <div class="guide-desc">Les lumens mesurent la luminosité réelle. Pour remplacer une ampoule de 60W, cherchez une LED de 800 lm. 100W = 1600 lm, 40W = 450 lm. Le wattage LED indique la consommation, pas la lumière produite.</div>
+    </div>
+    <div class="guide-item">
+      <div class="guide-emoji">🌡️</div>
+      <div class="guide-titre">Température de couleur</div>
+      <div class="guide-desc">2700K = blanc chaud (ambiance cosy, chambre, salon). 4000K = blanc neutre (bureau, cuisine). 6500K = blanc froid (atelier, salle de bain). La température se lit sur l'emballage — choisissez selon la pièce.</div>
+    </div>
+    <div class="guide-item">
+      <div class="guide-emoji">🎚️</div>
+      <div class="guide-titre">Compatibilité variateur</div>
+      <div class="guide-desc">Si vous avez des variateurs (dimmers), vérifiez que l'ampoule LED porte la mention "dimmable" — toutes ne le sont pas. Une LED non dimmable sur variateur grillera prématurément et peut créer des scintillements.</div>
+    </div>
+    <div class="guide-item">
+      <div class="guide-emoji">🔌</div>
+      <div class="guide-titre">Type de culot</div>
+      <div class="guide-desc">E27 (gros culot à vis, le plus courant), E14 (petit culot à vis, lustres), GU10 (encastrés spots), GU5.3 (spots halogènes). Vérifiez le type avant d'acheter — une erreur de culot rend l'ampoule inutilisable.</div>
+    </div>
+    <div class="guide-item">
+      <div class="guide-emoji">📊</div>
+      <div class="guide-titre">Indice de rendu des couleurs (IRC)</div>
+      <div class="guide-desc">L'IRC mesure la fidélité des couleurs. IRC 80+ convient pour la plupart des pièces. IRC 90+ est recommandé pour la cuisine (couleurs des aliments) et la salle de bain (maquillage, teint). Évitez les ampoules avec IRC inférieur à 80.</div>
+    </div>
+    <div class="guide-item">
+      <div class="guide-emoji">💰</div>
+      <div class="guide-titre">Où acheter moins cher</div>
+      <div class="guide-desc">Les lots de LED chez Ikea (Tradfri), Action, Lidl ou Amazon Basics offrent le meilleur rapport qualité-prix. Évitez les marques inconnues à prix très bas — la durée de vie réelle peut être très inférieure aux 25 000h annoncées.</div>
+    </div>
+  </div>
+
+  <h2>Simulation pour un appartement 3 pièces (15 ampoules)</h2>
+
+  <div class="simul">
+    <h3>💡 Coût annuel éclairage — avant et après passage au LED</h3>
+    <div class="simul-row"><span class="simul-label">15 ampoules halogènes 42W · 4h/jour</span><span class="simul-val">~115€/an</span></div>
+    <div class="simul-row"><span class="simul-label">15 ampoules LED 8W · 4h/jour</span><span class="simul-val">~26€/an</span></div>
+    <div class="simul-row"><span class="simul-label">Coût du remplacement (15 LED à 1,80€)</span><span class="simul-val">27€ (une fois)</span></div>
+    <div class="simul-row"><span class="simul-label total">Économie dès la 1ère année</span><span class="simul-val total">62€</span></div>
+    <div class="simul-row"><span class="simul-label">Économie sur 10 ans (durée de vie LED)</span><span class="simul-val">~890€</span></div>
+  </div>
+
+  <h2>Les gestes complémentaires pour aller encore plus loin</h2>
+
+  <div class="gestes">
+    <div class="geste">
+      <div class="geste-num">1</div>
+      <div class="geste-body">
+        <div class="geste-title">Installer des détecteurs de présence dans les pièces de passage</div>
+        <div class="geste-desc">Couloir, WC, cave, garage — ces pièces restent allumées par oubli. Un détecteur de présence (10 à 20€) éteint automatiquement la lumière après 30 secondes. Économie supplémentaire de 5 à 15€/an par détecteur.</div>
+      </div>
+    </div>
+    <div class="geste">
+      <div class="geste-num">2</div>
+      <div class="geste-body">
+        <div class="geste-title">Maximiser la lumière naturelle</div>
+        <div class="geste-desc">Des rideaux clairs plutôt que sombres, des miroirs en face des fenêtres, des surfaces peintes en blanc ou beige — chaque réflexion de lumière naturelle retarde d'autant l'allumage artificiel. Sans coût.</div>
+      </div>
+    </div>
+    <div class="geste">
+      <div class="geste-num">3</div>
+      <div class="geste-body">
+        <div class="geste-title">Nettoyer les luminaires régulièrement</div>
+        <div class="geste-desc">La poussière accumulée sur les abat-jours et globes peut réduire la luminosité de 20 à 30%. Un nettoyage mensuel permet de maintenir le niveau de lumière sans augmenter la puissance des ampoules.</div>
+      </div>
+    </div>
+    <div class="geste">
+      <div class="geste-num">4</div>
+      <div class="geste-body">
+        <div class="geste-title">Opter pour des prises connectées avec minuterie</div>
+        <div class="geste-desc">Les lampes d'appoint, guirlandes et luminaires décoratifs souvent oubliés allumés peuvent être programmés sur minuterie (3 à 8€ la prise programmable). Pratique et économique.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conseil">
+    <strong>💡 L'ampoule LED à filament : le luxe accessible</strong>
+    <p>Si vous aimez l'esthétique des vieilles ampoules à incandescence — ce filament doré visible qui crée une lumière chaude et enveloppante — les LED à filament reproduisent exactement cet effet pour une consommation 8 à 10 fois inférieure. Vendues 2 à 4 euros l'unité, elles ont une longévité de 15 000 heures et créent une atmosphère que les ampoules halogènes classiques ne peuvent plus offrir (retirées du marché européen depuis 2021). C'est le meilleur des deux mondes : l'esthétique vintage, la technologie d'aujourd'hui, le prix de demain.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · Mentions légales · Contact · Cet article contient des liens partenaires.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>

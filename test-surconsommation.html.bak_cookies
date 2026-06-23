@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test : Êtes-vous en surconsommation ? — Economya.fr</title>
+<meta name="description" content="Testez en 2 minutes si vous êtes en surconsommation. 10 questions pour évaluer vos habitudes d'achat et recevoir des conseils personnalisés. Gratuit sur Economya.fr">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#7c2d12,#c2410c,#ea580c);color:white;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'📦';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:#fed7aa;font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:480px;margin:0 auto}
+.container{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem}
+.progress-wrap{margin-bottom:2rem}
+.progress-bar{height:8px;background:var(--b);border-radius:50px;overflow:hidden;margin-bottom:.5rem}
+.progress-fill{height:100%;background:linear-gradient(90deg,#ea580c,#EF9F27);border-radius:50px;transition:width .4s ease}
+.progress-text{font-size:.8rem;color:var(--m);text-align:right}
+.question-card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.04);display:none}
+.question-card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.q-num{font-size:.75rem;font-weight:600;color:#ea580c;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.q-text{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;line-height:1.4}
+.options{display:flex;flex-direction:column;gap:.8rem}
+.option{background:var(--bg);border:2px solid var(--b);border-radius:12px;padding:1rem 1.3rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.8rem}
+.option:hover{border-color:#ea580c;background:#fff7ed}
+.option.selected{border-color:#ea580c;background:#fff7ed}
+.opt-icon{font-size:1.4rem;flex-shrink:0}
+.opt-text{font-size:.9rem;line-height:1.4}
+.btn-next{background:linear-gradient(135deg,#c2410c,#ea580c);color:white;border:none;padding:.8rem 2rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.95rem;margin-top:1.5rem;display:none}
+.result-card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04);display:none;text-align:center}
+.result-card.active{display:block;animation:fadeIn .4s ease}
+.result-emoji{font-size:5rem;margin-bottom:1rem}
+.result-type{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;margin-bottom:.5rem}
+.result-desc{font-size:.95rem;color:var(--m);line-height:1.7;margin-bottom:1.5rem;max-width:480px;margin-left:auto;margin-right:auto}
+.result-score{display:inline-block;padding:.4rem 1.2rem;border-radius:50px;font-weight:700;font-size:.9rem;margin-bottom:1rem}
+.result-tips{border-radius:var(--r);padding:1.3rem;text-align:left;margin-bottom:1.5rem}
+.result-tips h3{font-size:.9rem;font-weight:700;margin-bottom:.8rem}
+.result-tips ul{list-style:none;font-size:.85rem}
+.result-tips ul li{padding:.3rem 0;padding-left:1.4rem;position:relative;line-height:1.5}
+.result-tips ul li::before{position:absolute;left:0}
+.btn-retry{background:transparent;border:2px solid var(--g);color:var(--gd);padding:.7rem 1.8rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.9rem}
+.cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:1.5rem}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
+.cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:1px solid var(--b);font-size:.86rem;font-family:inherit}
+.cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Quiz",
+  "name": "Test : Êtes-vous en surconsommation ?",
+  "description": "Testez en 2 minutes si vous êtes en surconsommation. 10 questions pour évaluer vos habitudes d'achat et recevoir des conseils personnalisés. Gratuit sur Economya.fr",
+  "url": "https://economya.fr/test-surconsommation.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr"
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Test : Êtes-vous en surconsommation ?">
+  <meta property="og:description" content="Testez en 2 minutes si vous êtes en surconsommation. 10 questions pour évaluer vos habitudes d'achat et recevoir des conseils personnalisés. Gratuit sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/test-surconsommation.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Test : Êtes-vous en surconsommation ?">
+  <meta name="twitter:description" content="Testez en 2 minutes si vous êtes en surconsommation. 10 questions pour évaluer vos habitudes d'achat et recevoir des conseils personnalisés. Gratuit sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/test-surconsommation.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="hero">
+  <h1>Êtes-vous en <em>surconsommation</em> ?</h1>
+  <p>10 questions pour évaluer vos habitudes d'achat et découvrir combien vous pourriez économiser.</p>
+</div>
+<div class="container">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+    <div class="progress-text" id="progress-text">Question 1 sur 10</div>
+  </div>
+
+  <div class="question-card active" data-q="0">
+    <div class="q-num">Question 1 sur 10</div>
+    <div class="q-text">Quand vous voyez une promotion "-50%", vous...</div>
+    <div class="options">
+      <div class="option" data-score="3"><span class="opt-icon">🛒</span><span class="opt-text">J'achète presque systématiquement — c'est trop tentant</span></div>
+      <div class="option" data-score="2"><span class="opt-icon">🤔</span><span class="opt-text">J'achète souvent, même si je n'en avais pas besoin</span></div>
+      <div class="option" data-score="1"><span class="opt-icon">⚖️</span><span class="opt-text">Je vérifie si j'en ai vraiment besoin avant d'acheter</span></div>
+      <div class="option" data-score="0"><span class="opt-icon">🧘</span><span class="opt-text">Je passe — une promo sur quelque chose d'inutile reste un achat inutile</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="1">
+    <div class="q-num">Question 2 sur 10</div>
+    <div class="q-text">Combien d'abonnements payants avez-vous en ce moment ?</div>
+    <div class="options">
+      <div class="option" data-score="3"><span class="opt-icon">😅</span><span class="opt-text">Je ne sais pas exactement — j'en ai perdu le compte</span></div>
+      <div class="option" data-score="2"><span class="opt-icon">📱</span><span class="opt-text">Plus de 5 — Netflix, Spotify, Amazon, salle de sport...</span></div>
+      <div class="option" data-score="1"><span class="opt-icon">✌️</span><span class="opt-text">3 à 5 — j'essaie de limiter</span></div>
+      <div class="option" data-score="0"><span class="opt-icon">👆</span><span class="opt-text">1 à 2 — uniquement ce que j'utilise vraiment</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="2">
+    <div class="q-num">Question 3 sur 10</div>
+    <div class="q-text">Dans votre placard, vous avez des vêtements que vous n'avez jamais portés ?</div>
+    <div class="options">
+      <div class="option" data-score="3"><span class="opt-icon">🏷️</span><span class="opt-text">Oui, plusieurs avec encore les étiquettes</span></div>
+      <div class="option" data-score="2"><span class="opt-icon">😬</span><span class="opt-text">Oui, quelques-uns que je n'ai portés qu'une fois</span></div>
+      <div class="option" data-score="1"><span class="opt-icon">🤏</span><span class="opt-text">Peut-être un ou deux, mais c'est rare</span></div>
+      <div class="option" data-score="0"><span class="opt-icon">✅</span><span class="opt-text">Non, je n'achète que ce que je porte vraiment</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="3">
+    <div class="q-num">Question 4 sur 10</div>
+    <div class="q-text">Vous faites vos courses en ligne ou en magasin. Qu'arrive-t-il souvent ?</div>
+    <div class="options">
+      <div class="option" data-score="3"><span class="opt-icon">🛍️</span><span class="opt-text">Je dépasse souvent mon budget et j'achète des choses non prévues</span></div>
+      <div class="option" data-score="2"><span class="opt-icon">🤷</span><span class="opt-text">J'achète parfois des choses en impulsion</span></div>
+      <div class="option" data-score="1"><span class="opt-icon">📋</span><span class="opt-text">J'ai une liste et je m'y tiens globalement</span></div>
+      <div class="option" data-score="0"><span class="opt-icon">🎯</span><span class="opt-text">Je suis ma liste strictement et je compare les prix</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="4">
+    <div class="q-num">Question 5 sur 10</div>
+    <div class="q-text">Quand vous êtes stressé ou triste, vous avez tendance à...</div>
+    <div class="options">
+      <div class="option" data-score="3"><span class="opt-icon">💳</span><span class="opt-text">Faire du shopping pour me sentir mieux — ça marche sur le moment</span></div>
+      <div class="option" data-score="2"><span class="opt-icon">📦</span><span class="opt-text">Commander quelque chose en ligne sans vraiment en avoir besoin</span></div>
+      <div class="option" data-score="1"><span class="opt-icon">🚶</span><span class="opt-text">Parfois acheter quelque chose mais je m'en veux après</span></div>
+      <div class="option" data-score="0"><span class="opt-icon">🏃</span><span class="opt-text">Faire du sport, appeler un ami ou autre chose — pas acheter</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="5">
+    <div class="q-num">Question 6 sur 10</div>
+    <div class="q-text">Avez-vous des objets chez vous que vous n'utilisez plus depuis plus d'un an ?</div>
+    <div class="options">
+      <div class="option" data-score="3"><span class="opt-icon">🏚️</span><span class="opt-text">Oui, beaucoup — j'aurais du mal à tout citer</span></div>
+      <div class="option" data-score="2"><span class="opt-icon">📦</span><span class="opt-text">Oui, une bonne dizaine d'objets au moins</span></div>
+      <div class="option" data-score="1"><span class="opt-icon">🤔</span><span class="opt-text">Quelques-uns, mais je prévois de les vendre</span></div>
+      <div class="option" data-score="0"><span class="opt-icon">♻️</span><span class="opt-text">Non, je fais régulièrement le tri et vends ce que je n'utilise plus</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="6">
+    <div class="q-num">Question 7 sur 10</div>
+    <div class="q-text">Combien de fois par semaine commandez-vous sur Amazon ou autre site ?</div>
+    <div class="options">
+      <div class="option" data-score="3"><span class="opt-icon">📬</span><span class="opt-text">Plusieurs fois par semaine — j'adore recevoir des colis</span></div>
+      <div class="option" data-score="2"><span class="opt-icon">📦</span><span class="opt-text">1 à 2 fois par semaine en moyenne</span></div>
+      <div class="option" data-score="1"><span class="opt-icon">🗓️</span><span class="opt-text">Quelques fois par mois pour des besoins réels</span></div>
+      <div class="option" data-score="0"><span class="opt-icon">🧐</span><span class="opt-text">Rarement — je réfléchis toujours avant de commander</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="7">
+    <div class="q-num">Question 8 sur 10</div>
+    <div class="q-text">Votre dernier smartphone, pourquoi l'avez-vous changé ?</div>
+    <div class="options">
+      <div class="option" data-score="3"><span class="opt-icon">✨</span><span class="opt-text">Pour le dernier modèle sorti — je voulais le meilleur</span></div>
+      <div class="option" data-score="2"><span class="opt-icon">😏</span><span class="opt-text">Le mien fonctionnait encore mais je voulais mieux</span></div>
+      <div class="option" data-score="1"><span class="opt-icon">🔋</span><span class="opt-text">Il avait des problèmes mais j'aurais pu attendre encore</span></div>
+      <div class="option" data-score="0"><span class="opt-icon">💀</span><span class="opt-text">Il était cassé ou vraiment hors d'usage</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="8">
+    <div class="q-num">Question 9 sur 10</div>
+    <div class="q-text">Regardez votre relevé bancaire du mois dernier. Vous ressentez...</div>
+    <div class="options">
+      <div class="option" data-score="3"><span class="opt-icon">😱</span><span class="opt-text">De la honte — il y a des achats que je ne me rappelle même plus</span></div>
+      <div class="option" data-score="2"><span class="opt-icon">😬</span><span class="opt-text">De la gêne — quelques achats inutiles que je regrette</span></div>
+      <div class="option" data-score="1"><span class="opt-icon">😐</span><span class="opt-text">Globalement satisfait mais je pourrais mieux faire</span></div>
+      <div class="option" data-score="0"><span class="opt-icon">😊</span><span class="opt-text">De la fierté — mes dépenses sont cohérentes avec mes valeurs</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="9">
+    <div class="q-num">Question 10 sur 10</div>
+    <div class="q-text">Si vous deviez estimer ce que vous gaspillez chaque mois en achats inutiles...</div>
+    <div class="options">
+      <div class="option" data-score="3"><span class="opt-icon">💸</span><span class="opt-text">Plus de 300 € — je sais que j'ai un problème</span></div>
+      <div class="option" data-score="2"><span class="opt-icon">😅</span><span class="opt-text">Entre 100 et 300 € — c'est trop mais c'est ma faiblesse</span></div>
+      <div class="option" data-score="1"><span class="opt-icon">🤏</span><span class="opt-text">Moins de 100 € — quelques petites dépenses inutiles</span></div>
+      <div class="option" data-score="0"><span class="opt-icon">💪</span><span class="opt-text">Presque rien — je consomme de façon très consciente</span></div>
+    </div>
+    <button class="btn-next" id="btn-result">Voir mon résultat →</button>
+  </div>
+
+  <!-- Résultats -->
+  <div class="result-card" id="result-critique">
+    <div class="result-emoji">🚨</div>
+    <div class="result-type" style="color:#dc2626">Surconsommation critique</div>
+    <div class="result-score" style="background:#fef2f2;color:#dc2626">Score élevé — action urgente recommandée</div>
+    <div class="result-desc">Vos habitudes de consommation vous coûtent probablement plusieurs centaines d'euros par mois. La bonne nouvelle : prendre conscience du problème c'est déjà la moitié du chemin.</div>
+    <div class="result-tips" style="background:#fef2f2">
+      <h3 style="color:#dc2626">🎯 Vos 3 actions immédiates :</h3>
+      <ul style="color:#7f1d1d">
+        <li style="--before:'🚫'">Désactivez toutes les notifications de promotions sur votre téléphone</li>
+        <li style="--before:'📋'">Imposez-vous 48h de réflexion avant tout achat non alimentaire</li>
+        <li style="--before:'💳'">Supprimez vos coordonnées bancaires sauvegardées sur Amazon et sites e-commerce</li>
+        <li style="--before:'📦'">Faites l'inventaire de vos abonnements et annulez tout ce que vous n'utilisez pas</li>
+      </ul>
+    </div>
+    <button class="btn-retry" onclick="retry()">Refaire le test</button>
+  </div>
+
+  <div class="result-card" id="result-modere">
+    <div class="result-emoji">⚠️</div>
+    <div class="result-type" style="color:#d97706">Consommateur impulsif</div>
+    <div class="result-score" style="background:#fffbeb;color:#d97706">Score modéré — des progrès possibles</div>
+    <div class="result-desc">Vous avez des tendances à la consommation impulsive mais vous en êtes conscient. Quelques ajustements simples pourraient vous faire économiser 100 à 200 € par mois facilement.</div>
+    <div class="result-tips" style="background:#fffbeb">
+      <h3 style="color:#92400e">🎯 Vos 3 actions pour progresser :</h3>
+      <ul style="color:#78350f">
+        <li>Tenez un budget mensuel avec une enveloppe "plaisir" limitée</li>
+        <li>Faites un vide-grenier ou Vinted pour désencombrer et récupérer du cash</li>
+        <li>Appliquez la règle des 30 jours : notez l'envie d'achat et attendez 30 jours</li>
+      </ul>
+    </div>
+    <button class="btn-retry" onclick="retry()">Refaire le test</button>
+  </div>
+
+  <div class="result-card" id="result-conscient">
+    <div class="result-emoji">✅</div>
+    <div class="result-type" style="color:#059669">Consommateur conscient</div>
+    <div class="result-score" style="background:#ecfdf5;color:#059669">Score faible — vous gérez bien !</div>
+    <div class="result-desc">Bravo ! Vous avez de bonnes habitudes de consommation. Vous achetez de façon réfléchie et évitez les pièges du marketing. Continuez et allez encore plus loin.</div>
+    <div class="result-tips" style="background:#ecfdf5">
+      <h3 style="color:#065f46">🎯 Pour aller encore plus loin :</h3>
+      <ul style="color:#064e3b">
+        <li>Investissez ce que vous économisez — Livret A, PEA, ETF</li>
+        <li>Essayez le défi "No Buy" un mois par an</li>
+        <li>Partagez vos astuces avec votre entourage</li>
+      </ul>
+    </div>
+    <button class="btn-retry" onclick="retry()">Refaire le test</button>
+  </div>
+
+  <div class="cta" id="cta-block" style="display:none">
+    <h3>📬 Consommez mieux, dépensez moins</h3>
+    <p>Chaque semaine, nos meilleures astuces pour consommer de façon consciente et économiser davantage.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr">
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Test indicatif à titre éducatif.</span>
+</footer>
+
+<script>
+const questions = document.querySelectorAll('.question-card');
+const totalQ = questions.length;
+let currentQ = 0;
+let totalScore = 0;
+let selectedScore = null;
+
+function updateProgress() {
+  const pct = (currentQ / totalQ) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `Question ${currentQ + 1} sur ${totalQ}`;
+}
+
+questions.forEach((card, idx) => {
+  const options = card.querySelectorAll('.option');
+  const btn = card.querySelector('.btn-next');
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selectedScore = +opt.dataset.score;
+      btn.style.display = 'block';
+    });
+  });
+  btn.addEventListener('click', () => {
+    if(selectedScore === null) return;
+    totalScore += selectedScore;
+    card.classList.remove('active');
+    selectedScore = null;
+    if(idx < totalQ - 1) {
+      currentQ++;
+      questions[currentQ].classList.add('active');
+      updateProgress();
+    } else {
+      showResult();
+    }
+  });
+});
+
+function showResult() {
+  document.getElementById('progress').style.width = '100%';
+  document.getElementById('progress-text').textContent = 'Test terminé !';
+  const max = totalQ * 3;
+  const pct = totalScore / max;
+  let resultId;
+  if(pct >= 0.6) resultId = 'result-critique';
+  else if(pct >= 0.3) resultId = 'result-modere';
+  else resultId = 'result-conscient';
+  document.getElementById(resultId).classList.add('active');
+  document.getElementById('cta-block').style.display = 'block';
+  document.getElementById(resultId).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function retry() {
+  totalScore = 0; currentQ = 0; selectedScore = null;
+  questions.forEach(card => {
+    card.classList.remove('active');
+    card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    card.querySelector('.btn-next').style.display = 'none';
+  });
+  document.querySelectorAll('.result-card').forEach(r => r.classList.remove('active'));
+  document.getElementById('cta-block').style.display = 'none';
+  questions[0].classList.add('active');
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+updateProgress();
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>

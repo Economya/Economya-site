@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Études supérieures des enfants : épargner tôt — 50€/mois pendant 18 ans. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Études supérieures des enfants : épargner tôt — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--indigo:#4338ca;--indigo-l:#eef2ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#0f0c29,#1e1b5e,#4338ca);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'📚';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#c7d2fe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#a5b4fc;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#4338ca);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(67,56,202,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#4338ca,#059669);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--indigo);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* SIMULATION */
+.simulation{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin:1.5rem 0}
+.sim{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s}
+.sim:hover{transform:translateY(-2px)}
+.sim.top{border:2px solid var(--g)}
+.sim-label{font-size:.74rem;color:var(--m);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.3rem}
+.sim-versement{font-weight:700;font-size:1rem;margin-bottom:.2rem}
+.sim-duree{font-size:.75rem;color:var(--m);margin-bottom:.5rem}
+.sim-total{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--indigo);margin:.2rem 0}
+.sim-dont{font-size:.7rem;color:var(--g);font-weight:600;margin-top:.15rem}
+
+/* PLACEMENTS */
+.placements{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+.place{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.place:hover{box-shadow:0 4px 18px rgba(67,56,202,.1)}
+.place.top{border:2px solid var(--g)}
+.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
+.pl-icon{font-size:2rem;flex-shrink:0;margin-top:.1rem}
+.pl-body h3{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
+.pl-body p{font-size:.83rem;color:var(--m);font-weight:300;margin:0 0 .45rem}
+.pl-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.pltag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:var(--indigo-l);color:#1e1b5e}
+.pltag.g{background:var(--gl);color:var(--gd)}
+.pltag.o{background:var(--al);color:var(--ad)}
+.pl-right{text-align:right;flex-shrink:0}
+.pl-rdt{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--indigo);display:block;white-space:nowrap}
+.pl-sub{font-size:.7rem;color:var(--m)}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--indigo-l);border-left:4px solid var(--indigo);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#1e1b5e}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#0f0c29,#1e1b5e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#4338ca,#059669);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.place{grid-template-columns:1fr;gap:.5rem}.pl-right{text-align:left}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBK8GHCDT5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795"
+     crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Études supérieures des enfants : épargner tôt",
+  "description": "Études supérieures des enfants : épargner tôt — 50€/mois pendant 18 ans. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-317.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Études supérieures des enfants : épargner tôt">
+  <meta property="og:description" content="Études supérieures des enfants : épargner tôt — 50€/mois pendant 18 ans. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-317.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Études supérieures des enfants : épargner tôt">
+  <meta name="twitter:description" content="Études supérieures des enfants : épargner tôt — 50€/mois pendant 18 ans. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-317.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">📚 Famille</div>
+    <h1>Études supérieures des enfants :<br><em>épargner tôt</em></h1>
+    <div class="savings-badge">💰 50 €/mois pendant 18 ans</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="theme-tag">📈 Épargne & famille</span>
+    </div>
+  </div>
+</div>
+
+<div class="ab">
+
+  <p class="lead">Les études supérieures coûtent entre 10 000 et 50 000 € selon la filière. En épargnant 50 €/mois dès la naissance, vous constituez un capital de 14 000 à 18 000 € à 18 ans. La clé : commencer tôt et choisir les bons supports. Voici la méthode.</p>
+
+  <h2>📊 Simulation : combien épargner selon votre horizon</h2>
+
+  <div class="simulation">
+    <div class="sim">
+      <div class="sim-label">Effort mensuel</div>
+      <div class="sim-versement">30 €/mois</div>
+      <div class="sim-duree">pendant 18 ans</div>
+      <div class="sim-total">~8 500 €</div>
+      <div class="sim-dont">dont ~2 500 € d'intérêts</div>
+    </div>
+    <div class="sim top">
+      <div class="sim-label">Effort mensuel</div>
+      <div class="sim-versement">50 €/mois</div>
+      <div class="sim-duree">pendant 18 ans</div>
+      <div class="sim-total">~14 200 €</div>
+      <div class="sim-dont">dont ~4 000 € d'intérêts</div>
+    </div>
+    <div class="sim">
+      <div class="sim-label">Effort mensuel</div>
+      <div class="sim-versement">100 €/mois</div>
+      <div class="sim-duree">pendant 18 ans</div>
+      <div class="sim-total">~28 000 €</div>
+      <div class="sim-dont">dont ~7 500 € d'intérêts</div>
+    </div>
+    <div class="sim">
+      <div class="sim-label">Effort mensuel</div>
+      <div class="sim-versement">200 €/mois</div>
+      <div class="sim-duree">pendant 18 ans</div>
+      <div class="sim-total">~56 000 €</div>
+      <div class="sim-dont">dont ~14 000 € d'intérêts</div>
+    </div>
+  </div>
+
+  <p style="font-size:.8rem;color:var(--m)">* Simulations avec un rendement annuel moyen de 4 % (assurance-vie fonds euros + unités de compte). Non garanti, à titre indicatif.</p>
+
+  <h2>🏦 Les meilleurs placements pour les études des enfants</h2>
+
+  <div class="placements">
+
+    <div class="place top">
+      <div class="pl-icon">📋</div>
+      <div class="pl-body">
+        <div class="top-badge">⭐ Le plus adapté</div>
+        <h3>Assurance-vie (contrat enfant ou parent)</h3>
+        <p>Le placement star pour les études. Combinez fonds euros (sécurisé, ~2,5–3 % /an) et unités de compte (actions, rendement potentiel 5–7 %/an). Fiscalité très avantageuse après 8 ans. Fonds disponibles à tout moment.</p>
+        <div class="pl-tags">
+          <span class="pltag g">Flexibilité totale</span>
+          <span class="pltag g">Fiscalité avantageuse</span>
+          <span class="pltag">Rendement 3–7 %</span>
+        </div>
+      </div>
+      <div class="pl-right"><span class="pl-rdt">3–7 %/an</span><span class="pl-sub">rendement potentiel</span></div>
+    </div>
+
+    <div class="place">
+      <div class="pl-icon">🏦</div>
+      <div class="pl-body">
+        <h3>PEL (Plan Épargne Logement) pour enfant</h3>
+        <p>Taux garanti de 2,25 % depuis 2024. Bloqué 4 ans minimum mais ouvre des droits à prêt. Peut être ouvert au nom de l'enfant dès la naissance. Intérêts soumis à la flat tax après 12 ans.</p>
+        <div class="pl-tags">
+          <span class="pltag g">Taux garanti</span>
+          <span class="pltag">Droit à prêt immobilier</span>
+          <span class="pltag o">Blocage 4 ans</span>
+        </div>
+      </div>
+      <div class="pl-right"><span class="pl-rdt">2,25 %/an</span><span class="pl-sub">garanti</span></div>
+    </div>
+
+    <div class="place">
+      <div class="pl-icon">📈</div>
+      <div class="pl-body">
+        <h3>PEA (Plan Épargne en Actions) — pour les 18+</h3>
+        <p>Idéal dès que l'enfant atteint 18 ans. Investissement en actions européennes, rendement historique ~7 %/an sur le long terme. Fiscalité très avantageuse après 5 ans. Ouvrez-le dès les 18 ans de l'enfant.</p>
+        <div class="pl-tags">
+          <span class="pltag g">Meilleur rendement long terme</span>
+          <span class="pltag">Dès 18 ans</span>
+          <span class="pltag o">Risque marché</span>
+        </div>
+      </div>
+      <div class="pl-right"><span class="pl-rdt">~7 %/an</span><span class="pl-sub">historique long terme</span></div>
+    </div>
+
+    <div class="place">
+      <div class="pl-icon">🐖</div>
+      <div class="pl-body">
+        <h3>Livret A au nom de l'enfant</h3>
+        <p>Simple, 100 % sécurisé, disponible à tout moment. Taux 2,4 % en 2025. Plafond 22 950 €. Idéal pour la poche de sécurité mais insuffisant seul pour financer des études supérieures longues.</p>
+        <div class="pl-tags">
+          <span class="pltag g">Sécurisé</span>
+          <span class="pltag g">Disponible</span>
+          <span class="pltag o">Faible rendement réel</span>
+        </div>
+      </div>
+      <div class="pl-right"><span class="pl-rdt">2,4 %/an</span><span class="pl-sub">garanti</span></div>
+    </div>
+
+  </div>
+
+  <div class="tip">
+    <strong>💡 La stratégie optimale : Livret A + assurance-vie</strong>
+    Combinez un Livret A pour la sécurité (3–6 mois d'épargne facilement accessible) et une assurance-vie pour le long terme (le reste). Dans l'assurance-vie, augmentez progressivement la part en fonds euros à mesure que l'échéance (bac + 2 ou 3 ans) approche pour sécuriser le capital constitué.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ N'attendez pas : l'effet des intérêts composés</strong>
+    50 €/mois placés à 4 % dès la naissance donnent 14 200 € à 18 ans. Les mêmes 50 €/mois placés à partir de 8 ans donnent seulement 7 000 €. Commencer tôt double presque le résultat — l'effet des intérêts composés est spectaculaire sur des horizons longs.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Épargne & famille dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour préparer l'avenir de vos enfants, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · Mentions légales · Contact · Cet article contient des liens partenaires.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-306.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Allocations familiales 2025 :montants et conditions</div></a><a class="sim-card" href="article-307.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Prime naissance CAF :toutes les aides</div></a><a class="sim-card" href="article-308.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Congé parental :droits et allocations</div></a><a class="sim-card" href="article-309.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Fournitures scolaires pas chères :le guide</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>

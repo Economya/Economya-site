@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Retraite à 50 ans : est-ce possible en France ? — Les conditions et le plan. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retraite à 50 ans : est-ce possible en France ? — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--indigo:#4338ca;--indigo-l:#eef2ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#0f0c29,#1e1b5e,#4338ca);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'⚖️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#c7d2fe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#a5b4fc;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#4338ca);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(67,56,202,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#4338ca,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--indigo);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* RÉALITÉS */
+.realites{display:flex;flex-direction:column;gap:.9rem;margin:1.5rem 0}
+.realite{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start;transition:box-shadow .2s}
+.realite:hover{box-shadow:0 4px 14px rgba(67,56,202,.08)}
+.realite.positif{border-left:4px solid var(--g)}
+.realite.negatif{border-left:4px solid #dc2626}
+.rico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+.realite strong{display:block;font-size:.9rem;margin-bottom:.15rem}
+.realite.positif strong{color:var(--gd)}
+.realite.negatif strong{color:#dc2626}
+.realite span{font-size:.85rem;color:var(--m);font-weight:300}
+
+/* CALCUL */
+.calcul{background:var(--indigo-l);border-radius:var(--r);padding:1.3rem 1.5rem;margin:1.5rem 0}
+.calcul h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#1e1b5e;margin-bottom:.8rem}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.7rem}
+.calc-item{background:white;border-radius:8px;padding:.8rem;text-align:center}
+.ci-label{font-size:.68rem;color:var(--m);text-transform:uppercase;margin-bottom:.2rem}
+.ci-val{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:#1e1b5e}
+.ci-val.g{color:var(--g)}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--indigo-l);border-left:4px solid var(--indigo);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#1e1b5e}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#0f0c29,#1e1b5e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#4338ca,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-YBK8GHCDT5');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795"
+     crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Retraite à 50 ans : est-ce possible en France ?",
+  "description": "Retraite à 50 ans : est-ce possible en France ? — Les conditions et le plan. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-455.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Retraite à 50 ans : est-ce possible en France ?">
+  <meta property="og:description" content="Retraite à 50 ans : est-ce possible en France ? — Les conditions et le plan. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-455.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Retraite à 50 ans : est-ce possible en France ?">
+  <meta name="twitter:description" content="Retraite à 50 ans : est-ce possible en France ? — Les conditions et le plan. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-455.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">⚖️ Lifestyle</div>
+    <h1>Retraite à 50 ans :<br><em>est-ce possible en France ?</em></h1>
+    <div class="savings-badge">💰 Les conditions et le plan</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="theme-tag">🏖️ Retraite anticipée</span>
+    </div>
+  </div>
+</div>
+<div class="ab">
+  <p class="lead">Prendre sa retraite à 50 ans en France est légalement possible — mais cela ne signifie pas toucher une pension de l'État à cet âge. Cela signifie avoir constitué un capital suffisant pour vivre des revenus de ses investissements jusqu'à l'âge légal de la retraite, puis compléter avec une faible pension. Voici la réalité chiffrée.</p>
+
+  <h2>📊 Le calcul pour une retraite à 50 ans</h2>
+  <div class="calcul">
+    <h3>📊 Exemple : 2 000 €/mois de dépenses, retraite à 50 ans</h3>
+    <div class="calc-grid">
+      <div class="calc-item"><div class="ci-label">Dépenses mensuelles</div><div class="ci-val">2 000 €</div></div>
+      <div class="calc-item"><div class="ci-label">Années avant retraite légale (50→64)</div><div class="ci-val">14 ans</div></div>
+      <div class="calc-item"><div class="ci-label">Capital total nécessaire (règle 4 %)</div><div class="ci-val">600 000 €</div></div>
+      <div class="calc-item"><div class="ci-label">Pension publique estimée à 64 ans</div><div class="ci-val">~500–800 €/mois</div></div>
+      <div class="calc-item"><div class="ci-label">Complément capital à 64 ans</div><div class="ci-val g">Réduit significativement</div></div>
+    </div>
+  </div>
+
+  <h2>✅ Les réalités de la retraite à 50 ans en France</h2>
+  <div class="realites">
+    <div class="realite positif">
+      <span class="rico">✅</span>
+      <div>
+        <strong>Légalement rien ne vous empêche de cesser de travailler à 50 ans</strong>
+        <span>Il n'existe aucune obligation légale de travailler en France. Vous pouvez cesser toute activité à 50 ans si vous avez constitué le capital nécessaire. La "retraite anticipée" privée ne nécessite aucune démarche administrative particulière.</span>
+      </div>
+    </div>
+    <div class="realite positif">
+      <span class="rico">✅</span>
+      <div>
+        <strong>Votre PEA et assurance-vie continuent de croître</strong>
+        <span>Les investissements réalisés avant vos 50 ans continuent de croître même après l'arrêt de tout versement. Un capital de 600 000 € investi à 7 % génère 42 000 €/an — soit 3 500 €/mois de revenus potentiels.</span>
+      </div>
+    </div>
+    <div class="realite negatif">
+      <span class="rico">⚠️</span>
+      <div>
+        <strong>Votre pension de retraite publique sera faible — très faible</strong>
+        <span>En arrêtant de cotiser à 50 ans, votre pension publique à 64 ans sera très réduite — souvent 500 à 800 €/mois selon votre carrière passée. Votre capital doit donc couvrir toute votre vie, pas seulement jusqu'à 64 ans. Le taux de remplacement sera insuffisant.</span>
+      </div>
+    </div>
+    <div class="realite negatif">
+      <span class="rico">⚠️</span>
+      <div>
+        <strong>La protection sociale (mutuelle, chômage) change complètement</strong>
+        <span>En cessant toute activité, vous perdez votre couverture maladie liée à l'emploi. Il faut adhérer à une mutuelle individuelle (200–400 €/mois selon couverture). La sécurité sociale de base (Assurance Maladie) reste accessible via la PUMA après 3 mois sans revenu d'activité.</span>
+      </div>
+    </div>
+    <div class="realite negatif">
+      <span class="rico">⚠️</span>
+      <div>
+        <strong>L'inflation sur 40+ ans est un risque réel</strong>
+        <span>À 50 ans, vous pouvez vivre encore 40 à 50 ans. L'inflation érode le pouvoir d'achat de votre capital. Investir une partie dans des actifs réels (actions, immobilier) est indispensable pour maintenir le pouvoir d'achat sur le long terme.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 La "semi-retraite" à 50 ans : le compromis le plus réaliste</strong>
+    Pour la plupart des gens, la semi-retraite à 50 ans est plus réaliste que l'arrêt total. Travailler 2–3 jours par semaine dans un domaine choisi (conseil, freelance, enseignement) génère 1 000–2 000 €/mois supplémentaires. Cela réduit de moitié le capital nécessaire, maintient une activité intellectuelle et sociale, et préserve mieux la pension publique future.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Vérifiez vos droits acquis avant de vous arrêter</strong>
+    Avant de cesser toute activité, vérifiez sur info-retraite.fr votre relevé de carrière et l'estimation de votre pension. Quelques années supplémentaires de cotisation peuvent considérablement augmenter votre pension publique future (chaque trimestre supplémentaire augmente la pension). Parfois, travailler 2 ou 3 ans de plus fait une différence de 200–500 €/mois de pension à vie.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Retraite anticipée & liberté financière dans votre boîte mail</h3>
+    <p>Les stratégies concrètes pour atteindre votre indépendance financière en France, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · Mentions légales · Contact · Cet article est informatif, pas un conseil en investissement.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-387.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Désencombrement rentable :transformer ses placards en cash</div></a><a class="sim-card" href="article-388.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Consommation consciente :acheter moins et mieux</div></a><a class="sim-card" href="article-389.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Vivre avec 1 000 €/mois :méthodes et témoignages</div></a><a class="sim-card" href="article-390.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Burn-out :récupérer sans se ruiner</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script></body>
+</html>
