@@ -386,8 +386,5 @@ if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");b
 if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
 })();
 </script>
-<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
-Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
-</div>
 </body>
 </html>

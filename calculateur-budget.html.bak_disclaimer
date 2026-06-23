@@ -4,60 +4,65 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comparateur Livrets d'Épargne 2025 — Economya.fr</title>
+<title>Calculateur Budget 50/30/20 — Economya.fr</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--v:#7c3aed;--vl:#f5f3ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:16px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
-.hero{background:linear-gradient(135deg,#064e3b,#065f46,#059669);color:white;padding:3rem 2rem 2.5rem;text-align:center}
+.hero{background:linear-gradient(135deg,#1e0533,#4c1d95,#7c3aed);color:white;padding:3rem 2rem 2.5rem;text-align:center}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem}
 .hero h1 em{color:#EF9F27;font-style:normal}
 .hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:500px;margin:0 auto}
 .container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
 .card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
 .card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:var(--gd)}
-.montant-wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-.montant-wrap label{font-size:.9rem;font-weight:600;color:var(--m);white-space:nowrap}
-.montant-input{display:flex;align-items:center;gap:.5rem;background:var(--bg);border:2px solid var(--g);border-radius:50px;padding:.5rem 1.2rem;flex:1;max-width:300px}
-.montant-input input{border:none;background:transparent;font-size:1.3rem;font-family:'Playfair Display',serif;font-weight:700;color:var(--gd);width:100%;outline:none}
-.montant-input span{font-size:1.1rem;color:var(--g);font-weight:700}
-.livrets{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem}
-.livret{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center;transition:box-shadow .2s}
-.livret:hover{box-shadow:0 4px 16px rgba(29,158,117,.1)}
-.livret.best{border:2px solid var(--g);background:var(--gl)}
-.livret.best .best-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.15rem .6rem;border-radius:50px;margin-left:.5rem;vertical-align:middle}
-.best-badge{display:none}
-.l-icon{font-size:2rem}
-.l-body h3{font-size:.95rem;font-weight:700;margin-bottom:.15rem}
-.l-body .l-desc{font-size:.78rem;color:var(--m);line-height:1.4}
-.l-taux{text-align:center}
-.l-taux .taux-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--g);display:block}
-.l-taux .taux-lbl{font-size:.7rem;color:var(--m)}
-.l-gain{text-align:right}
-.l-gain .gain-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);display:block}
-.l-gain .gain-lbl{font-size:.7rem;color:var(--m)}
-.conditions{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem}
-.condition{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1rem 1.2rem}
-.condition h3{font-size:.82rem;font-weight:700;margin-bottom:.5rem;color:var(--gd)}
-.condition ul{list-style:none;font-size:.78rem;color:var(--m)}
-.condition ul li{padding:.2rem 0;padding-left:1rem;position:relative}
-.condition ul li::before{content:'•';position:absolute;left:0;color:var(--g)}
-.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1rem 1.4rem;font-size:.9rem;color:var(--gd);margin-bottom:1.5rem}
-.tip strong{font-weight:600}
+.revenu-wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.revenu-wrap label{font-size:.9rem;font-weight:600;color:var(--m);white-space:nowrap}
+.revenu-input{display:flex;align-items:center;gap:.5rem;background:var(--bg);border:2px solid var(--g);border-radius:50px;padding:.5rem 1.2rem;flex:1;max-width:300px}
+.revenu-input input{border:none;background:transparent;font-size:1.3rem;font-family:'Playfair Display',serif;font-weight:700;color:var(--gd);width:100%;outline:none}
+.revenu-input span{font-size:1.1rem;color:var(--g);font-weight:700}
+.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-bottom:1.5rem}
+.cat{border-radius:var(--r);padding:1.5rem;position:relative;overflow:hidden}
+.cat-besoins{background:linear-gradient(135deg,#065f46,#059669);color:white}
+.cat-envies{background:linear-gradient(135deg,#1e3a8a,#3b82f6);color:white}
+.cat-epargne{background:linear-gradient(135deg,#92400e,#d97706);color:white}
+.cat-pct{font-size:3rem;font-family:'Playfair Display',serif;font-weight:900;opacity:.2;position:absolute;right:1rem;top:.5rem}
+.cat-titre{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;opacity:.8;margin-bottom:.3rem}
+.cat-nom{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:.3rem}
+.cat-montant{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900}
+.cat-detail{font-size:.78rem;opacity:.75;margin-top:.3rem}
+.bar-wrap{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.bar-wrap h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:var(--gd)}
+.bar{display:flex;height:60px;border-radius:50px;overflow:hidden;margin-bottom:1rem;gap:3px}
+.bar-b{background:linear-gradient(90deg,#059669,#065f46);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.9rem;transition:width .5s ease;border-radius:50px 0 0 50px}
+.bar-e{background:linear-gradient(90deg,#3b82f6,#1e3a8a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.9rem;transition:width .5s ease}
+.bar-s{background:linear-gradient(90deg,#d97706,#92400e);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:.9rem;transition:width .5s ease;border-radius:0 50px 50px 0}
+.legende{display:flex;gap:1.5rem;flex-wrap:wrap}
+.leg-item{display:flex;align-items:center;gap:.5rem;font-size:.82rem}
+.leg-dot{width:12px;height:12px;border-radius:50%}
+.conseils{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:1.5rem}
+.conseil{border-radius:var(--r);padding:1.2rem;border:1px solid var(--b)}
+.conseil-b{border-left:4px solid #059669;background:#f0fdf4}
+.conseil-e{border-left:4px solid #3b82f6;background:#eff6ff}
+.conseil-s{border-left:4px solid #d97706;background:#fffbeb}
+.conseil h3{font-size:.9rem;font-weight:700;margin-bottom:.5rem}
+.conseil ul{list-style:none;font-size:.82rem;color:var(--m)}
+.conseil ul li::before{content:'→ ';color:var(--g)}
+.conseil ul li{margin-bottom:.2rem}
 .cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center}
-.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--ad);margin-bottom:.4rem}
 .cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:1px solid var(--b);font-size:.86rem;font-family:inherit}
 .cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
 footer strong{color:white}
-@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}.livret{grid-template-columns:1fr 1fr;gap:.8rem}.l-icon{display:none}}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}.bar-b,.bar-e,.bar-s{font-size:.7rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -78,9 +83,9 @@ footer strong{color:white}
   {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Comparateur Livrets d'Épargne 2025",
+  "name": "Calculateur Budget 50/30/20",
   "description": "Conseils et astuces pour économiser au quotidien.",
-  "url": "https://economya.fr/comparateur-livrets.html",
+  "url": "https://economya.fr/calculateur-budget.html",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -100,20 +105,20 @@ footer strong{color:white}
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Comparateur Livrets d'Épargne 2025">
+  <meta property="og:title" content="Calculateur Budget 50/30/20">
   <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/comparateur-livrets.html">
+  <meta property="og:url" content="https://economya.fr/calculateur-budget.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Comparateur Livrets d'Épargne 2025">
+  <meta name="twitter:title" content="Calculateur Budget 50/30/20">
   <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/comparateur-livrets.html" />
-<meta name="description" content="Comparateur Livrets d'Épargne 2025 — Economya.fr" />
+<link rel="canonical" href="https://economya.fr/calculateur-budget.html" />
+<meta name="description" content="Calculateur Budget 50/30/20 — Economya.fr" />
 </head>
 <body>
 <nav>
@@ -126,99 +131,99 @@ footer strong{color:white}
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 
 <div class="hero">
-  <h1>Comparateur <em>Livrets d'Épargne</em> 2025</h1>
-  <p>Entrez votre montant et comparez instantanément les gains sur tous les livrets réglementés français.</p>
+  <h1>Budget <em>50/30/20</em></h1>
+  <p>La règle d'or pour gérer son argent simplement. Entrez votre revenu net et découvrez comment répartir chaque euro.</p>
 </div>
 
 <div class="container">
   <div class="card">
-    <h2>💶 Montant à placer</h2>
-    <div class="montant-wrap">
-      <label>Mon épargne disponible :</label>
-      <div class="montant-input">
-        <input type="number" id="montant" value="10000" min="0" max="100000" step="100">
+    <h2>💶 Votre revenu mensuel net</h2>
+    <div class="revenu-wrap">
+      <label>Mon revenu net :</label>
+      <div class="revenu-input">
+        <input type="number" id="revenu" value="2000" min="0" max="20000" step="100">
         <span>€</span>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <h2>📊 Comparatif des livrets réglementés</h2>
-    <div class="livrets" id="livrets-list">
-      <!-- Généré par JS -->
+  <div class="categories">
+    <div class="cat cat-besoins">
+      <div class="cat-pct">50%</div>
+      <div class="cat-titre">Besoins essentiels</div>
+      <div class="cat-nom">Loyer, courses, transport</div>
+      <div class="cat-montant" id="m-besoins">1 000 €</div>
+      <div class="cat-detail">Tout ce dont vous avez besoin pour vivre</div>
+    </div>
+    <div class="cat cat-envies">
+      <div class="cat-pct">30%</div>
+      <div class="cat-titre">Envies & loisirs</div>
+      <div class="cat-nom">Sorties, vacances, shopping</div>
+      <div class="cat-montant" id="m-envies">600 €</div>
+      <div class="cat-detail">Ce qui rend la vie agréable</div>
+    </div>
+    <div class="cat cat-epargne">
+      <div class="cat-pct">20%</div>
+      <div class="cat-titre">Épargne & investissement</div>
+      <div class="cat-nom">Livret A, PEA, remboursement dettes</div>
+      <div class="cat-montant" id="m-epargne">400 €</div>
+      <div class="cat-detail">Votre future liberté financière</div>
     </div>
   </div>
 
-  <div class="conditions">
-    <div class="condition">
-      <h3>🏦 Livret A</h3>
-      <ul>
-        <li>Plafond : 22 950 €</li>
-        <li>Ouvert à tous</li>
-        <li>Disponible immédiatement</li>
-        <li>Exonéré d'impôts</li>
-        <li>1 seul livret par personne</li>
-      </ul>
+  <div class="bar-wrap">
+    <h2>📊 Répartition visuelle</h2>
+    <div class="bar">
+      <div class="bar-b" id="bar-b" style="width:50%">50%</div>
+      <div class="bar-e" id="bar-e" style="width:30%">30%</div>
+      <div class="bar-s" id="bar-s" style="width:20%">20%</div>
     </div>
-    <div class="condition">
-      <h3>🟢 LEP</h3>
-      <ul>
-        <li>Plafond : 10 000 €</li>
-        <li>Sous conditions de revenus</li>
-        <li>Disponible immédiatement</li>
-        <li>Exonéré d'impôts</li>
-        <li>Meilleur taux garanti</li>
-      </ul>
-    </div>
-    <div class="condition">
-      <h3>💙 LDDS</h3>
-      <ul>
-        <li>Plafond : 12 000 €</li>
-        <li>Ouvert à tous</li>
-        <li>Disponible immédiatement</li>
-        <li>Exonéré d'impôts</li>
-        <li>Financement éco solidaire</li>
-      </ul>
-    </div>
-    <div class="condition">
-      <h3>👶 LEL</h3>
-      <ul>
-        <li>Plafond : 1 600 €</li>
-        <li>Enfants mineurs uniquement</li>
-        <li>Disponible immédiatement</li>
-        <li>Exonéré d'impôts</li>
-        <li>Idéal pour débuter</li>
-      </ul>
-    </div>
-    <div class="condition">
-      <h3>🏠 PEL</h3>
-      <ul>
-        <li>Plafond : 61 200 €</li>
-        <li>Ouvert à tous</li>
-        <li>Bloqué 4 ans minimum</li>
-        <li>Fiscalisé après 12 ans</li>
-        <li>Droit à prêt immobilier</li>
-      </ul>
-    </div>
-    <div class="condition">
-      <h3>🌿 CEL</h3>
-      <ul>
-        <li>Plafond : 15 300 €</li>
-        <li>Ouvert à tous</li>
-        <li>Disponible après 18 mois</li>
-        <li>Fiscalisé</li>
-        <li>Complément du PEL</li>
-      </ul>
+    <div class="legende">
+      <div class="leg-item"><div class="leg-dot" style="background:#059669"></div> Besoins (50%)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#3b82f6"></div> Envies (30%)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#d97706"></div> Épargne (20%)</div>
     </div>
   </div>
 
-  <div class="tip" id="tip-text">
-    <strong>💡 Conseil :</strong> Chargement...
+  <div class="conseils">
+    <div class="conseil conseil-b">
+      <h3>🏠 Besoins — <span id="c-besoins">1 000 €</span>/mois</h3>
+      <ul>
+        <li>Loyer ou remboursement crédit</li>
+        <li>Courses alimentaires</li>
+        <li>Transport (voiture, abonnement)</li>
+        <li>Factures (électricité, internet)</li>
+        <li>Assurances obligatoires</li>
+        <li>Santé et médicaments</li>
+      </ul>
+    </div>
+    <div class="conseil conseil-e">
+      <h3>🎉 Envies — <span id="c-envies">600 €</span>/mois</h3>
+      <ul>
+        <li>Restaurants et sorties</li>
+        <li>Streaming et abonnements</li>
+        <li>Shopping et vêtements</li>
+        <li>Loisirs et sport</li>
+        <li>Vacances (budget mensuel)</li>
+        <li>Cadeaux</li>
+      </ul>
+    </div>
+    <div class="conseil conseil-s">
+      <h3>💰 Épargne — <span id="c-epargne">400 €</span>/mois</h3>
+      <ul>
+        <li>Livret A (taux 3%)</li>
+        <li>LEP si éligible (taux 4%)</li>
+        <li>PEA pour la Bourse</li>
+        <li>Remboursement dettes</li>
+        <li>Fonds d'urgence (3 mois)</li>
+        <li>Retraite anticipée</li>
+      </ul>
+    </div>
   </div>
 
   <div class="cta">
-    <h3>📬 Recevez les mises à jour des taux chaque semaine</h3>
-    <p>Soyez alerté dès que les taux des livrets changent et optimisez votre épargne.</p>
+    <h3>📬 Recevez nos conseils budget chaque semaine</h3>
+    <p>Astuces, outils et stratégies pour maîtriser votre budget et épargner plus.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr">
       <button>Je m'abonne</button>
@@ -250,66 +255,27 @@ footer strong{color:white}
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Taux en vigueur au 1er février 2026. Source : Banque de France.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Outil indicatif, à adapter à votre situation personnelle.</span>
 </footer>
 
 <script>
-const LIVRETS = [
-  { id:'lep', icon:'🟢', nom:'LEP', desc:'Livret d\'Épargne Populaire — réservé aux foyers modestes', taux:2.5, plafond:10000, best:true },
-  { id:'livretA', icon:'🏦', nom:'Livret A', desc:'Le livret réglementé le plus connu — ouvert à tous', taux:1.5, plafond:22950 },
-  { id:'ldds', icon:'💙', nom:'LDDS', desc:'Livret de Développement Durable et Solidaire', taux:1.5, plafond:12000 },
-  { id:'pel', icon:'🏠', nom:'PEL', desc:'Plan d\'Épargne Logement — bloqué 4 ans min. (ouverture 2026)', taux:2.0, plafond:61200 },
-  { id:'cel', icon:'🌿', nom:'CEL', desc:'Compte Épargne Logement — complément du PEL', taux:1.0, plafond:15300 },
-  { id:'lj', icon:'👶', nom:'Livret Jeune', desc:'Réservé aux 12-25 ans — taux minimum garanti', taux:1.5, plafond:1600 },
-];
-
-function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
-
 function calculate() {
-  const montant = Math.max(0, +document.getElementById('montant').value || 0);
-  const list = document.getElementById('livrets-list');
-  list.innerHTML = '';
+  const revenu = Math.max(0, +document.getElementById('revenu').value || 0);
+  const besoins = Math.round(revenu * 0.5);
+  const envies = Math.round(revenu * 0.3);
+  const epargne = Math.round(revenu * 0.2);
 
-  LIVRETS.forEach(l => {
-    const montantEffectif = Math.min(montant, l.plafond);
-    const gainAnnuel = montantEffectif * l.taux / 100;
-    const gainMensuel = gainAnnuel / 12;
+  const fmt = n => n.toLocaleString('fr-FR') + ' €';
 
-    const div = document.createElement('div');
-    div.className = 'livret' + (l.best ? ' best' : '');
-    div.innerHTML = `
-      <div class="l-icon">${l.icon}</div>
-      <div class="l-body">
-        <h3>${l.nom}${l.best ? '<span class="best-badge">⭐ Meilleur taux</span>' : ''}</h3>
-        <div class="l-desc">${l.desc} · Plafond : ${fmt(l.plafond)}</div>
-      </div>
-      <div class="l-taux">
-        <span class="taux-num">${l.taux.toFixed(2)}%</span>
-        <div class="taux-lbl">taux annuel</div>
-      </div>
-      <div class="l-gain">
-        <span class="gain-num">${fmt(gainAnnuel)}</span>
-        <div class="gain-lbl">/ an sur ${fmt(montantEffectif)}</div>
-      </div>
-    `;
-    list.appendChild(div);
-  });
-
-  // Conseil dynamique
-  const tip = document.getElementById('tip-text');
-  const gainLEP = Math.min(montant, 10000) * 4 / 100;
-  const gainA = Math.min(montant, 22950) * 3 / 100;
-
-  if(montant <= 0) {
-    tip.innerHTML = '<strong>💡 Conseil :</strong> Entrez un montant pour voir vos gains potentiels.';
-  } else if(montant <= 10000) {
-    tip.innerHTML = `<strong>💡 Conseil :</strong> Si vous êtes éligible au LEP, c'est le meilleur choix — vous gagneriez <strong>${fmt(gainLEP)}/an</strong> au lieu de <strong>${fmt(gainA)}/an</strong> sur le Livret A. Vérifiez votre éligibilité sur impots.gouv.fr.`;
-  } else {
-    tip.innerHTML = `<strong>💡 Stratégie optimale :</strong> Maximisez d'abord votre LEP (10 000 € max), puis votre Livret A, puis votre LDDS. Au-delà des plafonds, orientez-vous vers un PEA ou une assurance-vie en ligne pour de meilleurs rendements.`;
-  }
+  document.getElementById('m-besoins').textContent = fmt(besoins);
+  document.getElementById('m-envies').textContent = fmt(envies);
+  document.getElementById('m-epargne').textContent = fmt(epargne);
+  document.getElementById('c-besoins').textContent = fmt(besoins);
+  document.getElementById('c-envies').textContent = fmt(envies);
+  document.getElementById('c-epargne').textContent = fmt(epargne);
 }
 
-document.getElementById('montant').addEventListener('input', calculate);
+document.getElementById('revenu').addEventListener('input', calculate);
 calculate();
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
@@ -335,8 +301,5 @@ if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");b
 if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
 })();
 </script>
-<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
-Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
-</div>
 </body>
 </html>

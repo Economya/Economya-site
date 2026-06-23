@@ -4,7 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Simulateur Crédit Immobilier — Economya.fr</title>
+<title>Simulateur Prime d'Activité 2026 — Economya.fr</title>
+<meta name="description" content="Calculez votre prime d'activité 2026 en quelques secondes. Des millions de Français y ont droit sans le savoir. Gratuit sur Economya.fr">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -14,10 +15,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
-.hero{background:linear-gradient(135deg,#0c1445,#1e3a8a,#2563eb);color:white;padding:3rem 2rem 2.5rem;text-align:center}
+.hero{background:linear-gradient(135deg,#064e3b,#065f46,#059669);color:white;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'💰';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem}
 .hero h1 em{color:#EF9F27;font-style:normal}
 .hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:500px;margin:0 auto}
+.hero-stat{display:inline-block;background:rgba(255,255,255,.15);border-radius:50px;padding:.4rem 1.2rem;font-size:.85rem;margin-top:1rem;color:rgba(255,255,255,.9)}
 .container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
 .card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
 .card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:var(--gd)}
@@ -26,22 +29,30 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .field input[type=range]{width:100%;accent-color:var(--g);height:6px;margin:.5rem 0}
 .field .val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--gd)}
 .field .val span{font-size:.85rem;font-weight:400;color:var(--m)}
-.results{background:linear-gradient(135deg,#0c1445,#1e3a8a);border-radius:var(--r);padding:2rem;color:white;margin-bottom:1.5rem}
-.results h2{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1.5rem;color:rgba(255,255,255,.8)}
-.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
-.res-item{background:rgba(255,255,255,.1);border-radius:12px;padding:1.2rem;text-align:center}
-.res-item .num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--a);display:block;margin-bottom:.2rem}
-.res-item .lbl{font-size:.72rem;color:rgba(255,255,255,.7)}
-.res-item.highlight{background:rgba(239,159,39,.2);border:1px solid rgba(239,159,39,.4)}
-.tableau{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04);overflow-x:auto}
-.tableau h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem;color:var(--gd)}
-table{width:100%;border-collapse:collapse;font-size:.82rem}
-th{background:var(--gd);color:white;padding:.6rem .8rem;text-align:left;font-weight:600}
-td{padding:.55rem .8rem;border-bottom:1px solid var(--b)}
-tr:nth-child(even) td{background:#f9f9f7}
-tr:hover td{background:var(--gl)}
+.field select{width:100%;border:1px solid var(--b);border-radius:8px;padding:.5rem .8rem;font-family:inherit;font-size:.9rem;background:var(--bg);color:var(--t)}
+.result-big{border-radius:var(--r);padding:2.5rem;color:white;text-align:center;margin-bottom:1.5rem}
+.result-big.eligible{background:linear-gradient(135deg,#064e3b,#059669)}
+.result-big.ineligible{background:linear-gradient(135deg,#1e3a5f,#2563eb)}
+.result-big h2{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.8rem;color:rgba(255,255,255,.8)}
+.result-big .montant{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;display:block;line-height:1}
+.result-big .montant.vert{color:#86efac}
+.result-big .montant.bleu{color:#93c5fd}
+.result-big .sous{font-size:.9rem;color:rgba(255,255,255,.7);margin-top:.5rem}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1.5rem}
+.res-item{background:rgba(255,255,255,.1);border-radius:12px;padding:1rem;text-align:center}
+.res-item .num{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--a);display:block}
+.res-item .lbl{font-size:.72rem;color:rgba(255,255,255,.65);margin-top:.2rem}
+.comment{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.comment h2{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--gd)}
+.comment-list{display:flex;flex-direction:column;gap:.7rem}
+.comment-item{display:flex;align-items:flex-start;gap:.7rem;font-size:.86rem;padding:.8rem;border-radius:10px}
+.comment-item.bon{background:var(--gl);color:var(--gd)}
+.comment-item.info{background:#eff6ff;color:#1e3a8a}
+.comment-item.alerte{background:#fef2f2;color:#991b1b}
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1rem 1.4rem;font-size:.9rem;color:var(--gd);margin-bottom:1.5rem}
 .tip strong{font-weight:600}
+.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:var(--r);padding:1rem 1.4rem;font-size:.9rem;color:#92400e;margin-bottom:1.5rem}
+.warn strong{font-weight:600}
 .cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
 .cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
@@ -50,7 +61,7 @@ tr:hover td{background:var(--gl)}
 .cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
 footer strong{color:white}
-@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}.result-big .montant{font-size:3rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -71,9 +82,9 @@ footer strong{color:white}
   {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Simulateur Crédit Immobilier",
-  "description": "Conseils et astuces pour économiser au quotidien.",
-  "url": "https://economya.fr/simulateur-credit-immo.html",
+  "name": "Simulateur Prime d'Activité 2026",
+  "description": "Calculez votre prime d'activité 2026 en quelques secondes. Des millions de Français y ont droit sans le savoir. Gratuit sur Economya.fr",
+  "url": "https://economya.fr/calculateur-prime-activite.html",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -93,20 +104,19 @@ footer strong{color:white}
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Simulateur Crédit Immobilier">
-  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/simulateur-credit-immo.html">
+  <meta property="og:title" content="Simulateur Prime d'Activité 2026">
+  <meta property="og:description" content="Calculez votre prime d'activité 2026 en quelques secondes. Des millions de Français y ont droit sans le savoir. Gratuit sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/calculateur-prime-activite.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Simulateur Crédit Immobilier">
-  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:title" content="Simulateur Prime d'Activité 2026">
+  <meta name="twitter:description" content="Calculez votre prime d'activité 2026 en quelques secondes. Des millions de Français y ont droit sans le savoir. Gratuit sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/simulateur-credit-immo.html" />
-<meta name="description" content="Simulateur Crédit Immobilier — Economya.fr" />
+<link rel="canonical" href="https://economya.fr/calculateur-prime-activite.html" />
 </head>
 <body>
 <nav>
@@ -117,95 +127,90 @@ footer strong{color:white}
 <!-- Menu hamburger mobile -->
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-
 <div class="hero">
-  <h1>Simulateur <em>Crédit Immobilier</em></h1>
-  <p>Calculez vos mensualités, le coût total de votre crédit et consultez le tableau d'amortissement complet.</p>
+  <h1>Simulateur <em>Prime d'Activité</em> 2026</h1>
+  <p>Des millions de Français y ont droit sans le savoir. Estimez votre prime en quelques secondes.</p>
+  <div class="hero-stat">💡 En moyenne 176 €/mois pour ceux qui y ont droit</div>
 </div>
-
 <div class="container">
   <div class="card">
-    <h2>🏠 Votre projet immobilier</h2>
+    <h2>👤 Votre situation</h2>
     <div class="grid">
       <div class="field">
-        <label>Prix du bien</label>
-        <div class="val" id="v-prix">200 000 <span>€</span></div>
-        <input type="range" id="prix" min="50000" max="1000000" step="5000" value="200000">
+        <label>Revenus professionnels nets mensuels</label>
+        <div class="val" id="v-revenus">1 400 <span>€/mois</span></div>
+        <input type="range" id="revenus" min="0" max="3000" step="50" value="1400">
       </div>
       <div class="field">
-        <label>Apport personnel</label>
-        <div class="val" id="v-apport">20 000 <span>€</span></div>
-        <input type="range" id="apport" min="0" max="200000" step="1000" value="20000">
+        <label>Autres revenus mensuels (APL, allocations...)</label>
+        <div class="val" id="v-autres">0 <span>€/mois</span></div>
+        <input type="range" id="autres" min="0" max="1000" step="10" value="0">
       </div>
       <div class="field">
-        <label>Taux d'intérêt</label>
-        <div class="val" id="v-taux">3,5 <span>%</span></div>
-        <input type="range" id="taux" min="0.5" max="8" step="0.1" value="3.5">
+        <label>Situation familiale</label>
+        <select id="situation" onchange="calculate()">
+          <option value="seul">Personne seule sans enfant</option>
+          <option value="couple">Couple sans enfant</option>
+          <option value="seul1">Parent isolé — 1 enfant</option>
+          <option value="seul2">Parent isolé — 2 enfants</option>
+          <option value="couple1">Couple — 1 enfant</option>
+          <option value="couple2">Couple — 2 enfants</option>
+          <option value="couple3">Couple — 3 enfants+</option>
+        </select>
       </div>
       <div class="field">
-        <label>Durée du prêt</label>
-        <div class="val" id="v-duree">20 <span>ans</span></div>
-        <input type="range" id="duree" min="5" max="30" step="1" value="20">
+        <label>Logement</label>
+        <select id="logement" onchange="calculate()">
+          <option value="locataire">Locataire</option>
+          <option value="proprietaire">Propriétaire</option>
+          <option value="heberge">Hébergé gratuitement</option>
+        </select>
       </div>
     </div>
   </div>
 
-  <div class="results">
-    <h2>📊 Résultats de votre simulation</h2>
+  <div class="result-big eligible" id="result-banner">
+    <h2>Votre prime d'activité estimée</h2>
+    <span class="montant vert" id="r-prime">—</span>
+    <div class="sous" id="r-sous">par mois</div>
     <div class="res-grid">
-      <div class="res-item highlight">
-        <span class="num" id="r-mensualite">—</span>
-        <div class="lbl">Mensualité</div>
+      <div class="res-item">
+        <span class="num" id="r-annuel">—</span>
+        <div class="lbl">Prime annuelle</div>
       </div>
       <div class="res-item">
-        <span class="num" id="r-emprunt">—</span>
-        <div class="lbl">Montant emprunté</div>
+        <span class="num" id="r-forfait">—</span>
+        <div class="lbl">Forfait logement inclus</div>
       </div>
       <div class="res-item">
-        <span class="num" id="r-total">—</span>
-        <div class="lbl">Coût total du crédit</div>
-      </div>
-      <div class="res-item">
-        <span class="num" id="r-interets">—</span>
-        <div class="lbl">Total intérêts payés</div>
-      </div>
-      <div class="res-item">
-        <span class="num" id="r-taux-effort">—</span>
-        <div class="lbl">Taux d'effort (sur 3 500 €/mois)</div>
+        <span class="num" id="r-plafond">—</span>
+        <div class="lbl">Plafond de revenus</div>
       </div>
     </div>
   </div>
 
-  <div class="tip" id="tip-text">
-    <strong>💡 Conseil :</strong> Chargement...
+  <div class="comment">
+    <h2>📋 Analyse de votre situation</h2>
+    <div class="comment-list" id="comment-list"></div>
   </div>
 
-  <div class="tableau">
-    <h2>📋 Tableau d'amortissement (5 premières années)</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Année</th>
-          <th>Mensualité</th>
-          <th>Capital remboursé</th>
-          <th>Intérêts</th>
-          <th>Capital restant</th>
-        </tr>
-      </thead>
-      <tbody id="tableau-body"></tbody>
-    </table>
+  <div class="tip">
+    <strong>✅ Comment faire la demande ?</strong> Uniquement sur <strong>caf.fr</strong> (ou MSA si agriculteur). La demande prend 10 minutes. Les versements sont trimestriels et rétroactifs au 1er du mois de la demande. Ne tardez pas !
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Simulation indicative uniquement</strong> — Le calcul officiel de la prime d'activité est effectué par la CAF selon une formule complexe. Cette simulation donne une estimation approximative. Faites votre simulation officielle sur <strong>caf.fr</strong>.
   </div>
 
   <div class="cta">
-    <h3>📬 Recevez nos conseils immobilier chaque semaine</h3>
-    <p>Taux en temps réel, aides disponibles et stratégies pour acheter moins cher.</p>
+    <h3>📬 Toutes les aides auxquelles vous avez droit</h3>
+    <p>Prime d'activité, APL, RSA, aides méconnues — chaque semaine dans votre boîte mail.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr">
       <button>Je m'abonne</button>
     </div>
   </div>
 </div>
-
 
 <!-- Boutons partage -->
 <div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
@@ -230,82 +235,86 @@ footer strong{color:white}
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Simulation indicative. Consultez votre banque pour une offre personnalisée.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Simulation indicative. Résultat officiel sur caf.fr</span>
 </footer>
-
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
-const fmtM = n => (Math.round(n * 100) / 100).toLocaleString('fr-FR', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' €';
+
+// Montants forfaitaires 2026 (approximatifs)
+const FORFAITS = {
+  seul:   { base: 635.71, logement: 67.84, enfants: 0 },
+  couple: { base: 953.57, logement: 67.84, enfants: 0 },
+  seul1:  { base: 762.85, logement: 101.77, enfants: 127.14 },
+  seul2:  { base: 762.85, logement: 101.77, enfants: 254.28 },
+  couple1:{ base: 953.57, logement: 101.77, enfants: 127.14 },
+  couple2:{ base: 953.57, logement: 101.77, enfants: 254.28 },
+  couple3:{ base: 953.57, logement: 101.77, enfants: 381.42 },
+};
 
 function calculate() {
-  const prix = +document.getElementById('prix').value;
-  const apport = +document.getElementById('apport').value;
-  const taux = +document.getElementById('taux').value;
-  const duree = +document.getElementById('duree').value;
+  const revenus = +document.getElementById('revenus').value;
+  const autres = +document.getElementById('autres').value;
+  const situation = document.getElementById('situation').value;
+  const logement = document.getElementById('logement').value;
 
-  document.getElementById('v-prix').innerHTML = prix.toLocaleString('fr-FR') + ' <span>€</span>';
-  document.getElementById('v-apport').innerHTML = apport.toLocaleString('fr-FR') + ' <span>€</span>';
-  document.getElementById('v-taux').innerHTML = taux.toFixed(1) + ' <span>%</span>';
-  document.getElementById('v-duree').innerHTML = duree + ' <span>ans</span>';
+  document.getElementById('v-revenus').innerHTML = revenus.toLocaleString('fr-FR') + ' <span>€/mois</span>';
+  document.getElementById('v-autres').innerHTML = autres.toLocaleString('fr-FR') + ' <span>€/mois</span>';
 
-  const emprunt = Math.max(0, prix - apport);
-  const tauxM = taux / 100 / 12;
-  const n = duree * 12;
+  const f = FORFAITS[situation];
+  const forfaitLogement = logement === 'heberge' ? 0 : f.logement;
+  const montantForaitaire = f.base + forfaitLogement + f.enfants;
 
-  let mensualite;
-  if(tauxM === 0) {
-    mensualite = emprunt / n;
+  // Formule simplifiée prime d'activité
+  // PA = MF + 0.61 × RP - RG
+  // MF = montant forfaitaire
+  // RP = revenus professionnels
+  // RG = ressources globales du foyer
+  const rg = revenus + autres;
+  const pa = montantForaitaire + 0.61 * revenus - rg;
+  const prime = Math.max(0, Math.round(pa));
+
+  const banner = document.getElementById('result-banner');
+  const montantEl = document.getElementById('r-prime');
+  const sousEl = document.getElementById('r-sous');
+
+  if(prime < 10) {
+    banner.className = 'result-big ineligible';
+    montantEl.className = 'montant bleu';
+    montantEl.textContent = '0 €';
+    sousEl.textContent = 'Vous ne semblez pas éligible à la prime d\'activité';
   } else {
-    mensualite = emprunt * tauxM * Math.pow(1 + tauxM, n) / (Math.pow(1 + tauxM, n) - 1);
+    banner.className = 'result-big eligible';
+    montantEl.className = 'montant vert';
+    montantEl.textContent = fmt(prime);
+    sousEl.textContent = 'par mois — vérifiez sur caf.fr pour le montant exact';
   }
 
-  const totalRembourse = mensualite * n;
-  const totalInterets = totalRembourse - emprunt;
-  const tauxEffort = (mensualite / 3500 * 100).toFixed(1);
+  document.getElementById('r-annuel').textContent = fmt(prime * 12);
+  document.getElementById('r-forfait').textContent = fmt(forfaitLogement);
+  document.getElementById('r-plafond').textContent = fmt(montantForaitaire);
 
-  document.getElementById('r-mensualite').textContent = fmtM(mensualite);
-  document.getElementById('r-emprunt').textContent = fmt(emprunt);
-  document.getElementById('r-total').textContent = fmt(totalRembourse);
-  document.getElementById('r-interets').textContent = fmt(totalInterets);
-  document.getElementById('r-taux-effort').textContent = tauxEffort + '%';
-
-  // Conseil
-  const tip = document.getElementById('tip-text');
-  const pct = apport / prix * 100;
-  if(pct < 10) {
-    tip.innerHTML = '<strong>⚠️ Apport faible :</strong> Les banques recommandent 10% minimum. Augmentez votre apport pour obtenir un meilleur taux et éviter les frais de garantie élevés.';
-  } else if(+tauxEffort > 35) {
-    tip.innerHTML = `<strong>⚠️ Taux d'effort élevé :</strong> Votre mensualité représente ${tauxEffort}% de revenus (sur 3 500 €). Les banques acceptent généralement jusqu'à 35%. Allongez la durée ou réduisez le montant.`;
+  // Commentaires
+  const comments = [];
+  if(prime >= 10) {
+    comments.push({ type: 'bon', icon: '🎉', txt: `Vous êtes potentiellement éligible à ${fmt(prime)}/mois. Faites votre demande sur caf.fr dès maintenant !` });
+    comments.push({ type: 'bon', icon: '💰', txt: `Sur un an, cela représente ${fmt(prime * 12)} — une somme non négligeable à ne pas laisser passer.` });
   } else {
-    tip.innerHTML = `<strong>✅ Projet finançable :</strong> Avec ${pct.toFixed(0)}% d'apport et une mensualité de ${fmtM(mensualite)}, votre dossier est solide. Comparez les offres de plusieurs banques pour négocier le meilleur taux.`;
+    comments.push({ type: 'info', icon: 'ℹ️', txt: 'Avec vos revenus actuels, vous ne semblez pas éligible. Mais vérifiez sur caf.fr — le calcul officiel est plus précis.' });
   }
 
-  // Tableau amortissement
-  const tbody = document.getElementById('tableau-body');
-  tbody.innerHTML = '';
-  let capitalRestant = emprunt;
-
-  const maxAnnees = Math.min(5, duree);
-  for(let a = 1; a <= maxAnnees; a++) {
-    let capitalAnnee = 0;
-    let interetsAnnee = 0;
-    for(let m = 0; m < 12; m++) {
-      const interetsMois = capitalRestant * tauxM;
-      const capitalMois = mensualite - interetsMois;
-      capitalAnnee += capitalMois;
-      interetsAnnee += interetsMois;
-      capitalRestant -= capitalMois;
-    }
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><strong>Année ${a}</strong></td>
-      <td>${fmtM(mensualite)}</td>
-      <td>${fmt(capitalAnnee)}</td>
-      <td>${fmt(interetsAnnee)}</td>
-      <td>${fmt(Math.max(0, capitalRestant))}</td>
-    `;
-    tbody.appendChild(tr);
+  if(revenus < 1500) {
+    comments.push({ type: 'info', icon: '💡', txt: 'La prime d\'activité est conçue pour les travailleurs à revenus modestes. Si vous êtes en dessous de 1 500 €/mois, vous avez de bonnes chances d\'y avoir droit.' });
   }
+
+  if(logement === 'heberge') {
+    comments.push({ type: 'alerte', icon: '⚠️', txt: 'Hébergé gratuitement : le forfait logement n\'est pas appliqué, ce qui réduit le montant de votre prime.' });
+  }
+
+  const commentList = document.getElementById('comment-list');
+  commentList.innerHTML = '';
+  comments.forEach(c => {
+    commentList.innerHTML += `<div class="comment-item ${c.type}"><span style="font-size:1.2rem;flex-shrink:0">${c.icon}</span><span>${c.txt}</span></div>`;
+  });
 }
 
 document.querySelectorAll('input[type=range]').forEach(el => el.addEventListener('input', calculate));
@@ -334,8 +343,5 @@ if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");b
 if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
 })();
 </script>
-<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
-Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
-</div>
 </body>
 </html>

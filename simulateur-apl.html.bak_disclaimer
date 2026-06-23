@@ -4,7 +4,8 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comparateur Livrets d'Épargne 2025 — Economya.fr</title>
+<title>Simulateur APL 2026 — Calculez vos aides au logement — Economya.fr</title>
+<meta name="description" content="Simulez vos APL 2026 en quelques secondes. Calculez vos aides au logement selon votre loyer, revenus et situation familiale. Gratuit sur Economya.fr">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -21,34 +22,29 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
 .card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
 .card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:var(--gd)}
-.montant-wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-.montant-wrap label{font-size:.9rem;font-weight:600;color:var(--m);white-space:nowrap}
-.montant-input{display:flex;align-items:center;gap:.5rem;background:var(--bg);border:2px solid var(--g);border-radius:50px;padding:.5rem 1.2rem;flex:1;max-width:300px}
-.montant-input input{border:none;background:transparent;font-size:1.3rem;font-family:'Playfair Display',serif;font-weight:700;color:var(--gd);width:100%;outline:none}
-.montant-input span{font-size:1.1rem;color:var(--g);font-weight:700}
-.livrets{display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem}
-.livret{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center;transition:box-shadow .2s}
-.livret:hover{box-shadow:0 4px 16px rgba(29,158,117,.1)}
-.livret.best{border:2px solid var(--g);background:var(--gl)}
-.livret.best .best-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.15rem .6rem;border-radius:50px;margin-left:.5rem;vertical-align:middle}
-.best-badge{display:none}
-.l-icon{font-size:2rem}
-.l-body h3{font-size:.95rem;font-weight:700;margin-bottom:.15rem}
-.l-body .l-desc{font-size:.78rem;color:var(--m);line-height:1.4}
-.l-taux{text-align:center}
-.l-taux .taux-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--g);display:block}
-.l-taux .taux-lbl{font-size:.7rem;color:var(--m)}
-.l-gain{text-align:right}
-.l-gain .gain-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);display:block}
-.l-gain .gain-lbl{font-size:.7rem;color:var(--m)}
-.conditions{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem}
-.condition{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1rem 1.2rem}
-.condition h3{font-size:.82rem;font-weight:700;margin-bottom:.5rem;color:var(--gd)}
-.condition ul{list-style:none;font-size:.78rem;color:var(--m)}
-.condition ul li{padding:.2rem 0;padding-left:1rem;position:relative}
-.condition ul li::before{content:'•';position:absolute;left:0;color:var(--g)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+.field label{display:block;font-size:.78rem;font-weight:600;color:var(--m);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em}
+.field input[type=range]{width:100%;accent-color:var(--g);height:6px;margin:.5rem 0}
+.field .val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--gd)}
+.field .val span{font-size:.85rem;font-weight:400;color:var(--m)}
+.field select{width:100%;border:1px solid var(--b);border-radius:8px;padding:.5rem .8rem;font-family:inherit;font-size:.9rem;background:var(--bg);color:var(--t)}
+.result-big{background:linear-gradient(135deg,#064e3b,#065f46);border-radius:var(--r);padding:2.5rem;color:white;text-align:center;margin-bottom:1.5rem}
+.result-big h2{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.8rem;color:rgba(255,255,255,.75)}
+.result-big .montant{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:var(--a);display:block;line-height:1}
+.result-big .sous{font-size:.9rem;color:rgba(255,255,255,.6);margin-top:.5rem}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:1.5rem}
+.res-item{background:rgba(255,255,255,.1);border-radius:12px;padding:1rem;text-align:center}
+.res-item .num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--a);display:block}
+.res-item .lbl{font-size:.72rem;color:rgba(255,255,255,.65);margin-top:.2rem}
+.conditions{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.conditions h2{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--gd)}
+.cond-list{display:flex;flex-direction:column;gap:.6rem}
+.cond-item{display:flex;align-items:flex-start;gap:.7rem;font-size:.86rem}
+.cond-icon{flex-shrink:0;font-size:1rem}
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1rem 1.4rem;font-size:.9rem;color:var(--gd);margin-bottom:1.5rem}
 .tip strong{font-weight:600}
+.warn{background:#fef2f2;border-left:4px solid #ef4444;border-radius:var(--r);padding:1rem 1.4rem;font-size:.9rem;color:#991b1b;margin-bottom:1.5rem}
+.warn strong{font-weight:600}
 .cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
 .cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
@@ -57,7 +53,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
 footer strong{color:white}
-@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}.livret{grid-template-columns:1fr 1fr;gap:.8rem}.l-icon{display:none}}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -78,9 +74,9 @@ footer strong{color:white}
   {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Comparateur Livrets d'Épargne 2025",
-  "description": "Conseils et astuces pour économiser au quotidien.",
-  "url": "https://economya.fr/comparateur-livrets.html",
+  "name": "Simulateur APL 2026 — Calculez vos aides au logement",
+  "description": "Simulez vos APL 2026 en quelques secondes. Calculez vos aides au logement selon votre loyer, revenus et situation familiale. Gratuit sur Economya.fr",
+  "url": "https://economya.fr/simulateur-apl.html",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -100,20 +96,19 @@ footer strong{color:white}
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Comparateur Livrets d'Épargne 2025">
-  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/comparateur-livrets.html">
+  <meta property="og:title" content="Simulateur APL 2026 — Calculez vos aides au logement">
+  <meta property="og:description" content="Simulez vos APL 2026 en quelques secondes. Calculez vos aides au logement selon votre loyer, revenus et situation familiale. Gratuit sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/simulateur-apl.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Comparateur Livrets d'Épargne 2025">
-  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:title" content="Simulateur APL 2026 — Calculez vos aides au logement">
+  <meta name="twitter:description" content="Simulez vos APL 2026 en quelques secondes. Calculez vos aides au logement selon votre loyer, revenus et situation familiale. Gratuit sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/comparateur-livrets.html" />
-<meta name="description" content="Comparateur Livrets d'Épargne 2025 — Economya.fr" />
+<link rel="canonical" href="https://economya.fr/simulateur-apl.html" />
 </head>
 <body>
 <nav>
@@ -124,108 +119,92 @@ footer strong{color:white}
 <!-- Menu hamburger mobile -->
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-
 <div class="hero">
-  <h1>Comparateur <em>Livrets d'Épargne</em> 2025</h1>
-  <p>Entrez votre montant et comparez instantanément les gains sur tous les livrets réglementés français.</p>
+  <h1>Simulateur <em>APL 2026</em></h1>
+  <p>Estimez vos aides au logement en quelques secondes selon votre loyer, vos revenus et votre situation familiale.</p>
 </div>
-
 <div class="container">
   <div class="card">
-    <h2>💶 Montant à placer</h2>
-    <div class="montant-wrap">
-      <label>Mon épargne disponible :</label>
-      <div class="montant-input">
-        <input type="number" id="montant" value="10000" min="0" max="100000" step="100">
-        <span>€</span>
+    <h2>🏠 Votre situation</h2>
+    <div class="grid">
+      <div class="field">
+        <label>Loyer mensuel (charges comprises)</label>
+        <div class="val" id="v-loyer">700 <span>€/mois</span></div>
+        <input type="range" id="loyer" min="200" max="2000" step="10" value="700">
+      </div>
+      <div class="field">
+        <label>Revenus nets annuels du foyer</label>
+        <div class="val" id="v-revenus">18 000 <span>€/an</span></div>
+        <input type="range" id="revenus" min="0" max="50000" step="500" value="18000">
+      </div>
+      <div class="field">
+        <label>Situation familiale</label>
+        <select id="situation" onchange="calculate()">
+          <option value="seul">Personne seule</option>
+          <option value="couple">Couple sans enfant</option>
+          <option value="1enfant">Couple avec 1 enfant</option>
+          <option value="2enfants">Couple avec 2 enfants</option>
+          <option value="3enfants">Couple avec 3 enfants+</option>
+          <option value="parent_seul">Parent isolé</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Zone géographique</label>
+        <select id="zone" onchange="calculate()">
+          <option value="1">Zone 1 (Paris, Île-de-France)</option>
+          <option value="2" selected>Zone 2 (grandes villes)</option>
+          <option value="3">Zone 3 (reste de la France)</option>
+        </select>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <h2>📊 Comparatif des livrets réglementés</h2>
-    <div class="livrets" id="livrets-list">
-      <!-- Généré par JS -->
+  <div class="result-big">
+    <h2>Votre aide au logement estimée</h2>
+    <span class="montant" id="r-apl">—</span>
+    <div class="sous" id="r-sous">par mois</div>
+    <div class="res-grid">
+      <div class="res-item">
+        <span class="num" id="r-loyer-net">—</span>
+        <div class="lbl">Loyer après APL</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-annuel">—</span>
+        <div class="lbl">APL annuelle</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-pct">—</span>
+        <div class="lbl">% du loyer couvert</div>
+      </div>
     </div>
   </div>
+
+  <div class="tip" id="tip-text">Chargement...</div>
 
   <div class="conditions">
-    <div class="condition">
-      <h3>🏦 Livret A</h3>
-      <ul>
-        <li>Plafond : 22 950 €</li>
-        <li>Ouvert à tous</li>
-        <li>Disponible immédiatement</li>
-        <li>Exonéré d'impôts</li>
-        <li>1 seul livret par personne</li>
-      </ul>
-    </div>
-    <div class="condition">
-      <h3>🟢 LEP</h3>
-      <ul>
-        <li>Plafond : 10 000 €</li>
-        <li>Sous conditions de revenus</li>
-        <li>Disponible immédiatement</li>
-        <li>Exonéré d'impôts</li>
-        <li>Meilleur taux garanti</li>
-      </ul>
-    </div>
-    <div class="condition">
-      <h3>💙 LDDS</h3>
-      <ul>
-        <li>Plafond : 12 000 €</li>
-        <li>Ouvert à tous</li>
-        <li>Disponible immédiatement</li>
-        <li>Exonéré d'impôts</li>
-        <li>Financement éco solidaire</li>
-      </ul>
-    </div>
-    <div class="condition">
-      <h3>👶 LEL</h3>
-      <ul>
-        <li>Plafond : 1 600 €</li>
-        <li>Enfants mineurs uniquement</li>
-        <li>Disponible immédiatement</li>
-        <li>Exonéré d'impôts</li>
-        <li>Idéal pour débuter</li>
-      </ul>
-    </div>
-    <div class="condition">
-      <h3>🏠 PEL</h3>
-      <ul>
-        <li>Plafond : 61 200 €</li>
-        <li>Ouvert à tous</li>
-        <li>Bloqué 4 ans minimum</li>
-        <li>Fiscalisé après 12 ans</li>
-        <li>Droit à prêt immobilier</li>
-      </ul>
-    </div>
-    <div class="condition">
-      <h3>🌿 CEL</h3>
-      <ul>
-        <li>Plafond : 15 300 €</li>
-        <li>Ouvert à tous</li>
-        <li>Disponible après 18 mois</li>
-        <li>Fiscalisé</li>
-        <li>Complément du PEL</li>
-      </ul>
+    <h2>✅ Conditions pour bénéficier des APL</h2>
+    <div class="cond-list">
+      <div class="cond-item"><span class="cond-icon">🏠</span><span>Votre logement doit être votre résidence principale</span></div>
+      <div class="cond-item"><span class="cond-icon">📋</span><span>Votre propriétaire doit avoir signé une convention avec l'État (logement conventionné)</span></div>
+      <div class="cond-item"><span class="cond-icon">💰</span><span>Vos revenus doivent être inférieurs aux plafonds CAF (variables selon la zone et la composition du foyer)</span></div>
+      <div class="cond-item"><span class="cond-icon">🇫🇷</span><span>Être de nationalité française ou avoir un titre de séjour valide</span></div>
+      <div class="cond-item"><span class="cond-icon">📱</span><span>Faire la demande sur caf.fr — la CAF calcule le montant exact selon votre dossier</span></div>
     </div>
   </div>
 
-  <div class="tip" id="tip-text">
-    <strong>💡 Conseil :</strong> Chargement...
+  <div class="warn">
+    <strong>⚠️ Simulation indicative uniquement</strong> — Le calcul réel des APL est effectué par la CAF selon une formule officielle complexe prenant en compte de nombreux paramètres. Cette simulation donne une estimation approximative. Faites votre simulation officielle sur <strong>caf.fr</strong>.
   </div>
 
   <div class="cta">
-    <h3>📬 Recevez les mises à jour des taux chaque semaine</h3>
-    <p>Soyez alerté dès que les taux des livrets changent et optimisez votre épargne.</p>
+    <h3>📬 Toutes les aides auxquelles vous avez droit</h3>
+    <p>APL, RSA, prime d'activité, aides méconnues — recevez chaque semaine les aides disponibles pour votre situation.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr">
       <button>Je m'abonne</button>
     </div>
   </div>
 </div>
-
 
 <!-- Boutons partage -->
 <div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
@@ -250,66 +229,80 @@ footer strong{color:white}
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Taux en vigueur au 1er février 2026. Source : Banque de France.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Simulation indicative. Résultat officiel sur caf.fr</span>
 </footer>
-
 <script>
-const LIVRETS = [
-  { id:'lep', icon:'🟢', nom:'LEP', desc:'Livret d\'Épargne Populaire — réservé aux foyers modestes', taux:2.5, plafond:10000, best:true },
-  { id:'livretA', icon:'🏦', nom:'Livret A', desc:'Le livret réglementé le plus connu — ouvert à tous', taux:1.5, plafond:22950 },
-  { id:'ldds', icon:'💙', nom:'LDDS', desc:'Livret de Développement Durable et Solidaire', taux:1.5, plafond:12000 },
-  { id:'pel', icon:'🏠', nom:'PEL', desc:'Plan d\'Épargne Logement — bloqué 4 ans min. (ouverture 2026)', taux:2.0, plafond:61200 },
-  { id:'cel', icon:'🌿', nom:'CEL', desc:'Compte Épargne Logement — complément du PEL', taux:1.0, plafond:15300 },
-  { id:'lj', icon:'👶', nom:'Livret Jeune', desc:'Réservé aux 12-25 ans — taux minimum garanti', taux:1.5, plafond:1600 },
-];
+const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
-function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+// Loyers plafonds APL par zone et situation (approximatifs 2026)
+const PLAFONDS = {
+  seul:       [370, 291, 262],
+  couple:     [449, 356, 323],
+  '1enfant':  [512, 412, 374],
+  '2enfants': [567, 461, 420],
+  '3enfants': [626, 511, 466],
+  parent_seul:[449, 356, 323],
+};
+
+// Forfait charges par zone
+const CHARGES = [57, 52, 49];
 
 function calculate() {
-  const montant = Math.max(0, +document.getElementById('montant').value || 0);
-  const list = document.getElementById('livrets-list');
-  list.innerHTML = '';
+  const loyer = +document.getElementById('loyer').value;
+  const revenus = +document.getElementById('revenus').value;
+  const situation = document.getElementById('situation').value;
+  const zone = +document.getElementById('zone').value - 1;
 
-  LIVRETS.forEach(l => {
-    const montantEffectif = Math.min(montant, l.plafond);
-    const gainAnnuel = montantEffectif * l.taux / 100;
-    const gainMensuel = gainAnnuel / 12;
+  document.getElementById('v-loyer').innerHTML = loyer.toLocaleString('fr-FR') + ' <span>€/mois</span>';
+  document.getElementById('v-revenus').innerHTML = revenus.toLocaleString('fr-FR') + ' <span>€/an</span>';
 
-    const div = document.createElement('div');
-    div.className = 'livret' + (l.best ? ' best' : '');
-    div.innerHTML = `
-      <div class="l-icon">${l.icon}</div>
-      <div class="l-body">
-        <h3>${l.nom}${l.best ? '<span class="best-badge">⭐ Meilleur taux</span>' : ''}</h3>
-        <div class="l-desc">${l.desc} · Plafond : ${fmt(l.plafond)}</div>
-      </div>
-      <div class="l-taux">
-        <span class="taux-num">${l.taux.toFixed(2)}%</span>
-        <div class="taux-lbl">taux annuel</div>
-      </div>
-      <div class="l-gain">
-        <span class="gain-num">${fmt(gainAnnuel)}</span>
-        <div class="gain-lbl">/ an sur ${fmt(montantEffectif)}</div>
-      </div>
-    `;
-    list.appendChild(div);
-  });
+  const loyerPlafond = PLAFONDS[situation][zone];
+  const charges = CHARGES[zone];
+  const loyerPris = Math.min(loyer, loyerPlafond);
 
-  // Conseil dynamique
+  // Formule simplifiée APL
+  // APL = Loyer pris en compte + Charges - Participation personnelle
+  const revenusMensuels = revenus / 12;
+
+  // Participation personnelle (Rp) — simplifiée
+  let rp;
+  if(revenus <= 6000) rp = 0;
+  else if(revenus <= 12000) rp = (revenus - 6000) * 0.02;
+  else if(revenus <= 20000) rp = 120 + (revenus - 12000) * 0.04;
+  else if(revenus <= 30000) rp = 440 + (revenus - 20000) * 0.06;
+  else rp = 1040 + (revenus - 30000) * 0.08;
+
+  rp = rp / 12; // mensuel
+
+  let apl = loyerPris + charges - rp;
+  apl = Math.max(0, apl);
+
+  // Plafond APL = loyer pris en compte
+  apl = Math.min(apl, loyerPris);
+
+  // Minimum versable : 10€
+  if(apl < 10) apl = 0;
+
+  const loyerNet = loyer - apl;
+  const pct = apl > 0 ? (apl / loyer * 100).toFixed(0) : 0;
+
+  document.getElementById('r-apl').textContent = fmt(apl);
+  document.getElementById('r-sous').textContent = apl > 0 ? 'par mois' : 'Vous ne semblez pas éligible';
+  document.getElementById('r-loyer-net').textContent = fmt(loyerNet);
+  document.getElementById('r-annuel').textContent = fmt(apl * 12);
+  document.getElementById('r-pct').textContent = pct + '%';
+
   const tip = document.getElementById('tip-text');
-  const gainLEP = Math.min(montant, 10000) * 4 / 100;
-  const gainA = Math.min(montant, 22950) * 3 / 100;
-
-  if(montant <= 0) {
-    tip.innerHTML = '<strong>💡 Conseil :</strong> Entrez un montant pour voir vos gains potentiels.';
-  } else if(montant <= 10000) {
-    tip.innerHTML = `<strong>💡 Conseil :</strong> Si vous êtes éligible au LEP, c'est le meilleur choix — vous gagneriez <strong>${fmt(gainLEP)}/an</strong> au lieu de <strong>${fmt(gainA)}/an</strong> sur le Livret A. Vérifiez votre éligibilité sur impots.gouv.fr.`;
+  if(apl <= 0) {
+    tip.innerHTML = '<strong>ℹ️ Pas d\'APL estimée</strong> — Vos revenus semblent dépasser les plafonds pour votre situation. Vérifiez quand même sur caf.fr — le calcul officiel est plus précis et prend en compte d\'autres paramètres.';
+  } else if(apl < 100) {
+    tip.innerHTML = `<strong>💡 Bon à savoir :</strong> Même une APL de ${fmt(apl)}/mois représente ${fmt(apl * 12)} sur l'année. Faites toujours la demande sur caf.fr — c'est gratuit et sans engagement.`;
   } else {
-    tip.innerHTML = `<strong>💡 Stratégie optimale :</strong> Maximisez d'abord votre LEP (10 000 € max), puis votre Livret A, puis votre LDDS. Au-delà des plafonds, orientez-vous vers un PEA ou une assurance-vie en ligne pour de meilleurs rendements.`;
+    tip.innerHTML = `<strong>🎉 Bonne nouvelle :</strong> Vous pourriez recevoir environ ${fmt(apl)}/mois, soit ${fmt(apl * 12)}/an. Faites votre demande dès maintenant sur caf.fr — les versements sont rétroactifs au 1er du mois de la demande.`;
   }
 }
 
-document.getElementById('montant').addEventListener('input', calculate);
+document.querySelectorAll('input[type=range]').forEach(el => el.addEventListener('input', calculate));
 calculate();
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
@@ -335,8 +328,5 @@ if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");b
 if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
 })();
 </script>
-<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
-Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
-</div>
 </body>
 </html>
