@@ -246,11 +246,11 @@ const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
 // Barème IR 2026 (revenus 2025)
 const BAREME = [
-  { min: 0,      max: 11600,  taux: 0,    label: "Jusqu'à 11 600 €" },
-  { min: 11600,  max: 29579,  taux: 0.11, label: "11 600 € à 29 579 €" },
-  { min: 29579,  max: 84577,  taux: 0.30, label: "29 579 € à 84 577 €" },
-  { min: 84577,  max: 181917, taux: 0.41, label: "84 577 € à 181 917 €" },
-  { min: 181917, max: Infinity,taux: 0.45, label: "Au-delà de 181 917 €" },
+  { min: 0,      max: 11497,  taux: 0,    label: "Jusqu'à 11 497 €" },
+  { min: 11497,  max: 29315,  taux: 0.11, label: "11 497 € à 29 315 €" },
+  { min: 29315,  max: 83823,  taux: 0.30, label: "29 315 € à 83 823 €" },
+  { min: 83823,  max: 180294, taux: 0.41, label: "83 823 € à 180 294 €" },
+  { min: 180294, max: Infinity,taux: 0.45, label: "Au-delà de 180 294 €" },
 ];
 
 function calcImpot(revenuParPart) {
