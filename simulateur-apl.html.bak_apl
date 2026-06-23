@@ -236,7 +236,7 @@ const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
 // Loyers plafonds APL par zone et situation (approximatifs 2026)
 const PLAFONDS = {
-  seul:       [333, 290, 272],
+  seul:       [370, 291, 262],
   couple:     [449, 356, 323],
   '1enfant':  [512, 412, 374],
   '2enfants': [567, 461, 420],
@@ -244,16 +244,8 @@ const PLAFONDS = {
   parent_seul:[449, 356, 323],
 };
 
-// Forfait charges CAF — dépend de la composition du foyer, PAS de la zone
-// (60,59€ base pour 1 personne ou couple, +13,74€ par personne supplémentaire)
-const CHARGES_PAR_SITUATION = {
-  seul: 60.59,
-  couple: 60.59,
-  '1enfant': 74.33,
-  '2enfants': 88.07,
-  '3enfants': 101.81,
-  parent_seul: 60.59,
-};
+// Forfait charges par zone
+const CHARGES = [57, 52, 49];
 
 function calculate() {
   const loyer = +document.getElementById('loyer').value;
@@ -265,7 +257,7 @@ function calculate() {
   document.getElementById('v-revenus').innerHTML = revenus.toLocaleString('fr-FR') + ' <span>€/an</span>';
 
   const loyerPlafond = PLAFONDS[situation][zone];
-  const charges = CHARGES_PAR_SITUATION[situation];
+  const charges = CHARGES[zone];
   const loyerPris = Math.min(loyer, loyerPlafond);
 
   // Formule simplifiée APL
