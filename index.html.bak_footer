@@ -755,7 +755,7 @@ function toggleMenu(){
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html" style="color:rgba(255,255,255,.7)">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:rgba(255,255,255,.7)">Politique de confidentialité</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.7)">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
 
 <div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
