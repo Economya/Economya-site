@@ -273,16 +273,16 @@ function calculate() {
   let taxes, tauxTotal, typeLabel;
 
   if(typeActuel === 'ancien') {
-    taxes = base * 0.0632; // ~6,32% droits mutation ancien (taux majore 2026, majorite des departements)
-    tauxTotal = 8;
+    taxes = base * 0.0580; // ~5.80% droits mutation ancien
+    tauxTotal = 7.5;
     typeLabel = 'Ancien';
   } else if(typeActuel === 'neuf') {
     taxes = base * 0.007; // ~0.7% TVA déjà payée
     tauxTotal = 3;
     typeLabel = 'Neuf';
   } else {
-    taxes = base * 0.0632; // taux majore 2026, meme regime DMTO que l'ancien
-    tauxTotal = 8.5;
+    taxes = base * 0.0580;
+    tauxTotal = 8;
     typeLabel = 'Terrain';
   }
 
