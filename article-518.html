@@ -87,7 +87,7 @@ var K="economya_cookie_consent";
 var D=180;
 function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
 function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
-function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
 var existing=getC();
 var banner=document.getElementById("economya-cookie-banner");
 if(existing){apply(existing);}else if(banner){banner.style.display="block";}

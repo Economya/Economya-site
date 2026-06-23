@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeux Finance — Economya.fr</title>
+<meta name="description" content="10 jeux gratuits pour apprendre à gérer votre argent en jouant ! Economya.fr">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--a:#EF9F27;--gd:#085041;--t:#e8f0ff;--m:#8899bb;--bg:#030b1a;--w:rgba(10,20,60,0.7);--b:rgba(100,150,255,0.15);--r:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(29,78,216,0.15),transparent 50%),radial-gradient(ellipse at 80% 20%,rgba(124,45,146,0.12),transparent 50%),radial-gradient(ellipse at 50% 80%,rgba(29,158,117,0.08),transparent 50%);pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;inset:0;background-image:radial-gradient(1px 1px at 20px 30px,rgba(255,255,255,0.5),transparent),radial-gradient(1px 1px at 80px 10px,rgba(255,255,255,0.4),transparent),radial-gradient(1px 1px at 130px 70px,rgba(255,255,255,0.45),transparent),radial-gradient(1px 1px at 200px 40px,rgba(255,255,255,0.3),transparent),radial-gradient(1px 1px at 300px 90px,rgba(255,255,255,0.4),transparent),radial-gradient(1px 1px at 400px 20px,rgba(255,255,255,0.3),transparent),radial-gradient(1px 1px at 500px 60px,rgba(255,255,255,0.45),transparent),radial-gradient(1px 1px at 600px 30px,rgba(255,255,255,0.35),transparent),radial-gradient(1px 1px at 700px 80px,rgba(255,255,255,0.4),transparent),radial-gradient(1px 1px at 50px 150px,rgba(255,255,255,0.3),transparent),radial-gradient(1px 1px at 150px 200px,rgba(255,255,255,0.45),transparent),radial-gradient(1px 1px at 250px 180px,rgba(255,255,255,0.35),transparent),radial-gradient(1px 1px at 450px 170px,rgba(255,255,255,0.3),transparent),radial-gradient(1px 1px at 550px 240px,rgba(255,255,255,0.45),transparent),radial-gradient(1px 1px at 650px 130px,rgba(255,255,255,0.3),transparent),radial-gradient(1px 1px at 750px 190px,rgba(255,255,255,0.4),transparent);pointer-events:none;z-index:0}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:rgba(3,11,26,0.9);border-bottom:1px solid rgba(100,150,255,0.15);position:sticky;top:0;z-index:99;backdrop-filter:blur(10px)}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#60a5fa;text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+
+.hero{background:linear-gradient(135deg,#030b1a,#0d1b4b,#1e3a8a);color:white;padding:3rem 2rem 2.5rem;text-align:center;position:relative;z-index:1;overflow:hidden;border-bottom:1px solid rgba(100,150,255,0.2)}
+.hero::before{content:'🎮';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.04;pointer-events:none}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:var(--a);font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.65);max-width:500px;margin:0 auto 1.5rem}
+.hero-stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.hstat{text-align:center}
+.hstat-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--a);display:block}
+.hstat-lbl{font-size:.72rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.05em}
+
+.container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem;position:relative;z-index:1}
+.section-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#60a5fa;margin-bottom:1.2rem;text-shadow:0 0 20px rgba(96,165,250,0.3)}
+
+.games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.5rem;margin-bottom:3rem}
+
+.game-card{background:rgba(10,20,60,0.7);border-radius:var(--r);border:1px solid rgba(100,150,255,0.15);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:var(--t);display:flex;flex-direction:column;backdrop-filter:blur(10px)}
+.game-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(29,78,216,0.3),0 0 20px rgba(100,150,255,0.1);border-color:rgba(100,150,255,0.4)}
+
+.game-thumb{height:180px;display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;overflow:hidden}
+.game-thumb.dark{background:linear-gradient(135deg,#0a0a0a,#0d1a12)}
+.game-thumb.purple{background:linear-gradient(135deg,#1a0533,#7c2d92)}
+.game-thumb.orange{background:linear-gradient(135deg,#1a0a00,#7c3a00,#c05e00)}
+.game-thumb.gold{background:linear-gradient(135deg,#1a1a00,#5a4a00,#a07800)}
+.game-thumb.blue{background:linear-gradient(135deg,#0a0a1a,#1a0a2e)}
+.game-thumb.navy{background:linear-gradient(135deg,#030b1a,#1e3a8a)}
+.game-thumb.green{background:linear-gradient(135deg,#0a1a0a,#1e3a1e,#1D9E75)}
+.game-thumb.teal{background:linear-gradient(135deg,#0a1a1a,#065f46)}
+.game-thumb.red{background:linear-gradient(135deg,#1a0a0a,#7f1d1d)}
+.game-thumb.indigo{background:linear-gradient(135deg,#1a0a2e,#4c1d95)}
+
+.game-badge{position:absolute;top:.8rem;left:.8rem;color:white;font-size:.65rem;font-weight:700;padding:.25rem .6rem;border-radius:50px;text-transform:uppercase;letter-spacing:.05em}
+.game-badge.new{background:var(--g)}
+.game-badge.hot{background:#ef4444}
+.game-badge.serious{background:#1d4ed8}
+.game-badge.insta{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)}
+
+.game-info{padding:1.2rem;flex:1;display:flex;flex-direction:column}
+.game-cat{font-size:.72rem;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem}
+.game-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#e8f0ff;margin-bottom:.4rem}
+.game-desc{font-size:.82rem;color:var(--m);line-height:1.5;flex:1;margin-bottom:.8rem}
+.game-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.8rem}
+.game-tag{background:rgba(29,78,216,0.15);border:1px solid rgba(100,150,255,0.2);border-radius:50px;padding:.2rem .6rem;font-size:.7rem;color:#93c5fd}
+.game-btn{display:block;text-align:center;background:linear-gradient(135deg,#1e3a8a,#1d4ed8);color:white;padding:.65rem 1rem;border-radius:50px;font-weight:700;font-size:.85rem;text-decoration:none;transition:opacity .2s}
+.game-card:hover .game-btn{background:linear-gradient(135deg,#1d4ed8,#3b82f6)}
+
+.cta{background:linear-gradient(135deg,rgba(10,20,60,0.9),rgba(20,30,80,0.9));border-radius:var(--r);padding:2rem;text-align:center;margin-top:1rem;border:1px solid rgba(100,150,255,0.2)}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:#93c5fd;margin-bottom:.4rem}
+.cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:1px solid rgba(100,150,255,0.2);font-size:.86rem;font-family:inherit;background:rgba(10,20,60,0.8);color:white}
+.cta-form input::placeholder{color:var(--m)}
+.cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+
+footer{background:rgba(3,11,26,0.95);color:var(--m);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem;border-top:1px solid rgba(100,150,255,0.1);position:relative;z-index:1}
+footer strong{color:#93c5fd}
+
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<link rel="canonical" href="https://economya.fr/jeux.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Accueil</a>
+  <a href="outils-gratuits.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🛠️ Outils</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero">
+  <h1>🎮 Jeux <em>Finance</em></h1>
+  <p>Apprenez à gérer votre argent en jouant ! 10 jeux gratuits et éducatifs pour devenir un expert des économies.</p>
+  <div class="hero-stats">
+    <div class="hstat"><span class="hstat-val">10</span><span class="hstat-lbl">Jeux disponibles</span></div>
+    <div class="hstat"><span class="hstat-val">100%</span><span class="hstat-lbl">Gratuit</span></div>
+    <div class="hstat"><span class="hstat-val">∞</span><span class="hstat-lbl">Parties illimitées</span></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section-title">🕹️ Tous les jeux</div>
+  <div class="games-grid">
+
+    <a class="game-card" href="inflation-run.html">
+      <div class="game-thumb dark">🏃<div class="game-badge hot">🔥 Addictif</div></div>
+      <div class="game-info">
+        <div class="game-cat">Runner</div>
+        <div class="game-title">Inflation Run</div>
+        <div class="game-desc">Esquivez les dépenses inutiles et récupérez des économies ! Un runner addictif où chaque décision compte.</div>
+        <div class="game-meta"><span class="game-tag">⌨️ Espace / Clic</span><span class="game-tag">⏱️ 2-5 min</span></div>
+        <span class="game-btn">▶ Jouer</span>
+      </div>
+    </a>
+
+    <a class="game-card" href="le-bon-deal.html">
+      <div class="game-thumb purple">⚖️<div class="game-badge new">40 questions</div></div>
+      <div class="game-info">
+        <div class="game-cat">Quiz rapide</div>
+        <div class="game-title">Le Bon Deal</div>
+        <div class="game-desc">Comparez 2 offres et choisissez la moins chère en 10 secondes ! 40 questions variées.</div>
+        <div class="game-meta"><span class="game-tag">⏱️ 3-5 min</span><span class="game-tag">🧠 Éducatif</span></div>
+        <span class="game-btn">▶ Jouer</span>
+      </div>
+    </a>
+
+    <a class="game-card" href="le-negociateur.html">
+      <div class="game-thumb orange">🤝<div class="game-badge new">20 scénarios</div></div>
+      <div class="game-info">
+        <div class="game-cat">Négociation</div>
+        <div class="game-title">Le Négociateur</div>
+        <div class="game-desc">Négociez le prix d'une voiture, d'un loyer, d'un forfait en temps limité. 20 scénarios aléatoires !</div>
+        <div class="game-meta"><span class="game-tag">⏱️ 5-10 min</span><span class="game-tag">💰 Stratégie</span></div>
+        <span class="game-btn">▶ Jouer</span>
+      </div>
+    </a>
+
+    <a class="game-card" href="roue-economies.html">
+      <div class="game-thumb gold">🎡<div class="game-badge new">16 astuces</div></div>
+      <div class="game-info">
+        <div class="game-cat">Roue de la fortune</div>
+        <div class="game-title">La Roue des Économies</div>
+        <div class="game-desc">Tournez la roue et découvrez combien vous pouvez économiser chaque année !</div>
+        <div class="game-meta"><span class="game-tag">🎡 1 clic</span><span class="game-tag">⏱️ 2 min</span></div>
+        <span class="game-btn">▶ Jouer</span>
+      </div>
+    </a>
+
+    <a class="game-card" href="jackpot-finance.html">
+      <div class="game-thumb blue">🎰<div class="game-badge new">20 tours</div></div>
+      <div class="game-info">
+        <div class="game-cat">Machine à sous</div>
+        <div class="game-title">Jackpot Finance</div>
+        <div class="game-desc">Tentez votre chance ! Chaque combinaison révèle une astuce pour économiser.</div>
+        <div class="game-meta"><span class="game-tag">🎰 1 clic</span><span class="game-tag">⏱️ 3 min</span></div>
+        <span class="game-btn">▶ Jouer</span>
+      </div>
+    </a>
+
+    <a class="game-card" href="vrai-ou-faux.html">
+      <div class="game-thumb teal">✅<div class="game-badge new">60 questions</div></div>
+      <div class="game-info">
+        <div class="game-cat">Vrai ou Faux</div>
+        <div class="game-title">Vrai ou Faux Finance</div>
+        <div class="game-desc">60 affirmations sur l'argent — Vrai ou Faux en 5 secondes ! Testez vos connaissances.</div>
+        <div class="game-meta"><span class="game-tag">⏱️ 2-10 min</span><span class="game-tag">🧠 Éducatif</span></div>
+        <span class="game-btn">▶ Jouer</span>
+      </div>
+    </a>
+
+    <a class="game-card" href="finance-wrapped.html">
+      <div class="game-thumb indigo">🎁<div class="game-badge insta">✨ Instagram</div></div>
+      <div class="game-info">
+        <div class="game-cat">Bilan annuel</div>
+        <div class="game-title">Finance Wrapped 2026</div>
+        <div class="game-desc">Votre bilan financier en slides colorées façon Spotify Wrapped — à partager sur Instagram !</div>
+        <div class="game-meta"><span class="game-tag">📊 Personnalisé</span><span class="game-tag">📸 Partageable</span></div>
+        <span class="game-btn">▶ Créer mon Wrapped</span>
+      </div>
+    </a>
+
+    <a class="game-card" href="aura-financiere.html">
+      <div class="game-thumb purple">✨<div class="game-badge insta">✨ Instagram</div></div>
+      <div class="game-info">
+        <div class="game-cat">Profil financier</div>
+        <div class="game-title">Ton Aura Financière</div>
+        <div class="game-desc">5 questions pour révéler votre couleur et énergie financière unique. Viral sur Instagram et TikTok !</div>
+        <div class="game-meta"><span class="game-tag">✨ Aura unique</span><span class="game-tag">⏱️ 1 min</span></div>
+        <span class="game-btn">▶ Révéler mon aura</span>
+      </div>
+    </a>
+
+    <a class="game-card" href="investisseur-virtuel.html">
+      <div class="game-thumb green">📈<div class="game-badge serious">🎓 Sérieux</div></div>
+      <div class="game-info">
+        <div class="game-cat">Simulation bourse</div>
+        <div class="game-title">L'Investisseur Virtuel</div>
+        <div class="game-desc">Investissez 10 000€ virtuels sur 10 ans réels (2015-2024). Chaque année, un événement économique change la donne !</div>
+        <div class="game-meta"><span class="game-tag">📈 Données réelles</span><span class="game-tag">⏱️ 10 min</span></div>
+        <span class="game-btn">▶ Investir</span>
+      </div>
+    </a>
+
+    <a class="game-card" href="primo-accedant.html">
+      <div class="game-thumb navy">🏠<div class="game-badge serious">🎓 Sérieux</div></div>
+      <div class="game-info">
+        <div class="game-cat">Immobilier</div>
+        <div class="game-title">Parcours Primo-Accédant</div>
+        <div class="game-desc">Simulez votre premier achat immobilier étape par étape. Budget, apport, crédit, frais... Êtes-vous prêt ?</div>
+        <div class="game-meta"><span class="game-tag">🏠 Immobilier</span><span class="game-tag">⏱️ 5 min</span></div>
+        <span class="game-btn">▶ Simuler</span>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="cta">
+    <h3>📬 Soyez alerté des nouveaux jeux</h3>
+    <p>On sort de nouveaux jeux chaque mois. Inscrivez-vous pour être le premier à jouer !</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr">
+      <button>Je m'inscris</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Jeux 100% gratuits et éducatifs</span>
+</footer>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

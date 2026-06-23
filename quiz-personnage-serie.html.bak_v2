@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quel personnage de série êtes-vous financièrement ? — Economya.fr</title>
+<meta name="description" content="Scrooge, Jordan Belfort, Homer Simpson ou autre ? Découvrez quel personnage de série vous représente financièrement en 8 questions fun !">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);color:white;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'🎬';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:#EF9F27;font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:480px;margin:0 auto}
+.container{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem}
+.progress-wrap{margin-bottom:2rem}
+.progress-bar{height:8px;background:var(--b);border-radius:50px;overflow:hidden;margin-bottom:.5rem}
+.progress-fill{height:100%;background:linear-gradient(90deg,#302b63,#EF9F27);border-radius:50px;transition:width .4s ease}
+.progress-text{font-size:.8rem;color:var(--m);text-align:right}
+.question-card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.04);display:none}
+.question-card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.q-num{font-size:.75rem;font-weight:600;color:#302b63;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.q-text{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;line-height:1.4}
+.options{display:flex;flex-direction:column;gap:.8rem}
+.option{background:var(--bg);border:2px solid var(--b);border-radius:12px;padding:1rem 1.3rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.8rem}
+.option:hover{border-color:#302b63;background:#f5f3ff}
+.option.selected{border-color:#302b63;background:#f5f3ff}
+.opt-icon{font-size:1.4rem;flex-shrink:0}
+.opt-text{font-size:.9rem;line-height:1.4}
+.btn-next{background:linear-gradient(135deg,#0f0c29,#302b63);color:white;border:none;padding:.8rem 2rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.95rem;margin-top:1.5rem;display:none}
+.result-card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04);display:none;text-align:center}
+.result-card.active{display:block;animation:fadeIn .4s ease}
+.result-emoji{font-size:5rem;margin-bottom:.5rem;display:block}
+.result-type{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;margin-bottom:.3rem}
+.result-subtitle{font-size:.95rem;color:var(--m);margin-bottom:1rem}
+.traits{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1.5rem}
+.trait{padding:.3rem .9rem;border-radius:50px;font-size:.78rem;font-weight:600}
+.result-desc{font-size:.92rem;color:var(--m);line-height:1.8;margin-bottom:1.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+.result-tips{border-radius:var(--r);padding:1.3rem 1.5rem;text-align:left;margin-bottom:1.5rem}
+.result-tips h3{font-size:.9rem;font-weight:700;margin-bottom:.8rem}
+.result-tips ul{list-style:none;font-size:.85rem;line-height:1.7}
+.result-tips ul li{padding:.25rem 0;padding-left:1.4rem;position:relative}
+.share-text{background:var(--bg);border-radius:12px;padding:1rem;font-size:.85rem;color:var(--m);margin-bottom:1rem;font-style:italic}
+.btn-retry{background:transparent;border:2px solid var(--g);color:var(--gd);padding:.7rem 1.8rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.9rem}
+.cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:1.5rem}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
+.cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:1px solid var(--b);font-size:.86rem;font-family:inherit}
+.cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Quel personnage de série êtes-vous financièrement ?">
+  <meta property="og:description" content="Scrooge, Jordan Belfort, Homer Simpson ou autre ? Découvrez quel personnage de série vous représente financièrement en 8 questions fun !">
+  <meta property="og:url" content="https://economya.fr/quiz-personnage-serie.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Quel personnage de série êtes-vous financièrement ?">
+  <meta name="twitter:description" content="Scrooge, Jordan Belfort, Homer Simpson ou autre ? Découvrez quel personnage de série vous représente financièrement en 8 questions fun !">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/quiz-personnage-serie.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="hero">
+  <h1>Quel personnage de série êtes-vous <em>financièrement</em> ?</h1>
+  <p>Scrooge, Homer Simpson, Jordan Belfort ou autre ? 8 questions pour révéler votre alter ego financier.</p>
+</div>
+<div class="container">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+    <div class="progress-text" id="progress-text">Question 1 sur 8</div>
+  </div>
+
+  <div class="question-card active" data-q="0">
+    <div class="q-num">Question 1 sur 8</div>
+    <div class="q-text">Comment réagissez-vous quand vous recevez une grosse somme d'argent ?</div>
+    <div class="options">
+      <div class="option" data-perso="scrooge"><span class="opt-icon">🏦</span><span class="opt-text">Je la mets immédiatement de côté et je continue à vivre pareil</span></div>
+      <div class="option" data-perso="homer"><span class="opt-icon">🍩</span><span class="opt-text">Je me fais plaisir — la vie est trop courte pour ne pas profiter !</span></div>
+      <div class="option" data-perso="belfort"><span class="opt-icon">🚀</span><span class="opt-text">Je cherche immédiatement comment la multiplier</span></div>
+      <div class="option" data-perso="rachel"><span class="opt-icon">👗</span><span class="opt-text">Je m'offre quelques belles choses que je mérite bien</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="1">
+    <div class="q-num">Question 2 sur 8</div>
+    <div class="q-text">C'est vendredi soir, vos amis vous invitent dans un restaurant chic à 80€ par personne.</div>
+    <div class="options">
+      <div class="option" data-perso="scrooge"><span class="opt-icon">😬</span><span class="opt-text">Je décline poliment — ce n'est pas dans mon budget</span></div>
+      <div class="option" data-perso="homer"><span class="opt-icon">🍺</span><span class="opt-text">Je viens et je commande tout ce qui me fait envie sans compter</span></div>
+      <div class="option" data-perso="belfort"><span class="opt-icon">🥂</span><span class="opt-text">Je viens et j'offre une bouteille pour impressionner</span></div>
+      <div class="option" data-perso="rachel"><span class="opt-icon">💃</span><span class="opt-text">Je viens — c'est une expérience et les souvenirs n'ont pas de prix</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="2">
+    <div class="q-num">Question 3 sur 8</div>
+    <div class="q-text">Votre voiture tombe en panne — réparation estimée à 1 500 €.</div>
+    <div class="options">
+      <div class="option" data-perso="scrooge"><span class="opt-icon">🔧</span><span class="opt-text">J'utilise mon fonds d'urgence prévu pour ça — sans stress</span></div>
+      <div class="option" data-perso="homer"><span class="opt-icon">😱</span><span class="opt-text">Catastrophe ! Je vais devoir emprunter à ma famille</span></div>
+      <div class="option" data-perso="belfort"><span class="opt-icon">🚗</span><span class="opt-text">Je profite de l'occasion pour m'acheter une meilleure voiture à crédit</span></div>
+      <div class="option" data-perso="rachel"><span class="opt-icon">💳</span><span class="opt-text">Je paye par carte et je verrai à rembourser le mois prochain</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="3">
+    <div class="q-num">Question 4 sur 8</div>
+    <div class="q-text">Quelle phrase décrit le mieux votre rapport à l'argent ?</div>
+    <div class="options">
+      <div class="option" data-perso="scrooge"><span class="opt-icon">💰</span><span class="opt-text">"Un euro économisé est un euro gagné"</span></div>
+      <div class="option" data-perso="homer"><span class="opt-icon">🤷</span><span class="opt-text">"L'argent va et vient — l'essentiel c'est de s'amuser"</span></div>
+      <div class="option" data-perso="belfort"><span class="opt-icon">📈</span><span class="opt-text">"L'argent appelle l'argent — il faut être ambitieux"</span></div>
+      <div class="option" data-perso="rachel"><span class="opt-icon">✨</span><span class="opt-text">"On travaille pour vivre, pas pour thésauriser"</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="4">
+    <div class="q-num">Question 5 sur 8</div>
+    <div class="q-text">Les soldes arrivent — -50% sur tout dans votre boutique préférée.</div>
+    <div class="options">
+      <div class="option" data-perso="scrooge"><span class="opt-icon">🚫</span><span class="opt-text">Je n'y vais pas — une promo sur quelque chose d'inutile reste inutile</span></div>
+      <div class="option" data-perso="homer"><span class="opt-icon">🛒</span><span class="opt-text">J'achète tout ce qui me fait envie — c'est trop tentant !</span></div>
+      <div class="option" data-perso="belfort"><span class="opt-icon">🧮</span><span class="opt-text">J'achète uniquement ce que je peux revendre plus cher</span></div>
+      <div class="option" data-perso="rachel"><span class="opt-icon">👠</span><span class="opt-text">J'achète quelques pièces de qualité que j'avais repérées</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="5">
+    <div class="q-num">Question 6 sur 8</div>
+    <div class="q-text">Dans 10 ans, vous vous imaginez...</div>
+    <div class="options">
+      <div class="option" data-perso="scrooge"><span class="opt-icon">🏰</span><span class="opt-text">Avec un patrimoine solide et zéro dette — la sécurité absolue</span></div>
+      <div class="option" data-perso="homer"><span class="opt-icon">🏠</span><span class="opt-text">Pareil qu'aujourd'hui — heureux et sans prise de tête</span></div>
+      <div class="option" data-perso="belfort"><span class="opt-icon">🛥️</span><span class="opt-text">Millionnaire, avec un yacht et des investissements partout</span></div>
+      <div class="option" data-perso="rachel"><span class="opt-icon">🌍</span><span class="opt-text">Ayant voyagé partout et vécu des expériences inoubliables</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="6">
+    <div class="q-num">Question 7 sur 8</div>
+    <div class="q-text">Un ami vous propose un investissement "révolutionnaire" avec 30% de rendement garanti.</div>
+    <div class="options">
+      <div class="option" data-perso="scrooge"><span class="opt-icon">🚨</span><span class="opt-text">Arnaque ! Je refuse catégoriquement et je lui explique pourquoi</span></div>
+      <div class="option" data-perso="homer"><span class="opt-icon">🤩</span><span class="opt-text">Ça sonne bien ! J'investis sans trop réfléchir</span></div>
+      <div class="option" data-perso="belfort"><span class="opt-icon">🔍</span><span class="opt-text">Je creuse pour voir si je peux en tirer profit moi aussi</span></div>
+      <div class="option" data-perso="rachel"><span class="opt-icon">🤔</span><span class="opt-text">Je mets une petite somme — on ne sait jamais !</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="7">
+    <div class="q-num">Question 8 sur 8</div>
+    <div class="q-text">Votre philosophie de vie en une phrase :</div>
+    <div class="options">
+      <div class="option" data-perso="scrooge"><span class="opt-icon">🛡️</span><span class="opt-text">"Prévoyance et discipline — c'est la clé de la liberté"</span></div>
+      <div class="option" data-perso="homer"><span class="opt-icon">🍺</span><span class="opt-text">"Carpe diem — profite maintenant, on verra demain"</span></div>
+      <div class="option" data-perso="belfort"><span class="opt-icon">🏆</span><span class="opt-text">"Le monde appartient à ceux qui osent"</span></div>
+      <div class="option" data-perso="rachel"><span class="opt-icon">💫</span><span class="opt-text">"La vie est belle — autant en profiter avec style"</span></div>
+    </div>
+    <button class="btn-next" id="btn-result">Découvrir mon personnage →</button>
+  </div>
+
+  <!-- Résultats -->
+  <div class="result-card" id="result-scrooge">
+    <span class="result-emoji">🎩</span>
+    <div class="result-type" style="color:#1e3a5f">Scrooge McDuck</div>
+    <div class="result-subtitle">L'épargnant légendaire — riche mais prudent</div>
+    <div class="traits">
+      <span class="trait" style="background:#eff6ff;color:#1e3a5f">Ultra-discipliné</span>
+      <span class="trait" style="background:#eff6ff;color:#1e3a5f">Prévoyant</span>
+      <span class="trait" style="background:#eff6ff;color:#1e3a5f">Méthodique</span>
+      <span class="trait" style="background:#fef9c3;color:#854d0e">Parfois trop strict</span>
+    </div>
+    <div class="result-desc">Comme Scrooge McDuck, vous nagez dans vos économies ! Vous avez une discipline de fer, un fonds d'urgence bien garni et un budget que vous suivez à la virgule. Votre fortune grandit tranquillement. Votre défi : apprendre à profiter un peu de votre argent sans culpabiliser.</div>
+    <div class="result-tips" style="background:#eff6ff">
+      <h3 style="color:#1e3a5f">🎩 Conseils pour Scrooge :</h3>
+      <ul style="color:#1e3a5f">
+        <li>✅ Continuez votre épargne automatique — c'est votre force</li>
+        <li>🎉 Accordez-vous une "enveloppe plaisir" sans culpabilité</li>
+        <li>📈 Investissez en ETF pour faire travailler vos économies</li>
+        <li>💝 L'argent est un outil, pas une fin en soi</li>
+      </ul>
+    </div>
+    <div class="share-text">"Je suis Scrooge McDuck financièrement 🎩 — discipliné et prévoyant ! Et vous ? Testez sur economya.fr"</div>
+    <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
+  </div>
+
+  <div class="result-card" id="result-homer">
+    <span class="result-emoji">🍩</span>
+    <div class="result-type" style="color:#d97706">Homer Simpson</div>
+    <div class="result-subtitle">Le viveur joyeux qui profite de chaque instant</div>
+    <div class="traits">
+      <span class="trait" style="background:#fffbeb;color:#92400e">Spontané</span>
+      <span class="trait" style="background:#fffbeb;color:#92400e">Joyeux</span>
+      <span class="trait" style="background:#fffbeb;color:#92400e">Généreux</span>
+      <span class="trait" style="background:#fef2f2;color:#dc2626">Imprévisible</span>
+    </div>
+    <div class="result-desc">Comme Homer Simpson, vous vivez dans le présent et ça se voit dans votre compte en banque ! Vous êtes généreux, spontané et la vie avec vous n'est jamais ennuyeuse. Mais les fins de mois peuvent être sportives... Quelques ajustements simples changeraient tout.</div>
+    <div class="result-tips" style="background:#fffbeb">
+      <h3 style="color:#92400e">🍩 Conseils pour Homer :</h3>
+      <ul style="color:#78350f">
+        <li>🚨 Ouvrez un Livret A et versez 50€ automatiquement le 1er du mois</li>
+        <li>📱 Installez Bankin pour voir où part votre argent</li>
+        <li>⏰ Règle des 48h avant tout achat non prévu</li>
+        <li>🛡️ Constituez un fonds d'urgence de 1 000€ en priorité</li>
+      </ul>
+    </div>
+    <div class="share-text">"Je suis Homer Simpson financièrement 🍩 — je vis dans le présent ! Et vous ? Testez sur economya.fr"</div>
+    <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
+  </div>
+
+  <div class="result-card" id="result-belfort">
+    <span class="result-emoji">🐺</span>
+    <div class="result-type" style="color:#dc2626">Jordan Belfort</div>
+    <div class="result-subtitle">L'ambitieux qui veut tout, tout de suite</div>
+    <div class="traits">
+      <span class="trait" style="background:#fef2f2;color:#dc2626">Ambitieux</span>
+      <span class="trait" style="background:#fef2f2;color:#dc2626">Audacieux</span>
+      <span class="trait" style="background:#fef2f2;color:#dc2626">Charismatique</span>
+      <span class="trait" style="background:#fef9c3;color:#854d0e">Parfois risqué</span>
+    </div>
+    <div class="result-desc">Comme Jordan Belfort, vous pensez grand et vous n'avez pas peur de prendre des risques. Vous êtes ambitieux, charismatique et vous voyez des opportunités partout. Attention cependant — les grands gains peuvent aussi mener aux grandes pertes. La clé : canaliser votre ambition intelligemment.</div>
+    <div class="result-tips" style="background:#fef2f2">
+      <h3 style="color:#dc2626">🐺 Conseils pour Jordan :</h3>
+      <ul style="color:#7f1d1d">
+        <li>⚖️ Ne jamais investir plus de 10% de votre épargne en actifs risqués</li>
+        <li>🛡️ Gardez 6 mois de dépenses en épargne sécurisée avant tout</li>
+        <li>📚 Formez-vous avant d'investir — la connaissance réduit le risque</li>
+        <li>✅ Les ETF World sont plus sûrs que les coups spéculatifs</li>
+      </ul>
+    </div>
+    <div class="share-text">"Je suis Jordan Belfort financièrement 🐺 — ambitieux et audacieux ! Et vous ? Testez sur economya.fr"</div>
+    <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
+  </div>
+
+  <div class="result-card" id="result-rachel">
+    <span class="result-emoji">☕</span>
+    <div class="result-type" style="color:#be185d">Rachel Green</div>
+    <div class="result-subtitle">La fashionista qui aime le beau et le bien</div>
+    <div class="traits">
+      <span class="trait" style="background:#fdf2f8;color:#be185d">Stylée</span>
+      <span class="trait" style="background:#fdf2f8;color:#be185d">Sociale</span>
+      <span class="trait" style="background:#fdf2f8;color:#be185d">Optimiste</span>
+      <span class="trait" style="background:#fef9c3;color:#854d0e">Impulsive parfois</span>
+    </div>
+    <div class="result-desc">Comme Rachel Green, vous aimez les belles choses et les expériences de qualité. Vous êtes social, optimiste et vous savez profiter de la vie. Votre point faible : les achats impulsifs et la difficulté à dire non. Avec un peu de structure, vous pouvez avoir le beurre et l'argent du beurre !</div>
+    <div class="result-tips" style="background:#fdf2f8">
+      <h3 style="color:#be185d">☕ Conseils pour Rachel :</h3>
+      <ul style="color:#831843">
+        <li>💰 Fixez-vous un budget "plaisirs" mensuel — et respectez-le</li>
+        <li>🛍️ Attendez 24h avant tout achat coup de cœur</li>
+        <li>📊 Appliquez la règle 50/30/20 pour équilibrer plaisir et épargne</li>
+        <li>✂️ Auditez vos abonnements — vous en avez sûrement trop</li>
+      </ul>
+    </div>
+    <div class="share-text">"Je suis Rachel Green financièrement ☕ — j'aime le beau et le bien ! Et vous ? Testez sur economya.fr"</div>
+    <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
+  </div>
+
+  <div class="cta" id="cta-block" style="display:none">
+    <h3>📬 Des conseils adaptés à votre personnage chaque semaine</h3>
+    <p>Recevez nos meilleures stratégies selon votre profil financier.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr">
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Quiz indicatif à titre éducatif et ludique.</span>
+</footer>
+
+<script>
+const questions = document.querySelectorAll('.question-card');
+const totalQ = questions.length;
+let currentQ = 0;
+let scores = { scrooge: 0, homer: 0, belfort: 0, rachel: 0 };
+let selectedPerso = null;
+
+function updateProgress() {
+  const pct = (currentQ / totalQ) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `Question ${currentQ + 1} sur ${totalQ}`;
+}
+
+questions.forEach((card, idx) => {
+  const options = card.querySelectorAll('.option');
+  const btn = card.querySelector('.btn-next');
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selectedPerso = opt.dataset.perso;
+      btn.style.display = 'block';
+    });
+  });
+  btn.addEventListener('click', () => {
+    if(!selectedPerso) return;
+    scores[selectedPerso]++;
+    card.classList.remove('active');
+    selectedPerso = null;
+    if(idx < totalQ - 1) {
+      currentQ++;
+      questions[currentQ].classList.add('active');
+      updateProgress();
+    } else {
+      showResult();
+    }
+  });
+});
+
+function showResult() {
+  document.getElementById('progress').style.width = '100%';
+  document.getElementById('progress-text').textContent = 'Résultat !';
+  const winner = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+  document.getElementById(`result-${winner}`).classList.add('active');
+  document.getElementById('cta-block').style.display = 'block';
+  document.getElementById(`result-${winner}`).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function retry() {
+  scores = { scrooge: 0, homer: 0, belfort: 0, rachel: 0 };
+  currentQ = 0; selectedPerso = null;
+  questions.forEach(card => {
+    card.classList.remove('active');
+    card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    card.querySelector('.btn-next').style.display = 'none';
+  });
+  document.querySelectorAll('.result-card').forEach(r => r.classList.remove('active'));
+  document.getElementById('cta-block').style.display = 'none';
+  questions[0].classList.add('active');
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+updateProgress();
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

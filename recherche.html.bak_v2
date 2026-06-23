@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recherche — Economya.fr</title>
+<meta name="description" content="Recherchez parmi tous les articles et outils d'Economya.fr">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#04342C,#0F6E56,#1D9E75);color:white;padding:3rem 2rem 2.5rem;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:900;margin-bottom:1.5rem}
+.hero h1 em{color:var(--a);font-style:normal}
+.search-hero{display:flex;align-items:center;gap:.8rem;background:white;border-radius:50px;padding:.7rem 1.4rem;max-width:600px;margin:0 auto;box-shadow:0 8px 32px rgba(0,0,0,.15)}
+.search-hero input{border:none;background:transparent;font-size:1rem;font-family:inherit;width:100%;outline:none;color:var(--t)}
+.search-hero span{font-size:1.3rem;flex-shrink:0}
+.container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.stats{font-size:.85rem;color:var(--m);margin-bottom:1.5rem}
+.stats strong{color:var(--gd)}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.5rem}
+.filter-btn{background:var(--w);border:1px solid var(--b);border-radius:50px;padding:.4rem .9rem;font-size:.8rem;font-weight:600;cursor:pointer;color:var(--m);font-family:inherit;transition:all .2s}
+.filter-btn:hover,.filter-btn.active{background:var(--gd);color:white;border-color:var(--gd)}
+.results{display:flex;flex-direction:column;gap:.8rem}
+.result-card{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem 1.5rem;text-decoration:none;color:inherit;transition:all .2s;display:block}
+.result-card:hover{border-color:var(--g);box-shadow:0 4px 16px rgba(29,158,117,.1);transform:translateX(4px)}
+.result-header{display:flex;align-items:center;gap:.8rem;margin-bottom:.4rem}
+.result-icon{font-size:1.4rem;flex-shrink:0}
+.result-cat{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--g)}
+.result-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--t);margin-bottom:.3rem}
+.result-desc{font-size:.82rem;color:var(--m);line-height:1.5}
+.result-tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.65rem;font-weight:600;padding:.15rem .5rem;border-radius:50px;margin-top:.4rem}
+.no-results{text-align:center;padding:4rem 2rem;color:var(--m)}
+.no-results .emoji{font-size:3rem;display:block;margin-bottom:1rem}
+.no-results h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gd);margin-bottom:.5rem}
+.suggestions{margin-top:2rem}
+.suggestions h3{font-size:.9rem;font-weight:600;color:var(--m);margin-bottom:1rem}
+.sugg-grid{display:flex;flex-wrap:wrap;gap:.5rem}
+.sugg-tag{background:var(--gl);color:var(--gd);padding:.3rem .8rem;border-radius:50px;font-size:.8rem;font-weight:600;cursor:pointer}
+.sugg-tag:hover{background:var(--g);color:white}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<link rel="canonical" href="https://economya.fr/recherche.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Accueil</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero">
+  <h1>Que cherchez-vous <em>aujourd'hui</em> ?</h1>
+  <div class="search-hero">
+    <span>🔍</span>
+    <input type="text" id="search-input" placeholder="Ex: épargne, crédit immobilier, budget..." autofocus oninput="doSearch()">
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats" id="stats">Entrez un mot-clé pour rechercher parmi tous nos contenus</div>
+
+  <div class="filters" id="filters" style="display:none">
+    <button class="filter-btn active" onclick="setFilter('tous', this)">Tous</button>
+    <button class="filter-btn" onclick="setFilter('outil', this)">🛠️ Outils</button>
+    <button class="filter-btn" onclick="setFilter('epargne', this)">💰 Épargne</button>
+    <button class="filter-btn" onclick="setFilter('immobilier', this)">🏠 Immobilier</button>
+    <button class="filter-btn" onclick="setFilter('emploi', this)">💼 Emploi</button>
+    <button class="filter-btn" onclick="setFilter('budget', this)">📊 Budget</button>
+    <button class="filter-btn" onclick="setFilter('aides', this)">🎁 Aides</button>
+  </div>
+
+  <div class="results" id="results"></div>
+
+  <div class="no-results" id="no-results" style="display:none">
+    <span class="emoji">🔍</span>
+    <h2>Aucun résultat trouvé</h2>
+    <p>Essayez avec d'autres mots-clés</p>
+    <div class="suggestions">
+      <h3>Suggestions populaires :</h3>
+      <div class="sugg-grid" id="suggestions"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France
+</footer>
+
+<script>
+const CONTENUS = [
+  // Outils épargne & budget
+  { titre:'Simulateur d\'épargne', desc:'Calculez combien votre épargne va rapporter selon vos versements et votre taux.', url:'simulateur-epargne.html', cat:'outil', icon:'📈', tags:['épargne','placement','intérêts','livret'] },
+  { titre:'Budget 50/30/20', desc:'Répartissez votre revenu net en 3 enveloppes : besoins, envies, épargne.', url:'calculateur-budget.html', cat:'budget', icon:'📊', tags:['budget','dépenses','revenus','gestion'] },
+  { titre:'Budget mensuel personnalisé', desc:'Obtenez un plan budgétaire complet avec conseils personnalisés.', url:'generateur-budget.html', cat:'budget', icon:'📋', tags:['budget','mensuel','dépenses','revenus'] },
+  { titre:'Comparateur livrets d\'épargne', desc:'Comparez Livret A, LEP, LDDS, PEL et CEL. Taux 2026 mis à jour.', url:'comparateur-livrets.html', cat:'outil', icon:'🏦', tags:['livret','épargne','taux','LEP','livret A'] },
+  { titre:'Audit de vos abonnements', desc:'Découvrez combien vous gaspillez chaque mois en abonnements inutiles.', url:'checklist-abonnements.html', cat:'budget', icon:'✂️', tags:['abonnements','économies','Netflix','Spotify','audit'] },
+  { titre:'Générateur de défi épargne', desc:'Choisissez votre objectif et obtenez un plan d\'épargne semaine par semaine.', url:'generateur-defi-epargne.html', cat:'outil', icon:'🏆', tags:['défi','épargne','objectif','vacances','voiture','apport'] },
+  { titre:'Ma boîte à économies virtuelle', desc:'Mettez de côté virtuellement chaque jour et regardez votre tirelire se remplir !', url:'boite-economies.html', cat:'outil', icon:'🪙', tags:['épargne','objectif','tirelire','défi','virtuel'] },
+  // Outils immobilier
+  { titre:'Simulateur crédit immobilier', desc:'Calculez vos mensualités et le coût total de votre crédit.', url:'simulateur-credit-immo.html', cat:'immobilier', icon:'🏠', tags:['crédit','immobilier','mensualités','prêt','taux'] },
+  { titre:'Calculateur frais de notaire', desc:'Estimez vos frais de notaire pour un achat immobilier.', url:'calculateur-frais-notaire.html', cat:'immobilier', icon:'📋', tags:['notaire','frais','immobilier','achat','ancien','neuf'] },
+  { titre:'Simulateur APL 2026', desc:'Estimez vos aides au logement selon votre loyer et vos revenus.', url:'simulateur-apl.html', cat:'aides', icon:'🏡', tags:['APL','aides','logement','CAF','loyer'] },
+  { titre:'Capacité d\'emprunt immobilier', desc:'Découvrez combien vous pouvez emprunter selon vos revenus et charges.', url:'calculateur-capacite-emprunt.html', cat:'immobilier', icon:'🔑', tags:['emprunt','immobilier','capacité','revenus','banque'] },
+  // Outils emploi & fiscalité
+  { titre:'Calculateur salaire brut/net 2026', desc:'Convertissez votre salaire brut en net ou inversement.', url:'calculateur-salaire.html', cat:'emploi', icon:'💶', tags:['salaire','brut','net','cotisations','paie'] },
+  { titre:'Calculateur impôt sur le revenu 2026', desc:'Estimez votre impôt avec le barème officiel 2026.', url:'calculateur-impot.html', cat:'emploi', icon:'📑', tags:['impôt','revenus','TMI','fiscalité','déclaration'] },
+  { titre:'Simulateur prime d\'activité 2026', desc:'Des millions de Français y ont droit sans le savoir.', url:'calculateur-prime-activite.html', cat:'aides', icon:'🎁', tags:['prime','activité','CAF','aides','revenus','travail'] },
+  { titre:'Simulateur retraite 2026', desc:'Estimez votre future pension et calculez combien épargner.', url:'simulateur-retraite.html', cat:'emploi', icon:'👴', tags:['retraite','pension','épargne','PER','futur'] },
+  { titre:'Coût réel de votre voiture', desc:'Découvrez ce que vous coûte vraiment votre voiture chaque mois.', url:'calculateur-cout-voiture.html', cat:'budget', icon:'🚗', tags:['voiture','coût','assurance','carburant','transport'] },
+  { titre:'Simulateur économies énergie', desc:'Calculez combien économiser sur vos factures d\'électricité et de gaz.', url:'simulateur-economies-energie.html', cat:'budget', icon:'⚡', tags:['énergie','électricité','gaz','économies','facture','chauffage'] },
+  // Quiz & tests
+  { titre:'Quiz : Quel épargnant êtes-vous ?', desc:'8 questions pour découvrir votre profil financier et recevoir des conseils.', url:'quiz-epargnant.html', cat:'outil', icon:'🧠', tags:['quiz','profil','épargne','conseils'] },
+  { titre:'Quiz : Quel est votre animal épargnant ?', desc:'Fourmi, Écureuil, Cigale ou Lion ? Découvrez votre personnalité financière.', url:'quiz-animal-epargnant.html', cat:'outil', icon:'🐿️', tags:['quiz','animal','épargne','profil','fun','fourmi','lion'] },
+  { titre:'Quiz : Quel personnage de série êtes-vous ?', desc:'Scrooge, Homer Simpson, Jordan Belfort ou Rachel Green ?', url:'quiz-personnage-serie.html', cat:'outil', icon:'🎬', tags:['quiz','série','personnage','fun','viral'] },
+  { titre:'Quiz : Si vous étiez une marque ?', desc:'Lidl, Apple, Hermès ou Primark ? Votre profil financier révélé.', url:'quiz-marque.html', cat:'outil', icon:'🛍️', tags:['quiz','marque','profil','fun','viral'] },
+  { titre:'Test : Êtes-vous en surconsommation ?', desc:'10 questions pour évaluer vos habitudes d\'achat.', url:'test-surconsommation.html', cat:'budget', icon:'📦', tags:['surconsommation','achats','dépenses','habitudes','shopping'] },
+  { titre:'Quiz : Quel voyageur économe êtes-vous ?', desc:'Backpacker, Voyageur Malin ou Globe-Trotter ?', url:'quiz-voyageur.html', cat:'outil', icon:'🧭', tags:['voyage','économies','bons plans','vacances','backpacker'] },
+  // Pages
+  { titre:'Lexique Finance', desc:'Plus de 50 termes financiers expliqués simplement.', url:'lexique-finance.html', cat:'outil', icon:'📚', tags:['lexique','définitions','finance','termes','vocabulaire'] },
+  { titre:'Tous nos outils gratuits', desc:'23 simulateurs, calculateurs et quiz 100% gratuits.', url:'outils-gratuits.html', cat:'outil', icon:'🛠️', tags:['outils','simulateurs','calculateurs','gratuit'] },
+  { titre:'Comparateurs', desc:'Comparez banques, livrets, assurances et forfaits mobile.', url:'comparateurs.html', cat:'outil', icon:'🔍', tags:['comparateur','banque','assurance','forfait'] },
+  { titre:'À propos d\'Economya', desc:'Notre mission : vous aider à économiser au quotidien.', url:'a-propos.html', cat:'outil', icon:'ℹ️', tags:['à propos','mission','économya'] },
+];
+
+const SUGGESTIONS = ['épargne','budget','crédit immobilier','impôt','salaire','APL','prime activité','livret A','voiture','abonnements','retraite','investissement'];
+
+let filtreActuel = 'tous';
+
+function setFilter(filtre, btn) {
+  filtreActuel = filtre;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  doSearch();
+}
+
+function doSearch() {
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  const results = document.getElementById('results');
+  const noResults = document.getElementById('no-results');
+  const stats = document.getElementById('stats');
+  const filters = document.getElementById('filters');
+
+  if(!q) {
+    results.innerHTML = '';
+    noResults.style.display = 'none';
+    filters.style.display = 'none';
+    stats.textContent = 'Entrez un mot-clé pour rechercher parmi tous nos contenus';
+    return;
+  }
+
+  filters.style.display = 'flex';
+
+  let filtered = CONTENUS.filter(c => {
+    const matchQ = c.titre.toLowerCase().includes(q) ||
+                   c.desc.toLowerCase().includes(q) ||
+                   c.tags.some(t => t.toLowerCase().includes(q));
+    const matchF = filtreActuel === 'tous' || c.cat === filtreActuel;
+    return matchQ && matchF;
+  });
+
+  if(filtered.length === 0) {
+    results.innerHTML = '';
+    noResults.style.display = 'block';
+    stats.textContent = `Aucun résultat pour "${q}"`;
+    const suggEl = document.getElementById('suggestions');
+    suggEl.innerHTML = '';
+    SUGGESTIONS.forEach(s => {
+      suggEl.innerHTML += `<span class="sugg-tag" onclick="document.getElementById('search-input').value='${s}';doSearch()">${s}</span>`;
+    });
+  } else {
+    noResults.style.display = 'none';
+    stats.innerHTML = `<strong>${filtered.length} résultat${filtered.length > 1 ? 's' : ''}</strong> pour "${q}"`;
+    results.innerHTML = '';
+    filtered.forEach(c => {
+      results.innerHTML += `
+        <a href="${c.url}" class="result-card">
+          <div class="result-header">
+            <span class="result-icon">${c.icon}</span>
+            <span class="result-cat">${c.cat}</span>
+          </div>
+          <div class="result-title">${c.titre}</div>
+          <div class="result-desc">${c.desc}</div>
+          <span class="result-tag">${c.tags[0]}</span>
+        </a>
+      `;
+    });
+  }
+}
+
+// Lire paramètre URL ?q=
+const urlParams = new URLSearchParams(window.location.search);
+const q = urlParams.get('q');
+if(q) {
+  document.getElementById('search-input').value = q;
+  doSearch();
+}
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

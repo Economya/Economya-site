@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur Frais de Notaire 2025 — Economya.fr</title>
+<meta name="description" content="Calculez précisément vos frais de notaire selon le type de bien et le prix d'achat. Outil gratuit et précis sur Economya.fr">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#1e1b4b,#3730a3,#4f46e5);color:white;padding:3rem 2rem 2.5rem;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:#EF9F27;font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:500px;margin:0 auto}
+.container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:var(--gd)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+.field label{display:block;font-size:.78rem;font-weight:600;color:var(--m);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em}
+.field input[type=range]{width:100%;accent-color:var(--g);height:6px;margin:.5rem 0}
+.field .val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--gd)}
+.field .val span{font-size:.85rem;font-weight:400;color:var(--m)}
+.type-btns{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1rem}
+.type-btn{background:var(--bg);border:2px solid var(--b);border-radius:50px;padding:.6rem 1.3rem;font-size:.85rem;font-weight:600;cursor:pointer;font-family:inherit;color:var(--t);transition:all .2s}
+.type-btn.active{background:var(--gd);border-color:var(--gd);color:white}
+.results{background:linear-gradient(135deg,#1e1b4b,#3730a3);border-radius:var(--r);padding:2rem;color:white;margin-bottom:1.5rem}
+.results h2{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1.5rem;color:rgba(255,255,255,.8)}
+.res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem}
+.res-item{background:rgba(255,255,255,.1);border-radius:12px;padding:1.2rem;text-align:center}
+.res-item.highlight{background:rgba(239,159,39,.2);border:1px solid rgba(239,159,39,.4)}
+.res-item .num{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--a);display:block;margin-bottom:.2rem}
+.res-item .lbl{font-size:.72rem;color:rgba(255,255,255,.7)}
+.detail{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.detail h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1rem;color:var(--gd)}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--b);font-size:.88rem}
+.detail-row:last-child{border-bottom:none;font-weight:700;font-size:.95rem;color:var(--gd)}
+.detail-row .label{color:var(--m)}
+.detail-row .amount{font-weight:600;color:var(--t)}
+.detail-row:last-child .amount{color:var(--gd)}
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1rem 1.4rem;font-size:.9rem;color:var(--gd);margin-bottom:1.5rem}
+.tip strong{font-weight:600}
+.cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
+.cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:1px solid var(--b);font-size:.86rem;font-family:inherit}
+.cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculateur Frais de Notaire 2025",
+  "description": "Calculez précisément vos frais de notaire selon le type de bien et le prix d'achat. Outil gratuit et précis sur Economya.fr",
+  "url": "https://economya.fr/calculateur-frais-notaire.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr"
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Calculateur Frais de Notaire 2025">
+  <meta property="og:description" content="Calculez précisément vos frais de notaire selon le type de bien et le prix d'achat. Outil gratuit et précis sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/calculateur-frais-notaire.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculateur Frais de Notaire 2025">
+  <meta name="twitter:description" content="Calculez précisément vos frais de notaire selon le type de bien et le prix d'achat. Outil gratuit et précis sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/calculateur-frais-notaire.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero">
+  <h1>Calculateur <em>Frais de Notaire</em> 2025</h1>
+  <p>Estimez précisément vos frais de notaire selon le type de bien et le prix d'achat. Calcul détaillé inclus.</p>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h2>🏠 Votre achat immobilier</h2>
+    
+    <div style="margin-bottom:1.5rem">
+      <label style="display:block;font-size:.78rem;font-weight:600;color:var(--m);margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Type de bien</label>
+      <div class="type-btns">
+        <button class="type-btn active" onclick="setType('ancien')" id="btn-ancien">🏚️ Ancien</button>
+        <button class="type-btn" onclick="setType('neuf')" id="btn-neuf">🏗️ Neuf</button>
+        <button class="type-btn" onclick="setType('terrain')" id="btn-terrain">🌱 Terrain</button>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label>Prix du bien</label>
+        <div class="val" id="v-prix">200 000 <span>€</span></div>
+        <input type="range" id="prix" min="50000" max="1000000" step="5000" value="200000">
+      </div>
+      <div class="field">
+        <label>Part du mobilier (optionnel)</label>
+        <div class="val" id="v-mobilier">0 <span>€</span></div>
+        <input type="range" id="mobilier" min="0" max="30000" step="500" value="0">
+      </div>
+    </div>
+  </div>
+
+  <div class="results">
+    <h2>📊 Estimation de vos frais</h2>
+    <div class="res-grid">
+      <div class="res-item highlight">
+        <span class="num" id="r-total">—</span>
+        <div class="lbl">Frais totaux estimés</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-pct">—</span>
+        <div class="lbl">% du prix</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-budget">—</span>
+        <div class="lbl">Budget total à prévoir</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-type">—</span>
+        <div class="lbl">Type de bien</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail">
+    <h2>📋 Détail des frais</h2>
+    <div class="detail-row">
+      <span class="label">Droits de mutation (taxes)</span>
+      <span class="amount" id="d-taxes">—</span>
+    </div>
+    <div class="detail-row">
+      <span class="label">Émoluments du notaire</span>
+      <span class="amount" id="d-emoluments">—</span>
+    </div>
+    <div class="detail-row">
+      <span class="label">Frais et débours</span>
+      <span class="amount" id="d-debours">—</span>
+    </div>
+    <div class="detail-row">
+      <span class="label">Contribution de sécurité immobilière</span>
+      <span class="amount" id="d-csi">—</span>
+    </div>
+    <div class="detail-row">
+      <span class="label"><strong>Total frais de notaire</strong></span>
+      <span class="amount" id="d-total">—</span>
+    </div>
+  </div>
+
+  <div class="tip" id="tip-text">
+    <strong>💡 Conseil :</strong> Chargement...
+  </div>
+
+  <div class="cta">
+    <h3>📬 Conseils immobilier dans votre boîte mail</h3>
+    <p>Aides, taux et stratégies pour acheter moins cher chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr">
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · Estimation indicative. Consultez un notaire pour un calcul précis.</span>
+</footer>
+
+<script>
+let typeActuel = 'ancien';
+const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+const fmtPct = n => n.toFixed(1) + '%';
+
+function setType(type) {
+  typeActuel = type;
+  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('btn-' + type).classList.add('active');
+  calculate();
+}
+
+// Calcul émoluments notaire selon barème officiel
+function calcEmoluments(base) {
+  let e = 0;
+  if(base <= 6500) e = base * 0.03945;
+  else if(base <= 17000) e = 6500*0.03945 + (base-6500)*0.01627;
+  else if(base <= 60000) e = 6500*0.03945 + 10500*0.01627 + (base-17000)*0.01085;
+  else e = 6500*0.03945 + 10500*0.01627 + 43000*0.01085 + (base-60000)*0.00814;
+  return Math.max(e, 90); // minimum 90€
+}
+
+function calculate() {
+  const prix = +document.getElementById('prix').value;
+  const mobilier = +document.getElementById('mobilier').value;
+  const base = Math.max(0, prix - mobilier);
+
+  document.getElementById('v-prix').innerHTML = prix.toLocaleString('fr-FR') + ' <span>€</span>';
+  document.getElementById('v-mobilier').innerHTML = mobilier.toLocaleString('fr-FR') + ' <span>€</span>';
+
+  let taxes, tauxTotal, typeLabel;
+
+  if(typeActuel === 'ancien') {
+    taxes = base * 0.0580; // ~5.80% droits mutation ancien
+    tauxTotal = 7.5;
+    typeLabel = 'Ancien';
+  } else if(typeActuel === 'neuf') {
+    taxes = base * 0.007; // ~0.7% TVA déjà payée
+    tauxTotal = 3;
+    typeLabel = 'Neuf';
+  } else {
+    taxes = base * 0.0580;
+    tauxTotal = 8;
+    typeLabel = 'Terrain';
+  }
+
+  const emoluments = calcEmoluments(base) * 1.2; // TVA 20%
+  const debours = 1200; // forfait moyen
+  const csi = base * 0.001; // 0.1%
+
+  const total = taxes + emoluments + debours + csi;
+  const pctReel = (total / prix * 100);
+  const budgetTotal = prix + total;
+
+  document.getElementById('r-total').textContent = fmt(total);
+  document.getElementById('r-pct').textContent = fmtPct(pctReel);
+  document.getElementById('r-budget').textContent = fmt(budgetTotal);
+  document.getElementById('r-type').textContent = typeLabel;
+
+  document.getElementById('d-taxes').textContent = fmt(taxes);
+  document.getElementById('d-emoluments').textContent = fmt(emoluments);
+  document.getElementById('d-debours').textContent = fmt(debours);
+  document.getElementById('d-csi').textContent = fmt(csi);
+  document.getElementById('d-total').textContent = fmt(total);
+
+  // Conseil dynamique
+  const tip = document.getElementById('tip-text');
+  if(typeActuel === 'neuf') {
+    tip.innerHTML = '<strong>✅ Avantage du neuf :</strong> Les frais de notaire sont réduits (2-3%) dans le neuf car les droits de mutation sont quasi inexistants. C\'est un avantage significatif malgré un prix d\'achat souvent plus élevé.';
+  } else if(mobilier > 0) {
+    const economie = mobilier * 0.058;
+    tip.innerHTML = `<strong>💡 Bonne stratégie :</strong> En déduisant ${fmt(mobilier)} de mobilier, vous économisez environ ${fmt(economie)} de frais. Assurez-vous d\'avoir des justificatifs pour chaque élément de mobilier.`;
+  } else if(prix >= 300000) {
+    tip.innerHTML = `<strong>💡 Conseil :</strong> Pour un achat à ${fmt(prix)}, pensez à déduire le mobilier (cuisine équipée, placards, etc.) de la base de calcul — chaque tranche de 10 000 € de mobilier vous économise ~580 € de frais.`;
+  } else {
+    tip.innerHTML = `<strong>💡 Conseil :</strong> Prévoyez toujours 8-10% du prix d'achat pour les frais annexes (notaire + garantie + frais de dossier bancaire). Soit ${fmt(prix * 0.09)} pour votre projet.`;
+  }
+}
+
+document.querySelectorAll('input[type=range]').forEach(el => el.addEventListener('input', calculate));
+calculate();
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

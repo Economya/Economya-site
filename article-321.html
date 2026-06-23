@@ -108,8 +108,17 @@ window.economyaLoadGA = function() {
   gtag("config", "G-YBK8GHCDT5");
 };
 </script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795"
-     crossorigin="anonymous"></script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
 
   <script type="application/ld+json">
   {
@@ -299,7 +308,7 @@ window.economyaLoadGA = function() {
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · Mentions légales · Contact · Cet article contient des liens partenaires.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
 
 <style>
@@ -329,7 +338,7 @@ var K="economya_cookie_consent";
 var D=180;
 function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
 function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
-function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
 var existing=getC();
 var banner=document.getElementById("economya-cookie-banner");
 if(existing){apply(existing);}else if(banner){banner.style.display="block";}

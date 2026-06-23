@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réparer plutôt que jeter : économiser sur l'électroménager — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:1rem}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.back{font-size:.8rem;color:var(--m);text-decoration:none;display:flex;align-items:center;gap:.4rem}
+.back:hover{color:var(--g)}
+
+.article-hero{background:linear-gradient(135deg,#1c1917,#374151 55%,#6b7280);color:white;padding:4rem 2rem 3rem;text-align:center}
+.article-cat{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1.2rem}
+.article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.2;max-width:680px;margin:0 auto 1rem}
+.article-hero h1 em{color:var(--a);font-style:normal}
+.article-meta{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,0.6)}
+.savings-badge{display:inline-block;background:var(--a);color:white;padding:.5rem 1.2rem;border-radius:50px;font-weight:500;font-size:.9rem;margin-top:1.2rem}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+.intro-box{background:var(--gl);border-left:4px solid var(--g);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin-bottom:2.5rem;font-size:.95rem;color:var(--gd);font-weight:500}
+
+h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:2.5rem 0 .8rem;color:var(--gd)}
+p{margin-bottom:1rem;color:var(--m);font-weight:300}
+p strong{color:var(--t);font-weight:500}
+
+/* APPAREIL CARDS */
+.appareil-grid{display:grid;gap:1.1rem;margin:1.5rem 0}
+.appareil-card{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;transition:box-shadow .2s}
+.appareil-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07)}
+.appareil-header{padding:.9rem 1.4rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;background:var(--bg);border-bottom:1px solid var(--b)}
+.appareil-left{display:flex;align-items:center;gap:.8rem}
+.appareil-icon{font-size:1.4rem}
+.appareil-name{font-size:.95rem;font-weight:500;color:var(--t)}
+.appareil-verdict{font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:50px;white-space:nowrap}
+.v-reparer{background:var(--gl);color:var(--gd)}
+.v-occasion{background:var(--al);color:var(--ad)}
+.v-neuf{background:#FEF2F2;color:#991b1b}
+.appareil-body{padding:.8rem 1.4rem}
+.appareil-body p{margin:0;font-size:.83rem;color:var(--m);font-weight:300;line-height:1.5}
+.panne-eco{display:flex;gap:1.5rem;margin-top:.6rem;flex-wrap:wrap}
+.panne-item{font-size:.75rem;color:var(--m)}
+.panne-item strong{color:var(--g)}
+
+/* RESSOURCES RÉPARATION */
+.ressource-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.8rem;margin:1.5rem 0}
+.ressource-card{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:.9rem 1rem;transition:box-shadow .2s}
+.ressource-card:hover{box-shadow:0 3px 14px rgba(0,0,0,0.06)}
+.ressource-emoji{font-size:1.4rem;margin-bottom:.35rem}
+.ressource-name{font-size:.87rem;font-weight:500;color:var(--t);margin-bottom:.15rem}
+.ressource-tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.65rem;font-weight:500;padding:.1rem .45rem;border-radius:50px;margin-bottom:.2rem}
+.ressource-desc{font-size:.72rem;color:var(--m);font-weight:300;line-height:1.35}
+
+/* BONUS RÉPARATION */
+.bonus-grid{display:grid;gap:.9rem;margin:1.5rem 0}
+.bonus-card{background:var(--w);border:1px solid var(--b);border-left:4px solid var(--a);border-radius:0 12px 12px 0;padding:1rem 1.3rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
+.bonus-info h3{font-size:.92rem;font-weight:500;color:var(--t);margin-bottom:.25rem}
+.bonus-info p{margin:0;font-size:.8rem;color:var(--m);font-weight:300;line-height:1.45}
+.bonus-montant{background:var(--al);color:var(--ad);font-size:.72rem;font-weight:500;padding:.25rem .65rem;border-radius:50px;white-space:nowrap;flex-shrink:0;align-self:flex-start}
+
+.tip-box{background:var(--al);border:1px solid rgba(239,159,39,0.3);border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.tip-box .tip-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ad);margin-bottom:.5rem}
+.tip-box p{margin:0;font-size:.9rem;color:var(--ad)}
+
+.warn-box{background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.warn-box .warn-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:#991B1B;margin-bottom:.5rem}
+.warn-box p{margin:0;font-size:.88rem;color:#7F1D1D}
+
+.recap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:2rem 0}
+.recap-title{background:var(--gd);color:white;padding:.8rem 1.2rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.recap-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.2rem;border-bottom:1px solid var(--b);font-size:.85rem;gap:1rem}
+.recap-row:last-child{border-bottom:none;font-weight:500;background:var(--gl)}
+.recap-row span:last-child{color:var(--g);font-weight:500;text-align:right}
+
+.article-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b);margin-top:3rem;gap:1rem;flex-wrap:wrap}
+.art-nav-btn{display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%}
+.art-nav-btn .nav-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m)}
+.art-nav-btn .nav-title{font-size:.85rem;font-weight:500;color:var(--gd)}
+.art-nav-btn:hover .nav-title{color:var(--g)}
+.art-nav-btn.next{text-align:right;margin-left:auto}
+
+footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.8rem;font-size:.8rem}
+footer strong{color:white}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none}
+
+@media(max-width:640px){
+  .article-wrap{padding:2rem 1rem 4rem}
+  nav{padding:.8rem 1rem}
+  .appareil-header{flex-wrap:wrap}
+  .ressource-grid{grid-template-columns:1fr 1fr}
+}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795"
+     crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Réparer plutôt que jeter : économiser sur l'électroménager",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-29.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Réparer plutôt que jeter : économiser sur l'électroménager">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-29.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Réparer plutôt que jeter : économiser sur l'électroménager">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-29.html" />
+<meta name="description" content="Réparer plutôt que jeter : économiser sur l'électroménager — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Retour aux articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="article-hero">
+  <div class="article-cat">🔧 Maison</div>
+  <h1>Réparer plutôt que jeter : <em>économiser sur l'électroménager</em></h1>
+  <div class="savings-badge">💰 Jusqu'à 500€ économisés par réparation</div>
+  <div class="article-meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié mai 2025</span>
+    <span>🇫🇷 Bonus réparation disponible</span>
+  </div>
+</div>
+
+<div class="article-wrap">
+
+  <div class="intro-box">
+    Un lave-linge qui tombe en panne est remplacé en moyenne dans les 48h en France — alors que dans 80% des cas, la panne coûterait moins de 100€ à réparer. L'obsolescence programmée et la culture du "tout neuf" coûtent aux Français des <strong>milliers d'euros inutiles chaque année</strong>. Voici comment inverser cette tendance.
+  </div>
+
+  <p>La France a fait un pas important avec la loi anti-gaspillage de 2020 qui impose un <strong>indice de réparabilité</strong> sur les appareils électroniques et électroménagers. Cet indice, affiché en magasin, vous indique si un appareil peut être réparé facilement. Combiné au bonus réparation de l'État et aux ressources en ligne gratuites, réparer n'a jamais été aussi simple et accessible.</p>
+
+  <h2>Réparer ou remplacer ? L'analyse appareil par appareil</h2>
+
+  <div class="appareil-grid">
+
+    <div class="appareil-card">
+      <div class="appareil-header">
+        <div class="appareil-left">
+          <div class="appareil-icon">🫧</div>
+          <div class="appareil-name">Lave-linge</div>
+        </div>
+        <span class="appareil-verdict v-reparer">✓ Réparer en priorité</span>
+      </div>
+      <div class="appareil-body">
+        <p>L'un des appareils les plus faciles et les moins chers à réparer. Les pannes courantes (pompe de vidange, résistance, joint de hublot, roulement) coûtent 20 à 80€ de pièces et se réparent en 30 à 60 minutes avec une vidéo YouTube. Un lave-linge neuf coûte 400 à 800€ ; une réparation bien menée lui donne 5 à 8 ans de vie supplémentaires.</p>
+        <div class="panne-eco">
+          <span class="panne-item">Pompe vidange : <strong>15–25€</strong></span>
+          <span class="panne-item">Résistance : <strong>20–40€</strong></span>
+          <span class="panne-item">Joint hublot : <strong>15–30€</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="appareil-card">
+      <div class="appareil-header">
+        <div class="appareil-left">
+          <div class="appareil-icon">🍳</div>
+          <div class="appareil-name">Four et plaques de cuisson</div>
+        </div>
+        <span class="appareil-verdict v-reparer">✓ Réparer en priorité</span>
+      </div>
+      <div class="appareil-body">
+        <p>Résistances de four, thermostats et joints de porte sont facilement remplaçables. Une résistance de four coûte 15 à 30€ et se change en 20 minutes. Les plaques vitrocéramiques cassées peuvent être remplacées (80 à 150€ de pièce) bien moins cher qu'un nouvel appareil (200 à 600€). Toujours vérifier l'indice de réparabilité avant l'achat d'un nouvel appareil.</p>
+        <div class="panne-eco">
+          <span class="panne-item">Résistance four : <strong>15–30€</strong></span>
+          <span class="panne-item">Thermostat : <strong>20–40€</strong></span>
+          <span class="panne-item">Joint porte : <strong>10–20€</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="appareil-card">
+      <div class="appareil-header">
+        <div class="appareil-left">
+          <div class="appareil-icon">❄️</div>
+          <div class="appareil-name">Réfrigérateur</div>
+        </div>
+        <span class="appareil-verdict v-reparer">✓ Réparer si moins de 10 ans</span>
+      </div>
+      <div class="appareil-body">
+        <p>Un réfrigérateur dure en moyenne 15 à 20 ans. Les pannes courantes (joint de porte, thermostat, ventilateur) sont peu coûteuses. En revanche, une panne de compresseur (200 à 400€ de réparation) peut rendre le remplacement plus pertinent sur un appareil de plus de 12 ans. Le joint de porte (souvent responsable de 30% des pannes de froid) coûte 20 à 40€ et se change sans outil.</p>
+        <div class="panne-eco">
+          <span class="panne-item">Joint porte : <strong>20–40€</strong></span>
+          <span class="panne-item">Thermostat : <strong>15–30€</strong></span>
+          <span class="panne-item">Ventilateur : <strong>20–50€</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="appareil-card">
+      <div class="appareil-header">
+        <div class="appareil-left">
+          <div class="appareil-icon">🖨️</div>
+          <div class="appareil-name">Imprimante</div>
+        </div>
+        <span class="appareil-verdict v-occasion">→ Occasion recommandée</span>
+      </div>
+      <div class="appareil-body">
+        <p>Les imprimantes à jet d'encre d'entrée de gamme sont souvent conçues pour ne pas être réparées — les pièces coûtent plus cher que l'appareil. En cas de panne, cherchez d'abord une imprimante laser d'occasion (30 à 80€ sur LBC) : bien plus fiable, moins coûteuse en consommables, et réparable. Les imprimantes laser reconditionnées Brother ou HP durent des années.</p>
+        <div class="panne-eco">
+          <span class="panne-item">Imprimante laser occ. : <strong>30–80€</strong></span>
+          <span class="panne-item">Toner : <strong>15–25€</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="appareil-card">
+      <div class="appareil-header">
+        <div class="appareil-left">
+          <div class="appareil-icon">📱</div>
+          <div class="appareil-name">Smartphone (écran cassé)</div>
+        </div>
+        <span class="appareil-verdict v-reparer">✓ Réparer, pas racheter</span>
+      </div>
+      <div class="appareil-body">
+        <p>Un écran de smartphone cassé est la panne la plus courante et souvent la plus surestimée. Un remplacement d'écran en réparateur agréé coûte 80 à 200€ selon le modèle — vs 600 à 1 200€ pour un nouveau téléphone. Des réparateurs labellisés QualiRepar pratiquent des tarifs compétitifs et bénéficient du bonus réparation de l'État. Certaines réparations (batterie, charge) peuvent se faire soi-même avec un kit à 15€.</p>
+        <div class="panne-eco">
+          <span class="panne-item">Écran iPhone (répar.) : <strong>80–180€</strong></span>
+          <span class="panne-item">Batterie : <strong>40–80€</strong></span>
+          <span class="panne-item">vs neuf : <strong>600–1200€</strong></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Les ressources pour réparer soi-même</h2>
+
+  <div class="ressource-grid">
+    <div class="ressource-card">
+      <div class="ressource-emoji">🎥</div>
+      <div class="ressource-name">iFixit</div>
+      <div class="ressource-tag">Gratuit</div>
+      <div class="ressource-desc">La bible de la réparation DIY. Guides pas à pas pour des milliers d'appareils, avec photos et vidéos. En français.</div>
+    </div>
+    <div class="ressource-card">
+      <div class="ressource-emoji">▶️</div>
+      <div class="ressource-name">YouTube</div>
+      <div class="ressource-tag">Gratuit</div>
+      <div class="ressource-desc">Cherchez "[modèle] + panne + réparation" : 9 fois sur 10, une vidéo détaillée existe déjà.</div>
+    </div>
+    <div class="ressource-card">
+      <div class="ressource-emoji">🔩</div>
+      <div class="ressource-name">SOS Accessoire</div>
+      <div class="ressource-tag">Pièces détachées</div>
+      <div class="ressource-desc">Spécialiste français des pièces détachées électroménager. Livraison rapide, pièces compatibles garanties.</div>
+    </div>
+    <div class="ressource-card">
+      <div class="ressource-emoji">🏪</div>
+      <div class="ressource-name">Repair Café</div>
+      <div class="ressource-tag">Gratuit</div>
+      <div class="ressource-desc">Réseau de cafés de réparation bénévoles présents dans 400 villes françaises. Apportez votre appareil, des bénévoles vous aident à le réparer.</div>
+    </div>
+    <div class="ressource-card">
+      <div class="ressource-emoji">🛒</div>
+      <div class="ressource-name">Cdiscount / Amazon</div>
+      <div class="ressource-tag">Pièces détachées</div>
+      <div class="ressource-desc">Pièces génériques compatibles souvent 2 à 3 fois moins chères que chez le fabricant. Vérifiez la compatibilité.</div>
+    </div>
+    <div class="ressource-card">
+      <div class="ressource-emoji">🏆</div>
+      <div class="ressource-name">QualiRepar</div>
+      <div class="ressource-tag">Label officiel</div>
+      <div class="ressource-desc">Label des réparateurs agréés pour le bonus réparation de l'État. Trouver un réparateur près de chez vous sur qualirépar.fr</div>
+    </div>
+  </div>
+
+  <h2>Les aides financières pour réparer</h2>
+
+  <div class="bonus-grid">
+
+    <div class="bonus-card">
+      <div class="bonus-info">
+        <h3>Bonus Réparation (État)</h3>
+        <p>Depuis 2023, une réduction immédiate sur la facture de réparation chez un réparateur labellisé QualiRepar. S'applique aux smartphones, tablettes, ordinateurs, lave-linge, lave-vaisselle, téléviseurs et autres appareils électroniques. Pas de démarche à faire — la réduction est déduite directement à la facturation.</p>
+      </div>
+      <span class="bonus-montant">15 à 45€ de réduction</span>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-info">
+        <h3>Garantie légale de conformité</h3>
+        <p>Tout appareil électroménager acheté neuf bénéficie d'une garantie légale de conformité de 2 ans (3 ans pour les biens d'occasion depuis 2022). Si une panne survient dans ce délai, le vendeur doit réparer ou remplacer gratuitement — sans que vous ayez à prouver l'origine du défaut la première année.</p>
+      </div>
+      <span class="bonus-montant">Réparation gratuite 2 ans</span>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-info">
+        <h3>Déduction fiscale pour réparation (service à domicile)</h3>
+        <p>Si vous faites appel à un réparateur à domicile (plombier, électricien, réparateur d'électroménager), 50% du coût de la main d'œuvre est déductible de vos impôts via le crédit d'impôt pour services à la personne. Un devis de 200€ de main d'œuvre vous coûte réellement 100€ après impôts.</p>
+      </div>
+      <span class="bonus-montant">50% en crédit d'impôt</span>
+    </div>
+
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 La règle des 50%</div>
+    <p>Avant de jeter un appareil en panne, appliquez la règle des 50% : <strong>si le coût de réparation est inférieur à 50% du prix d'un appareil neuf équivalent</strong>, réparez. Si votre lave-linge vaut 500€ neuf et que la réparation coûte 150€, réparez — vous économisez 350€ et gagnez 5 à 8 ans de vie supplémentaires. Cette règle simple évite des milliers d'euros de dépenses inutiles sur une vie.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">⚠️ Les appareils qui ne valent pas la peine d'être réparés</div>
+    <p>Certains appareils sont conçus pour ne pas être réparables économiquement : les petits électroménagers bas de gamme (cafetière à 20€, grille-pain à 15€), les imprimantes à jet d'encre entrée de gamme et certains aspirateurs sans fil d'entrée de gamme. Pour ces appareils, cherchez directement un modèle d'occasion de meilleure qualité ou investissez dans une version plus haut de gamme avec un meilleur indice de réparabilité — elle durera 3 fois plus longtemps.</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-title">📊 Économies par rapport au remplacement neuf</div>
+    <div class="recap-row"><span>Lave-linge réparé (pompe + joint) vs neuf</span><span>~400€ économisés</span></div>
+    <div class="recap-row"><span>Smartphone écran réparé vs neuf</span><span>~500 à 900€ économisés</span></div>
+    <div class="recap-row"><span>Four résistance changée vs neuf</span><span>~200€ économisés</span></div>
+    <div class="recap-row"><span>Bonus réparation État sur facture</span><span>15 à 45€ de réduction</span></div>
+    <div class="recap-row"><span>Crédit d'impôt réparation à domicile</span><span>50% de la main d'œuvre</span></div>
+    <div class="recap-row"><span><strong>Économie par réparation vs remplacement</strong></span><span><strong>200 à 500€ en moyenne</strong></span></div>
+  </div>
+
+  <p>Réparer plutôt que jeter est l'une des décisions financières et écologiques les plus impactantes qu'un foyer puisse prendre. <strong>Appliquez la règle des 50%, consultez iFixit ou YouTube avant d'appeler un réparateur, utilisez le bonus réparation de l'État</strong> : ces trois réflexes peuvent économiser plusieurs centaines d'euros par an et prolonger considérablement la durée de vie de vos appareils.</p>
+
+  <div class="article-nav">
+    <a class="art-nav-btn" href="article-28.html">
+      <span class="nav-label">← Article précédent</span>
+      <span class="nav-title">Voyager low cost en Europe : les meilleures destinations</span>
+    </a>
+    <a class="art-nav-btn next" href="article-30.html">
+      <span class="nav-label">Article suivant →</span>
+      <span class="nav-title">Déductions fiscales méconnues pour payer moins d'impôts</span>
+    </a>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · <a href="index.html">Accueil</a> · Cet site contient des liens partenaires.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

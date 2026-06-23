@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Moonlighting : avoir un 2e revenu légal — +500 à +2 000€/mois. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moonlighting : avoir un 2e revenu légal — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--lime:#65a30d;--lime-l:#f7fee7;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#1a2e05,#365314,#65a30d);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🌙';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#d9f99d;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#bef264;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#65a30d);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(101,163,13,.4)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#65a30d,#be185d);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--lime);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* IDÉES */
+.idees{display:flex;flex-direction:column;gap:.9rem;margin:1.5rem 0}
+.idee{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.3rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.idee:hover{box-shadow:0 4px 16px rgba(101,163,13,.1)}
+.idee.top{border:2px solid var(--g)}
+.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
+.i-icon{font-size:1.8rem;flex-shrink:0;margin-top:.1rem}
+.i-body h3{font-size:.9rem;font-weight:700;margin-bottom:.2rem}
+.i-body p{font-size:.82rem;color:var(--m);font-weight:300;margin:0 0 .4rem}
+.i-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.itag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:var(--lime-l);color:#365314}
+.i-right{text-align:right;flex-shrink:0}
+.i-revenu{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--g);display:block;white-space:nowrap}
+.i-sub{font-size:.7rem;color:var(--m)}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--lime-l);border-left:4px solid var(--lime);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#365314}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#1a2e05,#365314);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#65a30d,#be185d);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.idee{grid-template-columns:1fr;gap:.5rem}.i-right{text-align:left}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795"
+     crossorigin="anonymous"></script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Moonlighting : avoir un 2e revenu légal",
+  "description": "Moonlighting : avoir un 2e revenu légal — +500 à +2 000€/mois. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-418.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Moonlighting : avoir un 2e revenu légal">
+  <meta property="og:description" content="Moonlighting : avoir un 2e revenu légal — +500 à +2 000€/mois. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-418.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Moonlighting : avoir un 2e revenu légal">
+  <meta name="twitter:description" content="Moonlighting : avoir un 2e revenu légal — +500 à +2 000€/mois. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-418.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">🌙 Revenus</div>
+    <h1>Moonlighting :<br><em>avoir un 2e revenu légal</em></h1>
+    <div class="savings-badge">💰 +500 à +2 000 €/mois</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="theme-tag">💼 Revenus secondaires</span>
+    </div>
+  </div>
+</div>
+<div class="ab">
+  <p class="lead">Le "moonlighting" consiste à exercer une activité rémunérée en dehors de son emploi principal — en soirée, le week-end ou en télétravail. En France, c'est légal et même encouragé depuis la loi de 2022 sur le travail. Voici les meilleures idées concrètes et les règles à respecter.</p>
+
+  <h2>💡 Les meilleures idées de revenus secondaires</h2>
+  <div class="idees">
+    <div class="idee top">
+      <div class="i-icon">💻</div>
+      <div class="i-body">
+        <div class="top-badge">⭐ Meilleur rapport temps/argent</div>
+        <h3>Freelance dans votre domaine de compétence</h3>
+        <p>Si vous êtes développeur, graphiste, comptable, juriste, consultant — votre expertise se vend bien en freelance. Malt, Upwork, LinkedIn permettent de trouver des missions en quelques semaines. 500 à 2 000 € pour une mission de quelques jours.</p>
+        <div class="i-tags"><span class="itag">Malt.fr</span><span class="itag">Upwork</span><span class="itag">LinkedIn</span></div>
+      </div>
+      <div class="i-right"><span class="i-revenu">300–2 000 €/mois</span><span class="i-sub">selon compétences</span></div>
+    </div>
+    <div class="idee">
+      <div class="i-icon">📚</div>
+      <div class="i-body">
+        <h3>Cours particuliers / tutorat</h3>
+        <p>Scolaire (maths, anglais, physique), langues, musique, programmation, cuisine — donnez des cours sur Superprof ou directement. 2 à 4 heures par semaine peuvent générer 200 à 600 € mensuels supplémentaires.</p>
+        <div class="i-tags"><span class="itag">Superprof</span><span class="itag">Preply</span><span class="itag">Direct</span></div>
+      </div>
+      <div class="i-right"><span class="i-revenu">200–600 €/mois</span><span class="i-sub">2–4h/semaine</span></div>
+    </div>
+    <div class="idee">
+      <div class="i-icon">🚗</div>
+      <div class="i-body">
+        <h3>VTC / livraison (Uber, Bolt, Deliveroo, Stuart)</h3>
+        <p>Disponible le soir et le week-end. VTC : 15–25 €/h net. Livraison : 10–15 €/h. Plus flexible que jamais avec des applications qui ne nécessitent que quelques heures d'inscription. Revenus immédiats dès la première semaine.</p>
+        <div class="i-tags"><span class="itag">Uber / Bolt</span><span class="itag">Deliveroo</span><span class="itag">Revenus immédiats</span></div>
+      </div>
+      <div class="i-right"><span class="i-revenu">400–1 000 €/mois</span><span class="i-sub">selon heures</span></div>
+    </div>
+    <div class="idee">
+      <div class="i-icon">📝</div>
+      <div class="i-body">
+        <h3>Rédaction web, traduction, transcription</h3>
+        <p>La rédaction de contenus (articles, fiches produits, réseaux sociaux) se facture 30–80 € les 1 000 mots. La traduction 50–150 € les 1 000 mots. La transcription audio 1–3 €/minute. Entièrement faisable depuis chez soi.</p>
+        <div class="i-tags"><span class="itag">Malt</span><span class="itag">TextMaster</span><span class="itag">Fiverr</span></div>
+      </div>
+      <div class="i-right"><span class="i-revenu">300–1 000 €/mois</span><span class="i-sub">selon volume</span></div>
+    </div>
+    <div class="idee">
+      <div class="i-icon">🏠</div>
+      <div class="i-body">
+        <h3>Location de votre parking, cave ou garde-robe</h3>
+        <p>Louer une place de parking en ville sur Yespark ou Zenpark génère 50–200 €/mois passifs. Une cave sur Costockage : 30–100 €/mois. Votre chambre d'amis sur Airbnb : 200–600 €/week-end. Revenus passifs avec peu d'effort.</p>
+        <div class="i-tags"><span class="itag">Yespark</span><span class="itag">Costockage</span><span class="itag">Airbnb</span></div>
+      </div>
+      <div class="i-right"><span class="i-revenu">50–600 €/mois</span><span class="i-sub">revenus passifs</span></div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Vérifiez la clause d'exclusivité de votre contrat de travail</strong>
+    Certains contrats de travail contiennent une clause d'exclusivité qui interdit toute activité professionnelle externe. Vérifiez votre contrat avant de vous lancer. En l'absence de clause d'exclusivité, le salarié est libre d'exercer une activité secondaire — à condition que celle-ci ne soit pas concurrente de l'employeur et ne nuise pas à ses obligations professionnelles.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Déclarez systématiquement vos revenus secondaires</strong>
+    Tout revenu complémentaire est imposable en France. Le statut micro-entrepreneur est idéal : inscription gratuite sur autoentrepreneur.urssaf.fr, cotisations à 12,3 % (vente) ou 21,2 % (services) sur le CA. En dessous de 10 000 € de CA annuel, le montant des impôts reste limité. Ne pas déclarer expose à des redressements fiscaux.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Revenus complémentaires dans votre boîte mail</h3>
+    <p>Les meilleures idées et stratégies pour augmenter vos revenus légalement, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2025 · Mentions légales · Contact · Cet article contient des liens partenaires.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-415.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Grenier en or :évaluer et vendre ses objets</div></a><a class="sim-card" href="article-416.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Vendre ses créations en ligne :plateformes gratuites</div></a><a class="sim-card" href="article-420.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Fiverr et Malt :trouver ses premiers clients freelance</div></a><a class="sim-card" href="article-421.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Side hustle :20 idées testées en France</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>
