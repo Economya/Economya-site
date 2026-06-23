@@ -314,7 +314,7 @@ function calculate() {
   const altGrid = document.getElementById('alt-grid');
   altGrid.innerHTML = '';
   const alts = [
-    { icon: '🚌', nom: 'Transports en commun', prix: `Pass Navigo : 90,80 €/mois` },
+    { icon: '🚌', nom: 'Transports en commun', prix: `Pass Navigo : 88 €/mois` },
     { icon: '🚲', nom: 'Vélo électrique', prix: `Crédit VAE : ~60 €/mois` },
     { icon: '🚗', nom: 'Autopartage', prix: `Getaround : ~150 €/mois` },
     { icon: '✈️', nom: 'Voyages', prix: `${fmt(Math.round(totalAnnuel / 800))} séjours/an` },
