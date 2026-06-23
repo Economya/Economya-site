@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Arrêt maladie : ce que touche vraiment le salarié — Compléments et prévoyance. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arrêt maladie : ce que touche vraiment le salarié — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#2C2C2A;line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#085041;text-decoration:none}
+  .logo span{color:#EF9F27}
+  .back{font-size:.82rem;color:#5F5E5A;text-decoration:none}
+  .back:hover{color:#1D9E75}
+
+  /* HERO — rouge sang → rose saumon → pêche dorée */
+  .hero{background:linear-gradient(135deg,#1A0006 0%,#7A0020 32%,#C83050 62%,#E87060 84%,#F5B890 100%);padding:3.8rem 2rem 3.2rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'🏥';position:absolute;font-size:14rem;opacity:.05;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+  .hero-cat{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.05em}
+  .hero-cat strong{color:#fff}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:900;color:#fff;line-height:1.1;max-width:640px;margin:.3rem auto .9rem}
+  .hero-badge{display:inline-block;background:linear-gradient(90deg,#F5B890,#E87060);color:#1A0006;font-size:.82rem;font-weight:700;padding:.35rem 1.1rem;border-radius:50px}
+  .hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+  .hero-meta span{font-size:.73rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.09);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300;line-height:1.75}
+  h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#7A0020;margin:2.2rem 0 .8rem}
+
+  /* SCHÉMA REVENUS PENDANT L'ARRÊT */
+  .schema{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:13px;overflow:hidden;margin:1.5rem 0}
+  .schema-head{background:linear-gradient(90deg,#7A0020,#C83050);padding:.8rem 1.2rem;color:#fff;font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem}
+  .schema-row{display:grid;grid-template-columns:120px 1fr 1fr;border-bottom:1px solid rgba(0,0,0,.06);font-size:.83rem;align-items:center;min-height:44px}
+  .schema-row.header{background:#FFF0F5;font-weight:600;font-size:.72rem;color:#7A0020;text-transform:uppercase;letter-spacing:.04em}
+  .schema-row:last-child{border-bottom:none}
+  .schema-row:nth-child(even):not(.header){background:#FAFAFA}
+  .schema-cell{padding:.55rem .9rem;font-weight:300;color:#2C2C2A;vertical-align:middle}
+  .schema-cell.periode{font-weight:600;color:#7A0020;font-size:.82rem}
+  .schema-cell.montant{font-weight:500}
+  .schema-cell.good{color:#065F46}
+  .schema-cell.bad{color:#B91C1C}
+  .schema-cell.neutral{color:#5F5E5A}
+  .bar-wrap{padding:.4rem .9rem}
+  .bar{height:10px;border-radius:5px;background:linear-gradient(90deg,#C83050,#E87060)}
+
+  /* DÉCOMPOSITION INDEMNITÉS */
+  .decompo{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1.5rem 0}
+  .decom-card{border-radius:12px;overflow:hidden;border:1px solid rgba(0,0,0,.08)}
+  .decom-head{padding:.65rem 1rem;color:#fff;font-weight:700;font-size:.87rem}
+  .decom-head.secu{background:linear-gradient(90deg,#1A3D7A,#2878C8)}
+  .decom-head.emp{background:linear-gradient(90deg,#0C3020,#1A7040)}
+  .decom-body{background:#fff;padding:.8rem 1rem}
+  .decom-row{display:flex;justify-content:space-between;padding:.28rem 0;border-bottom:1px dotted rgba(0,0,0,.07);font-size:.82rem}
+  .decom-row:last-child{border-bottom:none}
+  .decom-label{font-weight:300;color:#5F5E5A}
+  .decom-val{font-weight:500;color:#2C2C2A}
+
+  /* SIMULATION */
+  .simul{background:linear-gradient(135deg,#1A0006,#7A0020);border-radius:13px;padding:1.3rem 1.5rem;margin:1.5rem 0;color:#fff}
+  .simul h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#F5B890;margin-bottom:.9rem}
+  .simul-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .simul-col h4{font-size:.74rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.5);margin-bottom:.6rem;padding-bottom:.3rem;border-bottom:1px solid rgba(255,255,255,.1)}
+  .simul-row{display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.83rem}
+  .simul-row:last-child{border-bottom:none;padding-top:.45rem}
+  .simul-lab{font-weight:300;color:rgba(255,255,255,.75)}
+  .simul-val{font-weight:600;color:#F5B890;white-space:nowrap}
+  .simul-lab.total{font-weight:600;color:#fff}
+  .simul-val.green{color:#6EE7B7}
+
+  /* DROITS ET OBLIGATIONS */
+  .droits{display:flex;flex-direction:column;gap:.5rem;margin:1.4rem 0}
+  .droit{display:flex;gap:.75rem;align-items:flex-start;padding:.65rem 1rem;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.07)}
+  .droit-ico{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+  .droit-text{font-size:.83rem;font-weight:300;color:#2C2C2A;line-height:1.5}
+  .droit-text strong{font-weight:500;color:#7A0020;display:block;margin-bottom:.1rem}
+
+  /* CAS PARTICULIERS */
+  .cas{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin:1.5rem 0}
+  .cas-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:11px;padding:.85rem .9rem}
+  .cas-ico{font-size:1.2rem;margin-bottom:.3rem}
+  .cas-titre{font-weight:500;font-size:.85rem;color:#7A0020;margin-bottom:.2rem}
+  .cas-desc{font-size:.78rem;font-weight:300;color:#5F5E5A;line-height:1.45}
+  .cas-badge{display:inline-block;margin-top:.3rem;font-size:.7rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:#FFF0F5;color:#7A0020}
+
+  .encadre{border-left:4px solid #C83050;background:#FFF0F5;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+  .encadre strong{display:block;color:#7A0020;font-size:.9rem;margin-bottom:.3rem}
+  .encadre p{font-size:.84rem;font-weight:300;color:#9B1D3A;margin:0;line-height:1.6}
+
+  .conseil{background:linear-gradient(135deg,#1A0006,#7A0020);border-radius:13px;padding:1.3rem 1.5rem;margin:2rem 0;color:#fff;border:1px solid rgba(245,184,144,.12)}
+  .conseil strong{display:block;color:#F5B890;font-weight:500;font-size:.93rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:#085041;color:rgba(255,255,255,.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:#fff}
+  footer a{color:#EF9F27;text-decoration:none}
+  @media(max-width:500px){.decompo{grid-template-columns:1fr}.simul-grid{grid-template-columns:1fr}.cas{grid-template-columns:1fr}.schema-row{grid-template-columns:100px 1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Arrêt maladie : ce que touche vraiment le salarié",
+  "description": "Arrêt maladie : ce que touche vraiment le salarié — Compléments et prévoyance. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-221.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Arrêt maladie : ce que touche vraiment le salarié">
+  <meta property="og:description" content="Arrêt maladie : ce que touche vraiment le salarié — Compléments et prévoyance. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-221.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arrêt maladie : ce que touche vraiment le salarié">
+  <meta name="twitter:description" content="Arrêt maladie : ce que touche vraiment le salarié — Compléments et prévoyance. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-221.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero">
+  <div class="hero-cat">🏥 <strong>Emploi</strong></div>
+  <h1>Arrêt maladie : ce que touche vraiment le salarié</h1>
+  <div class="hero-badge">💰 Compléments et prévoyance</div>
+  <div class="hero-meta">
+    <span>📖 5 min de lecture</span>
+    <span>✅ Vérifié juin 2025</span>
+    <span>💼 Santé & salaire</span>
+  </div>
+</div>
+
+<article>
+  <p>Un arrêt maladie, ça arrive à tout le monde — mais personne ne sait vraiment combien il va toucher avant d'y être confronté. Entre le délai de carence, les indemnités journalières de la Sécurité Sociale, le maintien de salaire par l'employeur et la prévoyance complémentaire, le résultat final peut aller de 50 % à 100 % du salaire net selon votre situation. Ce guide vous explique exactement ce que vous percevez, comment le calculer, et comment éviter les mauvaises surprises.</p>
+
+  <h2>Ce que vous touchez jour par jour</h2>
+
+  <div class="schema">
+    <div class="schema-head">📅 Revenus pendant un arrêt maladie ordinaire</div>
+    <div class="schema-row header">
+      <div class="schema-cell">Période</div>
+      <div class="schema-cell">Ce que verse la Sécu</div>
+      <div class="schema-cell">Ce que verse l'employeur</div>
+    </div>
+    <div class="schema-row">
+      <div class="schema-cell periode">J1 à J3</div>
+      <div class="schema-cell bad">0 € (délai de carence)</div>
+      <div class="schema-cell neutral">Selon convention collective</div>
+    </div>
+    <div class="schema-row">
+      <div class="schema-cell periode">J4 à J90</div>
+      <div class="schema-cell">IJSS = 50 % du salaire journalier brut de référence</div>
+      <div class="schema-cell good">Maintien légal si ≥ 1 an ancienneté</div>
+    </div>
+    <div class="schema-row">
+      <div class="schema-cell periode">J91 à J180</div>
+      <div class="schema-cell">IJSS continues (50 %)</div>
+      <div class="schema-cell neutral">Maintien réduit ou stoppé selon CC</div>
+    </div>
+    <div class="schema-row">
+      <div class="schema-cell periode">Au-delà de 6 mois</div>
+      <div class="schema-cell">Invalidité si incapacité durable (pension invalidité)</div>
+      <div class="schema-cell bad">Maintien généralement stoppé</div>
+    </div>
+  </div>
+
+  <h2>Les deux sources d'indemnisation</h2>
+
+  <div class="decompo">
+    <div class="decom-card">
+      <div class="decom-head secu">🏥 Indemnités Sécu (IJSS)</div>
+      <div class="decom-body">
+        <div class="decom-row"><span class="decom-label">Montant</span><span class="decom-val">50 % du SJB*</span></div>
+        <div class="decom-row"><span class="decom-label">Plafond journalier</span><span class="decom-val">53,49 €/jour (2025)</span></div>
+        <div class="decom-row"><span class="decom-label">Délai de carence</span><span class="decom-val">3 jours</span></div>
+        <div class="decom-row"><span class="decom-label">Conditions</span><span class="decom-val">800 h sur 12 mois</span></div>
+        <div class="decom-row"><span class="decom-label">Durée max</span><span class="decom-val">360 j sur 3 ans</span></div>
+        <div class="decom-row"><span class="decom-label">Imposable ?</span><span class="decom-val">Oui (IR)</span></div>
+      </div>
+    </div>
+    <div class="decom-card">
+      <div class="decom-head emp">💼 Maintien employeur</div>
+      <div class="decom-body">
+        <div class="decom-row"><span class="decom-label">Déclenchement</span><span class="decom-val">Après 1 an ancienneté</span></div>
+        <div class="decom-row"><span class="decom-label">Durée à 90 %</span><span class="decom-val">30 à 90 jours selon ancienneté</span></div>
+        <div class="decom-row"><span class="decom-label">Durée à 66 %</span><span class="decom-val">30 à 90 jours selon ancienneté</span></div>
+        <div class="decom-row"><span class="decom-label">Délai de carence</span><span class="decom-val">7 jours (loi) ou 0 (CC)</span></div>
+        <div class="decom-row"><span class="decom-label">Subrogation</span><span class="decom-val">Employeur perçoit les IJSS</span></div>
+        <div class="decom-row"><span class="decom-label">Imposable ?</span><span class="decom-val">Oui — comme salaire</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:.78rem;color:#5F5E5A;margin-top:-.5rem">*SJB = Salaire journalier de base = moyenne des salaires bruts des 3 derniers mois ÷ 91,25</p>
+
+  <h2>Simulation concrète — 2 500 € bruts, 3 ans d'ancienneté</h2>
+
+  <div class="simul">
+    <h3>🧮 Arrêt de 30 jours — Convention collective standard</h3>
+    <div class="simul-grid">
+      <div>
+        <h4>Sans maintien employeur</h4>
+        <div class="simul-row"><span class="simul-lab">J1–J3 (carence)</span><span class="simul-val">0 €</span></div>
+        <div class="simul-row"><span class="simul-lab">J4–J30 IJSS (27 jours)</span><span class="simul-val">871 €</span></div>
+        <div class="simul-row"><span class="simul-lab">Net habituel (30 jours)</span><span class="simul-val">1 973 €</span></div>
+        <div class="simul-row"><span class="simul-lab total">Perte mensuelle</span><span class="simul-val" style="color:#FF8080">- 1 102 €</span></div>
+      </div>
+      <div>
+        <h4>Avec maintien à 90 %</h4>
+        <div class="simul-row"><span class="simul-lab">J1–J7 (carence légale)</span><span class="simul-val">0 € (ou CC = 0 j)</span></div>
+        <div class="simul-row"><span class="simul-lab">J8–J30 maintien à 90 %</span><span class="simul-val">1 710 €</span></div>
+        <div class="simul-row"><span class="simul-lab">IJSS déduites (subrogation)</span><span class="simul-val">incluses</span></div>
+        <div class="simul-row"><span class="simul-lab total">Net perçu estimé</span><span class="simul-val green">≈ 1 710 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Cas particuliers qui changent tout</h2>
+
+  <div class="cas">
+    <div class="cas-card">
+      <div class="cas-ico">🤰</div>
+      <div class="cas-titre">Congé maternité / paternité</div>
+      <div class="cas-desc">Les IJSS maternité sont calculées différemment : 100 % du salaire journalier de référence (plafonné à 102,57 €/jour). Pas de délai de carence. Durée : 16 semaines minimum pour un 1er enfant.</div>
+      <span class="cas-badge">Pas de carence — 100 % du SJR</span>
+    </div>
+    <div class="cas-card">
+      <div class="cas-ico">⚕️</div>
+      <div class="cas-titre">Maladie professionnelle / AT</div>
+      <div class="cas-desc">Accident du travail ou maladie professionnelle : pas de carence, IJSS à 60 % les 28 premiers jours puis 80 %. Taux plus favorable que la maladie ordinaire.</div>
+      <span class="cas-badge">Pas de carence — taux majoré</span>
+    </div>
+    <div class="cas-card">
+      <div class="cas-ico">❤️‍🩹</div>
+      <div class="cas-titre">ALD (Affection Longue Durée)</div>
+      <div class="cas-desc">Pour les maladies chroniques reconnues (cancer, diabète, insuffisance cardiaque…), les IJSS peuvent être majorées à 66,66 % et prolongées jusqu'à 3 ans.</div>
+      <span class="cas-badge">IJSS majorées + durée étendue</span>
+    </div>
+    <div class="cas-card">
+      <div class="cas-ico">👨‍👩‍👧</div>
+      <div class="cas-titre">Enfant malade (AJPP)</div>
+      <div class="cas-desc">L'Allocation Journalière de Présence Parentale permet d'accompagner un enfant gravement malade — 22 jours par mois maximum, pendant 3 ans, avec AJPP versée par la CAF.</div>
+      <span class="cas-badge">22 j/mois — demande CAF</span>
+    </div>
+  </div>
+
+  <h2>Vos droits et obligations pendant l'arrêt</h2>
+
+  <div class="droits">
+    <div class="droit">
+      <span class="droit-ico">📬</span>
+      <div class="droit-text"><strong>Envoyer le volet 3 à l'employeur sous 48 h</strong>Le certificat médical comporte 3 volets : les volets 1 et 2 pour la Sécu, le volet 3 pour l'employeur. L'envoi sous 48 heures est une obligation légale. Passé ce délai, l'employeur peut réduire le maintien de salaire.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">🏠</span>
+      <div class="droit-text"><strong>Rester à votre domicile aux heures de présence obligatoire</strong>La Sécu et l'employeur peuvent mandater un médecin contrôleur pour une visite à domicile entre 9h-11h et 14h-16h (sauf sorties autorisées par le médecin). En cas d'absence injustifiée, les IJSS sont suspendues.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">🚫</span>
+      <div class="droit-text"><strong>Interdiction de travailler pour l'employeur</strong>Travailler pour votre employeur pendant un arrêt maladie est strictement interdit. En revanche, exercer une activité bénévole ou personnelle légère est toléré — sauf contre-indication médicale.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">🛡️</span>
+      <div class="droit-text"><strong>Protection contre le licenciement (limitée)</strong>Un employeur ne peut pas licencier un salarié en raison de son état de santé. Mais après un certain délai d'absence, il peut procéder à un licenciement pour perturbation de l'entreprise — à condition de respecter une procédure stricte et après avis du médecin du travail.</div>
+    </div>
+  </div>
+
+  <div class="encadre">
+    <strong>📌 La prévoyance collective : le complément que beaucoup ignorent</strong>
+    <p>La plupart des entreprises de plus de 50 salariés ont souscrit un contrat de prévoyance collectif (obligatoire depuis la loi ANI de 2014 pour les cadres). Ce contrat complète les IJSS et le maintien employeur pour garantir souvent 80 à 100 % du salaire net pendant toute la durée de l'arrêt. Demandez à votre RH le nom et les coordonnées de votre organisme de prévoyance — beaucoup de salariés ignorent qu'ils en bénéficient et ne font jamais les démarches de déclaration.</p>
+  </div>
+
+  <div class="conseil">
+    <strong>💡 Vérifiez votre convention collective avant tout arrêt long</strong>
+    <p>La convention collective de votre secteur peut être bien plus généreuse que la loi. Certaines CC (banque, assurance, grande distribution) prévoient un maintien à 100 % dès le 1er jour, sans délai de carence, pendant 6 mois. D'autres ne prévoient rien au-delà du légal. Consultez votre bulletin de paie (la CC y est mentionnée) puis cherchez le texte de votre convention sur legifrance.gouv.fr — rubrique "conventions collectives". Cette lecture de 15 minutes peut valoir plusieurs milliers d'euros en cas d'arrêt long.</p>
+  </div>
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-216.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Bulletin de salaire : décrypter chaque ligne</div></a><a class="sim-card" href="article-217.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Négocier son salaire : scripts qui marchent</div></a><a class="sim-card" href="article-218.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Chômage ARE : calculer ses droits en 2025</div></a><a class="sim-card" href="article-219.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Rupture conventionnelle : tout savoir</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Racheter les stocks dormants des PME : comment trouver et négocier — Economya.fr</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{color:white;padding:3rem 2rem 2.5rem}
+.hero-cat{display:inline-block;background:rgba(255,255,255,.18);color:white;padding:.3rem .8rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.8rem;line-height:1.2}
+.hero-badge{display:inline-block;background:var(--a);color:white;padding:.4rem 1rem;border-radius:50px;font-size:.82rem;font-weight:700;margin-top:.5rem}
+.hero-meta{font-size:.78rem;color:rgba(255,255,255,.7);margin-top:.8rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content p{margin-bottom:1.2rem;line-height:1.8;font-size:.95rem;color:var(--t)}
+.content h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);margin:2rem 0 .8rem;padding-left:1rem;border-left:4px solid var(--g)}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){.hamburger{display:flex}nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}nav li{display:none!important}}
+</style>
+<link rel="canonical" href="https://economya.fr/article-523.html" />
+<meta name="description" content="Racheter les stocks dormants des PME : comment trouver et négocier — Economya.fr" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","publisher":"Economya.fr"}</script></head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+  
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="hero" style="background:linear-gradient(135deg,#373B44,#4286f4)">
+  <div class="hero-cat">🔧 Hacks Malins</div>
+  <h1>Racheter les stocks dormants des PME : comment trouver et négocier</h1>
+  <div class="hero-badge">💰 -70% sur les prix du marché</div>
+  <div class="hero-meta">📖 6 min · Vérifié juin 2026 · 🇫🇷</div>
+</div>
+<div class="container">
+  <div class="content">
+    
+    <p>Dans les entrepôts de milliers de PME françaises dorment des stocks oubliés : invendus de collections passées, surplus de production, références discontinuées, matières premières excédentaires. Ces stocks représentent des milliards d'euros immobilisés que les entreprises sont souvent prêtes à céder à prix cassé. Voici comment les trouver et en profiter.</p>
+    <h2>Pourquoi les PME vendent leurs stocks dormants</h2>
+    <p>Un stock immobilisé coûte de l'argent : espace de stockage, assurance, capital bloqué, risque d'obsolescence. Une PME préfère souvent récupérer 20% de la valeur d'un stock que de le conserver 3 ans pour rien. Les situations qui génèrent des ventes de stocks : changement de collection, fermeture d'une ligne de produits, restructuration, cession d'activité, ou simplement excès de commandes.</p>
+    <h2>Les plateformes de destockage B2B</h2>
+    <p>B-Stock, Liquidation.com, Via Stock, Destockplus.fr — ces marketplaces mettent en relation acheteurs et vendeurs de stocks dormants. Les lots sont vendus en vrac (palettes ou camions complets) à des prix de 10 à 30% de la valeur catalogue. Attention : ces plateformes s'adressent principalement aux professionnels avec numéro SIRET.</p>
+    <h2>L'approche directe : contacter les PME</h2>
+    <p>La méthode la plus efficace et méconnue. Identifiez des PME dans votre secteur via les annuaires professionnels (Kompass, Societe.com). Contactez le directeur commercial ou le PDG directement par email ou téléphone avec un message clair : "Nous rachetons les stocks dormants et invendus. Avez-vous des produits à écouler ?" Le taux de réponse positive est surprenant — souvent 20 à 30%.</p>
+    <h2>Les secteurs les plus porteurs</h2>
+    <p>Textile et mode (invendus de saison, overstock de production). Électronique grand public (références discontinuées, emballages abîmés). Alimentaire non périssable (DLC longue, étiquetage ancien). Cosmétiques et hygiène (reformulations, rebranding). Matériaux de construction (surplus de chantiers). Ces secteurs génèrent structurellement des surplus importants.</p>
+    <h2>Négocier le prix : les leviers à utiliser</h2>
+    <p>Paiement comptant immédiat (gros levier), prise en charge de la logistique (vous venez chercher = économie pour eux), achat en une seule fois sans tri ni sélection (simplicité = prix inférieur), confidentialité sur les conditions (le vendeur ne veut pas que ses clients sachent à quel prix il déstocke). Avec ces arguments combinés, des remises de 60 à 80% sur le catalogue sont possibles.</p>
+    <h2>Que faire de ces stocks ?</h2>
+    <p>Revente sur Vinted, Leboncoin, Amazon, eBay ou votre propre boutique Shopify. Revente en lot à d'autres revendeurs. Vente lors de vide-greniers ou marchés. Consommation personnelle si les produits s'y prêtent. La clé de la rentabilité : connaître la valeur de revente AVANT d'acheter le stock. Ne jamais acquérir sans avoir validé le débouché commercial.</p>
+    <h2>Le cadre légal pour les particuliers et professionnels</h2>
+    <p>Un particulier peut acheter et revendre des biens sans statut jusqu'à un certain volume (20 transactions ou 3 000€ annuels au-delà desquels la déclaration s'impose). Pour une activité régulière : micro-entrepreneur (abattement 71% pour la revente de marchandises). La TVA s'applique selon le régime choisi. Un expert-comptable clarifie rapidement la situation selon votre volume d'activité.</p>
+
+  </div>
+</div>
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Les informations fournies sont à titre indicatif.</span>
+</footer>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

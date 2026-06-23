@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lessive et lave-linge : économiser sur la buanderie — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:1rem}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99;flex-wrap:wrap;gap:.4rem}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .nl{display:flex;gap:.7rem;list-style:none;flex-wrap:wrap}
+  .nl a{text-decoration:none;color:var(--m);font-size:.76rem;font-weight:500}
+  .nl a:hover{color:var(--g)}
+  .ncta{background:var(--g);color:white!important;padding:.3rem .8rem;border-radius:50px}
+  .article-hero{background:linear-gradient(135deg,#04342C,#0F6E56 60%,#1D9E75);color:white;padding:3.5rem 2rem 3rem;text-align:center}
+  .acat-badge{display:inline-block;background:rgba(225,245,238,0.15);color:#A8E6CF;border:1px solid rgba(168,230,207,0.3);padding:.25rem .8rem;border-radius:50px;font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem}
+  .article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:900;line-height:1.15;margin-bottom:.8rem;max-width:640px;margin-left:auto;margin-right:auto}
+  .article-hero h1 em{color:var(--a);font-style:normal}
+  .article-hero .intro{font-size:.95rem;color:rgba(255,255,255,0.75);max-width:500px;margin:0 auto 1.5rem;font-weight:300}
+  .meta{display:flex;justify-content:center;gap:1.5rem;font-size:.75rem;color:rgba(255,255,255,0.5);flex-wrap:wrap}
+  .saving-pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--al);color:var(--ad);font-weight:600;font-size:.85rem;padding:.45rem 1.1rem;border-radius:50px;margin-top:1.4rem}
+  .article-body{max-width:720px;margin:0 auto;padding:3rem 1.8rem 4rem}
+  .article-body h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 .7rem;color:var(--gd)}
+  .article-body p{color:var(--t);font-weight:300;margin-bottom:1rem;font-size:.97rem}
+  .article-body strong{font-weight:500;color:var(--t)}
+  .tip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin:1.2rem 0 2rem}
+  .tcard{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1rem 1.1rem}
+  .tcard .emoji{font-size:1.4rem;margin-bottom:.4rem}
+  .tcard h3{font-size:.85rem;font-weight:500;color:var(--gd);margin-bottom:.2rem}
+  .tcard p{font-size:.78rem;color:var(--m);margin:0;font-weight:300}
+  .tcard .tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.6rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;margin-top:.5rem;text-transform:uppercase}
+  .tip-box{background:var(--gl);border-left:3px solid var(--g);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.9rem}
+  .tip-box strong{color:var(--gd);display:block;margin-bottom:.3rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+  .saving-box{background:var(--al);border-radius:12px;padding:1.4rem 1.6rem;margin:2rem 0;text-align:center}
+  .saving-box .amount{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--ad)}
+  .saving-box p{font-size:.85rem;color:var(--ad);margin:0;font-weight:300}
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--g);font-size:.82rem;font-weight:500;text-decoration:none;margin-bottom:2rem}
+  .back-link:hover{text-decoration:underline}
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  @media(max-width:640px){nav{padding:.8rem 1rem}.nl{display:none}.article-hero{padding:2.5rem 1.2rem 2rem}.article-body{padding:2rem 1.2rem 3rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Lessive et lave-linge : économiser sur la buanderie",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-64.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Lessive et lave-linge : économiser sur la buanderie">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-64.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lessive et lave-linge : économiser sur la buanderie">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-64.html" />
+<meta name="description" content="Lessive et lave-linge : économiser sur la buanderie — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <ul class="nl">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="articles.html#a1">Courses</a></li>
+    <li><a href="articles.html#a4">Assurances</a></li>
+    <li><a href="articles.html#a7">Mobile</a></li>
+    <li><a href="articles.html#a51">Investir</a></li>
+    <li><a href="articles.html#a60">Santé mentale</a></li>
+    <li><a href="index.html#nl" class="ncta">Newsletter</a></li>
+  </ul>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="article-hero">
+  <div class="acat-badge">🧺 Maison · Article #64</div>
+  <h1>Lessive et lave-linge :<br><em>économiser sur la buanderie</em></h1>
+  <p class="intro">Le lave-linge est l'un des appareils les plus énergivores du foyer. Entre la lessive, l'eau chaude et le sèche-linge, la facture annuelle dépasse souvent 150 €. Voici comment la diviser par deux.</p>
+  <div class="saving-pill">💰 Jusqu'à 150 €/an</div>
+  <div class="meta" style="margin-top:1rem">
+    <span>📖 Lecture : 3 min</span>
+    <span>✅ Vérifié en 2025</span>
+    <span>🇫🇷 Adapté au marché français</span>
+  </div>
+</div>
+
+<div class="article-body">
+  <a href="index.html" class="back-link">← Retour aux articles</a>
+
+  <p>Un foyer français fait en moyenne <strong>220 lessives par an</strong>. Multipliez par le coût de l'eau, de l'électricité et de la lessive, et vous obtenez une dépense annuelle souvent sous-estimée. La bonne nouvelle : quelques ajustements simples permettent de réduire cette facture de moitié, sans changer ses habitudes de propreté.</p>
+
+  <h2>Les 6 gestes qui font vraiment la différence</h2>
+
+  <div class="tip-grid">
+    <div class="tcard">
+      <div class="emoji">🌡️</div>
+      <h3>Laver à 30 °C</h3>
+      <p>Passer de 60 °C à 30 °C réduit la consommation électrique liée au chauffage de l'eau de près de 60 %. Les lessives modernes sont conçues pour être efficaces à basse température.</p>
+      <span class="tag">-60% sur le chauffage</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">🌙</div>
+      <h3>Lancer en heures creuses</h3>
+      <p>Si votre contrat EDF inclut des heures creuses (souvent 22h-6h), programmez vos lessives la nuit. L'électricité y coûte 30 à 40 % moins cher qu'en heures pleines.</p>
+      <span class="tag">-30 à -40%</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">👕</div>
+      <h3>Toujours remplir le tambour</h3>
+      <p>Un lave-linge à moitié plein consomme presque autant qu'un plein. Attendez d'avoir une charge complète avant de lancer — sans trop tasser non plus.</p>
+      <span class="tag">Énergie optimisée</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">🌿</div>
+      <h3>La lessive maison ou en vrac</h3>
+      <p>Une lessive maison à base de savon de Marseille, de bicarbonate et de cristaux de soude revient à moins de 0,05 € par lavage, contre 0,20 à 0,40 € pour les grandes marques.</p>
+      <span class="tag">-75% sur la lessive</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">🧼</div>
+      <h3>Doser correctement</h3>
+      <p>La majorité des ménages surdose la lessive de 30 à 50 %. Un excès de produit encrasse la machine et n'améliore pas le résultat. Suivez les dosages indiqués — ils ont été révisés à la baisse.</p>
+      <span class="tag">Moins de gaspillage</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">☀️</div>
+      <h3>Sécher à l'air libre</h3>
+      <p>Le sèche-linge consomme 2 à 4 kWh par cycle. Étendre le linge sur un séchoir ou dehors coûte zéro euro et préserve les fibres textiles — vos vêtements durent plus longtemps.</p>
+      <span class="tag">0 € de séchage</span>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Astuce Economya.fr</strong>
+    Les noix de lavage sont une alternative 100 % naturelle et économique à la lessive classique. Originaires d'Inde, elles libèrent un tensioactif naturel au contact de l'eau chaude. Un kilo de noix de lavage (environ 8 €) permet de réaliser plus de 100 lessives — soit moins de 0,08 € par lavage. Efficaces jusqu'à 60 °C sur les textiles courants.
+  </div>
+
+  <h2>Entretenir son lave-linge pour qu'il dure</h2>
+  <p>Un lave-linge mal entretenu consomme plus et tombe plus vite en panne. Trois gestes simples suffisent : nettoyer le filtre de vidange tous les deux mois, lancer un cycle à vide à 60 °C avec du vinaigre blanc une fois par mois pour détartrer le tambour, et laisser le hublot ouvert après chaque lavage pour éviter les moisissures. Ces habitudes prolongent la durée de vie de l'appareil de plusieurs années.</p>
+
+  <h2>Faut-il changer son lave-linge ?</h2>
+  <p>Un lave-linge de plus de 10 ans classé D ou E sur l'étiquette énergie peut consommer deux à trois fois plus qu'un modèle récent A ou B. Si votre appareil tombe régulièrement en panne, le calcul est simple : un nouveau lave-linge efficace amorti sur 10 ans coûte moins que les réparations et la surconsommation cumulées. Choisissez un modèle à chargement frontal avec un tambour de 8 à 9 kg pour optimiser le rapport capacité-consommation.</p>
+
+  <div class="saving-box">
+    <div class="amount">150 € économisés/an</div>
+    <p>C'est l'économie réaliste pour un foyer de 4 personnes combinant lavage à 30 °C, heures creuses, lessive maison et séchage à l'air libre.</p>
+  </div>
+
+  <p>La buanderie est l'un de ces postes de dépense qu'on ne regarde jamais — et pourtant l'un des plus faciles à optimiser. Pas besoin d'investissement : juste quelques réglages, un peu de vinaigre blanc et une corde à linge suffisent à faire une différence visible sur la facture annuelle.</p>
+
+  <div class="tip-box" style="background:var(--al);border-color:var(--a)">
+    <strong style="color:var(--ad)">📬 Bon plan exclusif</strong>
+    <span style="color:var(--ad);font-size:.88rem">Abonnez-vous à la newsletter Economya.fr pour recevoir chaque semaine les meilleures astuces maison et économies du quotidien.</span>
+  </div>
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

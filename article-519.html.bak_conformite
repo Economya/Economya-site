@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casse auto : acheter ses pièces à -80% légalement en 2026 — Economya.fr</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{color:white;padding:3rem 2rem 2.5rem}
+.hero-cat{display:inline-block;background:rgba(255,255,255,.18);color:white;padding:.3rem .8rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.8rem;line-height:1.2}
+.hero-badge{display:inline-block;background:var(--a);color:white;padding:.4rem 1rem;border-radius:50px;font-size:.82rem;font-weight:700;margin-top:.5rem}
+.hero-meta{font-size:.78rem;color:rgba(255,255,255,.7);margin-top:.8rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content p{margin-bottom:1.2rem;line-height:1.8;font-size:.95rem;color:var(--t)}
+.content h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);margin:2rem 0 .8rem;padding-left:1rem;border-left:4px solid var(--g)}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){.hamburger{display:flex}nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}nav li{display:none!important}}
+</style>
+<link rel="canonical" href="https://economya.fr/article-519.html" />
+<meta name="description" content="Casse auto : acheter ses pièces à -80% légalement en 2026 — Economya.fr" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","publisher":"Economya.fr"}</script></head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+  
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="hero" style="background:linear-gradient(135deg,#f46b45,#eea849)">
+  <div class="hero-cat">🔧 Hacks Malins</div>
+  <h1>Casse auto : acheter ses pièces à -80% légalement en 2026</h1>
+  <div class="hero-badge">🚗 -80% vs pièces neuves</div>
+  <div class="hero-meta">📖 5 min · Vérifié juin 2026 · 🇫🇷</div>
+</div>
+<div class="container">
+  <div class="content">
+    
+    <p>Une pièce de carrosserie neuve chez un concessionnaire : 800€. La même pièce d'occasion en casse automobile : 80 à 150€. Identique, garantie, légale. Le marché de la pièce automobile d'occasion pèse 2 milliards d'euros en France et reste méconnu du grand public. Voici comment en profiter sans risque.</p>
+    <h2>Comment fonctionne une casse automobile</h2>
+    <p>Les casses (ou centres VHU — Véhicules Hors d'Usage agréés) récupèrent des véhicules accidentés, en fin de vie ou épaves. Ils les démontent méthodiquement et revendent les pièces en bon état. Chaque pièce est identifiée, testée et stockée. Le cadre légal est strict depuis 2014 : seuls les centres agréés par les pouvoirs publics peuvent exercer cette activité.</p>
+    <h2>Les plateformes en ligne : la révolution du secteur</h2>
+    <p>Piecesauto24.com, Carter-cash, L'Éco Pièces, Allo Casse Auto — ces plateformes agrègent les stocks de centaines de casses françaises. Vous cherchez une pièce par référence constructeur, marque, modèle et année — la plateforme trouve dans quel centre elle est disponible. Livraison sous 24-48h. Garantie 3 à 12 mois selon les plateformes.</p>
+    <h2>Les pièces les plus intéressantes à acheter en occasion</h2>
+    <p>Carrosserie (aile, pare-choc, capot, portière) : économies de 70 à 85%. Optiques (phares, feux) : -60 à 75%. Moteur et boîte de vitesses : -50 à 65% (à faire vérifier par un mécanicien). Jantes et pneumatiques d'occasion : -40 à 60%. À éviter en occasion : les pièces de sécurité active (airbags, ceintures) et les filtres/consommables.</p>
+    <h2>Vérifier la compatibilité sans se tromper</h2>
+    <p>La référence constructeur (OEM) est la clé. Elle garantit la compatibilité parfaite avec votre véhicule. Trouvez-la sur la pièce d'origine, dans le manuel d'entretien ou via des sites comme realoem.com (BMW), etka (VW/Audi) ou equivalent selon votre marque. Communiquez toujours le numéro VIN de votre véhicule au vendeur pour validation.</p>
+    <h2>La garantie : vos droits en tant qu'acheteur</h2>
+    <p>Depuis 2015, les pièces d'occasion vendues par des professionnels bénéficient de la garantie légale de conformité (2 ans) et de la garantie des vices cachés. En pratique, les casses agréées proposent 3 à 6 mois de garantie avec échange ou remboursement. Conservez toujours votre facture et la référence de la pièce.</p>
+    <h2>Le démontage en libre-service : l'option ultime</h2>
+    <p>Certaines casses proposent le "libre-service" : vous entrez dans le parc avec vos outils et démontez vous-même les pièces dont vous avez besoin. Prix encore moins chers (parfois -90% vs neuf), mais il faut savoir démonter. Auto5, Opisto Pièces et plusieurs casses régionales proposent ce service. Une expérience recommandée pour les bricoleurs.</p>
+    <h2>Calculer l'économie réelle</h2>
+    <p>Pare-choc avant Peugeot 308 neuf : 450€ + peinture 300€ = 750€. En casse, peint dans la bonne teinte : 120 à 180€ tout compris. Phare Renault Clio neuf : 280€. En casse : 45 à 80€. Sur l'ensemble de la vie d'un véhicule, un propriétaire qui utilise systématiquement les pièces d'occasion économise 2 000 à 5 000€.</p>
+
+  </div>
+</div>
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Les informations fournies sont à titre indicatif.</span>
+</footer>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

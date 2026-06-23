@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pêche et cueillette : se nourrir gratuitement — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --forest:#1B3A0E;--forest-mid:#3A6B1A;--forest-light:#ECF5E6;
+    --rust:#8B3A1A;--ochre:#C8870A;--sky:#7ECFEA;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#060E02 0%,#1B3A0E 32%,#3A6B1A 62%,#C8870A 88%,#FFD166 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'🎣';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,#FFD166,var(--sky));
+    color:#060E02;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--forest);margin:2rem 0 .7rem}
+
+  /* Calendrier cueillette */
+  .calendrier{background:var(--w);border:1px solid var(--b);border-radius:13px;overflow:hidden;margin:1.5rem 0}
+  .cal-head{background:linear-gradient(90deg,var(--forest),var(--forest-mid));padding:.75rem 1.1rem;color:#fff;font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700}
+  .cal-saison{border-bottom:1px solid var(--b)}
+  .cal-saison:last-child{border-bottom:none}
+  .cal-saison-head{display:grid;grid-template-columns:90px 1fr;align-items:center;padding:.6rem 1rem;gap:.7rem;background:var(--forest-light)}
+  .cal-saison-nom{font-weight:600;font-size:.85rem;color:var(--forest);display:flex;align-items:center;gap:.4rem}
+  .cal-items{padding:.6rem 1rem .8rem;display:flex;flex-wrap:wrap;gap:.4rem}
+  .cal-item{font-size:.78rem;font-weight:400;background:var(--w);border:1px solid rgba(58,107,26,.2);color:var(--forest);padding:.2rem .55rem;border-radius:50px}
+  .cal-item.champignon{background:#FEF3C7;border-color:rgba(200,135,10,.25);color:var(--rust)}
+  .cal-item.fruit{background:#FCE4EC;border-color:rgba(193,50,50,.2);color:#B71C1C}
+  .cal-item.plante{background:var(--forest-light);border-color:rgba(58,107,26,.2);color:var(--forest)}
+  .cal-item.peche{background:#E0F5FA;border-color:rgba(126,207,234,.4);color:#005577}
+
+  /* Règles légales */
+  .regles{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1.5rem 0}
+  .regle{background:var(--w);border:1px solid var(--b);border-radius:11px;padding:.85rem 1rem}
+  .regle-icon{font-size:1.3rem;margin-bottom:.3rem}
+  .regle-titre{font-weight:500;font-size:.88rem;margin-bottom:.2rem}
+  .regle-titre.ok{color:var(--forest)}
+  .regle-titre.warn{color:var(--rust)}
+  .regle-desc{font-size:.8rem;font-weight:300;color:var(--m);line-height:1.45}
+
+  /* Guide champignons */
+  .champignons{display:flex;flex-direction:column;gap:.6rem;margin:1.5rem 0}
+  .champ{background:var(--w);border:1px solid var(--b);border-radius:10px;display:grid;grid-template-columns:60px 1fr;overflow:hidden}
+  .champ-signe{background:linear-gradient(180deg,var(--forest),var(--forest-mid));display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+  .champ-body{padding:.7rem .9rem}
+  .champ-nom{font-weight:500;font-size:.88rem;color:var(--forest);margin-bottom:.15rem}
+  .champ-desc{font-size:.8rem;font-weight:300;color:var(--m);line-height:1.4}
+  .champ-alerte{font-size:.75rem;font-weight:500;color:var(--rust);margin-top:.2rem}
+
+  .danger{background:#FEF2F2;border-left:4px solid #C0392B;border-radius:0 10px 10px 0;padding:.9rem 1.1rem;margin:1.5rem 0;font-size:.85rem;font-weight:300;color:#7F1D1D;line-height:1.6}
+  .danger strong{font-weight:600;display:block;margin-bottom:.3rem;font-size:.9rem}
+
+  .conseil{
+    background:linear-gradient(135deg,#060E02,#1B3A0E);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff
+  }
+  .conseil strong{display:block;color:#FFD166;font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:500px){.regles{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Pêche et cueillette : se nourrir gratuitement",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-188.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Pêche et cueillette : se nourrir gratuitement">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-188.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pêche et cueillette : se nourrir gratuitement">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-188.html" />
+<meta name="description" content="Pêche et cueillette : se nourrir gratuitement — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero-art">
+  <div class="acat">🎣 <strong>Alimentation</strong></div>
+  <h1>Pêche et cueillette : se nourrir gratuitement</h1>
+  <div class="abadge">💰 Repas sauvages à 0€</div>
+  <div class="meta">
+    <span>📖 Lecture 5 min</span>
+    <span>✅ Vérifié mai 2025</span>
+    <span>🍄 Nature & alimentation</span>
+  </div>
+</div>
+
+<article>
+
+  <p>La nature offre gratuitement ce que les épiceries fines vendent à prix d'or. Des cèpes à 30 euros le kilo en épicerie, récoltables soi-même en forêt. Des mûres à 4 euros la barquette, qui poussent en abondance le long des chemins de campagne. De la truite, de l'anguille, des moules et des coques que la mer ou la rivière offrent à qui se donne la peine de les ramasser. La pêche et la cueillette sont deux des seules activités légales qui permettent de rentrer à la maison avec de la nourriture de haute qualité sans avoir dépensé un centime — ou presque.</p>
+
+  <h2>Le calendrier de la cueillette sauvage en France</h2>
+
+  <div class="calendrier">
+    <div class="cal-head">📅 Quoi ramasser et quand — France métropolitaine</div>
+
+    <div class="cal-saison">
+      <div class="cal-saison-head">
+        <div class="cal-saison-nom">🌱 Printemps</div>
+      </div>
+      <div class="cal-items">
+        <span class="cal-item plante">Ortie (soupe, pesto)</span>
+        <span class="cal-item plante">Ail des ours (toute la plante)</span>
+        <span class="cal-item plante">Pissenlit (feuilles, fleurs)</span>
+        <span class="cal-item plante">Plantain (feuilles)</span>
+        <span class="cal-item champignon">Morille ⭐ (rare, précieuse)</span>
+        <span class="cal-item plante">Sureau (fleurs pour cordial)</span>
+        <span class="cal-item peche">Truite (ouverture 2e samedi mars)</span>
+      </div>
+    </div>
+
+    <div class="cal-saison">
+      <div class="cal-saison-head">
+        <div class="cal-saison-nom">☀️ Été</div>
+      </div>
+      <div class="cal-items">
+        <span class="cal-item fruit">Fraises des bois</span>
+        <span class="cal-item fruit">Framboises sauvages</span>
+        <span class="cal-item fruit">Mûres (juillet-août)</span>
+        <span class="cal-item plante">Lavande, thym, romarin</span>
+        <span class="cal-item plante">Fleurs de tilleul (tisane)</span>
+        <span class="cal-item peche">Moules (côtes rocheuses)</span>
+        <span class="cal-item peche">Coques & palourdes</span>
+      </div>
+    </div>
+
+    <div class="cal-saison">
+      <div class="cal-saison-head">
+        <div class="cal-saison-nom">🍂 Automne — la grande saison</div>
+      </div>
+      <div class="cal-items">
+        <span class="cal-item champignon">Cèpes ⭐⭐ (septemb.-nov.)</span>
+        <span class="cal-item champignon">Girolles ⭐⭐</span>
+        <span class="cal-item champignon">Trompettes de la mort</span>
+        <span class="cal-item champignon">Lactaires délicieux</span>
+        <span class="cal-item fruit">Prunelles, cornouilles</span>
+        <span class="cal-item fruit">Châtaignes, noisettes</span>
+        <span class="cal-item fruit">Baies de sureau (gelée)</span>
+        <span class="cal-item peche">Brochet, perche (rivières)</span>
+      </div>
+    </div>
+
+    <div class="cal-saison">
+      <div class="cal-saison-head">
+        <div class="cal-saison-nom">❄️ Hiver</div>
+      </div>
+      <div class="cal-items">
+        <span class="cal-item champignon">Truffes (déc.-fév., Périgord)</span>
+        <span class="cal-item plante">Cresson de fontaine</span>
+        <span class="cal-item plante">Mâche sauvage</span>
+        <span class="cal-item peche">Sandre, carpe (hors fermeture)</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Les règles légales à connaître</h2>
+
+  <div class="regles">
+    <div class="regle">
+      <div class="regle-icon">✅</div>
+      <div class="regle-titre ok">Cueillette autorisée</div>
+      <div class="regle-desc">En forêt domaniale : jusqu'à 5 litres par personne par jour de champignons, fruits et plantes. Sur terrains privés avec accord du propriétaire. Sur le domaine public (chemins, bords de route). Les plantes non protégées peuvent être cueillies librement.</div>
+    </div>
+    <div class="regle">
+      <div class="regle-icon">⚠️</div>
+      <div class="regle-titre warn">Restrictions importantes</div>
+      <div class="regle-desc">Certaines communes ont des arrêtés limitant ou interdisant la cueillette commerciale. Les plantes protégées (orchidées sauvages, certaines fougères) sont intouchables. La cueillette dans les parcs nationaux est très réglementée. Vérifiez toujours les règles locales avant d'y aller.</div>
+    </div>
+    <div class="regle">
+      <div class="regle-icon">🎣</div>
+      <div class="regle-titre ok">Pêche : carte et réglementation</div>
+      <div class="regle-desc">Une carte de pêche annuelle (~90€ pour adulte, ~15€ pour mineur) est obligatoire pour pêcher dans les cours d'eau. La pêche à pied (moules, coques, bigorneaux) est gratuite sur le domaine maritime public, sous réserve des quotas locaux.</div>
+    </div>
+    <div class="regle">
+      <div class="regle-icon">🦀</div>
+      <div class="regle-titre ok">Pêche à pied : le guide</div>
+      <div class="regle-desc">Moules : 5 kg/personne/jour sur le domaine maritime. Coques et palourdes : même limite. Vérifiez l'état sanitaire des zones via le site REMI (réseau de contrôle microbiologique) avant de consommer. Les zones classées A sont toujours propres à la consommation.</div>
+    </div>
+  </div>
+
+  <h2>Champignons : les espèces sûres pour débuter</h2>
+
+  <div class="champignons">
+    <div class="champ">
+      <div class="champ-signe">🍄</div>
+      <div class="champ-body">
+        <div class="champ-nom">Cèpe de Bordeaux (Boletus edulis)</div>
+        <div class="champ-desc">Chapeau brun, pied ventru, pores blancs puis jaunes — jamais de lamelles. Aucun sosie mortel. L'un des plus faciles à identifier avec certitude pour un débutant.</div>
+        <div class="champ-alerte">✅ Confondu uniquement avec d'autres bolets comestibles</div>
+      </div>
+    </div>
+    <div class="champ">
+      <div class="champ-signe">🌸</div>
+      <div class="champ-body">
+        <div class="champ-nom">Girolle / Chanterelle (Cantharellus cibarius)</div>
+        <div class="champ-desc">Chapeau jaune d'or, bords ondulés, plis (pas de vraies lamelles), odeur fruitée. Inconfondable avec de l'expérience. Le faux ami est la fausse girolle, comestible mais moins bonne.</div>
+        <div class="champ-alerte">✅ Sosie principal comestible (Hygrophoropsis)</div>
+      </div>
+    </div>
+    <div class="champ">
+      <div class="champ-signe">🎺</div>
+      <div class="champ-body">
+        <div class="champ-nom">Trompette de la mort (Craterellus cornucopioides)</div>
+        <div class="champ-desc">Entonnoir gris-noir creux, bords frisés, sans aucune lamelle. Aucun sosie dangereux. Difficile à voir dans les feuilles mortes — très parfumée, idéale en cuisine.</div>
+        <div class="champ-alerte">✅ Aucune confusion possible avec espèce toxique</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="danger">
+    <strong>⚠️ Règle absolue pour les champignons : identifier avant de consommer</strong>
+    En France, une vingtaine de personnes meurent chaque année d'intoxication aux champignons, dont la moitié par confusion avec l'amanite phalloïde — un champignon mortel sans antidote. Règle d'or : ne ramassez jamais un champignon que vous n'identifiez pas à 100 %. En cas de doute, montrez votre cueillette à un pharmacien (service gratuit et légal) ou à un mycologue de votre société de mycologie locale. Une seule confusion peut être fatale.
+  </div>
+
+  <div class="conseil">
+    <strong>🌿 Les meilleures applications pour identifier</strong>
+    <p>PlantNet (plantes) et Picture Mushroom (champignons) permettent d'identifier une espèce par photo en quelques secondes. Ces applications ne sont pas infaillibles — leur usage doit être un complément à la connaissance terrain, jamais un remplacement. Pour apprendre sérieusement, les sorties organisées par les sociétés mycologiques locales (souvent gratuites ou à prix symbolique en automne) sont la meilleure école possible : des experts bénévoles qui partagent leur passion et vérifient vos cueillettes en temps réel. Un investissement de temps infiniment plus sûr que des tutoriels YouTube.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+
+<!-- Partenaire Sharesub -->
+<div style="background:linear-gradient(135deg,#EDE7F6,#f5f0ff);border:1px solid #7c3aed;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+  <span style="font-size:2rem">📺</span>
+  <div style="flex:1;min-width:200px">
+    <div style="font-weight:700;color:#4c1d95;font-size:.95rem;margin-bottom:.2rem">Partagez vos abonnements légalement avec Sharesub</div>
+    <div style="font-size:.82rem;color:#5F5E5A">Netflix, Spotify, Disney+... Divisez vos abonnements par 2, 3 ou 4 légalement.</div>
+  </div>
+  <a href="https://www.awin1.com/cread.php?awinmid=124748&awinaffid=2926395&ued=https%3A%2F%2Fwww.sharesub.com" target="_blank" rel="noopener sponsored" style="background:#7c3aed;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Essayer →</a>
+</div>
+<!-- Fin partenaire -->
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Télétravail : droits, indemnités, équipement — Déduisez vos frais. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Télétravail : droits, indemnités, équipement — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#2C2C2A;line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#085041;text-decoration:none}
+  .logo span{color:#EF9F27}
+  .back{font-size:.82rem;color:#5F5E5A;text-decoration:none}
+  .back:hover{color:#1D9E75}
+
+  /* HERO — bleu minuit → violet électrique → lilas */
+  .hero{background:linear-gradient(135deg,#06081A 0%,#160C50 32%,#3020A0 62%,#7060D0 84%,#C0B0F0 100%);padding:3.8rem 2rem 3.2rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'💻';position:absolute;font-size:14rem;opacity:.05;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+  .hero-cat{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.05em}
+  .hero-cat strong{color:#fff}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:900;color:#fff;line-height:1.1;max-width:640px;margin:.3rem auto .9rem}
+  .hero-badge{display:inline-block;background:linear-gradient(90deg,#C0B0F0,#7060D0);color:#06081A;font-size:.82rem;font-weight:700;padding:.35rem 1.1rem;border-radius:50px}
+  .hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+  .hero-meta span{font-size:.73rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.09);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300;line-height:1.75}
+  h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#160C50;margin:2.2rem 0 .8rem}
+
+  /* DROITS FONDAMENTAUX */
+  .droits{display:flex;flex-direction:column;gap:.55rem;margin:1.5rem 0}
+  .droit{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:10px;display:flex;gap:.75rem;align-items:flex-start;padding:.75rem 1rem}
+  .droit-ico{font-size:1.1rem;flex-shrink:0;margin-top:.08rem}
+  .droit-text{font-size:.84rem;font-weight:300;color:#2C2C2A;line-height:1.55}
+  .droit-text strong{display:block;font-weight:500;color:#160C50;margin-bottom:.12rem}
+
+  /* TABLEAU INDEMNITÉS */
+  .tableau{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.83rem}
+  .tableau thead tr{background:linear-gradient(90deg,#160C50,#3020A0);color:#fff}
+  .tableau thead th{padding:.65rem .9rem;text-align:left;font-weight:500}
+  .tableau tbody tr:nth-child(even){background:#F0EEFF}
+  .tableau tbody tr:nth-child(odd){background:#fff}
+  .tableau tbody td{padding:.58rem .9rem;border-bottom:1px solid rgba(0,0,0,.06);font-weight:300}
+  .tableau tbody td:first-child{font-weight:500;color:#160C50}
+  .tableau td.ok{color:#065F46;font-weight:600}
+  .tableau td.warn{color:#8B4500;font-weight:500}
+
+  /* CALCUL ÉCONOMIES */
+  .simul{background:linear-gradient(135deg,#06081A,#160C50);border-radius:13px;padding:1.3rem 1.5rem;margin:1.5rem 0;color:#fff}
+  .simul h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#C0B0F0;margin-bottom:.9rem}
+  .simul-row{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.84rem}
+  .simul-row:last-child{border-bottom:none;padding-top:.55rem;margin-top:.2rem}
+  .simul-lab{font-weight:300;color:rgba(255,255,255,.8)}
+  .simul-val{font-weight:600;color:#C0B0F0;white-space:nowrap}
+  .simul-lab.total{font-weight:600;color:#fff}
+  .simul-val.total{font-size:1rem}
+  .simul-val.green{color:#6EE7B7}
+
+  /* ÉQUIPEMENT OBLIGATOIRE */
+  .equip{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin:1.5rem 0}
+  .eq-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:11px;padding:.85rem .9rem}
+  .eq-ico{font-size:1.3rem;margin-bottom:.3rem}
+  .eq-titre{font-weight:500;font-size:.86rem;color:#160C50;margin-bottom:.18rem}
+  .eq-desc{font-size:.78rem;font-weight:300;color:#5F5E5A;line-height:1.45}
+  .eq-badge{display:inline-block;margin-top:.3rem;font-size:.7rem;font-weight:600;padding:.1rem .45rem;border-radius:50px}
+  .eq-badge.oblig{background:#F0EEFF;color:#160C50}
+  .eq-badge.option{background:#F0FDF4;color:#065F46}
+
+  /* DÉDUCTION FISCALE */
+  .fiscal{display:flex;flex-direction:column;gap:.55rem;margin:1.4rem 0}
+  .fisc-item{display:flex;gap:.75rem;align-items:flex-start;padding:.7rem 1rem;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.07)}
+  .fisc-ico{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+  .fisc-text{font-size:.83rem;font-weight:300;color:#2C2C2A;line-height:1.5}
+  .fisc-text strong{font-weight:500;color:#160C50;display:block;margin-bottom:.1rem}
+  .fisc-gain{font-size:.75rem;font-weight:600;color:#065F46;margin-top:.2rem}
+
+  .encadre{border-left:4px solid #7060D0;background:#F0EEFF;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+  .encadre strong{display:block;color:#160C50;font-size:.9rem;margin-bottom:.3rem}
+  .encadre p{font-size:.84rem;font-weight:300;color:#3020A0;margin:0;line-height:1.6}
+
+  .conseil{background:linear-gradient(135deg,#06081A,#160C50);border-radius:13px;padding:1.3rem 1.5rem;margin:2rem 0;color:#fff;border:1px solid rgba(192,176,240,.1)}
+  .conseil strong{display:block;color:#C0B0F0;font-weight:500;font-size:.93rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:#085041;color:rgba(255,255,255,.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:#fff}
+  footer a{color:#EF9F27;text-decoration:none}
+  @media(max-width:500px){.equip{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Télétravail : droits, indemnités, équipement",
+  "description": "Télétravail : droits, indemnités, équipement — Déduisez vos frais. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-222.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Télétravail : droits, indemnités, équipement">
+  <meta property="og:description" content="Télétravail : droits, indemnités, équipement — Déduisez vos frais. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-222.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Télétravail : droits, indemnités, équipement">
+  <meta name="twitter:description" content="Télétravail : droits, indemnités, équipement — Déduisez vos frais. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-222.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero">
+  <div class="hero-cat">💻 <strong>Emploi</strong></div>
+  <h1>Télétravail : droits, indemnités, équipement</h1>
+  <div class="hero-badge">💰 Déduisez vos frais</div>
+  <div class="hero-meta">
+    <span>📖 5 min de lecture</span>
+    <span>✅ Vérifié juin 2025</span>
+    <span>🏠 Travail à domicile</span>
+  </div>
+</div>
+
+<article>
+  <p>Le télétravail concerne aujourd'hui plus de 35 % des salariés français au moins un jour par semaine. Mais la majorité d'entre eux ignorent leurs droits : l'employeur a des obligations légales en matière d'équipement et d'indemnisation, la fiscalité offre des déductions réelles, et certaines prises en charge ne sont jamais demandées. Résultat : des milliers d'euros laissés sur la table chaque année. Voici tout ce que vous devez savoir pour être correctement indemnisé.</p>
+
+  <h2>Vos droits fondamentaux en télétravail</h2>
+
+  <div class="droits">
+    <div class="droit">
+      <span class="droit-ico">📋</span>
+      <div class="droit-text"><strong>Accord obligatoire — rien ne peut être imposé unilatéralement</strong>Le télétravail ne peut pas être imposé par l'employeur (sauf circonstances exceptionnelles type pandémie ou accord collectif). Il doit faire l'objet d'un accord — par avenant au contrat, accord collectif ou charte. De même, un salarié ne peut pas imposer le télétravail à son employeur si le poste ne s'y prête pas.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">🖥️</span>
+      <div class="droit-text"><strong>Équipement fourni par l'employeur</strong>L'employeur est légalement tenu de fournir les équipements nécessaires au télétravail — ordinateur, logiciels, accès VPN. S'il ne fournit pas le matériel et que vous utilisez votre propre équipement, il doit vous indemniser des frais générés.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">💶</span>
+      <div class="droit-text"><strong>Indemnisation des frais professionnels</strong>Les frais supplémentaires liés au télétravail (électricité, internet, téléphone, mobilier) doivent être pris en charge par l'employeur. Cette prise en charge peut être forfaitaire (recommandée par l'URSSAF) ou aux frais réels.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">⚖️</span>
+      <div class="droit-text"><strong>Égalité de traitement avec les présentiel</strong>Un télétravailleur bénéficie des mêmes droits qu'un salarié en présentiel : accès aux formations, aux tickets-restaurant (si accordés aux autres), aux réunions, aux entretiens d'évaluation. Il ne peut pas être défavorisé dans sa carrière.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">🔌</span>
+      <div class="droit-text"><strong>Droit à la déconnexion</strong>L'employeur doit respecter vos horaires contractuels. En dehors des heures de travail définies, vous n'êtes pas tenu de répondre aux emails ou messages. Ce droit doit être formalisé dans l'accord de télétravail.</div>
+    </div>
+  </div>
+
+  <h2>Les indemnités télétravail — montants 2025</h2>
+
+  <table class="tableau">
+    <thead><tr><th>Indemnité</th><th>Montant URSSAF recommandé</th><th>Exonération charges</th></tr></thead>
+    <tbody>
+      <tr><td>Forfait télétravail journalier</td><td>2,70 €/jour</td><td class="ok">Exonéré jusqu'à 2,70 €/j</td></tr>
+      <tr><td>Forfait mensuel (1 j/semaine)</td><td>10,80 €/mois</td><td class="ok">Exonéré</td></tr>
+      <tr><td>Forfait mensuel (2 j/semaine)</td><td>21,60 €/mois</td><td class="ok">Exonéré</td></tr>
+      <tr><td>Forfait mensuel (3 j/semaine)</td><td>32,40 €/mois</td><td class="ok">Exonéré</td></tr>
+      <tr><td>Forfait mensuel (5 j/semaine)</td><td>54 €/mois max URSSAF</td><td class="ok">Exonéré jusqu'au plafond</td></tr>
+      <tr><td>Au-delà du forfait URSSAF</td><td>Remboursement sur justificatifs</td><td class="warn">Exonéré si justifié</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Ce que le télétravail vous fait économiser</h2>
+
+  <div class="simul">
+    <h3>💰 Gain annuel pour un salarié en télétravail 3 j/semaine — Paris, 40 km domicile-travail</h3>
+    <div class="simul-row"><span class="simul-lab">Transport évité (train/voiture 3 j/sem)</span><span class="simul-val green">+ 2 400 €/an</span></div>
+    <div class="simul-row"><span class="simul-lab">Repas midi à domicile vs restaurant</span><span class="simul-val green">+ 1 800 €/an</span></div>
+    <div class="simul-row"><span class="simul-lab">Vêtements professionnels réduits</span><span class="simul-val green">+ 300 €/an</span></div>
+    <div class="simul-row"><span class="simul-lab">Indemnité forfaitaire employeur (32 €/mois)</span><span class="simul-val green">+ 384 €/an</span></div>
+    <div class="simul-row"><span class="simul-lab">Surcoût électricité + internet</span><span class="simul-val" style="color:#FF8080">- 600 €/an</span></div>
+    <div class="simul-row">
+      <span class="simul-lab total">Gain net annuel estimé</span>
+      <span class="simul-val total green">≈ + 4 284 €/an</span>
+    </div>
+  </div>
+
+  <h2>L'équipement que l'employeur doit fournir ou rembourser</h2>
+
+  <div class="equip">
+    <div class="eq-card">
+      <div class="eq-ico">💻</div>
+      <div class="eq-titre">Ordinateur portable</div>
+      <div class="eq-desc">Fourni par l'employeur ou remboursé si vous utilisez le vôtre. La quote-part professionnelle est calculée selon le nombre de jours travaillés à domicile.</div>
+      <span class="eq-badge oblig">Obligatoire</span>
+    </div>
+    <div class="eq-card">
+      <div class="eq-ico">🌐</div>
+      <div class="eq-titre">Abonnement internet</div>
+      <div class="eq-desc">La quote-part professionnelle de votre abonnement internet est remboursable. URSSAF : forfait déductible sans justificatif jusqu'au plafond journalier.</div>
+      <span class="eq-badge oblig">Remboursable</span>
+    </div>
+    <div class="eq-card">
+      <div class="eq-ico">📱</div>
+      <div class="eq-titre">Téléphone professionnel</div>
+      <div class="eq-desc">Si vous utilisez votre téléphone personnel pour le travail, l'employeur doit rembourser la part professionnelle de l'abonnement — en général 50 % si usage mixte.</div>
+      <span class="eq-badge oblig">Part pro remboursable</span>
+    </div>
+    <div class="eq-card">
+      <div class="eq-ico">🪑</div>
+      <div class="eq-titre">Bureau et siège ergonomique</div>
+      <div class="eq-desc">L'employeur doit s'assurer que votre poste de travail à domicile répond aux normes ergonomiques. Il peut financer l'achat de mobilier ou le rembourser sur justificatifs.</div>
+      <span class="eq-badge option">Sur justificatifs</span>
+    </div>
+    <div class="eq-card">
+      <div class="eq-ico">🖨️</div>
+      <div class="eq-titre">Imprimante, écran, souris</div>
+      <div class="eq-desc">Les équipements périphériques nécessaires à votre activité doivent être fournis ou remboursés. Demandez expressément leur prise en charge si l'accord télétravail ne les mentionne pas.</div>
+      <span class="eq-badge option">Sur demande</span>
+    </div>
+    <div class="eq-card">
+      <div class="eq-ico">⚡</div>
+      <div class="eq-titre">Électricité consommée</div>
+      <div class="eq-desc">La surconsommation électrique liée au télétravail est une charge professionnelle. Elle est couverte par le forfait journalier URSSAF ou remboursable sur justificatifs (factures EDF comparées).</div>
+      <span class="eq-badge oblig">Inclus dans le forfait</span>
+    </div>
+  </div>
+
+  <h2>Déductions fiscales possibles à la déclaration</h2>
+
+  <div class="fiscal">
+    <div class="fisc-item">
+      <span class="fisc-ico">📊</span>
+      <div class="fisc-text">
+        <strong>Frais réels (option aux frais réels au lieu de l'abattement 10 %)</strong>
+        Si vous optez pour les frais réels à la déclaration d'impôts, vous pouvez déduire la quote-part professionnelle de votre loyer (m² du bureau ÷ surface totale × loyer annuel), de vos factures d'énergie et de votre abonnement internet.
+        <div class="fisc-gain">Gain possible : 500 à 2 000 €/an selon situation</div>
+      </div>
+    </div>
+    <div class="fisc-item">
+      <span class="fisc-ico">🏠</span>
+      <div class="fisc-text">
+        <strong>Déduction du loyer d'une pièce dédiée</strong>
+        Si une pièce de votre logement est exclusivement dédiée au télétravail (bureau séparé), vous pouvez déduire la totalité de sa quote-part de loyer, charges et énergie en frais professionnels réels.
+        <div class="fisc-gain">Exemple : pièce de 10 m² dans 80 m² = 12,5 % des charges déductibles</div>
+      </div>
+    </div>
+    <div class="fisc-item">
+      <span class="fisc-ico">💻</span>
+      <div class="fisc-text">
+        <strong>Amortissement du matériel acheté</strong>
+        Ordinateur, écran, mobilier de bureau achetés pour le télétravail sont déductibles en frais réels (amortis sur 3 à 5 ans). Conservez toutes les factures.
+        <div class="fisc-gain">Un MacBook à 1 500 € = 500 €/an déductibles sur 3 ans</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="encadre">
+    <strong>📌 L'indemnité forfaitaire non versée : demandez-la par écrit</strong>
+    <p>Beaucoup d'employeurs ne versent aucune indemnité télétravail faute d'accord formalisé — mais cela ne les exonère pas de leurs obligations légales. Si vous êtes en télétravail régulier sans indemnisation, envoyez un email à votre RH en rappelant les recommandations URSSAF et en demandant la régularisation. Ce courrier simple suffit dans la majorité des cas à déclencher le versement rétroactif — et protège vos droits si l'employeur refuse.</p>
+  </div>
+
+  <div class="conseil">
+    <strong>⚠️ Accident du travail en télétravail : même couverture qu'au bureau</strong>
+    <p>Depuis 2021, un accident survenu pendant les heures de travail à votre domicile est reconnu comme accident du travail — au même titre qu'au bureau. La preuve reste à votre charge : notez l'heure, les circonstances et faites-le constater par un médecin le jour même. Déclarez-le à votre employeur dans les 24 heures. La couverture AT s'applique aussi pendant les pauses si elles sont définies dans votre accord télétravail. Ce droit, souvent ignoré, peut représenter des dizaines de milliers d'euros de différence en cas d'accident grave.</p>
+  </div>
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-216.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Bulletin de salaire : décrypter chaque ligne</div></a><a class="sim-card" href="article-217.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Négocier son salaire : scripts qui marchent</div></a><a class="sim-card" href="article-218.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Chômage ARE : calculer ses droits en 2025</div></a><a class="sim-card" href="article-219.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Rupture conventionnelle : tout savoir</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser les cookies non essentiels. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;">
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 18px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 18px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Accepter</button>
+</div></div></div>
+<script>
+(function(){
+var K="economya_cookie_consent";
+var D=180;
+function getC(){try{var r=localStorage.getItem(K);if(!r)return null;var d=JSON.parse(r);var e=new Date(d.timestamp);e.setDate(e.getDate()+D);if(new Date()>e)return null;return d.value;}catch(e){return null;}}
+function setC(v){try{localStorage.setItem(K,JSON.stringify({value:v,timestamp:new Date().toISOString()}));}catch(e){}}
+function apply(v){if(v==="accepted"){if(typeof window.economyaLoadGA==="function"){window.economyaLoadGA();}if(typeof window.economyaLoadAds==="function"){window.economyaLoadAds();}}}
+var existing=getC();
+var banner=document.getElementById("economya-cookie-banner");
+if(existing){apply(existing);}else if(banner){banner.style.display="block";}
+var a=document.getElementById("economya-cookie-accept");
+var r=document.getElementById("economya-cookie-refuse");
+if(a){a.addEventListener("click",function(){setC("accepted");apply("accepted");banner.style.display="none";});}
+if(r){r.addEventListener("click",function(){setC("refused");banner.style.display="none";});}
+})();
+</script>
+</body>
+</html>
