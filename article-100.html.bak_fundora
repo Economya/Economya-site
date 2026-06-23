@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Renégocier son crédit immobilier en 2026 : économiser des milliers d'euros — Economya.fr</title>
-<meta name="description" content="Avec la baisse des taux en 2026, renégocier son crédit immobilier peut vous faire économiser 10 000 à 50 000€. Voici comment procéder.">
+<title>Le grand récap : votre plan d'action pour économiser — Economya.fr</title>
+<meta name="description" content="100 articles, des centaines d'astuces. Voici comment tout mettre en pratique avec un plan d'action concret.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
@@ -15,13 +15,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
-.hero{background:linear-gradient(135deg,#04342C,#0F6E56,#1D9E75);color:white;padding:3rem 2rem 2.5rem}
-.hero-cat{display:inline-block;background:rgba(255,255,255,.15);color:white;padding:.3rem .8rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.8rem;line-height:1.2}
-.hero-badge{display:inline-block;background:var(--a);color:white;padding:.4rem 1rem;border-radius:50px;font-size:.82rem;font-weight:700;margin-top:.5rem}
+.hero{background:linear-gradient(135deg,#04342C,#0F6E56,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:600px}
 .container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
 .content p{margin-bottom:1.2rem;line-height:1.8;font-size:.95rem;color:var(--t)}
-.content h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);margin:2rem 0 .8rem;padding-left:1rem;border-left:4px solid var(--g)}
+.content h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);margin:2rem 0 .8rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
 footer strong{color:white}
 
@@ -39,7 +38,7 @@ footer strong{color:white}
   nav li{display:none!important}
 }
 </style>
-<link rel="canonical" href="https://economya.fr/article-510.html" />
+<link rel="canonical" href="https://economya.fr/article-100.html" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","publisher":"Economya.fr"}</script></head>
 <body>
 <nav>
@@ -50,53 +49,34 @@ footer strong{color:white}
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 <div class="hero">
-  <div class="hero-cat">Immobilier</div>
-  <h1>Renégocier son crédit immobilier en 2026 : économiser des milliers d'euros</h1>
-  <div class="hero-badge">🏠 Jusqu'à 50 000€ économisés</div>
+  <h1>Le grand récap : votre plan d'action pour économiser</h1>
+  <p>100 articles, des centaines d'astuces. Voici comment tout mettre en pratique avec un plan d'action concret.</p>
 </div>
 <div class="container">
   <div class="content">
-    <p>En 2026, les taux immobiliers ont baissé par rapport aux pics de 2023-2024. Si vous avez contracté un prêt à taux élevé, la renégociation peut vous faire économiser des dizaines de milliers d'euros.</p>
-        <h2>Quand renégocier est rentable ?</h2>
-        <p>Renégocier est rentable si l'écart entre votre taux actuel et le taux du marché est d'au moins 0,7 à 1 point, si vous avez encore plus de 7 ans à rembourser, et si votre capital restant dû dépasse 70 000€.</p>
-        <h2>Renégocier avec sa banque actuelle</h2>
-        <p>Commencez toujours par votre banque actuelle. Présentez-vous avec une offre concurrente en main. La banque préfère souvent réduire son taux plutôt que de perdre un bon client.</p>
-        <h2>L'assurance emprunteur : le levier oublié</h2>
-        <p>La loi Lemoine permet de changer d'assurance emprunteur à tout moment. Une délégation d'assurance peut économiser 5 000 à 20 000€ sur la durée totale — souvent plus que la renégociation du taux.</p>
-        <h2>Faire jouer la concurrence</h2>
-        <p>Les courtiers (Meilleurtaux, Vousfinancer) négocient à votre place et sont souvent payés par les banques — leur service est gratuit pour vous.</p>
+    
+        <p>100 articles, des centaines d'astuces. Mais comment tout mettre en pratique sans se disperser ? Voici un plan d'action concret pour économiser efficacement, étape par étape.</p>
+        <h2>Semaine 1 : L'audit financier</h2>
+        <p>Listez toutes vos dépenses du mois dernier. Catégorisez-les : logement, alimentation, transports, loisirs, abonnements. Identifiez les 3 postes où vous pouvez économiser le plus facilement. Ne changez rien encore — observez d'abord.</p>
+        <h2>Semaine 2 : Les quick wins</h2>
+        <p>Résiliez les abonnements inutilisés (salle de sport, streaming dormant). Passez à une banque en ligne gratuite. Activez les notifications de dépenses sur votre application bancaire. Ces actions prennent 2 heures et économisent 50 à 100 €/mois.</p>
+        <h2>Semaine 3 : Optimiser l'alimentation</h2>
+        <p>Faites une liste de courses et tenez-vous y. Commencez le batch cooking le dimanche. Réduisez les livraisons et restaurants d'un tiers. Ces habitudes économisent 100 à 200 €/mois.</p>
+        <h2>Semaine 4 : Les grands leviers</h2>
+        <p>Comparez votre assurance auto et habitation. Vérifiez vos droits aux aides (APL, prime d'activité). Ouvrez un Livret A si vous n'en avez pas. Ces actions peuvent représenter 500 à 2 000 €/an d'économies.</p>
+        <h2>Le plan à 12 mois</h2>
+        <p>Mois 1-3 : stabiliser les habitudes. Mois 4-6 : constituer un fonds d'urgence de 1 000 €. Mois 7-12 : commencer à investir (PEA, assurance-vie). Dans 12 mois, vous serez dans une situation financière radicalement différente.</p>
+        
   </div>
-
-<!-- Partenaire HomeServe -->
-<div style="background:linear-gradient(135deg,#E1F5EE,#f0fdf4);border:1px solid #1D9E75;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-  <span style="font-size:2rem">🔧</span>
-  <div style="flex:1;min-width:200px">
-    <div style="font-weight:700;color:#085041;font-size:.95rem;margin-bottom:.2rem">Protégez votre logement avec HomeServe</div>
-    <div style="font-size:.82rem;color:#5F5E5A">Contrats d'assistance plomberie, électricité, chauffage. Intervention rapide 24h/24.</div>
-  </div>
-  <a href="https://www.awin1.com/cread.php?awinmid=30641&awinaffid=2926395&ued=https%3A%2F%2Fwww.homeserve.fr" target="_blank" rel="noopener sponsored" style="background:#1D9E75;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Découvrir →</a>
-</div>
-<!-- Fin partenaire -->
 
 <!-- Partenaire Fundora -->
 <div style="background:linear-gradient(135deg,#FAEEDA,#FFF8EE);border:1px solid #EF9F27;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
   <span style="font-size:2rem">💰</span>
   <div style="flex:1;min-width:200px">
     <div style="font-weight:700;color:#633806;font-size:.95rem;margin-bottom:.2rem">Faites fructifier votre épargne avec Fundora</div>
-    <div style="font-size:.82rem;color:#5F5E5A">Investissez dès 100€ dans des fonds de private equity sélectionnés. Investissement risqué : capital non garanti, liquidité limitée sur 6 à 10 ans.</div>
+    <div style="font-size:.82rem;color:#5F5E5A">Investissez facilement dans des projets rentables. Commencez dès 100€.</div>
   </div>
   <a href="https://www.awin1.com/cread.php?awinmid=124808&awinaffid=2926395&ued=https%3A%2F%2Fwww.fundora.fr" target="_blank" rel="noopener sponsored" style="background:#EF9F27;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Investir →</a>
-</div>
-<!-- Fin partenaire -->
-
-<!-- Partenaire AnyVan -->
-<div style="background:linear-gradient(135deg,#EEF2FF,#E0E7FF);border:1px solid #6366f1;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-  <span style="font-size:2rem">🚚</span>
-  <div style="flex:1;min-width:200px">
-    <div style="font-weight:700;color:#3730a3;font-size:.95rem;margin-bottom:.2rem">Déménagez moins cher avec AnyVan</div>
-    <div style="font-size:.82rem;color:#5F5E5A">Comparez les transporteurs et économisez jusqu'à 75% sur votre déménagement. Devis gratuit en 2 minutes.</div>
-  </div>
-  <a href="https://www.awin1.com/cread.php?awinmid=126967&awinaffid=2926395&ued=https%3A%2F%2Fwww.anyvan.com%2Ffr" target="_blank" rel="noopener sponsored" style="background:#6366f1;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Devis gratuit →</a>
 </div>
 <!-- Fin partenaire -->
 </div>
