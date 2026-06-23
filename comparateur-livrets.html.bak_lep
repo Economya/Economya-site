@@ -297,7 +297,7 @@ function calculate() {
 
   // Conseil dynamique
   const tip = document.getElementById('tip-text');
-  const gainLEP = Math.min(montant, 10000) * 2.5 / 100;
+  const gainLEP = Math.min(montant, 10000) * 4 / 100;
   const gainA = Math.min(montant, 22950) * 3 / 100;
 
   if(montant <= 0) {

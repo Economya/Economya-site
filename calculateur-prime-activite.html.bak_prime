@@ -242,13 +242,13 @@ const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
 // Montants forfaitaires 2026 (approximatifs)
 const FORFAITS = {
-  seul:   { base: 638.28, logement: 67.84, enfants: 0 },
-  couple: { base: 957.42, logement: 67.84, enfants: 0 },
-  seul1:  { base: 765.94, logement: 101.77, enfants: 127.66 },
-  seul2:  { base: 765.94, logement: 101.77, enfants: 255.31 },
-  couple1:{ base: 957.42, logement: 101.77, enfants: 127.66 },
-  couple2:{ base: 957.42, logement: 101.77, enfants: 255.31 },
-  couple3:{ base: 957.42, logement: 101.77, enfants: 382.97 },
+  seul:   { base: 635.71, logement: 67.84, enfants: 0 },
+  couple: { base: 953.57, logement: 67.84, enfants: 0 },
+  seul1:  { base: 762.85, logement: 101.77, enfants: 127.14 },
+  seul2:  { base: 762.85, logement: 101.77, enfants: 254.28 },
+  couple1:{ base: 953.57, logement: 101.77, enfants: 127.14 },
+  couple2:{ base: 953.57, logement: 101.77, enfants: 254.28 },
+  couple3:{ base: 953.57, logement: 101.77, enfants: 381.42 },
 };
 
 function calculate() {
@@ -264,24 +264,13 @@ function calculate() {
   const forfaitLogement = logement === 'heberge' ? 0 : f.logement;
   const montantForaitaire = f.base + forfaitLogement + f.enfants;
 
-  // Formule prime d'activité (barème officiel CAF au 1er avril 2026)
-  // PA = MF + 59,85% × RP + Bonification individuelle - RG
+  // Formule simplifiée prime d'activité
+  // PA = MF + 0.61 × RP - RG
   // MF = montant forfaitaire
   // RP = revenus professionnels
   // RG = ressources globales du foyer
-  // Bonification individuelle : 0€ sous 709,18€, croît linéairement jusqu'à
-  // 240,63€ max atteint à 1 658,76€ de revenus professionnels
-  function bonificationIndividuelle(rp) {
-    const SEUIL_BAS = 709.18;
-    const SEUIL_HAUT = 1658.76;
-    const MAX_BONIF = 240.63;
-    if (rp <= SEUIL_BAS) return 0;
-    if (rp >= SEUIL_HAUT) return MAX_BONIF;
-    return MAX_BONIF * (rp - SEUIL_BAS) / (SEUIL_HAUT - SEUIL_BAS);
-  }
   const rg = revenus + autres;
-  const bonification = bonificationIndividuelle(revenus);
-  const pa = montantForaitaire + 0.5985 * revenus + bonification - rg;
+  const pa = montantForaitaire + 0.61 * revenus - rg;
   const prime = Math.max(0, Math.round(pa));
 
   const banner = document.getElementById('result-banner');
