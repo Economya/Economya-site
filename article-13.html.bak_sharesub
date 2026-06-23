@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IA et shopping : comment l'intelligence artificielle vous fait économiser — Economya.fr</title>
-<meta name="description" content="L'IA révolutionne la façon de faire ses achats. Voici comment utiliser les outils gratuits pour ne plus jamais payer trop cher.">
+<title>Netflix, Spotify et Prime pour moins cher — Economya.fr</title>
+<meta name="description" content="La multiplication des plateformes de streaming a créé un nouveau poste de dépense invisible. Comment optimiser ses abonnements.">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <style>
@@ -15,13 +15,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
-.hero{background:linear-gradient(135deg,#04342C,#0F6E56,#1D9E75);color:white;padding:3rem 2rem 2.5rem}
-.hero-cat{display:inline-block;background:rgba(255,255,255,.15);color:white;padding:.3rem .8rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.8rem;line-height:1.2}
-.hero-badge{display:inline-block;background:var(--a);color:white;padding:.4rem 1rem;border-radius:50px;font-size:.82rem;font-weight:700;margin-top:.5rem}
+.hero{background:linear-gradient(135deg,#04342C,#0F6E56,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:600px}
 .container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
 .content p{margin-bottom:1.2rem;line-height:1.8;font-size:.95rem;color:var(--t)}
-.content h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);margin:2rem 0 .8rem;padding-left:1rem;border-left:4px solid var(--g)}
+.content h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);margin:2rem 0 .8rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
 footer strong{color:white}
 
@@ -39,7 +38,7 @@ footer strong{color:white}
   nav li{display:none!important}
 }
 </style>
-<link rel="canonical" href="https://economya.fr/article-502.html" />
+<link rel="canonical" href="https://economya.fr/article-13.html" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","publisher":"Economya.fr"}</script></head>
 <body>
 <nav>
@@ -50,33 +49,25 @@ footer strong{color:white}
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 <div class="hero">
-  <div class="hero-cat">Intelligence Artificielle</div>
-  <h1>IA et shopping : comment l'intelligence artificielle vous fait économiser</h1>
-  <div class="hero-badge">🤖 Shopping intelligent</div>
+  <h1>Netflix, Spotify et Prime pour moins cher</h1>
+  <p>La multiplication des plateformes de streaming a créé un nouveau poste de dépense invisible. Comment optimiser ses abonnements.</p>
 </div>
 <div class="container">
   <div class="content">
-    <p>L'intelligence artificielle transforme radicalement le shopping. En 2026, les consommateurs qui utilisent l'IA économisent en moyenne 15 à 30% de plus que les autres.</p>
-        <h2>Les extensions IA pour le shopping</h2>
-        <p>Des extensions comme Honey ou Capital One Shopping analysent automatiquement des milliers d'offres en temps réel. Elles appliquent les codes promo automatiquement et vous alertent quand le prix baisse.</p>
-        <h2>Utiliser ChatGPT pour comparer les produits</h2>
-        <p>Avant tout achat important, demandez à ChatGPT de comparer les alternatives. Vous obtenez une analyse objective sans publicité cachée.</p>
-        <h2>Détecter les fausses promotions</h2>
-        <p>Des outils comme Keepa (Amazon) révèlent si un prix soldé est vraiment une bonne affaire ou un prix artificiellement gonflé avant les soldes.</p>
-        <h2>L'IA pour les courses alimentaires</h2>
-        <p>Des applications comme Jow utilisent l'IA pour planifier vos repas et générer une liste de courses optimisée. Moins de gaspillage, moins de dépenses impulsives.</p>
+    
+        <p>La multiplication des plateformes de streaming a créé un nouveau poste de dépense invisible. En cumulant Netflix, Spotify, Prime, Disney+ et Canal+, on atteint facilement 60 à 80 €/mois — soit 720 à 960 €/an.</p>
+        <h2>Le co-abonnement : diviser les coûts par 4</h2>
+        <p>La plupart des plateformes proposent des formules famille ou duo. En partageant avec 3 ou 4 personnes via des plateformes comme Sharesub, vous divisez la facture par 4 légalement.</p>
+        <h2>Alterner les abonnements</h2>
+        <p>Vous n'avez pas besoin de tout en même temps. Abonnez-vous à Netflix en janvier pour une série, résiliez en mars, passez à Disney+ pour une autre saison. Coût moyen : 3 €/mois au lieu de 13 €.</p>
+        <h2>Les formules avec publicité</h2>
+        <p>Netflix, Disney+ et Spotify proposent des formules avec publicité à moitié prix. Pour un usage casual (1h/jour), la différence est minime.</p>
+        <h2>Spotify : les astuces</h2>
+        <p>L'abonnement famille Spotify (6 comptes) coûte 17,99 €/mois. Divisé par 6 amis : 3 €/personne. Spotify Premium Duo pour 2 personnes à la même adresse : 13,99 €/mois.</p>
+        <h2>Amazon Prime</h2>
+        <p>Prime inclut la livraison gratuite, Prime Video, Prime Music et Prime Reading. Si vous commandez régulièrement sur Amazon, il se rembourse seul. Sinon, résiliez et réabonnez-vous ponctuellement.</p>
+        
   </div>
-
-<!-- Partenaire Sharesub -->
-<div style="background:linear-gradient(135deg,#EDE7F6,#f5f0ff);border:1px solid #7c3aed;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-  <span style="font-size:2rem">📺</span>
-  <div style="flex:1;min-width:200px">
-    <div style="font-weight:700;color:#4c1d95;font-size:.95rem;margin-bottom:.2rem">Partagez vos abonnements en toute sécurité avec Sharesub</div>
-    <div style="font-size:.82rem;color:#5F5E5A">Netflix, Spotify, Disney+... Divisez vos abonnements par 2, 3 ou 4 légalement.</div>
-  </div>
-  <a href="https://www.awin1.com/cread.php?awinmid=124748&awinaffid=2926395&ued=https%3A%2F%2Fwww.sharesub.com" target="_blank" rel="noopener sponsored" style="background:#7c3aed;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Essayer →</a>
-</div>
-<!-- Fin partenaire -->
 </div>
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
