@@ -172,7 +172,7 @@ window.economyaLoadAds = function() {
 <div class="ab">
   <p class="lead">L'optimisation fiscale légale consiste à utiliser les dispositifs prévus par la loi pour réduire son impôt. En France, de nombreux mécanismes existent — mais beaucoup de contribuables ne les utilisent pas par méconnaissance. Voici les 10 niches fiscales les plus accessibles et les moins connues.</p>
 
-  <h2>💰 Les 10 niches fiscales méconnues à utiliser en 2026</h2>
+  <h2>💰 Les 10 niches fiscales méconnues à utiliser en 2025</h2>
   <div class="niches">
     <div class="niche top">
       <div class="n-num">1</div>
@@ -197,7 +197,7 @@ window.economyaLoadAds = function() {
       <div class="n-num">3</div>
       <div class="n-body">
         <h3>PER (Plan Épargne Retraite) — déduction des versements</h3>
-        <p>Les versements sur un PER individuel sont déductibles du revenu imposable dans la limite de 10 % des revenus professionnels nets (plafond 2026 pour un salarié : 37 680 €, ou 4 710 € minimum si vos revenus sont faibles). Pour un contribuable à 30 % de TMI versant 5 000 €, c'est 1 500 € d'impôt économisés immédiatement.</p>
+        <p>Les versements sur un PER individuel sont déductibles du revenu imposable dans la limite de 10 % des revenus professionnels nets (plafond 2025 : environ 32 909 €). Pour un contribuable à 30 % de TMI versant 5 000 €, c'est 1 500 € d'impôt économisés immédiatement.</p>
         <div class="n-tags"><span class="ntag g">Déduction au taux marginal</span><span class="ntag">Plafond ~32 000 €</span></div>
       </div>
       <div class="n-right"><span class="n-eco">30–45 % du versement</span><span class="n-sub">économisé en impôt</span></div>
@@ -233,7 +233,7 @@ window.economyaLoadAds = function() {
       <div class="n-num">7</div>
       <div class="n-body">
         <h3>Déduction travaux éco-énergie (MaPrimeRénov + déduction)</h3>
-        <p>Les travaux d'isolation, de chauffage et de ventilation dans votre résidence principale ouvrent droit à MaPrimeRénov (subvention) ET à une TVA réduite à 5,5 %. L'ensemble peut couvrir 30 à 80 % du coût total selon les travaux et votre revenu. ⚠️ Depuis 2026, certains travaux (isolation des murs, chaudières biomasse) ne sont finançables qu'en rénovation d'ampleur, pas en geste isolé.</p>
+        <p>Les travaux d'isolation, de chauffage et de ventilation dans votre résidence principale ouvrent droit à MaPrimeRénov (subvention) ET à une TVA réduite à 5,5 %. L'ensemble peut couvrir 30 à 70 % du coût total selon les travaux et votre revenu.</p>
         <div class="n-tags"><span class="ntag">MaPrimeRénov</span><span class="ntag">TVA 5,5 %</span></div>
       </div>
       <div class="n-right"><span class="n-eco">30–70 % du coût</span><span class="n-sub">couvert par aides</span></div>
