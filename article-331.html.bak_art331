@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Chaudière à granulés : prix et subventions 2026 — aides selon parcours. Guide complet sur Economya.fr">
+<meta name="description" content="Chaudière à granulés : prix et subventions — Jusqu'à 10 000€ d'aide. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chaudière à granulés : prix et subventions — Economya.fr</title>
@@ -137,7 +137,7 @@ window.economyaLoadAds = function() {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Chaudière à granulés : prix et subventions",
-  "description": "Chaudière à granulés : prix et subventions 2026 — aides selon parcours. Guide complet sur Economya.fr",
+  "description": "Chaudière à granulés : prix et subventions — Jusqu'à 10 000€ d'aide. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-331.html",
   "publisher": {
     "@type": "Organization",
@@ -156,7 +156,7 @@ window.economyaLoadAds = function() {
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
   <meta property="og:title" content="Chaudière à granulés : prix et subventions">
-  <meta property="og:description" content="Chaudière à granulés : prix et subventions 2026 — aides selon parcours. Guide complet sur Economya.fr">
+  <meta property="og:description" content="Chaudière à granulés : prix et subventions — Jusqu'à 10 000€ d'aide. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-331.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -165,7 +165,7 @@ window.economyaLoadAds = function() {
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Chaudière à granulés : prix et subventions">
-  <meta name="twitter:description" content="Chaudière à granulés : prix et subventions 2026 — aides selon parcours. Guide complet sur Economya.fr">
+  <meta name="twitter:description" content="Chaudière à granulés : prix et subventions — Jusqu'à 10 000€ d'aide. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-331.html" />
 </head>
@@ -181,7 +181,7 @@ window.economyaLoadAds = function() {
   <div class="hi">
     <div class="cat-pill">🌾 Écologie</div>
     <h1>Chaudière à granulés :<br><em>prix et subventions</em></h1>
-    <div class="savings-badge">💰 Aides selon le parcours choisi</div>
+    <div class="savings-badge">💰 Jusqu'à 10 000 € d'aide</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
@@ -190,10 +190,10 @@ window.economyaLoadAds = function() {
   </div>
 </div>
 <div class="ab">
-  <p class="lead">La chaudière à granulés (ou pellets) est l'une des solutions de chauffage les plus rentables pour remplacer une chaudière fioul ou gaz : carbone neutre et coût du combustible stable et bas. ⚠️ Depuis le 1er janvier 2026, les chaudières à granulés ne sont plus finançables via le parcours MaPrimeRénov' "par geste" — elles doivent désormais s'inscrire dans une rénovation d'ampleur (projet combinant au moins 2 gestes d'isolation). Le poêle à granulés (insert), lui, reste éligible au parcours simple.</p>
+  <p class="lead">La chaudière à granulés (ou pellets) est l'une des solutions de chauffage les plus rentables pour remplacer une chaudière fioul ou gaz : carbone neutre, coût du combustible stable et bas, et jusqu'à 10 000 € d'aides disponibles via MaPrimeRénov'.</p>
 
   <div class="stat-band">
-    <div class="stat-cell"><span class="stat-num">Variable</span><span class="stat-lbl">selon parcours (geste ou ampleur)</span></div>
+    <div class="stat-cell"><span class="stat-num">10 000 €</span><span class="stat-lbl">d'aides MaPrimeRénov' possibles</span></div>
     <div class="stat-cell"><span class="stat-num">40 %</span><span class="stat-lbl">d'économie sur la facture vs fioul</span></div>
     <div class="stat-cell"><span class="stat-num">5–8 ans</span><span class="stat-lbl">retour sur investissement typique</span></div>
   </div>
@@ -201,11 +201,11 @@ window.economyaLoadAds = function() {
   <h2>🌾 Les types de chaudières à granulés</h2>
   <div class="types">
     <div class="type top">
-      <span class="top-badge">⚠️ Non éligible au parcours simple depuis 2026</span>
+      <span class="top-badge">⭐ La plus populaire</span>
       <div class="type-icon">🏠</div>
       <div class="type-name">Chaudière à granulés automatique</div>
       <div class="type-prix">8 000–18 000 €</div>
-      <div class="type-desc">Alimentation automatique depuis un silo. Très confortable, quasi-autonome. Entretien annuel par un professionnel. Depuis le 1er janvier 2026, finançable uniquement via une rénovation d'ampleur (avec au moins 2 gestes d'isolation), plus via le parcours simple.</div>
+      <div class="type-desc">Alimentation automatique depuis un silo. Très confortable, quasi-autonome. Entretien annuel par un professionnel. Idéale pour remplacer une chaudière fioul centrale.</div>
     </div>
     <div class="type">
       <div class="type-icon">🪵</div>
@@ -217,19 +217,19 @@ window.economyaLoadAds = function() {
       <div class="type-icon">🌡️</div>
       <div class="type-name">Chaudière à granulés avec ballon ECS</div>
       <div class="type-prix">10 000–20 000 €</div>
-      <div class="type-desc">Alimente le chauffage central ET l'eau chaude sanitaire. Comme la chaudière simple, non éligible au parcours "par geste" depuis 2026 — uniquement via rénovation d'ampleur.</div>
+      <div class="type-desc">Alimente le chauffage central ET l'eau chaude sanitaire. Solution complète pour remplacer totalement la chaudière fioul ou gaz.</div>
     </div>
   </div>
 
-  <h2>💶 Les aides disponibles en 2026</h2>
+  <h2>💶 Les aides disponibles en 2025</h2>
   <div class="aides">
     <div class="aide top">
       <div class="aide-icon">🏛️</div>
       <div class="aide-body">
-        <h3>MaPrimeRénov' (ANAH) — selon l'équipement</h3>
-        <p>⚠️ Depuis le 1er janvier 2026, une chaudière à granulés seule n'est plus finançable via le parcours "par geste". Elle reste éligible si le projet s'inscrit dans une rénovation d'ampleur (au moins 2 gestes d'isolation, accompagnement obligatoire). Le poêle à granulés (insert), en revanche, reste finançable au parcours simple, à un montant plus modeste. Demande obligatoire avant les travaux sur maprimerenov.gouv.fr.</p>
+        <h3>MaPrimeRénov' (ANAH)</h3>
+        <p>Aide principale calculée selon les revenus. Les ménages très modestes remplaçant une chaudière fioul par une chaudière granulés peuvent atteindre 10 000 € d'aide. Demande obligatoire avant les travaux sur maprimerenov.gouv.fr.</p>
       </div>
-      <div class="aide-right"><span class="aide-amt">Variable</span><span class="aide-sub">selon parcours et équipement</span></div>
+      <div class="aide-right"><span class="aide-amt">5 000–10 000 €</span><span class="aide-sub">selon revenus</span></div>
     </div>
     <div class="aide">
       <div class="aide-icon">⚡</div>
@@ -257,10 +257,17 @@ window.economyaLoadAds = function() {
     </div>
   </div>
 
-  <h2>📊 Coût réel selon votre situation</h2>
+  <h2>📊 Exemple de rentabilité</h2>
   <div class="renta">
     <h3>💡 Maison 120 m² — Remplacement chaudière fioul</h3>
-    <p style="margin-bottom:1rem">Le coût final dépend désormais fortement du parcours suivi : une chaudière seule (sans MaPrimeRénov' depuis 2026) coûte environ <strong>14 000 €</strong>, financée seulement par les CEE (environ −1 500 €) et la TVA réduite, soit un reste à charge proche de <strong>12 000 €</strong>. En revanche, intégrée à une rénovation d'ampleur avec isolation, le taux de prise en charge MaPrimeRénov' peut atteindre 45 à 80 % du coût global selon vos revenus — mais le projet est alors plus vaste et plus coûteux dans l'absolu. Demandez un devis personnalisé via un Accompagnateur Rénov' agréé pour connaître votre reste à charge exact.</p>
+    <div class="renta-grid">
+      <div class="renta-item"><div class="renta-label">Coût installation</div><div class="renta-val">14 000 €</div></div>
+      <div class="renta-item"><div class="renta-label">MaPrimeRénov' (mod.)</div><div class="renta-val">−6 000 €</div></div>
+      <div class="renta-item"><div class="renta-label">CEE estimés</div><div class="renta-val">−1 500 €</div></div>
+      <div class="renta-item"><div class="renta-label">Reste à charge</div><div class="renta-val">6 500 €</div></div>
+      <div class="renta-item"><div class="renta-label">Économies/an (vs fioul)</div><div class="renta-val">~900 €/an</div></div>
+      <div class="renta-item"><div class="renta-label">Retour investissement</div><div class="renta-val">~7 ans</div></div>
+    </div>
   </div>
 
   <div class="tip">
