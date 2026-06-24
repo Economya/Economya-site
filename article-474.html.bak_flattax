@@ -2,71 +2,74 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Ouvrir son premier PEA : démarche et premiers achats — Commencez avec 50€. Guide complet sur Economya.fr">
+<meta name="description" content="Crowdfunding immobilier : risques et rendements réels — 8–12% de rendement potentiel. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ouvrir son premier PEA : démarche et premiers achats — Economya.fr</title>
+<title>Crowdfunding immobilier : risques et rendements réels — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--indigo:#4338ca;--indigo-l:#eef2ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--sky:#0284c7;--sky-l:#f0f9ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#0f0c29,#1e1b5e,#4338ca);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'📊';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#082f49,#075985,#0284c7);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🏢';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#c7d2fe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
-.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#a5b4fc;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#4338ca);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(67,56,202,.35)}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bae6fd;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#7dd3fc;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#0284c7);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(2,132,199,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#4338ca,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#0284c7,#d97706);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--indigo);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--sky);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* BROKERS */
-.brokers{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1rem;margin:1.5rem 0}
-.broker{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s,box-shadow .2s;position:relative}
-.broker:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(67,56,202,.1)}
-.broker.top{border:2px solid var(--g)}
-.top-badge{position:absolute;top:-10px;left:50%;transform:translateX(jusqu'à -50%);background:var(--g);color:white;font-size:.64rem;font-weight:700;padding:.14rem .65rem;border-radius:50px;white-space:nowrap}
-.broker-icon{font-size:1.8rem;margin-bottom:.4rem}
-.broker-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
-.broker-frais{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--indigo);margin:.2rem 0}
-.broker-desc{font-size:.76rem;color:var(--m);font-weight:300;line-height:1.4}
+/* PLATEFORMES */
+.plates{display:flex;flex-direction:column;gap:.9rem;margin:1.5rem 0}
+.plate{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.plate:hover{box-shadow:0 4px 18px rgba(2,132,199,.1)}
+.plate.top{border:2px solid var(--g)}
+.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
+.p-icon{font-size:2rem;flex-shrink:0;margin-top:.1rem}
+.p-body h3{font-size:.92rem;font-weight:700;margin-bottom:.2rem}
+.p-body p{font-size:.82rem;color:var(--m);font-weight:300;margin:0 0 .35rem}
+.p-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.ptag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:var(--sky-l);color:#075985}
+.ptag.g{background:var(--gl);color:var(--gd)}
+.p-right{text-align:right;flex-shrink:0}
+.p-rdt{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--sky);display:block;white-space:nowrap}
+.p-sub{font-size:.7rem;color:var(--m)}
 
-/* ÉTAPES */
-.steps{display:flex;flex-direction:column;gap:.85rem;margin:1.2rem 0}
-.step{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem;transition:box-shadow .2s}
-.step:hover{box-shadow:0 4px 16px rgba(67,56,202,.1)}
-.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#1e1b5e,#4338ca);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.sc h3{font-size:.92rem;font-weight:600;margin-bottom:.2rem}
-.sc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
-.sc .stag{display:inline-block;margin-top:.35rem;background:var(--indigo-l);color:var(--indigo);font-size:.7rem;font-weight:600;padding:.12rem .55rem;border-radius:50px}
+/* RISQUES */
+.risques{display:flex;flex-direction:column;gap:.75rem;margin:1.2rem 0}
+.risque{background:#fef2f2;border:1px solid #fecaca;border-radius:var(--r);padding:1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start}
+.risco{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+.risque strong{display:block;font-size:.9rem;color:#dc2626;margin-bottom:.15rem}
+.risque span{font-size:.84rem;color:#7f1d1d;font-weight:300}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:var(--indigo-l);border-left:4px solid var(--indigo);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#1e1b5e}
+.warn{background:var(--sky-l);border-left:4px solid var(--sky);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#082f49}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#0f0c29,#1e1b5e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#082f49,#075985);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#4338ca,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#0284c7,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.plate{grid-template-columns:1fr;gap:.5rem}.p-right{text-align:left}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -120,9 +123,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Ouvrir son premier PEA : démarche et premiers achats",
-  "description": "Ouvrir son premier PEA : démarche et premiers achats — Commencez avec 50€. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-338.html",
+  "headline": "Crowdfunding immobilier : risques et rendements réels",
+  "description": "Crowdfunding immobilier : risques et rendements réels — 8–12% de rendement potentiel. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-474.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -139,19 +142,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Ouvrir son premier PEA : démarche et premiers achats">
-  <meta property="og:description" content="Ouvrir son premier PEA : démarche et premiers achats — Commencez avec 50€. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-338.html">
+  <meta property="og:title" content="Crowdfunding immobilier : risques et rendements réels">
+  <meta property="og:description" content="Crowdfunding immobilier : risques et rendements réels — 8–12% de rendement potentiel. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-474.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ouvrir son premier PEA : démarche et premiers achats">
-  <meta name="twitter:description" content="Ouvrir son premier PEA : démarche et premiers achats — Commencez avec 50€. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Crowdfunding immobilier : risques et rendements réels">
+  <meta name="twitter:description" content="Crowdfunding immobilier : risques et rendements réels — 8–12% de rendement potentiel. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-338.html" />
+<link rel="canonical" href="https://economya.fr/article-474.html" />
 </head>
 <body>
 <nav>
@@ -163,118 +166,89 @@ window.economyaLoadAds = function() {
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">📊 Investissement</div>
-    <h1>Ouvrir son premier PEA :<br><em>démarche et premiers achats</em></h1>
-    <div class="savings-badge">💰 Commencez avec 50 €</div>
+    <div class="cat-pill">🏢 Investissement</div>
+    <h1>Crowdfunding immobilier :<br><em>risques et rendements réels</em></h1>
+    <div class="savings-badge">💰 8–12 % de rendement potentiel</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">📈 PEA & investissement</span>
+      <span class="theme-tag">🏗️ Financement participatif immo</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Le PEA (Plan d'Épargne en Actions) est l'enveloppe fiscale la plus avantageuse pour investir en Bourse en France : 0 % d'impôt sur les plus-values après 5 ans (hors prélèvements sociaux à 17,2 %). Voici comment l'ouvrir, choisir son broker et faire ses premiers achats d'ETF.</p>
+  <p class="lead">Le crowdfunding immobilier permet de financer des projets de promotion immobilière (construction ou rénovation) en échange d'un rendement de 8 à 12 % sur 12 à 36 mois. Accessible dès 100–1 000 €, c'est l'un des placements à court terme les plus rémunérateurs. Mais le risque de perte en capital est réel.</p>
 
-  <h2>🏦 Où ouvrir son PEA : comparatif des meilleurs brokers</h2>
-  <div class="brokers">
-    <div class="broker top">
-      <span class="top-badge">⭐ Meilleur rapport qualité/prix</span>
-      <div class="broker-icon">🟠</div>
-      <div class="broker-name">Boursobank (ex-Boursorama)</div>
-      <div class="broker-frais">0 € ouverture</div>
-      <div class="broker-desc">Frais de courtage : 0,99–1,99 €/ordre. Appli très bien notée. Leader des banques en ligne. Offre régulière d'ouverture avec bonus.</div>
+  <h2>🏦 Les principales plateformes agréées en France</h2>
+  <div class="plates">
+    <div class="plate top">
+      <div class="p-icon">🏗️</div>
+      <div class="p-body">
+        <div class="top-badge">⭐ Leader du marché</div>
+        <h3>Homunity</h3>
+        <p>L'une des plateformes françaises les plus anciennes et les mieux notées. Sélection rigoureuse des projets (moins de 10 % acceptés). Historique de remboursements solide. Minimum 1 000 €. Projets résidentiels et tertiaires en France.</p>
+        <div class="p-tags"><span class="ptag g">Agrément AMF</span><span class="ptag">Min. 1 000 €</span><span class="ptag g">Historique solide</span></div>
+      </div>
+      <div class="p-right"><span class="p-rdt">8–10 %/an</span><span class="p-sub">12–24 mois</span></div>
     </div>
-    <div class="broker">
-      <div class="broker-icon">🟦</div>
-      <div class="broker-name">Fortuneo</div>
-      <div class="broker-frais">0 € ouverture</div>
-      <div class="broker-desc">Frais 0 € jusqu'à 500 € investis/mois. Idéal pour les petits investisseurs réguliers. Interface intuitive.</div>
+    <div class="plate">
+      <div class="p-icon">🏢</div>
+      <div class="p-body">
+        <h3>Anaxago</h3>
+        <p>Plateforme premium avec une sélection très rigoureuse. Accès à des projets immobiliers haut de gamme et à des startups. Minimum 1 000 €. Taux de défaut très faible. Interface claire avec suivi de projet détaillé.</p>
+        <div class="p-tags"><span class="ptag g">Agrément AMF</span><span class="ptag">Sélection exigeante</span></div>
+      </div>
+      <div class="p-right"><span class="p-rdt">9–11 %/an</span><span class="p-sub">18–30 mois</span></div>
     </div>
-    <div class="broker">
-      <div class="broker-icon">🟩</div>
-      <div class="broker-name">Trade Republic</div>
-      <div class="broker-frais">1 €/ordre</div>
-      <div class="broker-desc">PEA disponible depuis 2024. Plans d'investissement automatiques (DCA) très pratiques. Application mobile excellente.</div>
-    </div>
-    <div class="broker">
-      <div class="broker-icon">🟥</div>
-      <div class="broker-name">Saxo Bank</div>
-      <div class="broker-frais">Variable</div>
-      <div class="broker-desc">Large choix d'ETF et d'actions internationales. Frais compétitifs pour les gros ordres. Interface professionnelle.</div>
+    <div class="plate">
+      <div class="p-icon">🌍</div>
+      <div class="p-body">
+        <h3>Raizers / La Première Brique</h3>
+        <p>La Première Brique se distingue avec un ticket d'entrée très bas (1 €) et des projets résidentiels accessibles. Raizers est plus orienté projets plus importants. Les deux ont des agréments AMF et des historiques de remboursements.</p>
+        <div class="p-tags"><span class="ptag">Min. 1 € (LPB)</span><span class="ptag g">Agrément AMF</span></div>
+      </div>
+      <div class="p-right"><span class="p-rdt">10–12 %/an</span><span class="p-sub">12–24 mois</span></div>
     </div>
   </div>
 
-  <h2>🪜 Ouvrir et utiliser son PEA en 5 étapes</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="sn">1</div>
-      <div class="sc">
-        <h3>Choisissez votre courtier et ouvrez le PEA en ligne</h3>
-        <p>L'ouverture prend 15–20 minutes en ligne. Vous aurez besoin de : pièce d'identité, RIB, justificatif de domicile, numéro fiscal. Attention : vous ne pouvez avoir qu'un seul PEA par personne.</p>
-        <span class="stag">⏱ 15–20 minutes</span>
-      </div>
+  <h2>⚠️ Les risques réels à connaître</h2>
+  <div class="risques">
+    <div class="risque">
+      <span class="risco">💸</span>
+      <div><strong>Risque de perte en capital — non garanti</strong><span>Le crowdfunding immobilier n'est pas garanti. Si le promoteur fait défaut (faillite, projet non achevé, marché immobilier défavorable), vous pouvez perdre une partie ou la totalité de votre investissement. Ce n'est pas un livret épargne — c'est un prêt non sécurisé.</span></div>
     </div>
-    <div class="step">
-      <div class="sn">2</div>
-      <div class="sc">
-        <h3>Effectuez un premier versement (dès 10–50 €)</h3>
-        <p>Virement depuis votre compte bancaire vers le PEA. Important : la date d'ouverture du PEA est la date du premier versement — c'est à partir de cette date que commence le délai des 5 ans pour la fiscalité avantageuse. Ouvrez-le dès aujourd'hui même avec 1 €.</p>
-        <span class="stag">💰 Ouvrez maintenant pour démarrer le délai fiscal</span>
-      </div>
+    <div class="risque">
+      <span class="risco">⏳</span>
+      <div><strong>Retards fréquents (30–40 % des projets)</strong><span>Un retard dans la construction ou la vente des logements peut prolonger la durée de blocage de votre argent de 6 à 18 mois supplémentaires. En 2024, environ 30–40 % des projets ont été remboursés avec retard selon les données de plateformes.</span></div>
     </div>
-    <div class="step">
-      <div class="sn">3</div>
-      <div class="sc">
-        <h3>Choisissez votre premier ETF (CW8 ou équivalent)</h3>
-        <p>Recherchez "CW8" ou "Amundi MSCI World" dans la barre de recherche de votre courtier. Vérifiez que l'ETF est éligible PEA (mention dans la fiche produit). Pour un débutant, un seul ETF World suffit.</p>
-      </div>
+    <div class="risque">
+      <span class="risco">🔒</span>
+      <div><strong>Argent bloqué jusqu'au remboursement</strong><span>Contrairement à des actions cotées, il n'existe pas de marché secondaire pour revendre vos parts. Votre argent est bloqué jusqu'au remboursement du projet. N'investissez que de l'argent dont vous n'avez pas besoin avant l'échéance prévue.</span></div>
     </div>
-    <div class="step">
-      <div class="sn">4</div>
-      <div class="sc">
-        <h3>Passez un ordre d'achat "au marché" ou "limité"</h3>
-        <p>Ordre "au marché" : achat au prix actuel, exécution immédiate. Ordre "limité" : vous fixez un prix maximum, exécution si le cours descend à ce niveau. Pour un ETF World, l'ordre au marché est généralement suffisant.</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="sn">5</div>
-      <div class="sc">
-        <h3>Automatisez vos versements mensuels</h3>
-        <p>Programmez un virement mensuel automatique vers le PEA (50, 100, 200 €) et un ordre d'achat récurrent si votre courtier le permet (Trade Republic, Finary…). Laissez tourner sans regarder chaque semaine.</p>
-        <span class="stag">💰 La méthode DCA en pilote automatique</span>
-      </div>
+    <div class="risque">
+      <span class="risco">💶</span>
+      <div><strong>Fiscalité défavorable — flat tax 30 %</strong><span>Les intérêts perçus sont soumis au PFU (flat tax) de 30 %. Un rendement affiché de 10 % devient ~7 % net après flat tax. Comparez toujours les rendements nets et non bruts.</span></div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Ouvrez votre PEA aujourd'hui même si vous n'avez pas encore d'argent à investir</strong>
-    La durée du PEA de 5 ans court à partir de la date du premier versement. Ouvrir un PEA avec 1 € aujourd'hui et ne commencer à investir vraiment que dans 2 ans vous donnera quand même 5 ans de durée au bout de seulement 3 ans d'investissement réel. C'est une optimisation fiscale simple et gratuite.
+    <strong>💡 La règle des 5–10 % de votre patrimoine financier maximum</strong>
+    Le crowdfunding immobilier est un placement à haut rendement mais à haut risque. La règle prudente des conseillers financiers : ne pas y consacrer plus de 5–10 % de votre patrimoine financier, réparti sur 10–20 projets différents pour diversifier le risque. Un seul projet représente une concentration de risque excessive.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Tout retrait avant 5 ans clôture le PEA</strong>
-    Avant 5 ans de détention, tout retrait de liquidités du PEA entraîne sa clôture automatique. Les plus-values sont alors soumises à la flat tax (31,4 % depuis 2026). Seuls les "retraits partiels" sont possibles après 5 ans sans clôture. Investissez donc uniquement de l'argent dont vous n'avez pas besoin à court terme.
+    <strong>⚠️ Vérifiez l'agrément AMF de la plateforme avant d'investir</strong>
+    Toute plateforme de crowdfunding immobilier doit disposer d'un agrément PSFP (Prestataire de Services de Financement Participatif) délivré par l'AMF. Vérifiez sur le registre officiel REGAFI ou sur le site de l'AMF (amf-france.org). Les plateformes sans agrément opèrent illégalement. Depuis 2023, la réglementation européenne a uniformisé les règles.
   </div>
 
   <div class="cta">
-    <h3>📬 Investissement & bourse dans votre boîte mail</h3>
-    <p>Les meilleures stratégies pour investir simplement et efficacement, chaque semaine.</p>
+    <h3>📬 Investissement alternatif dans votre boîte mail</h3>
+    <p>Les meilleures opportunités et analyses pour diversifier votre patrimoine, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
     </div>
   </div>
-</div>
-
-<!-- Partenaire Linxea -->
-<div style="background:linear-gradient(135deg,#FAEEDA,#FFF8EE);border:1px solid #EF9F27;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-  <span style="font-size:2rem">📈</span>
-  <div style="flex:1;min-width:200px">
-    <div style="font-weight:700;color:#633806;font-size:.95rem;margin-bottom:.2rem">Optimisez votre épargne avec Linxea</div>
-    <div style="font-size:.82rem;color:#5F5E5A">Assurance-vie et épargne retraite à frais réduits, courtier ORIAS depuis 2001. Les unités de compte comportent un risque de perte en capital ; le fonds en euros est garanti.</div>
-  </div>
-  <a href="https://www.awin1.com/cread.php?awinmid=13275&awinaffid=2926395&ued=https%3A%2F%2Fwww.linxea.com" target="_blank" rel="noopener sponsored" style="background:#EF9F27;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Découvrir →</a>
 </div>
 
 <!-- Boutons partage -->
@@ -300,7 +274,7 @@ window.economyaLoadAds = function() {
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil financier.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil en investissement.</span>
 </footer>
 
 <style>
@@ -315,7 +289,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-336.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">ETF World : comment investir simplement</div></a><a class="sim-card" href="article-340.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Fonds euros vs unités de compte</div></a><a class="sim-card" href="article-341.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">SCPI :guide complet 2025</div></a><a class="sim-card" href="article-342.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Investir 100 €/mois en Bourse :simulation sur 20 ans</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-336.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">ETF World : comment investir simplement</div></a><a class="sim-card" href="article-337.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Livret A vs LEP vs LDDS : que choisir</div></a><a class="sim-card" href="article-338.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Ouvrir son premier PEA</div></a><a class="sim-card" href="article-339.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">PEA : ouvrir, gérer, optimiser</div></a></div>
 </div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">

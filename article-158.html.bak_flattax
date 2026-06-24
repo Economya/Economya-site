@@ -273,7 +273,7 @@ window.economyaLoadAds = function() {
       <div class="regle-num">5</div>
       <div class="regle-body">
         <div class="regle-title">Déclarez vos plus-values aux impôts</div>
-        <div class="regle-desc">En France, les plus-values crypto sont imposées à 31,4 % (flat tax, depuis le 1er janvier 2026) dès le premier euro de cession vers des euros. L'administration fiscale a accès aux données des plateformes. Des outils comme Waltio ou Koinly calculent automatiquement votre imposition à partir de l'historique de vos transactions.</div>
+        <div class="regle-desc">En France, les plus-values crypto sont imposées à 30 % (flat tax) dès le premier euro de cession vers des euros. L'administration fiscale a accès aux données des plateformes. Des outils comme Waltio ou Koinly calculent automatiquement votre imposition à partir de l'historique de vos transactions.</div>
       </div>
     </div>
   </div>

@@ -254,7 +254,7 @@ window.economyaLoadAds = function() {
 
   <div class="warn">
     <strong>⚠️ Tout retrait avant 5 ans clôture le PEA</strong>
-    Avant 5 ans de détention, tout retrait de liquidités du PEA entraîne sa clôture automatique. Les plus-values sont alors soumises à la flat tax (31,4 % depuis 2026). Seuls les "retraits partiels" sont possibles après 5 ans sans clôture. Investissez donc uniquement de l'argent dont vous n'avez pas besoin à court terme.
+    Avant 5 ans de détention, tout retrait de liquidités du PEA entraîne sa clôture automatique. Les plus-values sont alors soumises à la flat tax (30 %). Seuls les "retraits partiels" sont possibles après 5 ans sans clôture. Investissez donc uniquement de l'argent dont vous n'avez pas besoin à court terme.
   </div>
 
   <div class="cta">
