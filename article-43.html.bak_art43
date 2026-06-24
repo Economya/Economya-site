@@ -335,8 +335,8 @@ window.economyaLoadAds = function() {
   <div class="travaux-grid">
     <div class="travaux-card">
       <div class="travaux-name">Isolation des combles</div>
-      <div class="travaux-desc">30% des déperditions thermiques passent par le toit. Isolation des combles perdus : 15 à 25€/m². Soufflage en 1 journée. ⚠️ Depuis 2026, les combles perdus ne sont plus éligibles au parcours simple MaPrimeRénov' (réservé désormais aux rampants/combles aménagés, jusqu'à 75€/m²) — ils nécessitent une rénovation d'ampleur.</div>
-      <div class="travaux-aide">Variable selon parcours</div>
+      <div class="travaux-desc">30% des déperditions thermiques passent par le toit. Isolation des combles perdus : 15 à 25€/m². Soufflage en 1 journée.</div>
+      <div class="travaux-aide">MaPrimeRénov' jusqu'à 75%</div>
     </div>
     <div class="travaux-card">
       <div class="travaux-name">Double vitrage</div>
@@ -351,7 +351,7 @@ window.economyaLoadAds = function() {
     <div class="travaux-card">
       <div class="travaux-name">Pompe à chaleur</div>
       <div class="travaux-desc">Remplace une chaudière gaz par un système 3x plus efficace. Investissement 8 000-15 000€, mais aides très importantes.</div>
-      <div class="travaux-aide">MaPrimeRénov' jusqu'à 5 000€ (forfait selon revenus)</div>
+      <div class="travaux-aide">MaPrimeRénov' jusqu'à 70%</div>
     </div>
   </div>
 
