@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Pompe à chaleur : aides et rentabilité 2026 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr">
+<meta name="description" content="Pompe à chaleur : aides et rentabilité 2025 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pompe à chaleur : aides et rentabilité 2026 — Economya.fr</title>
+<title>Pompe à chaleur : aides et rentabilité 2025 — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -132,8 +132,8 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Pompe à chaleur : aides et rentabilité 2026",
-  "description": "Pompe à chaleur : aides et rentabilité 2026 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr",
+  "headline": "Pompe à chaleur : aides et rentabilité 2025",
+  "description": "Pompe à chaleur : aides et rentabilité 2025 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-322.html",
   "publisher": {
     "@type": "Organization",
@@ -151,8 +151,8 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Pompe à chaleur : aides et rentabilité 2026">
-  <meta property="og:description" content="Pompe à chaleur : aides et rentabilité 2026 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr">
+  <meta property="og:title" content="Pompe à chaleur : aides et rentabilité 2025">
+  <meta property="og:description" content="Pompe à chaleur : aides et rentabilité 2025 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-322.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -160,8 +160,8 @@ window.economyaLoadAds = function() {
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Pompe à chaleur : aides et rentabilité 2026">
-  <meta name="twitter:description" content="Pompe à chaleur : aides et rentabilité 2026 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Pompe à chaleur : aides et rentabilité 2025">
+  <meta name="twitter:description" content="Pompe à chaleur : aides et rentabilité 2025 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-322.html" />
 </head>
@@ -177,7 +177,7 @@ window.economyaLoadAds = function() {
 <div class="ah">
   <div class="hi">
     <div class="cat-pill">🌡️ Écologie</div>
-    <h1>Pompe à chaleur :<br><em>aides et rentabilité 2026</em></h1>
+    <h1>Pompe à chaleur :<br><em>aides et rentabilité 2025</em></h1>
     <div class="savings-badge">💰 MaPrimeRénov' jusqu'à 11 000 €</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
@@ -218,7 +218,7 @@ window.economyaLoadAds = function() {
     </div>
   </div>
 
-  <h2>💶 Les aides financières disponibles en 2026</h2>
+  <h2>💶 Les aides financières disponibles en 2025</h2>
 
   <div class="aides">
 
@@ -267,11 +267,11 @@ window.economyaLoadAds = function() {
     <h3>💡 Maison 120 m² — Remplacement chaudière fioul</h3>
     <div class="renta-grid">
       <div class="renta-item"><div class="renta-label">Coût total installation</div><div class="renta-val">12 000 €</div></div>
-      <div class="renta-item"><div class="renta-label">MaPrimeRénov' (revenus moyens)</div><div class="renta-val">−3 000 €</div></div>
+      <div class="renta-item"><div class="renta-label">MaPrimeRénov' (revenus moyens)</div><div class="renta-val">−5 000 €</div></div>
       <div class="renta-item"><div class="renta-label">CEE estimés</div><div class="renta-val">−1 500 €</div></div>
-      <div class="renta-item"><div class="renta-label">Reste à charge</div><div class="renta-val">7 500 €</div></div>
+      <div class="renta-item"><div class="renta-label">Reste à charge</div><div class="renta-val">5 500 €</div></div>
       <div class="renta-item"><div class="renta-label">Économies annuelles</div><div class="renta-val">~900 €/an</div></div>
-      <div class="renta-item"><div class="renta-label">Retour sur investissement</div><div class="renta-val">~8 ans</div></div>
+      <div class="renta-item"><div class="renta-label">Retour sur investissement</div><div class="renta-val">~6 ans</div></div>
     </div>
   </div>
 
