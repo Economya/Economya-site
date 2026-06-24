@@ -216,7 +216,7 @@ window.economyaLoadAds = function() {
         <p>Pour les travaux de rénovation énergétique : MaPrimeRénov', CEE (Certificats d'Économies d'Énergie), éco-prêt à taux zéro, TVA réduite. Le simulateur maison-renovation.gouv.fr calcule vos aides selon vos revenus, votre région et les travaux prévus.</p>
         <div class="p-tags"><span class="ptag">Rénovation énergie</span><span class="ptag">maison-renovation.gouv.fr</span></div>
       </div>
-      <div class="p-right"><span class="p-gratuit">Jusqu'à 80 %</span><span class="p-sub">Des travaux pris en charge</span></div>
+      <div class="p-right"><span class="p-gratuit">Jusqu'à 70 %</span><span class="p-sub">Des travaux pris en charge</span></div>
     </div>
   </div>
 
