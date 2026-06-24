@@ -244,7 +244,7 @@ window.economyaLoadAds = function() {
       <div class="sn">4</div>
       <div class="sc">
         <h3>Demandez les aides avant de signer</h3>
-        <p>MaPrimeRénov' (panneaux solaires thermiques uniquement, pas le photovoltaïque). Pour le photovoltaïque : TVA réduite à 5,5 % sous conditions strictes depuis 2026 (20 % sinon, le taux de 10 % n'existe plus), et prime à l'autoconsommation dont le montant évolue chaque trimestre — vérifiez le taux actuel et l'existence du dispositif sur le site officiel EDF OA avant de signer.</p>
+        <p>MaPrimeRénov' (panneaux solaires thermiques), TVA à 10 % pour les installations photovoltaïques, prime à l'autoconsommation (jusqu'à 500 €/kWc). Vérifiez votre éligibilité sur maprimerenov.gouv.fr avant de signer.</p>
       </div>
     </div>
   </div>
@@ -307,7 +307,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-321.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Réduire sa facture d'énergieen hiver</div></a><a class="sim-card" href="article-322.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Pompe à chaleur :aides et rentabilité 2026</div></a><a class="sim-card" href="article-323.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Isolation des combles :coût et subventions</div></a><a class="sim-card" href="article-324.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Véhicule électrique :vrai coût vs essence sur 5 ans</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-321.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Réduire sa facture d'énergieen hiver</div></a><a class="sim-card" href="article-322.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Pompe à chaleur :aides et rentabilité 2025</div></a><a class="sim-card" href="article-323.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Isolation des combles :coût et subventions</div></a><a class="sim-card" href="article-324.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Véhicule électrique :vrai coût vs essence sur 5 ans</div></a></div>
 </div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
