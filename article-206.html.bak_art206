@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Rénovation énergétique : toutes les aides 2026 — Jusqu'à 80% des travaux financés. Guide complet sur Economya.fr">
+<meta name="description" content="Rénovation énergétique : toutes les aides 2025 — Jusqu'à 90% des travaux financés. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rénovation énergétique : toutes les aides 2026 — Economya.fr</title>
+<title>Rénovation énergétique : toutes les aides 2025 — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -135,8 +135,8 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Rénovation énergétique : toutes les aides 2026",
-  "description": "Rénovation énergétique : toutes les aides 2026 — Jusqu'à 80% des travaux financés. Guide complet sur Economya.fr",
+  "headline": "Rénovation énergétique : toutes les aides 2025",
+  "description": "Rénovation énergétique : toutes les aides 2025 — Jusqu'à 90% des travaux financés. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-206.html",
   "publisher": {
     "@type": "Organization",
@@ -154,8 +154,8 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Rénovation énergétique : toutes les aides 2026">
-  <meta property="og:description" content="Rénovation énergétique : toutes les aides 2026 — Jusqu'à 80% des travaux financés. Guide complet sur Economya.fr">
+  <meta property="og:title" content="Rénovation énergétique : toutes les aides 2025">
+  <meta property="og:description" content="Rénovation énergétique : toutes les aides 2025 — Jusqu'à 90% des travaux financés. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-206.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -163,8 +163,8 @@ window.economyaLoadAds = function() {
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Rénovation énergétique : toutes les aides 2026">
-  <meta name="twitter:description" content="Rénovation énergétique : toutes les aides 2026 — Jusqu'à 80% des travaux financés. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Rénovation énergétique : toutes les aides 2025">
+  <meta name="twitter:description" content="Rénovation énergétique : toutes les aides 2025 — Jusqu'à 90% des travaux financés. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-206.html" />
 </head>
@@ -179,8 +179,8 @@ window.economyaLoadAds = function() {
 
 <div class="hero">
   <div class="hero-cat">🌿 <strong>Immobilier</strong></div>
-  <h1>Rénovation énergétique : toutes les aides 2026</h1>
-  <div class="hero-badge">💰 Jusqu'à 80 % des travaux financés</div>
+  <h1>Rénovation énergétique : toutes les aides 2025</h1>
+  <div class="hero-badge">💰 Jusqu'à 90 % des travaux financés</div>
   <div class="hero-meta">
     <span>📖 6 min de lecture</span>
     <span>✅ Vérifié juin 2026</span>
@@ -189,7 +189,7 @@ window.economyaLoadAds = function() {
 </div>
 
 <article>
-  <p>En 2026, rénover son logement pour réduire sa facture énergétique reste bien soutenu par l'État, mais le système a changé : MaPrimeRénov' distingue désormais deux parcours ("par geste" pour un seul équipement, "rénovation d'ampleur" pour un projet plus large), avec des règles d'éligibilité différentes selon le type de travaux. Les CEE, l'éco-PTZ et la TVA à 5,5 % restent cumulables. Voici le panorama complet et actualisé des aides disponibles en 2026, avec les montants réels et les conditions d'accès.</p>
+  <p>En 2025, rénover son logement pour réduire sa facture énergétique n'a jamais été aussi bien soutenu par l'État. MaPrimeRénov', les Certificats d'Économies d'Énergie, l'éco-PTZ, la TVA à 5,5 % — l'empilement des aides peut couvrir la quasi-totalité des travaux pour les ménages modestes. Mais le système est complexe, les plafonds varient selon les revenus et les types de travaux, et de nombreuses arnaques circulent. Voici le panorama complet et actualisé des aides disponibles en 2025, avec les montants réels et les conditions d'accès.</p>
 
   <h2>Les 5 aides principales à connaître</h2>
 
@@ -197,10 +197,10 @@ window.economyaLoadAds = function() {
     <div class="aide">
       <div class="aide-head mpr">
         <span class="aide-nom">MaPrimeRénov' (MPR)</span>
-        <span class="aide-montant">Jusqu'à 80 % des travaux</span>
+        <span class="aide-montant">Jusqu'à 90 % des travaux</span>
       </div>
       <div class="aide-body">
-        <div class="aide-desc">L'aide phare de l'État, versée par l'ANAH. Son montant dépend de vos revenus (4 catégories : bleu, jaune, violet, rose) et du type de travaux. ⚠️ Depuis le 1er janvier 2026, l'isolation des murs et les chaudières biomasse ne sont plus finançables via le parcours "par geste" — elles nécessitent désormais une rénovation d'ampleur (au moins 2 gestes d'isolation). Pompe à chaleur, fenêtres et ventilation restent éligibles au parcours simple. Accessible aux propriétaires occupants ET aux bailleurs (avec obligation de louer 6 ans après travaux).</div>
+        <div class="aide-desc">L'aide phare de l'État, versée par l'ANAH. Son montant dépend de vos revenus (4 catégories : bleu, jaune, violet, rose) et du type de travaux. Elle couvre isolation, pompe à chaleur, chaudière biomasse, fenêtres, ventilation. En 2025, elle est accessible aux propriétaires occupants ET aux bailleurs (avec obligation de louer 6 ans après travaux).</div>
         <div class="aide-tags">
           <span class="tag">✅ Propriétaires occupants</span>
           <span class="tag">✅ Bailleurs</span>
@@ -271,17 +271,15 @@ window.economyaLoadAds = function() {
     </div>
   </div>
 
-  <h2>Montants MaPrimeRénov' selon revenus — pompe à chaleur (PAC air/eau)</h2>
-
-  <p style="font-size:.85rem;color:var(--m);margin-bottom:1rem">⚠️ L'isolation des murs n'a plus de forfait au m² en parcours simple depuis 2026 : elle se finance uniquement via une rénovation d'ampleur, avec un taux de prise en charge de 45 à 80 % du coût global selon vos revenus (demande accompagnement obligatoire).</p>
+  <h2>Montants MaPrimeRénov' selon revenus — isolation des murs</h2>
 
   <table class="tableau">
-    <thead><tr><th>Profil de revenus</th><th>Couleur MPR</th><th>Pompe à chaleur air/eau</th></tr></thead>
+    <thead><tr><th>Profil de revenus</th><th>Couleur MPR</th><th>Isolation murs ext.</th><th>Pompe à chaleur</th></tr></thead>
     <tbody>
-      <tr><td>Très modeste</td><td>🔵 Bleu</td><td class="haut">5 000 €</td></tr>
-      <tr><td>Modeste</td><td>🟡 Jaune</td><td class="moyen">4 000 €</td></tr>
-      <tr><td>Intermédiaire</td><td>🟣 Violet</td><td class="standard">3 000 €</td></tr>
-      <tr><td>Supérieur</td><td>🌸 Rose</td><td class="standard">Non éligible au parcours simple</td></tr>
+      <tr><td>Très modeste</td><td>🔵 Bleu</td><td class="haut">75 €/m²</td><td class="haut">8 000 €</td></tr>
+      <tr><td>Modeste</td><td>🟡 Jaune</td><td class="moyen">60 €/m²</td><td class="moyen">6 000 €</td></tr>
+      <tr><td>Intermédiaire</td><td>🟣 Violet</td><td class="standard">40 €/m²</td><td class="standard">4 000 €</td></tr>
+      <tr><td>Supérieur</td><td>🌸 Rose</td><td class="standard">15 €/m²</td><td class="standard">2 000 €</td></tr>
     </tbody>
   </table>
 
