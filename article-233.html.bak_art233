@@ -199,13 +199,13 @@ window.economyaLoadAds = function() {
   <div class="hero-badge">💰 Mutuelle gratuite ou à 1 €/jour</div>
   <div class="hero-meta">
     <span>📖 4 min de lecture</span>
-    <span>✅ Vérifié juin 2026</span>
+    <span>✅ Vérifié juin 2025</span>
     <span>🏥 Accès aux soins</span>
   </div>
 </div>
 
 <article>
-  <p>La Complémentaire Santé Solidaire (CSS) est une aide de l'État qui permet aux personnes à revenus modestes d'accéder à une mutuelle gratuite — ou quasi gratuite — couvrant les soins courants. Elle a remplacé en 2019 la CMU-C et l'ACS, en simplifiant et en améliorant les droits. En 2026, on estime que plus de 2 millions de personnes éligibles n'en bénéficient pas — souvent par méconnaissance ou parce qu'elles pensent ne pas y avoir droit. Si vos revenus sont inférieurs à environ 1 300 € par mois pour une personne seule, vous êtes très probablement éligible.</p>
+  <p>La Complémentaire Santé Solidaire (CSS) est une aide de l'État qui permet aux personnes à revenus modestes d'accéder à une mutuelle gratuite — ou quasi gratuite — couvrant les soins courants. Elle a remplacé en 2019 la CMU-C et l'ACS, en simplifiant et en améliorant les droits. En 2025, on estime que plus de 2 millions de personnes éligibles n'en bénéficient pas — souvent par méconnaissance ou parce qu'elles pensent ne pas y avoir droit. Si vos revenus sont inférieurs à environ 1 300 € par mois pour une personne seule, vous êtes très probablement éligible.</p>
 
   <h2>Les 2 niveaux de la CSS</h2>
 
@@ -234,12 +234,12 @@ window.economyaLoadAds = function() {
     </div>
   </div>
 
-  <h2>Plafonds de revenus 2026 (mensuel net)</h2>
+  <h2>Plafonds de revenus 2025 (mensuel net)</h2>
 
   <table class="tableau">
     <thead><tr><th>Composition du foyer</th><th>CSS gratuite (plafond)</th><th>CSS à 1€/j (plafond × 1,35)</th></tr></thead>
     <tbody>
-      <tr><td>1 personne</td><td class="ok">868 €/mois</td><td class="warn">1 183 €/mois</td></tr>
+      <tr><td>1 personne</td><td class="ok">876 €/mois</td><td class="warn">1 183 €/mois</td></tr>
       <tr><td>2 personnes</td><td class="ok">1 314 €/mois</td><td class="warn">1 774 €/mois</td></tr>
       <tr><td>3 personnes</td><td class="ok">1 576 €/mois</td><td class="warn">2 128 €/mois</td></tr>
       <tr><td>4 personnes</td><td class="ok">1 839 €/mois</td><td class="warn">2 483 €/mois</td></tr>
