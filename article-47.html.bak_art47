@@ -267,7 +267,7 @@ window.economyaLoadAds = function() {
       <div class="levier-icon" style="background:#FFF7ED">💰</div>
       <div class="levier-body">
         <h3>Maximiser les aides de l'État avant de commencer</h3>
-        <p>MaPrimeRénov', l'Éco-PTZ (prêt à taux zéro), les CEE (Certificats d'Économies d'Énergie), la TVA à 5,5% et les aides des collectivités locales peuvent couvrir 30 à 80% du coût de travaux de rénovation énergétique selon vos revenus et le type de travaux. ⚠️ Depuis 2026, certains travaux (isolation des murs, chaudières biomasse, combles perdus) ne sont finançables que via une rénovation d'ampleur, pas en geste isolé. Ces aides doivent être demandées AVANT le début des travaux — jamais après. Un conseiller France Rénov' (gratuit, service public) peut vous guider dans le montage du dossier.</p>
+        <p>MaPrimeRénov', l'Éco-PTZ (prêt à taux zéro), les CEE (Certificats d'Économies d'Énergie), la TVA à 5,5% et les aides des collectivités locales peuvent couvrir 30 à 70% du coût de travaux de rénovation énergétique. Ces aides doivent être demandées AVANT le début des travaux — jamais après. Un conseiller France Rénov' (gratuit, service public) peut vous guider dans le montage du dossier.</p>
       </div>
       <div class="levier-gain">30 à 70% des travaux financés</div>
     </div>
@@ -289,7 +289,7 @@ window.economyaLoadAds = function() {
     <div class="check-item">Mention de la garantie décennale et de l'assurance RC pro</div>
   </div>
 
-  <h2>Les aides financières disponibles en 2026</h2>
+  <h2>Les aides financières disponibles en 2025</h2>
 
   <div class="aides">
     <div class="aides-head">
@@ -299,7 +299,7 @@ window.economyaLoadAds = function() {
     </div>
     <div class="aides-row">
       <span>MaPrimeRénov' (État)</span>
-      <span class="a-good">Jusqu'à 80% du coût</span>
+      <span class="a-good">Jusqu'à 70% du coût</span>
       <span>Isolation, pompe à chaleur, chaudière biomasse</span>
     </div>
     <div class="aides-row">
@@ -344,7 +344,7 @@ window.economyaLoadAds = function() {
     <div class="recap-row"><span>3 devis mis en concurrence (chantier 5 000€)</span><span>-500 à -1 500€</span></div>
     <div class="recap-row"><span>Matériaux achetés directement (marge artisan supprimée)</span><span>-300 à -600€</span></div>
     <div class="recap-row"><span>TVA réduite à 5,5% au lieu de 20%</span><span>-500 à -700€ sur 5 000€</span></div>
-    <div class="recap-row"><span>MaPrimeRénov' (isolation rampants/combles aménagés, ménage modeste)</span><span>-2 500 à -4 000€</span></div>
+    <div class="recap-row"><span>MaPrimeRénov' (isolation combles 5 000€, ménage modeste)</span><span>-2 500 à -4 000€</span></div>
     <div class="recap-row"><span>Préparation réalisée soi-même (15% du chantier)</span><span>-300 à -750€</span></div>
     <div class="recap-row"><span><strong>Économie totale cumulable sur un chantier</strong></span><span><strong>20 à 40% du montant</strong></span></div>
   </div>
