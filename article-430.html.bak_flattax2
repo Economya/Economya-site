@@ -187,7 +187,7 @@ window.economyaLoadAds = function() {
       <tbody>
         <tr><td>0 à 11 497 €</td><td class="g">0 %</td><td>Non imposable — aucun IR à payer</td></tr>
         <tr><td>11 497 à 29 315 €</td><td class="o">11 %</td><td>1ère tranche imposable</td></tr>
-        <tr><td>29 579 à 84 577 €</td><td class="o">30 %</td><td>Tranche "classe moyenne"</td></tr>
+        <tr><td>29 315 à 83 823 €</td><td class="o">30 %</td><td>Tranche "classe moyenne"</td></tr>
         <tr><td>83 823 à 180 294 €</td><td class="r">41 %</td><td>Hauts revenus</td></tr>
         <tr><td>Au-delà de 180 294 €</td><td class="r">45 %</td><td>Très hauts revenus</td></tr>
       </tbody>
@@ -225,7 +225,7 @@ window.economyaLoadAds = function() {
       <div class="s-montant">77 700 €</div>
       <div class="s-body">
         <h3>Seuil de la flat tax sur les investissements financiers</h3>
-        <p>Le PFU (Prélèvement Forfaitaire Unique) de 31,4 % (depuis 2026) s'applique sur les revenus financiers (dividendes, plus-values). Option pour le barème progressif si votre taux marginal est inférieur à 30 %.</p>
+        <p>Le PFU (Prélèvement Forfaitaire Unique) de 30 % s'applique sur les revenus financiers (dividendes, plus-values). Option pour le barème progressif si votre taux marginal est inférieur à 30 % (revenus inférieurs à environ 77 000 €).</p>
         <span class="stag">📊 Optimisation fiscale</span>
       </div>
     </div>

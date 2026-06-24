@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Seuils de revenus : impôts et aides en 2025 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr">
+<meta name="description" content="Dividendes : comprendre la flat tax — Optimiser ses revenus boursiers. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seuils de revenus : impôts et aides en 2025 — Economya.fr</title>
+<title>Dividendes : comprendre la flat tax — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -18,12 +18,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
 .ah{background:linear-gradient(135deg,#082f49,#075985,#0284c7);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🏷️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah::before{content:'📜';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
 .cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bae6fd;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
 .ah h1 em{color:#7dd3fc;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#0284c7);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(2,132,199,.35)}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#0284c7);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(2,132,199,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
 .theme-tag{background:linear-gradient(135deg,#0284c7,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
@@ -32,29 +32,27 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* TABLEAU */
-.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
-table{width:100%;border-collapse:collapse;font-size:.86rem}
-thead tr{background:linear-gradient(135deg,#075985,#0284c7);color:white}
-thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.78rem}
-tbody tr{border-bottom:1px solid var(--b)}
-tbody tr:last-child{border-bottom:none}
-tbody tr:nth-child(even){background:#fafafa}
-tbody td{padding:.8rem 1rem;vertical-align:middle;font-size:.84rem}
-.g{color:#16a34a;font-weight:600}
-.r{color:#dc2626}
-.o{color:var(--ad)}
-.b{color:var(--sky);font-weight:600}
+/* COMPARAISON PFU vs BARÈME */
+.comparaison{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;margin:1.5rem 0}
+.comp-header{background:linear-gradient(135deg,#075985,#0284c7);padding:.8rem 1.3rem;display:flex;justify-content:space-between}
+.comp-h-label{font-weight:700;color:white;font-size:.88rem}
+.comp-h-col{font-size:.78rem;color:rgba(255,255,255,.8);text-align:right}
+.comp-row{display:grid;grid-template-columns:1fr auto auto;gap:1rem;padding:.7rem 1.3rem;border-bottom:1px solid var(--b);align-items:center;font-size:.84rem}
+.comp-row:last-child{border-bottom:none;font-weight:700;background:#fafafa}
+.comp-label{color:var(--t)}
+.comp-pfu{color:var(--sky);font-weight:600;text-align:right}
+.comp-bareme{color:var(--g);font-weight:600;text-align:right}
 
-/* SEUILS CLÉS */
-.seuils{display:flex;flex-direction:column;gap:.85rem;margin:1.5rem 0}
-.seuil{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.3rem;display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start;transition:box-shadow .2s}
-.seuil:hover{box-shadow:0 4px 16px rgba(2,132,199,.1)}
-.seuil.top{border:2px solid var(--g)}
-.s-montant{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--sky);flex-shrink:0;width:90px;text-align:right}
-.s-body h3{font-size:.9rem;font-weight:700;margin-bottom:.15rem}
-.s-body p{font-size:.83rem;color:var(--m);font-weight:300;margin:0}
-.s-body .stag{display:inline-block;margin-top:.3rem;background:var(--sky-l);color:#075985;font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+/* ENVELOPPES */
+.enveloppes{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin:1.5rem 0}
+.env{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s;position:relative}
+.env:hover{transform:translateY(-2px)}
+.env.top{border:2px solid var(--g)}
+.top-badge{position:absolute;top:-9px;left:50%;transform:translateX(jusqu'à -50%);background:var(--g);color:white;font-size:.62rem;font-weight:700;padding:.1rem .55rem;border-radius:50px;white-space:nowrap}
+.e-icon{font-size:1.8rem;margin-bottom:.4rem}
+.e-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+.e-fiscalite{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--g);margin:.15rem 0}
+.e-note{font-size:.74rem;color:var(--m);font-weight:300;line-height:1.3}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
@@ -70,7 +68,7 @@ tbody td{padding:.8rem 1rem;vertical-align:middle;font-size:.84rem}
 .cta-form button{background:linear-gradient(135deg,#0284c7,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.comp-row{grid-template-columns:1fr auto}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -124,9 +122,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Seuils de revenus : impôts et aides en 2025",
-  "description": "Seuils de revenus : impôts et aides en 2025 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-430.html",
+  "headline": "Dividendes : comprendre la flat tax",
+  "description": "Dividendes : comprendre la flat tax — Optimiser ses revenus boursiers. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-437.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -143,19 +141,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Seuils de revenus : impôts et aides en 2025">
-  <meta property="og:description" content="Seuils de revenus : impôts et aides en 2025 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-430.html">
+  <meta property="og:title" content="Dividendes : comprendre la flat tax">
+  <meta property="og:description" content="Dividendes : comprendre la flat tax — Optimiser ses revenus boursiers. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-437.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Seuils de revenus : impôts et aides en 2025">
-  <meta name="twitter:description" content="Seuils de revenus : impôts et aides en 2025 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Dividendes : comprendre la flat tax">
+  <meta name="twitter:description" content="Dividendes : comprendre la flat tax — Optimiser ses revenus boursiers. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-430.html" />
+<link rel="canonical" href="https://economya.fr/article-437.html" />
 </head>
 <body>
 <nav>
@@ -167,98 +165,75 @@ window.economyaLoadAds = function() {
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🏷️ Finance</div>
-    <h1>Seuils de revenus :<br><em>impôts et aides en 2025</em></h1>
-    <div class="savings-badge">💰 Ne dépassez pas les plafonds clés</div>
+    <div class="cat-pill">📜 Finance</div>
+    <h1>Dividendes :<br><em>comprendre la flat tax</em></h1>
+    <div class="savings-badge">💰 Optimiser ses revenus boursiers</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">📊 Fiscalité française</span>
+      <span class="theme-tag">📈 Bourse & fiscalité</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">En France, certains seuils de revenus sont des "charnières" qui déclenchent ou suppriment des droits importants : perte d'aides (CSS, Prime d'activité), passage à une tranche d'imposition supérieure, perte d'exonérations. Connaître ces seuils permet d'optimiser sa situation financière en toute légalité.</p>
+  <p class="lead">La flat tax (PFU — Prélèvement Forfaitaire Unique) à 30 % s'applique par défaut sur les dividendes et plus-values boursières. Mais dans certains cas, il vaut mieux opter pour l'imposition au barème progressif. Comprendre ce choix peut faire une différence de plusieurs centaines d'euros par an.</p>
 
-  <h2>📊 Les seuils d'imposition 2025 (barème IR)</h2>
-  <div class="tw">
-    <table>
-      <thead><tr><th>Revenu imposable (part)</th><th>Taux marginal</th><th>Ce que ça signifie</th></tr></thead>
-      <tbody>
-        <tr><td>0 à 11 497 €</td><td class="g">0 %</td><td>Non imposable — aucun IR à payer</td></tr>
-        <tr><td>11 497 à 29 315 €</td><td class="o">11 %</td><td>1ère tranche imposable</td></tr>
-        <tr><td>29 579 à 84 577 €</td><td class="o">30 %</td><td>Tranche "classe moyenne"</td></tr>
-        <tr><td>83 823 à 180 294 €</td><td class="r">41 %</td><td>Hauts revenus</td></tr>
-        <tr><td>Au-delà de 180 294 €</td><td class="r">45 %</td><td>Très hauts revenus</td></tr>
-      </tbody>
-    </table>
+  <h2>📊 Flat tax vs barème progressif : la comparaison sur 1 000 € de dividendes</h2>
+  <div class="comparaison">
+    <div class="comp-header">
+      <span class="comp-h-label">Comparaison fiscale pour 1 000 € de dividendes</span>
+      <span class="comp-h-col">PFU 30 % · Barème progressif</span>
+    </div>
+    <div class="comp-row"><span class="comp-label">Abattement de 40 % (barème seulement)</span><span class="comp-pfu">0 €</span><span class="comp-bareme">−400 €</span></div>
+    <div class="comp-row"><span class="comp-label">Base imposable</span><span class="comp-pfu">1 000 €</span><span class="comp-bareme">600 €</span></div>
+    <div class="comp-row"><span class="comp-label">Impôt sur le revenu (TMI 11 %)</span><span class="comp-pfu">120 € (12,8 %)</span><span class="comp-bareme">66 € (11 %×600)</span></div>
+    <div class="comp-row"><span class="comp-label">Prélèvements sociaux (17,2 %)</span><span class="comp-pfu">172 €</span><span class="comp-bareme">172 €</span></div>
+    <div class="comp-row"><span class="comp-label">Total fiscal</span><span class="comp-pfu" style="font-size:.92rem">292 €</span><span class="comp-bareme" style="font-size:.92rem">238 €</span></div>
   </div>
-  <p style="font-size:.8rem;color:var(--m)">* Le revenu imposable est calculé après abattement de 10 % pour frais professionnels. Un salaire de 30 000 € brut donne un revenu imposable d'environ 22 500 € après abattement.</p>
+  <p style="font-size:.8rem;color:var(--m)">* À TMI 11 % : le barème progressif est plus avantageux (238 vs 292 €). À TMI 30 % et au-delà, la flat tax est généralement plus avantageuse. La CSG de 6,8 % est déductible du revenu au barème (avantage supplémentaire).</p>
 
-  <h2>🔑 Les seuils clés à ne pas dépasser (ou à surveiller)</h2>
-  <div class="seuils">
-    <div class="seuil top">
-      <div class="s-montant">11 497 €</div>
-      <div class="s-body">
-        <h3>Seuil de non-imposition (personne seule)</h3>
-        <p>En dessous, vous ne payez pas d'impôt sur le revenu. Pour un couple ou avec enfants, le quotient familial ajuste ce seuil. Les bénéficiaires du RSA et de nombreuses aides sont souvent en dessous.</p>
-        <span class="stag">💡 Exonération IR totale</span>
-      </div>
+  <h2>📦 Quelle enveloppe fiscale pour vos dividendes ?</h2>
+  <div class="enveloppes">
+    <div class="env top">
+      <span class="top-badge">⭐ Meilleure fiscalité</span>
+      <div class="e-icon">📈</div>
+      <div class="e-name">PEA</div>
+      <div class="e-fiscalite">0 % IR après 5 ans</div>
+      <div class="e-note">Dividendes et plus-values exonérés d'IR après 5 ans. Seuls les prélèvements sociaux (17,2 %) s'appliquent. Plafond 150 000 €. Uniquement actions européennes.</div>
     </div>
-    <div class="seuil">
-      <div class="s-montant">~16 000 €</div>
-      <div class="s-body">
-        <h3>Seuil CSS (Complémentaire Santé Solidaire)</h3>
-        <p>La CSS (mutuelle gratuite) est accessible si le revenu annuel est inférieur à environ 16 000 € pour une personne seule (plafond exact variable selon situation familiale). Vérifiez sur ameli.fr.</p>
-        <span class="stag">🏥 Mutuelle gratuite</span>
-      </div>
+    <div class="env">
+      <div class="e-icon">🏦</div>
+      <div class="e-name">Assurance-vie</div>
+      <div class="e-fiscalite">7,5 % après 8 ans</div>
+      <div class="e-note">Fiscalité avantageuse après 8 ans (7,5 % + prélèvements sociaux). Abattement de 4 600 € / 9 200 € pour couple. Accès à fonds euros et UC.</div>
     </div>
-    <div class="seuil">
-      <div class="s-montant">~25 000 €</div>
-      <div class="s-body">
-        <h3>Seuil approximatif de perte de Prime d'activité</h3>
-        <p>La prime d'activité diminue progressivement avec les revenus et disparaît généralement autour de 1,5× le SMIC net (~1 900 €/mois soit ~22 000 €/an). Simulez précisément sur caf.fr.</p>
-        <span class="stag">💰 300 €/mois potentiels</span>
-      </div>
+    <div class="env">
+      <div class="e-icon">💼</div>
+      <div class="e-name">CTO (Compte-titres)</div>
+      <div class="e-fiscalite">PFU 30 % par défaut</div>
+      <div class="e-note">Flat tax 30 % sur dividendes et plus-values. Option barème progressif possible si TMI &lt;30 %. Aucune limite de versement, toutes valeurs mondiales.</div>
     </div>
-    <div class="seuil">
-      <div class="s-montant">77 700 €</div>
-      <div class="s-body">
-        <h3>Seuil de la flat tax sur les investissements financiers</h3>
-        <p>Le PFU (Prélèvement Forfaitaire Unique) de 31,4 % (depuis 2026) s'applique sur les revenus financiers (dividendes, plus-values). Option pour le barème progressif si votre taux marginal est inférieur à 30 %.</p>
-        <span class="stag">📊 Optimisation fiscale</span>
-      </div>
-    </div>
-    <div class="seuil">
-      <div class="s-montant">188 700 €</div>
-      <div class="s-body">
-        <h3>Plafond PEA (versements)</h3>
-        <p>Le PEA est limité à 150 000 € de versements (225 000 € pour le PEA-PME). Au-delà, les gains restent exonérés mais on ne peut plus verser. Si vous approchez ce plafond, ouvrez un CTO en complément.</p>
-      </div>
-    </div>
-    <div class="seuil">
-      <div class="s-montant">3 000 €</div>
-      <div class="s-body">
-        <h3>Seuil de déclaration des ventes de plateforme (Vinted, Airbnb…)</h3>
-        <p>Les plateformes (Vinted, LeBonCoin, Airbnb) déclarent à l'administration fiscale vos revenus si vous dépassez 3 000 €/an ou 20 transactions annuelles. Cela ne signifie pas que vous êtes imposable — mais vous devez les déclarer.</p>
-        <span class="stag">📋 Déclaration obligatoire</span>
-      </div>
+    <div class="env">
+      <div class="e-icon">🏢</div>
+      <div class="e-name">PEA-PME</div>
+      <div class="e-fiscalite">0 % IR après 5 ans</div>
+      <div class="e-note">Même fiscalité que le PEA. Complément du PEA pour investir dans les PME et ETI européennes. Plafond 225 000 € (cumulé avec PEA : 225 000 €).</div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Le simulateur impots.gouv.fr : votre meilleur outil</strong>
-    Avant toute décision financière (augmentation de salaire, revenus locatifs, cession de valeurs mobilières), simulez l'impact fiscal sur impots.gouv.fr → "Simulateurs et calculs" → "Simuler mon impôt". C'est gratuit, anonyme et fiable. Comprendre sa situation fiscale réelle avant d'agir évite de nombreuses mauvaises surprises.
+    <strong>💡 Quand choisir le barème progressif plutôt que la flat tax ?</strong>
+    Le barème progressif est plus avantageux si votre TMI est de 0 % ou 11 % : avec l'abattement de 40 % sur les dividendes et la déductibilité de la CSG, vous payez moins qu'avec la flat tax à 30 %. Simulez les deux options lors de votre déclaration — impots.gouv.fr calcule automatiquement l'option la plus avantageuse si vous cochez la case pour le barème.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Ces seuils sont indicatifs — vérifiez avec votre situation exacte</strong>
-    Les seuils fiscaux changent chaque année au moment de la loi de finances. Les montants indiqués sont ceux de 2025 mais peuvent être révisés. Votre situation personnelle (situation familiale, charges déductibles, revenus d'activités mixtes) modifie considérablement ces calculs. En cas de doute, consultez un conseiller fiscal ou utilisez les outils officiels.
+    <strong>⚠️ L'option barème s'applique à l'ensemble des revenus financiers</strong>
+    Si vous optez pour le barème progressif au lieu de la flat tax, l'option s'applique à tous vos revenus financiers de l'année (dividendes ET plus-values). Vous ne pouvez pas choisir la flat tax pour certains revenus et le barème pour d'autres la même année. Simulez l'impact global avant de choisir.
   </div>
 
   <div class="cta">
-    <h3>📬 Fiscalité & optimisation dans votre boîte mail</h3>
-    <p>Les seuils clés et stratégies d'optimisation fiscale légale, chaque semaine.</p>
+    <h3>📬 Bourse & fiscalité dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour optimiser la fiscalité de vos investissements, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -289,7 +264,7 @@ window.economyaLoadAds = function() {
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Informations indicatives — vérifiez sur impots.gouv.fr.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil financier ou fiscal.</span>
 </footer>
 
 <style>
