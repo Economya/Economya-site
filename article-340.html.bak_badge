@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Fonds euros vs unités de compte : arbitrer intelligemment — 152 500€ transmis sans impôts. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fonds euros vs unités de compte : arbitrer intelligemment — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#052e16,#065f46,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🔒';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a7f3d0;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#6ee7b7;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#1D9E75);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(29,158,117,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#1D9E75,#4338ca);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--g);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* COMPARAISON */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
+@media(max-width:540px){.compare{grid-template-columns:1fr}}
+.comp{border-radius:var(--r);padding:1.3rem;border:2px solid transparent}
+.comp.fonds{background:#eff6ff;border-color:#93c5fd}
+.comp.uc{background:var(--gl);border-color:#86efac}
+.comp-title{font-weight:700;font-size:.95rem;margin-bottom:.7rem;display:flex;align-items:center;gap:.4rem}
+.comp.fonds .comp-title{color:#1e3a8a}
+.comp.uc .comp-title{color:var(--gd)}
+.comp-items{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.comp-items li{font-size:.83rem;font-weight:300;padding-left:.8rem;position:relative;line-height:1.45}
+.comp-items li::before{position:absolute;left:0;font-weight:700}
+.comp.fonds .comp-items li{color:#1e3a8a}
+.comp.fonds .comp-items li::before{content:'·';color:#1d4ed8}
+.comp.uc .comp-items li{color:#166534}
+.comp.uc .comp-items li::before{content:'·';color:var(--g)}
+
+/* STRATÉGIES */
+.strategies{display:flex;flex-direction:column;gap:.85rem;margin:1.2rem 0}
+.strat{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.3rem;display:grid;grid-template-columns:auto 1fr auto;gap:.9rem;align-items:center}
+.strat.top{border:2px solid var(--g)}
+.strat-icon{font-size:1.5rem;flex-shrink:0}
+.strat-body h3{font-size:.9rem;font-weight:700;margin-bottom:.15rem}
+.strat-body p{font-size:.82rem;color:var(--m);font-weight:300;margin:0}
+.strat-alloc{text-align:right;flex-shrink:0}
+.strat-val{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--g);display:block;white-space:nowrap}
+.strat-sub{font-size:.7rem;color:var(--m)}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#052e16,#065f46);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#1D9E75,#4338ca);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.strat{grid-template-columns:1fr;gap:.4rem}.strat-alloc{text-align:left}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Fonds euros vs unités de compte : arbitrer intelligemment",
+  "description": "Fonds euros vs unités de compte : arbitrer intelligemment — 152 500€ transmis sans impôts. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-340.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Fonds euros vs unités de compte : arbitrer intelligemment">
+  <meta property="og:description" content="Fonds euros vs unités de compte : arbitrer intelligemment — 152 500€ transmis sans impôts. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-340.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fonds euros vs unités de compte : arbitrer intelligemment">
+  <meta name="twitter:description" content="Fonds euros vs unités de compte : arbitrer intelligemment — 152 500€ transmis sans impôts. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-340.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">🔒 Investissement</div>
+    <h1>Fonds euros vs unités de compte :<br><em>arbitrer intelligemment</em></h1>
+    <div class="savings-badge">💰 152 500 € transmis sans impôts</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="theme-tag">💼 Assurance-vie & stratégie</span>
+    </div>
+  </div>
+</div>
+<div class="ab">
+  <p class="lead">L'assurance-vie propose deux types de supports : les fonds euros (capital garanti, ~2,5–3,5 % en 2025) et les unités de compte (non garanties, potentiel 5–8 %/an). L'arbitrage entre les deux dépend de votre horizon de placement et de votre tolérance au risque.</p>
+
+  <h2>⚖️ Fonds euros vs Unités de compte</h2>
+  <div class="compare">
+    <div class="comp fonds">
+      <div class="comp-title">🔒 Fonds euros</div>
+      <ul class="comp-items">
+        <li>Capital garanti à 100 %</li>
+        <li>Rendement 2025 : ~2,5–3,5 %/an</li>
+        <li>Intérêts définitivement acquis chaque année</li>
+        <li>Liquidité immédiate</li>
+        <li>Idéal pour les projets à court terme</li>
+        <li>Pas de risque de perte en capital</li>
+      </ul>
+    </div>
+    <div class="comp uc">
+      <div class="comp-title">📈 Unités de compte</div>
+      <ul class="comp-items">
+        <li>Capital non garanti (risque de perte)</li>
+        <li>Potentiel : 5–8 %/an à long terme</li>
+        <li>Actions, ETF, SCPI, OPCVM…</li>
+        <li>Volatilité à court terme</li>
+        <li>Idéal pour les horizons 8–10 ans+</li>
+        <li>Meilleur rendement potentiel long terme</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>🎯 Les stratégies d'allocation selon votre profil</h2>
+  <div class="strategies">
+    <div class="strat">
+      <div class="strat-icon">🛡️</div>
+      <div class="strat-body">
+        <h3>Profil prudent (projet court terme, retraite proche)</h3>
+        <p>Priorité à la sécurité du capital. Majorité en fonds euros, faible exposition aux UC pour un léger surcroît de rendement.</p>
+      </div>
+      <div class="strat-alloc"><span class="strat-val">80 % fonds €</span><span class="strat-sub">20 % UC</span></div>
+    </div>
+    <div class="strat top">
+      <div class="strat-icon">⚖️</div>
+      <div class="strat-body">
+        <h3>Profil équilibré (horizon 8–15 ans)</h3>
+        <p>Bonne combinaison risque/rendement. Fonds euros comme filet de sécurité, UC pour la performance long terme via ETF World.</p>
+      </div>
+      <div class="strat-alloc"><span class="strat-val">50 % fonds €</span><span class="strat-sub">50 % UC ETF</span></div>
+    </div>
+    <div class="strat">
+      <div class="strat-icon">🚀</div>
+      <div class="strat-body">
+        <h3>Profil dynamique (horizon 15+ ans, jeune investisseur)</h3>
+        <p>Maximum de potentiel de croissance. Quasi-totalité en UC (ETF World, ETF Small Caps, SCPI). Fonds euros minimal ou absent.</p>
+      </div>
+      <div class="strat-alloc"><span class="strat-val">10 % fonds €</span><span class="strat-sub">90 % UC</span></div>
+    </div>
+  </div>
+
+  <h2>🎁 L'avantage succession : pourquoi l'assurance-vie est unique</h2>
+  <p>L'assurance-vie bénéficie d'un régime successoral hors normes : les sommes transmises via l'assurance-vie sont hors succession pour les versements avant 70 ans, avec un abattement de <strong>152 500 € par bénéficiaire</strong> (exonéré de droits de succession). Au-delà, flat tax de 20 % jusqu'à 700 000 €, puis 31,25 %.</p>
+  <p>Un couple peut donc transmettre jusqu'à <strong>305 000 €</strong> complètement exonérés à leurs enfants via l'assurance-vie — bien plus efficacement que par donation classique.</p>
+
+  <div class="tip">
+    <strong>💡 Choisissez une assurance-vie en ligne sans frais d'entrée</strong>
+    Les assurances-vie bancaires traditionnelles prélèvent des frais d'entrée de 2 à 4 % sur chaque versement. Les contrats en ligne (Linxea Spirit 2, Lucya Cardif, Boursobank Vie) proposent 0 % de frais d'entrée avec accès à des ETF en UC. Sur 100 000 €, cela représente 2 000 à 4 000 € d'économies immédiates.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Les frais de gestion des UC peuvent réduire le rendement</strong>
+    En plus des frais du contrat (0,5–1 %/an), les UC (fonds actifs) ont leurs propres frais (1,5–2 %/an). Préférez les ETF en UC qui ont des frais de 0,1–0,3 %/an. La différence de 1,5 %/an sur 20 ans peut représenter 30 à 40 % de capital en moins à terme.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Assurance-vie & patrimoine dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour optimiser votre assurance-vie et transmettre votre patrimoine, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Partenaire Linxea -->
+<div style="background:linear-gradient(135deg,#FAEEDA,#FFF8EE);border:1px solid #EF9F27;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+  <span style="font-size:2rem">📈</span>
+  <div style="flex:1;min-width:200px">
+    <div style="font-weight:700;color:#633806;font-size:.95rem;margin-bottom:.2rem">Optimisez votre épargne avec Linxea</div>
+    <div style="font-size:.82rem;color:#5F5E5A">Assurance-vie et épargne retraite à frais réduits, courtier ORIAS depuis 2001. Les unités de compte comportent un risque de perte en capital ; le fonds en euros est garanti.</div>
+  </div>
+  <a href="https://www.awin1.com/cread.php?awinmid=13275&awinaffid=2926395&ued=https%3A%2F%2Fwww.linxea.com" target="_blank" rel="noopener sponsored" style="background:#EF9F27;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Découvrir →</a>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil financier.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-336.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">ETF World : comment investir simplement</div></a><a class="sim-card" href="article-337.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Livret A vs LEP vs LDDS : que choisir</div></a><a class="sim-card" href="article-338.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Ouvrir son premier PEA</div></a><a class="sim-card" href="article-342.html"><div class="sim-card-cat">Investissement</div><div class="sim-card-title">Investir 100 €/mois en Bourse :simulation sur 20 ans</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

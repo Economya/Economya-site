@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Rénovation énergétique : toutes les aides 2025 — Jusqu'à 90% des travaux financés. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rénovation énergétique : toutes les aides 2025 — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#2C2C2A;line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#085041;text-decoration:none}
+  .logo span{color:#EF9F27}
+  .back{font-size:.82rem;color:#5F5E5A;text-decoration:none}
+  .back:hover{color:#1D9E75}
+
+  /* HERO — vert bouteille → jade → vert citron électrique */
+  .hero{background:linear-gradient(135deg,#052010 0%,#0A4023 30%,#0F7040 62%,#22C55E 85%,#A3F07A 100%);padding:3.8rem 2rem 3.2rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'🌿';position:absolute;font-size:14rem;opacity:.05;top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none}
+  .hero-cat{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.05em}
+  .hero-cat strong{color:#fff}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:900;color:#fff;line-height:1.1;max-width:640px;margin:.3rem auto .9rem}
+  .hero-badge{display:inline-block;background:linear-gradient(90deg,#A3F07A,#22C55E);color:#052010;font-size:.82rem;font-weight:700;padding:.35rem 1.1rem;border-radius:50px}
+  .hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+  .hero-meta span{font-size:.73rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.09);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300;line-height:1.75}
+  h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#0A4023;margin:2.2rem 0 .8rem}
+
+  /* CARTES AIDES PRINCIPALES */
+  .aides{display:flex;flex-direction:column;gap:.8rem;margin:1.5rem 0}
+  .aide{border-radius:13px;overflow:hidden;border:1px solid rgba(0,0,0,.08)}
+  .aide-head{display:grid;grid-template-columns:1fr auto;align-items:center;padding:.8rem 1.1rem;gap:.6rem;color:#fff}
+  .aide-head.mpr{background:linear-gradient(90deg,#052010,#0A4023)}
+  .aide-head.cee{background:linear-gradient(90deg,#1A2E6B,#2952CC)}
+  .aide-head.eco{background:linear-gradient(90deg,#4A1A00,#B04500)}
+  .aide-head.tva{background:linear-gradient(90deg,#3A0060,#7C3AED)}
+  .aide-head.anah{background:linear-gradient(90deg,#003A3A,#0D7E8C)}
+  .aide-nom{font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem}
+  .aide-montant{font-weight:700;font-size:.88rem;background:rgba(255,255,255,.18);padding:.2rem .65rem;border-radius:50px;white-space:nowrap}
+  .aide-body{background:#fff;padding:.9rem 1.1rem}
+  .aide-desc{font-size:.84rem;font-weight:300;color:#5F5E5A;line-height:1.6;margin-bottom:.55rem}
+  .aide-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+  .tag{font-size:.7rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;background:#F0FDF4;color:#0A4023}
+  .tag.blue{background:#EFF6FF;color:#1A2E6B}
+  .tag.orange{background:#FFF7ED;color:#7C2D12}
+  .tag.warn{background:#FEFCE8;color:#713F12}
+
+  /* TABLEAU MONTANTS PAR REVENU */
+  .tableau{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.83rem}
+  .tableau thead tr{background:linear-gradient(90deg,#0A4023,#0F7040);color:#fff}
+  .tableau thead th{padding:.65rem .9rem;text-align:left;font-weight:500}
+  .tableau tbody tr:nth-child(even){background:#F0FDF4}
+  .tableau tbody tr:nth-child(odd){background:#fff}
+  .tableau tbody td{padding:.58rem .9rem;border-bottom:1px solid rgba(0,0,0,.06);font-weight:300}
+  .tableau tbody td:first-child{font-weight:500;color:#0A4023}
+  .tableau td.haut{color:#085041;font-weight:600}
+  .tableau td.moyen{color:#1A2E6B;font-weight:500}
+  .tableau td.standard{color:#5F5E5A}
+
+  /* ÉTAPES POUR DEMANDER */
+  .etapes{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;margin:1.5rem 0}
+  .etape{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:11px;padding:.9rem .8rem;text-align:center}
+  .etape-num{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#0A4023,#0F7040);color:#A3F07A;font-family:'Playfair Display',serif;font-weight:900;font-size:.95rem;display:flex;align-items:center;justify-content:center;margin:0 auto .5rem}
+  .etape-titre{font-weight:500;font-size:.8rem;color:#0A4023;margin-bottom:.25rem;line-height:1.3}
+  .etape-desc{font-size:.72rem;font-weight:300;color:#5F5E5A;line-height:1.4}
+
+  /* ENCADRÉ ATTENTION */
+  .alerte{border-left:4px solid #22C55E;background:#F0FDF4;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+  .alerte strong{display:block;color:#0A4023;font-size:.9rem;margin-bottom:.3rem}
+  .alerte p{font-size:.84rem;font-weight:300;color:#0A4023;margin:0;line-height:1.6}
+
+  .conseil{background:linear-gradient(135deg,#052010,#0A4023);border-radius:13px;padding:1.3rem 1.5rem;margin:2rem 0;color:#fff;border:1px solid rgba(163,240,122,.12)}
+  .conseil strong{display:block;color:#A3F07A;font-weight:500;font-size:.93rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:#085041;color:rgba(255,255,255,.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:#fff}
+  footer a{color:#EF9F27;text-decoration:none}
+  @media(max-width:500px){.etapes{grid-template-columns:1fr 1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Rénovation énergétique : toutes les aides 2025",
+  "description": "Rénovation énergétique : toutes les aides 2025 — Jusqu'à 90% des travaux financés. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-206.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Rénovation énergétique : toutes les aides 2025">
+  <meta property="og:description" content="Rénovation énergétique : toutes les aides 2025 — Jusqu'à 90% des travaux financés. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-206.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rénovation énergétique : toutes les aides 2025">
+  <meta name="twitter:description" content="Rénovation énergétique : toutes les aides 2025 — Jusqu'à 90% des travaux financés. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-206.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero">
+  <div class="hero-cat">🌿 <strong>Immobilier</strong></div>
+  <h1>Rénovation énergétique : toutes les aides 2025</h1>
+  <div class="hero-badge">💰 Jusqu'à 90 % des travaux financés</div>
+  <div class="hero-meta">
+    <span>📖 6 min de lecture</span>
+    <span>✅ Vérifié juin 2025</span>
+    <span>🏠 Travaux & économies d'énergie</span>
+  </div>
+</div>
+
+<article>
+  <p>En 2025, rénover son logement pour réduire sa facture énergétique n'a jamais été aussi bien soutenu par l'État. MaPrimeRénov', les Certificats d'Économies d'Énergie, l'éco-PTZ, la TVA à 5,5 % — l'empilement des aides peut couvrir la quasi-totalité des travaux pour les ménages modestes. Mais le système est complexe, les plafonds varient selon les revenus et les types de travaux, et de nombreuses arnaques circulent. Voici le panorama complet et actualisé des aides disponibles en 2025, avec les montants réels et les conditions d'accès.</p>
+
+  <h2>Les 5 aides principales à connaître</h2>
+
+  <div class="aides">
+    <div class="aide">
+      <div class="aide-head mpr">
+        <span class="aide-nom">MaPrimeRénov' (MPR)</span>
+        <span class="aide-montant">Jusqu'à 90 % des travaux</span>
+      </div>
+      <div class="aide-body">
+        <div class="aide-desc">L'aide phare de l'État, versée par l'ANAH. Son montant dépend de vos revenus (4 catégories : bleu, jaune, violet, rose) et du type de travaux. Elle couvre isolation, pompe à chaleur, chaudière biomasse, fenêtres, ventilation. En 2025, elle est accessible aux propriétaires occupants ET aux bailleurs (avec obligation de louer 6 ans après travaux).</div>
+        <div class="aide-tags">
+          <span class="tag">✅ Propriétaires occupants</span>
+          <span class="tag">✅ Bailleurs</span>
+          <span class="tag">✅ Cumulable CEE</span>
+          <span class="tag warn">⚡ Artisan RGE obligatoire</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="aide">
+      <div class="aide-head cee">
+        <span class="aide-nom">CEE — Certificats d'Économies d'Énergie</span>
+        <span class="aide-montant">500 € à 4 000 €</span>
+      </div>
+      <div class="aide-body">
+        <div class="aide-desc">Les fournisseurs d'énergie (EDF, Engie, Total…) sont obligés de financer des travaux d'économies d'énergie. Ils le font via des "primes énergie" versées directement aux particuliers. Ces primes sont cumulables avec MaPrimeRénov' et varient selon les travaux et le fournisseur. Comparez sur le site officiel prime-energie.gouv.fr ou via des comparateurs comme Hellio ou Effy.</div>
+        <div class="aide-tags">
+          <span class="tag blue">✅ Locataires éligibles aussi</span>
+          <span class="tag blue">✅ Cumulable MPR</span>
+          <span class="tag blue">✅ Démarche rapide</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="aide">
+      <div class="aide-head eco">
+        <span class="aide-nom">Éco-PTZ — Prêt à taux zéro travaux</span>
+        <span class="aide-montant">Jusqu'à 50 000 €</span>
+      </div>
+      <div class="aide-body">
+        <div class="aide-desc">Prêt sans intérêts pour financer des travaux de rénovation énergétique, remboursable sur 15 à 20 ans. Accessible sans condition de revenus depuis 2019. Le montant maximum est de 50 000 € pour une rénovation globale (gain énergétique ≥ 35 %). Il se cumule avec MaPrimeRénov' et les CEE. Dossier déposé directement en banque partenaire.</div>
+        <div class="aide-tags">
+          <span class="tag orange">✅ Sans condition de revenus</span>
+          <span class="tag orange">✅ Cumul MPR possible</span>
+          <span class="tag orange">✅ Jusqu'à 20 ans</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="aide">
+      <div class="aide-head tva">
+        <span class="aide-nom">TVA à 5,5 % sur les travaux</span>
+        <span class="aide-montant">-14,5 % sur la facture</span>
+      </div>
+      <div class="aide-body">
+        <div class="aide-desc">Tous les travaux d'amélioration de la performance énergétique dans des logements de plus de 2 ans bénéficient d'une TVA réduite à 5,5 % (contre 20 % normalement). C'est une réduction automatique qui s'applique sur l'ensemble de la facture — matériaux ET main d'œuvre. L'artisan l'applique directement sur son devis. Économie : 14,5 % du montant TTC des travaux.</div>
+        <div class="aide-tags">
+          <span class="tag">✅ Automatique sur la facture</span>
+          <span class="tag">✅ Logements > 2 ans</span>
+          <span class="tag">✅ Cumulable avec tout</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="aide">
+      <div class="aide-head anah">
+        <span class="aide-nom">Aide ANAH Habiter Mieux Sérénité</span>
+        <span class="aide-montant">50 % des travaux</span>
+      </div>
+      <div class="aide-body">
+        <div class="aide-desc">Pour les ménages très modestes, l'ANAH propose une aide complémentaire couvrant jusqu'à 50 % du montant des travaux (plafond 15 000 €), avec un bonus de 1 500 € si le gain énergétique dépasse 35 %. Elle est instruite par un conseiller France Rénov' et souvent couplée à MPR pour une couverture quasi totale des travaux.</div>
+        <div class="aide-tags">
+          <span class="tag">✅ Ménages très modestes</span>
+          <span class="tag">✅ Accompagnement inclus</span>
+          <span class="tag warn">⚡ Plafond de revenus strict</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Montants MaPrimeRénov' selon revenus — isolation des murs</h2>
+
+  <table class="tableau">
+    <thead><tr><th>Profil de revenus</th><th>Couleur MPR</th><th>Isolation murs ext.</th><th>Pompe à chaleur</th></tr></thead>
+    <tbody>
+      <tr><td>Très modeste</td><td>🔵 Bleu</td><td class="haut">75 €/m²</td><td class="haut">8 000 €</td></tr>
+      <tr><td>Modeste</td><td>🟡 Jaune</td><td class="moyen">60 €/m²</td><td class="moyen">6 000 €</td></tr>
+      <tr><td>Intermédiaire</td><td>🟣 Violet</td><td class="standard">40 €/m²</td><td class="standard">4 000 €</td></tr>
+      <tr><td>Supérieur</td><td>🌸 Rose</td><td class="standard">15 €/m²</td><td class="standard">2 000 €</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Comment obtenir les aides — les 4 étapes</h2>
+
+  <div class="etapes">
+    <div class="etape">
+      <div class="etape-num">1</div>
+      <div class="etape-titre">Contacter France Rénov'</div>
+      <div class="etape-desc">Conseiller gratuit, audit de votre logement, identification des aides éligibles. france-renov.gouv.fr ou 0 808 800 700</div>
+    </div>
+    <div class="etape">
+      <div class="etape-num">2</div>
+      <div class="etape-titre">Choisir un artisan RGE</div>
+      <div class="etape-desc">Reconnu Garant de l'Environnement — obligatoire pour toucher MPR. Vérifiez le label sur qualite-rge.fr</div>
+    </div>
+    <div class="etape">
+      <div class="etape-num">3</div>
+      <div class="etape-titre">Déposer votre dossier MPR</div>
+      <div class="etape-desc">Avant le début des travaux, sur maprimerenov.gouv.fr. L'accord préalable est obligatoire pour être remboursé.</div>
+    </div>
+    <div class="etape">
+      <div class="etape-num">4</div>
+      <div class="etape-titre">Déclarer l'achèvement</div>
+      <div class="etape-desc">Après travaux, envoyez factures et photos. Le virement MPR intervient en général sous 4 à 8 semaines.</div>
+    </div>
+  </div>
+
+  <div class="alerte">
+    <strong>⚠️ Méfiez-vous des arnaques "rénovation à 1 euro"</strong>
+    <p>Des démarcheurs proposent des travaux "gratuits" ou "à 1 euro" en se présentant comme mandatés par l'État. Ce n'est jamais vrai. Les aides de l'État ne passent jamais par des démarcheurs à domicile. Ne signez rien lors d'une visite à domicile non sollicitée, ne versez aucun acompte avant l'accord officiel de l'ANAH, et vérifiez systématiquement le numéro SIRET de l'artisan sur societe.ninja.</p>
+  </div>
+
+  <div class="conseil">
+    <strong>🌿 Le combo gagnant : MPR + CEE + éco-PTZ + TVA 5,5 %</strong>
+    <p>Ces quatre dispositifs sont cumulables entre eux. Pour un ménage modeste réalisant une isolation des combles à 5 000 € et une pompe à chaleur à 12 000 € : MPR couvre environ 10 500 €, les CEE ajoutent 1 500 €, la TVA à 5,5 % réduit la facture de 2 000 €, et l'éco-PTZ finance le reste à 0 %. Résultat net : des travaux à 17 000 € pour un reste à charge proche de zéro. Faites-vous accompagner par un conseiller France Rénov' pour monter ce dossier — c'est gratuit et souvent décisif.</p>
+  </div>
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-201.html"><div class="sim-card-cat">Immobilier</div><div class="sim-card-title">Acheter sa résidence principale : le guide 2025</div></a><a class="sim-card" href="article-202.html"><div class="sim-card-cat">Immobilier</div><div class="sim-card-title">Renégocier son crédit immobilier</div></a><a class="sim-card" href="article-203.html"><div class="sim-card-cat">Immobilier</div><div class="sim-card-title">PTZ 2025 : conditions et simulation</div></a><a class="sim-card" href="article-204.html"><div class="sim-card-cat">Immobilier</div><div class="sim-card-title">Frais de notaire : comment les calculer</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

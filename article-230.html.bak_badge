@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Primes non imposables : ce qu'on peut verser — Optimisez votre net. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primes non imposables : ce qu'on peut verser — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#2C2C2A;line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#085041;text-decoration:none}
+  .logo span{color:#EF9F27}
+  .back{font-size:.82rem;color:#5F5E5A;text-decoration:none}
+  .back:hover{color:#1D9E75}
+
+  /* HERO — vert émeraude → jade → citron acide */
+  .hero{background:linear-gradient(135deg,#041210 0%,#0C3830 32%,#1A7860 62%,#28C090 84%,#90F0C0 100%);padding:3.8rem 2rem 3.2rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'💰';position:absolute;font-size:14rem;opacity:.05;top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none}
+  .hero-cat{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.05em}
+  .hero-cat strong{color:#fff}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:900;color:#fff;line-height:1.1;max-width:640px;margin:.3rem auto .9rem}
+  .hero-badge{display:inline-block;background:linear-gradient(90deg,#90F0C0,#28C090);color:#041210;font-size:.82rem;font-weight:700;padding:.35rem 1.1rem;border-radius:50px}
+  .hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+  .hero-meta span{font-size:.73rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.09);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300;line-height:1.75}
+  h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#0C3830;margin:2.2rem 0 .8rem}
+
+  /* TABLEAU PRINCIPAL */
+  .tableau{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.82rem}
+  .tableau thead tr{background:linear-gradient(90deg,#0C3830,#1A7860);color:#fff}
+  .tableau thead th{padding:.65rem .85rem;text-align:left;font-weight:500}
+  .tableau tbody tr:nth-child(even){background:#EDFAF5}
+  .tableau tbody tr:nth-child(odd){background:#fff}
+  .tableau tbody td{padding:.58rem .85rem;border-bottom:1px solid rgba(0,0,0,.06);font-weight:300;vertical-align:top}
+  .tableau tbody td:first-child{font-weight:500;color:#0C3830}
+  .tableau td.montant{font-weight:600;color:#1A7860;white-space:nowrap}
+  .tableau td.note{font-size:.75rem;color:#5F5E5A;font-style:italic}
+
+  /* PRIMES EN CARTES */
+  .primes{display:flex;flex-direction:column;gap:.7rem;margin:1.5rem 0}
+  .prime-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;display:grid;grid-template-columns:56px 1fr auto;gap:.8rem;align-items:center;padding:.8rem 1rem}
+  .prime-ico{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#0C3830,#1A7860);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+  .prime-body{}
+  .prime-nom{font-weight:500;font-size:.9rem;color:#0C3830;margin-bottom:.1rem}
+  .prime-desc{font-size:.79rem;font-weight:300;color:#5F5E5A;line-height:1.45}
+  .prime-right{text-align:right;flex-shrink:0}
+  .prime-plafond{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:#1A7860;white-space:nowrap}
+  .prime-label{font-size:.68rem;color:#5F5E5A;white-space:nowrap}
+  .prime-tag{display:inline-block;margin-top:.25rem;font-size:.67rem;font-weight:600;padding:.1rem .45rem;border-radius:50px}
+  .prime-tag.exo{background:#EDFAF5;color:#065F46}
+  .prime-tag.cond{background:#FEF3C7;color:#713F12}
+
+  /* SIMULATION */
+  .simul{background:linear-gradient(135deg,#041210,#0C3830);border-radius:13px;padding:1.3rem 1.5rem;margin:1.5rem 0;color:#fff}
+  .simul h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#90F0C0;margin-bottom:.9rem}
+  .simul-row{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.84rem}
+  .simul-row:last-child{border-bottom:none;padding-top:.55rem;margin-top:.2rem}
+  .simul-lab{font-weight:300;color:rgba(255,255,255,.8)}
+  .simul-val{font-weight:600;color:#90F0C0;white-space:nowrap}
+  .simul-lab.total{font-weight:600;color:#fff}
+  .simul-val.total{font-size:1rem}
+  .simul-val.gold{color:#F5E090}
+
+  /* ERREURS */
+  .erreurs{display:flex;flex-direction:column;gap:.5rem;margin:1.4rem 0}
+  .err{display:flex;gap:.75rem;align-items:flex-start;padding:.7rem 1rem;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.07)}
+  .err-ico{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+  .err-text{font-size:.83rem;font-weight:300;color:#2C2C2A;line-height:1.5}
+  .err-text strong{font-weight:500;color:#7B1D1D;display:block;margin-bottom:.1rem}
+
+  .encadre{border-left:4px solid #1A7860;background:#EDFAF5;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+  .encadre strong{display:block;color:#0C3830;font-size:.9rem;margin-bottom:.3rem}
+  .encadre p{font-size:.84rem;font-weight:300;color:#1A5040;margin:0;line-height:1.6}
+
+  .conseil{background:linear-gradient(135deg,#041210,#0C3830);border-radius:13px;padding:1.3rem 1.5rem;margin:2rem 0;color:#fff;border:1px solid rgba(144,240,192,.1)}
+  .conseil strong{display:block;color:#90F0C0;font-weight:500;font-size:.93rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:#085041;color:rgba(255,255,255,.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:#fff}
+  footer a{color:#EF9F27;text-decoration:none}
+  @media(max-width:500px){.prime-card{grid-template-columns:44px 1fr}.prime-right{display:none}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Primes non imposables : ce qu'on peut verser",
+  "description": "Primes non imposables : ce qu'on peut verser — Optimisez votre net. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-230.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Primes non imposables : ce qu'on peut verser">
+  <meta property="og:description" content="Primes non imposables : ce qu'on peut verser — Optimisez votre net. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-230.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Primes non imposables : ce qu'on peut verser">
+  <meta name="twitter:description" content="Primes non imposables : ce qu'on peut verser — Optimisez votre net. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-230.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero">
+  <div class="hero-cat">💰 <strong>Emploi</strong></div>
+  <h1>Primes non imposables : ce qu'on peut verser</h1>
+  <div class="hero-badge">💰 Optimisez votre rémunération nette</div>
+  <div class="hero-meta">
+    <span>📖 5 min de lecture</span>
+    <span>✅ Vérifié juin 2025</span>
+    <span>💼 Rémunération & fiscalité</span>
+  </div>
+</div>
+
+<article>
+  <p>Il existe en France une dizaine de dispositifs permettant à un employeur de verser de l'argent à ses salariés — ou à un indépendant à lui-même — en dehors du salaire brut, sans cotisations sociales ni impôt sur le revenu. Ces "avantages en dehors du salaire" sont l'un des leviers les plus puissants de l'optimisation salariale. Connaître leur liste, leurs plafonds et leurs conditions permet de structurer une rémunération bien plus avantageuse qu'un simple salaire brut élevé.</p>
+
+  <h2>Les primes et avantages exonérés — liste complète 2025</h2>
+
+  <div class="primes">
+    <div class="prime-card">
+      <div class="prime-ico">🎁</div>
+      <div class="prime-body">
+        <div class="prime-nom">Prime de partage de la valeur (PPV)</div>
+        <div class="prime-desc">Exonérée de cotisations sociales et d'IR pour les salaires < 3 SMIC jusqu'à fin 2026. Versement possible en cash ou sur PEE.</div>
+      </div>
+      <div class="prime-right">
+        <div class="prime-plafond">3 000 €</div>
+        <div class="prime-label">ou 6 000 € avec accord</div>
+        <span class="prime-tag exo">Exo totale &lt;3 SMIC</span>
+      </div>
+    </div>
+
+    <div class="prime-card">
+      <div class="prime-ico">🍽️</div>
+      <div class="prime-body">
+        <div class="prime-nom">Titres-restaurant</div>
+        <div class="prime-desc">La part patronale (50–60 % de la valeur du titre) est exonérée de charges et d'IR. Utilisables dans les restaurants, supermarchés et désormais livraisons de repas.</div>
+      </div>
+      <div class="prime-right">
+        <div class="prime-plafond">7,18 €</div>
+        <div class="prime-label">par titre (part patronale max)</div>
+        <span class="prime-tag exo">Exo automatique</span>
+      </div>
+    </div>
+
+    <div class="prime-card">
+      <div class="prime-ico">🚲</div>
+      <div class="prime-body">
+        <div class="prime-nom">Forfait mobilité durable</div>
+        <div class="prime-desc">Vélo (y compris électrique), trottinette, covoiturage, transports en commun hors abonnement. Exonéré de charges et d'IR jusqu'au plafond annuel.</div>
+      </div>
+      <div class="prime-right">
+        <div class="prime-plafond">700 €</div>
+        <div class="prime-label">par an et par salarié</div>
+        <span class="prime-tag exo">Exo totale</span>
+      </div>
+    </div>
+
+    <div class="prime-card">
+      <div class="prime-ico">🚌</div>
+      <div class="prime-body">
+        <div class="prime-nom">Remboursement abonnement transport</div>
+        <div class="prime-desc">L'employeur rembourse 50 % du titre d'abonnement aux transports en commun (SNCF, Navigo, réseau urbain). Ce remboursement est obligatoire et entièrement exonéré.</div>
+      </div>
+      <div class="prime-right">
+        <div class="prime-plafond">50 %</div>
+        <div class="prime-label">de l'abonnement annuel</div>
+        <span class="prime-tag exo">Obligatoire + exo</span>
+      </div>
+    </div>
+
+    <div class="prime-card">
+      <div class="prime-ico">🏋️</div>
+      <div class="prime-body">
+        <div class="prime-nom">Chèques vacances</div>
+        <div class="prime-desc">La contribution de l'employeur aux chèques vacances (ANCV) est exonérée de charges sociales. Pour les entreprises de moins de 50 salariés, la totalité est exonérée d'IR.</div>
+      </div>
+      <div class="prime-right">
+        <div class="prime-plafond">520 €</div>
+        <div class="prime-label">par an (part patronale max)</div>
+        <span class="prime-tag cond">PME &lt;50 sal : exo IR</span>
+      </div>
+    </div>
+
+    <div class="prime-card">
+      <div class="prime-ico">🎭</div>
+      <div class="prime-body">
+        <div class="prime-nom">Chèques culture / CESU préfinancé</div>
+        <div class="prime-desc">Chèques culture, loisirs, services à la personne (ménage, garde d'enfants) préfinancés par l'employeur. Exonérés de charges et d'IR dans les limites fixées par l'URSSAF.</div>
+      </div>
+      <div class="prime-right">
+        <div class="prime-plafond">2 421 €</div>
+        <div class="prime-label">par an (CESU préfinancé)</div>
+        <span class="prime-tag exo">Exo charges + IR</span>
+      </div>
+    </div>
+
+    <div class="prime-card">
+      <div class="prime-ico">📱</div>
+      <div class="prime-body">
+        <div class="prime-nom">Téléphone / ordinateur portable mis à disposition</div>
+        <div class="prime-desc">Le matériel professionnel mis à disposition par l'employeur n'est pas un avantage en nature imposable s'il est utilisé majoritairement à des fins professionnelles.</div>
+      </div>
+      <div class="prime-right">
+        <div class="prime-plafond">Non</div>
+        <div class="prime-label">imposable si usage pro</div>
+        <span class="prime-tag exo">Usage pro = exo totale</span>
+      </div>
+    </div>
+
+    <div class="prime-card">
+      <div class="prime-ico">🎓</div>
+      <div class="prime-body">
+        <div class="prime-nom">Prise en charge de formations</div>
+        <div class="prime-desc">Les formations financées par l'employeur (plan de développement des compétences) ne sont pas imposables pour le salarié, même si elles ont une valeur personnelle (langues, certifications).</div>
+      </div>
+      <div class="prime-right">
+        <div class="prime-plafond">∞</div>
+        <div class="prime-label">sans plafond</div>
+        <span class="prime-tag exo">Exo totale</span>
+      </div>
+    </div>
+
+    <div class="prime-card">
+      <div class="prime-ico">🏠</div>
+      <div class="prime-body">
+        <div class="prime-nom">Participation aux frais de télétravail</div>
+        <div class="prime-desc">Indemnité journalière de 2,70 € par jour de télétravail (forfait URSSAF 2025), ou remboursement sur justificatifs. Exonérée de charges et d'IR dans les limites.</div>
+      </div>
+      <div class="prime-right">
+        <div class="prime-plafond">2,70 €</div>
+        <div class="prime-label">par jour (forfait)</div>
+        <span class="prime-tag exo">Exo dans les limites</span>
+      </div>
+    </div>
+
+    <div class="prime-card">
+      <div class="prime-ico">🤝</div>
+      <div class="prime-body">
+        <div class="prime-nom">Abondement PEE/PERCO</div>
+        <div class="prime-desc">La contribution de l'employeur sur le plan d'épargne salariale est exonérée de charges sociales (hors CSG/CRDS) et d'IR. Le plafond est très avantageux pour les hauts revenus.</div>
+      </div>
+      <div class="prime-right">
+        <div class="prime-plafond">3 519 €</div>
+        <div class="prime-label">par an (PEE)</div>
+        <span class="prime-tag exo">Exo IR + charges</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Simulation — rémunération optimisée vs salaire brut pur</h2>
+
+  <div class="simul">
+    <h3>🧮 Salarié à 35 000 € bruts annuels — package optimisé</h3>
+    <div class="simul-row"><span class="simul-lab">Salaire brut de base</span><span class="simul-val">35 000 €</span></div>
+    <div class="simul-row"><span class="simul-lab">Net salarial après cotisations + IR (TMI 11 %)</span><span class="simul-val">22 400 € net</span></div>
+    <div class="simul-row"><span class="simul-lab">PPV ajoutée (3 000 €, exonérée)</span><span class="simul-val gold">+ 3 000 € nets</span></div>
+    <div class="simul-row"><span class="simul-lab">Titres-restaurant (180 jours × 7,18 € patronal)</span><span class="simul-val gold">+ 1 292 € nets</span></div>
+    <div class="simul-row"><span class="simul-lab">Forfait mobilité durable (vélo)</span><span class="simul-val gold">+ 700 € nets</span></div>
+    <div class="simul-row"><span class="simul-lab">Indemnité télétravail (150 j × 2,70 €)</span><span class="simul-val gold">+ 405 € nets</span></div>
+    <div class="simul-row"><span class="simul-lab">Total avantages non imposables</span><span class="simul-val gold">5 397 € nets</span></div>
+    <div class="simul-row">
+      <span class="simul-lab total">Pouvoir d'achat réel vs 35 k€ bruts seuls</span>
+      <span class="simul-val total">+ 24 % de pouvoir d'achat net</span>
+    </div>
+  </div>
+
+  <h2>Les erreurs qui font perdre l'exonération</h2>
+
+  <div class="erreurs">
+    <div class="err">
+      <span class="err-ico">⚠️</span>
+      <div class="err-text"><strong>Dépasser les plafonds URSSAF sans justificatif</strong>Si la prime ou l'avantage dépasse le plafond légal sans justificatif de frais réels, l'excédent devient imposable ET soumis à charges. L'URSSAF redresse systématiquement lors des contrôles.</div>
+    </div>
+    <div class="err">
+      <span class="err-ico">⚠️</span>
+      <div class="err-text"><strong>Remplacer un élément de salaire existant</strong>Un avantage exonéré ne peut pas se substituer à une prime déjà prévue au contrat ou par la convention collective. L'URSSAF assimile cette substitution à une fraude et requalifie l'avantage en salaire imposable.</div>
+    </div>
+    <div class="err">
+      <span class="err-ico">⚠️</span>
+      <div class="err-text"><strong>Ne pas respecter les conditions d'usage pour le matériel</strong>Un téléphone ou ordinateur mis à disposition devient un avantage en nature imposable s'il est principalement utilisé à titre personnel. Pour rester exonéré, l'usage professionnel doit être la règle.</div>
+    </div>
+  </div>
+
+  <div class="encadre">
+    <strong>📌 Pour les dirigeants de TPE/PME : se rémunérer intelligemment</strong>
+    <p>Un gérant associé ou dirigeant de TPE peut structurer sa propre rémunération en combinant un salaire de base modéré avec l'ensemble de ces avantages exonérés. Une combinaison PPV (3 000 €) + titres-restaurant (1 292 €) + chèques vacances (520 €) + CESU (2 421 €) + abondement PEE (3 519 €) représente plus de 10 000 € par an sans charges ni impôts — l'équivalent d'environ 16 000 € de salaire brut supplémentaire. Cette optimisation est 100 % légale et souvent ignorée par les petits patrons.</p>
+  </div>
+
+  <div class="conseil">
+    <strong>🎯 Négociez le package global, pas seulement le brut</strong>
+    <p>Lors d'une négociation salariale, demandez systématiquement le détail du package : "En plus du salaire brut, quels avantages proposez-vous ?" Titres-restaurant, forfait mobilité, chèques vacances, télétravail, abondement PEE — tous ces éléments ont une valeur nette réelle et peuvent compenser un écart de 2 000 à 5 000 € de salaire brut annuel. Un salaire de 38 000 € bruts avec un package optimisé peut avoir le même pouvoir d'achat net qu'un salaire de 43 000 € bruts sans avantages. Pensez toujours en termes de rémunération globale, pas de chiffre brut isolé.</p>
+  </div>
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-216.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Bulletin de salaire : décrypter chaque ligne</div></a><a class="sim-card" href="article-217.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Négocier son salaire : scripts qui marchent</div></a><a class="sim-card" href="article-218.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Chômage ARE : calculer ses droits en 2025</div></a><a class="sim-card" href="article-219.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Rupture conventionnelle : tout savoir</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

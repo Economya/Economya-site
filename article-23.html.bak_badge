@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vélo et trottinette : se déplacer à moindre coût — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:1rem}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.back{font-size:.8rem;color:var(--m);text-decoration:none;display:flex;align-items:center;gap:.4rem}
+.back:hover{color:var(--g)}
+
+.article-hero{background:linear-gradient(135deg,#052e16,#166534 55%,#22c55e);color:white;padding:4rem 2rem 3rem;text-align:center}
+.article-cat{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1.2rem}
+.article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.2;max-width:680px;margin:0 auto 1rem}
+.article-hero h1 em{color:var(--a);font-style:normal}
+.article-meta{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,0.6)}
+.savings-badge{display:inline-block;background:var(--a);color:white;padding:.5rem 1.2rem;border-radius:50px;font-weight:500;font-size:.9rem;margin-top:1.2rem}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+.intro-box{background:var(--gl);border-left:4px solid var(--g);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin-bottom:2.5rem;font-size:.95rem;color:var(--gd);font-weight:500}
+
+h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:2.5rem 0 .8rem;color:var(--gd)}
+p{margin-bottom:1rem;color:var(--m);font-weight:300}
+p strong{color:var(--t);font-weight:500}
+
+/* OPTION CARDS */
+.option-grid{display:grid;gap:1.2rem;margin:1.5rem 0}
+.option-card{background:var(--w);border:1px solid var(--b);border-radius:14px;overflow:hidden;transition:box-shadow .2s}
+.option-card:hover{box-shadow:0 5px 22px rgba(0,0,0,0.08)}
+.option-header{padding:1.1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;border-bottom:1px solid var(--b);background:var(--bg)}
+.option-left{display:flex;align-items:center;gap:.9rem}
+.option-icon{font-size:1.7rem}
+.option-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd)}
+.option-type{font-size:.73rem;color:var(--m);margin-top:.1rem}
+.option-cout{text-align:right;flex-shrink:0}
+.cout-val{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--g);line-height:1}
+.cout-label{font-size:.63rem;color:var(--m)}
+.option-body{padding:.9rem 1.5rem 1.1rem}
+.option-body p{margin:0 0 .6rem;font-size:.84rem;color:var(--m);font-weight:300;line-height:1.55}
+.option-body p:last-child{margin:0}
+.option-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+.otag{font-size:.68rem;font-weight:500;padding:.15rem .5rem;border-radius:50px}
+.otag-g{background:var(--gl);color:var(--gd)}
+.otag-a{background:var(--al);color:var(--ad)}
+.otag-b{background:#EFF6FF;color:#1e40af}
+
+/* AIDES TABLE */
+.aides{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
+.aides-head{display:grid;grid-template-columns:1.5fr 1fr 1fr;background:var(--gd);color:white;font-size:.74rem;font-weight:500;padding:.7rem 1rem;gap:.5rem}
+.aides-row{display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:.65rem 1rem;border-bottom:1px solid var(--b);font-size:.81rem;gap:.5rem;align-items:center}
+.aides-row:last-child{border-bottom:none}
+.aides-row:nth-child(even){background:var(--bg)}
+.a-good{color:var(--g);font-weight:500}
+.a-mid{color:var(--a)}
+
+/* ENTRETIEN GRID */
+.entretien-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.8rem;margin:1.5rem 0}
+.entretien-card{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:.9rem 1rem;transition:box-shadow .2s}
+.entretien-card:hover{box-shadow:0 3px 14px rgba(0,0,0,0.06)}
+.entretien-emoji{font-size:1.4rem;margin-bottom:.35rem}
+.entretien-name{font-size:.87rem;font-weight:500;color:var(--t);margin-bottom:.15rem}
+.entretien-prix{font-size:.72rem;color:var(--g);font-weight:500}
+.entretien-desc{font-size:.72rem;color:var(--m);font-weight:300;line-height:1.35;margin-top:.2rem}
+
+/* COMPARATIF */
+.comp-wrap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
+.comp-head{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;background:var(--gd);color:white;font-size:.73rem;font-weight:500;padding:.7rem 1rem;gap:.5rem}
+.comp-row{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;padding:.65rem 1rem;border-bottom:1px solid var(--b);font-size:.8rem;gap:.5rem;align-items:center}
+.comp-row:last-child{border-bottom:none}
+.comp-row:nth-child(even){background:var(--bg)}
+.c-good{color:var(--g);font-weight:500}
+.c-bad{color:#ef4444}
+.c-mid{color:var(--a)}
+
+.tip-box{background:var(--al);border:1px solid rgba(239,159,39,0.3);border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.tip-box .tip-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ad);margin-bottom:.5rem}
+.tip-box p{margin:0;font-size:.9rem;color:var(--ad)}
+
+.warn-box{background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.warn-box .warn-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:#991B1B;margin-bottom:.5rem}
+.warn-box p{margin:0;font-size:.88rem;color:#7F1D1D}
+
+.recap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:2rem 0}
+.recap-title{background:var(--gd);color:white;padding:.8rem 1.2rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.recap-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.2rem;border-bottom:1px solid var(--b);font-size:.85rem;gap:1rem}
+.recap-row:last-child{border-bottom:none;font-weight:500;background:var(--gl)}
+.recap-row span:last-child{color:var(--g);font-weight:500;text-align:right}
+
+.article-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b);margin-top:3rem;gap:1rem;flex-wrap:wrap}
+.art-nav-btn{display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%}
+.art-nav-btn .nav-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m)}
+.art-nav-btn .nav-title{font-size:.85rem;font-weight:500;color:var(--gd)}
+.art-nav-btn:hover .nav-title{color:var(--g)}
+.art-nav-btn.next{text-align:right;margin-left:auto}
+
+footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.8rem;font-size:.8rem}
+footer strong{color:white}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none}
+
+@media(max-width:640px){
+  .article-wrap{padding:2rem 1rem 4rem}
+  nav{padding:.8rem 1rem}
+  .option-header{flex-wrap:wrap}
+  .comp-head,.comp-row{font-size:.7rem;padding:.6rem .6rem}
+  .entretien-grid{grid-template-columns:1fr 1fr}
+  .aides-head,.aides-row{font-size:.73rem;padding:.6rem .7rem}
+}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vélo et trottinette : se déplacer à moindre coût",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-23.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Vélo et trottinette : se déplacer à moindre coût">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-23.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vélo et trottinette : se déplacer à moindre coût">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-23.html" />
+<meta name="description" content="Vélo et trottinette : se déplacer à moindre coût — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Retour aux articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="article-hero">
+  <div class="article-cat">🚲 Transport</div>
+  <h1>Vélo et trottinette : <em>se déplacer à moindre coût</em></h1>
+  <div class="savings-badge">💰 Jusqu'à 1 500€ économisés par an</div>
+  <div class="article-meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié mai 2025</span>
+    <span>🇫🇷 Aides françaises incluses</span>
+  </div>
+</div>
+
+<div class="article-wrap">
+
+  <div class="intro-box">
+    Posséder et utiliser une voiture en ville coûte en moyenne <strong>5 000 à 8 000€ par an</strong> (assurance, carburant, entretien, stationnement). Remplacer une partie ou la totalité de ces trajets par le vélo ou la trottinette électrique peut générer des économies considérables — et l'État subventionne désormais largement l'achat d'un vélo électrique.
+  </div>
+
+  <p>Les mobilités douces ont connu une révolution en France depuis 2020. Le réseau de pistes cyclables s'est densifié dans toutes les grandes villes, les aides à l'achat ont atteint des niveaux historiques, et les employeurs sont désormais tenus de participer aux frais de déplacement à vélo de leurs salariés. Le moment n'a jamais été aussi favorable pour franchir le pas.</p>
+
+  <h2>Les différentes options selon votre usage</h2>
+
+  <div class="option-grid">
+
+    <div class="option-card">
+      <div class="option-header">
+        <div class="option-left">
+          <div class="option-icon">🚲</div>
+          <div>
+            <div class="option-name">Vélo mécanique classique</div>
+            <div class="option-type">Trajets courts · Entretien minimal · Tous terrains</div>
+          </div>
+        </div>
+        <div class="option-cout">
+          <div class="cout-val">0–15€</div>
+          <div class="cout-label">/mois amorti</div>
+        </div>
+      </div>
+      <div class="option-body">
+        <p>La solution la moins chère et la plus robuste. Un vélo d'occasion en bon état (80 à 200€ sur Le Bon Coin) + quelques accessoires (antivol, éclairage, casque) vous revient à moins de 300€ au total. Amorti sur 3 ans, c'est moins de 10€ par mois pour des déplacements illimités. L'entretien annuel (pneus, câbles, graissage) coûte 30 à 60€ selon que vous le faites vous-même ou en atelier.</p>
+        <div class="option-tags">
+          <span class="otag otag-g">Le moins cher</span>
+          <span class="otag otag-g">Zéro énergie</span>
+          <span class="otag otag-b">Jusqu'à 15 km/trajet</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="option-card">
+      <div class="option-header">
+        <div class="option-left">
+          <div class="option-icon">⚡</div>
+          <div>
+            <div class="option-name">Vélo à assistance électrique (VAE)</div>
+            <div class="option-type">Trajets moyens · Idéal domicile-travail</div>
+          </div>
+        </div>
+        <div class="option-cout">
+          <div class="cout-val">20–40€</div>
+          <div class="cout-label">/mois amorti</div>
+        </div>
+      </div>
+      <div class="option-body">
+        <p>Le VAE a révolutionné les déplacements urbains. Il permet de couvrir des distances de 20 à 50 km sans transpirer, avec une assistance électrique jusqu'à 25 km/h. Un bon VAE coûte 800 à 2 000€ neuf, mais les aides de l'État (jusqu'à 400€) et des collectivités réduisent significativement ce montant. En remplacement d'une voiture pour les trajets domicile-travail, le retour sur investissement est souvent inférieur à 1 an.</p>
+        <div class="option-tags">
+          <span class="otag otag-g">Aides jusqu'à 400€</span>
+          <span class="otag otag-b">Jusqu'à 50 km/trajet</span>
+          <span class="otag otag-a">Remplace la voiture</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="option-card">
+      <div class="option-header">
+        <div class="option-left">
+          <div class="option-icon">🛴</div>
+          <div>
+            <div class="option-name">Trottinette électrique personnelle</div>
+            <div class="option-type">Dernier kilomètre · Compact · Multimodal</div>
+          </div>
+        </div>
+        <div class="option-cout">
+          <div class="cout-val">15–25€</div>
+          <div class="cout-label">/mois amorti</div>
+        </div>
+      </div>
+      <div class="option-body">
+        <p>Idéale pour le "dernier kilomètre" entre les transports en commun et la destination finale, ou pour des trajets courts en ville. Une trottinette de qualité (Xiaomi, Ninebot) coûte 300 à 600€ et dure 3 à 5 ans avec un entretien minimal. Bien plus économique que les trottinettes en libre-service (1€ de déverrouillage + 0,30€/min) pour un usage quotidien régulier.</p>
+        <div class="option-tags">
+          <span class="otag otag-g">Compact et léger</span>
+          <span class="otag otag-b">10 à 25 km d'autonomie</span>
+          <span class="otag otag-a">Pliable, transport en commun</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="option-card">
+      <div class="option-header">
+        <div class="option-left">
+          <div class="option-icon">🚴</div>
+          <div>
+            <div class="option-name">Vélo en libre-service (Vélib', Vélov, etc.)</div>
+            <div class="option-type">Occasionnel · Sans entretien · Grandes villes</div>
+          </div>
+        </div>
+        <div class="option-cout">
+          <div class="cout-val">3–9€</div>
+          <div class="cout-label">/mois abonnement</div>
+        </div>
+      </div>
+      <div class="option-body">
+        <p>Pour ceux qui ne souhaitent pas investir dans un vélo personnel, les services de vélos en libre-service (Vélib' à Paris, Vélov à Lyon, Nextbike dans d'autres villes) proposent des abonnements mensuels très abordables. À Paris, l'abonnement Vélib' Classique coûte 9,99€/mois avec les 45 premières minutes gratuites — soit la quasi-totalité des trajets urbains couverts sans surcoût.</p>
+        <div class="option-tags">
+          <span class="otag otag-g">Sans entretien</span>
+          <span class="otag otag-g">~10€/mois</span>
+          <span class="otag otag-b">Grandes villes uniquement</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Les aides à l'achat d'un vélo électrique en 2025</h2>
+
+  <div class="aides">
+    <div class="aides-head">
+      <span>Aide</span>
+      <span>Montant</span>
+      <span>Conditions</span>
+    </div>
+    <div class="aides-row">
+      <span>Bonus vélo électrique (État)</span>
+      <span class="a-good">Jusqu'à 400€</span>
+      <span>Sous conditions de revenus</span>
+    </div>
+    <div class="aides-row">
+      <span>Prime à la conversion</span>
+      <span class="a-good">Jusqu'à 1 500€</span>
+      <span>Remplacement d'un véhicule polluant</span>
+    </div>
+    <div class="aides-row">
+      <span>Aide région / collectivité</span>
+      <span class="a-mid">50 à 500€</span>
+      <span>Variable selon département</span>
+    </div>
+    <div class="aides-row">
+      <span>Indemnité kilométrique vélo (employeur)</span>
+      <span class="a-good">0,35€/km</span>
+      <span>Trajets domicile-travail</span>
+    </div>
+    <div class="aides-row">
+      <span>Forfait mobilités durables</span>
+      <span class="a-good">Jusqu'à 700€/an</span>
+      <span>Prise en charge employeur</span>
+    </div>
+  </div>
+
+  <h2>L'entretien vélo : faire soi-même pour presque rien</h2>
+
+  <div class="entretien-grid">
+    <div class="entretien-card">
+      <div class="entretien-emoji">🔧</div>
+      <div class="entretien-name">Réparation crevaison</div>
+      <div class="entretien-prix">3–5€ (rustines)</div>
+      <div class="entretien-desc">S'apprend en 10 minutes sur YouTube. Économise 15–20€ à chaque fois vs atelier.</div>
+    </div>
+    <div class="entretien-card">
+      <div class="entretien-emoji">⛓️</div>
+      <div class="entretien-name">Graissage chaîne</div>
+      <div class="entretien-prix">8€ (bidon lubrifiant)</div>
+      <div class="entretien-desc">Toutes les 200 km. Prolonge la durée de vie de la transmission de 2 à 3 fois.</div>
+    </div>
+    <div class="entretien-card">
+      <div class="entretien-emoji">🛑</div>
+      <div class="entretien-name">Réglage des freins</div>
+      <div class="entretien-prix">0€ (tournevis)</div>
+      <div class="entretien-desc">Réglage des câbles de frein : 5 minutes, aucune pièce nécessaire dans la plupart des cas.</div>
+    </div>
+    <div class="entretien-card">
+      <div class="entretien-emoji">🔩</div>
+      <div class="entretien-name">Remplacement chambre à air</div>
+      <div class="entretien-prix">5–8€</div>
+      <div class="entretien-desc">Une chambre à air coûte 5€. En atelier, comptez 15–25€ avec la main d'œuvre.</div>
+    </div>
+    <div class="entretien-card">
+      <div class="entretien-emoji">💨</div>
+      <div class="entretien-name">Gonflage pneus</div>
+      <div class="entretien-prix">15€ (pompe)</div>
+      <div class="entretien-desc">Des pneus bien gonflés réduisent l'effort et usent moins la chambre. 1 fois/semaine.</div>
+    </div>
+    <div class="entretien-card">
+      <div class="entretien-emoji">🏪</div>
+      <div class="entretien-name">Ateliers vélo participatifs</div>
+      <div class="entretien-prix">Gratuit ou 5€/séance</div>
+      <div class="entretien-desc">Présents dans la plupart des villes : outils prêtés et aide bénévole pour vos réparations.</div>
+    </div>
+  </div>
+
+  <h2>Vélo vs voiture vs transports : le vrai comparatif</h2>
+
+  <div class="comp-wrap">
+    <div class="comp-head">
+      <span>Critère</span>
+      <span>Voiture</span>
+      <span>Transport commun</span>
+      <span>Vélo / trottinette</span>
+    </div>
+    <div class="comp-row">
+      <span>Coût annuel moyen</span>
+      <span class="c-bad">5 000–8 000€</span>
+      <span class="c-mid">900–1 500€</span>
+      <span class="c-good">100–400€</span>
+    </div>
+    <div class="comp-row">
+      <span>Coût au km</span>
+      <span class="c-bad">0,30–0,50€</span>
+      <span class="c-mid">0,10–0,15€</span>
+      <span class="c-good">0,01–0,05€</span>
+    </div>
+    <div class="comp-row">
+      <span>Temps en ville (5 km)</span>
+      <span class="c-bad">15–30 min</span>
+      <span class="c-mid">20–35 min</span>
+      <span class="c-good">15–20 min</span>
+    </div>
+    <div class="comp-row">
+      <span>Stationnement</span>
+      <span class="c-bad">Payant, difficile</span>
+      <span class="c-good">Inclus</span>
+      <span class="c-good">Gratuit partout</span>
+    </div>
+    <div class="comp-row">
+      <span>Impact santé</span>
+      <span class="c-bad">Sédentaire</span>
+      <span class="c-mid">Neutre</span>
+      <span class="c-good">Activité physique</span>
+    </div>
+    <div class="comp-row">
+      <span>Impact environnemental</span>
+      <span class="c-bad">Élevé</span>
+      <span class="c-mid">Moyen</span>
+      <span class="c-good">Quasi nul</span>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 Le forfait mobilités durables</div>
+    <p>Depuis 2020, votre employeur peut vous verser jusqu'à <strong>700€ par an</strong> en franchise d'impôt pour couvrir vos frais de déplacement à vélo ou trottinette entre votre domicile et votre lieu de travail. Ce forfait mobilités durables est cumulable avec le remboursement des transports en commun. Si votre employeur ne vous en a pas encore parlé, demandez à votre RH — c'est souvent méconnu mais très avantageux.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">⚠️ L'antivol : ne pas lésiner</div>
+    <p>Le vol de vélo est l'un des freins majeurs à la pratique cycliste en France. Un antivol de qualité (Kryptonite, Abus) coûte 40 à 80€ mais est indispensable pour ne pas perdre en quelques minutes un investissement de plusieurs centaines d'euros. Utilisez toujours deux points d'attache (cadre + roue + point fixe), ne laissez jamais votre vélo dehors la nuit et enregistrez-le sur le fichier national Bicycode pour faciliter sa restitution en cas de vol.</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-title">📊 Économies annuelles selon la situation</div>
+    <div class="recap-row"><span>Remplacement voiture en ville par VAE (trajets quotidiens)</span><span>2 000 à 4 000€/an</span></div>
+    <div class="recap-row"><span>Remplacement transports en commun par vélo (abonnement)</span><span>500 à 900€/an</span></div>
+    <div class="recap-row"><span>Forfait mobilités durables employeur</span><span>Jusqu'à 700€/an</span></div>
+    <div class="recap-row"><span>Indemnité kilométrique vélo (10 km/jour, 220 jours)</span><span>~770€/an</span></div>
+    <div class="recap-row"><span><strong>Économie pour un navetteur vélo quotidien</strong></span><span><strong>jusqu'à 1 500€/an net</strong></span></div>
+  </div>
+
+  <p>Le vélo n'est plus seulement un loisir dominical — c'est devenu un vrai outil d'économie et de liberté en milieu urbain. Entre les aides à l'achat, le forfait mobilités durables et les économies sur les transports, <strong>un VAE peut s'autofinancer en moins d'un an</strong> pour un actif qui l'utilise quotidiennement. Et en prime : un trajet plus rapide, zéro bouchon et une forme physique améliorée.</p>
+
+  <div class="article-nav">
+    <a class="art-nav-btn" href="article-22.html">
+      <span class="nav-label">← Article précédent</span>
+      <span class="nav-title">Livres, cinéma, musées : accéder à la culture gratuitement</span>
+    </a>
+    <a class="art-nav-btn next" href="article-24.html">
+      <span class="nav-label">Article suivant →</span>
+      <span class="nav-title">Potager urbain : produire ses légumes toute l'année</span>
+    </a>
+  </div>
+
+</div>
+
+
+<!-- Partenaire Hepster -->
+<div style="background:linear-gradient(135deg,#E1F5EE,#f0fdf4);border:1px solid #1D9E75;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+  <span style="font-size:2rem">🚲</span>
+  <div style="flex:1;min-width:200px">
+    <div style="font-weight:700;color:#085041;font-size:.95rem;margin-bottom:.2rem">Assurer vos appareils avec Hepster</div>
+    <div style="font-size:.82rem;color:#5F5E5A">Assurance vélo, trottinette et appareils électroniques. Couverture vol, casse et oxydation.</div>
+  </div>
+  <a href="https://www.awin1.com/cread.php?awinmid=30643&awinaffid=2926395&ued=https%3A%2F%2Fwww.hepster.com%2Ffr" target="_blank" rel="noopener sponsored" style="background:#1D9E75;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Découvrir →</a>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="index.html">Accueil</a> · Cet site contient des liens partenaires.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
