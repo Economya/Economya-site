@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Allocation adulte handicapé (AAH) 2026 — Jusqu'à 1 041€/mois. Guide complet sur Economya.fr">
+<meta name="description" content="Allocation adulte handicapé (AAH) 2025 — Jusqu'à 1 016€/mois. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Allocation adulte handicapé (AAH) 2026 — Economya.fr</title>
+<title>Allocation adulte handicapé (AAH) 2025 — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -127,8 +127,8 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Allocation adulte handicapé (AAH) 2026",
-  "description": "Allocation adulte handicapé (AAH) 2026 — Jusqu'à 1 041€/mois. Guide complet sur Economya.fr",
+  "headline": "Allocation adulte handicapé (AAH) 2025",
+  "description": "Allocation adulte handicapé (AAH) 2025 — Jusqu'à 1 016€/mois. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-238.html",
   "publisher": {
     "@type": "Organization",
@@ -146,8 +146,8 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Allocation adulte handicapé (AAH) 2026">
-  <meta property="og:description" content="Allocation adulte handicapé (AAH) 2026 — Jusqu'à 1 041€/mois. Guide complet sur Economya.fr">
+  <meta property="og:title" content="Allocation adulte handicapé (AAH) 2025">
+  <meta property="og:description" content="Allocation adulte handicapé (AAH) 2025 — Jusqu'à 1 016€/mois. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-238.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -155,8 +155,8 @@ window.economyaLoadAds = function() {
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Allocation adulte handicapé (AAH) 2026">
-  <meta name="twitter:description" content="Allocation adulte handicapé (AAH) 2026 — Jusqu'à 1 041€/mois. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Allocation adulte handicapé (AAH) 2025">
+  <meta name="twitter:description" content="Allocation adulte handicapé (AAH) 2025 — Jusqu'à 1 016€/mois. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-238.html" />
 </head>
@@ -172,11 +172,11 @@ window.economyaLoadAds = function() {
 <div class="ah">
   <div class="hi">
     <div class="cat-pill">♿ Santé</div>
-    <h1>Allocation adulte handicapé :<br><em>vos droits en 2026</em></h1>
-    <div class="savings-badge">💰 Jusqu'à 1 041 €/mois</div>
+    <h1>Allocation adulte handicapé :<br><em>vos droits en 2025</em></h1>
+    <div class="savings-badge">💰 Jusqu'à 1 016 €/mois</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
-      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
       <span class="theme-tag">🛡️ Aides & droits sociaux</span>
     </div>
   </div>
@@ -184,10 +184,10 @@ window.economyaLoadAds = function() {
 
 <div class="ab">
 
-  <p class="lead">L'AAH est l'une des aides les plus importantes du système social français — et l'une des moins bien connues. En 2026, son montant maximal atteint 1 041,59 € par mois. Voici comment savoir si vous y avez droit et comment la demander.</p>
+  <p class="lead">L'AAH est l'une des aides les plus importantes du système social français — et l'une des moins bien connues. En 2025, son montant maximal atteint 1 016,05 € par mois. Voici comment savoir si vous y avez droit et comment la demander.</p>
 
   <div class="stat-band">
-    <div class="stat-cell"><span class="stat-num">1 041 €</span><span class="stat-lbl">montant maximum/mois</span></div>
+    <div class="stat-cell"><span class="stat-num">1 016 €</span><span class="stat-lbl">montant maximum/mois</span></div>
     <div class="stat-cell"><span class="stat-num">1,3 M</span><span class="stat-lbl">bénéficiaires en France</span></div>
     <div class="stat-cell"><span class="stat-num">80 %</span><span class="stat-lbl">taux d'incapacité minimum (AAH1)</span></div>
   </div>
@@ -202,7 +202,7 @@ window.economyaLoadAds = function() {
         <tr>
           <th>Type</th>
           <th>Taux d'incapacité</th>
-          <th>Montant 2026</th>
+          <th>Montant 2025</th>
           <th>Durée d'attribution</th>
         </tr>
       </thead>
@@ -210,13 +210,13 @@ window.economyaLoadAds = function() {
         <tr>
           <td><strong>AAH 1</strong></td>
           <td>≥ 80 %</td>
-          <td class="g">1 041,59 €/mois</td>
+          <td class="g">1 016,05 €/mois</td>
           <td>1 à 10 ans (renouvelable)</td>
         </tr>
         <tr>
           <td><strong>AAH 2</strong></td>
           <td>50 à 79 %</td>
-          <td class="o">jusqu'à 1 041,59 €/mois</td>
+          <td class="o">jusqu'à 1 016,05 €/mois</td>
           <td>1 à 5 ans (renouvelable)</td>
         </tr>
       </tbody>
