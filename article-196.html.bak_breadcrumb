@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bien manger au bureau sans dépenser — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --olive:#4A6B20;--olive-mid:#7AAD2A;--olive-light:#EEF5E0;
+    --tomato:#C1392B;--lemon:#F5D547;--cream:#FDFDF5;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#0E1600 0%,#4A6B20 35%,#7AAD2A 65%,#F5D547 88%,#FFF8CC 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'🥗';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,#FFF8CC,var(--lemon));
+    color:#0E1600;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--olive);margin:2rem 0 .7rem}
+
+  /* Calcul annuel */
+  .calcul{display:grid;grid-template-columns:1fr auto 1fr;gap:.6rem;align-items:center;margin:1.5rem 0;background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.1rem 1.2rem}
+  .calc-block{text-align:center}
+  .calc-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--m);margin-bottom:.3rem}
+  .calc-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900}
+  .calc-val.rouge{color:#B91C1C}
+  .calc-val.vert{color:var(--olive)}
+  .calc-sub{font-size:.72rem;color:var(--m);margin-top:.15rem;font-weight:300}
+  .calc-arrow{font-size:1.3rem;color:var(--olive-mid);text-align:center}
+
+  /* Lunch box semaine */
+  .semaine{background:var(--cream);border:1px solid rgba(74,107,32,.15);border-radius:14px;overflow:hidden;margin:1.5rem 0}
+  .sem-head{background:linear-gradient(90deg,var(--olive),var(--olive-mid));padding:.8rem 1.2rem;color:#fff;font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700}
+  .sem-row{display:grid;grid-template-columns:80px 1fr auto;align-items:center;padding:.6rem 1.1rem;border-bottom:1px solid rgba(74,107,32,.1);gap:.7rem;font-size:.85rem}
+  .sem-row:last-child{border-bottom:none}
+  .sem-row:nth-child(even){background:rgba(74,107,32,.04)}
+  .sem-jour{font-weight:600;color:var(--olive);font-size:.83rem}
+  .sem-repas{font-weight:300;color:var(--t)}
+  .sem-prix{font-weight:600;color:var(--olive);white-space:nowrap}
+
+  /* Équipement */
+  .equipement{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin:1.5rem 0}
+  .equip{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:.8rem .9rem;text-align:center}
+  .equip-icon{font-size:1.4rem;margin-bottom:.3rem}
+  .equip-nom{font-weight:500;font-size:.84rem;color:var(--olive);margin-bottom:.15rem}
+  .equip-desc{font-size:.74rem;font-weight:300;color:var(--m);line-height:1.35;margin-bottom:.25rem}
+  .equip-prix{font-size:.72rem;font-weight:600;color:var(--g)}
+
+  /* Stratégies batch cooking */
+  .batch{display:flex;flex-direction:column;gap:.6rem;margin:1.5rem 0}
+  .batch-item{background:var(--w);border:1px solid var(--b);border-radius:10px;display:grid;grid-template-columns:44px 1fr;overflow:hidden}
+  .batch-num{background:linear-gradient(180deg,var(--olive),var(--olive-mid));color:#fff;font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+  .batch-body{padding:.7rem .9rem}
+  .batch-title{font-weight:500;font-size:.88rem;color:var(--olive);margin-bottom:.12rem}
+  .batch-desc{font-size:.81rem;font-weight:300;color:var(--m);line-height:1.45}
+
+  .conseil{
+    background:linear-gradient(135deg,#0E1600,#4A6B20);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff
+  }
+  .conseil strong{display:block;color:var(--lemon);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:500px){.equipement{grid-template-columns:1fr 1fr}.calcul{grid-template-columns:1fr}.calc-arrow{transform:rotate(90deg)}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bien manger au bureau sans dépenser",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-196.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Bien manger au bureau sans dépenser">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-196.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bien manger au bureau sans dépenser">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-196.html" />
+<meta name="description" content="Bien manger au bureau sans dépenser — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="hero-art">
+  <div class="acat">🥗 <strong>Alimentation</strong></div>
+  <h1>Bien manger au bureau sans dépenser</h1>
+  <div class="abadge">💰 Déjeuner sain à 2€/jour</div>
+  <div class="meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🍱 Lunch box & batch cooking</span>
+  </div>
+</div>
+
+<article>
+
+  <p>Le repas du midi au bureau est l'un des postes de dépenses les plus sous-estimés de l'année. Un sandwich-boisson en boulangerie : 10 à 12 euros. Un menu brasserie : 14 à 18 euros. Multiplié par 200 jours de travail, la facture annuelle dépasse les 2 000 à 3 600 euros — soit l'équivalent d'un beau voyage. Et la plupart du temps, la qualité nutritionnelle de ces repas achetés à la va-vite est médiocre : trop de sel, trop de graisses, peu de légumes. Apporter sa lunch box change tout — sur le budget et sur le bien-être.</p>
+
+  <h2>Ce que ça coûte vraiment sur l'année</h2>
+
+  <div class="calcul">
+    <div class="calc-block">
+      <div class="calc-label">Repas acheté chaque jour (boulangerie/brasserie)</div>
+      <div class="calc-val rouge">2 400€</div>
+      <div class="calc-sub">12€/jour × 200 jours ouvrés</div>
+    </div>
+    <div class="calc-arrow">→</div>
+    <div class="calc-block">
+      <div class="calc-label">Lunch box maison 5j/semaine</div>
+      <div class="calc-val vert">400€</div>
+      <div class="calc-sub">2€/jour × 200 jours · Économie : 2 000€/an</div>
+    </div>
+  </div>
+
+  <h2>Une semaine de lunch box équilibrées pour moins de 10€</h2>
+
+  <div class="semaine">
+    <div class="sem-head">📅 Menu de la semaine — batch cooking du dimanche</div>
+    <div class="sem-row">
+      <span class="sem-jour">Lundi</span>
+      <span class="sem-repas">Salade de lentilles aux carottes, feta, herbes fraîches</span>
+      <span class="sem-prix">1,80€</span>
+    </div>
+    <div class="sem-row">
+      <span class="sem-jour">Mardi</span>
+      <span class="sem-repas">Riz complet sauté poulet-légumes, sauce soja-gingembre</span>
+      <span class="sem-prix">1,90€</span>
+    </div>
+    <div class="sem-row">
+      <span class="sem-jour">Mercredi</span>
+      <span class="sem-repas">Wrap houmous-roquette-poivrons grillés + fruit</span>
+      <span class="sem-prix">1,60€</span>
+    </div>
+    <div class="sem-row">
+      <span class="sem-jour">Jeudi</span>
+      <span class="sem-repas">Soupe de légumes maison (thermos) + pain complet</span>
+      <span class="sem-prix">1,20€</span>
+    </div>
+    <div class="sem-row">
+      <span class="sem-jour">Vendredi</span>
+      <span class="sem-repas">Pasta salade thon-olives-tomates cerises-basilic</span>
+      <span class="sem-prix">1,50€</span>
+    </div>
+    <div class="sem-row" style="background:rgba(74,107,32,.07)">
+      <span class="sem-jour" style="color:var(--g);font-weight:700">Total</span>
+      <span class="sem-repas" style="font-weight:500;color:var(--t)">5 repas complets et équilibrés</span>
+      <span class="sem-prix" style="color:var(--g);font-size:.92rem">8€/semaine</span>
+    </div>
+  </div>
+
+  <h2>Le batch cooking : cuisiner une fois, manger toute la semaine</h2>
+
+  <p>Le batch cooking (ou "cuisine en lot") consiste à préparer en une à deux heures le dimanche l'essentiel des repas de la semaine. C'est la méthode qui rend la lunch box réaliste sur la durée — sans se lever à 6h30 pour préparer à manger, sans stress du matin.</p>
+
+  <div class="batch">
+    <div class="batch-item">
+      <div class="batch-num">1</div>
+      <div class="batch-body">
+        <div class="batch-title">Cuire des féculents en grande quantité</div>
+        <div class="batch-desc">Riz, quinoa, pâtes, lentilles — une grande casserole de chaque se conserve 4 jours au frigo. Ils servent de base à des repas différents chaque jour simplement en changeant la garniture et la sauce.</div>
+      </div>
+    </div>
+    <div class="batch-item">
+      <div class="batch-num">2</div>
+      <div class="batch-body">
+        <div class="batch-title">Rôtir des légumes au four</div>
+        <div class="batch-desc">Poivrons, courgettes, brocolis, carottes — un grand plat de légumes rôtis (200°C, 25 min) se réchauffe ou se mange froid toute la semaine. Polyvalents dans les salades, wraps et bols.</div>
+      </div>
+    </div>
+    <div class="batch-item">
+      <div class="batch-num">3</div>
+      <div class="batch-body">
+        <div class="batch-title">Préparer une source de protéines</div>
+        <div class="batch-desc">Blanc de poulet cuit à l'eau, œufs durs, pois chiches rôtis, thon en boîte — gardez toujours une protéine prête à portée. Elle s'intègre à n'importe quelle préparation en 30 secondes.</div>
+      </div>
+    </div>
+    <div class="batch-item">
+      <div class="batch-num">4</div>
+      <div class="batch-body">
+        <div class="batch-title">Avoir 3 sauces de base en bocal</div>
+        <div class="batch-desc">Vinaigrette maison, sauce soja-citron-gingembre, houmous maison — ces trois sauces transforment n'importe quelle combinaison de féculents et légumes en un repas savoureux. Préparées en 5 minutes, elles durent une semaine au frigo.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>L'équipement qui change la donne</h2>
+
+  <div class="equipement">
+    <div class="equip">
+      <div class="equip-icon">🍱</div>
+      <div class="equip-nom">Lunch box isotherme</div>
+      <div class="equip-desc">Maintient chaud ou froid pendant 4h. Compartiments séparés pour éviter les mélanges.</div>
+      <div class="equip-prix">8–20€</div>
+    </div>
+    <div class="equip">
+      <div class="equip-icon">🫙</div>
+      <div class="equip-nom">Bocaux Mason Jar</div>
+      <div class="equip-desc">Idéaux pour les salades en couches (sauce au fond, légumes, protéine, feuilles au-dessus). Hermétiques et beaux.</div>
+      <div class="equip-prix">2–5€/bocal</div>
+    </div>
+    <div class="equip">
+      <div class="equip-icon">☕</div>
+      <div class="equip-nom">Thermos soupe</div>
+      <div class="equip-desc">Pour emporter une soupe chaude ou un ragoût. Maintient la température 6h. Révolutionnaire en hiver.</div>
+      <div class="equip-prix">15–30€</div>
+    </div>
+    <div class="equip">
+      <div class="equip-icon">🧊</div>
+      <div class="equip-nom">Sac isotherme</div>
+      <div class="equip-desc">Avec pain de glace pour les préparations fragiles (yaourts, fromage, charcuterie) pendant le trajet.</div>
+      <div class="equip-prix">5–12€</div>
+    </div>
+    <div class="equip">
+      <div class="equip-icon">🍴</div>
+      <div class="equip-nom">Couverts bambou</div>
+      <div class="equip-desc">Légers, durables, à laisser dans le sac. Fini les couverts plastique jetables oubliés.</div>
+      <div class="equip-prix">4–8€</div>
+    </div>
+    <div class="equip">
+      <div class="equip-icon">🧂</div>
+      <div class="equip-nom">Kit condiments</div>
+      <div class="equip-desc">Petits flacons réutilisables pour huile d'olive, vinaigre, sauce soja. Rend chaque repas personnalisable.</div>
+      <div class="equip-prix">5–10€</div>
+    </div>
+  </div>
+
+  <div class="conseil">
+    <strong>🎯 L'astuce du "Sunday prep" en 90 minutes</strong>
+    <p>La clé du succès de la lunch box sur la durée, c'est la régularité du dimanche. Pas besoin d'un programme élaboré : faites bouillir une grande casserole de féculents, enfournez un plat de légumes, faites cuire deux blancs de poulet. En 90 minutes et moins de 15 euros de courses, vous avez cinq déjeuners prêts pour la semaine. L'investissement initial dans quelques bons contenants (20 à 40 euros) est remboursé en moins d'une semaine d'économies sur le déjeuner. Et après quelques semaines de routine, le dimanche prep devient aussi naturel que de faire une lessive — sans y penser.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
