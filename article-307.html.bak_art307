@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Prime naissance CAF : toutes les aides — Jusqu'à 1 093€ à la naissance. Guide complet sur Economya.fr">
+<meta name="description" content="Prime naissance CAF : toutes les aides — Jusqu'à 1 000€ à la naissance. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prime naissance CAF : toutes les aides — Economya.fr</title>
@@ -121,7 +121,7 @@ window.economyaLoadAds = function() {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Prime naissance CAF : toutes les aides",
-  "description": "Prime naissance CAF : toutes les aides — Jusqu'à 1 093€ à la naissance. Guide complet sur Economya.fr",
+  "description": "Prime naissance CAF : toutes les aides — Jusqu'à 1 000€ à la naissance. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-307.html",
   "publisher": {
     "@type": "Organization",
@@ -140,7 +140,7 @@ window.economyaLoadAds = function() {
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
   <meta property="og:title" content="Prime naissance CAF : toutes les aides">
-  <meta property="og:description" content="Prime naissance CAF : toutes les aides — Jusqu'à 1 093€ à la naissance. Guide complet sur Economya.fr">
+  <meta property="og:description" content="Prime naissance CAF : toutes les aides — Jusqu'à 1 000€ à la naissance. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-307.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -149,7 +149,7 @@ window.economyaLoadAds = function() {
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Prime naissance CAF : toutes les aides">
-  <meta name="twitter:description" content="Prime naissance CAF : toutes les aides — Jusqu'à 1 093€ à la naissance. Guide complet sur Economya.fr">
+  <meta name="twitter:description" content="Prime naissance CAF : toutes les aides — Jusqu'à 1 000€ à la naissance. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-307.html" />
 </head>
@@ -166,10 +166,10 @@ window.economyaLoadAds = function() {
   <div class="hi">
     <div class="cat-pill">🎀 Famille</div>
     <h1>Prime naissance CAF :<br><em>toutes les aides</em></h1>
-    <div class="savings-badge">💰 Jusqu'à 1 093 € à la naissance</div>
+    <div class="savings-badge">💰 Jusqu'à 1 000 € à la naissance</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
-      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
       <span class="theme-tag">👶 Naissance & aides</span>
     </div>
   </div>
@@ -196,7 +196,7 @@ window.economyaLoadAds = function() {
       <div class="tl-body">
         <h3>Prime à la naissance (PAJE)</h3>
         <div class="tl-timing">📅 Versée au 7ème mois de grossesse</div>
-        <p>Aide unique versée avant la naissance pour préparer l'arrivée du bébé. Montant 2026 selon revenus du foyer. Sous conditions de ressources.</p>
+        <p>Aide unique versée avant la naissance pour préparer l'arrivée du bébé. Montant 2025 selon revenus du foyer. Sous conditions de ressources.</p>
         <div class="tl-amount">~1 018 € (plein tarif)</div>
       </div>
     </div>
@@ -214,7 +214,7 @@ window.economyaLoadAds = function() {
       <div class="tl-body">
         <h3>Congé maternité indemnisé</h3>
         <div class="tl-timing">📅 16 semaines minimum (1er et 2ème enfant)</div>
-        <p>L'assurance maladie verse des indemnités journalières égales à 100 % du salaire net dans la limite du plafond Sécu (~104,02 €/jour en 2026).</p>
+        <p>L'assurance maladie verse des indemnités journalières égales à 100 % du salaire net dans la limite du plafond Sécu (~91,96 €/jour en 2025).</p>
         <div class="tl-amount">100 % du salaire net</div>
       </div>
     </div>
