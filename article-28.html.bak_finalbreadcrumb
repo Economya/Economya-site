@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voyager low cost en Europe : les meilleures destinations — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:1rem}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.back{font-size:.8rem;color:var(--m);text-decoration:none;display:flex;align-items:center;gap:.4rem}
+.back:hover{color:var(--g)}
+
+.article-hero{background:linear-gradient(135deg,#082f49,#075985 55%,#0ea5e9);color:white;padding:4rem 2rem 3rem;text-align:center}
+.article-cat{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1.2rem}
+.article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.2;max-width:680px;margin:0 auto 1rem}
+.article-hero h1 em{color:var(--a);font-style:normal}
+.article-meta{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,0.6)}
+.savings-badge{display:inline-block;background:var(--a);color:white;padding:.5rem 1.2rem;border-radius:50px;font-weight:500;font-size:.9rem;margin-top:1.2rem}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+.intro-box{background:var(--gl);border-left:4px solid var(--g);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin-bottom:2.5rem;font-size:.95rem;color:var(--gd);font-weight:500}
+
+h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:2.5rem 0 .8rem;color:var(--gd)}
+p{margin-bottom:1rem;color:var(--m);font-weight:300}
+p strong{color:var(--t);font-weight:500}
+
+/* DESTINATION CARDS */
+.dest-grid{display:grid;gap:1.2rem;margin:1.5rem 0}
+.dest-card{background:var(--w);border:1px solid var(--b);border-radius:14px;overflow:hidden;transition:box-shadow .2s}
+.dest-card:hover{box-shadow:0 5px 22px rgba(0,0,0,0.08)}
+.dest-header{padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;border-bottom:1px solid var(--b);background:var(--bg)}
+.dest-left{display:flex;align-items:center;gap:.9rem}
+.dest-flag{font-size:1.6rem}
+.dest-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd)}
+.dest-pays{font-size:.73rem;color:var(--m);margin-top:.1rem}
+.dest-budget{text-align:right;flex-shrink:0}
+.budget-val{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--g);line-height:1}
+.budget-label{font-size:.63rem;color:var(--m)}
+.dest-body{padding:.9rem 1.5rem 1.1rem}
+.dest-body p{margin:0 0 .5rem;font-size:.84rem;color:var(--m);font-weight:300;line-height:1.55}
+.dest-body p:last-child{margin:0}
+.dest-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+.dtag{font-size:.68rem;font-weight:500;padding:.15rem .5rem;border-radius:50px}
+.dtag-g{background:var(--gl);color:var(--gd)}
+.dtag-a{background:var(--al);color:var(--ad)}
+.dtag-b{background:#EFF6FF;color:#1e40af}
+
+/* BUDGET TABLE */
+.budget-table{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
+.bt-head{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;background:var(--gd);color:white;font-size:.72rem;font-weight:500;padding:.7rem 1rem;gap:.5rem}
+.bt-row{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;padding:.65rem 1rem;border-bottom:1px solid var(--b);font-size:.8rem;gap:.5rem;align-items:center}
+.bt-row:last-child{border-bottom:none;font-weight:500;background:var(--gl)}
+.bt-row:nth-child(even){background:var(--bg)}
+.bt-good{color:var(--g);font-weight:500}
+.bt-mid{color:var(--a)}
+.bt-bad{color:#ef4444}
+
+/* ASTUCES GRID */
+.astuce-grid{display:grid;gap:.9rem;margin:1.5rem 0}
+.astuce-item{background:var(--w);border:1px solid var(--b);border-left:4px solid var(--g);border-radius:0 10px 10px 0;padding:1rem 1.2rem}
+.astuce-item h3{font-size:.92rem;font-weight:500;color:var(--t);margin-bottom:.25rem}
+.astuce-item p{margin:0;font-size:.82rem;color:var(--m);font-weight:300;line-height:1.5}
+
+.tip-box{background:var(--al);border:1px solid rgba(239,159,39,0.3);border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.tip-box .tip-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ad);margin-bottom:.5rem}
+.tip-box p{margin:0;font-size:.9rem;color:var(--ad)}
+
+.warn-box{background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.warn-box .warn-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:#991B1B;margin-bottom:.5rem}
+.warn-box p{margin:0;font-size:.88rem;color:#7F1D1D}
+
+.recap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:2rem 0}
+.recap-title{background:var(--gd);color:white;padding:.8rem 1.2rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.recap-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.2rem;border-bottom:1px solid var(--b);font-size:.85rem;gap:1rem}
+.recap-row:last-child{border-bottom:none;font-weight:500;background:var(--gl)}
+.recap-row span:last-child{color:var(--g);font-weight:500;text-align:right}
+
+.article-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b);margin-top:3rem;gap:1rem;flex-wrap:wrap}
+.art-nav-btn{display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%}
+.art-nav-btn .nav-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m)}
+.art-nav-btn .nav-title{font-size:.85rem;font-weight:500;color:var(--gd)}
+.art-nav-btn:hover .nav-title{color:var(--g)}
+.art-nav-btn.next{text-align:right;margin-left:auto}
+
+footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.8rem;font-size:.8rem}
+footer strong{color:white}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none}
+
+@media(max-width:640px){
+  .article-wrap{padding:2rem 1rem 4rem}
+  nav{padding:.8rem 1rem}
+  .dest-header{flex-wrap:wrap}
+  .bt-head,.bt-row{font-size:.7rem;padding:.6rem .6rem;grid-template-columns:1.2fr 1fr 1fr 1fr}
+}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Voyager low cost en Europe : les meilleures destinations",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-28.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Voyager low cost en Europe : les meilleures destinations">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-28.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Voyager low cost en Europe : les meilleures destinations">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-28.html" />
+<meta name="description" content="Voyager low cost en Europe : les meilleures destinations — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Retour aux articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<nav aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A)">
+  <a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Voyager low cost en Europe : les meilleures destinations</span>
+</nav>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Voyager low cost en Europe : les meilleures destinations", "item": "https://economya.fr/article-28.html"}]}</script>
+
+
+<div class="article-hero">
+  <div class="article-cat">🌍 Voyages</div>
+  <h1>Voyager low cost en Europe : <em>les meilleures destinations</em></h1>
+  <div class="savings-badge">💰 Week-end complet dès 100€ par personne</div>
+  <div class="article-meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🇪🇺 Destinations européennes</span>
+  </div>
+</div>
+
+<div class="article-wrap">
+
+  <div class="intro-box">
+    Voyager en Europe n'a jamais été aussi accessible. Avec les compagnies low cost, les hébergements alternatifs et quelques astuces de timing, un week-end à Prague, Lisbonne ou Séville peut revenir à <strong>100 à 200€ par personne tout compris</strong> depuis la France. Voici les meilleures destinations et les méthodes pour y aller pour presque rien.
+  </div>
+
+  <p>L'Europe est le continent le mieux desservi au monde par les compagnies aériennes à bas coûts. Ryanair, easyJet, Wizz Air et Vueling relient des centaines de villes européennes depuis les aéroports français, parfois pour des tarifs inférieurs à 20€ l'aller. Combiné à des hébergements en auberge de jeunesse ou Airbnb abordables, le voyage en Europe est à la portée de presque tous les budgets.</p>
+
+  <h2>Les 6 destinations les plus accessibles depuis la France</h2>
+
+  <div class="dest-grid">
+
+    <div class="dest-card">
+      <div class="dest-header">
+        <div class="dest-left">
+          <div class="dest-flag">🇵🇹</div>
+          <div>
+            <div class="dest-name">Lisbonne & Porto</div>
+            <div class="dest-pays">Portugal · Vol 2h depuis Paris</div>
+          </div>
+        </div>
+        <div class="dest-budget">
+          <div class="budget-val">~120€</div>
+          <div class="budget-label">/pers. week-end</div>
+        </div>
+      </div>
+      <div class="dest-body">
+        <p>Le Portugal est systématiquement cité comme la destination la plus abordable d'Europe occidentale. Un repas dans une tasca coûte 8 à 12€, une nuit en auberge 15 à 25€, les transports en commun sont excellents et peu chers. Lisbonne offre une architecture unique, une vie nocturne animée et une gastronomie remarquable. Porto, à 3h de train, est encore moins chère et tout aussi magnifique.</p>
+        <div class="dest-tags">
+          <span class="dtag dtag-g">Repas dès 8€</span>
+          <span class="dtag dtag-g">Nuit dès 15€</span>
+          <span class="dtag dtag-b">Vol dès 25€</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="dest-header">
+        <div class="dest-left">
+          <div class="dest-flag">🇨🇿</div>
+          <div>
+            <div class="dest-name">Prague</div>
+            <div class="dest-pays">Tchéquie · Vol 2h depuis Paris</div>
+          </div>
+        </div>
+        <div class="dest-budget">
+          <div class="budget-val">~100€</div>
+          <div class="budget-label">/pers. week-end</div>
+        </div>
+      </div>
+      <div class="dest-body">
+        <p>Prague reste l'une des capitales européennes les moins chères malgré sa montée en popularité touristique. Une bière coûte 1,50€ au bar local, un repas traditionnel 5 à 8€, une nuit en auberge de jeunesse bien notée 15 à 20€. La vieille ville est l'une des plus belles d'Europe. Évitez les restaurants de la place de la Vieille-Ville et explorez les quartiers Žižkov et Vinohrady pour des prix locaux.</p>
+        <div class="dest-tags">
+          <span class="dtag dtag-g">Bière à 1,50€</span>
+          <span class="dtag dtag-g">Repas dès 5€</span>
+          <span class="dtag dtag-a">Éviter le centre touristique</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="dest-header">
+        <div class="dest-left">
+          <div class="dest-flag">🇵🇱</div>
+          <div>
+            <div class="dest-name">Cracovie & Varsovie</div>
+            <div class="dest-pays">Pologne · Vol 2h30 depuis Paris</div>
+          </div>
+        </div>
+        <div class="dest-budget">
+          <div class="budget-val">~90€</div>
+          <div class="budget-label">/pers. week-end</div>
+        </div>
+      </div>
+      <div class="dest-body">
+        <p>La Pologne est parmi les destinations les moins chères d'Europe centrale. Cracovie, avec sa vieille ville classée UNESCO, ses restaurants traditionnels à 4-6€ le repas et ses auberges excellentes à 12-18€ la nuit, est un joyau méconnu. Varsovie, plus moderne, combine architecture fascinante et scène gastronomique dynamique à des prix très inférieurs à Paris. Wizz Air propose des vols directs depuis plusieurs villes françaises.</p>
+        <div class="dest-tags">
+          <span class="dtag dtag-g">Repas dès 4€</span>
+          <span class="dtag dtag-g">Nuit dès 12€</span>
+          <span class="dtag dtag-b">Wizz Air depuis Paris</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="dest-header">
+        <div class="dest-left">
+          <div class="dest-flag">🇷🇴</div>
+          <div>
+            <div class="dest-name">Bucarest & Cluj</div>
+            <div class="dest-pays">Roumanie · Vol 3h depuis Paris</div>
+          </div>
+        </div>
+        <div class="dest-budget">
+          <div class="budget-val">~80€</div>
+          <div class="budget-label">/pers. week-end</div>
+        </div>
+      </div>
+      <div class="dest-body">
+        <p>La Roumanie est la destination la moins chère d'Union Européenne. Bucarest surprend avec sa vie nocturne bouillonnante, son architecture belle époque et ses restaurants excellents à 5-8€ le repas. Cluj, capitale culturelle de Transylvanie, est encore plus authentique et abordable. Parfaite pour un long week-end surprenant. Ryanair et Wizz Air proposent des liaisons directes depuis Paris et d'autres villes françaises.</p>
+        <div class="dest-tags">
+          <span class="dtag dtag-g">La moins chère de l'UE</span>
+          <span class="dtag dtag-g">Repas dès 5€</span>
+          <span class="dtag dtag-b">Surprise garantie</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="dest-header">
+        <div class="dest-left">
+          <div class="dest-flag">🇪🇸</div>
+          <div>
+            <div class="dest-name">Séville & Valence</div>
+            <div class="dest-pays">Espagne · Vol 2h depuis Paris</div>
+          </div>
+        </div>
+        <div class="dest-budget">
+          <div class="budget-val">~130€</div>
+          <div class="budget-label">/pers. week-end</div>
+        </div>
+      </div>
+      <div class="dest-body">
+        <p>L'Espagne reste très accessible, surtout hors des grandes capitales. Séville, avec sa cathédrale, son quartier Santa Cruz et sa culture des tapas, est l'une des villes les plus animées et chaleureuses d'Europe. Les tapas gratuites avec chaque verre dans certains bars (pratique encore vivante à Séville et Grenade) permettent de manger pour presque rien. Valence, moins touristique que Barcelone, offre une qualité de vie et une gastronomie exceptionnelles à prix réduits.</p>
+        <div class="dest-tags">
+          <span class="dtag dtag-g">Tapas gratuites dans certains bars</span>
+          <span class="dtag dtag-b">Moins cher que Barcelone</span>
+          <span class="dtag dtag-a">Éviter juillet-août</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="dest-card">
+      <div class="dest-header">
+        <div class="dest-left">
+          <div class="dest-flag">🇬🇷</div>
+          <div>
+            <div class="dest-name">Athènes & Thessalonique</div>
+            <div class="dest-pays">Grèce · Vol 3h depuis Paris</div>
+          </div>
+        </div>
+        <div class="dest-budget">
+          <div class="budget-val">~140€</div>
+          <div class="budget-label">/pers. week-end</div>
+        </div>
+      </div>
+      <div class="dest-body">
+        <p>Athènes est souvent classée parmi les capitales européennes les plus abordables. Un repas dans une taverne traditionnelle coûte 8 à 12€, les transports en commun sont excellents et peu chers, et l'accès à l'Acropole (20€) est l'une des expériences culturelles les plus marquantes d'Europe. Thessalonique, la deuxième ville de Grèce, est encore moins chère et moins fréquentée pour une immersion plus authentique dans la culture grecque.</p>
+        <div class="dest-tags">
+          <span class="dtag dtag-g">Repas dès 8€</span>
+          <span class="dtag dtag-b">Acropole incluse</span>
+          <span class="dtag dtag-a">Printemps/automne idéaux</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Budget comparatif selon la destination</h2>
+
+  <div class="budget-table">
+    <div class="bt-head">
+      <span>Destination</span>
+      <span>Vol A/R</span>
+      <span>Hébergement/nuit</span>
+      <span>Repas moyen</span>
+    </div>
+    <div class="bt-row">
+      <span>Cracovie / Pologne</span>
+      <span class="bt-good">15–40€</span>
+      <span class="bt-good">12–25€</span>
+      <span class="bt-good">4–8€</span>
+    </div>
+    <div class="bt-row">
+      <span>Bucarest / Roumanie</span>
+      <span class="bt-good">20–50€</span>
+      <span class="bt-good">15–30€</span>
+      <span class="bt-good">5–8€</span>
+    </div>
+    <div class="bt-row">
+      <span>Prague / Tchéquie</span>
+      <span class="bt-good">20–60€</span>
+      <span class="bt-good">15–30€</span>
+      <span class="bt-good">5–10€</span>
+    </div>
+    <div class="bt-row">
+      <span>Lisbonne / Portugal</span>
+      <span class="bt-mid">25–80€</span>
+      <span class="bt-mid">20–40€</span>
+      <span class="bt-good">8–12€</span>
+    </div>
+    <div class="bt-row">
+      <span>Séville / Espagne</span>
+      <span class="bt-mid">30–80€</span>
+      <span class="bt-mid">20–45€</span>
+      <span class="bt-mid">8–14€</span>
+    </div>
+    <div class="bt-row">
+      <span>Amsterdam / Pays-Bas</span>
+      <span class="bt-good">20–60€</span>
+      <span class="bt-bad">40–80€</span>
+      <span class="bt-bad">15–25€</span>
+    </div>
+  </div>
+
+  <h2>5 astuces pour partir encore moins cher</h2>
+
+  <div class="astuce-grid">
+    <div class="astuce-item">
+      <h3>🗓️ Voyagez hors saison</h3>
+      <p>Avril-mai et septembre-octobre offrent les meilleurs rapports qualité/prix : temps agréable, moins de touristes, hôtels et vols moins chers de 30 à 50%. Évitez juillet-août où les prix explosent dans toutes les destinations du sud.</p>
+    </div>
+    <div class="astuce-item">
+      <h3>🏨 Mixez hébergements</h3>
+      <p>Une nuit en auberge de jeunesse bien choisie (dortoir 4-6 personnes) coûte 12 à 20€ et est souvent plus conviviale que prévu. Pour les couples ou amis, Airbnb en dehors du centre-ville peut revenir moins cher pour plus de confort.</p>
+    </div>
+    <div class="astuce-item">
+      <h3>🎫 Utilisez les city cards</h3>
+      <p>Beaucoup de villes proposent des cartes touristiques (Prague Card, Lisboa Card, Athens City Pass) qui incluent les transports et les principaux musées pour 20 à 40€/2 jours. Elles sont souvent rentabilisées dès la deuxième visite payante.</p>
+    </div>
+    <div class="astuce-item">
+      <h3>🍽️ Mangez local, pas touristique</h3>
+      <p>Évitez les restaurants autour des attractions principales — les prix y sont doublés. Marchez deux rues plus loin et cherchez les menus du midi fréquentés par les locaux. À Lisbonne, le "prato do dia" (plat du jour) à 7-9€ est souvent excellent.</p>
+    </div>
+    <div class="astuce-item">
+      <h3>✈️ Utilisez plusieurs aéroports</h3>
+      <p>Comparez les vols depuis Paris-CDG, Paris-Beauvais, Lyon, Marseille, Bordeaux et Nantes. Ryanair opère principalement depuis Beauvais et les aéroports régionaux, parfois 40 à 60% moins cher que depuis CDG pour la même destination.</p>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 La combinaison gagnante</div>
+    <p>Vol depuis un aéroport régional ou secondaire avec Ryanair ou Wizz Air réservé 6 à 8 semaines à l'avance + auberge de jeunesse bien notée sur Hostelworld + repas dans les marchés couverts et restaurants locaux + city card pour les transports = <strong>week-end de 3 jours complet pour 100 à 150€ par personne</strong> dans la plupart des destinations d'Europe centrale et orientale.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">⚠️ Les frais cachés des compagnies low cost</div>
+    <p>Ryanair, easyJet et Wizz Air affichent des prix très bas mais facturent les bagages en soute (15 à 50€), les bagages de cabine au-delà d'un petit sac (8 à 25€), et parfois les frais d'enregistrement à l'aéroport (55€ chez Ryanair si vous n'avez pas checké en ligne). Calculez toujours le prix total avec bagages avant de réserver, et voyagez en bagage cabine uniquement si possible — c'est souvent la meilleure façon d'économiser 30 à 50€ par trajet.</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-title">📊 Budget type week-end 3 jours en Europe low cost</div>
+    <div class="recap-row"><span>Vol aller-retour (low cost, réservé à l'avance)</span><span>30 à 60€</span></div>
+    <div class="recap-row"><span>Hébergement (2 nuits auberge ou Airbnb)</span><span>30 à 60€</span></div>
+    <div class="recap-row"><span>Repas (6 repas, restaurants locaux)</span><span>25 à 50€</span></div>
+    <div class="recap-row"><span>Transports locaux + visites</span><span>15 à 30€</span></div>
+    <div class="recap-row"><span><strong>Total par personne</strong></span><span><strong>100 à 200€ tout compris</strong></span></div>
+  </div>
+
+  <p>L'Europe est une chance extraordinaire pour les voyageurs français : des dizaines de capitales et villes fascinantes accessibles en 2 à 3 heures de vol, souvent pour moins de 50€ aller-retour si l'on s'y prend à l'avance. <strong>Choisissez l'Europe centrale, voyagez hors saison, réservez tôt et voyagez léger</strong> : la prochaine escapade mémorable peut ne coûter que 100€.</p>
+
+  <div class="article-nav">
+    <a class="art-nav-btn" href="article-27.html">
+      <span class="nav-label">← Article précédent</span>
+      <span class="nav-title">Café, restaurant, cantine : réduire ses dépenses du midi</span>
+    </a>
+    <a class="art-nav-btn next" href="article-29.html">
+      <span class="nav-label">Article suivant →</span>
+      <span class="nav-title">Réparer plutôt que jeter : économiser sur l'électroménager</span>
+    </a>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="index.html">Accueil</a> · Cet site contient des liens partenaires.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

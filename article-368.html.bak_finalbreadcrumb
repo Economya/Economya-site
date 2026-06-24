@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Prime d'activité : simulation et demande — Jusqu'à 300€/mois en plus. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime d'activité : simulation et demande — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#052e16,#065f46,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'💼';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a7f3d0;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#6ee7b7;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#1D9E75);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(29,158,117,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#1D9E75,#be185d);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--g);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* SIMULATION */
+.simulation{background:var(--gl);border-radius:var(--r);padding:1.3rem 1.5rem;margin:1.5rem 0}
+.simulation h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gd);margin-bottom:.8rem}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.75rem}
+.sim-item{background:white;border-radius:8px;padding:.8rem;text-align:center}
+.sim-label{font-size:.68rem;color:var(--m);text-transform:uppercase;margin-bottom:.15rem}
+.sim-val{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd)}
+.sim-val.g{color:var(--g);font-size:1.2rem}
+
+/* EXEMPLES */
+.exemples{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin:1.5rem 0}
+.ex{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem;text-align:center;transition:transform .2s}
+.ex:hover{transform:translateY(-2px)}
+.ex.top{border:2px solid var(--g)}
+.ex-icon{font-size:1.5rem;margin-bottom:.35rem}
+.ex-profil{font-weight:700;font-size:.85rem;margin-bottom:.2rem}
+.ex-salaire{font-size:.76rem;color:var(--m);margin-bottom:.3rem}
+.ex-prime{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--g);margin:.2rem 0}
+.ex-note{font-size:.7rem;color:var(--m);font-weight:300;line-height:1.3}
+
+/* ÉTAPES */
+.steps{display:flex;flex-direction:column;gap:.85rem;margin:1.2rem 0}
+.step{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem}
+.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#065f46,#1D9E75);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc h3{font-size:.92rem;font-weight:600;margin-bottom:.2rem}
+.sc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#052e16,#065f46);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#1D9E75,#be185d);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Prime d'activité : simulation et demande",
+  "description": "Prime d'activité : simulation et demande — Jusqu'à 300€/mois en plus. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-368.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Prime d'activité : simulation et demande">
+  <meta property="og:description" content="Prime d'activité : simulation et demande — Jusqu'à 300€/mois en plus. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-368.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Prime d'activité : simulation et demande">
+  <meta name="twitter:description" content="Prime d'activité : simulation et demande — Jusqu'à 300€/mois en plus. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-368.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<nav aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A)">
+  <a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Social</span> › <span style="color:var(--t,#2C2C2A)">Prime d'activité : simulation et demande</span>
+</nav>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Social", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Prime d'activité : simulation et demande", "item": "https://economya.fr/article-368.html"}]}</script>
+
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">💼 Social</div>
+    <h1>Prime d'activité :<br><em>simulation et demande</em></h1>
+    <div class="savings-badge">💰 Jusqu'à 300 €/mois en plus</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="theme-tag">💰 Prime & travail</span>
+    </div>
+  </div>
+</div>
+<div class="ab">
+  <p class="lead">La prime d'activité est versée par la CAF aux travailleurs (salariés, indépendants, apprentis) dont les revenus sont modestes. En 2026, plus de 4 millions de foyers y ont droit. Pourtant, près de 30 % des éligibles ne la demandent pas. Voici comment simuler et demander la vôtre.</p>
+
+  <h2>💡 Exemple de calcul de la prime d'activité</h2>
+  <div class="simulation">
+    <h3>📊 Personne seule, salaire net 1 400 €/mois</h3>
+    <div class="sim-grid">
+      <div class="sim-item"><div class="sim-label">Montant forfaitaire</div><div class="sim-val">638,28 €</div></div>
+      <div class="sim-item"><div class="sim-label">Bonification individuelle</div><div class="sim-val">+168 €</div></div>
+      <div class="sim-item"><div class="sim-label">Ressources prises en compte</div><div class="sim-val">−916 €</div></div>
+      <div class="sim-item"><div class="sim-label">Prime d'activité estimée</div><div class="sim-val g">~187 €/mois</div></div>
+    </div>
+    <p style="font-size:.79rem;color:var(--m);margin-top:.7rem;margin-bottom:0">* Calcul simplifié. Utilisez caf.fr pour une simulation précise selon votre situation exacte.</p>
+  </div>
+
+  <h2>🎯 Exemples de montants selon le salaire (personne seule, 2026)</h2>
+  <div class="exemples">
+    <div class="ex top">
+      <div class="ex-icon">💶</div>
+      <div class="ex-profil">SMIC (1 130 € net)</div>
+      <div class="ex-salaire">Soit ~1 130 €/mois nets</div>
+      <div class="ex-prime">~240–290 €</div>
+      <div class="ex-note">Maximum de la prime pour une personne seule</div>
+    </div>
+    <div class="ex">
+      <div class="ex-icon">💳</div>
+      <div class="ex-profil">1 300 € net/mois</div>
+      <div class="ex-salaire">Légèrement au-dessus du SMIC</div>
+      <div class="ex-prime">~180–220 €</div>
+      <div class="ex-note">La prime diminue progressivement</div>
+    </div>
+    <div class="ex">
+      <div class="ex-icon">📊</div>
+      <div class="ex-profil">1 600 € net/mois</div>
+      <div class="ex-salaire">Environ 1,4× le SMIC</div>
+      <div class="ex-prime">~80–130 €</div>
+      <div class="ex-note">Prime encore significative</div>
+    </div>
+    <div class="ex">
+      <div class="ex-icon">🔚</div>
+      <div class="ex-profil">~1 900 € net/mois</div>
+      <div class="ex-salaire">Seuil de non-éligibilité approx.</div>
+      <div class="ex-prime">~0 €</div>
+      <div class="ex-note">Vérifiez quand même — situation familiale peut changer le résultat</div>
+    </div>
+  </div>
+
+  <h2>🪜 Comment faire sa demande</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="sn">1</div>
+      <div class="sc">
+        <h3>Simulez sur caf.fr (5 minutes)</h3>
+        <p>Avant tout, simulez vos droits sur caf.fr → "Simulateur de droits". Renseignez vos revenus des 3 derniers mois, votre situation familiale et votre logement. Le résultat est immédiat et sans engagement.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">2</div>
+      <div class="sc">
+        <h3>Faites votre demande en ligne</h3>
+        <p>Sur caf.fr, dans votre espace personnel → "Mes droits et demandes" → "Prime d'activité". Remplissez le formulaire avec vos revenus des 3 derniers mois. La première demande prend environ 20 minutes.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">3</div>
+      <div class="sc">
+        <h3>Actualisez vos ressources chaque trimestre</h3>
+        <p>La prime d'activité est recalculée tous les 3 mois. Vous devez actualiser vos revenus sur caf.fr dans les 3 premières semaines de chaque trimestre (janvier, avril, juillet, octobre). Si vous oubliez, le versement est suspendu.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Apprentis et stagiaires : vous y avez droit aussi</strong>
+    Les apprentis rémunérés, les stagiaires rémunérés et les auto-entrepreneurs avec des revenus modestes ont droit à la prime d'activité. Beaucoup ignorent cette éligibilité. Un apprenti de 2ème année avec un salaire de 900 € peut percevoir 150–200 € de prime d'activité.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Le non-recours à la prime d'activité coûte cher</strong>
+    Environ 1,5 million de foyers éligibles ne demandent pas la prime d'activité, laissant en moyenne 150 € par mois non perçus. Sur 12 mois, c'est 1 800 € que vous laissez à l'État. Prenez 5 minutes pour simuler vos droits sur caf.fr — même si vous pensez gagner trop.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Aides sociales dans votre boîte mail</h3>
+    <p>Toutes les aides auxquelles vous avez droit et comment les obtenir, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Informations indicatives — vérifiez sur caf.fr pour votre situation personnelle.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-366.html"><div class="sim-card-cat">Social</div><div class="sim-card-title">APL 2026 :calcul et demande à la CAF</div></a><a class="sim-card" href="article-370.html"><div class="sim-card-cat">Social</div><div class="sim-card-title">Aide alimentaire :toutes les ressources en France</div></a><a class="sim-card" href="article-371.html"><div class="sim-card-cat">Social</div><div class="sim-card-title">Surendettement :procédure et sortie de crise</div></a><a class="sim-card" href="article-372.html"><div class="sim-card-cat">Social</div><div class="sim-card-title">Crédit à la consommation :les pièges et alternatives</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cryptomonnaies : comprendre sans perdre d'argent — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --btc:#F7931A;--eth:#627EEA;--dark:#0D0D1A;--mid:#1A1A3A;
+    --neon:#00FFD1;--purple:#7B2FBE;--warn:#FF4444;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#060610 0%,#0D0D1A 28%,#1A1A3A 55%,#7B2FBE 80%,#00FFD1 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'📊';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--neon),var(--btc));
+    color:#060610;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--mid);margin:2rem 0 .7rem}
+
+  /* Cryptos expliquées */
+  .cryptos{display:flex;flex-direction:column;gap:.7rem;margin:1.5rem 0}
+  .crypto{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;display:grid;grid-template-columns:70px 1fr}
+  .crypto-icon{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:.8rem .5rem;font-size:1.6rem;gap:.3rem}
+  .crypto-icon.btc{background:linear-gradient(180deg,#FFF3E0,#FFE0B2)}
+  .crypto-icon.eth{background:linear-gradient(180deg,#E8EAF6,#C5CAE9)}
+  .crypto-icon.stable{background:linear-gradient(180deg,#E8F5E9,#C8E6C9)}
+  .crypto-ticker{font-size:.65rem;font-weight:700;letter-spacing:.05em}
+  .crypto-ticker.btc{color:#F7931A}
+  .crypto-ticker.eth{color:#627EEA}
+  .crypto-ticker.stable{color:#2E7D32}
+  .crypto-body{padding:.8rem 1rem;border-left:1px solid var(--b)}
+  .crypto-name{font-weight:600;font-size:.9rem;color:var(--dark);margin-bottom:.2rem}
+  .crypto-desc{font-size:.82rem;font-weight:300;color:var(--m);line-height:1.5;margin-bottom:.35rem}
+  .crypto-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+  .ctag{font-size:.68rem;font-weight:500;padding:.1rem .45rem;border-radius:50px}
+  .ctag.risk-high{background:#FEE2E2;color:#991B1B}
+  .ctag.risk-med{background:#FEF3C7;color:#92400E}
+  .ctag.risk-low{background:#DCFCE7;color:#166534}
+
+  /* Règles d'or */
+  .regles{display:flex;flex-direction:column;gap:0;margin:1.5rem 0;border:1px solid var(--b);border-radius:12px;overflow:hidden}
+  .regle{display:grid;grid-template-columns:44px 1fr;border-bottom:1px solid var(--b)}
+  .regle:last-child{border-bottom:none}
+  .regle-num{background:linear-gradient(180deg,var(--mid),var(--dark));color:var(--neon);font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+  .regle-body{padding:.8rem 1rem;background:var(--w)}
+  .regle-title{font-weight:500;font-size:.88rem;color:var(--dark);margin-bottom:.15rem}
+  .regle-desc{font-size:.81rem;font-weight:300;color:var(--m);line-height:1.5}
+
+  /* Alerte rouge */
+  .alerte{
+    background:linear-gradient(135deg,#1A0000,#5C0000);
+    border-radius:12px;padding:1.1rem 1.3rem;margin:1.8rem 0;color:#fff;
+    border:1px solid rgba(255,68,68,.25)
+  }
+  .alerte strong{display:block;color:#FF8888;font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .alerte p{font-size:.87rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  .conseil{
+    background:linear-gradient(135deg,#060610,#1A1A3A);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff;
+    border:1px solid rgba(0,255,209,.12)
+  }
+  .conseil strong{display:block;color:var(--neon);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Cryptomonnaies : comprendre sans perdre d'argent",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-158.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Cryptomonnaies : comprendre sans perdre d'argent">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-158.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cryptomonnaies : comprendre sans perdre d'argent">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-158.html" />
+<meta name="description" content="Cryptomonnaies : comprendre sans perdre d'argent — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<nav aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A)">
+  <a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Cryptomonnaies : comprendre sans perdre d'argent</span>
+</nav>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Cryptomonnaies : comprendre sans perdre d'argent", "item": "https://economya.fr/article-158.html"}]}</script>
+
+
+<div class="hero-art">
+  <div class="acat">📊 <strong>Finance</strong></div>
+  <h1>Cryptomonnaies : comprendre sans perdre d'argent</h1>
+  <div class="abadge">💰 Investir sereinement</div>
+  <div class="meta">
+    <span>📖 Lecture 5 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>₿ Actifs numériques</span>
+  </div>
+</div>
+
+<article>
+
+  <p>Bitcoin à 100 000 dollars, Ethereum omniprésent, nouveaux tokens qui explosent chaque semaine — les cryptomonnaies font fantasmer autant qu'elles font peur. Entre les fortunes faites en quelques mois et les effondrements spectaculaires, difficile de savoir quoi penser. Une chose est certaine : ignorer complètement ce marché en 2025 est une position aussi risquée qu'y plonger les yeux fermés. Voici ce qu'il faut comprendre avant de toucher quoi que ce soit.</p>
+
+  <h2>Les actifs à connaître en priorité</h2>
+
+  <div class="cryptos">
+    <div class="crypto">
+      <div class="crypto-icon btc">₿<span class="crypto-ticker btc">BTC</span></div>
+      <div class="crypto-body">
+        <div class="crypto-name">Bitcoin</div>
+        <div class="crypto-desc">La première et la plus connue. Offre limitée à 21 millions d'unités, ce qui en fait une réserve de valeur déflationniste souvent comparée à l'or numérique. Très volatil à court terme mais historiquement haussier sur 4 ans ou plus. Le point d'entrée naturel pour débuter.</div>
+        <div class="crypto-tags"><span class="ctag risk-med">⚡ Volatilité élevée</span><span class="ctag risk-low">✅ Liquidité maximale</span></div>
+      </div>
+    </div>
+    <div class="crypto">
+      <div class="crypto-icon eth">Ξ<span class="crypto-ticker eth">ETH</span></div>
+      <div class="crypto-body">
+        <div class="crypto-name">Ethereum</div>
+        <div class="crypto-desc">La blockchain la plus utilisée pour les contrats intelligents, les applications décentralisées et les NFT. Ethereum est à la crypto ce qu'internet est aux sites web : l'infrastructure sur laquelle tout le reste se construit. Plus technique que le Bitcoin mais tout aussi établi.</div>
+        <div class="crypto-tags"><span class="ctag risk-med">⚡ Volatilité élevée</span><span class="ctag risk-low">✅ Écosystème mature</span></div>
+      </div>
+    </div>
+    <div class="crypto">
+      <div class="crypto-icon stable">$<span class="crypto-ticker stable">STABLE</span></div>
+      <div class="crypto-body">
+        <div class="crypto-name">Stablecoins (USDC, USDT, DAI…)</div>
+        <div class="crypto-desc">Des cryptomonnaies dont la valeur est indexée sur le dollar. Ni hausse ni baisse — la stabilité en échange de la volatilité. Utiles pour garder des fonds dans l'écosystème crypto sans s'exposer aux fluctuations, ou pour percevoir des rendements via le staking.</div>
+        <div class="crypto-tags"><span class="ctag risk-low">✅ Valeur stable</span><span class="ctag risk-med">⚡ Risque émetteur</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Les 5 règles pour ne pas perdre sa mise</h2>
+
+  <div class="regles">
+    <div class="regle">
+      <div class="regle-num">1</div>
+      <div class="regle-body">
+        <div class="regle-title">N'investissez que ce que vous pouvez perdre intégralement</div>
+        <div class="regle-desc">La règle d'or, répétée par tous les investisseurs expérimentés. Une allocation de 5 à 10 % de son épargne disponible est généralement conseillée pour les débutants. Jamais de crédit, jamais d'économies de précaution.</div>
+      </div>
+    </div>
+    <div class="regle">
+      <div class="regle-num">2</div>
+      <div class="regle-body">
+        <div class="regle-title">Bitcoin et Ethereum d'abord, le reste ensuite — si jamais</div>
+        <div class="regle-desc">90 % des altcoins perdent 90 % de leur valeur dans les 3 ans. Les deux actifs les plus établis concentrent le risque le plus maîtrisable. Les "nouveaux projets révolutionnaires" sont le terrain de chasse des arnaques et des spéculateurs professionnels.</div>
+      </div>
+    </div>
+    <div class="regle">
+      <div class="regle-num">3</div>
+      <div class="regle-body">
+        <div class="regle-title">Achetez en plusieurs fois (DCA)</div>
+        <div class="regle-desc">Le Dollar Cost Averaging consiste à investir une somme fixe chaque mois, quoi qu'il arrive. Cette stratégie lisse le prix d'achat dans le temps et évite le piège classique d'acheter au sommet dans l'euphorie. 50€ par mois pendant un an vaut mieux que 600€ d'un coup au mauvais moment.</div>
+      </div>
+    </div>
+    <div class="regle">
+      <div class="regle-num">4</div>
+      <div class="regle-body">
+        <div class="regle-title">Utilisez des plateformes régulées</div>
+        <div class="regle-desc">En France, les plateformes doivent être enregistrées comme PSAN (Prestataire de Services sur Actifs Numériques) auprès de l'AMF. Coinbase, Kraken, Binance France et Bitpanda figurent sur cette liste. Évitez toute plateforme inconnue qui vous promet des rendements garantis.</div>
+      </div>
+    </div>
+    <div class="regle">
+      <div class="regle-num">5</div>
+      <div class="regle-body">
+        <div class="regle-title">Déclarez vos plus-values aux impôts</div>
+        <div class="regle-desc">En France, les plus-values crypto sont imposées à 31,4 % (flat tax, depuis le 1er janvier 2026) dès le premier euro de cession vers des euros. L'administration fiscale a accès aux données des plateformes. Des outils comme Waltio ou Koinly calculent automatiquement votre imposition à partir de l'historique de vos transactions.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alerte">
+    <strong>🚨 Les arnaques à reconnaître immédiatement</strong>
+    <p>Rendements garantis à 10 % par mois, influenceurs qui "offrent" des cryptos en échange d'un envoi préalable, groupes Telegram avec des "signaux exclusifs", nouveaux tokens promus par des célébrités — ces schémas sont des arnaques documentées. Le marché crypto est le terrain de jeu préféré des escrocs précisément parce qu'il est perçu comme opaque et hors contrôle. Méfiance systématique envers tout ce qui promet l'exceptionnel.</p>
+  </div>
+
+  <div class="conseil">
+    <strong>₿ Par où commencer concrètement</strong>
+    <p>Ouvrez un compte sur une plateforme PSAN enregistrée (Coinbase ou Kraken sont les plus accessibles pour débuter), vérifiez votre identité (KYC obligatoire), et achetez pour 50 euros de Bitcoin. Observez comment ça fonctionne, familiarisez-vous avec les fluctuations, lisez les bases de la blockchain. Ce premier contact sans pression financière majeure vaut tous les articles du monde. La compréhension pratique est irremplaçable.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
