@@ -269,7 +269,7 @@ window.economyaLoadAds = function() {
 
   <div class="simul">
     <h3>📊 Exemples de calcul ARE mensuels (30 jours)</h3>
-    <div class="simul-row"><span class="simul-lab">SMIC (1 867 € brut) — SJR = 61,56 €</span><span class="simul-val">≈ 1 141 €/mois</span></div>
+    <div class="simul-row"><span class="simul-lab">SMIC (1 801 € brut) — SJR = 59,40 €</span><span class="simul-val">≈ 1 120 €/mois</span></div>
     <div class="simul-row"><span class="simul-lab">2 500 € brut — SJR = 82,50 €</span><span class="simul-val">≈ 1 530 €/mois</span></div>
     <div class="simul-row"><span class="simul-lab">4 000 € brut — SJR = 132 €</span><span class="simul-val">≈ 2 380 €/mois</span></div>
     <div class="simul-row"><span class="simul-lab">Plafond ARE (salaires > 11 600 €/mois)</span><span class="simul-val green">Plafond : 291,06 €/jour</span></div>
