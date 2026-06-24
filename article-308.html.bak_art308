@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Congé parental : droits et allocations — PreParE jusqu'à 459€/mois. Guide complet sur Economya.fr">
+<meta name="description" content="Congé parental : droits et allocations — PreParE jusqu'à 600€/mois. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Congé parental : droits et allocations — Economya.fr</title>
@@ -130,7 +130,7 @@ window.economyaLoadAds = function() {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Congé parental : droits et allocations",
-  "description": "Congé parental : droits et allocations — PreParE jusqu'à 459€/mois. Guide complet sur Economya.fr",
+  "description": "Congé parental : droits et allocations — PreParE jusqu'à 600€/mois. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-308.html",
   "publisher": {
     "@type": "Organization",
@@ -149,7 +149,7 @@ window.economyaLoadAds = function() {
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
   <meta property="og:title" content="Congé parental : droits et allocations">
-  <meta property="og:description" content="Congé parental : droits et allocations — PreParE jusqu'à 459€/mois. Guide complet sur Economya.fr">
+  <meta property="og:description" content="Congé parental : droits et allocations — PreParE jusqu'à 600€/mois. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-308.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -158,7 +158,7 @@ window.economyaLoadAds = function() {
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Congé parental : droits et allocations">
-  <meta name="twitter:description" content="Congé parental : droits et allocations — PreParE jusqu'à 459€/mois. Guide complet sur Economya.fr">
+  <meta name="twitter:description" content="Congé parental : droits et allocations — PreParE jusqu'à 600€/mois. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-308.html" />
 </head>
@@ -175,10 +175,10 @@ window.economyaLoadAds = function() {
   <div class="hi">
     <div class="cat-pill">👨‍👩‍👦 Famille</div>
     <h1>Congé parental :<br><em>droits et allocations</em></h1>
-    <div class="savings-badge">💰 PreParE jusqu'à 459 €/mois</div>
+    <div class="savings-badge">💰 PreParE jusqu'à 600 €/mois</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
-      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
       <span class="theme-tag">👶 Parentalité & aides</span>
     </div>
   </div>
@@ -186,7 +186,7 @@ window.economyaLoadAds = function() {
 
 <div class="ab">
 
-  <p class="lead">Le congé parental permet à l'un des parents de cesser ou réduire son activité professionnelle après la naissance d'un enfant, tout en percevant la PreParE (Prestation Partagée d'Éducation de l'Enfant). Un dispositif sous-utilisé qui peut représenter jusqu'à 459 € par mois pendant 6 mois.</p>
+  <p class="lead">Le congé parental permet à l'un des parents de cesser ou réduire son activité professionnelle après la naissance d'un enfant, tout en percevant la PreParE (Prestation Partagée d'Éducation de l'Enfant). Un dispositif sous-utilisé qui peut représenter jusqu'à 600 € par mois pendant 6 mois.</p>
 
   <h2>💶 Les différentes options de congé parental</h2>
 
@@ -204,7 +204,7 @@ window.economyaLoadAds = function() {
           <span class="otag warn">Pas de cotisation retraite</span>
         </div>
       </div>
-      <div class="opt-right"><span class="opt-amt">459,70 €/mois</span><span class="opt-sub">PreParE taux plein (2026)</span></div>
+      <div class="opt-right"><span class="opt-amt">432 €/mois</span><span class="opt-sub">PreParE taux plein (2025)</span></div>
     </div>
 
     <div class="opt">
@@ -217,20 +217,20 @@ window.economyaLoadAds = function() {
           <span class="otag">Maintien des droits à la retraite</span>
         </div>
       </div>
-      <div class="opt-right"><span class="opt-amt">297,17 €/mois</span><span class="opt-sub">PreParE taux partiel (mi-temps, 2026)</span></div>
+      <div class="opt-right"><span class="opt-amt">278 €/mois</span><span class="opt-sub">PreParE taux partiel (mi-temps)</span></div>
     </div>
 
     <div class="opt">
       <div class="opt-icon">👨</div>
       <div class="opt-body">
-        <h3>PreParE majorée (familles de 3 enfants ou plus)</h3>
-        <p>Réservée aux familles d'au moins 3 enfants en cessation totale d'activité, cette version majorée verse un montant plus élevé, mais sur une durée plus courte (8 mois maximum par parent, jusqu'au 1er anniversaire du plus jeune enfant). Ce choix est définitif et incompatible avec un temps partiel.</p>
+        <h3>PreParE majorée (si les deux parents l'utilisent)</h3>
+        <p>Si les deux parents prennent chacun un congé parental, la durée totale est allongée de 6 mois et le montant est légèrement majoré. Le second parent (souvent le père) perçoit la PreParE augmentée.</p>
         <div class="opt-tags">
           <span class="otag">+6 mois de durée</span>
           <span class="otag">Partage entre les deux parents</span>
         </div>
       </div>
-      <div class="opt-right"><span class="opt-amt">751,40 €/mois</span><span class="opt-sub">PreParE majorée (2026)</span></div>
+      <div class="opt-right"><span class="opt-amt">596 €/mois</span><span class="opt-sub">PreParE majorée 2025</span></div>
     </div>
 
   </div>
