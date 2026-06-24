@@ -42,18 +42,28 @@ def nettoyer_categorie(cat_brute):
 def construire_breadcrumb(categorie, titre, url_fichier):
     titre_court = titre if len(titre) <= 60 else titre[:57] + "..."
 
+    if categorie:
+        fil_visuel = f'<a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>{categorie}</span> › <span style="color:var(--t,#2C2C2A)">{titre_court}</span>'
+        items_schema = [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"},
+            {"@type": "ListItem", "position": 2, "name": categorie, "item": "https://economya.fr/index.html"},
+            {"@type": "ListItem", "position": 3, "name": titre_court, "item": f"https://economya.fr/{url_fichier}"},
+        ]
+    else:
+        fil_visuel = f'<a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">{titre_court}</span>'
+        items_schema = [
+            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"},
+            {"@type": "ListItem", "position": 2, "name": titre_court, "item": f"https://economya.fr/{url_fichier}"},
+        ]
+
     html_visuel = f'''<nav aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A)">
-  <a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>{categorie}</span> › <span style="color:var(--t,#2C2C2A)">{titre_court}</span>
+  {fil_visuel}
 </nav>'''
 
     schema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"},
-            {"@type": "ListItem", "position": 2, "name": categorie, "item": f"https://economya.fr/index.html"},
-            {"@type": "ListItem", "position": 3, "name": titre_court, "item": f"https://economya.fr/{url_fichier}"},
-        ]
+        "itemListElement": items_schema
     }
     html_schema = f'<script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>'
 
@@ -70,10 +80,10 @@ def traiter_fichier(chemin):
     match_cat = PATTERN_CATPILL.search(contenu)
     match_h1 = PATTERN_H1.search(contenu)
 
-    if not match_cat or not match_h1:
-        return "structure non reconnue"
+    if not match_h1:
+        return "h1 non trouvé"
 
-    categorie = nettoyer_categorie(match_cat.group(1))
+    categorie = nettoyer_categorie(match_cat.group(1)) if match_cat else None
     titre = nettoyer_titre(match_h1.group(1))
 
     match_menu = PATTERN_MOBILE_MENU_END.search(contenu)

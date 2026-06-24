@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Femmes et argent : rattraper son retard — Retraite, investissement, salaire. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Femmes et argent : rattraper son retard — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--lime:#65a30d;--lime-l:#f7fee7;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#1a2e05,#365314,#65a30d);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'👩';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#d9f99d;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#bef264;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#65a30d);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(101,163,13,.4)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#65a30d,#be185d);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--lime);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* CHIFFRES */
+.chiffres{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.5rem 0}
+.chiffre{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s}
+.chiffre:hover{transform:translateY(-2px)}
+.chiffre.bad{border-top:4px solid #dc2626}
+.chiffre.good{border-top:4px solid var(--g)}
+.ch-num{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;margin-bottom:.2rem}
+.chiffre.bad .ch-num{color:#dc2626}
+.chiffre.good .ch-num{color:var(--g)}
+.ch-label{font-size:.74rem;color:var(--m);font-weight:300;line-height:1.4}
+
+/* ACTIONS */
+.actions{display:flex;flex-direction:column;gap:.85rem;margin:1.5rem 0}
+.action{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.3rem;display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;transition:box-shadow .2s}
+.action:hover{box-shadow:0 4px 16px rgba(101,163,13,.1)}
+.action.top{border:2px solid var(--g)}
+.an{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#365314,#65a30d);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ab2 h3{font-size:.92rem;font-weight:700;margin-bottom:.2rem}
+.ab2 p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
+.ab2 .atag{display:inline-block;margin-top:.35rem;background:var(--lime-l);color:#365314;font-size:.7rem;font-weight:600;padding:.12rem .55rem;border-radius:50px}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--lime-l);border-left:4px solid var(--lime);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#365314}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#1a2e05,#365314);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#65a30d,#be185d);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Femmes et argent : rattraper son retard",
+  "description": "Femmes et argent : rattraper son retard — Retraite, investissement, salaire. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-384.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Femmes et argent : rattraper son retard">
+  <meta property="og:description" content="Femmes et argent : rattraper son retard — Retraite, investissement, salaire. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-384.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Femmes et argent : rattraper son retard">
+  <meta name="twitter:description" content="Femmes et argent : rattraper son retard — Retraite, investissement, salaire. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-384.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">👩 Finance</div>
+    <h1>Femmes et argent :<br><em>rattraper son retard</em></h1>
+    <div class="savings-badge">💰 Retraite, investissement, salaire</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="theme-tag">💪 Indépendance financière féminine</span>
+    </div>
+  </div>
+</div>
+<div class="ab">
+  <p class="lead">En France, les femmes gagnent en moyenne 16,8 % de moins que les hommes, partent à la retraite avec une pension inférieure de 40 %, et investissent moins souvent en Bourse. Ces inégalités ont des causes structurelles — mais des actions individuelles concrètes permettent de réduire l'écart. Voici lesquelles.</p>
+
+  <h2>📊 Les inégalités financières femmes-hommes en chiffres</h2>
+  <div class="chiffres">
+    <div class="chiffre bad">
+      <div class="ch-num">−16,8 %</div>
+      <div class="ch-label">Écart de salaire moyen femmes-hommes (France, 2024)</div>
+    </div>
+    <div class="chiffre bad">
+      <div class="ch-num">−40 %</div>
+      <div class="ch-label">Écart de pension retraite femmes-hommes</div>
+    </div>
+    <div class="chiffre bad">
+      <div class="ch-num">+3 ans</div>
+      <div class="ch-label">Durée de vie supplémentaire des femmes (besoin d'épargne plus long)</div>
+    </div>
+    <div class="chiffre good">
+      <div class="ch-num">+47 %</div>
+      <div class="ch-label">Hausse du nombre de femmes investissant en Bourse depuis 2020</div>
+    </div>
+  </div>
+
+  <h2>💪 Les actions concrètes pour rattraper le retard</h2>
+  <div class="actions">
+    <div class="action top">
+      <div class="an">1</div>
+      <div class="ab2">
+        <h3>Négociez votre salaire — les femmes négocient 4× moins que les hommes</h3>
+        <p>Les études montrent que les femmes négocient moins souvent leur salaire et demandent des augmentations moins importantes. Sur une carrière de 35 ans, une différence de 200 €/mois dès le premier poste peut représenter plus de 100 000 € d'écart cumulé. Documentez votre valeur et demandez.</p>
+        <span class="atag">💰 Impact cumulé sur toute la carrière</span>
+      </div>
+    </div>
+    <div class="action">
+      <div class="an">2</div>
+      <div class="ab2">
+        <h3>Ouvrez votre propre PEA et commencez à investir maintenant</h3>
+        <p>Seulement 38 % des PEA ouverts en France appartiennent à des femmes. Investir en ETF World depuis son propre PEA construit un patrimoine indépendant, non affecté par les aléas conjugaux. Même 50 €/mois pendant 20 ans font une différence massive à la retraite.</p>
+        <span class="atag">📊 Patrimoine personnel</span>
+      </div>
+    </div>
+    <div class="action">
+      <div class="an">3</div>
+      <div class="ab2">
+        <h3>Rachetez des trimestres retraite si vous avez des lacunes</h3>
+        <p>Les congés maternité, les temps partiels et les interruptions de carrière créent des lacunes dans les droits à la retraite. Il est possible de racheter des trimestres manquants (coût : ~4 000–12 000 € / trimestre selon l'âge et les revenus). Simulez sur info-retraite.fr.</p>
+      </div>
+    </div>
+    <div class="action">
+      <div class="an">4</div>
+      <div class="ab2">
+        <h3>Constituez votre propre épargne retraite (PER individuel)</h3>
+        <p>Le Plan Épargne Retraite (PER) individuel permet de compléter une retraite qui sera mécaniquement plus basse. Les versements sont déductibles du revenu imposable (avantage fiscal immédiat). À ouvrir tôt pour maximiser la capitalisation.</p>
+        <span class="atag">🏦 Déduction fiscale + retraite</span>
+      </div>
+    </div>
+    <div class="action">
+      <div class="an">5</div>
+      <div class="ab2">
+        <h3>Assurez-vous d'avoir votre propre prévoyance en cas de divorce/veuvage</h3>
+        <p>Dans les couples où la femme a réduit son activité professionnelle, une séparation peut la mettre en grande difficulté financière. Une assurance-vie personnelle, un compte épargne individuel et une prestation compensatoire bien négociée sont des protections essentielles.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 La "pink tax" : vous payez peut-être plus cher sans le savoir</strong>
+    La "taxe rose" désigne la tendance de certains produits genrés à être plus chers en version "féminine" qu'en version "neutre" ou "masculine" (rasoirs, déodorants, shampoings). Comparez systématiquement les prix entre les versions et optez pour les produits neutres quand la différence est significative. Économie potentielle : 200–400 €/an.
+  </div>
+
+  <div class="warn">
+    <strong>ℹ️ Les causes sont structurelles, les solutions partiellement individuelles</strong>
+    Les inégalités financières femmes-hommes ont des causes systémiques (discrimination salariale, travail domestique non rémunéré, interruptions de carrière liées à la maternité) que les choix individuels ne peuvent pas entièrement compenser. Cet article propose des leviers d'action personnels, mais la résolution complète passe aussi par des politiques publiques.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Finances & indépendance dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour construire votre indépendance financière, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil financier.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-374.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Budget zéro basé : méthode et application</div></a><a class="sim-card" href="article-375.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Méthode 50/30/20 : appliquer concrètement</div></a><a class="sim-card" href="article-376.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">YNAB vs Bankin vs Linxo</div></a><a class="sim-card" href="article-377.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Couple et argent :gérer les finances à deux</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
