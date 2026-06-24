@@ -204,7 +204,7 @@ window.economyaLoadAds = function() {
 
 <article>
 
-  <p>Le prix des panneaux solaires a chuté de plus de 70 % en dix ans. Ce qui coûtait 15 000 euros il y a une décennie pour une installation de 3 kWc s'obtient aujourd'hui pour moins de 6 000 euros — avant aides. ⚠️ Attention à une confusion très répandue : MaPrimeRénov' ne finance PAS les panneaux photovoltaïques (production d'électricité) — uniquement le solaire thermique (chauffe-eau). Pour le photovoltaïque, les dispositifs concernés sont la prime à l'autoconsommation, la TVA réduite et l'éco-PTZ. Pour un propriétaire avec un toit bien exposé, l'investissement peut être rentabilisé en 6 à 10 ans et générer de l'électricité gratuite pendant 25 ans. Même pour les locataires ou ceux qui ne peuvent pas installer sur leur toit, des solutions accessibles existent désormais.</p>
+  <p>En 2025, le prix des panneaux solaires a chuté de plus de 70 % en dix ans. Ce qui coûtait 15 000 euros il y a une décennie pour une installation de 3 kWc s'obtient aujourd'hui pour moins de 6 000 euros — avant aides. Et les aides, justement, n'ont jamais été aussi généreuses : MaPrimeRénov', prime autoconsommation, TVA réduite, éco-PTZ. Pour un propriétaire avec un toit bien exposé, l'investissement peut être rentabilisé en 6 à 10 ans et générer de l'électricité gratuite pendant 25 ans. Même pour les locataires ou ceux qui ne peuvent pas installer sur leur toit, des solutions accessibles existent désormais.</p>
 
   <h2>Les trois grandes options selon votre situation</h2>
 
@@ -295,26 +295,26 @@ window.economyaLoadAds = function() {
 
   <p class="note" style="font-size:.8rem;color:var(--m);margin-top:-.7rem;margin-bottom:1.3rem">Hypothèses : prix électricité 0,20€/kWh (en hausse), autoconsommation 70%, revente surplus 0,13€/kWh, dégradation 0,5%/an.</p>
 
-  <h2>Les aides disponibles en 2026</h2>
+  <h2>Les aides disponibles en 2025</h2>
 
   <div class="aides">
     <div class="aide">
       <div class="aide-emoji">🏛️</div>
-      <div class="aide-nom">Prime à l'autoconsommation (EDF OA)</div>
-      <div class="aide-desc">⚠️ Ce dispositif évolue fréquemment (montant révisé chaque trimestre, statut même incertain selon les périodes en 2026). Versée en une seule fois après mise en service. Vérifiez le montant et l'existence actuelle du dispositif directement sur le site officiel EDF OA avant tout projet.</div>
-      <div class="aide-montant">Variable selon puissance — à vérifier sur edf-oa.fr</div>
+      <div class="aide-nom">Prime autoconsommation (EDF OA)</div>
+      <div class="aide-desc">Prime versée sur 5 ans pour toute installation en autoconsommation avec vente du surplus. Montant variable selon la puissance installée.</div>
+      <div class="aide-montant">230 à 580€/kWc selon puissance</div>
     </div>
     <div class="aide">
-      <div class="aide-emoji">🚫</div>
-      <div class="aide-nom">MaPrimeRénov' — NON applicable au photovoltaïque</div>
-      <div class="aide-desc">MaPrimeRénov' ne finance que le solaire thermique (chauffe-eau solaire, système solaire combiné), jamais les panneaux produisant de l'électricité. Si vous installez des panneaux hybrides, seule la partie thermique de l'installation peut y être éligible.</div>
-      <div class="aide-montant">Non éligible pour le photovoltaïque</div>
+      <div class="aide-emoji">🏠</div>
+      <div class="aide-nom">MaPrimeRénov' Sérénité</div>
+      <div class="aide-desc">Pour les ménages modestes, couvre une partie de l'installation solaire dans le cadre d'une rénovation globale du logement.</div>
+      <div class="aide-montant">Jusqu'à 50% du coût travaux</div>
     </div>
     <div class="aide">
       <div class="aide-emoji">📊</div>
-      <div class="aide-nom">TVA réduite (depuis janvier 2026)</div>
-      <div class="aide-desc">Depuis le 1er janvier 2026, la TVA à 10% n'est plus applicable au photovoltaïque. Seules deux options existent désormais : 5,5% sous conditions strictes (installations ≤ 9 kWc avec critères de performance environnementale), ou TVA normale à 20% sinon.</div>
-      <div class="aide-montant">5,5% (conditions strictes) ou 20%</div>
+      <div class="aide-nom">TVA à 10% (au lieu de 20%)</div>
+      <div class="aide-desc">Toute installation solaire sur résidence principale bénéficie d'une TVA réduite à 10% — un avantage immédiat sur la facture installateur.</div>
+      <div class="aide-montant">jusqu'à -10% sur le montant HT</div>
     </div>
     <div class="aide">
       <div class="aide-emoji">💳</div>
