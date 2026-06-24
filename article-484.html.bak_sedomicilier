@@ -2,71 +2,76 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Fiverr et Malt : trouver ses premiers clients freelance — Premiers revenus en 2 semaines. Guide complet sur Economya.fr">
+<meta name="description" content="ACRE : exonération de cotisations à la création — 50% de cotisations en moins. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fiverr et Malt : trouver ses premiers clients freelance — Economya.fr</title>
+<title>ACRE : exonération de cotisations à la création — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--amber:#d97706;--amber-l:#fffbeb;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--lime:#65a30d;--lime-l:#f7fee7;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'💼';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#1a2e05,#365314,#65a30d);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'💰';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#d9f99d;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#fcd34d;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
+.ah h1 em{color:#bef264;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#65a30d);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(101,163,13,.4)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#d97706,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#65a30d,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--lime);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* COMPARAISON */
-.comparaison{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
-@media(max-width:520px){.comparaison{grid-template-columns:1fr}}
-.compa{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden}
-.compa.top{border:2px solid var(--g)}
-.co-header{padding:.85rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
-.compa.fiverr .co-header{background:linear-gradient(135deg,#065f46,#1D9E75)}
-.compa.malt .co-header{background:linear-gradient(135deg,#92400e,#d97706)}
-.co-name{font-weight:700;color:white;font-size:.92rem;display:flex;align-items:center;gap:.4rem}
-.top-badge{display:inline-block;background:var(--g);color:white;font-size:.62rem;font-weight:700;padding:.1rem .5rem;border-radius:50px}
-.co-body{padding:.9rem 1.2rem}
-.co-item{display:flex;justify-content:space-between;margin-bottom:.5rem;font-size:.84rem}
-.co-label{color:var(--m)}
-.co-val{font-weight:600;color:var(--t)}
+/* TAUX */
+.taux-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.5rem 0}
+.taux{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s}
+.taux:hover{transform:translateY(-2px)}
+.taux.top{border:2px solid var(--g)}
+.t-icon{font-size:1.6rem;margin-bottom:.35rem}
+.t-type{font-weight:700;font-size:.88rem;margin-bottom:.2rem}
+.t-avant{font-size:.78rem;color:var(--m);text-decoration:line-through;margin:.1rem 0}
+.t-apres{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--lime)}
+.t-eco{font-size:.72rem;color:var(--g);font-weight:600;margin-top:.2rem}
 
-/* ÉTAPES */
-.steps{display:flex;flex-direction:column;gap:.85rem;margin:1.5rem 0}
-.step{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem}
-.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#92400e,#d97706);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.sc h3{font-size:.92rem;font-weight:600;margin-bottom:.2rem}
-.sc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
-.sc .stag{display:inline-block;margin-top:.35rem;background:var(--amber-l);color:var(--ad);font-size:.7rem;font-weight:600;padding:.12rem .55rem;border-radius:50px}
+/* ÉLIGIBILITÉ */
+.eligibles{display:flex;flex-direction:column;gap:.75rem;margin:1.2rem 0}
+.elig{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.9rem 1.1rem}
+.elig.top{border:2px solid var(--g);background:var(--lime-l)}
+.eico{font-size:1.2rem;flex-shrink:0}
+.elig strong{display:block;font-size:.9rem;margin-bottom:.1rem;color:var(--gd)}
+.elig span{font-size:.84rem;color:var(--m);font-weight:300}
+
+/* SIMULATION */
+.simu{background:var(--lime-l);border-radius:var(--r);padding:1.3rem 1.5rem;margin:1.5rem 0}
+.simu h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#365314;margin-bottom:.8rem}
+.simu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.7rem}
+.s-item{background:white;border-radius:8px;padding:.8rem;text-align:center}
+.s-label{font-size:.68rem;color:var(--m);text-transform:uppercase;margin-bottom:.25rem}
+.s-val{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:#365314}
+.s-val.g{color:var(--g)}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn{background:var(--lime-l);border-left:4px solid var(--lime);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#365314}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#1c1000,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#1a2e05,#365314);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#d97706,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#65a30d,#f59e0b);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
 @media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
@@ -123,9 +128,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Fiverr et Malt : trouver ses premiers clients freelance",
-  "description": "Fiverr et Malt : trouver ses premiers clients freelance — Premiers revenus en 2 semaines. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-420.html",
+  "headline": "ACRE : exonération de cotisations à la création",
+  "description": "ACRE : exonération de cotisations à la création — 50% de cotisations en moins. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-484.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -142,19 +147,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Fiverr et Malt : trouver ses premiers clients freelance">
-  <meta property="og:description" content="Fiverr et Malt : trouver ses premiers clients freelance — Premiers revenus en 2 semaines. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-420.html">
+  <meta property="og:title" content="ACRE : exonération de cotisations à la création">
+  <meta property="og:description" content="ACRE : exonération de cotisations à la création — 50% de cotisations en moins. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-484.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Fiverr et Malt : trouver ses premiers clients freelance">
-  <meta name="twitter:description" content="Fiverr et Malt : trouver ses premiers clients freelance — Premiers revenus en 2 semaines. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="ACRE : exonération de cotisations à la création">
+  <meta name="twitter:description" content="ACRE : exonération de cotisations à la création — 50% de cotisations en moins. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-420.html" />
+<link rel="canonical" href="https://economya.fr/article-484.html" />
 </head>
 <body>
 <nav>
@@ -164,97 +169,109 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">Fiverr et Malt : trouver ses premiers clients freelance</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Fiverr et Malt : trouver ses premiers clients freelance", "item": "https://economya.fr/article-420.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">ACRE : exonération de cotisations à la création</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "ACRE : exonération de cotisations à la création", "item": "https://economya.fr/article-484.html"}]}</script>
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">💼 Revenus</div>
-    <h1>Fiverr et Malt :<br><em>trouver ses premiers clients freelance</em></h1>
-    <div class="savings-badge">💰 Premiers revenus en 2 semaines</div>
+    <div class="cat-pill">💰 Revenus</div>
+    <h1>ACRE :<br><em>exonération de cotisations à la création</em></h1>
+    <div class="savings-badge">💰 50 % de cotisations en moins</div>
     <div class="meta-row">
-      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">⏱ 3 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">💻 Freelance & missions</span>
+      <span class="theme-tag">🚀 Création d'entreprise</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Se lancer en freelance sans clients ni réseau semble intimidant. Pourtant, Fiverr et Malt permettent de trouver ses premières missions en 2 à 4 semaines, sans expérience préalable en freelance. La clé : un profil optimisé, une niche précise et une stratégie de premiers avis.</p>
+  <p class="lead">L'ACRE (Aide à la Création ou Reprise d'une Entreprise) divise par deux vos cotisations sociales pendant les 12 premiers mois d'activité. Accessible à la plupart des créateurs d'entreprise, elle peut représenter une économie de plusieurs milliers d'euros et faciliter considérablement le démarrage. Voici tout ce qu'il faut savoir.</p>
 
-  <h2>⚖️ Fiverr vs Malt : quelle plateforme choisir ?</h2>
-  <div class="comparaison">
-    <div class="compa fiverr">
-      <div class="co-header"><span class="co-name">🌍 Fiverr</span></div>
-      <div class="co-body">
-        <div class="co-item"><span class="co-label">Clients</span><span class="co-val">Monde entier</span></div>
-        <div class="co-item"><span class="co-label">Commission</span><span class="co-val">20 %</span></div>
-        <div class="co-item"><span class="co-label">Tarifs typiques</span><span class="co-val">15–200 € / service</span></div>
-        <div class="co-item"><span class="co-label">Langue</span><span class="co-val">Anglais prioritaire</span></div>
-        <div class="co-item"><span class="co-label">Idéal pour</span><span class="co-val">Compétences digitales</span></div>
-        <div class="co-item"><span class="co-label">Délai premiers clients</span><span class="co-val">2–4 semaines</span></div>
-      </div>
+  <div style="background:#FEF3C7;border-left:4px solid #F59E0B;border-radius:8px;padding:1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#633806;">
+    <strong>⚠️ Changement important au 1er juillet 2026 :</strong> le taux d'exonération ACRE passe de 50 % à 25 % pour les créations d'entreprise à partir de cette date (décret n°2026-69). Les chiffres ci-dessous restent valables pour les entreprises créées avant le 1er juillet 2026. Si vous créez après cette date, l'économie réelle sera deux fois moins importante.
+  </div>
+
+  <h2>📊 Les taux avec et sans ACRE (auto-entrepreneurs)</h2>
+  <div class="taux-grid">
+    <div class="taux top">
+      <div class="t-icon">📦</div>
+      <div class="t-type">Vente de marchandises</div>
+      <div class="t-avant">Sans ACRE : 12,3 %</div>
+      <div class="t-apres">6,15 %</div>
+      <div class="t-eco">avec ACRE (12 mois)</div>
     </div>
-    <div class="compa malt top">
-      <div class="co-header"><span class="co-name">🇫🇷 Malt <span class="top-badge">⭐ France</span></span></div>
-      <div class="co-body">
-        <div class="co-item"><span class="co-label">Clients</span><span class="co-val">Entreprises françaises</span></div>
-        <div class="co-item"><span class="co-label">Commission</span><span class="co-val">10 %</span></div>
-        <div class="co-item"><span class="co-label">Tarifs typiques</span><span class="co-val">250–800 €/jour</span></div>
-        <div class="co-item"><span class="co-label">Langue</span><span class="co-val">Français</span></div>
-        <div class="co-item"><span class="co-label">Idéal pour</span><span class="co-val">Profils qualifiés B2B</span></div>
-        <div class="co-item"><span class="co-label">Délai premiers clients</span><span class="co-val">2–8 semaines</span></div>
-      </div>
+    <div class="taux">
+      <div class="t-icon">🛠️</div>
+      <div class="t-type">Prestations BIC</div>
+      <div class="t-avant">Sans ACRE : 21,2 %</div>
+      <div class="t-apres">10,6 %</div>
+      <div class="t-eco">avec ACRE (12 mois)</div>
+    </div>
+    <div class="taux">
+      <div class="t-icon">💻</div>
+      <div class="t-type">Prestations BNC</div>
+      <div class="t-avant">Sans ACRE : 21,2 %</div>
+      <div class="t-apres">10,6 %</div>
+      <div class="t-eco">avec ACRE (12 mois)</div>
+    </div>
+    <div class="taux">
+      <div class="t-icon">⚕️</div>
+      <div class="t-type">Professions libérales CIPAV</div>
+      <div class="t-avant">Sans ACRE : 23,2 %</div>
+      <div class="t-apres">11,6 %</div>
+      <div class="t-eco">avec ACRE (12 mois)</div>
     </div>
   </div>
 
-  <h2>🚀 Comment trouver ses premiers clients en 2 semaines</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="sn">1</div>
-      <div class="sc">
-        <h3>Choisissez une niche précise (pas "graphiste", mais "miniatures pour campagnes Kickstarter")</h3>
-        <p>Plus votre niche est précise, moins vous avez de concurrents et plus votre profil ressort dans les recherches. "Développeur web" → 50 000 profils. "Développeur Shopify spécialisé boutiques mode" → quelques centaines. La précision est votre meilleur atout.</p>
-        <span class="stag">🎯 La décision la plus importante</span>
-      </div>
+  <h2>💶 Simulation : économie réelle avec l'ACRE</h2>
+  <div class="simu">
+    <h3>📊 Prestataire de services BNC — CA de 3 000 €/mois</h3>
+    <div class="simu-grid">
+      <div class="s-item"><div class="s-label">CA mensuel</div><div class="s-val">3 000 €</div></div>
+      <div class="s-item"><div class="s-label">Cotisations sans ACRE (21,2 %)</div><div class="s-val" style="color:#dc2626">636 €/mois</div></div>
+      <div class="s-item"><div class="s-label">Cotisations avec ACRE (10,6 %)</div><div class="s-val g">318 €/mois</div></div>
+      <div class="s-item"><div class="s-label">Économie mensuelle</div><div class="s-val g">318 €</div></div>
+      <div class="s-item"><div class="s-label">Économie totale (12 mois)</div><div class="s-val g">3 816 €</div></div>
     </div>
-    <div class="step">
-      <div class="sn">2</div>
-      <div class="sc">
-        <h3>Créez un profil impeccable avec portfolio</h3>
-        <p>Photo professionnelle, bio claire en 3 lignes, liste précise de vos compétences. Sur Fiverr : créez 3 "Gigs" avec titre, description et exemples visuels soignés. Sur Malt : complétez 100 % du profil (les profils incomplets n'apparaissent pas dans les recherches).</p>
-      </div>
+  </div>
+
+  <h2>✅ Qui peut bénéficier de l'ACRE ?</h2>
+  <div class="eligibles">
+    <div class="elig top">
+      <span class="eico">✅</span>
+      <div><strong>Demandeurs d'emploi indemnisés (ARE) ou pouvant l'être</strong><span>La situation la plus commune. Si vous étiez salarié et cherchez maintenant à créer votre entreprise, vous êtes éligible à l'ACRE et potentiellement à l'ARCE (versement des droits chômage en capital).</span></div>
     </div>
-    <div class="step">
-      <div class="sn">3</div>
-      <div class="sc">
-        <h3>Faites 2–3 premières missions à prix très attractif</h3>
-        <p>Les premiers avis sont cruciaux. Proposez vos 3 premières missions à un tarif légèrement en dessous du marché en échange d'un avis détaillé. Une fois 3–5 avis 5 étoiles obtenus, remontez vos tarifs progressivement. Cette stratégie d'amorçage prend 2–4 semaines.</p>
-        <span class="stag">⭐ Les avis = votre capital initial</span>
-      </div>
+    <div class="elig">
+      <span class="eico">✅</span>
+      <div><strong>Bénéficiaires du RSA ou de l'ASS</strong><span>Les bénéficiaires du Revenu de Solidarité Active ou de l'Allocation de Solidarité Spécifique créant une entreprise sont éligibles à l'ACRE.</span></div>
     </div>
-    <div class="step">
-      <div class="sn">4</div>
-      <div class="sc">
-        <h3>Activez LinkedIn en parallèle</h3>
-        <p>Publiez sur LinkedIn un post annonçant vos services en freelance. Contactez directement votre réseau (anciens collègues, condisciples). Pour Malt, connectez votre profil LinkedIn pour importer votre réseau. Les premières missions viennent souvent de personnes qui vous connaissent déjà.</p>
-      </div>
+    <div class="elig">
+      <span class="eico">✅</span>
+      <div><strong>Jeunes de 18 à 25 ans (26 ans révolus)</strong><span>Tous les jeunes jusqu'à 25 ans (26 ans révolus) créant une entreprise bénéficient automatiquement de l'ACRE, sans condition de situation préalable.</span></div>
+    </div>
+    <div class="elig">
+      <span class="eico">✅</span>
+      <div><strong>Personnes en ZRR ou QPV créant en zone prioritaire</strong><span>Les créateurs d'entreprise dans les Zones de Revitalisation Rurale ou les Quartiers Prioritaires de la politique de la Ville sont éligibles à l'ACRE.</span></div>
+    </div>
+    <div class="elig">
+      <span class="eico">❌</span>
+      <div><strong>Déjà bénéficié de l'ACRE dans les 3 dernières années</strong><span>Vous ne pouvez bénéficier de l'ACRE qu'une seule fois tous les 3 ans. Si vous avez créé une première entreprise récemment, vérifiez votre éligibilité avant de demander.</span></div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 La technique du portfolio de démonstration</strong>
-    Si vous n'avez pas encore de clients, créez 2–3 projets fictifs de haute qualité pour votre portfolio. Concevez un logo pour une marque imaginaire, redesignez un site réel (sans commercialiser), écrivez un article de démonstration. Les clients regardent la qualité, pas si le projet était payé ou non.
+    <strong>💡 Comment demander l'ACRE : au moment de l'inscription, dans les 45 jours</strong>
+    La demande d'ACRE doit être faite lors de votre inscription en auto-entrepreneur sur autoentrepreneur.urssaf.fr, ou dans les 45 jours suivant l'immatriculation. Au-delà de ce délai, vous perdez le droit à l'exonération pour cette création. Cochez bien la case "demande d'ACRE" lors du formulaire d'inscription — c'est simple mais il ne faut pas l'oublier.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Statut auto-entrepreneur obligatoire avant votre première mission</strong>
-    Exercer une activité freelance sans être déclaré est du travail non déclaré. L'inscription en auto-entrepreneur prend 20 minutes sur autoentrepreneur.urssaf.fr et vous protège légalement. Les cotisations (22 % sur le CA pour les services) s'appliquent uniquement si vous réalisez du chiffre d'affaires.
+    <strong>⚠️ L'ACRE ne s'applique qu'aux cotisations sociales, pas à l'impôt sur le revenu</strong>
+    L'ACRE réduit vos cotisations sociales de 50 % — elle ne réduit pas votre impôt sur le revenu. Si vous optez pour le versement libératoire d'impôt, le taux reste le même avec ou sans ACRE. Votre économie porte uniquement sur les cotisations URSSAF.
   </div>
 
   <div class="cta">
-    <h3>📬 Freelance & revenus dans votre boîte mail</h3>
-    <p>Les meilleures stratégies pour lancer et développer votre activité freelance, chaque semaine.</p>
+    <h3>📬 Création d'entreprise & aides dans votre boîte mail</h3>
+    <p>Toutes les aides pour lancer votre activité au meilleur coût, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -283,15 +300,9 @@ window.economyaLoadAds = function() {
 })();
 </script>
 
-
-  <div class="tip" style="background:#FAEEDA;border-left:4px solid #EF9F27;color:#633806">
-    <strong>🏢 Besoin d'une adresse professionnelle pour votre entreprise ?</strong>
-    Si vous ne souhaitez pas domicilier votre activité à votre domicile personnel, des services comme <a href="https://www.awin1.com/cread.php?awinmid=24149&awinaffid=2926395&ued=https%3A%2F%2Fsedomicilier.fr" target="_blank" rel="noopener sponsored">SeDomicilier</a> proposent une adresse de siège social dès 11€HT/mois (engagement long terme) ou 16€HT/mois sans engagement, sans caution ni frais cachés, avec gestion du courrier incluse. Cela permet de séparer clairement votre adresse personnelle de votre activité professionnelle. Economya peut percevoir une commission sur ce lien, sans coût supplémentaire pour vous.
-  </div>
-
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Informations indicatives — vérifiez sur autoentrepreneur.urssaf.fr.</span>
 </footer>
 
 <style>
@@ -306,7 +317,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-415.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Grenier en or :évaluer et vendre ses objets</div></a><a class="sim-card" href="article-416.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Vendre ses créations en ligne :plateformes gratuites</div></a><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne :devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting :avoir un 2e revenu légal</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-374.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Budget zéro basé : méthode et application</div></a><a class="sim-card" href="article-375.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Méthode 50/30/20 : appliquer concrètement</div></a><a class="sim-card" href="article-376.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">YNAB vs Bankin vs Linxo</div></a><a class="sim-card" href="article-377.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Couple et argent :gérer les finances à deux</div></a></div>
 </div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">

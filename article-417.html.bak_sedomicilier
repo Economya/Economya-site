@@ -2,74 +2,75 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Fiverr et Malt : trouver ses premiers clients freelance — Premiers revenus en 2 semaines. Guide complet sur Economya.fr">
+<meta name="description" content="Tutorat en ligne : devenir prof et gagner sa vie — 30–50€/h en enseignant. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fiverr et Malt : trouver ses premiers clients freelance — Economya.fr</title>
+<title>Tutorat en ligne : devenir prof et gagner sa vie — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--amber:#d97706;--amber-l:#fffbeb;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'💼';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#052e16,#065f46,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'👨‍🏫';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a7f3d0;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#fcd34d;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
+.ah h1 em{color:#6ee7b7;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#1D9E75);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(29,158,117,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#d97706,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#1D9E75,#4338ca);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--g);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* COMPARAISON */
-.comparaison{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
-@media(max-width:520px){.comparaison{grid-template-columns:1fr}}
-.compa{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden}
-.compa.top{border:2px solid var(--g)}
-.co-header{padding:.85rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
-.compa.fiverr .co-header{background:linear-gradient(135deg,#065f46,#1D9E75)}
-.compa.malt .co-header{background:linear-gradient(135deg,#92400e,#d97706)}
-.co-name{font-weight:700;color:white;font-size:.92rem;display:flex;align-items:center;gap:.4rem}
-.top-badge{display:inline-block;background:var(--g);color:white;font-size:.62rem;font-weight:700;padding:.1rem .5rem;border-radius:50px}
-.co-body{padding:.9rem 1.2rem}
-.co-item{display:flex;justify-content:space-between;margin-bottom:.5rem;font-size:.84rem}
-.co-label{color:var(--m)}
-.co-val{font-weight:600;color:var(--t)}
+/* PLATEFORMES */
+.plates{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+.plate{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.plate:hover{box-shadow:0 4px 18px rgba(29,158,117,.1)}
+.plate.top{border:2px solid var(--g)}
+.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
+.p-icon{font-size:2rem;flex-shrink:0;margin-top:.1rem}
+.p-body h3{font-size:.92rem;font-weight:700;margin-bottom:.2rem}
+.p-body p{font-size:.82rem;color:var(--m);font-weight:300;margin:0 0 .4rem}
+.p-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.ptag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:var(--gl);color:var(--gd)}
+.p-right{text-align:right;flex-shrink:0}
+.p-tarif{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--g);display:block;white-space:nowrap}
+.p-sub{font-size:.7rem;color:var(--m)}
 
-/* ÉTAPES */
-.steps{display:flex;flex-direction:column;gap:.85rem;margin:1.5rem 0}
-.step{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem}
-.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#92400e,#d97706);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.sc h3{font-size:.92rem;font-weight:600;margin-bottom:.2rem}
-.sc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
-.sc .stag{display:inline-block;margin-top:.35rem;background:var(--amber-l);color:var(--ad);font-size:.7rem;font-weight:600;padding:.12rem .55rem;border-radius:50px}
+/* MATIÈRES RENTABLES */
+.matieres{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.9rem;margin:1.5rem 0}
+.matiere{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem;text-align:center;transition:transform .2s}
+.matiere:hover{transform:translateY(-2px)}
+.m-icon{font-size:1.6rem;margin-bottom:.35rem}
+.m-name{font-weight:700;font-size:.88rem;margin-bottom:.2rem}
+.m-tarif{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--g);margin:.15rem 0}
+.m-demande{font-size:.7rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:var(--gl);color:var(--gd);display:inline-block}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#1c1000,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#052e16,#065f46);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#d97706,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#1D9E75,#4338ca);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.plate{grid-template-columns:1fr;gap:.5rem}.p-right{text-align:left}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -123,9 +124,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Fiverr et Malt : trouver ses premiers clients freelance",
-  "description": "Fiverr et Malt : trouver ses premiers clients freelance — Premiers revenus en 2 semaines. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-420.html",
+  "headline": "Tutorat en ligne : devenir prof et gagner sa vie",
+  "description": "Tutorat en ligne : devenir prof et gagner sa vie — 30–50€/h en enseignant. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-417.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -142,19 +143,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Fiverr et Malt : trouver ses premiers clients freelance">
-  <meta property="og:description" content="Fiverr et Malt : trouver ses premiers clients freelance — Premiers revenus en 2 semaines. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-420.html">
+  <meta property="og:title" content="Tutorat en ligne : devenir prof et gagner sa vie">
+  <meta property="og:description" content="Tutorat en ligne : devenir prof et gagner sa vie — 30–50€/h en enseignant. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-417.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Fiverr et Malt : trouver ses premiers clients freelance">
-  <meta name="twitter:description" content="Fiverr et Malt : trouver ses premiers clients freelance — Premiers revenus en 2 semaines. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Tutorat en ligne : devenir prof et gagner sa vie">
+  <meta name="twitter:description" content="Tutorat en ligne : devenir prof et gagner sa vie — 30–50€/h en enseignant. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-420.html" />
+<link rel="canonical" href="https://economya.fr/article-417.html" />
 </head>
 <body>
 <nav>
@@ -164,97 +165,118 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">Fiverr et Malt : trouver ses premiers clients freelance</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Fiverr et Malt : trouver ses premiers clients freelance", "item": "https://economya.fr/article-420.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">Tutorat en ligne : devenir prof et gagner sa vie</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Tutorat en ligne : devenir prof et gagner sa vie", "item": "https://economya.fr/article-417.html"}]}</script>
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">💼 Revenus</div>
-    <h1>Fiverr et Malt :<br><em>trouver ses premiers clients freelance</em></h1>
-    <div class="savings-badge">💰 Premiers revenus en 2 semaines</div>
+    <div class="cat-pill">👨‍🏫 Revenus</div>
+    <h1>Tutorat en ligne :<br><em>devenir prof et gagner sa vie</em></h1>
+    <div class="savings-badge">💰 30–50 €/h en enseignant</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">💻 Freelance & missions</span>
+      <span class="theme-tag">📚 Cours particuliers & revenus</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Se lancer en freelance sans clients ni réseau semble intimidant. Pourtant, Fiverr et Malt permettent de trouver ses premières missions en 2 à 4 semaines, sans expérience préalable en freelance. La clé : un profil optimisé, une niche précise et une stratégie de premiers avis.</p>
+  <p class="lead">Les cours particuliers en ligne sont l'un des revenus complémentaires les plus accessibles et les mieux rémunérés. Sans diplôme d'enseignement obligatoire, dès que vous maîtrisez une matière scolaire ou une compétence, vous pouvez facturer 20 à 60 € de l'heure. Les plateformes comme Superprof ou Preply gèrent les élèves pour vous.</p>
 
-  <h2>⚖️ Fiverr vs Malt : quelle plateforme choisir ?</h2>
-  <div class="comparaison">
-    <div class="compa fiverr">
-      <div class="co-header"><span class="co-name">🌍 Fiverr</span></div>
-      <div class="co-body">
-        <div class="co-item"><span class="co-label">Clients</span><span class="co-val">Monde entier</span></div>
-        <div class="co-item"><span class="co-label">Commission</span><span class="co-val">20 %</span></div>
-        <div class="co-item"><span class="co-label">Tarifs typiques</span><span class="co-val">15–200 € / service</span></div>
-        <div class="co-item"><span class="co-label">Langue</span><span class="co-val">Anglais prioritaire</span></div>
-        <div class="co-item"><span class="co-label">Idéal pour</span><span class="co-val">Compétences digitales</span></div>
-        <div class="co-item"><span class="co-label">Délai premiers clients</span><span class="co-val">2–4 semaines</span></div>
-      </div>
+  <h2>💰 Les matières les plus demandées et leurs tarifs</h2>
+  <div class="matieres">
+    <div class="matiere">
+      <div class="m-icon">🔢</div>
+      <div class="m-name">Mathématiques</div>
+      <div class="m-tarif">25–50 €/h</div>
+      <div class="m-demande">⭐ Très forte demande</div>
     </div>
-    <div class="compa malt top">
-      <div class="co-header"><span class="co-name">🇫🇷 Malt <span class="top-badge">⭐ France</span></span></div>
-      <div class="co-body">
-        <div class="co-item"><span class="co-label">Clients</span><span class="co-val">Entreprises françaises</span></div>
-        <div class="co-item"><span class="co-label">Commission</span><span class="co-val">10 %</span></div>
-        <div class="co-item"><span class="co-label">Tarifs typiques</span><span class="co-val">250–800 €/jour</span></div>
-        <div class="co-item"><span class="co-label">Langue</span><span class="co-val">Français</span></div>
-        <div class="co-item"><span class="co-label">Idéal pour</span><span class="co-val">Profils qualifiés B2B</span></div>
-        <div class="co-item"><span class="co-label">Délai premiers clients</span><span class="co-val">2–8 semaines</span></div>
-      </div>
+    <div class="matiere">
+      <div class="m-icon">🌍</div>
+      <div class="m-name">Anglais</div>
+      <div class="m-tarif">20–45 €/h</div>
+      <div class="m-demande">⭐ Forte demande</div>
+    </div>
+    <div class="matiere">
+      <div class="m-icon">🧪</div>
+      <div class="m-name">Physique-chimie</div>
+      <div class="m-tarif">25–50 €/h</div>
+      <div class="m-demande">⭐ Forte demande</div>
+    </div>
+    <div class="matiere">
+      <div class="m-icon">💻</div>
+      <div class="m-name">Programmation</div>
+      <div class="m-tarif">30–80 €/h</div>
+      <div class="m-demande">⭐ Très forte demande</div>
+    </div>
+    <div class="matiere">
+      <div class="m-icon">🎵</div>
+      <div class="m-name">Musique / instrument</div>
+      <div class="m-tarif">25–50 €/h</div>
+      <div class="m-demande">Bonne demande</div>
+    </div>
+    <div class="matiere">
+      <div class="m-icon">🗣️</div>
+      <div class="m-name">Langues étrangères</div>
+      <div class="m-tarif">20–60 €/h</div>
+      <div class="m-demande">Forte demande</div>
     </div>
   </div>
 
-  <h2>🚀 Comment trouver ses premiers clients en 2 semaines</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="sn">1</div>
-      <div class="sc">
-        <h3>Choisissez une niche précise (pas "graphiste", mais "miniatures pour campagnes Kickstarter")</h3>
-        <p>Plus votre niche est précise, moins vous avez de concurrents et plus votre profil ressort dans les recherches. "Développeur web" → 50 000 profils. "Développeur Shopify spécialisé boutiques mode" → quelques centaines. La précision est votre meilleur atout.</p>
-        <span class="stag">🎯 La décision la plus importante</span>
+  <h2>🌐 Les meilleures plateformes pour trouver des élèves</h2>
+  <div class="plates">
+    <div class="plate top">
+      <div class="p-icon">⭐</div>
+      <div class="p-body">
+        <div class="top-badge">⭐ Leader en France</div>
+        <h3>Superprof</h3>
+        <p>La plus grande plateforme de cours particuliers en France. Profil gratuit, vous fixez vos tarifs. Superprof prend une commission sur les premiers cours puis vous gardez 100 % des revenus des élèves qui reviennent. Plus de 10 millions d'élèves potentiels.</p>
+        <div class="p-tags"><span class="ptag">Commission sur 1ères heures</span><span class="ptag">100 % ensuite</span><span class="ptag">France + International</span></div>
       </div>
+      <div class="p-right"><span class="p-tarif">20–60 €/h</span><span class="p-sub">vous fixez le prix</span></div>
     </div>
-    <div class="step">
-      <div class="sn">2</div>
-      <div class="sc">
-        <h3>Créez un profil impeccable avec portfolio</h3>
-        <p>Photo professionnelle, bio claire en 3 lignes, liste précise de vos compétences. Sur Fiverr : créez 3 "Gigs" avec titre, description et exemples visuels soignés. Sur Malt : complétez 100 % du profil (les profils incomplets n'apparaissent pas dans les recherches).</p>
+    <div class="plate">
+      <div class="p-icon">🌍</div>
+      <div class="p-body">
+        <h3>Preply (cours de langues international)</h3>
+        <p>Spécialisé dans les cours de langues (anglais, espagnol, français langue étrangère…). Marché international — enseignez à des étudiants du monde entier. Commission élevée au départ (33–18 %) qui diminue avec l'expérience accumulée.</p>
+        <div class="p-tags"><span class="ptag">International</span><span class="ptag">Langues uniquement</span><span class="ptag">Paiement en USD/EUR</span></div>
       </div>
+      <div class="p-right"><span class="p-tarif">15–50 €/h</span><span class="p-sub">après commission</span></div>
     </div>
-    <div class="step">
-      <div class="sn">3</div>
-      <div class="sc">
-        <h3>Faites 2–3 premières missions à prix très attractif</h3>
-        <p>Les premiers avis sont cruciaux. Proposez vos 3 premières missions à un tarif légèrement en dessous du marché en échange d'un avis détaillé. Une fois 3–5 avis 5 étoiles obtenus, remontez vos tarifs progressivement. Cette stratégie d'amorçage prend 2–4 semaines.</p>
-        <span class="stag">⭐ Les avis = votre capital initial</span>
+    <div class="plate">
+      <div class="p-icon">🎓</div>
+      <div class="p-body">
+        <h3>Apprentus</h3>
+        <p>Plateforme française généraliste (scolaire, langues, musique, sport, cuisine…). Les élèves paient Apprentus qui vous reverse après la séance. Interface simple, bonne visibilité locale.</p>
+        <div class="p-tags"><span class="ptag">Toutes matières</span><span class="ptag">Commission ~20 %</span><span class="ptag">France</span></div>
       </div>
+      <div class="p-right"><span class="p-tarif">18–45 €/h</span><span class="p-sub">net commissions</span></div>
     </div>
-    <div class="step">
-      <div class="sn">4</div>
-      <div class="sc">
-        <h3>Activez LinkedIn en parallèle</h3>
-        <p>Publiez sur LinkedIn un post annonçant vos services en freelance. Contactez directement votre réseau (anciens collègues, condisciples). Pour Malt, connectez votre profil LinkedIn pour importer votre réseau. Les premières missions viennent souvent de personnes qui vous connaissent déjà.</p>
+    <div class="plate">
+      <div class="p-icon">🤝</div>
+      <div class="p-body">
+        <h3>Groupe Facebook / bouche-à-oreille local</h3>
+        <p>Les groupes Facebook de parents d'élèves locaux, les forums scolaires et le bouche-à-oreille permettent de trouver des élèves sans commission. 100 % des revenus vous reviennent — le meilleur tarif net possible.</p>
+        <div class="p-tags"><span class="ptag">0 % de commission</span><span class="ptag">Relation directe</span></div>
       </div>
+      <div class="p-right"><span class="p-tarif">100 % net</span><span class="p-sub">pas de commission</span></div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 La technique du portfolio de démonstration</strong>
-    Si vous n'avez pas encore de clients, créez 2–3 projets fictifs de haute qualité pour votre portfolio. Concevez un logo pour une marque imaginaire, redesignez un site réel (sans commercialiser), écrivez un article de démonstration. Les clients regardent la qualité, pas si le projet était payé ou non.
+    <strong>💡 Déduire son domicile en auto-entrepreneur pour les cours à domicile</strong>
+    Si vous donnez des cours depuis votre domicile, vous pouvez déduire une partie de vos charges de domicile (loyer, électricité) de votre résultat si vous êtes au réel (pas en micro-BIC). Renseignez-vous auprès d'un expert-comptable ou sur le site des impôts pour optimiser votre régime fiscal selon votre volume de revenus.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Statut auto-entrepreneur obligatoire avant votre première mission</strong>
-    Exercer une activité freelance sans être déclaré est du travail non déclaré. L'inscription en auto-entrepreneur prend 20 minutes sur autoentrepreneur.urssaf.fr et vous protège légalement. Les cotisations (22 % sur le CA pour les services) s'appliquent uniquement si vous réalisez du chiffre d'affaires.
+    <strong>⚠️ Statut auto-entrepreneur recommandé dès les premiers revenus</strong>
+    Les revenus de cours particuliers sont imposables. Le statut micro-entrepreneur (auto-entrepreneur) est le plus simple : inscription gratuite, cotisations proportionnelles au CA (~22 % en services), déclaration mensuelle ou trimestrielle. Pas de CA = pas de cotisations. À créer sur autoentrepreneur.urssaf.fr en 20 minutes.
   </div>
 
   <div class="cta">
-    <h3>📬 Freelance & revenus dans votre boîte mail</h3>
-    <p>Les meilleures stratégies pour lancer et développer votre activité freelance, chaque semaine.</p>
+    <h3>📬 Revenus complémentaires dans votre boîte mail</h3>
+    <p>Les meilleures opportunités pour augmenter vos revenus, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -283,12 +305,6 @@ window.economyaLoadAds = function() {
 })();
 </script>
 
-
-  <div class="tip" style="background:#FAEEDA;border-left:4px solid #EF9F27;color:#633806">
-    <strong>🏢 Besoin d'une adresse professionnelle pour votre entreprise ?</strong>
-    Si vous ne souhaitez pas domicilier votre activité à votre domicile personnel, des services comme <a href="https://www.awin1.com/cread.php?awinmid=24149&awinaffid=2926395&ued=https%3A%2F%2Fsedomicilier.fr" target="_blank" rel="noopener sponsored">SeDomicilier</a> proposent une adresse de siège social dès 11€HT/mois (engagement long terme) ou 16€HT/mois sans engagement, sans caution ni frais cachés, avec gestion du courrier incluse. Cela permet de séparer clairement votre adresse personnelle de votre activité professionnelle. Economya peut percevoir une commission sur ce lien, sans coût supplémentaire pour vous.
-  </div>
-
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
@@ -306,7 +322,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-415.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Grenier en or :évaluer et vendre ses objets</div></a><a class="sim-card" href="article-416.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Vendre ses créations en ligne :plateformes gratuites</div></a><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne :devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting :avoir un 2e revenu légal</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-415.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Grenier en or :évaluer et vendre ses objets</div></a><a class="sim-card" href="article-419.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Location de sa résidence principale :règles et revenus</div></a><a class="sim-card" href="article-420.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Fiverr et Malt :trouver ses premiers clients freelance</div></a><a class="sim-card" href="article-421.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Side hustle :20 idées testées en France</div></a></div>
 </div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
