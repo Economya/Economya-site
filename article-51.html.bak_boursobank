@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Assurance habitation pas chère — Economya.fr</title>
+<title>Investir en Bourse quand on est débutant — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -33,14 +33,15 @@
   .step-list li .num{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--g);min-width:1.5rem}
   .step-list li .content h3{font-size:.88rem;font-weight:500;color:var(--gd);margin-bottom:.15rem}
   .step-list li .content p{font-size:.8rem;color:var(--m);margin:0;font-weight:300}
-  .insurer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin:1.2rem 0 2rem}
-  .icard{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1rem 1.1rem}
-  .icard .emoji{font-size:1.4rem;margin-bottom:.4rem}
-  .icard h3{font-size:.85rem;font-weight:500;color:var(--gd);margin-bottom:.2rem}
-  .icard p{font-size:.78rem;color:var(--m);margin:0;font-weight:300}
-  .icard .tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.6rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;margin-top:.5rem;text-transform:uppercase}
+  .broker-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:.9rem;margin:1.2rem 0 2rem}
+  .bcard{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1rem 1.1rem}
+  .bcard h3{font-size:.85rem;font-weight:500;color:var(--gd);margin-bottom:.25rem}
+  .bcard p{font-size:.78rem;color:var(--m);margin:0 0 .5rem;font-weight:300}
+  .bcard .tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.6rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;text-transform:uppercase}
   .tip-box{background:var(--gl);border-left:3px solid var(--g);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.9rem}
   .tip-box strong{color:var(--gd);display:block;margin-bottom:.3rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+  .warning-box{background:#FEF2F2;border-left:3px solid #EF4444;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.88rem;color:#7f1d1d}
+  .warning-box strong{display:block;margin-bottom:.3rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
   .saving-box{background:var(--al);border-radius:12px;padding:1.4rem 1.6rem;margin:2rem 0;text-align:center}
   .saving-box .amount{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--ad)}
   .saving-box p{font-size:.85rem;color:var(--ad);margin:0;font-weight:300}
@@ -102,9 +103,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Assurance habitation pas chère",
+  "headline": "Investir en Bourse quand on est débutant",
   "description": "Conseils et astuces pour économiser au quotidien.",
-  "url": "https://economya.fr/article-82.html",
+  "url": "https://economya.fr/article-51.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -121,20 +122,20 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Assurance habitation pas chère">
+  <meta property="og:title" content="Investir en Bourse quand on est débutant">
   <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-82.html">
+  <meta property="og:url" content="https://economya.fr/article-51.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Assurance habitation pas chère">
+  <meta name="twitter:title" content="Investir en Bourse quand on est débutant">
   <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-82.html" />
-<meta name="description" content="Assurance habitation pas chère — Economya.fr" />
+<link rel="canonical" href="https://economya.fr/article-51.html" />
+<meta name="description" content="Investir en Bourse quand on est débutant — Economya.fr" />
 </head>
 <body>
 
@@ -155,10 +156,10 @@ window.economyaLoadAds = function() {
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 
 <div class="article-hero">
-  <div class="acat-badge">🏠 Assurances · Article #82</div>
-  <h1>Assurance habitation<br><em>pas chère</em></h1>
-  <p class="intro">L'assurance habitation est obligatoire pour les locataires et fortement recommandée pour les propriétaires. Pourtant, beaucoup paient bien plus que nécessaire faute de comparer. Voici comment trouver la meilleure offre.</p>
-  <div class="saving-pill">💰 Économisez jusqu'à 200 €/an</div>
+  <div class="acat-badge">📈 Investissement · Article #51</div>
+  <h1>Investir en Bourse<br><em>quand on est débutant</em></h1>
+  <p class="intro">La Bourse fait peur. Pourtant, bien utilisée, elle reste l'un des meilleurs outils pour faire fructifier son argent sur le long terme — même avec 50 € par mois.</p>
+  <div class="saving-pill">💰 Faites fructifier votre argent</div>
   <div class="meta" style="margin-top:1rem">
     <span>📖 Lecture : 3 min</span>
     <span>✅ Vérifié juin 2026</span>
@@ -169,65 +170,66 @@ window.economyaLoadAds = function() {
 <div class="article-body">
   <a href="index.html" class="back-link">← Retour aux articles</a>
 
-  <p>Le prix moyen d'une assurance habitation en France est de <strong>250 € par an pour un locataire</strong> et de <strong>400 à 600 € pour un propriétaire</strong>. Des écarts considérables existent entre assureurs pour des garanties identiques — parfois du simple au double. Comparer régulièrement son assurance est l'un des gestes les plus rentables en matière de budget, pour quelques minutes de démarche.</p>
+  <p>Neuf Français sur dix n'investissent pas en Bourse. La principale raison invoquée ? La peur de perdre de l'argent. Pourtant, sur les 30 dernières années, le marché actions mondial a rapporté en moyenne <strong>7 à 8 % par an</strong> — bien au-dessus du Livret A. Le secret : commencer tôt, investir régulièrement et ne pas paniquer.</p>
 
-  <h2>La méthode en 5 étapes pour payer moins</h2>
+  <div class="warning-box">
+    <strong>⚠️ Avertissement</strong>
+    Investir en Bourse comporte des risques de perte en capital. Cet article est informatif et ne constitue pas un conseil financier personnalisé. N'investissez jamais de l'argent dont vous pourriez avoir besoin à court terme.
+  </div>
+
+  <h2>Par où commencer : les 4 étapes du débutant</h2>
 
   <ul class="step-list">
-    <li><span class="num">1</span><div class="content"><h3>Comparer sur les comparateurs en ligne</h3><p>LeLynx, AssurLand, Hyperassur et Lesfurets permettent de comparer en quelques minutes des dizaines d'offres. Faites le tour une fois par an, surtout à l'approche de la date anniversaire de votre contrat.</p></div></li>
-    <li><span class="num">2</span><div class="content"><h3>Utiliser la loi Hamon pour résilier facilement</h3><p>Depuis 2015, vous pouvez résilier votre assurance habitation à tout moment après la première année, sans attendre la date anniversaire et sans frais. Il suffit d'envoyer une lettre recommandée — votre nouvel assureur peut même le faire à votre place.</p></div></li>
-    <li><span class="num">3</span><div class="content"><h3>Adapter les garanties à votre situation réelle</h3><p>Locataire dans un studio sans objets de valeur ? Vous n'avez pas besoin d'une garantie objets précieux à 5 000 €. Supprimez les options inutiles et gardez l'essentiel : RC, dégâts des eaux, incendie, vol.</p></div></li>
-    <li><span class="num">4</span><div class="content"><h3>Regrouper ses assurances chez le même assureur</h3><p>Combiner habitation et auto chez le même assureur donne souvent droit à une remise fidélité de 5 à 15 %. Demandez systématiquement un devis groupé avant de signer séparément.</p></div></li>
-    <li><span class="num">5</span><div class="content"><h3>Choisir une franchise plus élevée</h3><p>Accepter une franchise plus élevée (par exemple 300 € au lieu de 150 €) réduit la prime annuelle de 10 à 20 %. Pertinent si vous avez une épargne de précaution et peu de sinistres.</p></div></li>
+    <li><span class="num">1</span><div class="content"><h3>Constituez d'abord une épargne de précaution</h3><p>Avant d'investir, assurez-vous d'avoir 3 à 6 mois de dépenses courantes sur un Livret A ou LDDS. C'est votre filet de sécurité.</p></div></li>
+    <li><span class="num">2</span><div class="content"><h3>Ouvrez un PEA (Plan d'Épargne en Actions)</h3><p>Le PEA est l'enveloppe fiscale idéale pour débuter en France : après 5 ans, vos gains sont exonérés d'impôt sur le revenu. C'est un avantage considérable.</p></div></li>
+    <li><span class="num">3</span><div class="content"><h3>Investissez dans des ETF (fonds indiciels)</h3><p>Plutôt que de choisir des actions individuelles, les ETF répliquent un indice entier (comme le MSCI World). Moins de risque, moins de temps, et des frais réduits au minimum.</p></div></li>
+    <li><span class="num">4</span><div class="content"><h3>Investissez régulièrement, quoi qu'il arrive</h3><p>Mettre 50 ou 100 € chaque mois, sans regarder les fluctuations, est la stratégie la plus efficace pour un débutant. C'est ce qu'on appelle le "DCA" (Dollar Cost Averaging).</p></div></li>
   </ul>
 
-  <h2>Les assureurs les moins chers en 2025</h2>
+  <h2>Les meilleurs courtiers pour débuter en France</h2>
+  <p>Choisir un bon courtier, c'est éviter des frais qui grignotent votre rendement. Voici les plus adaptés aux débutants :</p>
 
-  <div class="insurer-grid">
-    <div class="icard">
-      <div class="emoji">📱</div>
-      <h3>Luko / Lovys</h3>
-      <p>Néo-assureurs 100 % en ligne, avec des tarifs parmi les plus bas du marché (80-120 €/an pour un locataire). Interface simple, gestion des sinistres par appli.</p>
-      <span class="tag">Dès 80 €/an</span>
+  <div class="broker-grid">
+    <div class="bcard">
+      <h3>Trade Republic</h3>
+      <p>1 € par ordre, interface ultra-simple, plans d'investissement automatiques dès 10 €/mois.</p>
+      <span class="tag">Recommandé débutants</span>
     </div>
-    <div class="icard">
-      <div class="emoji">🏦</div>
-      <h3>BoursoBank / Fortuneo</h3>
-      <p>Les banques en ligne proposent des assurances habitation compétitives en bundle avec leurs comptes courants. Souvent -20 à -30 % par rapport aux assureurs traditionnels.</p>
-      <span class="tag">-20 à -30%</span>
+    <div class="bcard">
+      <h3>Boursorama Banque</h3>
+      <p>PEA sans frais de tenue de compte, large gamme d'ETF, banque en ligne française fiable.</p>
+      <span class="tag">PEA gratuit</span>
     </div>
-    <div class="icard">
-      <div class="emoji">🤝</div>
-      <h3>MAIF / MACIF</h3>
-      <p>Les mutuelles restent parmi les mieux notées pour le rapport qualité-prix et la gestion des sinistres. Leurs tarifs ont été rationalisés et sont souvent compétitifs face aux assureurs commerciaux.</p>
-      <span class="tag">Rapport qualité-prix</span>
+    <div class="bcard">
+      <h3>Fortuneo</h3>
+      <p>Pas de frais de garde, offre de bienvenue régulière, bonne application mobile.</p>
+      <span class="tag">Offre bienvenue</span>
     </div>
-    <div class="icard">
-      <div class="emoji">🌐</div>
-      <h3>Direct Assurance</h3>
-      <p>Filiale d'AXA en direct, sans intermédiaire. Tarifs très compétitifs sur les formules de base pour locataires, avec la solidité financière d'un grand groupe derrière.</p>
-      <span class="tag">Dès 90 €/an</span>
+    <div class="bcard">
+      <h3>Degiro</h3>
+      <p>Frais parmi les plus bas d'Europe, accès à des milliers d'ETF, idéal pour les petits montants.</p>
+      <span class="tag">Frais minimaux</span>
     </div>
   </div>
 
   <div class="tip-box">
     <strong>💡 Astuce Economya.fr</strong>
-    Si vous êtes étudiant ou jeune actif, vérifiez si vous êtes encore rattaché à l'assurance habitation de vos parents — cela peut couvrir votre logement étudiant gratuitement jusqu'à un certain âge et certaines conditions. Appelez votre assureur familial avant de souscrire une nouvelle police. Cette extension de garantie est souvent gratuite et méconnue.
+    L'ETF MSCI World (ex : le CW8 d'Amundi, éligible PEA) est souvent cité comme le point de départ idéal. Il réplique les 1 500 plus grandes entreprises mondiales en un seul achat, pour des frais annuels inférieurs à 0,40 %.
   </div>
 
-  <h2>Ce que votre assurance couvre déjà sans le savoir</h2>
-  <p>Beaucoup de ménages paient des assurances redondantes sans le savoir. Votre assurance habitation inclut souvent une <strong>responsabilité civile vie privée</strong> qui couvre les dommages causés par vos enfants, vos animaux ou vous-même à des tiers — y compris en dehors du logement. Elle peut aussi couvrir le vol de votre vélo, votre téléphone cassé à domicile, ou les dégâts causés à un appartement de location pendant vos vacances. Lisez votre contrat avant de souscrire des assurances complémentaires souvent redondantes.</p>
+  <h2>La puissance des intérêts composés</h2>
+  <p>En investissant <strong>100 € par mois</strong> dès l'âge de 30 ans avec un rendement moyen de 7 % par an, vous auriez accumulé environ <strong>243 000 €</strong> à 65 ans — pour seulement 42 000 € versés. C'est la magie des intérêts composés : vos gains génèrent eux-mêmes des gains, et l'effet s'amplifie avec le temps.</p>
 
   <div class="saving-box">
-    <div class="amount">200 € économisés/an</div>
-    <p>C'est la différence constatée entre l'assurance habitation la plus chère et la moins chère pour un profil identique, après comparaison sur les grands comparateurs en ligne.</p>
+    <div class="amount">+7 % /an en moyenne</div>
+    <p>C'est le rendement historique annualisé du marché actions mondial sur les 30 dernières années — contre 3 % pour le Livret A aujourd'hui.</p>
   </div>
 
-  <p>L'assurance habitation est un poste de dépense que l'on règle une fois par an et qu'on oublie — ce qui explique pourquoi tant de ménages paient bien trop cher depuis des années. Un seul comparatif annuel, une résiliation via la loi Hamon et quelques options supprimées peuvent économiser 100 à 200 € sans aucune perte de protection réelle.</p>
+  <p>Le meilleur moment pour commencer à investir, c'était hier. Le deuxième meilleur moment, c'est aujourd'hui. Même avec de petites sommes, l'essentiel est de démarrer, de rester régulier et de ne pas toucher à son investissement lors des inévitables baisses de marché.</p>
 
   <div class="tip-box" style="background:var(--al);border-color:var(--a)">
     <strong style="color:var(--ad)">📬 Bon plan exclusif</strong>
-    <span style="color:var(--ad);font-size:.88rem">Abonnez-vous à la newsletter Economya.fr pour recevoir chaque semaine les meilleures offres assurances et comparatifs mis à jour.</span>
+    <span style="color:var(--ad);font-size:.88rem">Abonnez-vous à la newsletter Economya.fr pour recevoir chaque semaine les meilleures astuces pour épargner et investir intelligemment.</span>
   </div>
 </div>
 
