@@ -176,17 +176,13 @@ window.economyaLoadAds = function() {
     <div class="savings-badge">💰 50 % de cotisations en moins</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 3 min de lecture</span>
-      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
       <span class="theme-tag">🚀 Création d'entreprise</span>
     </div>
   </div>
 </div>
 <div class="ab">
   <p class="lead">L'ACRE (Aide à la Création ou Reprise d'une Entreprise) divise par deux vos cotisations sociales pendant les 12 premiers mois d'activité. Accessible à la plupart des créateurs d'entreprise, elle peut représenter une économie de plusieurs milliers d'euros et faciliter considérablement le démarrage. Voici tout ce qu'il faut savoir.</p>
-
-  <div style="background:#FEF3C7;border-left:4px solid #F59E0B;border-radius:8px;padding:1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#633806;">
-    <strong>⚠️ Changement important au 1er juillet 2026 :</strong> le taux d'exonération ACRE passe de 50 % à 25 % pour les créations d'entreprise à partir de cette date (décret n°2026-69). Les chiffres ci-dessous restent valables pour les entreprises créées avant le 1er juillet 2026. Si vous créez après cette date, l'économie réelle sera deux fois moins importante.
-  </div>
 
   <h2>📊 Les taux avec et sans ACRE (auto-entrepreneurs)</h2>
   <div class="taux-grid">
