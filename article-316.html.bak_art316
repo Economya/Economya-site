@@ -217,8 +217,8 @@ window.economyaLoadAds = function() {
     <div class="aide">
       <div class="aide-icon">📚</div>
       <div class="aide-name">ARS (rentrée scolaire)</div>
-      <div class="aide-amount">jusqu'à 466 €</div>
-      <div class="aide-cond">Par enfant scolarisé de 6 à 18 ans, selon son âge (426,87€ à 466,02€ en 2026). Sous conditions de revenus. Versée en août par la CAF.</div>
+      <div class="aide-amount">jusqu'à 406 €</div>
+      <div class="aide-cond">Par enfant scolarisé de 6 à 18 ans. Sous conditions de revenus. Versée en août par la CAF.</div>
     </div>
 
     <div class="aide">
