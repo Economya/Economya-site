@@ -195,12 +195,7 @@ window.economyaLoadAds = function() {
 </div>
 
 <article>
-  <p>Le statut de Loueur en Meublé Non Professionnel (LMNP) est l'un des placements immobiliers les plus avantageux fiscalement en France. Il permet de percevoir des loyers largement défiscalisés grâce à l'amortissement comptable du bien — une mécanique que 90 % des propriétaires ignorent. Résultat : des revenus locatifs quasiment non imposés pendant 10 à 20 ans. ⚠️ Attention cependant : depuis une réforme de 2025, cet avantage n'est plus "gratuit" à la revente (voir l'encart dédié plus bas). Voici comment ça fonctionne concrètement.</p>
-
-  <div class="warn">
-    <strong>⚠️ Réforme 2025 : les amortissements sont désormais repris à la revente</strong>
-    Depuis le 15 février 2025 (loi n°2025-127, article 84), les amortissements déduits pendant la location sont réintégrés dans le calcul de la plus-value lors de la revente du bien (sauf résidences étudiantes, seniors et EHPAD, qui restent exemptées). Concrètement, l'avantage fiscal n'est plus définitif : ce qui n'a pas été imposé sur les loyers chaque année peut désormais être rattrapé par l'impôt au moment de la vente. L'imposition à la revente peut être multipliée par 2 à 5 selon la durée de détention et le montant cumulé d'amortissements. Le LMNP reste avantageux, mais ce n'est plus le "double cadeau fiscal" qu'il était avant 2025 — anticipez cet impact avant toute décision de revente.
-  </div>
+  <p>Le statut de Loueur en Meublé Non Professionnel (LMNP) est l'un des placements immobiliers les plus avantageux fiscalement en France. Il permet de percevoir des loyers largement défiscalisés grâce à l'amortissement comptable du bien — une mécanique que 90 % des propriétaires ignorent. Résultat : des revenus locatifs quasiment non imposés pendant 10 à 20 ans, tout en se constituant un patrimoine. Voici comment ça fonctionne concrètement.</p>
 
   <h2>LMNP : les deux régimes fiscaux en face à face</h2>
 
@@ -209,7 +204,7 @@ window.economyaLoadAds = function() {
       <div class="reg-head micro">🟦 Micro-BIC</div>
       <div class="reg-body">
         <div class="reg-row"><span class="reg-label">Abattement forfaitaire</span><span class="reg-val">50 %</span></div>
-        <div class="reg-row"><span class="reg-label">Plafond de revenus</span><span class="reg-val">77 700 €/an (revenus 2025) · 83 600 €/an (revenus 2026)</span></div>
+        <div class="reg-row"><span class="reg-label">Plafond de revenus</span><span class="reg-val">77 700 €/an</span></div>
         <div class="reg-row"><span class="reg-label">Comptabilité requise</span><span class="reg-val">Non</span></div>
         <div class="reg-row"><span class="reg-label">Idéal pour</span><span class="reg-val">Petits loyers, peu de charges</span></div>
         <div class="reg-row"><span class="reg-label">Simplicité</span><span class="reg-val">⭐⭐⭐⭐⭐</span></div>
