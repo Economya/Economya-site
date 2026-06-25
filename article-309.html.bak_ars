@@ -232,9 +232,9 @@ window.economyaLoadAds = function() {
       <div class="s-icon">🏛️</div>
       <div class="s-body">
         <h3>Aide à la scolarité (ARS) et aides locales</h3>
-        <p>L'Allocation de Rentrée Scolaire (ARS) de la CAF va de 426,87 € à 466,02 € par enfant selon son âge (6-18 ans, sous conditions de revenus). Renseignez-vous aussi auprès de votre mairie pour des aides complémentaires.</p>
+        <p>L'Allocation de Rentrée Scolaire (ARS) de la CAF peut atteindre 406 € par enfant scolarisé entre 6 et 18 ans (sous conditions de revenus). Renseignez-vous aussi auprès de votre mairie pour des aides complémentaires.</p>
       </div>
-      <div class="s-right"><span class="s-eco">jusqu'à 466 €</span><span class="s-sub">ARS par enfant</span></div>
+      <div class="s-right"><span class="s-eco">jusqu'à 406 €</span><span class="s-sub">ARS par enfant</span></div>
     </div>
 
   </div>
