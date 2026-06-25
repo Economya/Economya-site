@@ -173,7 +173,7 @@ window.economyaLoadAds = function() {
   </div>
 </div>
 <div class="ab">
-  <p class="lead">La France compte plus de 450 niches fiscales légales. La plupart sont accessibles aux particuliers sans structures complexes. De la déduction PER au déficit foncier en passant par les dons d'associations, voici les principales niches fiscales 2026 classées par accessibilité et impact réel.</p>
+  <p class="lead">La France compte plus de 450 niches fiscales légales. La plupart sont accessibles aux particuliers sans structures complexes. De la déduction PER au déficit foncier en passant par les dons d'associations, voici les principales niches fiscales 2025 classées par accessibilité et impact réel.</p>
 
   <h2>💰 Les niches fiscales les plus accessibles en 2025</h2>
   <div class="niches">
@@ -218,7 +218,7 @@ window.economyaLoadAds = function() {
       <div class="n-icon">🏡</div>
       <div class="n-body">
         <h3>Déficit foncier — déduire les travaux de son revenu global</h3>
-        <p>Si vous louez un bien immobilier et que vos charges (travaux, intérêts d'emprunt) dépassent vos loyers, le déficit foncier est imputable sur votre revenu global jusqu'à 10 700 €/an (ou 21 400 € pour les travaux d'isolation énergétique sortant un logement de la catégorie "passoire thermique", dispositif prolongé jusqu'au 31 décembre 2027). Très puissant pour les gros revenus avec patrimoine immobilier.</p>
+        <p>Si vous louez un bien immobilier et que vos charges (travaux, intérêts d'emprunt) dépassent vos loyers, le déficit foncier est imputable sur votre revenu global jusqu'à 10 700 €/an (ou 21 400 € pour les travaux d'isolation énergétique jusqu'en 2025). Très puissant pour les gros revenus avec patrimoine immobilier.</p>
         <div class="n-tags"><span class="ntag g">Jusqu'à 10 700 €/an</span><span class="ntag">Propriétaires bailleurs</span><span class="ntag g">Travaux + intérêts</span></div>
       </div>
       <div class="n-right"><span class="n-gain">10 700 €/an</span><span class="n-sub">Déductibles revenu global</span></div>
