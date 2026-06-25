@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Pompe à chaleur : aides et rentabilité 2026 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pompe à chaleur : aides et rentabilité 2026 — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--amber:#d97706;--amber-l:#fffbeb;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🌡️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#fcd34d;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
+.meta-row{display:flex;flex-wrap,wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#d97706,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* TYPES PAC */
+.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin:1.5rem 0}
+.type{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s,box-shadow .2s;position:relative}
+.type:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(217,119,6,.1)}
+.type.top{border:2px solid var(--g)}
+.top-badge{position:absolute;top:-10px;left:50%;transform:translateX(jusqu'à -50%);background:var(--g);color:white;font-size:.64rem;font-weight:700;padding:.14rem .65rem;border-radius:50px;white-space:nowrap}
+.type-icon{font-size:1.8rem;margin-bottom:.5rem}
+.type-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+.type-cop{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--amber);margin:.2rem 0}
+.type-prix{font-size:.75rem;color:var(--m);margin-bottom:.3rem}
+.type-desc{font-size:.76rem;color:var(--m);font-weight:300;line-height:1.4}
+
+/* AIDES */
+.aides{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+.aide{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;transition:box-shadow .2s}
+.aide:hover{box-shadow:0 4px 18px rgba(217,119,6,.1)}
+.aide.top{border:2px solid var(--g)}
+.aide-icon{font-size:1.8rem;flex-shrink:0}
+.aide-body h3{font-size:.93rem;font-weight:700;margin-bottom:.2rem}
+.aide-body p{font-size:.82rem;color:var(--m);font-weight:300;margin:0}
+.aide-right{text-align:right;flex-shrink:0}
+.aide-amt{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--amber);display:block;white-space:nowrap}
+.aide-sub{font-size:.7rem;color:var(--m)}
+
+/* RENTABILITÉ */
+.renta{background:var(--gl);border-radius:var(--r);padding:1.3rem 1.5rem;margin:1.5rem 0}
+.renta h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gd);margin-bottom:.8rem}
+.renta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem}
+.renta-item{background:white;border-radius:8px;padding:.8rem;text-align:center}
+.renta-label{font-size:.72rem;color:var(--m);text-transform:uppercase;margin-bottom:.2rem}
+.renta-val{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gd)}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#1c1000,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#d97706,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.aide{grid-template-columns:1fr;gap:.5rem}.aide-right{text-align:left}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Pompe à chaleur : aides et rentabilité 2026",
+  "description": "Pompe à chaleur : aides et rentabilité 2026 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-322.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Pompe à chaleur : aides et rentabilité 2026">
+  <meta property="og:description" content="Pompe à chaleur : aides et rentabilité 2026 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-322.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pompe à chaleur : aides et rentabilité 2026">
+  <meta name="twitter:description" content="Pompe à chaleur : aides et rentabilité 2026 — MaPrimeRénov' jusqu'à 11 000€. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-322.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Écologie</span> › <span style="color:var(--t,#2C2C2A)">Pompe à chaleur : aides et rentabilité 2026</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Écologie", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Pompe à chaleur : aides et rentabilité 2026", "item": "https://economya.fr/article-322.html"}]}</script>
+
+
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">🌡️ Écologie</div>
+    <h1>Pompe à chaleur :<br><em>aides et rentabilité 2026</em></h1>
+    <div class="savings-badge">💰 MaPrimeRénov' jusqu'à 11 000 €</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="theme-tag">♻️ Rénovation énergétique</span>
+    </div>
+  </div>
+</div>
+
+<div class="ab">
+
+  <p class="lead">Une pompe à chaleur (PAC) remplace un chauffage fioul ou électrique par un système 3 à 5 fois plus efficace. Le coût d'installation (8 000–15 000 €) est en grande partie financé par MaPrimeRénov', les CEE et la TVA réduite. La rentabilité peut être atteinte en 5 à 8 ans.</p>
+
+  <h2>🌡️ Les 3 types de pompes à chaleur</h2>
+
+  <div class="types">
+    <div class="type top">
+      <span class="top-badge">⭐ La plus populaire</span>
+      <div class="type-icon">💨</div>
+      <div class="type-name">PAC air/air</div>
+      <div class="type-cop">COP 3–5</div>
+      <div class="type-prix">Installation : 3 000–8 000 €</div>
+      <div class="type-desc">Chauffe et rafraîchit. Idéale pour les logements sans réseau hydraulique. Pas d'eau chaude sanitaire incluse. La moins chère à installer.</div>
+    </div>
+    <div class="type">
+      <div class="type-icon">🌊</div>
+      <div class="type-name">PAC air/eau</div>
+      <div class="type-cop">COP 3–4,5</div>
+      <div class="type-prix">Installation : 8 000–15 000 €</div>
+      <div class="type-desc">Remplace la chaudière, alimente les radiateurs et l'ECS. La plus répandue pour remplacer un chauffage central fioul ou gaz. Eligible MaPrimeRénov'.</div>
+    </div>
+    <div class="type">
+      <div class="type-icon">🌍</div>
+      <div class="type-name">PAC géothermique</div>
+      <div class="type-cop">COP 4–6</div>
+      <div class="type-prix">Installation : 15 000–25 000 €</div>
+      <div class="type-desc">Très performante mais coûteuse. Puise la chaleur dans le sol. Idéale pour les grandes maisons en zone froide. Aides plus importantes.</div>
+    </div>
+  </div>
+
+  <h2>💶 Les aides financières disponibles en 2026</h2>
+
+  <div class="aides">
+
+    <div class="aide top">
+      <div class="aide-icon">🏛️</div>
+      <div class="aide-body">
+        <div class="top-badge">⭐ La principale aide</div>
+        <h3>MaPrimeRénov' (ANAH)</h3>
+        <p>Aide d'État calculée selon les revenus du foyer et le type de PAC installée. La PAC air/eau remplaçant une chaudière fioul peut bénéficier des montants les plus élevés. Demande sur maprimerenov.gouv.fr avant les travaux.</p>
+      </div>
+      <div class="aide-right"><span class="aide-amt">4 000–11 000 €</span><span class="aide-sub">selon revenus et type</span></div>
+    </div>
+
+    <div class="aide">
+      <div class="aide-icon">⚡</div>
+      <div class="aide-body">
+        <h3>CEE (Certificats d'Économies d'Énergie)</h3>
+        <p>Prime versée par les fournisseurs d'énergie (EDF, Engie, TotalEnergies…). Montant variable selon le fournisseur et l'offre. Se cumule avec MaPrimeRénov'. À comparer sur les sites de chaque fournisseur ou sur les agrégateurs.</p>
+      </div>
+      <div class="aide-right"><span class="aide-amt">500–3 000 €</span><span class="aide-sub">variable selon fournisseur</span></div>
+    </div>
+
+    <div class="aide">
+      <div class="aide-icon">🏠</div>
+      <div class="aide-body">
+        <h3>Éco-PTZ (Prêt à Taux Zéro)</h3>
+        <p>Prêt sans intérêts jusqu'à 50 000 € pour financer la part non couverte par les aides. Remboursable sur 20 ans. Demande auprès de votre banque ou de la Caisse des Dépôts.</p>
+      </div>
+      <div class="aide-right"><span class="aide-amt">jusqu'à 50 000 €</span><span class="aide-sub">taux zéro, 20 ans</span></div>
+    </div>
+
+    <div class="aide">
+      <div class="aide-icon">🧾</div>
+      <div class="aide-body">
+        <h3>TVA réduite à 5,5 %</h3>
+        <p>L'installation d'une PAC dans un logement de plus de 2 ans bénéficie automatiquement d'une TVA à 5,5 % au lieu de 20 %. Sur un devis de 12 000 €, c'est ~1 700 € d'économie immédiate.</p>
+      </div>
+      <div class="aide-right"><span class="aide-amt">5,5 % TVA</span><span class="aide-sub">au lieu de 20 %</span></div>
+    </div>
+
+  </div>
+
+  <h2>📊 Exemple de rentabilité (PAC air/eau)</h2>
+
+  <div class="renta">
+    <h3>💡 Maison 120 m² — Remplacement chaudière fioul</h3>
+    <div class="renta-grid">
+      <div class="renta-item"><div class="renta-label">Coût total installation</div><div class="renta-val">12 000 €</div></div>
+      <div class="renta-item"><div class="renta-label">MaPrimeRénov' (revenus moyens)</div><div class="renta-val">−3 000 €</div></div>
+      <div class="renta-item"><div class="renta-label">CEE estimés</div><div class="renta-val">−1 500 €</div></div>
+      <div class="renta-item"><div class="renta-label">Reste à charge</div><div class="renta-val">7 500 €</div></div>
+      <div class="renta-item"><div class="renta-label">Économies annuelles</div><div class="renta-val">~900 €/an</div></div>
+      <div class="renta-item"><div class="renta-label">Retour sur investissement</div><div class="renta-val">~8 ans</div></div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Exigez au moins 3 devis d'installateurs RGE</strong>
+    Pour bénéficier de MaPrimeRénov', l'installateur doit être certifié RGE (Reconnu Garant de l'Environnement). Les prix varient de 20 à 40 % entre artisans. Comparez au moins 3 devis sur faire.fr (site officiel de l'ANAH) qui liste les artisans RGE certifiés.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Déposez la demande d'aide AVANT de commencer les travaux</strong>
+    MaPrimeRénov' doit absolument être demandée avant le début des travaux (avant même la signature du devis avec l'artisan). Une demande déposée après le début des travaux est irrecevable. Démarche entièrement en ligne sur maprimerenov.gouv.fr.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Rénovation & aides dans votre boîte mail</h3>
+    <p>Toutes les aides pour améliorer votre logement et réduire vos factures, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-324.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Véhicule électrique :vrai coût vs essence sur 5 ans</div></a><a class="sim-card" href="article-325.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Bonus réparabilité :liste des appareils concernés</div></a><a class="sim-card" href="article-326.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Slow fashion :consommer mieux et moins</div></a><a class="sim-card" href="article-327.html"><div class="sim-card-cat">Ecologie</div><div class="sim-card-title">Alimentation durablesans se ruiner</div></a></div>
+</div>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
