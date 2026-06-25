@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Inflation 2026 : s'adapter et protéger son pouvoir d'achat — Vos stratégies anti-inflation. Guide complet sur Economya.fr">
+<meta name="description" content="Inflation 2025 : s'adapter et protéger son pouvoir d'achat — Vos stratégies anti-inflation. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Inflation 2026 : s'adapter et protéger son pouvoir d'achat — Economya.fr</title>
+<title>Inflation 2025 : s'adapter et protéger son pouvoir d'achat — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -123,8 +123,8 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Inflation 2026 : s'adapter et protéger son pouvoir d'achat",
-  "description": "Inflation 2026 : s'adapter et protéger son pouvoir d'achat — Vos stratégies anti-inflation. Guide complet sur Economya.fr",
+  "headline": "Inflation 2025 : s'adapter et protéger son pouvoir d'achat",
+  "description": "Inflation 2025 : s'adapter et protéger son pouvoir d'achat — Vos stratégies anti-inflation. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-383.html",
   "publisher": {
     "@type": "Organization",
@@ -142,8 +142,8 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Inflation 2026 : s'adapter et protéger son pouvoir d'achat">
-  <meta property="og:description" content="Inflation 2026 : s'adapter et protéger son pouvoir d'achat — Vos stratégies anti-inflation. Guide complet sur Economya.fr">
+  <meta property="og:title" content="Inflation 2025 : s'adapter et protéger son pouvoir d'achat">
+  <meta property="og:description" content="Inflation 2025 : s'adapter et protéger son pouvoir d'achat — Vos stratégies anti-inflation. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-383.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -151,8 +151,8 @@ window.economyaLoadAds = function() {
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Inflation 2026 : s'adapter et protéger son pouvoir d'achat">
-  <meta name="twitter:description" content="Inflation 2026 : s'adapter et protéger son pouvoir d'achat — Vos stratégies anti-inflation. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Inflation 2025 : s'adapter et protéger son pouvoir d'achat">
+  <meta name="twitter:description" content="Inflation 2025 : s'adapter et protéger son pouvoir d'achat — Vos stratégies anti-inflation. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-383.html" />
 </head>
@@ -170,7 +170,7 @@ window.economyaLoadAds = function() {
 <div class="ah">
   <div class="hi">
     <div class="cat-pill">📈 Finance</div>
-    <h1>Inflation 2026 :<br><em>s'adapter et protéger son pouvoir d'achat</em></h1>
+    <h1>Inflation 2025 :<br><em>s'adapter et protéger son pouvoir d'achat</em></h1>
     <div class="savings-badge">💰 Vos stratégies anti-inflation</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
@@ -180,7 +180,7 @@ window.economyaLoadAds = function() {
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Après une période d'inflation élevée (2022–2023) puis un ralentissement en 2024-2025, l'inflation française est repartie à la hausse depuis le printemps 2026, atteignant environ 2,4 % en mai. L'effet cumulatif des hausses précédentes pèse encore lourdement sur les budgets. Voici les stratégies concrètes pour protéger son pouvoir d'achat dans ce contexte.</p>
+  <p class="lead">Après une période d'inflation élevée (2022–2023), l'inflation française se stabilise autour de 1,5–2 % en 2025. Mais l'effet cumulatif des hausses précédentes pèse encore lourdement sur les budgets. Voici les stratégies concrètes pour protéger son pouvoir d'achat dans ce contexte.</p>
 
   <h2>📊 L'impact concret de l'inflation sur votre budget</h2>
   <div class="impacts">
@@ -188,7 +188,7 @@ window.economyaLoadAds = function() {
       <div class="imp-icon">🛒</div>
       <div class="imp-name">Alimentation</div>
       <div class="imp-val">+25–30 %</div>
-      <div class="imp-note">Hausse cumulée 2021–2026. Le poste le plus impacté.</div>
+      <div class="imp-note">Hausse cumulée 2021–2025. Le poste le plus impacté.</div>
     </div>
     <div class="impact bad">
       <div class="imp-icon">⚡</div>
@@ -211,7 +211,7 @@ window.economyaLoadAds = function() {
     <div class="impact good">
       <div class="imp-icon">🏦</div>
       <div class="imp-name">Taux des livrets</div>
-      <div class="imp-val">LEP 2,5 %</div>
+      <div class="imp-val">LEP 4 %</div>
       <div class="imp-note">Le LEP offre un taux positif en termes réels — rare et précieux.</div>
     </div>
   </div>
@@ -222,7 +222,7 @@ window.economyaLoadAds = function() {
       <span class="sico">🏦</span>
       <div>
         <strong>Ouvrez un LEP si vous êtes éligible (taux réel positif)</strong>
-        <span>À 2,5 % alors que l'inflation est remontée à ~2,4 % en 2026, le LEP ne bat l'inflation que de très peu désormais (≈0,1 point) — un avantage net réduit par rapport aux années précédentes, mais qui reste le meilleur taux garanti sans risque accessible aux ménages modestes. Vérifiez votre éligibilité sur impots.gouv.fr — 18 millions de Français sont éligibles.</span>
+        <span>À 4 % alors que l'inflation est à ~1,5 %, le LEP offre un taux réel positif de ~2,5 %. C'est le seul livret réglementé qui bat vraiment l'inflation en 2025. Vérifiez votre éligibilité sur impots.gouv.fr — 18 millions de Français sont éligibles.</span>
         <span class="stag">💰 La priorité numéro 1</span>
       </div>
     </div>
