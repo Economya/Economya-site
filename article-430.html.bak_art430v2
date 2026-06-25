@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Seuils de revenus : impôts et aides en 2026 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr">
+<meta name="description" content="Seuils de revenus : impôts et aides en 2025 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seuils de revenus : impôts et aides en 2026 — Economya.fr</title>
+<title>Seuils de revenus : impôts et aides en 2025 — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -124,8 +124,8 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Seuils de revenus : impôts et aides en 2026",
-  "description": "Seuils de revenus : impôts et aides en 2026 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr",
+  "headline": "Seuils de revenus : impôts et aides en 2025",
+  "description": "Seuils de revenus : impôts et aides en 2025 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-430.html",
   "publisher": {
     "@type": "Organization",
@@ -143,8 +143,8 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Seuils de revenus : impôts et aides en 2026">
-  <meta property="og:description" content="Seuils de revenus : impôts et aides en 2026 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr">
+  <meta property="og:title" content="Seuils de revenus : impôts et aides en 2025">
+  <meta property="og:description" content="Seuils de revenus : impôts et aides en 2025 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-430.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -152,8 +152,8 @@ window.economyaLoadAds = function() {
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Seuils de revenus : impôts et aides en 2026">
-  <meta name="twitter:description" content="Seuils de revenus : impôts et aides en 2026 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Seuils de revenus : impôts et aides en 2025">
+  <meta name="twitter:description" content="Seuils de revenus : impôts et aides en 2025 — Ne dépassez pas les plafonds clés. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-430.html" />
 </head>
@@ -171,7 +171,7 @@ window.economyaLoadAds = function() {
 <div class="ah">
   <div class="hi">
     <div class="cat-pill">🏷️ Finance</div>
-    <h1>Seuils de revenus :<br><em>impôts et aides en 2026</em></h1>
+    <h1>Seuils de revenus :<br><em>impôts et aides en 2025</em></h1>
     <div class="savings-badge">💰 Ne dépassez pas les plafonds clés</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
@@ -183,16 +183,16 @@ window.economyaLoadAds = function() {
 <div class="ab">
   <p class="lead">En France, certains seuils de revenus sont des "charnières" qui déclenchent ou suppriment des droits importants : perte d'aides (CSS, Prime d'activité), passage à une tranche d'imposition supérieure, perte d'exonérations. Connaître ces seuils permet d'optimiser sa situation financière en toute légalité.</p>
 
-  <h2>📊 Les seuils d'imposition 2026 (barème IR)</h2>
+  <h2>📊 Les seuils d'imposition 2025 (barème IR)</h2>
   <div class="tw">
     <table>
       <thead><tr><th>Revenu imposable (part)</th><th>Taux marginal</th><th>Ce que ça signifie</th></tr></thead>
       <tbody>
-        <tr><td>0 à 11 600 €</td><td class="g">0 %</td><td>Non imposable — aucun IR à payer</td></tr>
-        <tr><td>11 600 à 29 579 €</td><td class="o">11 %</td><td>1ère tranche imposable</td></tr>
+        <tr><td>0 à 11 497 €</td><td class="g">0 %</td><td>Non imposable — aucun IR à payer</td></tr>
+        <tr><td>11 497 à 29 315 €</td><td class="o">11 %</td><td>1ère tranche imposable</td></tr>
         <tr><td>29 579 à 84 577 €</td><td class="o">30 %</td><td>Tranche "classe moyenne"</td></tr>
-        <tr><td>84 577 à 181 917 €</td><td class="r">41 %</td><td>Hauts revenus</td></tr>
-        <tr><td>Au-delà de 181 917 €</td><td class="r">45 %</td><td>Très hauts revenus</td></tr>
+        <tr><td>83 823 à 180 294 €</td><td class="r">41 %</td><td>Hauts revenus</td></tr>
+        <tr><td>Au-delà de 180 294 €</td><td class="r">45 %</td><td>Très hauts revenus</td></tr>
       </tbody>
     </table>
   </div>
@@ -256,7 +256,7 @@ window.economyaLoadAds = function() {
 
   <div class="warn">
     <strong>⚠️ Ces seuils sont indicatifs — vérifiez avec votre situation exacte</strong>
-    Les seuils fiscaux changent chaque année au moment de la loi de finances. Les montants indiqués sont ceux de 2026 mais peuvent être révisés. Votre situation personnelle (situation familiale, charges déductibles, revenus d'activités mixtes) modifie considérablement ces calculs. En cas de doute, consultez un conseiller fiscal ou utilisez les outils officiels.
+    Les seuils fiscaux changent chaque année au moment de la loi de finances. Les montants indiqués sont ceux de 2025 mais peuvent être révisés. Votre situation personnelle (situation familiale, charges déductibles, revenus d'activités mixtes) modifie considérablement ces calculs. En cas de doute, consultez un conseiller fiscal ou utilisez les outils officiels.
   </div>
 
   <div class="cta">
