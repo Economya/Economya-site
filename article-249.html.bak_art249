@@ -171,13 +171,13 @@ window.economyaLoadAds = function() {
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 <div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Tech</span> › <span style="color:var(--t,#2C2C2A)">Forfait 5G pas cher : comparatif opérateurs 2025</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Tech", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Forfait 5G pas cher : comparatif opérateurs 2026", "item": "https://economya.fr/article-249.html"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Tech", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Forfait 5G pas cher : comparatif opérateurs 2025", "item": "https://economya.fr/article-249.html"}]}</script>
 
 
 <div class="ah">
   <div class="hi">
     <div class="cat-pill">📡 Tech</div>
-    <h1>Forfait 5G pas cher :<br><em>comparatif opérateurs 2026</em></h1>
+    <h1>Forfait 5G pas cher :<br><em>comparatif opérateurs 2025</em></h1>
     <div class="savings-badge">💰 5G dès 6 €/mois</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
@@ -189,7 +189,7 @@ window.economyaLoadAds = function() {
 
 <div class="ab">
 
-  <p class="lead">La 5G était réservée aux forfaits premium à 30 € il y a quelques années. Les opérateurs low-cost cassent désormais les prix : Free, Prixtel, Auchan Telecom… La 5G est accessible dès quelques euros par mois selon les promotions en cours. Voici comment choisir sans se tromper — vérifiez les tarifs actuels sur le site de chaque opérateur, ces offres évoluant très fréquemment.</p>
+  <p class="lead">La 5G était réservée aux forfaits premium à 30 € il y a trois ans. En 2025, les opérateurs low-cost cassent les prix : Free, Prixtel, Auchan Telecom… La 5G est accessible dès 6 € par mois. Voici comment choisir sans se tromper.</p>
 
   <h2>📶 Les meilleurs forfaits 5G du moment</h2>
 
