@@ -213,14 +213,14 @@ window.economyaLoadAds = function() {
     <table>
       <thead><tr><th>Régime</th><th>Seuil</th><th>Abattement</th><th>Imposition</th></tr></thead>
       <tbody>
-        <tr><td>Micro-BIC meublé NON classé</td><td class="r">&lt; 15 000 €/an</td><td class="r">30 % d'abattement (effondré depuis 50 % avant la loi Le Meur)</td><td>70 % imposés à l'IR + PS</td></tr>
-        <tr><td>Micro-BIC meublé CLASSÉ ★</td><td class="o">&lt; 77 700 €/an (83 600 € pour les revenus 2026)</td><td class="g">50 % d'abattement (réduit depuis 71 % avant la loi Le Meur)</td><td>50 % imposés à l'IR + PS</td></tr>
+        <tr><td>Micro-BIC meublé classique</td><td class="o">&lt; 77 700 €/an</td><td class="g">50 % d'abattement</td><td>50 % imposés à l'IR + PS</td></tr>
+        <tr><td>Micro-BIC meublé classé ★ (loi 2024)</td><td class="o">&lt; 77 700 €/an</td><td class="g">50 % d'abattement (abaissé de 71 % en 2023)</td><td>50 % imposés à l'IR + PS</td></tr>
         <tr><td>Régime réel BIC</td><td>Tout montant</td><td class="g">Amortissement + charges réelles</td><td>Revenus nets réels imposés</td></tr>
-        <tr><td>Au-delà des plafonds ci-dessus</td><td class="r">Passage obligatoire au régime réel</td><td class="r">Charges et amortissements réels</td><td>Peut être plus avantageux</td></tr>
+        <tr><td>Meublé de tourisme classé (zone tendue)</td><td class="r">Abattement réduit depuis 2024</td><td class="r">50 % (vs 71 % avant)</td><td>Plus d'avantage spécial</td></tr>
       </tbody>
     </table>
   </div>
-  <p style="font-size:.8rem;color:var(--m)">* La loi Le Meur (19/11/2024) a durci la fiscalité : les meublés NON classés voient leur abattement chuter de 50 % à 30 % et leur plafond de 77 700 € à 15 000 €. Les meublés CLASSÉS gardent un régime plus favorable (50 % d'abattement, contre 71 % auparavant). Le classement (1 à 5 étoiles, via un organisme accrédité Atout France) est donc devenu quasi indispensable pour conserver une fiscalité avantageuse.</p>
+  <p style="font-size:.8rem;color:var(--m)">* La loi de finances 2024 a supprimé l'abattement de 71 % pour les meublés de tourisme classés. L'abattement est désormais de 50 % pour tous (hors zones tendues où il peut être réduit).</p>
 
   <div class="tip">
     <strong>💡 Déclarez vos revenus même si la plateforme prélève à la source</strong>
