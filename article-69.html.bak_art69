@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Épargner avec de petits revenus — Economya.fr</title>
+<title>Acheter sa première résidence : les aides méconnues — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -28,18 +28,12 @@
   .article-body h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 .7rem;color:var(--gd)}
   .article-body p{color:var(--t);font-weight:300;margin-bottom:1rem;font-size:.97rem}
   .article-body strong{font-weight:500;color:var(--t)}
-  .method-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin:1.2rem 0 2rem}
-  .mcard{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1rem 1.1rem}
-  .mcard .emoji{font-size:1.4rem;margin-bottom:.4rem}
-  .mcard h3{font-size:.85rem;font-weight:500;color:var(--gd);margin-bottom:.2rem}
-  .mcard p{font-size:.78rem;color:var(--m);margin:0;font-weight:300}
-  .mcard .tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.6rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;margin-top:.5rem;text-transform:uppercase}
-  .calc-box{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.2rem 1.4rem;margin:1.5rem 0}
-  .calc-box h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd);margin-bottom:.8rem}
-  .calc-row{display:flex;justify-content:space-between;align-items:center;padding:.45rem 0;border-bottom:1px solid var(--b);font-size:.88rem}
-  .calc-row:last-child{border-bottom:none}
-  .calc-row .label{font-weight:300;color:var(--t)}
-  .calc-row .val{font-weight:600;color:var(--g)}
+  .aide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin:1.2rem 0 2rem}
+  .acard{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1rem 1.1rem}
+  .acard .emoji{font-size:1.4rem;margin-bottom:.4rem}
+  .acard h3{font-size:.85rem;font-weight:500;color:var(--gd);margin-bottom:.2rem}
+  .acard p{font-size:.78rem;color:var(--m);margin:0;font-weight:300}
+  .acard .tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.6rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;margin-top:.5rem;text-transform:uppercase}
   .tip-box{background:var(--gl);border-left:3px solid var(--g);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.9rem}
   .tip-box strong{color:var(--gd);display:block;margin-bottom:.3rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
   .saving-box{background:var(--al);border-radius:12px;padding:1.4rem 1.6rem;margin:2rem 0;text-align:center}
@@ -103,9 +97,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Épargner avec de petits revenus",
+  "headline": "Acheter sa première résidence : les aides méconnues",
   "description": "Conseils et astuces pour économiser au quotidien.",
-  "url": "https://economya.fr/article-88.html",
+  "url": "https://economya.fr/article-69.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -122,20 +116,20 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Épargner avec de petits revenus">
+  <meta property="og:title" content="Acheter sa première résidence : les aides méconnues">
   <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-88.html">
+  <meta property="og:url" content="https://economya.fr/article-69.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Épargner avec de petits revenus">
+  <meta name="twitter:title" content="Acheter sa première résidence : les aides méconnues">
   <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-88.html" />
-<meta name="description" content="Épargner avec de petits revenus — Economya.fr" />
+<link rel="canonical" href="https://economya.fr/article-69.html" />
+<meta name="description" content="Acheter sa première résidence : les aides méconnues — Economya.fr" />
 </head>
 <body>
 
@@ -154,15 +148,15 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Épargner avec de petits revenus</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Épargner avec de petits revenus", "item": "https://economya.fr/article-88.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Acheter sa première résidence : les aides méconnues</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Acheter sa première résidence : les aides méconnues", "item": "https://economya.fr/article-69.html"}]}</script>
 
 
 <div class="article-hero">
-  <div class="acat-badge">💰 Épargne · Article #88</div>
-  <h1>Épargner avec<br><em>de petits revenus</em></h1>
-  <p class="intro">On croit souvent qu'épargner n'est possible qu'à partir d'un certain niveau de revenus. C'est faux. Avec la bonne méthode, même 20 € par mois mis de côté régulièrement construisent une sécurité financière réelle en quelques années.</p>
-  <div class="saving-pill">💰 Dès 20 €/mois</div>
+  <div class="acat-badge">🏡 Immobilier · Article #69</div>
+  <h1>Acheter sa première résidence :<br><em>les aides méconnues</em></h1>
+  <p class="intro">Devenir propriétaire pour la première fois semble hors de portée pour beaucoup. Pourtant, des dizaines de dispositifs d'aide existent — et peuvent représenter jusqu'à 40 000 € de coup de pouce. Tour d'horizon complet.</p>
+  <div class="saving-pill">💰 Jusqu'à 40 000 € d'aides</div>
   <div class="meta" style="margin-top:1rem">
     <span>📖 Lecture : 3 min</span>
     <span>✅ Vérifié juin 2026</span>
@@ -173,81 +167,70 @@ window.economyaLoadAds = function() {
 <div class="article-body">
   <a href="index.html" class="back-link">← Retour aux articles</a>
 
-  <p>En France, <strong>30 % des ménages n'ont aucune épargne de précaution</strong>. La raison invoquée est presque toujours la même : "je ne gagne pas assez pour épargner." Pourtant, des études en économie comportementale montrent que ce n'est pas le niveau de revenu mais les habitudes et la méthode qui déterminent la capacité à épargner. Voici comment commencer — quel que soit son niveau de revenus.</p>
+  <p>En France, près d'un tiers des ménages qui pourraient accéder à la propriété ne le font pas — faute de connaître les aides disponibles. Le Prêt à Taux Zéro, les aides locales, les dispositifs employeurs… Ces mécanismes peuvent réduire considérablement le montant à emprunter et faciliter l'accession à la propriété, même avec un apport limité. Voici les principaux dispositifs à connaître en 2025.</p>
 
-  <h2>La puissance des petites sommes régulières</h2>
+  <h2>Les aides nationales pour les primo-accédants</h2>
 
-  <div class="calc-box">
-    <h3>📊 Ce que devient 20 €/mois sur le long terme</h3>
-    <div class="calc-row"><span class="label">20 €/mois pendant 1 an</span><span class="val">240 €</span></div>
-    <div class="calc-row"><span class="label">20 €/mois pendant 5 ans</span><span class="val">1 200 €</span></div>
-    <div class="calc-row"><span class="label">20 €/mois pendant 10 ans</span><span class="val">2 400 €</span></div>
-    <div class="calc-row"><span class="label">50 €/mois pendant 10 ans (+ 3 % de rendement)</span><span class="val">~7 000 €</span></div>
-    <div class="calc-row"><span class="label">100 €/mois pendant 20 ans (+ 5 % de rendement)</span><span class="val">~41 000 €</span></div>
-  </div>
-
-  <h2>Les 6 méthodes adaptées aux petits budgets</h2>
-
-  <div class="method-grid">
-    <div class="mcard">
-      <div class="emoji">⚡</div>
-      <h3>Le virement automatique le jour du salaire</h3>
-      <p>Programmez un virement automatique de 20, 30 ou 50 € vers un Livret A le jour de votre salaire. Ce que vous ne voyez pas, vous ne le dépensez pas. La règle d'or de l'épargne.</p>
-      <span class="tag">Pay yourself first</span>
+  <div class="aide-grid">
+    <div class="acard">
+      <div class="emoji">🏦</div>
+      <h3>Le Prêt à Taux Zéro (PTZ)</h3>
+      <p>Le PTZ finance jusqu'à 40 % du prix du logement sans intérêts ni frais de dossier. Soumis à conditions de revenus et de zone géographique. Réformé en 2024 pour couvrir aussi bien le neuf que l'ancien avec travaux.</p>
+      <span class="tag">Jusqu'à 40 000 €</span>
     </div>
-    <div class="mcard">
-      <div class="emoji">🪙</div>
-      <h3>La règle des arrondis</h3>
-      <p>Des applications comme Lydia ou Revolut arrondissent automatiquement chaque dépense à l'euro supérieur et placent la différence sur un compte épargne. Invisible, indolore, efficace.</p>
-      <span class="tag">Micro-épargne auto</span>
+    <div class="acard">
+      <div class="emoji">🏘️</div>
+      <h3>Le Prêt Action Logement (PAL)</h3>
+      <p>Réservé aux salariés du secteur privé, ce prêt complémentaire à taux réduit (1 %) peut atteindre 40 000 € selon la zone. Souvent méconnu — renseignez-vous auprès de votre employeur.</p>
+      <span class="tag">Taux à 1 %</span>
     </div>
-    <div class="mcard">
-      <div class="emoji">📅</div>
-      <h3>Le défi des 52 semaines</h3>
-      <p>Semaine 1 : épargnez 1 €. Semaine 2 : 2 €. Semaine 52 : 52 €. Total à la fin de l'année : 1 378 €. Un défi progressif qui rend l'effort supportable et le résultat spectaculaire.</p>
-      <span class="tag">1 378 € en 1 an</span>
+    <div class="acard">
+      <div class="emoji">🏛️</div>
+      <h3>Le Prêt d'Accession Sociale (PAS)</h3>
+      <p>Destiné aux ménages modestes, il finance jusqu'à 100 % du projet immobilier avec des taux plafonnés. Il ouvre également droit à l'APL accession dans certains cas.</p>
+      <span class="tag">100 % finançable</span>
     </div>
-    <div class="mcard">
-      <div class="emoji">🚫</div>
-      <h3>Le mois sans dépense superflue</h3>
-      <p>Un mois par trimestre, supprimez toutes les dépenses non essentielles (restaurants, vêtements, loisirs payants). Tout ce qui aurait été dépensé va directement en épargne.</p>
-      <span class="tag">100-300 €/trimestre</span>
+    <div class="acard">
+      <div class="emoji">🌆</div>
+      <h3>Les aides des collectivités locales</h3>
+      <p>Régions, départements et communes proposent leurs propres prêts bonifiés ou subventions pour les primo-accédants. Certaines villes offrent jusqu'à 10 000 € pour attirer de nouveaux habitants.</p>
+      <span class="tag">Variable selon ville</span>
     </div>
-    <div class="mcard">
-      <div class="emoji">🎯</div>
-      <h3>L'épargne par objectif</h3>
-      <p>Épargner "en général" est moins motivant qu'épargner pour quelque chose de précis. Ouvrez des sous-comptes nommés (vacances, voiture, urgences) — les banques en ligne le proposent gratuitement.</p>
-      <span class="tag">Motivation renforcée</span>
+    <div class="acard">
+      <div class="emoji">💼</div>
+      <h3>Le déblocage anticipé du PEE/PER</h3>
+      <p>L'achat d'une résidence principale est l'un des cas légaux de déblocage anticipé de votre épargne salariale (PEE) ou retraite (PER). Sans pénalité fiscale — un apport souvent inattendu.</p>
+      <span class="tag">Sans pénalité</span>
     </div>
-    <div class="mcard">
-      <div class="emoji">🔁</div>
-      <h3>Réinvestir les économies réalisées</h3>
-      <p>Quand vous réduisez une dépense (abonnement résilié, assurance renégociée), virez immédiatement la différence en épargne. L'argent était déjà "dépensé" dans votre tête — il ne vous manquera pas.</p>
-      <span class="tag">Sans effort perçu</span>
+    <div class="acard">
+      <div class="emoji">👨‍👩‍👧</div>
+      <h3>La donation familiale exonérée</h3>
+      <p>Chaque parent peut donner jusqu'à 100 000 € à un enfant en franchise de droits de donation (tous les 15 ans). Pour un premier achat, c'est souvent la source d'apport la plus accessible.</p>
+      <span class="tag">100 000 € exonérés</span>
     </div>
   </div>
 
   <div class="tip-box">
     <strong>💡 Astuce Economya.fr</strong>
-    Le Livret A est le point de départ idéal pour une épargne de précaution : taux garanti par l'État (1,5 % en 2026), liquidité immédiate, aucun risque de perte. Objectif prioritaire : constituer 3 mois de dépenses courantes sur ce livret avant de chercher à investir ailleurs. Cette réserve évite de s'endetter en cas de coup dur.
+    Avant de démarcher les banques, consultez un <strong>courtier en crédit immobilier</strong> — sa prestation est gratuite pour l'emprunteur (rémunéré par la banque). Il connaît l'ensemble des dispositifs d'aide et peut monter un dossier cumulant PTZ + PAL + aide locale, ce qu'une seule banque ne proposera jamais spontanément.
   </div>
 
-  <h2>Les aides à l'épargne méconnues</h2>
-  <p>Certains dispositifs permettent d'épargner avec une aide de l'État ou de l'employeur. Le <strong>Plan d'Épargne Entreprise (PEE)</strong> permet d'investir avec un abondement de l'employeur pouvant aller jusqu'à 300 % de votre mise. Le <strong>Plan d'Épargne Retraite (PER)</strong> offre une déduction fiscale sur les versements. Et pour les ménages modestes, le <strong>Livret d'Épargne Populaire (LEP)</strong> propose un taux supérieur au Livret A (2,5 % en 2026) avec un plafond de 10 000 €.</p>
+  <h2>Les frais de notaire réduits : un avantage méconnu</h2>
+  <p>Dans l'immobilier neuf, les frais de notaire sont réduits à <strong>2-3 % du prix</strong> contre 7-8 % dans l'ancien. Sur un bien à 200 000 €, l'économie représente 8 000 à 10 000 €. C'est un argument souvent sous-estimé en faveur du neuf, surtout quand il s'accompagne d'un PTZ éligible et d'une garantie décennale.</p>
 
-  <h2>L'état d'esprit avant tout</h2>
-  <p>La plus grande barrière à l'épargne n'est pas financière — elle est psychologique. Le sentiment que "20 € ne servent à rien" est la principale raison pour laquelle tant de ménages n'épargnent pas. Pourtant, <strong>20 € par mois pendant 30 ans avec un rendement modeste</strong> représentent plus de 15 000 €. La régularité bat toujours le montant. Commencez aujourd'hui, ajustez demain.</p>
+  <h2>Comment cumuler les aides</h2>
+  <p>La plupart de ces dispositifs sont cumulables. Un primo-accédant salarié dans le privé peut ainsi combiner un PTZ (jusqu'à 40 000 €), un Prêt Action Logement (jusqu'à 40 000 €), une aide de sa commune (5 000 à 10 000 €) et un déblocage de son PEE. Dans les meilleurs scénarios, le montant à emprunter auprès d'une banque classique peut être réduit de moitié.</p>
 
   <div class="saving-box">
-    <div class="amount">1 378 € en 1 an</div>
-    <p>C'est le résultat du défi des 52 semaines — en commençant à mettre de côté 1 € la première semaine et en augmentant d'1 € chaque semaine jusqu'à 52 €.</p>
+    <div class="amount">40 000 € d'aides</div>
+    <p>C'est le montant cumulable pour un primo-accédant éligible au PTZ et au Prêt Action Logement — sans compter les aides locales et le déblocage d'épargne salariale.</p>
   </div>
 
-  <p>Épargner avec de petits revenus n'est pas une question de discipline héroïque — c'est une question de système. Automatisez, rendez l'effort invisible, et laissez le temps faire son travail. Les petites sommes régulières construisent, mois après mois, une liberté financière que les dépenses impulsives ne pourront jamais offrir.</p>
+  <p>Acheter sa première résidence reste un projet complexe — mais il est loin d'être inaccessible. La clé est de s'informer tôt, de cumuler les dispositifs disponibles et de faire appel à un courtier qui connaît l'ensemble du paysage des aides. Ce qui semble hors de portée aujourd'hui peut devenir réaliste en six mois d'anticipation et de préparation.</p>
 
   <div class="tip-box" style="background:var(--al);border-color:var(--a)">
     <strong style="color:var(--ad)">📬 Bon plan exclusif</strong>
-    <span style="color:var(--ad);font-size:.88rem">Abonnez-vous à la newsletter Economya.fr pour recevoir chaque semaine les meilleures astuces épargne et finances personnelles adaptées à tous les budgets.</span>
+    <span style="color:var(--ad);font-size:.88rem">Abonnez-vous à la newsletter Economya.fr pour recevoir chaque semaine les meilleures astuces immobilier et finance personnelle.</span>
   </div>
 </div>
 
