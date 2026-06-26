@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CV et lettres de motivation gratuits et efficaces — Economya.fr</title>
+<title>Cybersécurité gratuite : protéger ses données — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -33,30 +33,26 @@
   .step-list li .num{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--g);min-width:1.5rem}
   .step-list li .content h3{font-size:.88rem;font-weight:500;color:var(--gd);margin-bottom:.15rem}
   .step-list li .content p{font-size:.8rem;color:var(--m);margin:0;font-weight:300}
-  .outil-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin:1.2rem 0 2rem}
-  .ocard{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1rem 1.1rem}
-  .ocard .emoji{font-size:1.4rem;margin-bottom:.4rem}
-  .ocard h3{font-size:.85rem;font-weight:500;color:var(--gd);margin-bottom:.2rem}
-  .ocard p{font-size:.78rem;color:var(--m);margin:0;font-weight:300}
-  .ocard .tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.6rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;margin-top:.5rem;text-transform:uppercase}
-  .ocard .tag-gold{display:inline-block;background:var(--al);color:var(--ad);font-size:.6rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;margin-top:.5rem;text-transform:uppercase}
-  .phrase-grid{display:grid;grid-template-columns:1fr;gap:.75rem;margin:1.2rem 0 2rem}
-  .phrase-card{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:.9rem 1.2rem;display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-  .phrase-card .bad{font-size:.82rem;color:#991B1B;background:#FEE2E2;border-radius:6px;padding:.5rem .7rem;font-weight:300}
-  .phrase-card .good{font-size:.82rem;color:#065F46;background:#D1FAE5;border-radius:6px;padding:.5rem .7rem;font-weight:300}
-  .phrase-card .label{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
-  .phrase-card .label.bad-l{color:#991B1B}
-  .phrase-card .label.good-l{color:#065F46}
+  .tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin:1.2rem 0 2rem}
+  .tcard{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1rem 1.1rem}
+  .tcard .emoji{font-size:1.4rem;margin-bottom:.4rem}
+  .tcard h3{font-size:.85rem;font-weight:500;color:var(--gd);margin-bottom:.2rem}
+  .tcard p{font-size:.78rem;color:var(--m);margin:0;font-weight:300}
+  .tcard .tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.6rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;margin-top:.5rem;text-transform:uppercase}
+  .tcard .tag-free{display:inline-block;background:#D1FAE5;color:#065F46;font-size:.6rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;margin-top:.5rem;text-transform:uppercase}
   .tip-box{background:var(--gl);border-left:3px solid var(--g);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.9rem}
   .tip-box strong{color:var(--gd);display:block;margin-bottom:.3rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
   .saving-box{background:var(--al);border-radius:12px;padding:1.4rem 1.6rem;margin:2rem 0;text-align:center}
   .saving-box .amount{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--ad)}
   .saving-box p{font-size:.85rem;color:var(--ad);margin:0;font-weight:300}
+  .risk-box{background:#FEF2F2;border-left:3px solid #EF4444;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.9rem}
+  .risk-box strong{color:#991B1B;display:block;margin-bottom:.3rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+  .risk-box p{color:#7F1D1D;font-size:.85rem;margin:0;font-weight:300}
   .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--g);font-size:.82rem;font-weight:500;text-decoration:none;margin-bottom:2rem}
   .back-link:hover{text-decoration:underline}
   footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
   footer strong{color:white}
-  @media(max-width:640px){nav{padding:.8rem 1rem}.nl{display:none}.article-hero{padding:2.5rem 1.2rem 2rem}.article-body{padding:2rem 1.2rem 3rem}.phrase-card{grid-template-columns:1fr}}
+  @media(max-width:640px){nav{padding:.8rem 1rem}.nl{display:none}.article-hero{padding:2.5rem 1.2rem 2rem}.article-body{padding:2rem 1.2rem 3rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -110,9 +106,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "CV et lettres de motivation gratuits et efficaces",
+  "headline": "Cybersécurité gratuite : protéger ses données",
   "description": "Conseils et astuces pour économiser au quotidien.",
-  "url": "https://economya.fr/article-124.html",
+  "url": "https://economya.fr/article-108.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -129,20 +125,20 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="CV et lettres de motivation gratuits et efficaces">
+  <meta property="og:title" content="Cybersécurité gratuite : protéger ses données">
   <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-124.html">
+  <meta property="og:url" content="https://economya.fr/article-108.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CV et lettres de motivation gratuits et efficaces">
+  <meta name="twitter:title" content="Cybersécurité gratuite : protéger ses données">
   <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-124.html" />
-<meta name="description" content="CV et lettres de motivation gratuits et efficaces — Economya.fr" />
+<link rel="canonical" href="https://economya.fr/article-108.html" />
+<meta name="description" content="Cybersécurité gratuite : protéger ses données — Economya.fr" />
 </head>
 <body>
 
@@ -161,15 +157,15 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">CV et lettres de motivation gratuits et efficaces</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "CV et lettres de motivation gratuits et efficaces", "item": "https://economya.fr/article-124.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Cybersécurité gratuite : protéger ses données</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Cybersécurité gratuite : protéger ses données", "item": "https://economya.fr/article-108.html"}]}</script>
 
 
 <div class="article-hero">
-  <div class="acat-badge">📝 Emploi · Article #124</div>
-  <h1>CV et lettres de motivation<br><em>gratuits et efficaces</em></h1>
-  <p class="intro">Des services en ligne facturent 20 à 50 € pour créer un CV "professionnel". Les outils gratuits font exactement la même chose — souvent mieux. Et une lettre de motivation percutante s'écrit en suivant une structure simple que personne ne vous a apprise.</p>
-  <div class="saving-pill">💰 Ne payez plus les services de CV</div>
+  <div class="acat-badge">🔐 Numérique · Article #108</div>
+  <h1>Cybersécurité gratuite :<br><em>protéger ses données</em></h1>
+  <p class="intro">Une fraude bancaire en ligne coûte en moyenne 1 200 € à la victime en temps et en stress, même remboursée. Les meilleurs outils pour vous protéger sont gratuits — et s'installent en moins d'une heure.</p>
+  <div class="saving-pill">🔒 Protection maximale à 0 €</div>
   <div class="meta" style="margin-top:1rem">
     <span>📖 Lecture : 3 min</span>
     <span>✅ Vérifié juin 2026</span>
@@ -180,139 +176,115 @@ window.economyaLoadAds = function() {
 <div class="article-body">
   <a href="index.html" class="back-link">← Retour aux articles</a>
 
-  <p>Chaque année, des milliers de candidats paient des services de "rédaction de CV professionnelle" entre 30 et 150 €, ou des abonnements à des plateformes de création de CV entre 5 et 20 €/mois. Ces services prospèrent sur une anxiété réelle — et largement infondée. <strong>Un recruteur passe en moyenne 7 secondes sur un CV.</strong> Ce qui compte n'est pas le logiciel utilisé, mais la clarté, la concision et la pertinence du contenu. Tout cela, vous pouvez le faire gratuitement.</p>
+  <p>En France, une cyberattaque visant un particulier se produit toutes les 4 secondes. Phishing, vol de mot de passe, usurpation d'identité, fraude à la carte bancaire : les menaces sont réelles et en forte hausse. Pourtant, <strong>la grande majorité des attaques exploitent des failles basiques</strong> que quelques outils gratuits suffisent à combler. Pas besoin d'antivirus à 60 €/an — voici ce qui fonctionne vraiment.</p>
 
-  <h2>Les meilleurs outils gratuits pour créer son CV</h2>
-
-  <div class="outil-grid">
-    <div class="ocard">
-      <div class="emoji">🎨</div>
-      <h3>Canva (gratuit)</h3>
-      <p>Des dizaines de modèles de CV professionnels, personnalisables en quelques clics. Export en PDF haute qualité inclus. La version gratuite suffit largement — ignorez les invitations à passer premium.</p>
-      <span class="tag-gold">Le plus recommandé</span>
-    </div>
-    <div class="ocard">
-      <div class="emoji">📄</div>
-      <h3>Google Docs</h3>
-      <p>Modèles de CV intégrés, collaboratif, accessible partout. Idéal pour les CV sobres et classiques appréciés dans les secteurs traditionnels (finance, droit, administration).</p>
-      <span class="tag">100 % gratuit</span>
-    </div>
-    <div class="ocard">
-      <div class="emoji">🌐</div>
-      <h3>Resume.io (version gratuite)</h3>
-      <p>Interface simple, modèles modernes, conseils intégrés. La version gratuite permet de créer et télécharger un CV correct. Ne payez pas — les fonctionnalités gratuites sont amplement suffisantes.</p>
-      <span class="tag">Gratuit (basique)</span>
-    </div>
-    <div class="ocard">
-      <div class="emoji">💼</div>
-      <h3>LinkedIn (profil public)</h3>
-      <p>Un profil LinkedIn complet et bien rempli peut remplacer le CV pour de nombreux recruteurs. La fonction "Easy Apply" permet de postuler en un clic avec votre profil. Gratuit et de plus en plus incontournable.</p>
-      <span class="tag">Gratuit · Incontournable</span>
-    </div>
-    <div class="ocard">
-      <div class="emoji">🏛️</div>
-      <h3>CVDesignR</h3>
-      <p>Outil français entièrement gratuit, sans filigrane, avec une bonne sélection de modèles clairs et professionnels. Export PDF direct sans inscription payante requise.</p>
-      <span class="tag">100 % gratuit</span>
-    </div>
-    <div class="ocard">
-      <div class="emoji">📊</div>
-      <h3>Modèles Word / LibreOffice</h3>
-      <p>Pour les candidatures dans des secteurs très traditionnels (secteur public, grandes entreprises), un CV sobre en .docx est souvent préféré. Des centaines de modèles gratuits sur Office.com ou en recherche Google.</p>
-      <span class="tag">Format universel</span>
-    </div>
+  <div class="risk-box">
+    <strong>⚠️ Les chiffres qui font réfléchir</strong>
+    <p>85 % des cyberattaques réussies exploitent un mot de passe faible ou réutilisé. 1 Français sur 3 utilise le même mot de passe sur plusieurs sites. Le coût moyen d'une usurpation d'identité pour la victime dépasse 1 500 € en frais et démarches.</p>
   </div>
 
-  <h2>Les 5 règles d'un CV qui retient l'attention</h2>
+  <h2>Les 5 gestes essentiels — tous gratuits</h2>
 
   <ul class="step-list">
     <li>
       <span class="num">1</span>
       <div class="content">
-        <h3>Une page, toujours (sauf expérience 10 ans+)</h3>
-        <p>En France, le CV tient sur une seule page pour la grande majorité des profils. Au-delà de 10 ans d'expérience, deux pages peuvent se justifier. Un recruteur qui reçoit 200 candidatures ne lit pas les CV de 3 pages — il les élimine. Chaque ligne doit mériter sa place.</p>
+        <h3>Adopter un gestionnaire de mots de passe</h3>
+        <p>Bitwarden (gratuit et open source) génère et stocke des mots de passe uniques et complexes pour chaque site. Fini les "azerty123" réutilisés partout. Une seule master password à retenir, des centaines de comptes sécurisés. Disponible sur tous vos appareils, synchronisé en temps réel.</p>
       </div>
     </li>
     <li>
       <span class="num">2</span>
       <div class="content">
-        <h3>Des verbes d'action et des chiffres, pas des missions vagues</h3>
-        <p>"Responsable de la gestion de l'équipe" ne dit rien. "Managé une équipe de 6 personnes, +18 % de productivité en 6 mois" dit tout. Chaque expérience doit contenir au moins un résultat chiffré ou une réalisation concrète. Ce principe seul différencie 80 % des CV retenus des CV rejetés.</p>
+        <h3>Activer la double authentification (2FA) partout</h3>
+        <p>La 2FA ajoute une étape de vérification (code SMS ou application) lors de chaque connexion. Même si votre mot de passe est volé, le pirate ne peut pas accéder à votre compte. Activez-la en priorité sur votre banque, votre email, vos réseaux sociaux et votre espace Ameli/Impots.gouv.fr.</p>
       </div>
     </li>
     <li>
       <span class="num">3</span>
       <div class="content">
-        <h3>Adapter le CV à chaque offre (15 minutes suffisent)</h3>
-        <p>Un CV générique est moins efficace qu'un CV adapté. Repérez les 3 à 5 compétences clés citées dans l'offre et assurez-vous qu'elles apparaissent explicitement dans votre CV — dans vos expériences ou votre résumé. Les ATS (logiciels de tri automatique) filtrent les CV qui ne contiennent pas les mots-clés de l'offre.</p>
+        <h3>Vérifier si vos données ont été compromises</h3>
+        <p>Le site Have I Been Pwned (haveibeenpwned.com) recense des milliards d'identifiants issus de fuites de données. Entrez votre adresse email : si elle apparaît dans une fuite, changez immédiatement les mots de passe des comptes concernés. Vérification gratuite et instantanée.</p>
       </div>
     </li>
     <li>
       <span class="num">4</span>
       <div class="content">
-        <h3>Soigner l'accroche (ou résumé de profil)</h3>
-        <p>3 lignes en haut du CV qui résument qui vous êtes, ce que vous cherchez et votre valeur ajoutée. C'est la première chose lue — et souvent la seule si le reste ne suit pas. Exemple : "Développeur web 5 ans d'expérience en React et Node.js, spécialisé e-commerce, cherche à rejoindre une équipe produit ambitieuse."</p>
+        <h3>Naviguer avec un bloqueur de publicités et de traceurs</h3>
+        <p>uBlock Origin (extension gratuite, Chrome et Firefox) bloque les publicités malveillantes, les traceurs et de nombreux sites de phishing avant même qu'ils se chargent. C'est l'une des meilleures protections contre les arnaques en ligne — et un bonus : les pages se chargent 30 % plus vite.</p>
       </div>
     </li>
     <li>
       <span class="num">5</span>
       <div class="content">
-        <h3>Relire à voix haute et faire relire</h3>
-        <p>Les fautes d'orthographe sont le premier motif d'élimination immédiate d'un CV. Relisez à voix haute (on entend les erreurs qu'on ne voit plus), utilisez LanguageTool (gratuit et meilleur que Word pour le français), et faites relire par une personne de confiance. Un CV sans faute est un minimum non négociable.</p>
+        <h3>Mettre à jour ses appareils systématiquement</h3>
+        <p>80 % des failles de sécurité exploitées existent dans des logiciels non mis à jour. Les mises à jour de Windows, macOS, Android et iOS corrigent des vulnérabilités critiques souvent dans les jours qui suivent leur découverte. Activez les mises à jour automatiques — c'est le geste le plus simple et le plus efficace.</p>
       </div>
     </li>
   </ul>
 
-  <h2>La structure de lettre de motivation qui fonctionne</h2>
+  <h2>Les meilleurs outils gratuits en 2025</h2>
 
-  <div class="phrase-grid">
-    <div class="phrase-card">
-      <div>
-        <div class="label bad-l">❌ Accroche classique (à éviter)</div>
-        <div class="bad">"Suite à votre annonce parue sur LinkedIn, je me permets de vous adresser ma candidature au poste de…"</div>
-      </div>
-      <div>
-        <div class="label good-l">✅ Accroche qui retient l'attention</div>
-        <div class="good">"En 4 ans chez X, j'ai réduit le taux de churn de 22 % — c'est exactement le défi que vous décrivez pour ce poste."</div>
-      </div>
+  <div class="tool-grid">
+    <div class="tcard">
+      <div class="emoji">🔑</div>
+      <h3>Bitwarden</h3>
+      <p>Gestionnaire de mots de passe open source, synchronisé sur tous vos appareils. La référence gratuite du secteur, auditée indépendamment.</p>
+      <span class="tag-free">100 % gratuit</span>
     </div>
-    <div class="phrase-card">
-      <div>
-        <div class="label bad-l">❌ Corps trop centré sur soi</div>
-        <div class="bad">"Je souhaite rejoindre votre entreprise car elle correspond à mes valeurs et je cherche à évoluer dans un environnement stimulant."</div>
-      </div>
-      <div>
-        <div class="label good-l">✅ Corps centré sur la valeur apportée</div>
-        <div class="good">"Votre enjeu de X m'a particulièrement retenu. Mon expérience en Y m'a permis de résoudre ce type de problème en faisant Z."</div>
-      </div>
+    <div class="tcard">
+      <div class="emoji">🛡️</div>
+      <h3>uBlock Origin</h3>
+      <p>Extension navigateur qui bloque pubs, traceurs et sites malveillants. Légère, efficace, aucune configuration requise. Indispensable.</p>
+      <span class="tag-free">100 % gratuit</span>
     </div>
-    <div class="phrase-card">
-      <div>
-        <div class="label bad-l">❌ Conclusion passive</div>
-        <div class="bad">"Dans l'attente de votre réponse, je reste disponible pour tout entretien."</div>
-      </div>
-      <div>
-        <div class="label good-l">✅ Conclusion qui propose une suite</div>
-        <div class="good">"Je serais ravi d'échanger lors d'un entretien pour vous montrer concrètement comment j'aborderais ce défi."</div>
-      </div>
+    <div class="tcard">
+      <div class="emoji">📱</div>
+      <h3>Aegis Authenticator</h3>
+      <p>Application 2FA open source pour Android. Génère vos codes de double authentification hors ligne, avec sauvegarde chiffrée.</p>
+      <span class="tag-free">100 % gratuit</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">📧</div>
+      <h3>ProtonMail (basique)</h3>
+      <p>Messagerie chiffrée de bout en bout, serveurs en Suisse, hors juridiction américaine. La version gratuite suffit pour un usage courant sécurisé.</p>
+      <span class="tag-free">Gratuit (basique)</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">🌐</div>
+      <h3>Firefox + DNS sécurisé</h3>
+      <p>Firefox avec DNS-over-HTTPS activé (Cloudflare 1.1.1.1) chiffre vos requêtes DNS et empêche votre FAI de surveiller vos habitudes de navigation.</p>
+      <span class="tag-free">100 % gratuit</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">🔍</div>
+      <h3>Have I Been Pwned</h3>
+      <p>Vérifiez si votre email ou vos mots de passe sont apparus dans des fuites de données connues. Alertes gratuites par email en cas de nouvelle fuite.</p>
+      <span class="tag-free">100 % gratuit</span>
     </div>
   </div>
 
   <div class="tip-box">
     <strong>💡 Astuce Economya.fr</strong>
-    Utilisez Claude, ChatGPT ou Mistral (tous gratuits dans leur version de base) pour reformuler vos expériences avec des verbes d'action, vérifier votre lettre de motivation ou générer une première version à partir de vos notes. Ces outils ne remplacent pas votre voix — mais ils accélèrent considérablement la rédaction et améliorent la formulation. Relisez et personnalisez toujours le résultat.
+    Méfiez-vous des antivirus gratuits aux noms ronflants téléchargés sur des sites tiers — plusieurs sont eux-mêmes des logiciels espions. Sur Windows, le Defender intégré (gratuit et automatique) offre une protection de base largement suffisante pour un usage domestique standard. Sur Mac, Gatekeeper et XProtect font le travail. Inutile de payer pour un antivirus si vos gestes numériques sont corrects.
   </div>
+
+  <h2>Reconnaître un phishing en 5 secondes</h2>
+
+  <p>Le phishing (hameçonnage) reste la première cause de fraude bancaire en France. Ces faux emails et SMS imitent votre banque, la CAF, Ameli ou les impôts pour vous soutirer vos identifiants. Trois réflexes suffisent à les déjouer systématiquement :</p>
+
+  <p><strong>Vérifiez l'expéditeur réel</strong> (pas le nom affiché, mais l'adresse email complète). Un vrai email de votre banque ne vient jamais de "contact@securite-bnp.info". <strong>Ne cliquez jamais sur un lien dans un email suspect</strong> — tapez l'adresse directement dans votre navigateur. Et <strong>aucune institution française ne vous demandera jamais votre mot de passe par email ou SMS.</strong></p>
 
   <div class="saving-box">
-    <div class="amount">0 € à dépenser</div>
-    <p>C'est le budget nécessaire pour créer un CV professionnel et une lettre de motivation percutante en 2026 — à condition de savoir quels outils utiliser et quelles règles appliquer.</p>
+    <div class="amount">0 € de protection</div>
+    <p>C'est le coût des outils listés dans cet article pour une protection numérique de haut niveau — là où les suites de sécurité commerciales facturent 40 à 80 €/an pour des résultats souvent inférieurs.</p>
   </div>
 
-  <p>Le meilleur CV n'est pas celui qui a coûté le plus cher à produire — c'est celui qui répond le plus précisément aux besoins du recruteur, en langage clair, en une page, sans faute. Canva, Google Docs et 30 minutes de travail suffisent pour produire un document qui rivalise avec n'importe quel service payant. Ce que les services payants ne peuvent pas faire à votre place : chiffrer vos résultats, adapter votre profil à l'offre, et écrire avec votre voix.</p>
+  <p>La cybersécurité n'est pas une question de budget, c'est une question d'habitudes. Bitwarden + 2FA activée partout + uBlock Origin : ce trio gratuit protège mieux que 90 % des antivirus payants du marché. Prenez une heure ce week-end pour les installer — c'est l'heure la mieux investie de votre année numérique.</p>
 
   <div class="tip-box" style="background:var(--al);border-color:var(--a)">
     <strong style="color:var(--ad)">📬 Bon plan exclusif</strong>
-    <span style="color:var(--ad);font-size:.88rem">Abonnez-vous à la newsletter Economya.fr pour recevoir chaque semaine les meilleures astuces carrière et emploi vérifiées.</span>
+    <span style="color:var(--ad);font-size:.88rem">Abonnez-vous à la newsletter Economya.fr pour recevoir chaque semaine les meilleures astuces numériques et bons plans vérifiés.</span>
   </div>
 </div>
 
