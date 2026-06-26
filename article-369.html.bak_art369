@@ -224,7 +224,7 @@ window.economyaLoadAds = function() {
         <p>Le "minimum vieillesse". Garantit un revenu minimal aux retraités à faibles pensions. Taux de non-recours estimé à 50 % — la moitié des éligibles ne la demandent pas, souvent par méconnaissance ou crainte de récupération sur succession.</p>
         <div class="a-tags"><span class="atag">+65 ans</span><span class="atag g">Faibles retraites</span><span class="atag">Lassuranceretraite.fr</span></div>
       </div>
-      <div class="a-right"><span class="a-montant">jusqu'à 1 043,59 €/mois</span><span class="a-sub">personne seule (2026)</span></div>
+      <div class="a-right"><span class="a-montant">jusqu'à 1 012 €/mois</span><span class="a-sub">personne seule (2025)</span></div>
     </div>
     <div class="aide">
       <div class="a-icon">♿</div>
@@ -233,7 +233,7 @@ window.economyaLoadAds = function() {
         <p>Aide pour les personnes en situation de handicap. Nécessite une reconnaissance MDPH (Maison Départementale des Personnes Handicapées). Beaucoup ne font pas les démarches MDPH par méconnaissance ou découragement.</p>
         <div class="a-tags"><span class="atag g">Handicap reconnu MDPH</span><span class="atag">+20 ans</span></div>
       </div>
-      <div class="a-right"><span class="a-montant">jusqu'à 1 041,59 €/mois</span><span class="a-sub">taux plein 2026</span></div>
+      <div class="a-right"><span class="a-montant">jusqu'à 1 016 €/mois</span><span class="a-sub">taux plein 2025</span></div>
     </div>
     <div class="aide">
       <div class="a-icon">💊</div>
