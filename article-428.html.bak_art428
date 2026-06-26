@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr">
+<meta name="description" content="E-commerce : lancer une boutique pour 0€ — Shopify, Etsy, sans capital. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PER collectif vs individuel : que choisir — Economya.fr</title>
+<title>E-commerce : lancer une boutique pour 0 € — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -18,7 +18,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
 .ah{background:linear-gradient(135deg,#052e16,#065f46,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🤔';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah::before{content:'🏭';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
 .cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a7f3d0;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
@@ -32,30 +32,33 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* COMPARAISON */
-.compa{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
-@media(max-width:520px){.compa{grid-template-columns:1fr}}
-.co{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden}
-.co.top{border:2px solid var(--g)}
-.co-header{padding:.85rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
-.co.collectif .co-header{background:linear-gradient(135deg,#065f46,#1D9E75)}
-.co.individuel .co-header{background:linear-gradient(135deg,#1e1b5e,#4338ca)}
-.co-name{font-weight:700;color:white;font-size:.9rem;display:flex;align-items:center;gap:.4rem}
+/* OPTIONS */
+.options{display:flex;flex-direction:column;gap:1.1rem;margin:1.5rem 0}
+.option{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;transition:box-shadow .2s}
+.option:hover{box-shadow:0 4px 18px rgba(29,158,117,.1)}
+.option.top{border:2px solid var(--g)}
+.o-header{padding:.85rem 1.3rem;display:flex;justify-content:space-between;align-items:center}
+.option.etsy .o-header{background:linear-gradient(135deg,#7f1d1d,#dc2626)}
+.option.shop .o-header{background:linear-gradient(135deg,#065f46,#1D9E75)}
+.option.wix .o-header{background:linear-gradient(135deg,#1e1b5e,#4338ca)}
+.option.rb .o-header{background:linear-gradient(135deg,#4c1d95,#7c3aed)}
+.o-name{font-weight:700;color:white;font-size:.92rem;display:flex;align-items:center;gap:.5rem}
 .top-badge{display:inline-block;background:var(--g);color:white;font-size:.62rem;font-weight:700;padding:.1rem .5rem;border-radius:50px}
-.co-body{padding:.9rem 1.2rem}
-.co-item{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.55rem;gap:.5rem;font-size:.84rem;border-bottom:1px solid var(--b);padding-bottom:.55rem}
-.co-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.co-label{color:var(--m);flex-shrink:0;font-size:.78rem}
-.co-val{font-weight:600;color:var(--t);text-align:right;font-size:.84rem}
-.co-val.g{color:var(--g)}
+.o-cout{font-size:.82rem;color:rgba(255,255,255,.85)}
+.o-body{padding:1rem 1.3rem;display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+@media(max-width:520px){.o-body{grid-template-columns:1fr}}
+.o-col-title{font-size:.72rem;font-weight:600;text-transform:uppercase;color:var(--m);margin-bottom:.4rem}
+.o-col-list{list-style:none;display:flex;flex-direction:column;gap:.25rem}
+.o-col-list li{font-size:.82rem;font-weight:300;padding-left:.7rem;position:relative;color:var(--t)}
+.o-col-list li::before{position:absolute;left:0}
+.o-note{font-size:.84rem;color:var(--m);font-weight:300;padding:.6rem 1.3rem 1rem;border-top:1px solid var(--b)}
 
-/* CONSEIL */
-.conseil{background:var(--gl);border-radius:var(--r);padding:1.3rem 1.5rem;margin:1.5rem 0}
-.conseil h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gd);margin-bottom:.8rem}
-.cons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem}
-.cons-item{background:white;border-radius:8px;padding:.85rem}
-.cons-who{font-weight:700;font-size:.85rem;color:var(--gd);margin-bottom:.25rem}
-.cons-what{font-size:.78rem;color:var(--m);font-weight:300;line-height:1.4}
+/* ÉTAPES */
+.steps{display:flex;flex-direction:column;gap:.85rem;margin:1.2rem 0}
+.step{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem}
+.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#065f46,#1D9E75);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc h3{font-size:.92rem;font-weight:600;margin-bottom:.2rem}
+.sc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
@@ -125,9 +128,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "PER collectif vs individuel : que choisir",
-  "description": "PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-439.html",
+  "headline": "E-commerce : lancer une boutique pour 0 €",
+  "description": "E-commerce : lancer une boutique pour 0€ — Shopify, Etsy, sans capital. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-428.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -144,19 +147,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="PER collectif vs individuel : que choisir">
-  <meta property="og:description" content="PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-439.html">
+  <meta property="og:title" content="E-commerce : lancer une boutique pour 0 €">
+  <meta property="og:description" content="E-commerce : lancer une boutique pour 0€ — Shopify, Etsy, sans capital. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-428.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PER collectif vs individuel : que choisir">
-  <meta name="twitter:description" content="PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="E-commerce : lancer une boutique pour 0 €">
+  <meta name="twitter:description" content="E-commerce : lancer une boutique pour 0€ — Shopify, Etsy, sans capital. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-439.html" />
+<link rel="canonical" href="https://economya.fr/article-428.html" />
 </head>
 <body>
 <nav>
@@ -166,101 +169,98 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Finance</span> › <span style="color:var(--t,#2C2C2A)">PER collectif vs individuel : que choisir</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Finance", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "PER collectif vs individuel : que choisir", "item": "https://economya.fr/article-439.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">E-commerce : lancer une boutique pour 0 €</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "E-commerce : lancer une boutique pour 0 €", "item": "https://economya.fr/article-428.html"}]}</script>
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🤔 Finance</div>
-    <h1>PER collectif vs individuel :<br><em>que choisir</em></h1>
-    <div class="savings-badge">💰 Quel plan retraite est le meilleur</div>
+    <div class="cat-pill">🏭 Revenus</div>
+    <h1>E-commerce :<br><em>lancer une boutique pour 0 €</em></h1>
+    <div class="savings-badge">💰 Shopify, Etsy, sans capital</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">🏦 Épargne retraite</span>
+      <span class="theme-tag">🛒 E-commerce débutant</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Depuis 2019, le Plan d'Épargne Retraite (PER) a remplacé les anciens PERP, Madelin et PERCO. Il existe deux grandes versions : le PER d'entreprise collectif (PERECO) proposé par l'employeur, et le PER individuel souscrit librement. Les deux offrent des avantages fiscaux puissants — mais ils ne s'adressent pas aux mêmes profils.</p>
+  <p class="lead">Lancer une boutique en ligne n'a jamais coûté aussi peu. Etsy, Printful, Gumroad et même Shopify (essai 3 mois à 1 €) permettent de tester un concept e-commerce sans investissement initial. Voici les 4 modèles zéro-capital et comment en tirer les meilleures chances de succès.</p>
 
-  <h2>⚖️ PER collectif vs PER individuel : le comparatif complet</h2>
-  <div class="compa">
-    <div class="co collectif top">
-      <div class="co-header"><span class="co-name">🏢 PER Collectif (PERECO) <span class="top-badge">⭐ Avantage employeur</span></span></div>
-      <div class="co-body">
-        <div class="co-item"><span class="co-label">Qui peut y accéder</span><span class="co-val">Salariés dont l'entreprise en propose un</span></div>
-        <div class="co-item"><span class="co-label">Abondement employeur</span><span class="co-val g">Jusqu'à 6 519 €/an exonérés</span></div>
-        <div class="co-item"><span class="co-label">Versements volontaires</span><span class="co-val">Oui, déductibles du revenu imposable</span></div>
-        <div class="co-item"><span class="co-label">Intéressement / participation</span><span class="co-val g">Versement exonéré de charges</span></div>
-        <div class="co-item"><span class="co-label">Frais de gestion</span><span class="co-val">Variables selon employeur</span></div>
-        <div class="co-item"><span class="co-label">Sortie en capital</span><span class="co-val">Oui (depuis 2019)</span></div>
+  <h2>🛒 Les 4 modèles e-commerce sans capital initial</h2>
+  <div class="options">
+    <div class="option etsy top">
+      <div class="o-header">
+        <span class="o-name">🎨 Etsy — Produits faits main et numériques <span class="top-badge">⭐ Le plus accessible</span></span>
+        <span class="o-cout">0,20 $/annonce + 6,5 % commission</span>
       </div>
+      <div class="o-body">
+        <div><div class="o-col-title">✅ Pour qui</div><ul class="o-col-list"><li>:: Artisans, illustrateurs</li><li>:: Vendeurs de produits numériques (templates, SVG, printables)</li><li>:: Couturiers, bijoutiers</li></ul></div>
+        <div><div class="o-col-title">💡 Le truc</div><ul class="o-col-list"><li>:: Produits numériques = 0 coût de production</li><li>:: Téléchargements automatiques</li><li>:: Un design vendu à l'infini</li></ul></div>
+      </div>
+      <div class="o-note">Les produits numériques sur Etsy (templates Canva, fichiers SVG pour découpe laser, printables planners) sont le modèle le plus pur : créez une fois, vendez sans limite, zéro frais de production ou d'expédition.</div>
     </div>
-    <div class="co individuel">
-      <div class="co-header"><span class="co-name">👤 PER Individuel</span></div>
-      <div class="co-body">
-        <div class="co-item"><span class="co-label">Qui peut y accéder</span><span class="co-val">Tout le monde (salariés, indépendants, sans emploi)</span></div>
-        <div class="co-item"><span class="co-label">Abondement employeur</span><span class="co-val">Non</span></div>
-        <div class="co-item"><span class="co-label">Versements volontaires</span><span class="co-val g">Oui, déductibles du revenu imposable</span></div>
-        <div class="co-item"><span class="co-label">Liberté de choix</span><span class="co-val g">Totale (comparateur PER)</span></div>
-        <div class="co-item"><span class="co-label">Frais de gestion</span><span class="co-val">Comparables entre assureurs</span></div>
-        <div class="co-item"><span class="co-label">Portabilité</span><span class="co-val g">Garde en changeant d'employeur</span></div>
+    <div class="option rb">
+      <div class="o-header">
+        <span class="o-name">🖨️ Print on demand (Printful, Printify + Etsy/Shopify)</span>
+        <span class="o-cout">0 € de stock initial</span>
       </div>
+      <div class="o-body">
+        <div><div class="o-col-title">✅ Pour qui</div><ul class="o-col-list"><li>:: Graphistes et illustrateurs</li><li>:: Sans stock ni logistique</li><li>:: T-shirts, mugs, tote bags</li></ul></div>
+        <div><div class="o-col-title">⚠️ Points clés</div><ul class="o-col-list"><li>:: Production à la demande (pas de stock)</li><li>:: Marges faibles (15–30 %)</li><li>:: L'audience est votre vraie valeur</li></ul></div>
+      </div>
+      <div class="o-note">Connectez Printful à Etsy ou Shopify. Quand un client commande, Printful imprime et expédie directement. Vous ne touchez que la différence entre votre prix de vente et le coût Printful. Zéro stock, zéro logistique.</div>
+    </div>
+    <div class="option wix">
+      <div class="o-header">
+        <span class="o-name">💻 Gumroad / Payhip — Produits numériques</span>
+        <span class="o-cout">5–10 % de commission</span>
+      </div>
+      <div class="o-body">
+        <div><div class="o-col-title">✅ Pour qui</div><ul class="o-col-list"><li>:: E-books, formations, templates</li><li>:: Musique, photos, vidéos</li><li>:: Logiciels et outils</li></ul></div>
+        <div><div class="o-col-title">💡 Le truc</div><ul class="o-col-list"><li>:: Votre boutique en 10 minutes</li><li>:: Pas d'abonnement mensuel</li><li>:: Vous apportez votre trafic</li></ul></div>
+      </div>
+      <div class="o-note">Idéal pour la vente directe de fichiers numériques. Gumroad est gratuit à l'ouverture — vous payez seulement 5–10 % sur les ventes. Sans audience, les ventes restent limitées.</div>
+    </div>
+    <div class="option shop">
+      <div class="o-header">
+        <span class="o-name">🟢 Shopify (essai 3 mois + 1 €/mois)</span>
+        <span class="o-cout">1 €/mois les 3 premiers mois</span>
+      </div>
+      <div class="o-body">
+        <div><div class="o-col-title">✅ Pour qui</div><ul class="o-col-list"><li>:: Boutique professionnelle</li><li>:: Multi-produits, multi-canal</li><li>:: Avec ambition de croissance</li></ul></div>
+        <div><div class="o-col-title">⚠️ Points clés</div><ul class="o-col-list"><li>:: 29 €/mois après les 3 premiers mois</li><li>:: Stock ou dropshipping nécessaire</li><li>:: Publicité pour acquérir du trafic</li></ul></div>
+      </div>
+      <div class="o-note">L'offre d'essai à 1 € permet de lancer et tester sans risque. Mais après 3 mois, les frais fixes (29 €+/mois + publicité) nécessitent un CA minimum pour être rentable.</div>
     </div>
   </div>
 
-  <h2>🎯 Qui devrait prendre quoi ?</h2>
-  <div class="conseil">
-    <h3>💡 Le bon PER selon votre profil</h3>
-    <div class="cons-grid">
-      <div class="cons-item">
-        <div class="cons-who">🏢 Salarié avec PERECO d'entreprise</div>
-        <div class="cons-what">Priorité au PERECO pour profiter de l'abondement employeur (argent gratuit). Complétez ensuite avec un PER individuel si vous voulez déduire davantage.</div>
-      </div>
-      <div class="cons-item">
-        <div class="cons-who">👨‍💼 Indépendant / TNS (ex-Madelin)</div>
-        <div class="cons-what">PER individuel uniquement (ou ex-Madelin transféré). Déduction très avantageuse : jusqu'à 88 911 € en 2026 pour les TNS (formule Madelin, art. 154 bis CGI). Puissant levier fiscal.</div>
-      </div>
-      <div class="cons-item">
-        <div class="cons-who">🎓 Salarié sans PERECO</div>
-        <div class="cons-what">PER individuel. Ouvrez tôt (même petits versements) pour créer un plafond et maximiser les options fiscales futures.</div>
-      </div>
-      <div class="cons-item">
-        <div class="cons-who">👴 À moins de 10 ans de la retraite</div>
-        <div class="cons-what">PER possible mais attention à la sécurisation du capital. Privilégiez des fonds euros ou profils prudents. L'avantage fiscal reste réel.</div>
-      </div>
-    </div>
+  <h2>🪜 Lancer sa première boutique Etsy en 7 jours</h2>
+  <div class="steps">
+    <div class="step"><div class="sn">1</div><div class="sc"><h3>Choisissez un type de produit digital faisable en 48h</h3><p>Templates Canva (cartons d'invitation, CV, posts Instagram), fichiers imprimables (planners, listes de courses), SVG pour machines de découpe. Ces produits se créent avec Canva (gratuit), se vendent sur Etsy, et ne nécessitent aucun stock.</p></div></div>
+    <div class="step"><div class="sn">2</div><div class="sc"><h3>Créez 5 à 10 produits de qualité (pas 50 médiocres)</h3><p>Qualité > quantité sur Etsy. 10 produits bien photographiés avec bons mots-clés convertissent mieux que 100 produits bâclés. Étudiez les 10 meilleures boutiques de votre niche — notez leurs titres, descriptions et prix.</p></div></div>
+    <div class="step"><div class="sn">3</div><div class="sc"><h3>Optimisez vos titres avec les mots-clés Etsy Search</h3><p>Dans la barre de recherche Etsy, tapez vos mots-clés et observez les suggestions. Ce sont les vraies recherches des acheteurs. Intégrez-les dans vos titres et tags. Moz ou eRank permettent d'analyser les volumes de recherche Etsy.</p></div></div>
+    <div class="step"><div class="sn">4</div><div class="sc"><h3>Faites la promotion sur Pinterest (trafic organique gratuit)</h3><p>Pinterest est le meilleur canal gratuit pour les boutiques Etsy. Créez des épingles de vos produits et liez-les directement à vos annonces. Les épingles sont indexées par Google et génèrent du trafic longtemps après leur publication.</p></div></div>
   </div>
 
   <div class="tip">
-    <strong>💡 L'abondement employeur est de l'argent gratuit — ne le ratez pas</strong>
-    Si votre employeur propose un PERECO avec abondement (il abonde vos versements à 50–300 %), c'est de l'argent gratuit exonéré de charges sociales et d'impôt. Un versement de 1 000 € abondé à 100 % devient 2 000 € épargnés pour un coût réel de ~500–700 € (après déduction fiscale). Renseignez-vous auprès de votre RH — moins de 40 % des salariés éligibles utilisent pleinement l'abondement.
+    <strong>💡 Le meilleur produit zéro capital en 2025 : le template Notion</strong>
+    Les templates Notion (systèmes de gestion de projets, planners personnels, CRM perso) se vendent 5–30 € sur Gumroad et Etsy. Créer un template de qualité prend 2 à 5 heures. Chaque vente est à 100 % passif. Certains créateurs vendent leur template des milliers de fois. Commencez par résoudre un problème personnel — si vous l'avez, d'autres l'ont aussi.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Le PER bloque vos fonds jusqu'à la retraite (sauf cas exceptionnels)</strong>
-    Les versements sur un PER sont bloqués jusqu'à la retraite. Exceptions légales permettant un déblocage anticipé : acquisition de la résidence principale, invalidité, décès du conjoint, surendettement, fin de droits chômage, liquidation judiciaire. Ne versez sur votre PER que de l'argent dont vous n'aurez pas besoin avant la retraite.
+    <strong>⚠️ Sans trafic, pas de ventes — c'est le vrai défi</strong>
+    Ouvrir une boutique est la partie facile. Obtenir du trafic est la vraie difficulté. Sur Etsy, les nouvelles boutiques n'ont pas de trafic organique avant d'avoir des ventes et des avis. Investissez 20–50 € en publicité Etsy pour vos premières ventes, ou construisez une audience sociale avant d'ouvrir la boutique.
   </div>
 
   <div class="cta">
-    <h3>📬 Épargne retraite dans votre boîte mail</h3>
-    <p>Les meilleures stratégies pour préparer votre retraite et optimiser votre fiscalité, chaque semaine.</p>
+    <h3>📬 E-commerce & revenus dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour lancer votre boutique en ligne sans capital, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
     </div>
   </div>
-</div>
-
-<!-- Partenaire Linxea -->
-<div style="background:linear-gradient(135deg,#FAEEDA,#FFF8EE);border:1px solid #EF9F27;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-  <span style="font-size:2rem">📈</span>
-  <div style="flex:1;min-width:200px">
-    <div style="font-weight:700;color:#633806;font-size:.95rem;margin-bottom:.2rem">Optimisez votre épargne avec Linxea</div>
-    <div style="font-size:.82rem;color:#5F5E5A">Assurance-vie et épargne retraite à frais réduits, courtier ORIAS depuis 2001. Les unités de compte comportent un risque de perte en capital ; le fonds en euros est garanti.</div>
-  </div>
-  <a href="https://www.awin1.com/cread.php?awinmid=13275&awinaffid=2926395&ued=https%3A%2F%2Fwww.linxea.com" target="_blank" rel="noopener sponsored" style="background:#EF9F27;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Découvrir →</a>
 </div>
 
 <!-- Boutons partage -->
@@ -296,13 +296,13 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-374.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Budget zéro basé : méthode et application</div></a><a class="sim-card" href="article-375.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Méthode 50/30/20 : appliquer concrètement</div></a><a class="sim-card" href="article-376.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">YNAB vs Bankin vs Linxo</div></a><a class="sim-card" href="article-377.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Couple et argent : gérer les finances à deux</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-415.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Grenier en or : évaluer et vendre ses objets</div></a><a class="sim-card" href="article-416.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Vendre ses créations en ligne : plateformes gratuites</div></a><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne : devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting : avoir un 2e revenu légal</div></a></div>
 </div>
 
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil en investissement.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">

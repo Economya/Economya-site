@@ -2,73 +2,59 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr">
+<meta name="description" content="Avis d'imposition : le décrypter complètement — Vérifiez chaque chiffre. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PER collectif vs individuel : que choisir — Economya.fr</title>
+<title>Avis d'imposition : le décrypter complètement — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--violet:#7c3aed;--violet-l:#f5f3ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#052e16,#065f46,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🤔';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#1e0533,#4c1d95,#7c3aed);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'📑';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a7f3d0;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#ddd6fe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#6ee7b7;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#1D9E75);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(29,158,117,.35)}
+.ah h1 em{color:#c4b5fd;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#7c3aed);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(124,58,237,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#1D9E75,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#7c3aed,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--g);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--violet);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* COMPARAISON */
-.compa{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
-@media(max-width:520px){.compa{grid-template-columns:1fr}}
-.co{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden}
-.co.top{border:2px solid var(--g)}
-.co-header{padding:.85rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
-.co.collectif .co-header{background:linear-gradient(135deg,#065f46,#1D9E75)}
-.co.individuel .co-header{background:linear-gradient(135deg,#1e1b5e,#4338ca)}
-.co-name{font-weight:700;color:white;font-size:.9rem;display:flex;align-items:center;gap:.4rem}
-.top-badge{display:inline-block;background:var(--g);color:white;font-size:.62rem;font-weight:700;padding:.1rem .5rem;border-radius:50px}
-.co-body{padding:.9rem 1.2rem}
-.co-item{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.55rem;gap:.5rem;font-size:.84rem;border-bottom:1px solid var(--b);padding-bottom:.55rem}
-.co-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.co-label{color:var(--m);flex-shrink:0;font-size:.78rem}
-.co-val{font-weight:600;color:var(--t);text-align:right;font-size:.84rem}
-.co-val.g{color:var(--g)}
-
-/* CONSEIL */
-.conseil{background:var(--gl);border-radius:var(--r);padding:1.3rem 1.5rem;margin:1.5rem 0}
-.conseil h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gd);margin-bottom:.8rem}
-.cons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem}
-.cons-item{background:white;border-radius:8px;padding:.85rem}
-.cons-who{font-weight:700;font-size:.85rem;color:var(--gd);margin-bottom:.25rem}
-.cons-what{font-size:.78rem;color:var(--m);font-weight:300;line-height:1.4}
+/* LIGNES AVIS */
+.lignes{display:flex;flex-direction:column;gap:.75rem;margin:1.5rem 0}
+.ligne{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.9rem 1.1rem;display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start}
+.ligne.top{border:2px solid var(--g)}
+.l-label{font-family:'DM Sans',sans-serif;font-weight:700;font-size:.78rem;color:white;background:var(--violet);padding:.2rem .5rem;border-radius:6px;flex-shrink:0;white-space:nowrap;height:fit-content}
+.ligne.top .l-label{background:var(--g)}
+.l-body h3{font-size:.9rem;font-weight:700;margin-bottom:.15rem}
+.l-body p{font-size:.83rem;color:var(--m);font-weight:300;margin:0}
+.l-body .ltag{display:inline-block;margin-top:.3rem;background:var(--violet-l);color:#4c1d95;font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+.ltag.g{background:var(--gl);color:var(--gd)}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn{background:var(--violet-l);border-left:4px solid var(--violet);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#1e0533}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#052e16,#065f46);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#1e0533,#4c1d95);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#1D9E75,#7c3aed);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#7c3aed,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
 @media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
@@ -125,9 +111,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "PER collectif vs individuel : que choisir",
-  "description": "PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-439.html",
+  "headline": "Avis d'imposition : le décrypter complètement",
+  "description": "Avis d'imposition : le décrypter complètement — Vérifiez chaque chiffre. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-434.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -144,19 +130,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="PER collectif vs individuel : que choisir">
-  <meta property="og:description" content="PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-439.html">
+  <meta property="og:title" content="Avis d'imposition : le décrypter complètement">
+  <meta property="og:description" content="Avis d'imposition : le décrypter complètement — Vérifiez chaque chiffre. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-434.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PER collectif vs individuel : que choisir">
-  <meta name="twitter:description" content="PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Avis d'imposition : le décrypter complètement">
+  <meta name="twitter:description" content="Avis d'imposition : le décrypter complètement — Vérifiez chaque chiffre. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-439.html" />
+<link rel="canonical" href="https://economya.fr/article-434.html" />
 </head>
 <body>
 <nav>
@@ -166,101 +152,107 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Finance</span> › <span style="color:var(--t,#2C2C2A)">PER collectif vs individuel : que choisir</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Finance", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "PER collectif vs individuel : que choisir", "item": "https://economya.fr/article-439.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Finance</span> › <span style="color:var(--t,#2C2C2A)">Avis d'imposition : le décrypter complètement</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Finance", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Avis d'imposition : le décrypter complètement", "item": "https://economya.fr/article-434.html"}]}</script>
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🤔 Finance</div>
-    <h1>PER collectif vs individuel :<br><em>que choisir</em></h1>
-    <div class="savings-badge">💰 Quel plan retraite est le meilleur</div>
+    <div class="cat-pill">📑 Finance</div>
+    <h1>Avis d'imposition :<br><em>le décrypter complètement</em></h1>
+    <div class="savings-badge">💰 Vérifiez chaque chiffre</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">🏦 Épargne retraite</span>
+      <span class="theme-tag">📋 Comprendre ses impôts</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Depuis 2019, le Plan d'Épargne Retraite (PER) a remplacé les anciens PERP, Madelin et PERCO. Il existe deux grandes versions : le PER d'entreprise collectif (PERECO) proposé par l'employeur, et le PER individuel souscrit librement. Les deux offrent des avantages fiscaux puissants — mais ils ne s'adressent pas aux mêmes profils.</p>
+  <p class="lead">L'avis d'imposition est le document fiscal le plus important de l'année — et pourtant beaucoup ne savent pas le lire. Comprendre chaque ligne permet de vérifier les calculs, d'identifier des erreurs, et de comprendre comment réduire son impôt l'année suivante. Guide complet ligne par ligne.</p>
 
-  <h2>⚖️ PER collectif vs PER individuel : le comparatif complet</h2>
-  <div class="compa">
-    <div class="co collectif top">
-      <div class="co-header"><span class="co-name">🏢 PER Collectif (PERECO) <span class="top-badge">⭐ Avantage employeur</span></span></div>
-      <div class="co-body">
-        <div class="co-item"><span class="co-label">Qui peut y accéder</span><span class="co-val">Salariés dont l'entreprise en propose un</span></div>
-        <div class="co-item"><span class="co-label">Abondement employeur</span><span class="co-val g">Jusqu'à 6 519 €/an exonérés</span></div>
-        <div class="co-item"><span class="co-label">Versements volontaires</span><span class="co-val">Oui, déductibles du revenu imposable</span></div>
-        <div class="co-item"><span class="co-label">Intéressement / participation</span><span class="co-val g">Versement exonéré de charges</span></div>
-        <div class="co-item"><span class="co-label">Frais de gestion</span><span class="co-val">Variables selon employeur</span></div>
-        <div class="co-item"><span class="co-label">Sortie en capital</span><span class="co-val">Oui (depuis 2019)</span></div>
+  <h2>📋 Décryptage ligne par ligne de l'avis d'imposition</h2>
+  <div class="lignes">
+    <div class="ligne top">
+      <div class="l-label">Revenu brut global</div>
+      <div class="l-body">
+        <h3>La somme de tous vos revenus avant abattements</h3>
+        <p>Somme de vos salaires, revenus fonciers, bénéfices non commerciaux et autres revenus imposables avant tout abattement. C'est le montant brut déclaré. À vérifier avec vos fiches de paie et justificatifs.</p>
+        <span class="ltag">⚠️ À comparer avec vos fiches de paie</span>
       </div>
     </div>
-    <div class="co individuel">
-      <div class="co-header"><span class="co-name">👤 PER Individuel</span></div>
-      <div class="co-body">
-        <div class="co-item"><span class="co-label">Qui peut y accéder</span><span class="co-val">Tout le monde (salariés, indépendants, sans emploi)</span></div>
-        <div class="co-item"><span class="co-label">Abondement employeur</span><span class="co-val">Non</span></div>
-        <div class="co-item"><span class="co-label">Versements volontaires</span><span class="co-val g">Oui, déductibles du revenu imposable</span></div>
-        <div class="co-item"><span class="co-label">Liberté de choix</span><span class="co-val g">Totale (comparateur PER)</span></div>
-        <div class="co-item"><span class="co-label">Frais de gestion</span><span class="co-val">Comparables entre assureurs</span></div>
-        <div class="co-item"><span class="co-label">Portabilité</span><span class="co-val g">Garde en changeant d'employeur</span></div>
+    <div class="ligne">
+      <div class="l-label">Revenu net global</div>
+      <div class="l-body">
+        <h3>Après déduction des charges</h3>
+        <p>Revenu brut global moins les déductions (frais réels, abattement 10 %, déficit foncier, versements PER, pensions alimentaires versées…). C'est la base sur laquelle s'applique le barème progressif.</p>
       </div>
     </div>
-  </div>
-
-  <h2>🎯 Qui devrait prendre quoi ?</h2>
-  <div class="conseil">
-    <h3>💡 Le bon PER selon votre profil</h3>
-    <div class="cons-grid">
-      <div class="cons-item">
-        <div class="cons-who">🏢 Salarié avec PERECO d'entreprise</div>
-        <div class="cons-what">Priorité au PERECO pour profiter de l'abondement employeur (argent gratuit). Complétez ensuite avec un PER individuel si vous voulez déduire davantage.</div>
+    <div class="ligne">
+      <div class="l-label">Revenu net imposable</div>
+      <div class="l-body">
+        <h3>Après quotient familial</h3>
+        <p>Revenu net global divisé par le nombre de parts fiscales du foyer (quotient familial). Chaque demi-part (enfant, situation de famille) réduit la base imposable. Un enfant = 0,5 part supplémentaire (1 part pour le premier enfant d'un parent isolé).</p>
+        <span class="ltag">👨‍👩‍👧 Quotient familial = économie d'impôt</span>
       </div>
-      <div class="cons-item">
-        <div class="cons-who">👨‍💼 Indépendant / TNS (ex-Madelin)</div>
-        <div class="cons-what">PER individuel uniquement (ou ex-Madelin transféré). Déduction très avantageuse : jusqu'à 88 911 € en 2026 pour les TNS (formule Madelin, art. 154 bis CGI). Puissant levier fiscal.</div>
+    </div>
+    <div class="ligne">
+      <div class="l-label">Impôt brut</div>
+      <div class="l-body">
+        <h3>Résultat du barème progressif</h3>
+        <p>Application du barème progressif au revenu net imposable. C'est le montant avant toute réduction ou crédit d'impôt. Si vous avez des enfants, c'est le résultat après application du plafond de l'avantage du quotient familial.</p>
       </div>
-      <div class="cons-item">
-        <div class="cons-who">🎓 Salarié sans PERECO</div>
-        <div class="cons-what">PER individuel. Ouvrez tôt (même petits versements) pour créer un plafond et maximiser les options fiscales futures.</div>
+    </div>
+    <div class="ligne">
+      <div class="l-label">Réductions / crédits</div>
+      <div class="l-body">
+        <h3>Les avantages fiscaux que vous avez déclarés</h3>
+        <p>Emploi à domicile, garde d'enfants, dons, investissement PME, frais de scolarité… Ces montants sont soustraits de l'impôt brut. Un crédit d'impôt peut être remboursé même si votre impôt est nul. Une réduction ne peut pas dépasser votre impôt.</p>
+        <span class="ltag g">💰 Vérifiez que toutes vos réductions sont présentes</span>
       </div>
-      <div class="cons-item">
-        <div class="cons-who">👴 À moins de 10 ans de la retraite</div>
-        <div class="cons-what">PER possible mais attention à la sécurisation du capital. Privilégiez des fonds euros ou profils prudents. L'avantage fiscal reste réel.</div>
+    </div>
+    <div class="ligne top">
+      <div class="l-label" style="background:var(--g)">Impôt net</div>
+      <div class="l-body">
+        <h3>Votre impôt réel à payer (ou à récupérer)</h3>
+        <p>Impôt brut − réductions − crédits d'impôt. Si ce montant est négatif, l'État vous rembourse l'excédent (crédits supérieurs à l'impôt dû). Si positif, c'est ce que vous devez (prélevé à la source ou à régler).</p>
+        <span class="ltag g">✅ Le montant final à vérifier en priorité</span>
+      </div>
+    </div>
+    <div class="ligne">
+      <div class="l-label">Taux moyen</div>
+      <div class="l-body">
+        <h3>Votre taux d'imposition effectif (pas marginal)</h3>
+        <p>C'est le ratio entre votre impôt net et votre revenu brut. Souvent très inférieur au taux marginal (TMI). Un contribuable au TMI 30 % peut avoir un taux moyen réel de 10–15 % grâce aux abattements et parts fiscales. C'est votre "vrai" taux d'imposition.</p>
+      </div>
+    </div>
+    <div class="ligne">
+      <div class="l-label">Taux source</div>
+      <div class="l-body">
+        <h3>Le taux appliqué sur votre fiche de paie (PAS)</h3>
+        <p>Le taux de Prélèvement À la Source (PAS) transmis à votre employeur. Il est calculé sur la base de votre déclaration précédente. Si votre situation a changé (mariage, enfant, baisse de revenus), mettez-le à jour sur impots.gouv.fr → Gérer mon taux.</p>
+        <span class="ltag">📱 Modifiable sur impots.gouv.fr</span>
       </div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 L'abondement employeur est de l'argent gratuit — ne le ratez pas</strong>
-    Si votre employeur propose un PERECO avec abondement (il abonde vos versements à 50–300 %), c'est de l'argent gratuit exonéré de charges sociales et d'impôt. Un versement de 1 000 € abondé à 100 % devient 2 000 € épargnés pour un coût réel de ~500–700 € (après déduction fiscale). Renseignez-vous auprès de votre RH — moins de 40 % des salariés éligibles utilisent pleinement l'abondement.
+    <strong>💡 L'avis d'imposition est un justificatif officiel très utile</strong>
+    Votre avis d'imposition est demandé pour de nombreuses démarches administratives : demande d'APL (CAF), accès aux aides sociales, dossier de location (revenu de référence fiscal), demande de crédit, démarches en mairie. Conservez-le ou téléchargez-le depuis votre espace personnel impots.gouv.fr.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Le PER bloque vos fonds jusqu'à la retraite (sauf cas exceptionnels)</strong>
-    Les versements sur un PER sont bloqués jusqu'à la retraite. Exceptions légales permettant un déblocage anticipé : acquisition de la résidence principale, invalidité, décès du conjoint, surendettement, fin de droits chômage, liquidation judiciaire. Ne versez sur votre PER que de l'argent dont vous n'aurez pas besoin avant la retraite.
+    <strong>⚠️ Erreur trouvée ? Rectifiez dans les 3 ans</strong>
+    Si vous constatez une erreur dans votre avis d'imposition (revenu non pris en compte, réduction oubliée), vous pouvez déposer une réclamation contentieuse auprès de votre centre des impôts jusqu'à fin 2027 pour les erreurs sur la déclaration 2024. En ligne : impots.gouv.fr → Messagerie sécurisée → Réclamation. C'est gratuit.
   </div>
 
   <div class="cta">
-    <h3>📬 Épargne retraite dans votre boîte mail</h3>
-    <p>Les meilleures stratégies pour préparer votre retraite et optimiser votre fiscalité, chaque semaine.</p>
+    <h3>📬 Comprendre ses impôts dans votre boîte mail</h3>
+    <p>Les meilleures explications et astuces pour lire et optimiser sa déclaration, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
     </div>
   </div>
-</div>
-
-<!-- Partenaire Linxea -->
-<div style="background:linear-gradient(135deg,#FAEEDA,#FFF8EE);border:1px solid #EF9F27;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-  <span style="font-size:2rem">📈</span>
-  <div style="flex:1;min-width:200px">
-    <div style="font-weight:700;color:#633806;font-size:.95rem;margin-bottom:.2rem">Optimisez votre épargne avec Linxea</div>
-    <div style="font-size:.82rem;color:#5F5E5A">Assurance-vie et épargne retraite à frais réduits, courtier ORIAS depuis 2001. Les unités de compte comportent un risque de perte en capital ; le fonds en euros est garanti.</div>
-  </div>
-  <a href="https://www.awin1.com/cread.php?awinmid=13275&awinaffid=2926395&ued=https%3A%2F%2Fwww.linxea.com" target="_blank" rel="noopener sponsored" style="background:#EF9F27;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Découvrir →</a>
 </div>
 
 <!-- Boutons partage -->
@@ -302,7 +294,7 @@ window.economyaLoadAds = function() {
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil en investissement.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Informations indicatives — vérifiez sur impots.gouv.fr.</span>
 </footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">

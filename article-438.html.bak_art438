@@ -2,73 +2,84 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr">
+<meta name="description" content="Plus-value immobilière : calcul et exonérations — Exonérations méconnues. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PER collectif vs individuel : que choisir — Economya.fr</title>
+<title>Plus-value immobilière : calcul et exonérations — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--amber:#d97706;--amber-l:#fffbeb;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#052e16,#065f46,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🤔';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🏠';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a7f3d0;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#6ee7b7;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#1D9E75);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(29,158,117,.35)}
+.ah h1 em{color:#fcd34d;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#1D9E75,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#d97706,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--g);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* COMPARAISON */
-.compa{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
-@media(max-width:520px){.compa{grid-template-columns:1fr}}
-.co{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden}
-.co.top{border:2px solid var(--g)}
-.co-header{padding:.85rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
-.co.collectif .co-header{background:linear-gradient(135deg,#065f46,#1D9E75)}
-.co.individuel .co-header{background:linear-gradient(135deg,#1e1b5e,#4338ca)}
-.co-name{font-weight:700;color:white;font-size:.9rem;display:flex;align-items:center;gap:.4rem}
-.top-badge{display:inline-block;background:var(--g);color:white;font-size:.62rem;font-weight:700;padding:.1rem .5rem;border-radius:50px}
-.co-body{padding:.9rem 1.2rem}
-.co-item{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.55rem;gap:.5rem;font-size:.84rem;border-bottom:1px solid var(--b);padding-bottom:.55rem}
-.co-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.co-label{color:var(--m);flex-shrink:0;font-size:.78rem}
-.co-val{font-weight:600;color:var(--t);text-align:right;font-size:.84rem}
-.co-val.g{color:var(--g)}
+/* CALCUL */
+.calcul{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;margin:1.5rem 0}
+.calc-h{background:linear-gradient(135deg,#92400e,#d97706);padding:.8rem 1.3rem}
+.calc-h-title{font-weight:700;color:white;font-size:.9rem}
+.calc-rows{display:flex;flex-direction:column}
+.calc-row{display:grid;grid-template-columns:1fr auto;padding:.65rem 1.3rem;border-bottom:1px solid var(--b);align-items:center;font-size:.84rem}
+.calc-row:last-child{border-bottom:none;font-weight:700;background:#fafafa}
+.calc-label{color:var(--t)}
+.calc-val{font-weight:600;text-align:right}
+.calc-val.rouge{color:#dc2626}
+.calc-val.vert{color:var(--g)}
+.calc-val.orange{color:var(--amber)}
 
-/* CONSEIL */
-.conseil{background:var(--gl);border-radius:var(--r);padding:1.3rem 1.5rem;margin:1.5rem 0}
-.conseil h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gd);margin-bottom:.8rem}
-.cons-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem}
-.cons-item{background:white;border-radius:8px;padding:.85rem}
-.cons-who{font-weight:700;font-size:.85rem;color:var(--gd);margin-bottom:.25rem}
-.cons-what{font-size:.78rem;color:var(--m);font-weight:300;line-height:1.4}
+/* EXONÉRATIONS */
+.exos{display:flex;flex-direction:column;gap:.9rem;margin:1.5rem 0}
+.exo{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start;transition:box-shadow .2s}
+.exo:hover{box-shadow:0 4px 16px rgba(217,119,6,.1)}
+.exo.top{border:2px solid var(--g)}
+.eico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+.exo strong{display:block;font-size:.92rem;margin-bottom:.15rem}
+.exo span{font-size:.85rem;color:var(--m);font-weight:300}
+.exo .etag{display:inline-block;margin-top:.35rem;font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+.etag.g{background:var(--gl);color:var(--gd)}
+.etag.a{background:var(--amber-l);color:var(--ad)}
+
+/* ABATTEMENTS DURÉE */
+.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+thead tr{background:linear-gradient(135deg,#92400e,#d97706);color:white}
+thead th{padding:.75rem 1rem;text-align:left;font-weight:600;font-size:.78rem}
+tbody tr{border-bottom:1px solid var(--b)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:#fafafa}
+tbody td{padding:.7rem 1rem;vertical-align:middle;font-size:.84rem}
+.g{color:#16a34a;font-weight:600}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#052e16,#065f46);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#1c1000,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#1D9E75,#7c3aed);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#d97706,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
 @media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
@@ -125,9 +136,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "PER collectif vs individuel : que choisir",
-  "description": "PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-439.html",
+  "headline": "Plus-value immobilière : calcul et exonérations",
+  "description": "Plus-value immobilière : calcul et exonérations — Exonérations méconnues. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-438.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -144,19 +155,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="PER collectif vs individuel : que choisir">
-  <meta property="og:description" content="PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-439.html">
+  <meta property="og:title" content="Plus-value immobilière : calcul et exonérations">
+  <meta property="og:description" content="Plus-value immobilière : calcul et exonérations — Exonérations méconnues. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-438.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="PER collectif vs individuel : que choisir">
-  <meta name="twitter:description" content="PER collectif vs individuel : que choisir — Quel plan retraite est le meilleur. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Plus-value immobilière : calcul et exonérations">
+  <meta name="twitter:description" content="Plus-value immobilière : calcul et exonérations — Exonérations méconnues. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-439.html" />
+<link rel="canonical" href="https://economya.fr/article-438.html" />
 </head>
 <body>
 <nav>
@@ -166,101 +177,108 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Finance</span> › <span style="color:var(--t,#2C2C2A)">PER collectif vs individuel : que choisir</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Finance", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "PER collectif vs individuel : que choisir", "item": "https://economya.fr/article-439.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Finance</span> › <span style="color:var(--t,#2C2C2A)">Plus-value immobilière : calcul et exonérations</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Finance", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Plus-value immobilière : calcul et exonérations", "item": "https://economya.fr/article-438.html"}]}</script>
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🤔 Finance</div>
-    <h1>PER collectif vs individuel :<br><em>que choisir</em></h1>
-    <div class="savings-badge">💰 Quel plan retraite est le meilleur</div>
+    <div class="cat-pill">🏠 Finance</div>
+    <h1>Plus-value immobilière :<br><em>calcul et exonérations</em></h1>
+    <div class="savings-badge">💰 Exonérations méconnues</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">🏦 Épargne retraite</span>
+      <span class="theme-tag">🏡 Immobilier & fiscalité</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Depuis 2019, le Plan d'Épargne Retraite (PER) a remplacé les anciens PERP, Madelin et PERCO. Il existe deux grandes versions : le PER d'entreprise collectif (PERECO) proposé par l'employeur, et le PER individuel souscrit librement. Les deux offrent des avantages fiscaux puissants — mais ils ne s'adressent pas aux mêmes profils.</p>
+  <p class="lead">Quand vous vendez un bien immobilier avec une plus-value, vous pouvez être taxé jusqu'à 36,2 % (19 % d'IR + 17,2 % de prélèvements sociaux). Mais de nombreuses exonérations permettent de réduire ou supprimer cette taxe — et la plupart sont méconnues des vendeurs.</p>
 
-  <h2>⚖️ PER collectif vs PER individuel : le comparatif complet</h2>
-  <div class="compa">
-    <div class="co collectif top">
-      <div class="co-header"><span class="co-name">🏢 PER Collectif (PERECO) <span class="top-badge">⭐ Avantage employeur</span></span></div>
-      <div class="co-body">
-        <div class="co-item"><span class="co-label">Qui peut y accéder</span><span class="co-val">Salariés dont l'entreprise en propose un</span></div>
-        <div class="co-item"><span class="co-label">Abondement employeur</span><span class="co-val g">Jusqu'à 6 519 €/an exonérés</span></div>
-        <div class="co-item"><span class="co-label">Versements volontaires</span><span class="co-val">Oui, déductibles du revenu imposable</span></div>
-        <div class="co-item"><span class="co-label">Intéressement / participation</span><span class="co-val g">Versement exonéré de charges</span></div>
-        <div class="co-item"><span class="co-label">Frais de gestion</span><span class="co-val">Variables selon employeur</span></div>
-        <div class="co-item"><span class="co-label">Sortie en capital</span><span class="co-val">Oui (depuis 2019)</span></div>
-      </div>
-    </div>
-    <div class="co individuel">
-      <div class="co-header"><span class="co-name">👤 PER Individuel</span></div>
-      <div class="co-body">
-        <div class="co-item"><span class="co-label">Qui peut y accéder</span><span class="co-val">Tout le monde (salariés, indépendants, sans emploi)</span></div>
-        <div class="co-item"><span class="co-label">Abondement employeur</span><span class="co-val">Non</span></div>
-        <div class="co-item"><span class="co-label">Versements volontaires</span><span class="co-val g">Oui, déductibles du revenu imposable</span></div>
-        <div class="co-item"><span class="co-label">Liberté de choix</span><span class="co-val g">Totale (comparateur PER)</span></div>
-        <div class="co-item"><span class="co-label">Frais de gestion</span><span class="co-val">Comparables entre assureurs</span></div>
-        <div class="co-item"><span class="co-label">Portabilité</span><span class="co-val g">Garde en changeant d'employeur</span></div>
-      </div>
+  <h2>💰 Comment se calcule la plus-value imposable</h2>
+  <div class="calcul">
+    <div class="calc-h"><span class="calc-h-title">📊 Exemple : appartement acheté 150 000 € en 2018, vendu 220 000 € en 2025 (7 ans)</span></div>
+    <div class="calc-rows">
+      <div class="calc-row"><span class="calc-label">Prix de vente</span><span class="calc-val">220 000 €</span></div>
+      <div class="calc-row"><span class="calc-label">Prix d'achat (corrigé)</span><span class="calc-val">150 000 €</span></div>
+      <div class="calc-row"><span class="calc-label">Frais d'acquisition (forfait 7,5 % ou réels)</span><span class="calc-val rouge">−11 250 €</span></div>
+      <div class="calc-row"><span class="calc-label">Travaux (factures ou forfait 15 % si +5 ans)</span><span class="calc-val rouge">−22 500 €</span></div>
+      <div class="calc-row"><span class="calc-label">Plus-value brute</span><span class="calc-val orange">36 250 €</span></div>
+      <div class="calc-row"><span class="calc-label">Abattement durée (7 ans = 14 % IR / 4,95 % PS)</span><span class="calc-val rouge">−5 075 € / −1 794 €</span></div>
+      <div class="calc-row"><span class="calc-label">IR dû (19 % × PV nette)</span><span class="calc-val rouge">5 948 €</span></div>
+      <div class="calc-row"><span class="calc-label">Prélèvements sociaux (17,2 %)</span><span class="calc-val rouge">5 934 €</span></div>
+      <div class="calc-row"><span class="calc-label">Total taxe plus-value</span><span class="calc-val" style="font-size:.92rem">≈ 11 882 €</span></div>
     </div>
   </div>
 
-  <h2>🎯 Qui devrait prendre quoi ?</h2>
-  <div class="conseil">
-    <h3>💡 Le bon PER selon votre profil</h3>
-    <div class="cons-grid">
-      <div class="cons-item">
-        <div class="cons-who">🏢 Salarié avec PERECO d'entreprise</div>
-        <div class="cons-what">Priorité au PERECO pour profiter de l'abondement employeur (argent gratuit). Complétez ensuite avec un PER individuel si vous voulez déduire davantage.</div>
+  <h2>📅 Abattements selon la durée de détention</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Années de détention</th><th>Abattement IR</th><th>Abattement PS</th><th>Exonération totale</th></tr></thead>
+      <tbody>
+        <tr><td>Moins de 6 ans</td><td>0 %</td><td>0 %</td><td>Non</td></tr>
+        <tr><td>6–21 ans</td><td>6 % / an</td><td>1,65 % / an</td><td>Non</td></tr>
+        <tr><td>22 ans</td><td class="g">100 % (IR)</td><td>1,60 % (22e an)</td><td>IR exonéré</td></tr>
+        <tr><td>23–30 ans</td><td class="g">100 % (IR)</td><td>9 % / an</td><td>IR exonéré</td></tr>
+        <tr><td>30 ans et plus</td><td class="g">100 %</td><td class="g">100 %</td><td class="g">Totale</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>✅ Les exonérations méconnues</h2>
+  <div class="exos">
+    <div class="exo top">
+      <span class="eico">🏠</span>
+      <div>
+        <strong>Résidence principale — exonération totale et automatique</strong>
+        <span>La vente de votre résidence principale est totalement exonérée de plus-value, quelle que soit la durée de détention et quel que soit le montant du gain. C'est l'exonération la plus puissante. Elle s'applique même si vous habitiez le bien depuis seulement quelques mois.</span>
+        <span class="etag g">✅ 100 % exonéré — automatique</span>
       </div>
-      <div class="cons-item">
-        <div class="cons-who">👨‍💼 Indépendant / TNS (ex-Madelin)</div>
-        <div class="cons-what">PER individuel uniquement (ou ex-Madelin transféré). Déduction très avantageuse : jusqu'à 88 911 € en 2026 pour les TNS (formule Madelin, art. 154 bis CGI). Puissant levier fiscal.</div>
+    </div>
+    <div class="exo">
+      <span class="eico">🔑</span>
+      <div>
+        <strong>1ère vente d'un bien secondaire si vous n'êtes pas propriétaire de votre RP</strong>
+        <span>Si vous vendez un bien secondaire pour la première fois ET que vous n'avez pas été propriétaire de votre résidence principale dans les 4 dernières années, exonération de la plus-value (sous conditions de remploi dans les 24 mois dans l'achat de votre RP).</span>
+        <span class="etag g">Sous conditions</span>
       </div>
-      <div class="cons-item">
-        <div class="cons-who">🎓 Salarié sans PERECO</div>
-        <div class="cons-what">PER individuel. Ouvrez tôt (même petits versements) pour créer un plafond et maximiser les options fiscales futures.</div>
+    </div>
+    <div class="exo">
+      <span class="eico">👴</span>
+      <div>
+        <strong>Exonération pour les personnes en maison de retraite ou invalides</strong>
+        <span>Les titulaires de l'ASPA (ex-minimum vieillesse) ou de l'AAH qui vendent leur ancienne résidence principale dans les 2 ans de leur entrée en établissement sont exonérés de taxe sur la plus-value, sous conditions de ressources.</span>
+        <span class="etag a">Personnes en établissement</span>
       </div>
-      <div class="cons-item">
-        <div class="cons-who">👴 À moins de 10 ans de la retraite</div>
-        <div class="cons-what">PER possible mais attention à la sécurisation du capital. Privilégiez des fonds euros ou profils prudents. L'avantage fiscal reste réel.</div>
+    </div>
+    <div class="exo">
+      <span class="eico">🏘️</span>
+      <div>
+        <strong>Exonération si prix de vente &lt;15 000 €</strong>
+        <span>Si le prix de vente total est inférieur à 15 000 €, la plus-value est automatiquement exonérée d'impôt. Utile pour les petites ventes (garage, terrain, part de bien).</span>
+        <span class="etag g">Automatique si prix &lt;15 000 €</span>
       </div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 L'abondement employeur est de l'argent gratuit — ne le ratez pas</strong>
-    Si votre employeur propose un PERECO avec abondement (il abonde vos versements à 50–300 %), c'est de l'argent gratuit exonéré de charges sociales et d'impôt. Un versement de 1 000 € abondé à 100 % devient 2 000 € épargnés pour un coût réel de ~500–700 € (après déduction fiscale). Renseignez-vous auprès de votre RH — moins de 40 % des salariés éligibles utilisent pleinement l'abondement.
+    <strong>💡 Le forfait de 15 % pour travaux après 5 ans de détention</strong>
+    Si vous détenez le bien depuis plus de 5 ans, vous pouvez déduire un forfait de 15 % du prix d'acquisition pour travaux — sans justificatifs ! Cela réduit mécaniquement la plus-value imposable. Si vos travaux réels (avec factures) sont supérieurs à 15 %, déclarez les montants réels. Prenez le plus avantageux.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Le PER bloque vos fonds jusqu'à la retraite (sauf cas exceptionnels)</strong>
-    Les versements sur un PER sont bloqués jusqu'à la retraite. Exceptions légales permettant un déblocage anticipé : acquisition de la résidence principale, invalidité, décès du conjoint, surendettement, fin de droits chômage, liquidation judiciaire. Ne versez sur votre PER que de l'argent dont vous n'aurez pas besoin avant la retraite.
+    <strong>⚠️ La taxe sur les hautes plus-values (surtaxe)</strong>
+    Une surtaxe supplémentaire s'applique aux plus-values nettes supérieures à 50 000 € : de 2 % à 6 % selon le montant de la plus-value. Cette surtaxe s'ajoute au taux de 19 % d'IR. Pour les plus-values importantes, il peut être judicieux de différer la vente ou de fractionner si possible.
   </div>
 
   <div class="cta">
-    <h3>📬 Épargne retraite dans votre boîte mail</h3>
-    <p>Les meilleures stratégies pour préparer votre retraite et optimiser votre fiscalité, chaque semaine.</p>
+    <h3>📬 Immobilier & fiscalité dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour vendre votre bien en payant le moins d'impôt possible, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
     </div>
   </div>
-</div>
-
-<!-- Partenaire Linxea -->
-<div style="background:linear-gradient(135deg,#FAEEDA,#FFF8EE);border:1px solid #EF9F27;border-radius:16px;padding:1.2rem 1.5rem;margin:2rem 0;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
-  <span style="font-size:2rem">📈</span>
-  <div style="flex:1;min-width:200px">
-    <div style="font-weight:700;color:#633806;font-size:.95rem;margin-bottom:.2rem">Optimisez votre épargne avec Linxea</div>
-    <div style="font-size:.82rem;color:#5F5E5A">Assurance-vie et épargne retraite à frais réduits, courtier ORIAS depuis 2001. Les unités de compte comportent un risque de perte en capital ; le fonds en euros est garanti.</div>
-  </div>
-  <a href="https://www.awin1.com/cread.php?awinmid=13275&awinaffid=2926395&ued=https%3A%2F%2Fwww.linxea.com" target="_blank" rel="noopener sponsored" style="background:#EF9F27;color:white;padding:.6rem 1.2rem;border-radius:50px;font-weight:700;font-size:.82rem;text-decoration:none;white-space:nowrap">Découvrir →</a>
 </div>
 
 <!-- Boutons partage -->
@@ -302,7 +320,7 @@ window.economyaLoadAds = function() {
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil en investissement.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Informations indicatives — consultez un notaire pour votre situation.</span>
 </footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
