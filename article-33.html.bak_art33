@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forfait mobile : payer 5€ au lieu de 30€ — Economya.fr</title>
+<title>Ordinateur reconditionné : guide d'achat complet — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -17,7 +17,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .back{font-size:.8rem;color:var(--m);text-decoration:none;display:flex;align-items:center;gap:.4rem}
 .back:hover{color:var(--g)}
 
-.article-hero{background:linear-gradient(135deg,#0c0a1e,#1e1b4b 60%,#3730a3);color:white;padding:4rem 2rem 3rem;text-align:center}
+.article-hero{background:linear-gradient(135deg,#0f172a,#1e293b 55%,#334155);color:white;padding:4rem 2rem 3rem;text-align:center}
 .article-cat{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1.2rem}
 .article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.2;max-width:680px;margin:0 auto 1rem}
 .article-hero h1 em{color:var(--a);font-style:normal}
@@ -32,44 +32,43 @@ h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:
 p{margin-bottom:1rem;color:var(--m);font-weight:300}
 p strong{color:var(--t);font-weight:500}
 
-/* FORFAIT CARDS */
-.forfait-grid{display:grid;gap:1.2rem;margin:1.5rem 0}
-.forfait-card{background:var(--w);border:1px solid var(--b);border-radius:14px;overflow:hidden;transition:box-shadow .2s}
-.forfait-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.08)}
-.forfait-top{padding:1.1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;border-bottom:1px solid var(--b)}
-.forfait-opco{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd)}
-.forfait-opco span{font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:300;color:var(--m);display:block;margin-top:.1rem}
-.forfait-prix{text-align:right;flex-shrink:0}
-.prix-main{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--g);line-height:1}
-.prix-sub{font-size:.7rem;color:var(--m)}
-.forfait-details{padding:.9rem 1.4rem;display:flex;gap:1.5rem;flex-wrap:wrap}
-.forfait-spec{font-size:.8rem;color:var(--m)}
-.forfait-spec strong{color:var(--t);font-weight:500}
-.forfait-badge{display:inline-block;font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:50px;margin-top:.5rem}
-.badge-best{background:var(--gl);color:var(--gd)}
-.badge-mid{background:var(--al);color:var(--ad)}
-.badge-data{background:#EFF6FF;color:#1e40af}
+/* PROFIL CARDS */
+.profil-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin:1.5rem 0}
+.profil-card{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.1rem;transition:box-shadow .2s}
+.profil-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.07)}
+.profil-icon{font-size:1.6rem;margin-bottom:.5rem}
+.profil-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:var(--gd);margin-bottom:.3rem}
+.profil-besoins{font-size:.78rem;color:var(--m);font-weight:300;line-height:1.4;margin-bottom:.5rem}
+.profil-config{display:inline-block;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:500;padding:.2rem .55rem;border-radius:50px}
 
-/* COMPARATEUR */
-.comp-wrap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
-.comp-head{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;background:var(--gd);color:white;font-size:.72rem;font-weight:500;padding:.7rem 1rem;gap:.5rem}
-.comp-row{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;padding:.65rem 1rem;border-bottom:1px solid var(--b);font-size:.8rem;gap:.5rem;align-items:center}
-.comp-row:last-child{border-bottom:none}
-.comp-row:nth-child(even){background:var(--bg)}
-.c-good{color:var(--g);font-weight:500}
-.c-bad{color:#ef4444}
-.c-mid{color:var(--a);font-weight:500}
+/* PLATEFORME CARDS */
+.plateforme-grid{display:grid;gap:1rem;margin:1.5rem 0}
+.plateforme-card{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.2rem 1.4rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.plateforme-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07)}
+.plateforme-icon{font-size:1.6rem;flex-shrink:0}
+.plateforme-body h3{font-size:.95rem;font-weight:500;color:var(--t);margin-bottom:.3rem}
+.plateforme-body p{margin:0;font-size:.83rem;color:var(--m);font-weight:300;line-height:1.5}
+.plateforme-tag{font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:50px;white-space:nowrap;align-self:start;flex-shrink:0}
+.tag-top{background:var(--gl);color:var(--gd)}
+.tag-mid{background:var(--al);color:var(--ad)}
+.tag-pro{background:#EFF6FF;color:#1e40af}
 
-/* MVNO EXPLICATION */
-.mvno-box{background:var(--bg);border:1px solid var(--b);border-radius:12px;padding:1.2rem 1.4rem;margin:1.5rem 0}
-.mvno-box h3{font-size:.95rem;font-weight:500;color:var(--t);margin-bottom:.5rem}
-.mvno-box p{margin:0;font-size:.85rem;color:var(--m);font-weight:300}
+/* SPECS TABLE */
+.specs{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
+.specs-head{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;background:var(--gd);color:white;font-size:.72rem;font-weight:500;padding:.7rem 1rem;gap:.5rem}
+.specs-row{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;padding:.65rem 1rem;border-bottom:1px solid var(--b);font-size:.79rem;gap:.5rem;align-items:center}
+.specs-row:last-child{border-bottom:none}
+.specs-row:nth-child(even){background:var(--bg)}
+.s-good{color:var(--g);font-weight:500}
+.s-mid{color:var(--a)}
+.s-bad{color:#ef4444}
 
-.steps{display:grid;gap:.8rem;margin:1.5rem 0}
-.step-item{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:1rem 1.2rem;display:flex;gap:1rem;align-items:flex-start}
-.step-num{width:2rem;height:2rem;border-radius:50%;background:var(--gd);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.step-body h3{font-size:.9rem;font-weight:500;color:var(--t);margin-bottom:.2rem}
-.step-body p{margin:0;font-size:.82rem;color:var(--m);font-weight:300}
+/* CHECKLIST */
+.checklist{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.2rem 1.4rem;margin:1.5rem 0}
+.checklist-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd);margin-bottom:1rem}
+.check-item{display:flex;align-items:flex-start;gap:.7rem;padding:.45rem 0;border-bottom:1px solid var(--b);font-size:.85rem;color:var(--m)}
+.check-item:last-child{border-bottom:none}
+.check-item::before{content:'☐';color:var(--g);font-size:1rem;flex-shrink:0;margin-top:-.05rem}
 
 .tip-box{background:var(--al);border:1px solid rgba(239,159,39,0.3);border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
 .tip-box .tip-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ad);margin-bottom:.5rem}
@@ -99,8 +98,10 @@ footer a{color:rgba(255,255,255,0.5);text-decoration:none}
 @media(max-width:640px){
   .article-wrap{padding:2rem 1rem 4rem}
   nav{padding:.8rem 1rem}
-  .comp-head,.comp-row{grid-template-columns:1.2fr 1fr 1fr 1fr;font-size:.68rem;padding:.6rem .6rem}
-  .forfait-details{gap:1rem}
+  .plateforme-card{grid-template-columns:auto 1fr;grid-template-rows:auto auto}
+  .plateforme-tag{grid-column:2}
+  .specs-head,.specs-row{font-size:.7rem;padding:.6rem .6rem;grid-template-columns:1fr 1fr 1fr 1fr}
+  .profil-grid{grid-template-columns:1fr 1fr}
 }
 
 /* Menu hamburger mobile */
@@ -155,9 +156,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Forfait mobile : payer 5€ au lieu de 30€",
+  "headline": "Ordinateur reconditionné : guide d'achat complet",
   "description": "Conseils et astuces pour économiser au quotidien.",
-  "url": "https://economya.fr/article-7.html",
+  "url": "https://economya.fr/article-33.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -174,20 +175,20 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Forfait mobile : payer 5€ au lieu de 30€">
+  <meta property="og:title" content="Ordinateur reconditionné : guide d'achat complet">
   <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-7.html">
+  <meta property="og:url" content="https://economya.fr/article-33.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Forfait mobile : payer 5€ au lieu de 30€">
+  <meta name="twitter:title" content="Ordinateur reconditionné : guide d'achat complet">
   <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-7.html" />
-<meta name="description" content="Forfait mobile : payer 5€ au lieu de 30€ — Economya.fr" />
+<link rel="canonical" href="https://economya.fr/article-33.html" />
+<meta name="description" content="Ordinateur reconditionné : guide d'achat complet — Economya.fr" />
 </head>
 <body>
 
@@ -198,218 +199,192 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Téléphonie</span> › <span style="color:var(--t,#2C2C2A)">Forfait mobile : payer 5€ au lieu de 30€</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Téléphonie", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Forfait mobile : payer 5€ au lieu de 30€", "item": "https://economya.fr/article-7.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>High-tech</span> › <span style="color:var(--t,#2C2C2A)">Ordinateur reconditionné : guide d'achat complet</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "High-tech", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Ordinateur reconditionné : guide d'achat complet", "item": "https://economya.fr/article-33.html"}]}</script>
 
 
 <div class="article-hero">
-  <div class="article-cat">📱 Téléphonie</div>
-  <h1>Forfait mobile : payer <em>5€ au lieu de 30€</em></h1>
-  <div class="savings-badge">💰 Jusqu'à 400€ économisés par an</div>
+  <div class="article-cat">💻 High-tech</div>
+  <h1>Ordinateur reconditionné : <em>guide d'achat complet</em></h1>
+  <div class="savings-badge">💰 Jusqu'à -60% sur votre prochain PC</div>
   <div class="article-meta">
-    <span>📖 Lecture 3 min</span>
+    <span>📖 Lecture 4 min</span>
     <span>✅ Vérifié juin 2026</span>
-    <span>🇫🇷 Marché français</span>
+    <span>🇫🇷 Plateformes françaises incluses</span>
   </div>
 </div>
 
 <div class="article-wrap">
 
   <div class="intro-box">
-    Le prix moyen d'un forfait mobile en France tourne autour de <strong>25 à 35€ par mois</strong> chez les opérateurs traditionnels. Or, des forfaits avec appels et SMS illimités et 20 à 100 Go de data existent à <strong>moins de 10€ par mois</strong> — parfois à 5€. Le réseau est souvent le même. Voici comment passer de l'un à l'autre.
+    Un ordinateur portable neuf coûte en moyenne <strong>600 à 1 500€</strong> selon la configuration. Le même modèle reconditionné, en grade A, se trouve entre <strong>250 et 700€</strong> — avec une garantie de 12 à 24 mois et des performances identiques. Pour la bureautique et le multimédia, un PC reconditionné de 3-4 ans est souvent plus que suffisant.
   </div>
 
-  <p>Le marché français des forfaits mobiles est l'un des plus compétitifs d'Europe. Depuis l'arrivée de Free Mobile en 2012, les prix ont été divisés par trois ou quatre. Pourtant, des millions de Français continuent de payer 25 à 40€ par mois chez Orange, SFR ou Bouygues par habitude ou par peur de perdre en qualité. Cette peur est souvent injustifiée.</p>
+  <p>Le marché du PC reconditionné a considérablement mûri en France. Des plateformes sérieuses proposent des machines testées, remises à neuf, sous garantie et livrées rapidement. L'acheteur bénéficie des mêmes droits qu'à l'achat neuf (garantie légale de conformité) et réalise des économies substantielles tout en limitant son impact environnemental.</p>
 
-  <h2>Les meilleurs forfaits à moins de 10€/mois en 2026</h2>
+  <h2>Quel PC selon votre profil d'utilisation</h2>
 
-  <div class="forfait-grid">
+  <div class="profil-grid">
+    <div class="profil-card">
+      <div class="profil-icon">📝</div>
+      <div class="profil-name">Bureautique & Web</div>
+      <div class="profil-besoins">Mails, Word, navigation, visios, PDF, streaming vidéo.</div>
+      <div class="profil-config">Intel i5 8e gen · 8 Go RAM · SSD 256 Go · dès 200€</div>
+    </div>
+    <div class="profil-card">
+      <div class="profil-icon">🎨</div>
+      <div class="profil-name">Créatif & Photo</div>
+      <div class="profil-besoins">Photoshop, Lightroom, montage vidéo léger, design.</div>
+      <div class="profil-config">Intel i7 10e gen · 16 Go RAM · SSD 512 Go · dès 400€</div>
+    </div>
+    <div class="profil-card">
+      <div class="profil-icon">💻</div>
+      <div class="profil-name">Développeur</div>
+      <div class="profil-besoins">IDE, Docker, compilation, virtualisation, multitâche intense.</div>
+      <div class="profil-config">Intel i7/i9 · 16-32 Go RAM · SSD 512 Go+ · dès 500€</div>
+    </div>
+    <div class="profil-card">
+      <div class="profil-icon">🎓</div>
+      <div class="profil-name">Étudiant</div>
+      <div class="profil-besoins">Cours, recherches, présentations, réseaux sociaux.</div>
+      <div class="profil-config">Intel i5 · 8 Go RAM · SSD 256 Go · dès 180€</div>
+    </div>
+  </div>
 
-    <div class="forfait-card">
-      <div class="forfait-top">
-        <div class="forfait-opco">
-          Free Mobile — Forfait 2€
-          <span>Opérateur historique · Réseau propre</span>
-        </div>
-        <div class="forfait-prix">
-          <div class="prix-main">2€</div>
-          <div class="prix-sub">/mois</div>
-        </div>
+  <h2>Les meilleures plateformes en 2025</h2>
+
+  <div class="plateforme-grid">
+
+    <div class="plateforme-card">
+      <div class="plateforme-icon">🟢</div>
+      <div class="plateforme-body">
+        <h3>Back Market</h3>
+        <p>La référence française du reconditionné, avec une large sélection d'ordinateurs portables et fixes de toutes marques. Grades clairement définis, garantie 12 à 24 mois, retour 30 jours. Interface claire avec photos réelles des appareils et historique de reconditionnement.</p>
       </div>
-      <div class="forfait-details">
-        <div class="forfait-spec"><strong>Data :</strong> 3 Go (+ 25 Go si abonné Freebox)</div>
-        <div class="forfait-spec"><strong>Appels/SMS :</strong> Illimités France</div>
-        <div class="forfait-spec"><strong>Engagement :</strong> Aucun</div>
-        <span class="forfait-badge badge-best">Imbattable pour les petits consommateurs</span>
-      </div>
+      <span class="plateforme-tag tag-top">Notre choix</span>
     </div>
 
-    <div class="forfait-card">
-      <div class="forfait-top">
-        <div class="forfait-opco">
-          Lycamobile — Forfait 5€
-          <span>MVNO · Réseau SFR</span>
-        </div>
-        <div class="forfait-prix">
-          <div class="prix-main">5€</div>
-          <div class="prix-sub">/mois</div>
-        </div>
+    <div class="plateforme-card">
+      <div class="plateforme-icon">🔵</div>
+      <div class="plateforme-body">
+        <h3>Reconditionnépc.fr / Okamac</h3>
+        <p>Spécialistes français du PC et Mac reconditionné avec ateliers propres. Okamac est la référence pour les MacBook reconditionnés avec garantie 12 mois et SAV basé en France. Reconditionnépc.fr excelle sur les PC Windows professionnels reconditionnés.</p>
       </div>
-      <div class="forfait-details">
-        <div class="forfait-spec"><strong>Data :</strong> 5 Go</div>
-        <div class="forfait-spec"><strong>Appels/SMS :</strong> Illimités France</div>
-        <div class="forfait-spec"><strong>Engagement :</strong> Aucun</div>
-        <span class="forfait-badge badge-mid">Idéal pour usage modéré</span>
-      </div>
+      <span class="plateforme-tag tag-top">Spécialistes</span>
     </div>
 
-    <div class="forfait-card">
-      <div class="forfait-top">
-        <div class="forfait-opco">
-          Prixtel — Forfait Giga
-          <span>MVNO · Réseau Orange ou SFR au choix</span>
-        </div>
-        <div class="forfait-prix">
-          <div class="prix-main">5€</div>
-          <div class="prix-sub">/mois dès</div>
-        </div>
+    <div class="plateforme-card">
+      <div class="plateforme-icon">🍎</div>
+      <div class="plateforme-body">
+        <h3>Apple Reconditionné (Apple Store)</h3>
+        <p>Pour les MacBook reconditionnés directement par Apple : garantie constructeur 1 an, batterie et boîtier neufs, emballage soigné. Remises de 15 à 20% seulement, mais fiabilité maximale et prise en charge AppleCare possible.</p>
       </div>
-      <div class="forfait-details">
-        <div class="forfait-spec"><strong>Data :</strong> 5 à 80 Go selon conso réelle</div>
-        <div class="forfait-spec"><strong>Appels/SMS :</strong> Illimités France</div>
-        <div class="forfait-spec"><strong>Engagement :</strong> Aucun</div>
-        <span class="forfait-badge badge-data">Tarif ajusté à votre consommation réelle</span>
-      </div>
+      <span class="plateforme-tag tag-pro">100% Apple</span>
     </div>
 
-    <div class="forfait-card">
-      <div class="forfait-top">
-        <div class="forfait-opco">
-          Free Mobile — Forfait 8,99€
-          <span>Opérateur historique · Réseau propre 5G</span>
-        </div>
-        <div class="forfait-prix">
-          <div class="prix-main">8,99€</div>
-          <div class="prix-sub">/mois</div>
-        </div>
+    <div class="plateforme-card">
+      <div class="plateforme-icon">📦</div>
+      <div class="plateforme-body">
+        <h3>Amazon Renewed & eBay</h3>
+        <p>Large choix et prix compétitifs, mais grades moins standardisés et contrôle qualité variable selon les vendeurs. Privilégiez les vendeurs professionnels avec plus de 500 avis positifs. Amazon Renewed offre une garantie 12 mois et retour simplifié.</p>
       </div>
-      <div class="forfait-details">
-        <div class="forfait-spec"><strong>Data :</strong> 210 Go (5G incluse)</div>
-        <div class="forfait-spec"><strong>Appels/SMS :</strong> Illimités France + DOM</div>
-        <div class="forfait-spec"><strong>International :</strong> 25 Go en Europe</div>
-        <span class="forfait-badge badge-best">Meilleur rapport qualité/prix tous usages</span>
-      </div>
+      <span class="plateforme-tag tag-mid">Avec précaution</span>
     </div>
 
   </div>
 
-  <div class="mvno-box">
-    <h3>🤔 C'est quoi un MVNO ? Est-ce fiable ?</h3>
-    <p>Un MVNO (opérateur virtuel) comme Prixtel, Lycamobile ou NRJ Mobile n'a pas son propre réseau : il loue les antennes d'Orange, SFR ou Bouygues. Vous bénéficiez donc du même réseau physique, pour deux à quatre fois moins cher. La différence se situe uniquement dans le service client et quelques options avancées. Pour 90% des utilisateurs, c'est parfaitement transparent au quotidien.</p>
-  </div>
+  <h2>Les specs à vérifier selon l'usage</h2>
 
-  <h2>Opérateurs traditionnels vs low cost : la vraie différence</h2>
-
-  <div class="comp-wrap">
-    <div class="comp-head">
-      <span>Critère</span>
-      <span>Orange / SFR</span>
-      <span>Bouygues</span>
-      <span>Free / MVNO</span>
+  <div class="specs">
+    <div class="specs-head">
+      <span>Composant</span>
+      <span>Bureautique</span>
+      <span>Créatif/Dev</span>
+      <span>Gaming léger</span>
     </div>
-    <div class="comp-row">
-      <span>Prix moyen</span>
-      <span class="c-bad">25–40€/mois</span>
-      <span class="c-mid">15–30€/mois</span>
-      <span class="c-good">2–10€/mois</span>
+    <div class="specs-row">
+      <span>Processeur</span>
+      <span class="s-good">Intel i5 8e+ / Ryzen 5</span>
+      <span class="s-good">Intel i7 10e+ / Ryzen 7</span>
+      <span class="s-good">Intel i7 / Ryzen 7</span>
     </div>
-    <div class="comp-row">
-      <span>Qualité réseau</span>
-      <span class="c-good">Excellente</span>
-      <span class="c-good">Très bonne</span>
-      <span class="c-good">Très bonne</span>
+    <div class="specs-row">
+      <span>RAM</span>
+      <span class="s-good">8 Go (minimum)</span>
+      <span class="s-good">16 Go minimum</span>
+      <span class="s-good">16 Go minimum</span>
     </div>
-    <div class="comp-row">
-      <span>Couverture 4G</span>
-      <span class="c-good">99%</span>
-      <span class="c-good">99%</span>
-      <span class="c-good">99%</span>
+    <div class="specs-row">
+      <span>Stockage</span>
+      <span class="s-good">SSD 256 Go</span>
+      <span class="s-good">SSD 512 Go+</span>
+      <span class="s-good">SSD 512 Go+</span>
     </div>
-    <div class="comp-row">
-      <span>Service client boutique</span>
-      <span class="c-good">Oui</span>
-      <span class="c-good">Oui</span>
-      <span class="c-mid">Limité</span>
+    <div class="specs-row">
+      <span>Carte graphique</span>
+      <span class="s-mid">Intégrée suffisante</span>
+      <span class="s-mid">Intégrée ou dédiée</span>
+      <span class="s-good">Dédiée indispensable</span>
     </div>
-    <div class="comp-row">
-      <span>Sans engagement</span>
-      <span class="c-mid">Parfois</span>
-      <span class="c-mid">Parfois</span>
-      <span class="c-good">Toujours</span>
+    <div class="specs-row">
+      <span>Écran</span>
+      <span class="s-mid">13–15 pouces</span>
+      <span class="s-good">15 pouces IPS/retina</span>
+      <span class="s-good">15–17 pouces 120Hz+</span>
     </div>
-    <div class="comp-row">
-      <span>Roaming Europe</span>
-      <span class="c-good">Inclus</span>
-      <span class="c-good">Inclus</span>
-      <span class="c-good">Inclus</span>
+    <div class="specs-row">
+      <span>Autonomie batterie</span>
+      <span class="s-good">6h+ (exiger batterie neuve)</span>
+      <span class="s-mid">4–6h acceptable</span>
+      <span class="s-mid">Variable</span>
     </div>
   </div>
 
-  <h2>Changer de forfait en 3 étapes sans coupure</h2>
+  <h2>La checklist avant d'acheter</h2>
 
-  <div class="steps">
-    <div class="step-item">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <h3>Récupérez votre numéro RIO</h3>
-        <p>Appelez le <strong>3179</strong> depuis votre mobile actuel (gratuit, 24h/24). Un message vous communique votre code RIO en quelques secondes. Ce code permet de conserver votre numéro lors du changement d'opérateur.</p>
-      </div>
-    </div>
-    <div class="step-item">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <h3>Souscrivez le nouveau forfait en ligne</h3>
-        <p>Renseignez votre RIO lors de la souscription. Le nouvel opérateur déclenche automatiquement la résiliation chez l'ancien. Vous recevez votre nouvelle SIM sous 2 à 5 jours ouvrés.</p>
-      </div>
-    </div>
-    <div class="step-item">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <h3>Activez la nouvelle SIM</h3>
-        <p>À réception, activez la SIM selon les instructions. Le basculement du numéro s'effectue en quelques heures, généralement la nuit. Vous ne perdez pas votre numéro et la coupure dure moins de 2 heures.</p>
-      </div>
-    </div>
+  <div class="checklist">
+    <div class="checklist-title">✅ Vérifiez ces points avant de valider</div>
+    <div class="check-item">Le grade est clairement défini (A, A+, B) avec description précise de l'état</div>
+    <div class="check-item">La garantie est d'au moins 12 mois (idéalement 24)</div>
+    <div class="check-item">L'état de la batterie est précisé (minimum 80% de capacité originale)</div>
+    <div class="check-item">Le SSD est bien présent (et non un disque dur classique HDD)</div>
+    <div class="check-item">La RAM est suffisante pour votre usage (8 Go minimum en 2025)</div>
+    <div class="check-item">Le processeur date de moins de 5-6 ans (Intel 8e gen minimum)</div>
+    <div class="check-item">Le droit de retour est d'au moins 14 jours</div>
+    <div class="check-item">Le vendeur a un minimum de 100 avis avec une note supérieure à 4/5</div>
+    <div class="check-item">Windows est installé avec une licence légale (vérifiable dans les paramètres)</div>
+    <div class="check-item">Les ports nécessaires sont disponibles (USB-A, HDMI, jack audio selon vos besoins)</div>
   </div>
 
   <div class="tip-box">
-    <div class="tip-label">💡 Les périodes à ne pas rater</div>
-    <p>Les opérateurs low cost proposent des <strong>offres promotionnelles exceptionnelles</strong> lors du Black Friday (novembre) et des soldes (janvier/juillet). Des forfaits 200 Go à 5€/mois ou 100 Go à 3€/mois apparaissent régulièrement. Ces offres sont souvent sans engagement et gardent le même prix à vie — valent la peine d'être guettées.</p>
+    <div class="tip-label">💡 La meilleure affaire : les PC professionnels ex-entreprise</div>
+    <p>Les PC portables <strong>Lenovo ThinkPad, HP EliteBook et Dell Latitude</strong> sont des machines professionnelles robustes, conçues pour une utilisation intensive en entreprise, et qui arrivent sur le marché du reconditionné après 3-4 ans d'utilisation à des prix très bas (150 à 350€). Ces appareils ont une qualité de fabrication bien supérieure aux PC grand public de même prix neuf : claviers excellents, dalles de qualité, solidité garantie pour 5 à 8 ans supplémentaires. Ils sont souvent en meilleur état que des PC grand public plus récents.</p>
   </div>
 
   <div class="warn-box">
-    <div class="warn-label">⚠️ Attention aux forfaits avec téléphone subventionné</div>
-    <p>Si vous êtes encore engagé sur un forfait avec smartphone inclus, des frais de résiliation anticipée s'appliquent. Calculez le coût de sortie avant de changer. En règle générale, il est rentable de payer les frais de résiliation si l'économie mensuelle dépasse 15€ — le retour sur investissement est souvent inférieur à 6 mois.</p>
+    <div class="warn-label">⚠️ Évitez les PC trop anciens ou sous-équipés</div>
+    <p>Un PC avec seulement 4 Go de RAM ou un disque dur classique (HDD) sera lent et frustrant dès aujourd'hui avec Windows 11. Exigez au minimum 8 Go de RAM et un SSD. Méfiez-vous aussi des processeurs Intel avant la 7e génération (2017) : ils peinent sur les applications modernes et sont souvent exclus des mises à jour de sécurité Windows. Le prix bas ne compense pas les frustrations quotidiennes d'une machine sous-dimensionnée.</p>
   </div>
 
   <div class="recap">
-    <div class="recap-title">📊 Économies selon la situation actuelle</div>
-    <div class="recap-row"><span>Passage de 30€/mois à 8,99€/mois (Free)</span><span>~252€/an</span></div>
-    <div class="recap-row"><span>Passage de 25€/mois à 5€/mois (MVNO)</span><span>~240€/an</span></div>
-    <div class="recap-row"><span>Passage de 40€/mois à 8,99€/mois (Free)</span><span>~372€/an</span></div>
-    <div class="recap-row"><span>Couple : deux forfaits optimisés</span><span>~480–600€/an</span></div>
-    <div class="recap-row"><span><strong>Économie maximale (famille 4 personnes)</strong></span><span><strong>jusqu'à 1 200€/an</strong></span></div>
+    <div class="recap-title">📊 Économies selon le type de machine</div>
+    <div class="recap-row"><span>PC bureautique reconditionné vs neuf équivalent</span><span>200 à 400€ économisés</span></div>
+    <div class="recap-row"><span>MacBook Pro reconditionné vs neuf (même génération)</span><span>400 à 700€ économisés</span></div>
+    <div class="recap-row"><span>ThinkPad pro ex-entreprise vs PC grand public neuf équivalent</span><span>300 à 500€ économisés</span></div>
+    <div class="recap-row"><span>PC créatif reconditionné (i7, 16 Go, 512 SSD)</span><span>Dès 400€ vs 900€+ neuf</span></div>
+    <div class="recap-row"><span><strong>Économie moyenne sur un PC reconditionné de qualité</strong></span><span><strong>40 à 60% du prix neuf</strong></span></div>
   </div>
 
-  <p>Changer de forfait mobile est l'une des économies les plus rapides à réaliser : <strong>10 minutes de démarches, zéro risque de perdre son numéro, et des centaines d'euros économisés chaque année</strong>. Appelez le 3179 ce soir pour récupérer votre RIO — c'est la première étape.</p>
+  <p>Acheter un ordinateur reconditionné de qualité est l'une des décisions technologiques les plus rationnelles qui soit en 2025. <strong>Back Market pour la simplicité, Okamac pour un Mac, ThinkPad ex-entreprise pour le meilleur rapport qualité/prix</strong> : ces trois pistes couvrent l'essentiel des besoins. L'important est de vérifier les specs, la garantie et l'état de la batterie avant de valider — et de résister à la tentation du PC neuf d'entrée de gamme qui sera lent dans deux ans.</p>
 
   <div class="article-nav">
-    <a class="art-nav-btn" href="article-6.html">
+    <a class="art-nav-btn" href="article-32.html">
       <span class="nav-label">← Article précédent</span>
-      <span class="nav-title">Assurance habitation : tout ce que vous payez en trop</span>
+      <span class="nav-title">Camping et plein air : vacances pas chères en France</span>
     </a>
-    <a class="art-nav-btn next" href="article-8.html">
+    <a class="art-nav-btn next" href="article-34.html">
       <span class="nav-label">Article suivant →</span>
-      <span class="nav-title">7 techniques pour payer ses vols moitié prix</span>
+      <span class="nav-title">Jouer aux jeux vidéo sans se ruiner en 2025</span>
     </a>
   </div>
 

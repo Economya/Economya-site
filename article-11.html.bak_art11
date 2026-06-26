@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vélo et trottinette : se déplacer à moindre coût — Economya.fr</title>
+<title>Smartphone reconditionné : économiser jusqu'à 400€ — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -17,7 +17,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .back{font-size:.8rem;color:var(--m);text-decoration:none;display:flex;align-items:center;gap:.4rem}
 .back:hover{color:var(--g)}
 
-.article-hero{background:linear-gradient(135deg,#052e16,#166534 55%,#22c55e);color:white;padding:4rem 2rem 3rem;text-align:center}
+.article-hero{background:linear-gradient(135deg,#0f172a,#1e3a5f 60%,#2563eb);color:white;padding:4rem 2rem 3rem;text-align:center}
 .article-cat{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1.2rem}
 .article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.2;max-width:680px;margin:0 auto 1rem}
 .article-hero h1 em{color:var(--a);font-style:normal}
@@ -32,44 +32,37 @@ h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:
 p{margin-bottom:1rem;color:var(--m);font-weight:300}
 p strong{color:var(--t);font-weight:500}
 
-/* OPTION CARDS */
-.option-grid{display:grid;gap:1.2rem;margin:1.5rem 0}
-.option-card{background:var(--w);border:1px solid var(--b);border-radius:14px;overflow:hidden;transition:box-shadow .2s}
-.option-card:hover{box-shadow:0 5px 22px rgba(0,0,0,0.08)}
-.option-header{padding:1.1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;border-bottom:1px solid var(--b);background:var(--bg)}
-.option-left{display:flex;align-items:center;gap:.9rem}
-.option-icon{font-size:1.7rem}
-.option-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd)}
-.option-type{font-size:.73rem;color:var(--m);margin-top:.1rem}
-.option-cout{text-align:right;flex-shrink:0}
-.cout-val{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--g);line-height:1}
-.cout-label{font-size:.63rem;color:var(--m)}
-.option-body{padding:.9rem 1.5rem 1.1rem}
-.option-body p{margin:0 0 .6rem;font-size:.84rem;color:var(--m);font-weight:300;line-height:1.55}
-.option-body p:last-child{margin:0}
-.option-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
-.otag{font-size:.68rem;font-weight:500;padding:.15rem .5rem;border-radius:50px}
-.otag-g{background:var(--gl);color:var(--gd)}
-.otag-a{background:var(--al);color:var(--ad)}
-.otag-b{background:#EFF6FF;color:#1e40af}
+/* GRADES */
+.grade-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1rem;margin:1.5rem 0}
+.grade-card{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.1rem;text-align:center;transition:box-shadow .2s}
+.grade-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.07)}
+.grade-label{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;margin-bottom:.3rem}
+.grade-a{color:var(--g)}
+.grade-b{color:#22c55e}
+.grade-c{color:var(--a)}
+.grade-d{color:#ef4444}
+.grade-name{font-size:.82rem;font-weight:500;color:var(--t);margin-bottom:.3rem}
+.grade-desc{font-size:.75rem;color:var(--m);font-weight:300;line-height:1.4}
+.grade-remise{display:inline-block;background:var(--al);color:var(--ad);font-size:.68rem;font-weight:500;padding:.15rem .5rem;border-radius:50px;margin-top:.4rem}
 
-/* AIDES TABLE */
-.aides{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
-.aides-head{display:grid;grid-template-columns:1.5fr 1fr 1fr;background:var(--gd);color:white;font-size:.74rem;font-weight:500;padding:.7rem 1rem;gap:.5rem}
-.aides-row{display:grid;grid-template-columns:1.5fr 1fr 1fr;padding:.65rem 1rem;border-bottom:1px solid var(--b);font-size:.81rem;gap:.5rem;align-items:center}
-.aides-row:last-child{border-bottom:none}
-.aides-row:nth-child(even){background:var(--bg)}
-.a-good{color:var(--g);font-weight:500}
-.a-mid{color:var(--a)}
+/* PLATEFORMES */
+.plateforme-grid{display:grid;gap:1rem;margin:1.5rem 0}
+.plateforme-card{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.2rem 1.4rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.plateforme-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07)}
+.plateforme-icon{font-size:1.6rem;flex-shrink:0}
+.plateforme-body h3{font-size:.95rem;font-weight:500;color:var(--t);margin-bottom:.3rem}
+.plateforme-body p{margin:0;font-size:.83rem;color:var(--m);font-weight:300;line-height:1.5}
+.plateforme-tag{font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:50px;white-space:nowrap;align-self:start;flex-shrink:0}
+.tag-top{background:var(--gl);color:var(--gd)}
+.tag-mid{background:var(--al);color:var(--ad)}
+.tag-pro{background:#EFF6FF;color:#1e40af}
 
-/* ENTRETIEN GRID */
-.entretien-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.8rem;margin:1.5rem 0}
-.entretien-card{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:.9rem 1rem;transition:box-shadow .2s}
-.entretien-card:hover{box-shadow:0 3px 14px rgba(0,0,0,0.06)}
-.entretien-emoji{font-size:1.4rem;margin-bottom:.35rem}
-.entretien-name{font-size:.87rem;font-weight:500;color:var(--t);margin-bottom:.15rem}
-.entretien-prix{font-size:.72rem;color:var(--g);font-weight:500}
-.entretien-desc{font-size:.72rem;color:var(--m);font-weight:300;line-height:1.35;margin-top:.2rem}
+/* CHECKLIST */
+.checklist{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.2rem 1.4rem;margin:1.5rem 0}
+.checklist-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd);margin-bottom:1rem}
+.check-item{display:flex;align-items:flex-start;gap:.7rem;padding:.45rem 0;border-bottom:1px solid var(--b);font-size:.85rem;color:var(--m)}
+.check-item:last-child{border-bottom:none}
+.check-box{color:var(--g);font-size:1rem;flex-shrink:0;margin-top:-.05rem}
 
 /* COMPARATIF */
 .comp-wrap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
@@ -79,7 +72,7 @@ p strong{color:var(--t);font-weight:500}
 .comp-row:nth-child(even){background:var(--bg)}
 .c-good{color:var(--g);font-weight:500}
 .c-bad{color:#ef4444}
-.c-mid{color:var(--a)}
+.c-mid{color:var(--a);font-weight:500}
 
 .tip-box{background:var(--al);border:1px solid rgba(239,159,39,0.3);border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
 .tip-box .tip-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ad);margin-bottom:.5rem}
@@ -109,10 +102,10 @@ footer a{color:rgba(255,255,255,0.5);text-decoration:none}
 @media(max-width:640px){
   .article-wrap{padding:2rem 1rem 4rem}
   nav{padding:.8rem 1rem}
-  .option-header{flex-wrap:wrap}
-  .comp-head,.comp-row{font-size:.7rem;padding:.6rem .6rem}
-  .entretien-grid{grid-template-columns:1fr 1fr}
-  .aides-head,.aides-row{font-size:.73rem;padding:.6rem .7rem}
+  .plateforme-card{grid-template-columns:auto 1fr;grid-template-rows:auto auto}
+  .plateforme-tag{grid-column:2}
+  .comp-head,.comp-row{font-size:.7rem;padding:.6rem .7rem}
+  .grade-grid{grid-template-columns:1fr 1fr}
 }
 
 /* Menu hamburger mobile */
@@ -167,9 +160,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Vélo et trottinette : se déplacer à moindre coût",
+  "headline": "Smartphone reconditionné : économiser jusqu'à 400€",
   "description": "Conseils et astuces pour économiser au quotidien.",
-  "url": "https://economya.fr/article-23.html",
+  "url": "https://economya.fr/article-11.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -186,20 +179,20 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Vélo et trottinette : se déplacer à moindre coût">
+  <meta property="og:title" content="Smartphone reconditionné : économiser jusqu'à 400€">
   <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-23.html">
+  <meta property="og:url" content="https://economya.fr/article-11.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Vélo et trottinette : se déplacer à moindre coût">
+  <meta name="twitter:title" content="Smartphone reconditionné : économiser jusqu'à 400€">
   <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-23.html" />
-<meta name="description" content="Vélo et trottinette : se déplacer à moindre coût — Economya.fr" />
+<link rel="canonical" href="https://economya.fr/article-11.html" />
+<meta name="description" content="Smartphone reconditionné : économiser jusqu'à 400€ — Economya.fr" />
 </head>
 <body>
 
@@ -210,283 +203,191 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Transport</span> › <span style="color:var(--t,#2C2C2A)">Vélo et trottinette : se déplacer à moindre coût</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Transport", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Vélo et trottinette : se déplacer à moindre coût", "item": "https://economya.fr/article-23.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>High-tech</span> › <span style="color:var(--t,#2C2C2A)">Smartphone reconditionné : économiser jusqu'à 400€</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "High-tech", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Smartphone reconditionné : économiser jusqu'à 400€", "item": "https://economya.fr/article-11.html"}]}</script>
 
 
 <div class="article-hero">
-  <div class="article-cat">🚲 Transport</div>
-  <h1>Vélo et trottinette : <em>se déplacer à moindre coût</em></h1>
-  <div class="savings-badge">💰 Jusqu'à 1 500€ économisés par an</div>
+  <div class="article-cat">📲 High-tech</div>
+  <h1>Smartphone reconditionné : <em>économiser jusqu'à 400€</em></h1>
+  <div class="savings-badge">💰 Jusqu'à -50% sur votre prochain téléphone</div>
   <div class="article-meta">
     <span>📖 Lecture 4 min</span>
     <span>✅ Vérifié juin 2026</span>
-    <span>🇫🇷 Aides françaises incluses</span>
+    <span>🇫🇷 Disponible en France</span>
   </div>
 </div>
 
 <div class="article-wrap">
 
   <div class="intro-box">
-    Posséder et utiliser une voiture en ville coûte en moyenne <strong>5 000 à 8 000€ par an</strong> (assurance, carburant, entretien, stationnement). Remplacer une partie ou la totalité de ces trajets par le vélo ou la trottinette électrique peut générer des économies considérables — et l'État subventionne désormais largement l'achat d'un vélo électrique.
+    Un iPhone 15 neuf coûte <strong>1 000 à 1 300€</strong>. Le même modèle reconditionné en grade A se trouve entre <strong>600 et 750€</strong>. La différence ? Quelques micro-rayures invisibles à l'œil nu sur le dos. Le marché du reconditionné a mûri : les garanties sont sérieuses, les plateformes fiables et les économies réelles.
   </div>
 
-  <p>Les mobilités douces ont connu une révolution en France depuis 2020. Le réseau de pistes cyclables s'est densifié dans toutes les grandes villes, les aides à l'achat ont atteint des niveaux historiques, et les employeurs sont désormais tenus de participer aux frais de déplacement à vélo de leurs salariés. Le moment n'a jamais été aussi favorable pour franchir le pas.</p>
+  <p>En 2025, un smartphone sur cinq vendu en France est reconditionné. Ce n'est plus un marché de niche réservé aux bricoleurs technophiles — c'est une alternative sérieuse, encadrée légalement et souvent bien plus avantageuse que l'achat neuf. Voici tout ce qu'il faut savoir pour acheter malin.</p>
 
-  <h2>Les différentes options selon votre usage</h2>
+  <h2>Comprendre les grades de reconditionnement</h2>
 
-  <div class="option-grid">
+  <div class="grade-grid">
+    <div class="grade-card">
+      <div class="grade-label grade-a">A+</div>
+      <div class="grade-name">Comme neuf</div>
+      <div class="grade-desc">Aucune trace visible. Souvent retourné sous blister sans avoir été utilisé.</div>
+      <div class="grade-remise">-20 à -30%</div>
+    </div>
+    <div class="grade-card">
+      <div class="grade-label grade-a">A</div>
+      <div class="grade-name">Très bon état</div>
+      <div class="grade-desc">Légères traces sur le dos, invisibles à distance. Écran parfait.</div>
+      <div class="grade-remise">-30 à -40%</div>
+    </div>
+    <div class="grade-card">
+      <div class="grade-label grade-b">B</div>
+      <div class="grade-name">Bon état</div>
+      <div class="grade-desc">Quelques rayures visibles sur le boîtier. Fonctionnement parfait.</div>
+      <div class="grade-remise">-40 à -50%</div>
+    </div>
+    <div class="grade-card">
+      <div class="grade-label grade-c">C</div>
+      <div class="grade-name">État correct</div>
+      <div class="grade-desc">Rayures marquées ou petits chocs. Usage quotidien sans problème.</div>
+      <div class="grade-remise">-50 à -60%</div>
+    </div>
+  </div>
 
-    <div class="option-card">
-      <div class="option-header">
-        <div class="option-left">
-          <div class="option-icon">🚲</div>
-          <div>
-            <div class="option-name">Vélo mécanique classique</div>
-            <div class="option-type">Trajets courts · Entretien minimal · Tous terrains</div>
-          </div>
-        </div>
-        <div class="option-cout">
-          <div class="cout-val">0–15€</div>
-          <div class="cout-label">/mois amorti</div>
-        </div>
+  <p>Le grade A est le meilleur compromis qualité/prix pour la majorité des acheteurs. À moins d'inspecter minutieusement le dos de votre téléphone chaque jour, vous ne verrez aucune différence avec un appareil neuf — mais vous économisez 300 à 500€.</p>
+
+  <h2>Les meilleures plateformes en 2025</h2>
+
+  <div class="plateforme-grid">
+
+    <div class="plateforme-card">
+      <div class="plateforme-icon">🟢</div>
+      <div class="plateforme-body">
+        <h3>Back Market</h3>
+        <p>La référence française du reconditionné. Plus de 1 000 vendeurs professionnels vérifiés, garantie 12 à 24 mois incluse, retour gratuit 30 jours. Interface claire avec grades bien définis et photos réelles des appareils.</p>
       </div>
-      <div class="option-body">
-        <p>La solution la moins chère et la plus robuste. Un vélo d'occasion en bon état (80 à 200€ sur Le Bon Coin) + quelques accessoires (antivol, éclairage, casque) vous revient à moins de 300€ au total. Amorti sur 3 ans, c'est moins de 10€ par mois pour des déplacements illimités. L'entretien annuel (pneus, câbles, graissage) coûte 30 à 60€ selon que vous le faites vous-même ou en atelier.</p>
-        <div class="option-tags">
-          <span class="otag otag-g">Le moins cher</span>
-          <span class="otag otag-g">Zéro énergie</span>
-          <span class="otag otag-b">Jusqu'à 15 km/trajet</span>
-        </div>
-      </div>
+      <span class="plateforme-tag tag-top">Notre choix</span>
     </div>
 
-    <div class="option-card">
-      <div class="option-header">
-        <div class="option-left">
-          <div class="option-icon">⚡</div>
-          <div>
-            <div class="option-name">Vélo à assistance électrique (VAE)</div>
-            <div class="option-type">Trajets moyens · Idéal domicile-travail</div>
-          </div>
-        </div>
-        <div class="option-cout">
-          <div class="cout-val">20–40€</div>
-          <div class="cout-label">/mois amorti</div>
-        </div>
+    <div class="plateforme-card">
+      <div class="plateforme-icon">🔵</div>
+      <div class="plateforme-body">
+        <h3>Recommerce</h3>
+        <p>Spécialiste français avec atelier de reconditionnement propre. Garantie 24 mois, batterie testée et remplacée si nécessaire. Prix légèrement supérieurs à Back Market mais qualité très constante.</p>
       </div>
-      <div class="option-body">
-        <p>Le VAE a révolutionné les déplacements urbains. Il permet de couvrir des distances de 20 à 50 km sans transpirer, avec une assistance électrique jusqu'à 25 km/h. Un bon VAE coûte 800 à 2 000€ neuf, mais les aides de l'État (jusqu'à 400€) et des collectivités réduisent significativement ce montant. En remplacement d'une voiture pour les trajets domicile-travail, le retour sur investissement est souvent inférieur à 1 an.</p>
-        <div class="option-tags">
-          <span class="otag otag-g">Aides jusqu'à 400€</span>
-          <span class="otag otag-b">Jusqu'à 50 km/trajet</span>
-          <span class="otag otag-a">Remplace la voiture</span>
-        </div>
-      </div>
+      <span class="plateforme-tag tag-top">Très fiable</span>
     </div>
 
-    <div class="option-card">
-      <div class="option-header">
-        <div class="option-left">
-          <div class="option-icon">🛴</div>
-          <div>
-            <div class="option-name">Trottinette électrique personnelle</div>
-            <div class="option-type">Dernier kilomètre · Compact · Multimodal</div>
-          </div>
-        </div>
-        <div class="option-cout">
-          <div class="cout-val">15–25€</div>
-          <div class="cout-label">/mois amorti</div>
-        </div>
+    <div class="plateforme-card">
+      <div class="plateforme-icon">🍎</div>
+      <div class="plateforme-body">
+        <h3>Apple Reconditionné (Apple Store)</h3>
+        <p>Les iPhone reconditionnés par Apple directement. Garantie constructeur 1 an, emballage soigné, batterie et boîtier neufs. Moins de remises (-15 à -20%) mais fiabilité maximale et prise en charge Apple Care possible.</p>
       </div>
-      <div class="option-body">
-        <p>Idéale pour le "dernier kilomètre" entre les transports en commun et la destination finale, ou pour des trajets courts en ville. Une trottinette de qualité (Xiaomi, Ninebot) coûte 300 à 600€ et dure 3 à 5 ans avec un entretien minimal. Bien plus économique que les trottinettes en libre-service (1€ de déverrouillage + 0,30€/min) pour un usage quotidien régulier.</p>
-        <div class="option-tags">
-          <span class="otag otag-g">Compact et léger</span>
-          <span class="otag otag-b">10 à 25 km d'autonomie</span>
-          <span class="otag otag-a">Pliable, transport en commun</span>
-        </div>
-      </div>
+      <span class="plateforme-tag tag-pro">100% Apple</span>
     </div>
 
-    <div class="option-card">
-      <div class="option-header">
-        <div class="option-left">
-          <div class="option-icon">🚴</div>
-          <div>
-            <div class="option-name">Vélo en libre-service (Vélib', Vélov, etc.)</div>
-            <div class="option-type">Occasionnel · Sans entretien · Grandes villes</div>
-          </div>
-        </div>
-        <div class="option-cout">
-          <div class="cout-val">3–9€</div>
-          <div class="cout-label">/mois abonnement</div>
-        </div>
+    <div class="plateforme-card">
+      <div class="plateforme-icon">📦</div>
+      <div class="plateforme-body">
+        <h3>Amazon Renewed</h3>
+        <p>Programme reconditionné d'Amazon avec garantie 12 mois et retour simplifié. Pratique pour ceux qui ont déjà l'habitude d'Amazon, mais les grades sont parfois moins précis que sur Back Market.</p>
       </div>
-      <div class="option-body">
-        <p>Pour ceux qui ne souhaitent pas investir dans un vélo personnel, les services de vélos en libre-service (Vélib' à Paris, Vélov à Lyon, Nextbike dans d'autres villes) proposent des abonnements mensuels très abordables. À Paris, l'abonnement Vélib' Classique coûte 9,99€/mois avec les 45 premières minutes gratuites — soit la quasi-totalité des trajets urbains couverts sans surcoût.</p>
-        <div class="option-tags">
-          <span class="otag otag-g">Sans entretien</span>
-          <span class="otag otag-g">~10€/mois</span>
-          <span class="otag otag-b">Grandes villes uniquement</span>
-        </div>
-      </div>
+      <span class="plateforme-tag tag-mid">Pratique</span>
     </div>
 
   </div>
 
-  <h2>Les aides à l'achat d'un vélo électrique en 2026</h2>
-
-  <div class="aides">
-    <div class="aides-head">
-      <span>Aide</span>
-      <span>Montant</span>
-      <span>Conditions</span>
-    </div>
-    <div class="aides-row">
-      <span>Bonus vélo électrique (État)</span>
-      <span class="a-good">Jusqu'à 400€</span>
-      <span>Sous conditions de revenus</span>
-    </div>
-    <div class="aides-row">
-      <span>Prime à la conversion</span>
-      <span class="a-good">Jusqu'à 1 500€</span>
-      <span>Remplacement d'un véhicule polluant</span>
-    </div>
-    <div class="aides-row">
-      <span>Aide région / collectivité</span>
-      <span class="a-mid">50 à 500€</span>
-      <span>Variable selon département</span>
-    </div>
-    <div class="aides-row">
-      <span>Indemnité kilométrique vélo (employeur)</span>
-      <span class="a-good">0,35€/km</span>
-      <span>Trajets domicile-travail</span>
-    </div>
-    <div class="aides-row">
-      <span>Forfait mobilités durables</span>
-      <span class="a-good">Jusqu'à 700€/an</span>
-      <span>Prise en charge employeur</span>
-    </div>
-  </div>
-
-  <h2>L'entretien vélo : faire soi-même pour presque rien</h2>
-
-  <div class="entretien-grid">
-    <div class="entretien-card">
-      <div class="entretien-emoji">🔧</div>
-      <div class="entretien-name">Réparation crevaison</div>
-      <div class="entretien-prix">3–5€ (rustines)</div>
-      <div class="entretien-desc">S'apprend en 10 minutes sur YouTube. Économise 15–20€ à chaque fois vs atelier.</div>
-    </div>
-    <div class="entretien-card">
-      <div class="entretien-emoji">⛓️</div>
-      <div class="entretien-name">Graissage chaîne</div>
-      <div class="entretien-prix">8€ (bidon lubrifiant)</div>
-      <div class="entretien-desc">Toutes les 200 km. Prolonge la durée de vie de la transmission de 2 à 3 fois.</div>
-    </div>
-    <div class="entretien-card">
-      <div class="entretien-emoji">🛑</div>
-      <div class="entretien-name">Réglage des freins</div>
-      <div class="entretien-prix">0€ (tournevis)</div>
-      <div class="entretien-desc">Réglage des câbles de frein : 5 minutes, aucune pièce nécessaire dans la plupart des cas.</div>
-    </div>
-    <div class="entretien-card">
-      <div class="entretien-emoji">🔩</div>
-      <div class="entretien-name">Remplacement chambre à air</div>
-      <div class="entretien-prix">5–8€</div>
-      <div class="entretien-desc">Une chambre à air coûte 5€. En atelier, comptez 15–25€ avec la main d'œuvre.</div>
-    </div>
-    <div class="entretien-card">
-      <div class="entretien-emoji">💨</div>
-      <div class="entretien-name">Gonflage pneus</div>
-      <div class="entretien-prix">15€ (pompe)</div>
-      <div class="entretien-desc">Des pneus bien gonflés réduisent l'effort et usent moins la chambre. 1 fois/semaine.</div>
-    </div>
-    <div class="entretien-card">
-      <div class="entretien-emoji">🏪</div>
-      <div class="entretien-name">Ateliers vélo participatifs</div>
-      <div class="entretien-prix">Gratuit ou 5€/séance</div>
-      <div class="entretien-desc">Présents dans la plupart des villes : outils prêtés et aide bénévole pour vos réparations.</div>
-    </div>
-  </div>
-
-  <h2>Vélo vs voiture vs transports : le vrai comparatif</h2>
+  <h2>Reconditionné vs neuf vs occasion : le comparatif</h2>
 
   <div class="comp-wrap">
     <div class="comp-head">
       <span>Critère</span>
-      <span>Voiture</span>
-      <span>Transport commun</span>
-      <span>Vélo / trottinette</span>
+      <span>Neuf</span>
+      <span>Reconditionné</span>
+      <span>Occasion (LBC)</span>
     </div>
     <div class="comp-row">
-      <span>Coût annuel moyen</span>
-      <span class="c-bad">5 000–8 000€</span>
-      <span class="c-mid">900–1 500€</span>
-      <span class="c-good">100–400€</span>
+      <span>Prix (iPhone 14)</span>
+      <span class="c-bad">~900€</span>
+      <span class="c-good">~550€</span>
+      <span class="c-mid">~400€</span>
     </div>
     <div class="comp-row">
-      <span>Coût au km</span>
-      <span class="c-bad">0,30–0,50€</span>
-      <span class="c-mid">0,10–0,15€</span>
-      <span class="c-good">0,01–0,05€</span>
+      <span>Garantie</span>
+      <span class="c-good">24 mois</span>
+      <span class="c-good">12 à 24 mois</span>
+      <span class="c-bad">Aucune</span>
     </div>
     <div class="comp-row">
-      <span>Temps en ville (5 km)</span>
-      <span class="c-bad">15–30 min</span>
-      <span class="c-mid">20–35 min</span>
-      <span class="c-good">15–20 min</span>
+      <span>État batterie</span>
+      <span class="c-good">100%</span>
+      <span class="c-good">85%+ garanti</span>
+      <span class="c-bad">Inconnu</span>
     </div>
     <div class="comp-row">
-      <span>Stationnement</span>
-      <span class="c-bad">Payant, difficile</span>
-      <span class="c-good">Inclus</span>
-      <span class="c-good">Gratuit partout</span>
+      <span>Droit de retour</span>
+      <span class="c-good">14 jours</span>
+      <span class="c-good">14 à 30 jours</span>
+      <span class="c-bad">Non</span>
     </div>
     <div class="comp-row">
-      <span>Impact santé</span>
-      <span class="c-bad">Sédentaire</span>
-      <span class="c-mid">Neutre</span>
-      <span class="c-good">Activité physique</span>
+      <span>Risque achat</span>
+      <span class="c-good">Nul</span>
+      <span class="c-good">Très faible</span>
+      <span class="c-bad">Élevé</span>
     </div>
     <div class="comp-row">
       <span>Impact environnemental</span>
       <span class="c-bad">Élevé</span>
-      <span class="c-mid">Moyen</span>
-      <span class="c-good">Quasi nul</span>
+      <span class="c-good">Très faible</span>
+      <span class="c-good">Faible</span>
     </div>
   </div>
 
+  <h2>La checklist avant d'acheter</h2>
+
+  <div class="checklist">
+    <div class="checklist-title">✅ Vérifiez ces points avant de valider votre commande</div>
+    <div class="check-item"><span class="check-box">☐</span>Le grade est clairement défini et illustré par des photos réelles</div>
+    <div class="check-item"><span class="check-box">☐</span>La garantie est d'au moins 12 mois (idéalement 24)</div>
+    <div class="check-item"><span class="check-box">☐</span>L'état de la batterie est précisé (minimum 80%, idéalement 85%+)</div>
+    <div class="check-item"><span class="check-box">☐</span>Le droit de retour est d'au moins 14 jours (30 jours sur Back Market)</div>
+    <div class="check-item"><span class="check-box">☐</span>Le vendeur a un minimum de 50 avis avec une note supérieure à 4/5</div>
+    <div class="check-item"><span class="check-box">☐</span>L'appareil est débloqué (compatible avec tous les opérateurs)</div>
+    <div class="check-item"><span class="check-box">☐</span>Le numéro IMEI peut être vérifié sur le site checkimei.fr avant achat</div>
+  </div>
+
   <div class="tip-box">
-    <div class="tip-label">💡 Le forfait mobilités durables</div>
-    <p>Depuis 2020, votre employeur peut vous verser jusqu'à <strong>700€ par an</strong> en franchise d'impôt pour couvrir vos frais de déplacement à vélo ou trottinette entre votre domicile et votre lieu de travail. Ce forfait mobilités durables est cumulable avec le remboursement des transports en commun. Si votre employeur ne vous en a pas encore parlé, demandez à votre RH — c'est souvent méconnu mais très avantageux.</p>
+    <div class="tip-label">💡 La stratégie décalée</div>
+    <p>Achetez systématiquement <strong>la génération précédente</strong> en reconditionné grade A. Un iPhone 14 reconditionné grade A à 500€ offre 95% des fonctionnalités d'un iPhone 15 neuf à 1 000€. La différence de performance est imperceptible au quotidien, mais l'économie est très réelle. Cette stratégie divise votre budget smartphone par deux tous les deux ans.</p>
   </div>
 
   <div class="warn-box">
-    <div class="warn-label">⚠️ L'antivol : ne pas lésiner</div>
-    <p>Le vol de vélo est l'un des freins majeurs à la pratique cycliste en France. Un antivol de qualité (Kryptonite, Abus) coûte 40 à 80€ mais est indispensable pour ne pas perdre en quelques minutes un investissement de plusieurs centaines d'euros. Utilisez toujours deux points d'attache (cadre + roue + point fixe), ne laissez jamais votre vélo dehors la nuit et enregistrez-le sur le fichier national Bicycode pour faciliter sa restitution en cas de vol.</p>
+    <div class="warn-label">⚠️ Les pièges du reconditionné bon marché</div>
+    <p>Méfiez-vous des appareils vendus bien en dessous du prix du marché, notamment sur des plateformes non spécialisées ou des petites annonces. Un iPhone reconditionné vendu 200€ est souvent un appareil iCloud bloqué (volé), reconditionné avec des pièces non officielles, ou avec une batterie dégradée à moins de 60%. Sur Back Market ou Recommerce, le prix reflète une qualité vérifiée et garantie.</p>
   </div>
 
   <div class="recap">
-    <div class="recap-title">📊 Économies annuelles selon la situation</div>
-    <div class="recap-row"><span>Remplacement voiture en ville par VAE (trajets quotidiens)</span><span>2 000 à 4 000€/an</span></div>
-    <div class="recap-row"><span>Remplacement transports en commun par vélo (abonnement)</span><span>500 à 900€/an</span></div>
-    <div class="recap-row"><span>Forfait mobilités durables employeur</span><span>Jusqu'à 700€/an</span></div>
-    <div class="recap-row"><span>Indemnité kilométrique vélo (10 km/jour, 220 jours)</span><span>~770€/an</span></div>
-    <div class="recap-row"><span><strong>Économie pour un navetteur vélo quotidien</strong></span><span><strong>jusqu'à 1 500€/an net</strong></span></div>
+    <div class="recap-title">📊 Économies selon le modèle et le grade</div>
+    <div class="recap-row"><span>iPhone 15 neuf vs reconditionné grade A</span><span>~400€ économisés</span></div>
+    <div class="recap-row"><span>Samsung Galaxy S24 neuf vs reconditionné grade A</span><span>~300€ économisés</span></div>
+    <div class="recap-row"><span>iPhone 14 reconditionné A vs iPhone 15 neuf</span><span>~500€ économisés</span></div>
+    <div class="recap-row"><span>Économie sur 4 ans (renouvellement tous les 2 ans)</span><span>~800€ économisés</span></div>
+    <div class="recap-row"><span><strong>Économie vie entière vs achat neuf systématique</strong></span><span><strong>plusieurs milliers d'€</strong></span></div>
   </div>
 
-  <p>Le vélo n'est plus seulement un loisir dominical — c'est devenu un vrai outil d'économie et de liberté en milieu urbain. Entre les aides à l'achat, le forfait mobilités durables et les économies sur les transports, <strong>un VAE peut s'autofinancer en moins d'un an</strong> pour un actif qui l'utilise quotidiennement. Et en prime : un trajet plus rapide, zéro bouchon et une forme physique améliorée.</p>
+  <p>Le reconditionné n'est plus un pis-aller — c'est un choix intelligent, écologique et économique. Les plateformes sérieuses offrent des garanties équivalentes au neuf, des droits de retour généreux et des prix imbattables. <strong>Votre prochain smartphone sera probablement reconditionné</strong> — autant s'y préparer dès maintenant.</p>
 
   <div class="article-nav">
-    <a class="art-nav-btn" href="article-22.html">
+    <a class="art-nav-btn" href="article-10.html">
       <span class="nav-label">← Article précédent</span>
-      <span class="nav-title">Livres, cinéma, musées : accéder à la culture gratuitement</span>
+      <span class="nav-title">Manger sainement pour moins de 150€/mois</span>
     </a>
-    <a class="art-nav-btn next" href="article-24.html">
+    <a class="art-nav-btn next" href="article-12.html">
       <span class="nav-label">Article suivant →</span>
-      <span class="nav-title">Potager urbain : produire ses légumes toute l'année</span>
+      <span class="nav-title">Faire du sport régulièrement pour moins de 20€/mois</span>
     </a>
   </div>
 
