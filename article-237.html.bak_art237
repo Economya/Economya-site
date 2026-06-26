@@ -2,80 +2,65 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="IA pour économiser au quotidien : les meilleurs outils — Automatisez vos économies. Guide complet sur Economya.fr">
+<meta name="description" content="Téléconsultation médicale gratuite — Consulter sans avancer de frais. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IA pour économiser au quotidien : les meilleurs outils — Economya.fr</title>
+<title>Téléconsultation médicale gratuite — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--cyan:#0891b2;--cyan-l:#ecfeff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--blue:#2563EB;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#001f2d,#0369a1,#0891b2);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'✨';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'📱';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a5f3fc;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bfdbfe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#67e8f9;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#0891b2);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(8,145,178,.35)}
+.ah h1 em{color:#93c5fd;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#3b82f6);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(59,130,246,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#0891b2,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--cyan);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--blue);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
-
-/* OUTILS LISTE */
-.outils{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
-.outil{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem 1.5rem;display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:start;transition:box-shadow .2s}
-.outil:hover{box-shadow:0 4px 18px rgba(8,145,178,.1)}
-.outil-icon{font-size:2rem;flex-shrink:0;margin-top:.1rem}
-.outil-body h3{font-size:.95rem;font-weight:700;margin-bottom:.25rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-.outil-body p{font-size:.85rem;color:var(--m);font-weight:300;margin:0 0 .5rem}
-.prix-tag{display:inline-block;font-size:.7rem;font-weight:700;padding:.12rem .55rem;border-radius:50px}
-.prix-tag.free{background:var(--gl);color:var(--gd)}
-.prix-tag.freemium{background:var(--al);color:var(--ad)}
-.use-case{font-size:.78rem;color:var(--cyan);font-weight:600}
-
-/* STAT BAND */
-.stat-band{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border-radius:var(--r);overflow:hidden;margin:1.5rem 0}
-.stat-cell{background:var(--w);padding:1.2rem 1rem;text-align:center}
-.stat-num{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--cyan);display:block}
-.stat-lbl{font-size:.74rem;color:var(--m);margin-top:.2rem}
-
-/* ENCADRÉS */
+.platforms{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin:1.5rem 0}
+.pcard{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;transition:transform .2s,box-shadow .2s}
+.pcard:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(37,99,235,.1)}
+.pcard .picon{font-size:1.8rem;margin-bottom:.5rem}
+.pcard .pname{font-weight:700;font-size:.93rem;margin-bottom:.3rem}
+.pcard .pprice{display:inline-block;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:700;padding:.13rem .5rem;border-radius:50px;margin-bottom:.45rem}
+.pcard .pdesc{font-size:.81rem;color:var(--m);font-weight:300}
+.steps-h{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:1.5rem 0;text-align:center}
+.step-h{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem .9rem}
+.snum{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto .6rem}
+.step-h h3{font-size:.84rem;font-weight:600;margin-bottom:.25rem}
+.step-h p{font-size:.79rem;color:var(--m);font-weight:300;margin:0}
+.vlist{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin:1.2rem 0}
+.vlist li{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.9rem 1.1rem;font-size:.9rem}
+.vlist li .ic{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
+.vlist li strong{color:var(--t);display:block;margin-bottom:.1rem;font-size:.89rem}
+.vlist li span{color:var(--m);font-weight:300;font-size:.85rem}
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:var(--cyan-l);border-left:4px solid var(--cyan);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#0c4a6e}
+.warn{background:#eff6ff;border-left:4px solid var(--blue);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#1e3a8a}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
-
-/* TABLEAU RÉCAP */
-.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
-table{width:100%;border-collapse:collapse;font-size:.86rem}
-thead tr{background:linear-gradient(135deg,#0369a1,#0891b2);color:white}
-thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.8rem}
-tbody tr{border-bottom:1px solid var(--b)}
-tbody tr:last-child{border-bottom:none}
-tbody tr:nth-child(even){background:#fafafa}
-tbody td{padding:.8rem 1rem;vertical-align:middle}
-.g{color:#16a34a;font-weight:600}
-
-.cta{background:linear-gradient(135deg,#001f2d,#0369a1);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#0f172a,#1e3a8a);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#0891b2,#7c3aed);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.stat-band{grid-template-columns:1fr}.outil{grid-template-columns:1fr}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -129,9 +114,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "IA pour économiser au quotidien : les meilleurs outils",
-  "description": "IA pour économiser au quotidien : les meilleurs outils — Automatisez vos économies. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-247.html",
+  "headline": "Téléconsultation médicale gratuite",
+  "description": "Téléconsultation médicale gratuite — Consulter sans avancer de frais. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-237.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -148,19 +133,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="IA pour économiser au quotidien : les meilleurs outils">
-  <meta property="og:description" content="IA pour économiser au quotidien : les meilleurs outils — Automatisez vos économies. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-247.html">
+  <meta property="og:title" content="Téléconsultation médicale gratuite">
+  <meta property="og:description" content="Téléconsultation médicale gratuite — Consulter sans avancer de frais. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-237.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="IA pour économiser au quotidien : les meilleurs outils">
-  <meta name="twitter:description" content="IA pour économiser au quotidien : les meilleurs outils — Automatisez vos économies. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Téléconsultation médicale gratuite">
+  <meta name="twitter:description" content="Téléconsultation médicale gratuite — Consulter sans avancer de frais. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-247.html" />
+<link rel="canonical" href="https://economya.fr/article-237.html" />
 </head>
 <body>
 <nav>
@@ -170,118 +155,116 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Tech</span> › <span style="color:var(--t,#2C2C2A)">IA pour économiser : les meilleurs outils gratuits</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Tech", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "IA pour économiser : les meilleurs outils gratuits", "item": "https://economya.fr/article-247.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Santé</span> › <span style="color:var(--t,#2C2C2A)">Téléconsultation médicale : consulter gratuitement</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Santé", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Téléconsultation médicale : consulter gratuitement", "item": "https://economya.fr/article-237.html"}]}</script>
 
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">✨ Tech</div>
-    <h1>IA pour économiser :<br><em>les meilleurs outils gratuits</em></h1>
-    <div class="savings-badge">💰 Automatisez vos économies</div>
+    <div class="cat-pill">📱 Santé</div>
+    <h1>Téléconsultation médicale :<br><em>consulter gratuitement</em></h1>
+    <div class="savings-badge">💰 Consulter sans avancer de frais</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">🤖 IA & budget</span>
+      <span class="theme-tag">🩺 Santé numérique</span>
     </div>
   </div>
 </div>
 
 <div class="ab">
+  <p class="lead">Médecin introuvable dans votre secteur, délai de plusieurs semaines pour un rendez-vous, pas le temps de se déplacer : la téléconsultation est désormais remboursée à 100 % par l'Assurance maladie. Voici comment en profiter sans débourser un centime.</p>
 
-  <p class="lead">L'intelligence artificielle peut analyser vos factures, négocier vos abonnements, comparer des prix en temps réel et optimiser votre budget — souvent gratuitement. Voici les outils concrets qui font vraiment la différence au quotidien.</p>
+  <h2>🏥 Ce qui est remboursé</h2>
+  <p>Depuis 2022, la téléconsultation est remboursée <strong>au même tarif qu'une consultation classique</strong> (26,50 € par la Sécu, le reste par votre mutuelle). Deux conditions pour être pris en charge à 100 % :</p>
 
-  <div class="stat-band">
-    <div class="stat-cell"><span class="stat-num">2h</span><span class="stat-lbl">économisées/semaine en moyenne</span></div>
-    <div class="stat-cell"><span class="stat-num">400 €</span><span class="stat-lbl">économisés/an avec les bons outils</span></div>
-    <div class="stat-cell"><span class="stat-num">80 %</span><span class="stat-lbl">des outils utiles sont gratuits</span></div>
-  </div>
+  <ul class="vlist">
+    <li>
+      <span class="ic">✅</span>
+      <div><strong>Votre médecin traitant la propose</strong><span>C'est la voie royale : remboursement intégral, suivi de dossier, ordonnance valide immédiatement.</span></div>
+    </li>
+    <li>
+      <span class="ic">✅</span>
+      <div><strong>Vous passez par le Service d'Accès aux Soins (15)</strong><span>En cas d'urgence non vitale, le 15 oriente vers une téléconsultation remboursée sous 30 minutes.</span></div>
+    </li>
+    <li>
+      <span class="ic">⚠️</span>
+      <div><strong>Plateformes privées sans médecin traitant</strong><span>Doctolib, Livi, Qare… remboursées si le médecin consulté accepte d'être votre correspondant déclaré, sinon remboursement partiel.</span></div>
+    </li>
+  </ul>
 
-  <h2>🛠️ Les outils IA indispensables par usage</h2>
+  <h2>📱 Les meilleures plateformes en 2025</h2>
 
-  <div class="outils">
-    <div class="outil">
-      <div class="outil-icon">🧾</div>
-      <div class="outil-body">
-        <h3>Cleo / Linxo <span class="prix-tag freemium">Freemium</span></h3>
-        <p>Ces applis connectées à votre banque analysent vos dépenses avec l'IA, détectent les abonnements oubliés, catégorisent vos achats et vous alertent en cas de dépassement de budget.</p>
-        <span class="use-case">→ Idéal pour : suivre son budget, repérer les fuites</span>
-      </div>
+  <div class="platforms">
+    <div class="pcard">
+      <div class="picon">🩺</div>
+      <div class="pname">Doctolib</div>
+      <div class="pprice">💰 Remboursé Sécu</div>
+      <div class="pdesc">La plus utilisée. Large choix de spécialistes, ordonnance électronique, RDV rapide.</div>
     </div>
-    <div class="outil">
-      <div class="outil-icon">🔍</div>
-      <div class="outil-body">
-        <h3>Perplexity AI <span class="prix-tag free">Gratuit</span></h3>
-        <p>Moteur de recherche IA avec sources vérifiées en temps réel. Parfait pour comparer des offres d'assurance, trouver des aides méconnues ou analyser des contrats complexes rapidement.</p>
-        <span class="use-case">→ Idéal pour : recherche d'aides, comparaison d'offres</span>
-      </div>
+    <div class="pcard">
+      <div class="picon">💬</div>
+      <div class="pname">Livi</div>
+      <div class="pprice">💰 Remboursé Sécu</div>
+      <div class="pdesc">Consultation en moins de 30 min, disponible 7j/7, dossier médical intégré.</div>
     </div>
-    <div class="outil">
-      <div class="outil-icon">📄</div>
-      <div class="outil-body">
-        <h3>ChatGPT / Claude <span class="prix-tag free">Gratuit</span></h3>
-        <p>Uploadez vos factures, contrats ou relevés bancaires et demandez une analyse. Ils détectent les clauses abusives, estiment si vous payez trop cher et rédigent des lettres de résiliation.</p>
-        <span class="use-case">→ Idéal pour : analyser contrats, rédiger réclamations</span>
-      </div>
+    <div class="pcard">
+      <div class="picon">🏥</div>
+      <div class="pname">Medadom</div>
+      <div class="pprice">💰 Remboursé Sécu</div>
+      <div class="pdesc">Bornes en pharmacie + appli. Idéal sans médecin traitant. Réseau national.</div>
     </div>
-    <div class="outil">
-      <div class="outil-icon">🛒</div>
-      <div class="outil-body">
-        <h3>Idealo / Google Shopping IA <span class="prix-tag free">Gratuit</span></h3>
-        <p>La comparaison de prix dopée à l'IA suit l'évolution des tarifs et vous alerte quand un produit atteint son prix le plus bas. Économies garanties sur les achats tech, électroménager et mode.</p>
-        <span class="use-case">→ Idéal pour : achats importants, électronique</span>
-      </div>
-    </div>
-    <div class="outil">
-      <div class="outil-icon">⚡</div>
-      <div class="outil-body">
-        <h3>Selectra / Hello Watt <span class="prix-tag free">Gratuit</span></h3>
-        <p>Ces comparateurs IA analysent votre consommation d'énergie et trouvent le contrat électricité ou gaz le moins cher en temps réel. Mise à jour automatique quand les tarifs changent.</p>
-        <span class="use-case">→ Idéal pour : énergie, forfait mobile, assurances</span>
-      </div>
+    <div class="pcard">
+      <div class="picon">📞</div>
+      <div class="pname">Qare</div>
+      <div class="pprice">💰 Partiellement</div>
+      <div class="pdesc">Spécialistes accessibles vite (dermato, psy, pédiatre). Vérifiez le remboursement avant.</div>
     </div>
   </div>
 
-  <h2>📊 Récap : quel outil pour quel besoin</h2>
+  <h2>🪜 Comment ça se passe</h2>
 
-  <div class="tw">
-    <table>
-      <thead>
-        <tr>
-          <th>Besoin</th>
-          <th>Outil recommandé</th>
-          <th>Économie potentielle</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Suivre son budget</td><td>Linxo / Cleo</td><td class="g">100–300 €/an</td></tr>
-        <tr><td>Comparer les prix</td><td>Idealo + alertes</td><td class="g">50–200 €/achat</td></tr>
-        <tr><td>Analyser ses contrats</td><td>ChatGPT</td><td class="g">Variable</td></tr>
-        <tr><td>Changer de fournisseur énergie</td><td>Hello Watt</td><td class="g">150–400 €/an</td></tr>
-        <tr><td>Trouver des aides</td><td>Perplexity AI</td><td class="g">Centaines d'€</td></tr>
-      </tbody>
-    </table>
+  <div class="steps-h">
+    <div class="step-h">
+      <div class="snum">1</div>
+      <h3>Prenez RDV en ligne</h3>
+      <p>Sur la plateforme ou via votre médecin. Souvent dispo sous 2h.</p>
+    </div>
+    <div class="step-h">
+      <div class="snum">2</div>
+      <h3>Consultez par vidéo</h3>
+      <p>Depuis votre smartphone ou ordi. Connexion stable requise.</p>
+    </div>
+    <div class="step-h">
+      <div class="snum">3</div>
+      <h3>Recevez l'ordonnance</h3>
+      <p>Par e-mail ou directement en pharmacie connectée.</p>
+    </div>
+    <div class="step-h">
+      <div class="snum">4</div>
+      <h3>Zéro avance</h3>
+      <p>Tiers payant activé = vous ne déboursez rien.</p>
+    </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Le combo gagnant</strong>
-    ChatGPT pour analyser vos contrats + Linxo pour surveiller vos dépenses + Idealo avec alertes prix = un système d'économies automatisé, 100 % gratuit, qui tourne en arrière-plan sans effort de votre part.
+    <strong>💡 Astuce mutuelle</strong>
+    Certaines mutuelles (Malakoff Humanis, Alan, Harmonie…) offrent des téléconsultations illimitées gratuites à leurs adhérents, en plus du remboursement Sécu. Vérifiez votre espace adhérent avant de payer quoi que ce soit.
   </div>
 
   <div class="warn">
-    <strong>ℹ️ Prudence avec les connexions bancaires</strong>
-    Les applis de suivi budgétaire (Linxo, Cleo…) se connectent à votre banque via le protocole DSP2, encadré par la loi européenne. Vérifiez que l'appli est agréée par l'ACPR (Autorité de contrôle prudentiel) avant de l'autoriser.
+    <strong>ℹ️ Limites à connaître</strong>
+    La téléconsultation ne remplace pas un examen physique. Pour tout symptôme nécessitant auscultation ou examens complémentaires, le médecin vous orientera vers une consultation en présentiel.
   </div>
 
   <div class="cta">
-    <h3>📬 Tech & économies dans votre boîte mail</h3>
-    <p>Les meilleurs outils gratuits pour économiser au quotidien, chaque semaine.</p>
+    <h3>📬 Santé & économies dans votre boîte mail</h3>
+    <p>Les meilleures astuces pour payer moins cher vos soins, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
     </div>
   </div>
-
 </div>
 
 
@@ -318,7 +301,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-249.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">Forfait 5G pas cher : comparatif opérateurs 2026</div></a><a class="sim-card" href="article-250.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">VPN : gratuit ou payant, lequel choisir ?</div></a><a class="sim-card" href="article-251.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">Antivirus gratuit : les meilleurs en 2026</div></a><a class="sim-card" href="article-252.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">Netflix 2026 : partage de compte, règles, prix</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-231.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">100% Santé : ce qui est vraiment remboursé</div></a><a class="sim-card" href="article-232.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">ALD : droits, prise en charge à 100%</div></a><a class="sim-card" href="article-233.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Complémentaire santé solidaire (CSS) gratuite</div></a><a class="sim-card" href="article-234.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Remboursement lunettes : toutes les aides</div></a></div>
 </div>
 
 
