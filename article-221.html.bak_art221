@@ -248,7 +248,7 @@ window.economyaLoadAds = function() {
       <div class="decom-head secu">🏥 Indemnités Sécu (IJSS)</div>
       <div class="decom-body">
         <div class="decom-row"><span class="decom-label">Montant</span><span class="decom-val">50 % du SJB*</span></div>
-        <div class="decom-row"><span class="decom-label">Plafond journalier</span><span class="decom-val">41,95 €/jour (depuis le 01/02/2026, suite à la réforme de 2025 abaissant la base de calcul de 1,8 à 1,4 SMIC)</span></div>
+        <div class="decom-row"><span class="decom-label">Plafond journalier</span><span class="decom-val">53,49 €/jour (2025)</span></div>
         <div class="decom-row"><span class="decom-label">Délai de carence</span><span class="decom-val">3 jours</span></div>
         <div class="decom-row"><span class="decom-label">Conditions</span><span class="decom-val">800 h sur 12 mois</span></div>
         <div class="decom-row"><span class="decom-label">Durée max</span><span class="decom-val">360 j sur 3 ans</span></div>

@@ -212,7 +212,7 @@ window.economyaLoadAds = function() {
         <div class="comp-row"><span class="comp-label">Qui y a droit ?</span><span class="comp-val">Entreprises > 1 salarié</span></div>
         <div class="comp-row"><span class="comp-label">Basé sur</span><span class="comp-val">Performance de l'entreprise</span></div>
         <div class="comp-row"><span class="comp-label">Formule</span><span class="comp-val">Librement définie par accord</span></div>
-        <div class="comp-row"><span class="comp-label">Plafond par salarié</span><span class="comp-val">75 % du PASS (36 045 € en 2026)</span></div>
+        <div class="comp-row"><span class="comp-label">Plafond par salarié</span><span class="comp-val">75 % du PASS (32 994 € en 2025)</span></div>
         <div class="comp-row"><span class="comp-label">Délai de versement</span><span class="comp-val">5 mois après clôture</span></div>
         <div class="comp-row"><span class="comp-label">Choix salarié</span><span class="comp-val">Cash ou PEE/PERCO</span></div>
       </div>
@@ -326,7 +326,7 @@ window.economyaLoadAds = function() {
 
   <div class="encadre">
     <strong>📌 L'abondement : de l'argent gratuit que peu de salariés maximisent</strong>
-    <p>L'abondement est la contribution de l'employeur qui s'ajoute à votre versement sur le PEE ou PERCO. Il peut atteindre 300 % de votre versement, dans la limite de 8 % du PASS (environ 3 845 € en 2026). Concrètement : si vous versez 1 000 € sur le PEE et que l'employeur abonde à 100 %, vous vous retrouvez avec 2 000 € investis pour 1 000 € sortis de votre poche. C'est un rendement immédiat de 100 %, défiscalisé. Vérifiez le taux d'abondement de votre entreprise — et maximisez-le chaque année avant tout autre investissement.</p>
+    <p>L'abondement est la contribution de l'employeur qui s'ajoute à votre versement sur le PEE ou PERCO. Il peut atteindre 300 % de votre versement, dans la limite de 8 % du PASS (environ 3 519 € en 2025). Concrètement : si vous versez 1 000 € sur le PEE et que l'employeur abonde à 100 %, vous vous retrouvez avec 2 000 € investis pour 1 000 € sortis de votre poche. C'est un rendement immédiat de 100 %, défiscalisé. Vérifiez le taux d'abondement de votre entreprise — et maximisez-le chaque année avant tout autre investissement.</p>
   </div>
 
   <div class="conseil">

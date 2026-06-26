@@ -228,7 +228,7 @@ window.economyaLoadAds = function() {
       <div class="bull-row">
         <span class="bull-label bold">Employeur : Entreprise SAS · SIRET : 123 456 789 00010</span>
         <span class="bull-base"></span>
-        <span class="bull-montant gris">Période : juin 2026</span>
+        <span class="bull-montant gris">Période : juin 2025</span>
       </div>
       <div class="bull-annot">Vérifiez que le SIRET correspond bien à votre entreprise et que la convention collective est correcte</div>
     </div>
@@ -366,7 +366,7 @@ window.economyaLoadAds = function() {
   <div class="exoneres">
     <div class="exonere">
       <span class="exonere-ico">🍽️</span>
-      <div class="exonere-text"><strong>Titres-restaurant</strong>La part patronale (jusqu'à 7,32 € par titre en 2026) est exonérée de cotisations et d'impôt sur le revenu.</div>
+      <div class="exonere-text"><strong>Titres-restaurant</strong>La part patronale (jusqu'à 7,18 € par titre en 2025) est exonérée de cotisations et d'impôt sur le revenu.</div>
     </div>
     <div class="exonere">
       <span class="exonere-ico">🚌</span>
