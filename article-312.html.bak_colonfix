@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Vêtements enfants pas chers : meilleures sources — Vinted, tailles dessus. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vêtements enfants pas chers : meilleures sources — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#052e16,#065f46,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'👕';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a7f3d0;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#6ee7b7;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#1D9E75);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(29,158,117,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#1D9E75,#0891b2);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--g);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* SOURCES */
+.sources{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+.source{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.source:hover{box-shadow:0 4px 18px rgba(29,158,117,.1)}
+.source.top{border:2px solid var(--g)}
+.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
+.s-icon{font-size:2rem;flex-shrink:0;margin-top:.1rem}
+.s-body h3{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
+.s-body p{font-size:.83rem;color:var(--m);font-weight:300;margin:0 0 .45rem}
+.s-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.stag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:var(--gl);color:var(--gd)}
+.stag.o{background:var(--al);color:var(--ad)}
+.s-right{text-align:right;flex-shrink:0}
+.s-eco{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--g);display:block;white-space:nowrap}
+.s-sub{font-size:.7rem;color:var(--m)}
+
+/* ASTUCES */
+.astuces{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
+.astuce{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
+.astuce .aico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+.astuce strong{display:block;font-size:.92rem;margin-bottom:.15rem}
+.astuce span{font-size:.85rem;color:var(--m);font-weight:300}
+.astuce .atag{display:inline-block;margin-top:.35rem;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#052e16,#065f46);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#1D9E75,#0891b2);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.source{grid-template-columns:1fr;gap:.5rem}.s-right{text-align:left}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Vêtements enfants pas chers : meilleures sources",
+  "description": "Vêtements enfants pas chers : meilleures sources — Vinted, tailles dessus. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-312.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Vêtements enfants pas chers : meilleures sources">
+  <meta property="og:description" content="Vêtements enfants pas chers : meilleures sources — Vinted, tailles dessus. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-312.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Vêtements enfants pas chers : meilleures sources">
+  <meta name="twitter:description" content="Vêtements enfants pas chers : meilleures sources — Vinted, tailles dessus. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-312.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Famille</span> › <span style="color:var(--t,#2C2C2A)">Vêtements enfants pas chers : meilleures sources</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Famille", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Vêtements enfants pas chers : meilleures sources", "item": "https://economya.fr/article-312.html"}]}</script>
+
+
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">👕 Famille</div>
+    <h1>Vêtements enfants pas chers :<br><em>meilleures sources</em></h1>
+    <div class="savings-badge">💰 Vinted, trocs et tailles dessus</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="theme-tag">👗 Mode enfant & budget</span>
+    </div>
+  </div>
+</div>
+
+<div class="ab">
+
+  <p class="lead">Les enfants grandissent vite — parfois 2 tailles en un an. Acheter neuf à chaque saison coûte une fortune. Pourtant, entre Vinted, les bourses aux vêtements, Kiabi et les astuces de taille, habiller un enfant correctement peut coûter 5 fois moins cher. Voici toutes les meilleures sources.</p>
+
+  <h2>🛒 Les meilleures sources par ordre de prix croissant</h2>
+
+  <div class="sources">
+
+    <div class="source top">
+      <div class="s-icon">📱</div>
+      <div class="s-body">
+        <div class="top-badge">⭐ Le moins cher</div>
+        <h3>Vinted et Le Bon Coin</h3>
+        <p>Des millions d'articles enfants d'occasion en très bon état. Les vêtements de marque (Petit Bateau, Absorba, Catimini) se trouvent à 2–5 € l'article. Cherchez par taille et marque. La livraison est souvent incluse dans le prix.</p>
+        <div class="s-tags">
+          <span class="stag">−70 à −90 % du neuf</span>
+          <span class="stag">Marques de qualité</span>
+          <span class="stag">Envoi rapide</span>
+        </div>
+      </div>
+      <div class="s-right"><span class="s-eco">1–5 €</span><span class="s-sub">par article</span></div>
+    </div>
+
+    <div class="source">
+      <div class="s-icon">🤝</div>
+      <div class="s-body">
+        <h3>Bourses aux vêtements et trocs entre parents</h3>
+        <p>Les groupes Facebook "troc vêtements enfants [ville]", les vides-dressings organisés par les écoles et les bourses aux vêtements de quartier permettent d'acheter des lots entiers pour 10–20 €. Parfois gratuit entre voisins.</p>
+        <div class="s-tags">
+          <span class="stag">Gratuit à très peu cher</span>
+          <span class="stag">Lots complets</span>
+          <span class="stag">Local</span>
+        </div>
+      </div>
+      <div class="s-right"><span class="s-eco">0–3 €</span><span class="s-sub">par article en lot</span></div>
+    </div>
+
+    <div class="source">
+      <div class="s-icon">🏪</div>
+      <div class="s-body">
+        <h3>Kiabi, Primark et grandes surfaces (soldes)</h3>
+        <p>Kiabi est l'enseigne neuf la moins chère de France pour les enfants : t-shirts à 3 €, pantalons à 7 €, pyjamas à 5 €. En soldes (-50 à -70 %), les prix sont imbattables pour du neuf. Primark est encore moins cher mais qualité moindre.</p>
+        <div class="s-tags">
+          <span class="stag">Neuf garanti</span>
+          <span class="stag">Soldes jan. et juil.</span>
+          <span class="stag o">Qualité variable</span>
+        </div>
+      </div>
+      <div class="s-right"><span class="s-eco">3–10 €</span><span class="s-sub">neuf, hors soldes</span></div>
+    </div>
+
+    <div class="source">
+      <div class="s-icon">🔄</div>
+      <div class="s-body">
+        <h3>Emmaus, La Croix Rouge boutique, ressourceries</h3>
+        <p>Vêtements d'occasion à prix très bas, souvent en bon état. Idéal pour les habits du quotidien (école, activités extérieures). Prix : 0,50 à 3 € l'article. Aide les associations en plus.</p>
+        <div class="s-tags">
+          <span class="stag">Ultra pas cher</span>
+          <span class="stag">Solidaire</span>
+        </div>
+      </div>
+      <div class="s-right"><span class="s-eco">0,50–3 €</span><span class="s-sub">par article</span></div>
+    </div>
+
+    <div class="source">
+      <div class="s-icon">🌐</div>
+      <div class="s-body">
+        <h3>Zalando Privé, Showroomprivé (ventes privées)</h3>
+        <p>Des marques qualité (Absorba, Petit Bateau, Tartine et Chocolat) à -50 à -70 % lors de ventes flash. Créez un compte et activez les alertes pour vos marques favorites. Idéal pour les occasions (baptêmes, Noël).</p>
+        <div class="s-tags">
+          <span class="stag">Marques premium</span>
+          <span class="stag">−50 à −70 %</span>
+          <span class="stag o">Durée limitée</span>
+        </div>
+      </div>
+      <div class="s-right"><span class="s-eco">−50 à −70 %</span><span class="s-sub">marques premium</span></div>
+    </div>
+
+  </div>
+
+  <h2>💡 Les astuces malines</h2>
+
+  <div class="astuces">
+    <div class="astuce">
+      <span class="aico">📏</span>
+      <div>
+        <strong>Achetez une taille au-dessus</strong>
+        <span>Les enfants grandissent vite. Achetez systématiquement une taille au-dessus pour les vêtements non ajustés (pulls, pyjamas, manteaux). Vous gagnerez une saison supplémentaire d'utilisation.</span>
+        <span class="atag">💰 Double la durée de vie des vêtements</span>
+      </div>
+    </div>
+    <div class="astuce">
+      <span class="aico">🗓️</span>
+      <div>
+        <strong>Achetez hors saison</strong>
+        <span>Les manteaux d'hiver sont soldés à −70 % en février. Les maillots de bain sont soldés à −60 % en septembre. Achetez la taille au-dessus en fin de saison pour l'année suivante.</span>
+        <span class="atag">💰 −50 à −70 % vs achat en saison</span>
+      </div>
+    </div>
+    <div class="astuce">
+      <span class="aico">🔄</span>
+      <div>
+        <strong>Revendez sur Vinted ce que votre enfant ne porte plus</strong>
+        <span>Les vêtements enfants d'occasion se vendent très bien sur Vinted. Un manteau Petit Bateau taille 3 ans en bon état part à 15–25 €. Financez les prochains achats avec les ventes des vêtements dépassés.</span>
+        <span class="atag">💰 Budget vêtements quasi nul</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 La règle des 3 types de vêtements</strong>
+    Catégorisez les vêtements de vos enfants en 3 niveaux : habits de fête (neufs ou très bon état, gardés précieusement), habits du quotidien (Kiabi, Vinted en bon état), habits de jeux extérieurs (Emmaüs, ressourceries — peu importe les taches). Ne mélangez pas les niveaux et vous économisez sur toute la garde-robe.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Attention aux tailles enfants sur Vinted</strong>
+    Les tailles enfants varient énormément d'une marque à l'autre. Un "4 ans" Petit Bateau est souvent l'équivalent d'un "5 ans" H&M. Vérifiez toujours les mesures en centimètres (tour de poitrine, longueur) dans la description plutôt que de vous fier uniquement à l'âge indiqué.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Budget famille dans votre boîte mail</h3>
+    <p>Les meilleures astuces pour habiller vos enfants sans se ruiner, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-306.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Allocations familiales 2026 :montants et conditions</div></a><a class="sim-card" href="article-307.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Prime naissance CAF :toutes les aides</div></a><a class="sim-card" href="article-308.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Congé parental :droits et allocations</div></a><a class="sim-card" href="article-309.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Fournitures scolaires pas chères :le guide</div></a></div>
+</div>
+
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
