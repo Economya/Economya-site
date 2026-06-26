@@ -171,7 +171,7 @@ window.economyaLoadAds = function() {
   <p>En France, la facture d'électricité moyenne d'un foyer dépasse <strong>1 200 € par an</strong>. Pourtant, la plupart des ménages ignorent quels appareils consomment réellement le plus. Connaître les coupables, c'est déjà faire la moitié du chemin pour réduire sa facture.</p>
 
   <h2>Le classement des appareils les plus énergivores</h2>
-  <p>Les chiffres ci-dessous sont basés sur une utilisation moyenne française et un tarif réglementé EDF 2026 (environ 0,194 €/kWh en option Base, après plusieurs baisses successives).</p>
+  <p>Les chiffres ci-dessous sont basés sur une utilisation moyenne française et un tarif réglementé EDF 2025 (environ 0,25 €/kWh).</p>
 
   <ul class="device-list">
     <li><span class="num">1</span><div class="content"><h3>Le chauffage électrique</h3><p>Radiateurs à inertie, convecteurs, plancher chauffant… Le chauffage représente à lui seul 30 à 50 % de la facture en hiver.</p></div><span class="cost">~500 €/an</span></li>

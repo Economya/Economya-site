@@ -229,7 +229,7 @@ window.economyaLoadAds = function() {
       <div class="levier-icon" style="background:#FAEEDA">🎫</div>
       <div class="levier-body">
         <h3>Les tickets restaurant : les utiliser intelligemment</h3>
-        <p>Les tickets restaurant (ou carte Swile/Edenred) sont exonérés d'impôt et de charges sociales pour une valeur faciale comprise entre 12,20€ et 14,64€ par titre en 2026, selon que l'employeur participe à 60% ou 50% (plafond de part patronale exonérée : 7,32€/titre). Si votre employeur les propose et que vous ne les utilisez pas systématiquement, vous perdez de l'argent. À l'inverse, ne les utilisez pas uniquement dans des restaurants — ils sont acceptés en grande surface, boulangeries et épiceries pour composer un repas moins cher.</p>
+        <p>Les tickets restaurant (ou carte Swile/Edenred) sont exonérés d'impôt et de charges sociales jusqu'à 13,09€ par titre en 2025 (dont 60% payés par l'employeur). Si votre employeur les propose et que vous ne les utilisez pas systématiquement, vous perdez de l'argent. À l'inverse, ne les utilisez pas uniquement dans des restaurants — ils sont acceptés en grande surface, boulangeries et épiceries pour composer un repas moins cher.</p>
       </div>
       <div class="levier-gain">Avantage employeur à maximiser</div>
     </div>
