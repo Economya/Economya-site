@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Faire son pain maison — Economya.fr</title>
+<title>Décoration intérieure DIY tendance — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -11,8 +11,8 @@
   : root{
     --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
     --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
-    --wheat:#8B5E2A;--wheat-mid:#C4892F;--wheat-light:#FDF5E6;
-    --crust:#5C3A0E;--dough:#F5D5A0;--cream:#FFFDF7;
+    --sand:#C4A882;--sand-light:#FAF5EE;--sand-dark:#5C3D1E;
+    --terracotta:#C1654A;--stone:#8C7B6B;--chalk:#F5F0E8;
   }
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
   nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
@@ -22,14 +22,14 @@
   .back:hover{color:var(--g)}
 
   .hero-art{
-    background:linear-gradient(135deg,#1A0A00 0%,#5C3A0E 35%,#8B5E2A 65%,#C4892F 85%,#F5D5A0 100%);
+    background:linear-gradient(135deg,#1A0E06 0%,#5C3D1E 35%,#C4A882 68%,#C1654A 100%);
     padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
   }
   .hero-art::before{
-    content:'🍞';position:absolute;font-size:13rem;opacity:.07;
+    content:'🏡';position:absolute;font-size:13rem;opacity:.06;
     top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
   }
-  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.65);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
   .acat strong{color:#fff}
   .hero-art h1{
     font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
@@ -37,69 +37,47 @@
   }
   .abadge{
     display:inline-block;
-    background:linear-gradient(90deg,var(--dough),var(--wheat-mid));
-    color:#1A0A00;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    background:linear-gradient(90deg,var(--chalk),var(--sand));
+    color:#1A0E06;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
     border-radius:50px;margin-top:.4rem
   }
   .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
-  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.12);padding:.2rem .75rem;border-radius:50px}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
 
   article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
   article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
-  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--crust);margin:2rem 0 .7rem}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--sand-dark);margin:2rem 0 .7rem}
 
-  /* Recette principale */
-  .recette{background:var(--cream);border:1px solid rgba(139,94,42,.2);border-radius:14px;overflow:hidden;margin:1.5rem 0}
-  .recette-head{background:linear-gradient(90deg,var(--crust),var(--wheat));padding:.9rem 1.2rem;color:#fff}
-  .recette-head h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:900;margin-bottom:.15rem}
-  .recette-head p{font-size:.76rem;color:rgba(255,255,255,.7);margin:0}
-  .recette-body{display:grid;grid-template-columns:1fr 1fr}
-  .rec-col{padding:.9rem 1.1rem}
-  .rec-col:first-child{border-right:1px solid rgba(139,94,42,.12)}
-  .rec-label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--wheat);margin-bottom:.55rem}
-  .rec-item{font-size:.84rem;font-weight:300;padding:.22rem 0;border-bottom:1px dotted rgba(139,94,42,.15);color:var(--t);display:flex;justify-content:space-between;gap:.5rem}
-  .rec-item span{font-weight:500;color:var(--crust);white-space:nowrap}
-  .rec-step{display:flex;gap:.6rem;margin-bottom:.5rem;font-size:.83rem;font-weight:300;color:var(--t);align-items:flex-start;line-height:1.5}
-  .rec-n{background:var(--wheat);color:#fff;border-radius:50%;width:20px;height:20px;font-size:.67rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.07rem}
+  /* Projets DIY */
+  .projets{display:flex;flex-direction:column;gap:.8rem;margin:1.5rem 0}
+  .projet{background:var(--w);border-radius:12px;overflow:hidden;border:1px solid rgba(196,168,130,.2);display:grid;grid-template-columns:auto 1fr}
+  .projet-cost{background:linear-gradient(180deg,var(--sand-dark),var(--sand));writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:.7rem .5rem;display:flex;align-items:center;justify-content:center;text-align:center;min-width:38px}
+  .projet-body{padding:.85rem 1.1rem}
+  .projet-title{font-weight:500;font-size:.92rem;color:var(--sand-dark);margin-bottom:.2rem}
+  .projet-desc{font-size:.83rem;font-weight:300;color:var(--m);line-height:1.5;margin-bottom:.4rem}
+  .projet-tags{display:flex;gap:.4rem;flex-wrap:wrap}
+  .ptag{font-size:.68rem;font-weight:500;padding:.1rem .5rem;border-radius:50px}
+  .ptag.budget{background:var(--al);color:var(--ad)}
+  .ptag.niveau{background:var(--sand-light);color:var(--sand-dark)}
+  .ptag.tendance{background:#F3E5F5;color:#6A0572}
 
-  /* Timeline fermentation */
-  .timeline{display:flex;flex-direction:column;gap:0;margin:1.5rem 0;position:relative}
-  .timeline::before{content:'';position:absolute;left:19px;top:20px;bottom:20px;width:2px;background:linear-gradient(180deg,var(--wheat),var(--dough));opacity:.4}
-  .tl-item{display:flex;gap:.9rem;padding:.7rem 0;align-items:flex-start}
-  .tl-dot{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--crust),var(--wheat));color:#fff;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;box-shadow:0 2px 8px rgba(139,94,42,.3)}
-  .tl-body{}
-  .tl-temps{font-size:.7rem;font-weight:600;color:var(--wheat);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.1rem}
-  .tl-action{font-weight:500;font-size:.88rem;color:var(--crust);margin-bottom:.1rem}
-  .tl-detail{font-size:.8rem;font-weight:300;color:var(--m);line-height:1.4}
-
-  /* Comparatif */
-  .cout{display:grid;grid-template-columns:1fr auto 1fr;gap:.6rem;align-items:center;margin:1.5rem 0;background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.1rem 1.2rem}
-  .cout-block{text-align:center}
-  .cout-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--m);margin-bottom:.3rem}
-  .cout-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900}
-  .cout-val.rouge{color:#B91C1C}
-  .cout-val.vert{color:var(--gd)}
-  .cout-sub{font-size:.72rem;color:var(--m);margin-top:.15rem;font-weight:300}
-  .cout-arrow{font-size:1.3rem;color:var(--wheat);text-align:center}
-
-  /* Variantes */
-  .variantes{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1.5rem 0}
-  .variante{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:.8rem .9rem}
-  .variante-emoji{font-size:1.3rem;margin-bottom:.25rem}
-  .variante-nom{font-weight:500;font-size:.86rem;color:var(--crust);margin-bottom:.15rem}
-  .variante-desc{font-size:.78rem;font-weight:300;color:var(--m);line-height:1.4}
+  /* Palette tendances */
+  .palettes{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin:1.5rem 0}
+  .palette{border-radius:10px;overflow:hidden;border:1px solid var(--b)}
+  .palette-color{height:55px}
+  .palette-label{background:var(--w);padding:.4rem .5rem;font-size:.72rem;font-weight:500;color:var(--t);text-align:center;line-height:1.3}
 
   .conseil{
-    background:linear-gradient(135deg,#1A0A00,#5C3A0E);
+    background:linear-gradient(135deg,#5C3D1E,#C4A882);
     border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff
   }
-  .conseil strong{display:block;color:var(--dough);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
-  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+  .conseil strong{display:block;color:#FAF5EE;font-weight:600;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.85);font-weight:300;margin:0;line-height:1.65}
 
   footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
   footer strong{color:white}
   footer a{color:var(--a);text-decoration:none}
-  @media(max-width:500px){.recette-body{grid-template-columns:1fr}.rec-col:first-child{border-right:none;border-bottom:1px solid rgba(139,94,42,.12)}.variantes{grid-template-columns:1fr}.cout{grid-template-columns:1fr}.cout-arrow{transform:rotate(90deg)}}
+  @media(max-width:500px){.palettes{grid-template-columns:repeat(2,1fr)}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -153,9 +131,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Faire son pain maison",
+  "headline": "Décoration intérieure DIY tendance",
   "description": "Conseils et astuces pour économiser au quotidien.",
-  "url": "https://economya.fr/article-198.html",
+  "url": "https://economya.fr/article-151.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -172,20 +150,20 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Faire son pain maison">
+  <meta property="og:title" content="Décoration intérieure DIY tendance">
   <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-198.html">
+  <meta property="og:url" content="https://economya.fr/article-151.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Faire son pain maison">
+  <meta name="twitter:title" content="Décoration intérieure DIY tendance">
   <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-198.html" />
-<meta name="description" content="Faire son pain maison — Economya.fr" />
+<link rel="canonical" href="https://economya.fr/article-151.html" />
+<meta name="description" content="Décoration intérieure DIY tendance — Economya.fr" />
 </head>
 <body>
 
@@ -196,145 +174,108 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Faire son pain maison</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Faire son pain maison", "item": "https://economya.fr/article-198.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Décoration intérieure DIY tendance</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Décoration intérieure DIY tendance", "item": "https://economya.fr/article-151.html"}]}</script>
 
 
 <div class="hero-art">
-  <div class="acat">🍞 <strong>Alimentation</strong></div>
-  <h1>Faire son pain maison</h1>
-  <div class="abadge">💰 Baguette à 0,15€</div>
+  <div class="acat">🏡 <strong>Maison</strong></div>
+  <h1>Décoration intérieure DIY tendance</h1>
+  <div class="abadge">💰 Maison Pinterest pour 50€</div>
   <div class="meta">
     <span>📖 Lecture 5 min</span>
     <span>✅ Vérifié juin 2026</span>
-    <span>🌾 Boulangerie maison</span>
+    <span>🎨 DIY & intérieur</span>
   </div>
 </div>
 
 <article>
 
-  <p>Une baguette tradition coûte entre 1,20 et 1,60 euro en boulangerie. Fabriquée à la maison, elle revient à 0,12 à 0,18 euro — environ dix fois moins, avec des ingrédients que vous choisissez et une fraîcheur qu'aucune boulangerie industrielle ne peut égaler. Beaucoup de gens pensent que faire son pain est long et technique. C'est inexact. La recette de base demande 15 minutes de manipulation active, quelques heures de patience et un four. Le pain maison n'est pas réservé aux passionnés — c'est l'une des compétences les plus accessibles et les plus gratifiantes de la cuisine du quotidien.</p>
+  <p>Un canapé Roche Bobois, une lampe Flos, un tapis Berber authentique — la décoration d'intérieur haut de gamme est un monde à part, avec des prix à part. Mais les intérieurs les plus photographiés sur Pinterest et Instagram ne sont pas nécessairement les plus chers. Souvent, ce sont les plus pensés. La bonne nouvelle : avec quelques projets DIY bien choisis, des matériaux trouvés en brocante ou en grande surface de bricolage, et une vraie cohérence de palette, il est tout à fait possible de transformer un appartement ordinaire en espace remarquable pour moins de 100 euros.</p>
 
-  <h2>La recette de base : pain blanc au levain rapide</h2>
+  <h2>Les tendances 2025 faciles à reproduire soi-même</h2>
 
-  <div class="recette">
-    <div class="recette-head">
-      <h3>🍞 Pain blanc maison — méthode sans pétrissage</h3>
-      <p>Pour 1 miche de 750g · Coût : ~0,25€ · Durée active : 15 min · Repos : 4–12h</p>
+  <p>Les grandes tendances déco du moment jouent toutes en faveur du DIY : le style "wabi-sabi" japonais valorise l'imparfait et le naturel, le "cottagecore" célèbre le fait main et le vintage, et le minimalisme scandinave mise sur des matières brutes et des formes simples. Aucune de ces esthétiques ne nécessite un budget élevé — elles récompensent au contraire l'ingéniosité et le sens du détail.</p>
+
+  <h2>Les palettes de couleurs qui font tout</h2>
+
+  <div class="palettes">
+    <div class="palette">
+      <div class="palette-color" style="background:linear-gradient(135deg,#D4B896,#C4A882)"></div>
+      <div class="palette-label">Sable & lin</div>
     </div>
-    <div class="recette-body">
-      <div class="rec-col">
-        <div class="rec-label">Ingrédients</div>
-        <div class="rec-item">Farine T65 (ou T55) <span>500g</span></div>
-        <div class="rec-item">Eau tiède (35°C) <span>370ml</span></div>
-        <div class="rec-item">Sel <span>10g</span></div>
-        <div class="rec-item">Levure boulangère sèche <span>5g</span></div>
-        <div class="rec-item"><em>ou</em> Levain maison <span>100g</span></div>
-      </div>
-      <div class="rec-col">
-        <div class="rec-label">Étapes clés</div>
-        <div class="rec-step"><div class="rec-n">1</div>Dissoudre la levure dans l'eau tiède. Laisser 5 min.</div>
-        <div class="rec-step"><div class="rec-n">2</div>Ajouter la farine et le sel. Mélanger à la cuillère jusqu'à pâte homogène (pas de pétrissage).</div>
-        <div class="rec-step"><div class="rec-n">3</div>Couvrir d'un torchon humide. Laisser lever 1h à 4h selon la température.</div>
-        <div class="rec-step"><div class="rec-n">4</div>Former une boule, placer dans un moule fariné ou une cocotte.</div>
-        <div class="rec-step"><div class="rec-n">5</div>Cuire 30 min à 240°C (cocotte fermée 20 min, puis ouverte 10 min).</div>
-      </div>
+    <div class="palette">
+      <div class="palette-color" style="background:linear-gradient(135deg,#6B8F71,#3D5A3E)"></div>
+      <div class="palette-label">Vert sauge</div>
+    </div>
+    <div class="palette">
+      <div class="palette-color" style="background:linear-gradient(135deg,#C1654A,#8B3A2A)"></div>
+      <div class="palette-label">Terracotta</div>
+    </div>
+    <div class="palette">
+      <div class="palette-color" style="background:linear-gradient(135deg,#2C3E50,#1A252F)"></div>
+      <div class="palette-label">Bleu nuit</div>
     </div>
   </div>
 
-  <h2>Le timing d'une journée de pain</h2>
+  <p>Ces quatre palettes sont celles qui reviennent le plus dans les intérieurs tendance actuels. Choisissez-en une comme base et déclinez-la sur vos murs, textiles et objets. La cohérence de couleur est la différence principale entre un intérieur qui paraît "décoré" et un intérieur qui paraît "meublé au hasard" — et elle ne coûte rien.</p>
 
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-dot">8h</div>
-      <div class="tl-body">
-        <div class="tl-temps">Le matin</div>
-        <div class="tl-action">Mélange des ingrédients</div>
-        <div class="tl-detail">5 minutes, une cuillère, un saladier. Aucun effort physique.</div>
+  <h2>6 projets DIY à fort impact visuel</h2>
+
+  <div class="projets">
+    <div class="projet">
+      <div class="projet-cost">3€</div>
+      <div class="projet-body">
+        <div class="projet-title">Vases en argile séchée à l'air</div>
+        <div class="projet-desc">L'argile autodurcissante vendue en grandes surfaces permet de modeler des vases organiques, bols et sculptures. Peints en blanc mat ou laissés bruts, ils ont exactement l'esthétique wabi-sabi que toutes les boutiques de déco tentent de reproduire à 40€ pièce.</div>
+        <div class="projet-tags"><span class="ptag budget">2-5€ de matériaux</span><span class="ptag niveau">Débutant</span><span class="ptag tendance">Wabi-sabi</span></div>
       </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-dot">9h</div>
-      <div class="tl-body">
-        <div class="tl-temps">1 heure après</div>
-        <div class="tl-action">Rabats (optionnel mais conseillé)</div>
-        <div class="tl-detail">3 fois en 30 min : replier la pâte sur elle-même. Améliore la structure. 2 min de travail.</div>
+    <div class="projet">
+      <div class="projet-cost">8€</div>
+      <div class="projet-body">
+        <div class="projet-title">Mur d'arches peintes</div>
+        <div class="projet-desc">Une arche peinte directement sur un mur — en terracotta, en vert sauge ou en bleu nuit — crée un point focal spectaculaire dans une chambre ou un salon. Il suffit de tracer le contour avec un gabarit en carton et d'appliquer deux couches de peinture. Résultat garanti "architecte d'intérieur".</div>
+        <div class="projet-tags"><span class="ptag budget">5-15€ de peinture</span><span class="ptag niveau">Facile</span><span class="ptag tendance">Contemporain</span></div>
       </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-dot">12h</div>
-      <div class="tl-body">
-        <div class="tl-temps">3-4h après</div>
-        <div class="tl-action">Façonnage</div>
-        <div class="tl-detail">Former la boule ou la bûche, scarifier en surface avec un couteau. 5 minutes.</div>
+    <div class="projet">
+      <div class="projet-cost">12€</div>
+      <div class="projet-body">
+        <div class="projet-title">Étagères en planche brute flottante</div>
+        <div class="projet-desc">Une planche de sapin brute (2-3€ le mètre en GSB), deux supports muraux invisibles et une légère ponçage : voilà une étagère qui rivalise avec les modèles vendus 60-80€ chez les enseignes de déco. La finition à l'huile de lin ou à la cire d'abeille lui donne un rendu naturel parfait.</div>
+        <div class="projet-tags"><span class="ptag budget">8-20€</span><span class="ptag niveau">Intermédiaire</span><span class="ptag tendance">Scandinave</span></div>
       </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-dot">13h</div>
-      <div class="tl-body">
-        <div class="tl-temps">Cuisson</div>
-        <div class="tl-action">Four à 240°C — cocotte ou lèche-frite avec eau</div>
-        <div class="tl-detail">30 minutes. Sortir, laisser refroidir 30 min sur grille avant de couper.</div>
+    <div class="projet">
+      <div class="projet-cost">0€</div>
+      <div class="projet-body">
+        <div class="projet-title">Galerie de cadres dépareillés</div>
+        <div class="projet-desc">Chineur des cadres de toutes formes dans les brocantes (souvent moins de 1€ pièce), peints dans une couleur unique pour unifier l'ensemble. À l'intérieur : impressions gratuites de Unsplash ou Artvee, cartes postales, illustrations. Un mur entier pour moins de 15 euros.</div>
+        <div class="projet-tags"><span class="ptag budget">0-15€</span><span class="ptag niveau">Débutant</span><span class="ptag tendance">Maximaliste chic</span></div>
       </div>
     </div>
-  </div>
-
-  <h2>Ce que ça coûte vraiment</h2>
-
-  <div class="cout">
-    <div class="cout-block">
-      <div class="cout-label">Baguette tradition boulangerie</div>
-      <div class="cout-val rouge">1,40€</div>
-      <div class="cout-sub">Prix moyen France 2026</div>
+    <div class="projet">
+      <div class="projet-cost">5€</div>
+      <div class="projet-body">
+        <div class="projet-title">Textiles teints au thé ou à l'oignon</div>
+        <div class="projet-desc">Des nappes, taies d'oreiller ou rideaux blancs bon marché peuvent être teints naturellement avec du thé noir (tons beige-crème) ou des pelures d'oignon jaune (tons dorés-ocre). La technique ne demande qu'une grande casserole et un après-midi. Le résultat est unique, organique, et impossible à acheter.</div>
+        <div class="projet-tags"><span class="ptag budget">2-8€</span><span class="ptag niveau">Facile</span><span class="ptag tendance">Naturel & artisanal</span></div>
+      </div>
     </div>
-    <div class="cout-arrow">→</div>
-    <div class="cout-block">
-      <div class="cout-label">Pain maison (500g farine)</div>
-      <div class="cout-val vert">0,22€</div>
-      <div class="cout-sub">Farine + levure + sel + énergie · Pour 750g de pain</div>
-    </div>
-  </div>
-
-  <p>Pour une famille qui consomme 5 à 7 baguettes par semaine, la différence annuelle est de 300 à 500 euros. Et le pain maison a une qualité que même une bonne boulangerie ne peut pas toujours égaler : vous contrôlez la farine (complète, épeautre, seigle), l'absence d'additifs, la fraîcheur à la sortie du four.</p>
-
-  <h2>Les variantes pour ne jamais se lasser</h2>
-
-  <div class="variantes">
-    <div class="variante">
-      <div class="variante-emoji">🌾</div>
-      <div class="variante-nom">Pain complet</div>
-      <div class="variante-desc">Remplacer 50% de la T65 par de la T150 (farine complète). Plus dense, plus nutritif, saveur de noisette.</div>
-    </div>
-    <div class="variante">
-      <div class="variante-emoji">🫒</div>
-      <div class="variante-nom">Pain aux olives et romarin</div>
-      <div class="variante-desc">Ajouter 80g d'olives dénoyautées et une branche de romarin au moment du façonnage. Parfait avec la charcuterie.</div>
-    </div>
-    <div class="variante">
-      <div class="variante-emoji">🧀</div>
-      <div class="variante-nom">Pain au fromage</div>
-      <div class="variante-desc">Incorporer 100g de gruyère râpé et une cuillère de moutarde dans la pâte. Irrésistible à la sortie du four.</div>
-    </div>
-    <div class="variante">
-      <div class="variante-emoji">🌱</div>
-      <div class="variante-nom">Pain à l'épeautre et graines</div>
-      <div class="variante-desc">Farine d'épeautre + mélange de graines (tournesol, sésame, lin). La variante la plus nourrissante et la plus savoureuse.</div>
-    </div>
-    <div class="variante">
-      <div class="variante-emoji">🍫</div>
-      <div class="variante-nom">Pain de seigle aux noix</div>
-      <div class="variante-desc">50% farine de seigle + 80g de cerneaux de noix. Dense, de garde (5 jours), idéal avec le fromage.</div>
-    </div>
-    <div class="variante">
-      <div class="variante-emoji">🌙</div>
-      <div class="variante-nom">Pain de nuit (fermentation lente)</div>
-      <div class="variante-desc">Réduire la levure à 2g et laisser lever au frigo toute la nuit. La saveur développée est incomparable — sans effort supplémentaire.</div>
+    <div class="projet">
+      <div class="projet-cost">0€</div>
+      <div class="projet-body">
+        <div class="projet-title">Réarrangement stratégique des meubles</div>
+        <div class="projet-desc">Le changement de disposition d'une pièce est la transformation la plus puissante — et la seule qui soit entièrement gratuite. Éloigner les meubles des murs, créer des zones distinctes, dégager les angles : ces ajustements changent radicalement la perception d'un espace sans dépenser un centime.</div>
+        <div class="projet-tags"><span class="ptag budget">0€</span><span class="ptag niveau">Débutant</span><span class="ptag tendance">Tous styles</span></div>
+      </div>
     </div>
   </div>
 
   <div class="conseil">
-    <strong>🌾 Le levain maison : le niveau supérieur</strong>
-    <p>Le levain naturel est une culture de bactéries lactiques et de levures sauvages que vous créez et entretenez vous-même avec de la farine et de l'eau. Contrairement à la levure industrielle, il donne au pain une complexité aromatique exceptionnelle, une conservation prolongée (5 à 7 jours vs 1 jour pour un pain à la levure) et une meilleure digestibilité. Sa création prend une semaine d'observations quotidiennes — simplement nourrir un mélange farine-eau et observer sa fermentation. Une fois établi, un levain vit des années. La chaîne YouTube "Le Fournil de Thomas" explique le processus pas à pas avec une précision rare et une vraie pédagogie pour les débutants.</p>
+    <strong>💡 La règle des trois matières</strong>
+    <p>Les intérieurs qui paraissent "designés" mixent systématiquement trois matières maximum : par exemple bois + lin + céramique, ou métal + verre + coton. Cette cohérence de matières, combinée à une palette de couleurs unifiée, donne une impression de maîtrise et d'intention — quel que soit le budget dépensé. C'est la règle la moins connue et la plus efficace de la décoration intérieure.</p>
   </div>
 
 </article>
