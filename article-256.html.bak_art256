@@ -2,40 +2,54 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Malus écologique 2026 : barème complet — Évitez jusqu'à 80 000€ de malus. Guide complet sur Economya.fr">
+<meta name="description" content="Cloud gratuit : comparer les offres — 15 à 100 Go gratuits. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Malus écologique 2026 : barème complet — Economya.fr</title>
+<title>Cloud gratuit : comparer les offres — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--sky:#0284c7;--sky-l:#f0f9ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#1c0900,#92400e,#f59e0b);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'⚠️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#082f49,#0369a1,#0284c7);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'☁️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bae6fd;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#fcd34d;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#dc2626,#f59e0b);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(245,158,11,.4)}
+.ah h1 em{color:#7dd3fc;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#0284c7);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(2,132,199,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#f59e0b,#dc2626);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#0284c7,#0d9488);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid #f59e0b;padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--sky);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* TABLEAU MALUS CO2 */
+/* CLOUD CARDS GRILLE */
+.clouds{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:1rem;margin:1.5rem 0}
+.cloud{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s,box-shadow .2s;position:relative}
+.cloud:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(2,132,199,.1)}
+.cloud.top{border:2px solid var(--g)}
+.top-badge{position:absolute;top:-10px;left:50%;transform:translateX(jusqu'à -50%);background:var(--g);color:white;font-size:.64rem;font-weight:700;padding:.14rem .65rem;border-radius:50px;white-space:nowrap}
+.cloud-icon{font-size:2.2rem;margin-bottom:.5rem}
+.cloud-name{font-weight:700;font-size:.92rem;margin-bottom:.2rem}
+.cloud-space{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--sky);margin:.25rem 0}
+.cloud-free{font-size:.72rem;color:var(--m);margin-bottom:.6rem}
+.cloud-pros{list-style:none;text-align:left;font-size:.78rem;display:flex;flex-direction:column;gap:.22rem}
+.cloud-pros li{color:var(--m);font-weight:300}
+.cloud-pros li::before{content:'✓ ';color:var(--g);font-weight:700}
+
+/* TABLEAU */
 .tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
 table{width:100%;border-collapse:collapse;font-size:.86rem}
-thead tr{background:linear-gradient(135deg,#92400e,#f59e0b);color:white}
+thead tr{background:linear-gradient(135deg,#0369a1,#0284c7);color:white}
 thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.8rem}
 tbody tr{border-bottom:1px solid var(--b)}
 tbody tr:last-child{border-bottom:none}
@@ -43,41 +57,27 @@ tbody tr:nth-child(even){background:#fafafa}
 tbody td{padding:.8rem 1rem;vertical-align:middle}
 .g{color:#16a34a;font-weight:600}
 .o{color:var(--ad);font-weight:500}
-.r{color:#dc2626;font-weight:600}
-.rr{color:#7f1d1d;font-weight:700;font-size:.95rem}
+.r{color:#dc2626;font-weight:500}
 
-/* EXEMPLES VOITURES */
-.exemples{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0}
-.ex{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s}
-.ex:hover{transform:translateY(-2px)}
-.ex-icon{font-size:1.8rem;margin-bottom:.4rem}
-.ex-model{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
-.ex-co2{font-size:.78rem;color:var(--m);margin-bottom:.4rem}
-.ex-malus{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin:.2rem 0}
-.ex-malus.vert{color:#16a34a}
-.ex-malus.orange{color:#d97706}
-.ex-malus.rouge{color:#dc2626}
-.ex-malus.noir{color:#7f1d1d}
-
-/* ASTUCES */
-.astuces{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
-.astuce{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
-.astuce .aico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
-.astuce strong{display:block;font-size:.92rem;margin-bottom:.15rem}
-.astuce span{font-size:.85rem;color:var(--m);font-weight:300}
+/* LISTE VISUELLE */
+.vlist{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin:1.2rem 0}
+.vlist li{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.9rem 1.1rem;font-size:.9rem}
+.vlist li .ic{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
+.vlist li strong{color:var(--t);display:block;margin-bottom:.1rem}
+.vlist li span{color:var(--m);font-weight:300;font-size:.85rem}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:#fef3c7;border-left:4px solid #f59e0b;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn{background:var(--sky-l);border-left:4px solid var(--sky);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#082f49}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#1c0900,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#082f49,#0369a1);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#f59e0b,#dc2626);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#0284c7,#0d9488);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
 @media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
@@ -134,9 +134,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Malus écologique 2026 : barème complet",
-  "description": "Malus écologique 2026 : barème complet — Évitez jusqu'à 80 000€ de malus. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-263.html",
+  "headline": "Cloud gratuit : comparer les offres",
+  "description": "Cloud gratuit : comparer les offres — 15 à 100 Go gratuits. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-256.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -153,19 +153,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Malus écologique 2026 : barème complet">
-  <meta property="og:description" content="Malus écologique 2026 : barème complet — Évitez jusqu'à 80 000€ de malus. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-263.html">
+  <meta property="og:title" content="Cloud gratuit : comparer les offres">
+  <meta property="og:description" content="Cloud gratuit : comparer les offres — 15 à 100 Go gratuits. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-256.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Malus écologique 2026 : barème complet">
-  <meta name="twitter:description" content="Malus écologique 2026 : barème complet — Évitez jusqu'à 80 000€ de malus. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Cloud gratuit : comparer les offres">
+  <meta name="twitter:description" content="Cloud gratuit : comparer les offres — 15 à 100 Go gratuits. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-263.html" />
+<link rel="canonical" href="https://economya.fr/article-256.html" />
 </head>
 <body>
 <nav>
@@ -175,121 +175,162 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Transport</span> › <span style="color:var(--t,#2C2C2A)">Malus écologique 2026 : barème complet</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Transport", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Malus écologique 2026 : barème complet", "item": "https://economya.fr/article-263.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Tech</span> › <span style="color:var(--t,#2C2C2A)">Cloud gratuit : comparer les offres 2025</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Tech", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Cloud gratuit : comparer les offres 2025", "item": "https://economya.fr/article-256.html"}]}</script>
 
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">⚠️ Transport</div>
-    <h1>Malus écologique 2026 :<br><em>barème complet</em></h1>
-    <div class="savings-badge">⚠️ Évitez jusqu'à 80 000 € de malus</div>
+    <div class="cat-pill">☁️ Tech</div>
+    <h1>Cloud gratuit :<br><em>comparer les offres 2025</em></h1>
+    <div class="savings-badge">💰 15 à 100 Go gratuits</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">🚗 Fiscalité automobile</span>
+      <span class="theme-tag">💾 Stockage & données</span>
     </div>
   </div>
 </div>
 
 <div class="ab">
 
-  <p class="lead">Le malus écologique a été drastiquement durci depuis 2024. Un SUV diesel émettant 160 g de CO₂/km peut aujourd'hui coûter plus de 10 000 € de malus. Les seuils baissent chaque année. Voici le barème 2026 complet pour anticiper avant d'acheter. Pour un calcul exact gramme par gramme, vérifiez le simulateur officiel sur service-public.fr.</p>
+  <p class="lead">Google Drive, iCloud, OneDrive, Proton Drive… Chaque grande plateforme offre du stockage cloud gratuit — mais les volumes, les conditions et la confidentialité varient du tout au tout. Voici comment obtenir un maximum d'espace sans dépenser un centime.</p>
 
-  <h2>📊 Barème malus CO₂ 2026 (véhicules neufs)</h2>
+  <h2>☁️ Les meilleures offres gratuites en 2025</h2>
+
+  <div class="clouds">
+
+    <div class="cloud top">
+      <span class="top-badge">⭐ Le plus généreux</span>
+      <div class="cloud-icon">🟡</div>
+      <div class="cloud-name">Google Drive</div>
+      <div class="cloud-space">15 Go</div>
+      <div class="cloud-free">gratuits partagés Gmail + Photos + Drive</div>
+      <ul class="cloud-pros">
+        <li>Collaboration temps réel</li>
+        <li>Docs, Sheets, Slides inclus</li>
+        <li>Accessible partout</li>
+      </ul>
+    </div>
+
+    <div class="cloud">
+      <div class="cloud-icon">🔵</div>
+      <div class="cloud-name">OneDrive</div>
+      <div class="cloud-space">5 Go</div>
+      <div class="cloud-free">gratuits + 100 Go inclus Office 365</div>
+      <ul class="cloud-pros">
+        <li>Intégré Windows 11</li>
+        <li>Office en ligne gratuit</li>
+        <li>Sync automatique</li>
+      </ul>
+    </div>
+
+    <div class="cloud">
+      <div class="cloud-icon">🟠</div>
+      <div class="cloud-name">Mega</div>
+      <div class="cloud-space">20 Go</div>
+      <div class="cloud-free">gratuits (chiffrement bout-en-bout)</div>
+      <ul class="cloud-pros">
+        <li>Chiffrement E2E natif</li>
+        <li>Très généreux en espace</li>
+        <li>Partage de gros fichiers</li>
+      </ul>
+    </div>
+
+    <div class="cloud">
+      <div class="cloud-icon">🟣</div>
+      <div class="cloud-name">Proton Drive</div>
+      <div class="cloud-space">1 Go</div>
+      <div class="cloud-free">gratuits (suisse, chiffré, privé)</div>
+      <ul class="cloud-pros">
+        <li>Confidentialité maximale</li>
+        <li>Open source audité</li>
+        <li>Aucune pub, aucun tracking</li>
+      </ul>
+    </div>
+
+    <div class="cloud">
+      <div class="cloud-icon">🍎</div>
+      <div class="cloud-name">iCloud</div>
+      <div class="cloud-space">5 Go</div>
+      <div class="cloud-free">gratuits (Apple uniquement)</div>
+      <ul class="cloud-pros">
+        <li>Parfait pour les Apple users</li>
+        <li>Photos, contacts, backup</li>
+        <li>Intégré iOS/macOS</li>
+      </ul>
+    </div>
+
+    <div class="cloud">
+      <div class="cloud-icon">📦</div>
+      <div class="cloud-name">pCloud</div>
+      <div class="cloud-space">10 Go</div>
+      <div class="cloud-free">gratuits (option paiement à vie)</div>
+      <ul class="cloud-pros">
+        <li>Paiement à vie disponible</li>
+        <li>Accès offline</li>
+        <li>Serveurs en Europe</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <h2>📊 Comparatif confidentialité & usage</h2>
 
   <div class="tw">
     <table>
       <thead>
         <tr>
-          <th>Émissions CO₂ (g/km)</th>
-          <th>Malus par gramme</th>
-          <th>Exemple à 150 g</th>
+          <th>Service</th>
+          <th>Espace gratuit</th>
+          <th>Chiffrement E2E</th>
+          <th>Idéal pour</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>0 à 117 g</td><td class="g">0 €</td><td class="g">0 €</td></tr>
-        <tr><td>118 g</td><td class="o">50 €</td><td>—</td></tr>
-        <tr><td>119 à 122 g</td><td class="o">75 €/g</td><td>—</td></tr>
-        <tr><td>123 à 127 g</td><td class="o">150 €/g</td><td>—</td></tr>
-        <tr><td>128 à 132 g</td><td class="o">230 €/g</td><td>—</td></tr>
-        <tr><td>133 à 137 g</td><td class="r">330 €/g</td><td>—</td></tr>
-        <tr><td>138 à 142 g</td><td class="r">500 €/g</td><td>—</td></tr>
-        <tr><td>143 à 150 g</td><td class="r">650 €/g</td><td class="r">~5 200 €</td></tr>
-        <tr><td>151 à 160 g</td><td class="r">900 €/g</td><td>—</td></tr>
-        <tr><td>161 à 174 g</td><td class="rr">1 600 €/g</td><td>—</td></tr>
-        <tr><td>192 g et plus</td><td class="rr">Plafonné à 80 000 €</td><td class="rr">80 000 €</td></tr>
+        <tr><td>Google Drive</td><td class="g">15 Go</td><td class="r">Non</td><td>Collaboration, docs partagés</td></tr>
+        <tr><td>Mega</td><td class="g">20 Go</td><td class="g">Oui</td><td>Gros fichiers, confidentialité</td></tr>
+        <tr><td>OneDrive</td><td class="o">5 Go</td><td class="r">Non</td><td>Utilisateurs Windows</td></tr>
+        <tr><td>Proton Drive</td><td class="r">1 Go</td><td class="g">Oui</td><td>Confidentialité maximale</td></tr>
+        <tr><td>pCloud</td><td class="o">10 Go</td><td class="o">Option payante</td><td>Stockage long terme</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h2>🚗 Exemples concrets par modèle</h2>
+  <h2>💡 Astuces pour maximiser votre stockage gratuit</h2>
 
-  <div class="exemples">
-    <div class="ex">
-      <div class="ex-icon">⚡</div>
-      <div class="ex-model">Renault Mégane E-Tech</div>
-      <div class="ex-co2">0 g CO₂/km</div>
-      <div class="ex-malus vert">0 €</div>
-      <div style="font-size:.72rem;color:var(--m)">Éligible bonus +4 000 €</div>
-    </div>
-    <div class="ex">
-      <div class="ex-icon">🔵</div>
-      <div class="ex-model">Peugeot 208 essence</div>
-      <div class="ex-co2">110 g CO₂/km</div>
-      <div class="ex-malus vert">0 €</div>
-      <div style="font-size:.72rem;color:var(--m)">Sous le seuil 2025</div>
-    </div>
-    <div class="ex">
-      <div class="ex-icon">🟡</div>
-      <div class="ex-model">Volkswagen Golf TDI</div>
-      <div class="ex-co2">128 g CO₂/km</div>
-      <div class="ex-malus orange">~230 €</div>
-      <div style="font-size:.72rem;color:var(--m)">Malus modéré</div>
-    </div>
-    <div class="ex">
-      <div class="ex-icon">🔴</div>
-      <div class="ex-model">SUV diesel 160 g</div>
-      <div class="ex-co2">160 g CO₂/km</div>
-      <div class="ex-malus rouge">~10 800 €</div>
-      <div style="font-size:.72rem;color:var(--m)">Malus très élevé</div>
-    </div>
-  </div>
-
-  <h2>💡 Comment éviter ou réduire le malus</h2>
-
-  <div class="astuces">
-    <div class="astuce">
-      <span class="aico">⚡</span>
-      <div><strong>Choisissez un véhicule électrique ou hybride rechargeable</strong><span>Les véhicules 100 % électriques sont exonérés de malus et éligibles au bonus écologique. Les hybrides rechargeables affichent souvent moins de 50 g de CO₂ en cycle officiel.</span></div>
-    </div>
-    <div class="astuce">
-      <span class="aico">🔎</span>
-      <div><strong>Vérifiez les émissions WLTP avant d'acheter</strong><span>Depuis 2021, les émissions sont mesurées selon le cycle WLTP (plus réaliste que l'ancien NEDC). Cherchez le chiffre exact dans la fiche technique avant de signer.</span></div>
-    </div>
-    <div class="astuce">
-      <span class="aico">🏷️</span>
-      <div><strong>Achetez un véhicule d'occasion</strong><span>Le malus écologique ne s'applique qu'aux véhicules neufs et aux véhicules d'occasion importés pour la première immatriculation en France. Un véhicule d'occasion déjà immatriculé en France n'est pas soumis au malus.</span></div>
-    </div>
-    <div class="astuce">
-      <span class="aico">👨‍👩‍👧</span>
-      <div><strong>Familles nombreuses : abattement possible</strong><span>Les familles avec 3 enfants ou plus peuvent bénéficier d'un abattement de 20 g de CO₂/km par enfant à partir du 3ème (dans la limite du barème). Renseignez-vous auprès de la préfecture.</span></div>
-    </div>
-  </div>
+  <ul class="vlist">
+    <li>
+      <span class="ic">🔗</span>
+      <div><strong>Combinez plusieurs services</strong><span>Google Drive (15 Go) + Mega (20 Go) + OneDrive (5 Go) = 40 Go gratuits sans dépenser un centime. Répartissez selon les usages : photos sur Google, docs sur OneDrive, gros fichiers sur Mega.</span></div>
+    </li>
+    <li>
+      <span class="ic">🖼️</span>
+      <div><strong>Compressez vos photos avant de les uploader</strong><span>Des applis comme Squoosh (gratuit, en ligne) réduisent le poids des photos de 70 % sans perte visible. 15 Go de Google Drive deviennent l'équivalent de 50 Go de photos.</span></div>
+    </li>
+    <li>
+      <span class="ic">🗑️</span>
+      <div><strong>Videz régulièrement les emails volumineux</strong><span>Sur Gmail, les pièces jointes volumineuses consomment votre quota Google Drive. Supprimez les emails avec attachements lourds depuis Gmail pour libérer de l'espace.</span></div>
+    </li>
+    <li>
+      <span class="ic">🎓</span>
+      <div><strong>Profitez des offres étudiantes</strong><span>Google Workspace Education donne accès à du stockage illimité pour les étudiants et enseignants via l'adresse email universitaire. À vérifier auprès de votre établissement.</span></div>
+    </li>
+  </ul>
 
   <div class="tip">
-    <strong>💡 Le malus masse (poids) s'ajoute au malus CO₂</strong>
-    Depuis 2022, un malus sur le poids s'applique aux véhicules dépassant 1 500 kg : à partir de 10 € par kg supplémentaire (taux progressif par tranches). Un SUV de 2 tonnes peut ainsi cumuler malus CO₂ + malus poids. Les véhicules électriques restent exonérés du malus masse en 2026.
+    <strong>💡 Le combo parfait selon votre profil</strong>
+    Particulier standard : Google Drive (15 Go) + OneDrive (5 Go). Soucieux de confidentialité : Mega (20 Go) + Proton Drive (1 Go). Utilisateur Apple : iCloud (5 Go) + Google Drive (15 Go). Tout ça à 0 €/mois.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Les seuils baissent chaque année</strong>
-    Le seuil de déclenchement du malus CO₂ baisse d'environ 5 g/km par an. Un véhicule exempt de malus en 2024 peut y être soumis en 2025. Vérifiez toujours le barème de l'année d'achat sur le site officiel impots.gouv.fr.
+    <strong>⚠️ Attention aux conditions des offres gratuites</strong>
+    Certains services (Mega notamment) réduisent l'espace gratuit ou les vitesses de transfert si le compte est inactif. Connectez-vous au moins une fois tous les 3 mois pour maintenir vos droits et conserver vos fichiers.
   </div>
 
   <div class="cta">
-    <h3>📬 Mobilité & économies dans votre boîte mail</h3>
-    <p>Les aides, barèmes et astuces pour rouler moins cher, chaque semaine.</p>
+    <h3>📬 Tech & économies dans votre boîte mail</h3>
+    <p>Les meilleurs outils gratuits pour votre quotidien numérique, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -332,14 +373,14 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-261.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Bonus écologique 2026 : montants et conditions</div></a><a class="sim-card" href="article-265.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Train pas cher : cartes SNCF et astuces 2026</div></a><a class="sim-card" href="article-266.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Leasing social VE 2026 : conditions et dossier</div></a><a class="sim-card" href="article-267.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Covoiturage domicile-travail : aides et déductions</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-246.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">ChatGPT gratuit : tout ce qu'on peut faire en 2026</div></a><a class="sim-card" href="article-247.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">IA pour économiser : les meilleurs outils gratuits</div></a><a class="sim-card" href="article-248.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">Smartphone reconditionné : le comparatif complet</div></a><a class="sim-card" href="article-249.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">Forfait 5G pas cher : comparatif opérateurs 2026</div></a></div>
 </div>
 
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
-<p>Visitez <a href="https://www.awin1.com/cread.php?awinmid=101873&awinaffid=2926395">EUROCOC</a> pour votre certificat europeen.</p></footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
 <p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>

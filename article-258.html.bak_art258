@@ -2,40 +2,58 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Malus écologique 2026 : barème complet — Évitez jusqu'à 80 000€ de malus. Guide complet sur Economya.fr">
+<meta name="description" content="Deepseek, Mistral, Gemini : quel IA gratuit choisir — Le meilleur IA selon vos besoins. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Malus écologique 2026 : barème complet — Economya.fr</title>
+<title>Deepseek, Mistral, Gemini : quel IA gratuit choisir — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--violet:#7c3aed;--violet-l:#f5f3ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#1c0900,#92400e,#f59e0b);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'⚠️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#0f0624,#2e1065,#7c3aed);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🧠';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#ddd6fe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#fcd34d;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#dc2626,#f59e0b);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(245,158,11,.4)}
+.ah h1 em{color:#c4b5fd;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#10b981,#7c3aed);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(124,58,237,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#f59e0b,#dc2626);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#7c3aed,#0891b2);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid #f59e0b;padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--violet);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* TABLEAU MALUS CO2 */
+/* IA CARDS */
+.ias{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+.ia{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.ia:hover{box-shadow:0 4px 18px rgba(124,58,237,.1)}
+.ia.top{border:2px solid var(--g)}
+.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
+.ia-icon{font-size:2rem;flex-shrink:0;margin-top:.1rem}
+.ia-body h3{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
+.ia-body p{font-size:.83rem;color:var(--m);font-weight:300;margin:0 0 .45rem}
+.ia-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.itag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:#f3f4f6;color:#374151}
+.itag.g{background:var(--gl);color:var(--gd)}
+.itag.o{background:var(--al);color:var(--ad)}
+.itag.r{background:#fef2f2;color:#dc2626}
+.ia-right{text-align:right;flex-shrink:0}
+.ia-note{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--violet);display:block;white-space:nowrap}
+.ia-sub{font-size:.7rem;color:var(--m)}
+
+/* TABLEAU */
 .tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
 table{width:100%;border-collapse:collapse;font-size:.86rem}
-thead tr{background:linear-gradient(135deg,#92400e,#f59e0b);color:white}
+thead tr{background:linear-gradient(135deg,#2e1065,#7c3aed);color:white}
 thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.8rem}
 tbody tr{border-bottom:1px solid var(--b)}
 tbody tr:last-child{border-bottom:none}
@@ -43,44 +61,23 @@ tbody tr:nth-child(even){background:#fafafa}
 tbody td{padding:.8rem 1rem;vertical-align:middle}
 .g{color:#16a34a;font-weight:600}
 .o{color:var(--ad);font-weight:500}
-.r{color:#dc2626;font-weight:600}
-.rr{color:#7f1d1d;font-weight:700;font-size:.95rem}
-
-/* EXEMPLES VOITURES */
-.exemples{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0}
-.ex{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s}
-.ex:hover{transform:translateY(-2px)}
-.ex-icon{font-size:1.8rem;margin-bottom:.4rem}
-.ex-model{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
-.ex-co2{font-size:.78rem;color:var(--m);margin-bottom:.4rem}
-.ex-malus{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin:.2rem 0}
-.ex-malus.vert{color:#16a34a}
-.ex-malus.orange{color:#d97706}
-.ex-malus.rouge{color:#dc2626}
-.ex-malus.noir{color:#7f1d1d}
-
-/* ASTUCES */
-.astuces{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
-.astuce{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
-.astuce .aico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
-.astuce strong{display:block;font-size:.92rem;margin-bottom:.15rem}
-.astuce span{font-size:.85rem;color:var(--m);font-weight:300}
+.r{color:#dc2626;font-weight:500}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:#fef3c7;border-left:4px solid #f59e0b;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn{background:var(--violet-l);border-left:4px solid var(--violet);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#2e1065}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#1c0900,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#0f0624,#2e1065);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#f59e0b,#dc2626);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#7c3aed,#0891b2);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.ia{grid-template-columns:1fr;gap:.5rem}.ia-right{text-align:left}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -134,9 +131,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Malus écologique 2026 : barème complet",
-  "description": "Malus écologique 2026 : barème complet — Évitez jusqu'à 80 000€ de malus. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-263.html",
+  "headline": "Deepseek, Mistral, Gemini : quel IA gratuit choisir",
+  "description": "Deepseek, Mistral, Gemini : quel IA gratuit choisir — Le meilleur IA selon vos besoins. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-258.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -153,19 +150,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Malus écologique 2026 : barème complet">
-  <meta property="og:description" content="Malus écologique 2026 : barème complet — Évitez jusqu'à 80 000€ de malus. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-263.html">
+  <meta property="og:title" content="Deepseek, Mistral, Gemini : quel IA gratuit choisir">
+  <meta property="og:description" content="Deepseek, Mistral, Gemini : quel IA gratuit choisir — Le meilleur IA selon vos besoins. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-258.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Malus écologique 2026 : barème complet">
-  <meta name="twitter:description" content="Malus écologique 2026 : barème complet — Évitez jusqu'à 80 000€ de malus. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Deepseek, Mistral, Gemini : quel IA gratuit choisir">
+  <meta name="twitter:description" content="Deepseek, Mistral, Gemini : quel IA gratuit choisir — Le meilleur IA selon vos besoins. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-263.html" />
+<link rel="canonical" href="https://economya.fr/article-258.html" />
 </head>
 <body>
 <nav>
@@ -175,121 +172,127 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Transport</span> › <span style="color:var(--t,#2C2C2A)">Malus écologique 2026 : barème complet</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Transport", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Malus écologique 2026 : barème complet", "item": "https://economya.fr/article-263.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Tech</span> › <span style="color:var(--t,#2C2C2A)">Deepseek, Mistral, Gemini : quel IA gratuit choisir ?</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Tech", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Deepseek, Mistral, Gemini : quel IA gratuit choisir ?", "item": "https://economya.fr/article-258.html"}]}</script>
 
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">⚠️ Transport</div>
-    <h1>Malus écologique 2026 :<br><em>barème complet</em></h1>
-    <div class="savings-badge">⚠️ Évitez jusqu'à 80 000 € de malus</div>
+    <div class="cat-pill">🧠 Tech</div>
+    <h1>Deepseek, Mistral, Gemini :<br><em>quel IA gratuit choisir ?</em></h1>
+    <div class="savings-badge">💰 Le meilleur IA selon vos besoins</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">🚗 Fiscalité automobile</span>
+      <span class="theme-tag">🤖 Intelligence artificielle</span>
     </div>
   </div>
 </div>
 
 <div class="ab">
 
-  <p class="lead">Le malus écologique a été drastiquement durci depuis 2024. Un SUV diesel émettant 160 g de CO₂/km peut aujourd'hui coûter plus de 10 000 € de malus. Les seuils baissent chaque année. Voici le barème 2026 complet pour anticiper avant d'acheter. Pour un calcul exact gramme par gramme, vérifiez le simulateur officiel sur service-public.fr.</p>
+  <p class="lead">ChatGPT n'est plus seul. En 2025, Deepseek, Mistral Le Chat, Google Gemini et Perplexity rivalisent avec des versions gratuites très capables. Chacun a ses points forts — voici lequel utiliser selon ce que vous voulez faire, sans dépenser un centime.</p>
 
-  <h2>📊 Barème malus CO₂ 2026 (véhicules neufs)</h2>
+  <h2>🏆 Les meilleurs IA gratuits en 2025</h2>
+
+  <div class="ias">
+
+    <div class="ia top">
+      <div class="ia-icon">🇫🇷</div>
+      <div class="ia-body">
+        <div class="top-badge">⭐ Meilleur pour le français</div>
+        <h3>Mistral Le Chat</h3>
+        <p>Développé en France, Mistral Le Chat est l'IA gratuite la plus performante en langue française. Rapide, précis, excellent en rédaction, résumé et analyse de documents. Aucune censure excessive, données hébergées en Europe.</p>
+        <div class="ia-tags">
+          <span class="itag g">Français natif</span>
+          <span class="itag g">Données EU</span>
+          <span class="itag g">Rapide</span>
+          <span class="itag">Accès web inclus</span>
+        </div>
+      </div>
+      <div class="ia-right"><span class="ia-note">⭐⭐⭐⭐⭐</span><span class="ia-sub">chat.mistral.ai</span></div>
+    </div>
+
+    <div class="ia">
+      <div class="ia-icon">🌐</div>
+      <div class="ia-body">
+        <h3>Google Gemini</h3>
+        <p>Intégré à Google Search et Gmail, Gemini excelle pour la recherche web en temps réel, la synthèse d'informations récentes et l'analyse d'images. La version gratuite (Gemini 1.5 Flash) est très capable pour un usage quotidien.</p>
+        <div class="ia-tags">
+          <span class="itag g">Recherche temps réel</span>
+          <span class="itag g">Analyse d'images</span>
+          <span class="itag">Intégré Google</span>
+        </div>
+      </div>
+      <div class="ia-right"><span class="ia-note">⭐⭐⭐⭐</span><span class="ia-sub">gemini.google.com</span></div>
+    </div>
+
+    <div class="ia">
+      <div class="ia-icon">🐳</div>
+      <div class="ia-body">
+        <h3>Deepseek R1</h3>
+        <p>Le grand choc de 2025. L'IA chinoise open source rivalise avec GPT-4 en raisonnement mathématique et en code, gratuitement. Particulièrement redoutable pour les problèmes complexes, la logique et les calculs. Attention : données sur serveurs chinois.</p>
+        <div class="ia-tags">
+          <span class="itag g">Raisonnement avancé</span>
+          <span class="itag g">Code & maths</span>
+          <span class="itag r">Serveurs Chine</span>
+          <span class="itag">Open source</span>
+        </div>
+      </div>
+      <div class="ia-right"><span class="ia-note">⭐⭐⭐⭐</span><span class="ia-sub">chat.deepseek.com</span></div>
+    </div>
+
+    <div class="ia">
+      <div class="ia-icon">🔍</div>
+      <div class="ia-body">
+        <h3>Perplexity AI</h3>
+        <p>Le meilleur pour la recherche avec sources vérifiées. Chaque réponse cite ses sources en temps réel. Idéal pour vérifier des informations, comparer des produits ou suivre l'actualité. Remplace avantageusement Google pour les questions complexes.</p>
+        <div class="ia-tags">
+          <span class="itag g">Sources citées</span>
+          <span class="itag g">Temps réel</span>
+          <span class="itag">Recherche avancée</span>
+        </div>
+      </div>
+      <div class="ia-right"><span class="ia-note">⭐⭐⭐⭐</span><span class="ia-sub">perplexity.ai</span></div>
+    </div>
+
+  </div>
+
+  <h2>📊 Quel IA pour quel usage ?</h2>
 
   <div class="tw">
     <table>
       <thead>
         <tr>
-          <th>Émissions CO₂ (g/km)</th>
-          <th>Malus par gramme</th>
-          <th>Exemple à 150 g</th>
+          <th>Besoin</th>
+          <th>Meilleur choix gratuit</th>
+          <th>Pourquoi</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>0 à 117 g</td><td class="g">0 €</td><td class="g">0 €</td></tr>
-        <tr><td>118 g</td><td class="o">50 €</td><td>—</td></tr>
-        <tr><td>119 à 122 g</td><td class="o">75 €/g</td><td>—</td></tr>
-        <tr><td>123 à 127 g</td><td class="o">150 €/g</td><td>—</td></tr>
-        <tr><td>128 à 132 g</td><td class="o">230 €/g</td><td>—</td></tr>
-        <tr><td>133 à 137 g</td><td class="r">330 €/g</td><td>—</td></tr>
-        <tr><td>138 à 142 g</td><td class="r">500 €/g</td><td>—</td></tr>
-        <tr><td>143 à 150 g</td><td class="r">650 €/g</td><td class="r">~5 200 €</td></tr>
-        <tr><td>151 à 160 g</td><td class="r">900 €/g</td><td>—</td></tr>
-        <tr><td>161 à 174 g</td><td class="rr">1 600 €/g</td><td>—</td></tr>
-        <tr><td>192 g et plus</td><td class="rr">Plafonné à 80 000 €</td><td class="rr">80 000 €</td></tr>
+        <tr><td>Rédaction en français</td><td class="g">Mistral Le Chat</td><td>Natif français, naturel</td></tr>
+        <tr><td>Recherche & actualité</td><td class="g">Perplexity ou Gemini</td><td>Sources citées, temps réel</td></tr>
+        <tr><td>Code & maths</td><td class="g">Deepseek R1</td><td>Raisonnement exceptionnel</td></tr>
+        <tr><td>Analyse d'image</td><td class="g">Gemini</td><td>Vision intégrée et précise</td></tr>
+        <tr><td>Usage général polyvalent</td><td class="g">ChatGPT ou Mistral</td><td>Équilibre performance/facilité</td></tr>
+        <tr><td>Confidentialité maximale</td><td class="o">Mistral</td><td>Données hébergées en Europe</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h2>🚗 Exemples concrets par modèle</h2>
-
-  <div class="exemples">
-    <div class="ex">
-      <div class="ex-icon">⚡</div>
-      <div class="ex-model">Renault Mégane E-Tech</div>
-      <div class="ex-co2">0 g CO₂/km</div>
-      <div class="ex-malus vert">0 €</div>
-      <div style="font-size:.72rem;color:var(--m)">Éligible bonus +4 000 €</div>
-    </div>
-    <div class="ex">
-      <div class="ex-icon">🔵</div>
-      <div class="ex-model">Peugeot 208 essence</div>
-      <div class="ex-co2">110 g CO₂/km</div>
-      <div class="ex-malus vert">0 €</div>
-      <div style="font-size:.72rem;color:var(--m)">Sous le seuil 2025</div>
-    </div>
-    <div class="ex">
-      <div class="ex-icon">🟡</div>
-      <div class="ex-model">Volkswagen Golf TDI</div>
-      <div class="ex-co2">128 g CO₂/km</div>
-      <div class="ex-malus orange">~230 €</div>
-      <div style="font-size:.72rem;color:var(--m)">Malus modéré</div>
-    </div>
-    <div class="ex">
-      <div class="ex-icon">🔴</div>
-      <div class="ex-model">SUV diesel 160 g</div>
-      <div class="ex-co2">160 g CO₂/km</div>
-      <div class="ex-malus rouge">~10 800 €</div>
-      <div style="font-size:.72rem;color:var(--m)">Malus très élevé</div>
-    </div>
-  </div>
-
-  <h2>💡 Comment éviter ou réduire le malus</h2>
-
-  <div class="astuces">
-    <div class="astuce">
-      <span class="aico">⚡</span>
-      <div><strong>Choisissez un véhicule électrique ou hybride rechargeable</strong><span>Les véhicules 100 % électriques sont exonérés de malus et éligibles au bonus écologique. Les hybrides rechargeables affichent souvent moins de 50 g de CO₂ en cycle officiel.</span></div>
-    </div>
-    <div class="astuce">
-      <span class="aico">🔎</span>
-      <div><strong>Vérifiez les émissions WLTP avant d'acheter</strong><span>Depuis 2021, les émissions sont mesurées selon le cycle WLTP (plus réaliste que l'ancien NEDC). Cherchez le chiffre exact dans la fiche technique avant de signer.</span></div>
-    </div>
-    <div class="astuce">
-      <span class="aico">🏷️</span>
-      <div><strong>Achetez un véhicule d'occasion</strong><span>Le malus écologique ne s'applique qu'aux véhicules neufs et aux véhicules d'occasion importés pour la première immatriculation en France. Un véhicule d'occasion déjà immatriculé en France n'est pas soumis au malus.</span></div>
-    </div>
-    <div class="astuce">
-      <span class="aico">👨‍👩‍👧</span>
-      <div><strong>Familles nombreuses : abattement possible</strong><span>Les familles avec 3 enfants ou plus peuvent bénéficier d'un abattement de 20 g de CO₂/km par enfant à partir du 3ème (dans la limite du barème). Renseignez-vous auprès de la préfecture.</span></div>
-    </div>
-  </div>
-
   <div class="tip">
-    <strong>💡 Le malus masse (poids) s'ajoute au malus CO₂</strong>
-    Depuis 2022, un malus sur le poids s'applique aux véhicules dépassant 1 500 kg : à partir de 10 € par kg supplémentaire (taux progressif par tranches). Un SUV de 2 tonnes peut ainsi cumuler malus CO₂ + malus poids. Les véhicules électriques restent exonérés du malus masse en 2026.
+    <strong>💡 Combinez-les selon les tâches</strong>
+    Pas besoin de n'en choisir qu'un. Utilisez Perplexity pour chercher, Mistral pour rédiger en français, Deepseek pour les problèmes logiques complexes, et Gemini pour analyser une image ou résumer un document Google. Tout est gratuit.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Les seuils baissent chaque année</strong>
-    Le seuil de déclenchement du malus CO₂ baisse d'environ 5 g/km par an. Un véhicule exempt de malus en 2024 peut y être soumis en 2025. Vérifiez toujours le barème de l'année d'achat sur le site officiel impots.gouv.fr.
+    <strong>⚠️ Deepseek : attention aux données sensibles</strong>
+    Deepseek est développé en Chine et ses serveurs sont soumis à la législation chinoise. Évitez d'y partager des données personnelles, professionnelles confidentielles ou sensibles. Pour ces usages, préférez Mistral (France) ou Claude (USA, engagement fort sur la confidentialité).
   </div>
 
   <div class="cta">
-    <h3>📬 Mobilité & économies dans votre boîte mail</h3>
-    <p>Les aides, barèmes et astuces pour rouler moins cher, chaque semaine.</p>
+    <h3>📬 Tech & outils gratuits dans votre boîte mail</h3>
+    <p>Les meilleurs outils IA pour économiser du temps et de l'argent, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -332,14 +335,14 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-261.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Bonus écologique 2026 : montants et conditions</div></a><a class="sim-card" href="article-265.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Train pas cher : cartes SNCF et astuces 2026</div></a><a class="sim-card" href="article-266.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Leasing social VE 2026 : conditions et dossier</div></a><a class="sim-card" href="article-267.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Covoiturage domicile-travail : aides et déductions</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-246.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">ChatGPT gratuit : tout ce qu'on peut faire en 2026</div></a><a class="sim-card" href="article-247.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">IA pour économiser : les meilleurs outils gratuits</div></a><a class="sim-card" href="article-248.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">Smartphone reconditionné : le comparatif complet</div></a><a class="sim-card" href="article-249.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">Forfait 5G pas cher : comparatif opérateurs 2026</div></a></div>
 </div>
 
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
-<p>Visitez <a href="https://www.awin1.com/cread.php?awinmid=101873&awinaffid=2926395">EUROCOC</a> pour votre certificat europeen.</p></footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
 <p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
