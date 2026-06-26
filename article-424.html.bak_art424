@@ -2,74 +2,78 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr">
+<meta name="description" content="Newsletter payante : monétiser son expertise — 1 000 abonnés = 1 000€/mois. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grenier en or : évaluer et vendre ses objets — Economya.fr</title>
+<title>Newsletter payante : monétiser son expertise — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--sky:#0284c7;--sky-l:#f0f9ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#082f49,#075985,#0284c7);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🏺';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#052e16,#065f46,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'📧';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bae6fd;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a7f3d0;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#7dd3fc;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#0284c7);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(2,132,199,.35)}
+.ah h1 em{color:#6ee7b7;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#1D9E75);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(29,158,117,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#0284c7,#f59e0b);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#1D9E75,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--sky);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--g);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* CATÉGORIES D'OBJETS */
-.categories{display:flex;flex-direction:column;gap:.9rem;margin:1.5rem 0}
-.categorie{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
-.categorie:hover{box-shadow:0 4px 18px rgba(2,132,199,.1)}
-.categorie.top{border:2px solid var(--g)}
-.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
-.c-icon{font-size:1.8rem;flex-shrink:0;margin-top:.1rem}
-.c-body h3{font-size:.92rem;font-weight:700;margin-bottom:.2rem}
-.c-body p{font-size:.82rem;color:var(--m);font-weight:300;margin:0 0 .4rem}
-.c-tags{display:flex;flex-wrap:wrap;gap:.3rem}
-.ctag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:var(--sky-l);color:#075985}
-.ctag.g{background:var(--gl);color:var(--gd)}
-.c-right{text-align:right;flex-shrink:0}
-.c-val{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--sky);display:block;white-space:nowrap}
-.c-sub{font-size:.7rem;color:var(--m)}
+/* SIMULATION */
+.simulation{background:var(--gl);border-radius:var(--r);padding:1.3rem 1.5rem;margin:1.5rem 0}
+.simulation h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gd);margin-bottom:.8rem}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.7rem}
+.sim-item{background:white;border-radius:8px;padding:.8rem;text-align:center}
+.sim-label{font-size:.68rem;color:var(--m);text-transform:uppercase;margin-bottom:.2rem}
+.sim-val{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd)}
+.sim-val.g{color:var(--g);font-size:1.2rem}
 
-/* MÉTHODE ÉVALUATION */
-.eval{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
-.e-step{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
-.e-step .esco{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
-.e-step strong{display:block;font-size:.9rem;margin-bottom:.1rem}
-.e-step span{font-size:.84rem;color:var(--m);font-weight:300}
+/* PLATEFORMES */
+.plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin:1.5rem 0}
+.plate{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem;text-align:center;transition:transform .2s;position:relative}
+.plate:hover{transform:translateY(-2px)}
+.plate.top{border:2px solid var(--g)}
+.top-badge{position:absolute;top:-9px;left:50%;transform:translateX(jusqu'à -50%);background:var(--g);color:white;font-size:.62rem;font-weight:700;padding:.1rem .55rem;border-radius:50px;white-space:nowrap}
+.pl-icon{font-size:1.6rem;margin-bottom:.35rem}
+.pl-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+.pl-prix{font-size:.7rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:var(--gl);color:var(--gd);display:inline-block;margin-bottom:.3rem}
+.pl-desc{font-size:.76rem;color:var(--m);font-weight:300;line-height:1.35}
+
+/* ÉTAPES */
+.steps{display:flex;flex-direction:column;gap:.85rem;margin:1.2rem 0}
+.step{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem}
+.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#065f46,#1D9E75);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sc h3{font-size:.92rem;font-weight:600;margin-bottom:.2rem}
+.sc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:var(--sky-l);border-left:4px solid var(--sky);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#082f49}
+.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#082f49,#075985);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#052e16,#065f46);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#0284c7,#f59e0b);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#1D9E75,#7c3aed);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.categorie{grid-template-columns:1fr;gap:.5rem}.c-right{text-align:left}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -123,9 +127,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Grenier en or : évaluer et vendre ses objets",
-  "description": "Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-415.html",
+  "headline": "Newsletter payante : monétiser son expertise",
+  "description": "Newsletter payante : monétiser son expertise — 1 000 abonnés = 1 000€/mois. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-424.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -142,19 +146,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Grenier en or : évaluer et vendre ses objets">
-  <meta property="og:description" content="Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-415.html">
+  <meta property="og:title" content="Newsletter payante : monétiser son expertise">
+  <meta property="og:description" content="Newsletter payante : monétiser son expertise — 1 000 abonnés = 1 000€/mois. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-424.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Grenier en or : évaluer et vendre ses objets">
-  <meta name="twitter:description" content="Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Newsletter payante : monétiser son expertise">
+  <meta name="twitter:description" content="Newsletter payante : monétiser son expertise — 1 000 abonnés = 1 000€/mois. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-415.html" />
+<link rel="canonical" href="https://economya.fr/article-424.html" />
 </head>
 <body>
 <nav>
@@ -164,95 +168,111 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">Grenier en or : évaluer et vendre ses objets</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Grenier en or : évaluer et vendre ses objets", "item": "https://economya.fr/article-415.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">Newsletter payante : monétiser son expertise</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Newsletter payante : monétiser son expertise", "item": "https://economya.fr/article-424.html"}]}</script>
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🏺 Revenus</div>
-    <h1>Grenier en or :<br><em>évaluer et vendre ses objets</em></h1>
-    <div class="savings-badge">💰 Des centaines d'€ dans vos tiroirs</div>
+    <div class="cat-pill">📧 Revenus</div>
+    <h1>Newsletter payante :<br><em>monétiser son expertise</em></h1>
+    <div class="savings-badge">💰 1 000 abonnés = 1 000 €/mois</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">💰 Revente & brocante</span>
+      <span class="theme-tag">📧 Newsletter & monétisation</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Certains objets ordinaires peuvent valoir des centaines, voire des milliers d'euros. Jouets anciens, vinyles, vaisselle de grand-mère, vieilles consoles, monnaies, cartes Pokémon — voici comment identifier et évaluer ce qui se cache dans votre grenier, et comment vendre au meilleur prix.</p>
+  <p class="lead">Les newsletters payantes (Substack, Ghost, Revue) connaissent un essor important. 1 000 abonnés payant 10 €/mois = 10 000 €/mois bruts. La promesse est réelle pour ceux qui ont une expertise pointue et une audience fidèle. Voici comment démarrer et construire progressivement.</p>
 
-  <h2>💎 Les objets les plus souvent sous-estimés</h2>
-  <div class="categories">
-    <div class="categorie top">
-      <div class="c-icon">🃏</div>
-      <div class="c-body">
-        <div class="top-badge">⭐ Marché très actif en 2026</div>
-        <h3>Cartes Pokémon, Lorcana, Magic</h3>
-        <p>Une carte Pokémon Dracaufeu 1ère édition en bon état peut valoir plusieurs centaines d'euros. Le marché des cartes à collectionner est très actif. Vérifiez l'état, le numéro de série et la série avant d'évaluer.</p>
-        <div class="c-tags"><span class="ctag g">eBay France</span><span class="ctag">Cardmarket.com</span><span class="ctag g">Très recherchées</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">5–500 €/carte</span><span class="c-sub">selon rareté et état</span></div>
+  <h2>💰 La simulation des revenus</h2>
+  <div class="simulation">
+    <h3>📊 Exemple pour une newsletter de niche (finance perso)</h3>
+    <div class="sim-grid">
+      <div class="sim-item"><div class="sim-label">Abonnés totaux (gratuit)</div><div class="sim-val">5 000</div></div>
+      <div class="sim-item"><div class="sim-label">Taux de conversion payant</div><div class="sim-val">5–10 %</div></div>
+      <div class="sim-item"><div class="sim-label">Abonnés payants</div><div class="sim-val">250–500</div></div>
+      <div class="sim-item"><div class="sim-label">Tarif mensuel</div><div class="sim-val">5–10 €</div></div>
+      <div class="sim-item"><div class="sim-label">Revenus mensuels bruts</div><div class="sim-val g">1 250–5 000 €</div></div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">🎮</div>
-      <div class="c-body">
-        <h3>Jeux vidéo vintage (NES, SNES, N64, GameBoy)</h3>
-        <p>Les jeux de 8e et 16e génération avec leur boîte et notice valent 5 à 200 € selon le titre. Certains jeux rares (JRPGs SNES, jeux Little Samson, Mega Man) atteignent plusieurs centaines d'euros. Cherchez sur PriceCharting.com.</p>
-        <div class="c-tags"><span class="ctag">PriceCharting.com</span><span class="ctag">eBay</span><span class="ctag g">Boîte = +50–100 %</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">5–300 €/jeu</span><span class="c-sub">avec boîte et notice</span></div>
+    <p style="font-size:.79rem;color:var(--m);margin-top:.7rem;margin-bottom:0">* Après commission plateforme (10 %) et charges auto-entrepreneur (~22 %), revenus nets : ~60–70 % du brut.</p>
+  </div>
+
+  <h2>📱 Les meilleures plateformes de newsletter payante</h2>
+  <div class="plates">
+    <div class="plate top">
+      <span class="top-badge">⭐ La référence</span>
+      <div class="pl-icon">📰</div>
+      <div class="pl-name">Substack</div>
+      <div class="pl-prix">10 % de commission</div>
+      <div class="pl-desc">La plateforme de référence mondiale. Gratuit à lancer, paiement uniquement sur les abonnements payants. Découvertes possibles via leur réseau.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">🎵</div>
-      <div class="c-body">
-        <h3>Vinyles 33 et 45 tours</h3>
-        <p>Un vinyle courant vaut 2–5 €, mais les pressages originaux des années 60–70 (Beatles, Rolling Stones, Pink Floyd 1ères éditions) peuvent valoir 20–200 €. Les éditions japonaises sont souvent les plus recherchées.</p>
-        <div class="c-tags"><span class="ctag">Discogs.com</span><span class="ctag g">1ères éditions ++</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">2–200 €/vinyle</span><span class="c-sub">selon édition</span></div>
+    <div class="plate">
+      <div class="pl-icon">👻</div>
+      <div class="pl-name">Ghost</div>
+      <div class="pl-prix">~31 €/mois + 0 %</div>
+      <div class="pl-desc">Hébergement propre, 0 % de commission sur les revenus. Plus technique mais vous gardez tout. Recommandé si vous dépassez 500 abonnés payants.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">🍽️</div>
-      <div class="c-body">
-        <h3>Vaisselle et art de la table anciens (Lunéville, Gien, Limoges)</h3>
-        <p>La vaisselle des grandes manufactures françaises (Lunéville, Gien, Haviland Limoges) est très recherchée. Un service complet peut valoir 200–1 000 €. Même des pièces isolées trouvent preneurs sur eBay et Selency.</p>
-        <div class="c-tags"><span class="ctag">Selency.fr</span><span class="ctag">eBay</span><span class="ctag g">Marque visible sous l'assiette</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">20–1 000 €</span><span class="c-sub">pièce ou service</span></div>
+    <div class="plate">
+      <div class="pl-icon">💌</div>
+      <div class="pl-name">Brevo (ex-Sendinblue)</div>
+      <div class="pl-prix">Gratuit (300 emails/j)</div>
+      <div class="pl-desc">Pour commencer avec une newsletter gratuite. Plan freemium très généreux. Pas de monétisation directe intégrée mais intégrable avec Stripe.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">📚</div>
-      <div class="c-body">
-        <h3>Livres anciens et BD d'origine</h3>
-        <p>Un Tintin ou Astérix en édition originale (couverture belge, sans ISBN) peut valoir 50–500 €. Les livres de poche des années 50–70 d'auteurs reconnus ont aussi de la valeur. Vérifiez sur Viabooks ou AbeBooks.</p>
-        <div class="c-tags"><span class="ctag">AbeBooks.com</span><span class="ctag g">Édition originale clé</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">5–500 €/livre</span><span class="c-sub">édition originale</span></div>
+    <div class="plate">
+      <div class="pl-icon">🟡</div>
+      <div class="pl-name">Beehiiv</div>
+      <div class="pl-prix">Gratuit jusqu'à 2 500 abonnés</div>
+      <div class="pl-desc">Alternative moderne à Substack avec des analytics avancés. Monétisation intégrée via abonnements et publicités. Très populaire en 2025.</div>
     </div>
   </div>
 
-  <h2>🔍 Comment évaluer un objet avant de le vendre</h2>
-  <div class="eval">
-    <div class="e-step"><span class="esco">🔎</span><div><strong>Cherchez l'objet sur eBay — filtrez par "vendus"</strong><span>Sur eBay, cherchez votre objet et filtrez les résultats par "annonces terminées" + "vendus". Vous voyez ainsi le prix réel auquel des objets identiques ont été vendus — pas les prix demandés. C'est le vrai baromètre du marché.</span></div></div>
-    <div class="e-step"><span class="esco">🏷️</span><div><strong>Identifiez le fabricant, le modèle et l'édition</strong><span>Sur les vinyles : le label au centre et le numéro de catalogue. Sur les jeux vidéo : le code régional et le numéro de version. Sur la vaisselle : le marque au dos. Ces détails déterminent la valeur entre 2 € et 200 €.</span></div></div>
-    <div class="e-step"><span class="esco">📸</span><div><strong>Évaluez l'état objectivement</strong><span>Les collectionneurs utilisent une échelle précise : Mint (neuf), Near Mint (quasi-neuf), Excellent, Très bon, Bon, Acceptable. Un objet en état "Near Mint" peut valoir 5× plus qu'en état "acceptable". Soyez honnête dans vos annonces.</span></div></div>
-    <div class="e-step"><span class="esco">🏛️</span><div><strong>Pour les objets très anciens ou de valeur : commissaire-priseur</strong><span>Pour un objet potentiellement très précieux (tableau, argenterie ancienne, bijou), consultez un commissaire-priseur. L'évaluation est souvent gratuite si l'objet est mis en vente dans la maison. Une estimation erronée peut vous faire perdre des milliers d'euros.</span></div></div>
+  <h2>🪜 Comment construire une newsletter payante de zéro</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="sn">1</div>
+      <div class="sc">
+        <h3>Commencez gratuit pendant 6 à 12 mois</h3>
+        <p>Construisez d'abord une liste d'abonnés gratuits de 500 à 2 000 personnes. Publiez régulièrement (1 à 2 fois par semaine), testez vos angles, identifiez ce qui résonne avec votre audience. La confiance se construit avant la monétisation.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">2</div>
+      <div class="sc">
+        <h3>Définissez votre offre payante et son positionnement</h3>
+        <p>Qu'est-ce que les abonnés payants reçoivent de plus ? Contenu plus approfondi, accès à une communauté privée, templates exclusifs, analyses avancées ? La valeur supplémentaire doit être clairement articulée et justifier le tarif choisi (5, 10 ou 20 €/mois).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">3</div>
+      <div class="sc">
+        <h3>Lancez un "prix fondateur" avec les premiers abonnés</h3>
+        <p>Proposez un tarif réduit permanent ("prix fondateur") à vos 50–100 premiers abonnés payants. Ces early adopters deviennent vos ambassadeurs et vous fournissent des témoignages précieux. Le buzz d'un lancement réussi attire de nouveaux abonnés.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="sn">4</div>
+      <div class="sc">
+        <h3>Diversifiez progressivement (publicité, affiliation, formations)</h3>
+        <p>Une newsletter avec 5 000+ abonnés peut aussi monétiser via des publicités ciblées (100–500 € par newsletter), des liens d'affiliation dans le contenu, et des ventes de formations ou accompagnements. Les revenus se cumulent.</p>
+      </div>
+    </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Selency.fr : la bonne plateforme pour la brocante de qualité</strong>
-    Selency est le "LeBonCoin" de la brocante et de la décoration vintage. Les acheteurs y sont des amateurs avertis prêts à payer le juste prix pour un bel objet. Pour la vaisselle ancienne, le mobilier vintage, les luminaires et les bibelots de qualité, Selency rapporte souvent plus qu'eBay ou LeBonCoin.
+    <strong>💡 La "règle des 1 000 vrais fans" appliquée aux newsletters</strong>
+    Le théoricien Kevin Kelly a popularisé l'idée que 1 000 "vrais fans" prêts à payer 100 €/an représentent 100 000 € de revenus annuels. Pour une newsletter : 1 000 abonnés payant 10 €/mois = 10 000 €/mois. Ces chiffres sont atteignables dans une niche précise avec un contenu de haute qualité régulier.
   </div>
 
   <div class="warn">
-    <strong>ℹ️ Fiscalité des ventes de brocante et d'occasion</strong>
-    Les ventes d'objets personnels d'occasion sont généralement exonérées d'impôts (vous vendez des biens personnels, pas une activité commerciale). Exception : si vous achetez pour revendre (activité de négoce) ou si vos revenus de ventes dépassent 3 000 €/an sur une plateforme déclarant à l'administration. Les greniers de famille vendus occasionnellement sont en règle générale non imposables.
+    <strong>⚠️ La régularité est la clé — pas la perfection</strong>
+    Les newsletters qui échouent sont souvent celles qui cherchent la perfection plutôt que la régularité. Un email de qualité correcte envoyé chaque semaine est infiniment plus efficace qu'une masterpiece envoyée une fois par mois. Vos abonnés ont besoin de régularité pour créer l'habitude de lecture.
   </div>
 
   <div class="cta">
-    <h3>📬 Revente & brocante dans votre boîte mail</h3>
-    <p>Les meilleures astuces pour trouver et vendre des objets de valeur, chaque semaine.</p>
+    <h3>📬 Newsletter & monétisation dans votre boîte mail</h3>
+    <p>Les meilleures stratégies pour construire et monétiser votre expertise, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -281,6 +301,12 @@ window.economyaLoadAds = function() {
 })();
 </script>
 
+
+  <div class="tip" style="background:#FAEEDA;border-left:4px solid #EF9F27;color:#633806">
+    <strong>🏢 Besoin d'une adresse professionnelle pour votre entreprise ?</strong>
+    Si vous ne souhaitez pas domicilier votre activité à votre domicile personnel, des services comme <a href="https://www.awin1.com/cread.php?awinmid=24149&awinaffid=2926395&ued=https%3A%2F%2Fsedomicilier.fr" target="_blank" rel="noopener sponsored">SeDomicilier</a> proposent une adresse de siège social dès 11€HT/mois (engagement long terme) ou 16€HT/mois sans engagement, sans caution ni frais cachés, avec gestion du courrier incluse. Cela permet de séparer clairement votre adresse personnelle de votre activité professionnelle. Economya peut percevoir une commission sur ce lien, sans coût supplémentaire pour vous.
+  </div>
+
 <style>
 .similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
 .similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
@@ -293,7 +319,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne : devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting : avoir un 2e revenu légal</div></a><a class="sim-card" href="article-419.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Location de sa résidence principale : règles et revenus</div></a><a class="sim-card" href="article-420.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Fiverr et Malt : trouver ses premiers clients freelance</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-415.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Grenier en or : évaluer et vendre ses objets</div></a><a class="sim-card" href="article-416.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Vendre ses créations en ligne : plateformes gratuites</div></a><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne : devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting : avoir un 2e revenu légal</div></a></div>
 </div>
 
 

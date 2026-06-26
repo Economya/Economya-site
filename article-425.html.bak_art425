@@ -2,74 +2,71 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr">
+<meta name="description" content="Vendre sur Vinted : optimiser ses revenus — 500 à 2 000€ dans vos armoires. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grenier en or : évaluer et vendre ses objets — Economya.fr</title>
+<title>Vendre sur Vinted : optimiser ses revenus — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--sky:#0284c7;--sky-l:#f0f9ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--amber:#d97706;--amber-l:#fffbeb;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#082f49,#075985,#0284c7);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🏺';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🛍️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bae6fd;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#7dd3fc;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#0284c7);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(2,132,199,.35)}
+.ah h1 em{color:#fcd34d;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#0284c7,#f59e0b);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#d97706,#be185d);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--sky);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* CATÉGORIES D'OBJETS */
-.categories{display:flex;flex-direction:column;gap:.9rem;margin:1.5rem 0}
-.categorie{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
-.categorie:hover{box-shadow:0 4px 18px rgba(2,132,199,.1)}
-.categorie.top{border:2px solid var(--g)}
-.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
-.c-icon{font-size:1.8rem;flex-shrink:0;margin-top:.1rem}
-.c-body h3{font-size:.92rem;font-weight:700;margin-bottom:.2rem}
-.c-body p{font-size:.82rem;color:var(--m);font-weight:300;margin:0 0 .4rem}
-.c-tags{display:flex;flex-wrap:wrap;gap:.3rem}
-.ctag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:var(--sky-l);color:#075985}
-.ctag.g{background:var(--gl);color:var(--gd)}
-.c-right{text-align:right;flex-shrink:0}
-.c-val{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--sky);display:block;white-space:nowrap}
-.c-sub{font-size:.7rem;color:var(--m)}
+/* ASTUCES */
+.astuces{display:flex;flex-direction:column;gap:.85rem;margin:1.5rem 0}
+.astuce{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start;transition:box-shadow .2s}
+.astuce:hover{box-shadow:0 4px 16px rgba(217,119,6,.1)}
+.astuce.top{border:2px solid var(--g)}
+.aico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+.astuce strong{display:block;font-size:.92rem;margin-bottom:.15rem}
+.astuce span{font-size:.85rem;color:var(--m);font-weight:300}
+.astuce .atag{display:inline-block;margin-top:.35rem;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
 
-/* MÉTHODE ÉVALUATION */
-.eval{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
-.e-step{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
-.e-step .esco{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
-.e-step strong{display:block;font-size:.9rem;margin-bottom:.1rem}
-.e-step span{font-size:.84rem;color:var(--m);font-weight:300}
+/* CE QUI SE VEND */
+.categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:.9rem;margin:1.5rem 0}
+.cat{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem;text-align:center;transition:transform .2s}
+.cat:hover{transform:translateY(-2px)}
+.cat.top{border:2px solid var(--g)}
+.cat-icon{font-size:1.6rem;margin-bottom:.35rem}
+.cat-name{font-weight:700;font-size:.88rem;margin-bottom:.2rem}
+.cat-prix{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--amber);margin:.15rem 0}
+.cat-note{font-size:.72rem;color:var(--m);font-weight:300;line-height:1.3}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:var(--sky-l);border-left:4px solid var(--sky);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#082f49}
+.warn{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#082f49,#075985);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#1c1000,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#0284c7,#f59e0b);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#d97706,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.categorie{grid-template-columns:1fr;gap:.5rem}.c-right{text-align:left}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -123,9 +120,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Grenier en or : évaluer et vendre ses objets",
-  "description": "Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-415.html",
+  "headline": "Vendre sur Vinted : optimiser ses revenus",
+  "description": "Vendre sur Vinted : optimiser ses revenus — 500 à 2 000€ dans vos armoires. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-425.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -142,19 +139,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Grenier en or : évaluer et vendre ses objets">
-  <meta property="og:description" content="Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-415.html">
+  <meta property="og:title" content="Vendre sur Vinted : optimiser ses revenus">
+  <meta property="og:description" content="Vendre sur Vinted : optimiser ses revenus — 500 à 2 000€ dans vos armoires. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-425.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Grenier en or : évaluer et vendre ses objets">
-  <meta name="twitter:description" content="Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Vendre sur Vinted : optimiser ses revenus">
+  <meta name="twitter:description" content="Vendre sur Vinted : optimiser ses revenus — 500 à 2 000€ dans vos armoires. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-415.html" />
+<link rel="canonical" href="https://economya.fr/article-425.html" />
 </head>
 <body>
 <nav>
@@ -164,95 +161,126 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">Grenier en or : évaluer et vendre ses objets</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Grenier en or : évaluer et vendre ses objets", "item": "https://economya.fr/article-415.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">Vendre sur Vinted : optimiser ses revenus</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Vendre sur Vinted : optimiser ses revenus", "item": "https://economya.fr/article-425.html"}]}</script>
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🏺 Revenus</div>
-    <h1>Grenier en or :<br><em>évaluer et vendre ses objets</em></h1>
-    <div class="savings-badge">💰 Des centaines d'€ dans vos tiroirs</div>
+    <div class="cat-pill">🛍️ Revenus</div>
+    <h1>Vendre sur Vinted :<br><em>optimiser ses revenus</em></h1>
+    <div class="savings-badge">💰 500 à 2 000 € dans vos armoires</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">💰 Revente & brocante</span>
+      <span class="theme-tag">👗 Vinted & mode seconde main</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Certains objets ordinaires peuvent valoir des centaines, voire des milliers d'euros. Jouets anciens, vinyles, vaisselle de grand-mère, vieilles consoles, monnaies, cartes Pokémon — voici comment identifier et évaluer ce qui se cache dans votre grenier, et comment vendre au meilleur prix.</p>
+  <p class="lead">Vinted est devenu la première plateforme de revente de vêtements en France avec plus de 23 millions d'utilisateurs. Un tri sérieux de vos armoires peut générer 500 à 2 000 €. Voici les astuces concrètes pour vendre plus vite et plus cher que la moyenne des vendeurs.</p>
 
-  <h2>💎 Les objets les plus souvent sous-estimés</h2>
+  <h2>💰 Ce qui se vend le mieux (et combien)</h2>
   <div class="categories">
-    <div class="categorie top">
-      <div class="c-icon">🃏</div>
-      <div class="c-body">
-        <div class="top-badge">⭐ Marché très actif en 2026</div>
-        <h3>Cartes Pokémon, Lorcana, Magic</h3>
-        <p>Une carte Pokémon Dracaufeu 1ère édition en bon état peut valoir plusieurs centaines d'euros. Le marché des cartes à collectionner est très actif. Vérifiez l'état, le numéro de série et la série avant d'évaluer.</p>
-        <div class="c-tags"><span class="ctag g">eBay France</span><span class="ctag">Cardmarket.com</span><span class="ctag g">Très recherchées</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">5–500 €/carte</span><span class="c-sub">selon rareté et état</span></div>
+    <div class="cat top">
+      <div class="cat-icon">👟</div>
+      <div class="cat-name">Sneakers / chaussures</div>
+      <div class="cat-prix">15–200 €</div>
+      <div class="cat-note">Nike, Adidas, New Balance se vendent toujours bien. État = prix.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">🎮</div>
-      <div class="c-body">
-        <h3>Jeux vidéo vintage (NES, SNES, N64, GameBoy)</h3>
-        <p>Les jeux de 8e et 16e génération avec leur boîte et notice valent 5 à 200 € selon le titre. Certains jeux rares (JRPGs SNES, jeux Little Samson, Mega Man) atteignent plusieurs centaines d'euros. Cherchez sur PriceCharting.com.</p>
-        <div class="c-tags"><span class="ctag">PriceCharting.com</span><span class="ctag">eBay</span><span class="ctag g">Boîte = +50–100 %</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">5–300 €/jeu</span><span class="c-sub">avec boîte et notice</span></div>
+    <div class="cat">
+      <div class="cat-icon">👜</div>
+      <div class="cat-name">Sacs de marque</div>
+      <div class="cat-prix">30–500 €</div>
+      <div class="cat-note">Michael Kors, Coach, Longchamp. Très recherchés. Photos soignées obligatoires.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">🎵</div>
-      <div class="c-body">
-        <h3>Vinyles 33 et 45 tours</h3>
-        <p>Un vinyle courant vaut 2–5 €, mais les pressages originaux des années 60–70 (Beatles, Rolling Stones, Pink Floyd 1ères éditions) peuvent valoir 20–200 €. Les éditions japonaises sont souvent les plus recherchées.</p>
-        <div class="c-tags"><span class="ctag">Discogs.com</span><span class="ctag g">1ères éditions ++</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">2–200 €/vinyle</span><span class="c-sub">selon édition</span></div>
+    <div class="cat">
+      <div class="cat-icon">🧥</div>
+      <div class="cat-name">Manteaux et vestes</div>
+      <div class="cat-prix">20–150 €</div>
+      <div class="cat-note">Les articles d'hiver bien entretenus se vendent bien toute l'année.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">🍽️</div>
-      <div class="c-body">
-        <h3>Vaisselle et art de la table anciens (Lunéville, Gien, Limoges)</h3>
-        <p>La vaisselle des grandes manufactures françaises (Lunéville, Gien, Haviland Limoges) est très recherchée. Un service complet peut valoir 200–1 000 €. Même des pièces isolées trouvent preneurs sur eBay et Selency.</p>
-        <div class="c-tags"><span class="ctag">Selency.fr</span><span class="ctag">eBay</span><span class="ctag g">Marque visible sous l'assiette</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">20–1 000 €</span><span class="c-sub">pièce ou service</span></div>
+    <div class="cat">
+      <div class="cat-icon">👶</div>
+      <div class="cat-name">Vêtements enfants</div>
+      <div class="cat-prix">3–30 €/pièce</div>
+      <div class="cat-note">Très forte demande. Les lots se vendent mieux que les pièces isolées.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">📚</div>
-      <div class="c-body">
-        <h3>Livres anciens et BD d'origine</h3>
-        <p>Un Tintin ou Astérix en édition originale (couverture belge, sans ISBN) peut valoir 50–500 €. Les livres de poche des années 50–70 d'auteurs reconnus ont aussi de la valeur. Vérifiez sur Viabooks ou AbeBooks.</p>
-        <div class="c-tags"><span class="ctag">AbeBooks.com</span><span class="ctag g">Édition originale clé</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">5–500 €/livre</span><span class="c-sub">édition originale</span></div>
+    <div class="cat">
+      <div class="cat-icon">🏋️</div>
+      <div class="cat-name">Vêtements sport</div>
+      <div class="cat-prix">10–80 €</div>
+      <div class="cat-note">Lululemon, Gymshark, Nike Training. Marché très actif en 2025.</div>
+    </div>
+    <div class="cat">
+      <div class="cat-icon">💎</div>
+      <div class="cat-name">Bijoux et montres</div>
+      <div class="cat-prix">5–500 €</div>
+      <div class="cat-note">Les montres de marque (Casio G-Shock, Seiko) attirent les collectionneurs.</div>
     </div>
   </div>
 
-  <h2>🔍 Comment évaluer un objet avant de le vendre</h2>
-  <div class="eval">
-    <div class="e-step"><span class="esco">🔎</span><div><strong>Cherchez l'objet sur eBay — filtrez par "vendus"</strong><span>Sur eBay, cherchez votre objet et filtrez les résultats par "annonces terminées" + "vendus". Vous voyez ainsi le prix réel auquel des objets identiques ont été vendus — pas les prix demandés. C'est le vrai baromètre du marché.</span></div></div>
-    <div class="e-step"><span class="esco">🏷️</span><div><strong>Identifiez le fabricant, le modèle et l'édition</strong><span>Sur les vinyles : le label au centre et le numéro de catalogue. Sur les jeux vidéo : le code régional et le numéro de version. Sur la vaisselle : le marque au dos. Ces détails déterminent la valeur entre 2 € et 200 €.</span></div></div>
-    <div class="e-step"><span class="esco">📸</span><div><strong>Évaluez l'état objectivement</strong><span>Les collectionneurs utilisent une échelle précise : Mint (neuf), Near Mint (quasi-neuf), Excellent, Très bon, Bon, Acceptable. Un objet en état "Near Mint" peut valoir 5× plus qu'en état "acceptable". Soyez honnête dans vos annonces.</span></div></div>
-    <div class="e-step"><span class="esco">🏛️</span><div><strong>Pour les objets très anciens ou de valeur : commissaire-priseur</strong><span>Pour un objet potentiellement très précieux (tableau, argenterie ancienne, bijou), consultez un commissaire-priseur. L'évaluation est souvent gratuite si l'objet est mis en vente dans la maison. Une estimation erronée peut vous faire perdre des milliers d'euros.</span></div></div>
+  <h2>🚀 Les astuces pour vendre plus vite et plus cher</h2>
+  <div class="astuces">
+    <div class="astuce top">
+      <span class="aico">📸</span>
+      <div>
+        <strong>Photos soignées sur fond neutre — c'est 70 % du succès</strong>
+        <span>5 à 8 photos par article sur fond blanc ou bois clair, en lumière naturelle. Photo de face, de dos, du label, d'éventuels défauts (honnêteté = confiance). Les annonces avec bonnes photos se vendent 2 à 3 fois plus vite et 20 à 30 % plus cher que les photos floues sur lit.</span>
+        <span class="atag">📸 Impact le plus important</span>
+      </div>
+    </div>
+    <div class="astuce">
+      <span class="aico">🏷️</span>
+      <div>
+        <strong>Mentionnez la marque dans le titre (même les moins connues)</strong>
+        <span>Les acheteurs cherchent par marque. "Veste bleue" → 10 vues. "Veste bleue Zara L comme neuf" → 100 vues. Titre = Marque + couleur + taille + état. Pour les articles sans marque, mentionnez la matière (coton, lin, laine) et le style (minimaliste, bohème, casual).</span>
+      </div>
+    </div>
+    <div class="astuce">
+      <span class="aico">🌟</span>
+      <div>
+        <strong>Renseignez les mesures exactes, pas seulement la taille</strong>
+        <span>Un acheteur distant ne peut pas essayer. Les mesures réelles (tour de poitrine, longueur, entrejambe) réduisent les retours et augmentent la confiance. Une annonce avec mesures se vend généralement plus cher car l'acheteur se sent en sécurité.</span>
+        <span class="atag">📏 Réduction des retours</span>
+      </div>
+    </div>
+    <div class="astuce">
+      <span class="aico">⏰</span>
+      <div>
+        <strong>Publiez et "remontez" vos annonces le dimanche soir</strong>
+        <span>Vinted trie par date de mise en ligne. Le dimanche soir entre 20h et 22h est le pic de connexion. Publiez ou utilisez la fonction "remettre en avant" (gratuite, disponible chaque semaine) à ce moment pour maximiser la visibilité initiale.</span>
+      </div>
+    </div>
+    <div class="astuce">
+      <span class="aico">💬</span>
+      <div>
+        <strong>Répondez rapidement aux questions et propositions</strong>
+        <span>Les vendeurs qui répondent en moins de 2 heures vendent 40 % plus souvent que ceux qui tardent. Activez les notifications Vinted. Pour les offres à la baisse : acceptez si raisonnable, ou proposez un prix intermédiaire plutôt que de refuser sèchement.</span>
+        <span class="atag">💬 40 % de conversions en plus</span>
+      </div>
+    </div>
+    <div class="astuce">
+      <span class="aico">📦</span>
+      <div>
+        <strong>Expédiez dans les 24h après vente</strong>
+        <span>Un envoi rapide génère de meilleures notes et donc plus de ventes futures. Les acheteurs voient votre délai moyen d'expédition. Gardez des boîtes et papier bulle d'avance. Après 5 bonnes notes, votre profil ressort mieux dans les résultats de recherche.</span>
+      </div>
+    </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Selency.fr : la bonne plateforme pour la brocante de qualité</strong>
-    Selency est le "LeBonCoin" de la brocante et de la décoration vintage. Les acheteurs y sont des amateurs avertis prêts à payer le juste prix pour un bel objet. Pour la vaisselle ancienne, le mobilier vintage, les luminaires et les bibelots de qualité, Selency rapporte souvent plus qu'eBay ou LeBonCoin.
+    <strong>💡 Vinted Pro : quand passer en mode vendeur professionnel ?</strong>
+    Si vous vendez régulièrement plus de 30 articles par mois ou achetez pour revendre (flipping), vous devez passer en compte "Pro" sur Vinted. Ce statut est obligatoire au-delà d'un certain seuil légal. Les comptes Pro peuvent mettre en avant leurs annonces via des "boosts" payants mais bénéficient aussi d'une visibilité accrue et d'outils de gestion.
   </div>
 
   <div class="warn">
-    <strong>ℹ️ Fiscalité des ventes de brocante et d'occasion</strong>
-    Les ventes d'objets personnels d'occasion sont généralement exonérées d'impôts (vous vendez des biens personnels, pas une activité commerciale). Exception : si vous achetez pour revendre (activité de négoce) ou si vos revenus de ventes dépassent 3 000 €/an sur une plateforme déclarant à l'administration. Les greniers de famille vendus occasionnellement sont en règle générale non imposables.
+    <strong>⚠️ Fiscalité Vinted : déclaration obligatoire au-delà de 3 000 €/an</strong>
+    Depuis 2023, Vinted (comme toutes les plateformes) est tenu de déclarer à l'administration fiscale vos revenus si vous dépassez 3 000 € de ventes annuelles ou 20 transactions. La vente d'objets personnels d'occasion n'est pas imposable en principe, mais si vous achetez pour revendre (activité de négoce), c'est une activité commerciale imposable. En cas de doute, consultez le site impots.gouv.fr.
   </div>
 
   <div class="cta">
-    <h3>📬 Revente & brocante dans votre boîte mail</h3>
-    <p>Les meilleures astuces pour trouver et vendre des objets de valeur, chaque semaine.</p>
+    <h3>📬 Revente & revenus dans votre boîte mail</h3>
+    <p>Les meilleures astuces pour vendre vos affaires au meilleur prix, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -293,7 +321,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne : devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting : avoir un 2e revenu légal</div></a><a class="sim-card" href="article-419.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Location de sa résidence principale : règles et revenus</div></a><a class="sim-card" href="article-420.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Fiverr et Malt : trouver ses premiers clients freelance</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-415.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Grenier en or : évaluer et vendre ses objets</div></a><a class="sim-card" href="article-416.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Vendre ses créations en ligne : plateformes gratuites</div></a><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne : devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting : avoir un 2e revenu légal</div></a></div>
 </div>
 
 

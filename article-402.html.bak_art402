@@ -2,74 +2,73 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr">
+<meta name="description" content="Chèques vacances : utilisation maximale — Jusqu'à 600€ d'aides loisirs. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grenier en or : évaluer et vendre ses objets — Economya.fr</title>
+<title>Chèques vacances : utilisation maximale — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--sky:#0284c7;--sky-l:#f0f9ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#082f49,#075985,#0284c7);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🏺';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#052e16,#065f46,#1D9E75);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🎫';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bae6fd;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a7f3d0;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#7dd3fc;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#0284c7);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(2,132,199,.35)}
+.ah h1 em{color:#6ee7b7;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#1D9E75);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(29,158,117,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#0284c7,#f59e0b);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#1D9E75,#d97706);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--sky);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--g);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* CATÉGORIES D'OBJETS */
-.categories{display:flex;flex-direction:column;gap:.9rem;margin:1.5rem 0}
-.categorie{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
-.categorie:hover{box-shadow:0 4px 18px rgba(2,132,199,.1)}
-.categorie.top{border:2px solid var(--g)}
-.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
-.c-icon{font-size:1.8rem;flex-shrink:0;margin-top:.1rem}
-.c-body h3{font-size:.92rem;font-weight:700;margin-bottom:.2rem}
-.c-body p{font-size:.82rem;color:var(--m);font-weight:300;margin:0 0 .4rem}
-.c-tags{display:flex;flex-wrap:wrap;gap:.3rem}
-.ctag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:var(--sky-l);color:#075985}
-.ctag.g{background:var(--gl);color:var(--gd)}
-.c-right{text-align:right;flex-shrink:0}
-.c-val{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--sky);display:block;white-space:nowrap}
-.c-sub{font-size:.7rem;color:var(--m)}
+/* USAGES */
+.usages{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;margin:1.5rem 0}
+.usage{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s;position:relative}
+.usage:hover{transform:translateY(-2px)}
+.usage.top{border:2px solid var(--g)}
+.top-badge{position:absolute;top:-10px;left:50%;transform:translateX(jusqu'à -50%);background:var(--g);color:white;font-size:.64rem;font-weight:700;padding:.14rem .65rem;border-radius:50px;white-space:nowrap}
+.u-icon{font-size:1.8rem;margin-bottom:.4rem}
+.u-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+.u-eco{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--g);margin:.15rem 0}
+.u-desc{font-size:.76rem;color:var(--m);font-weight:300;line-height:1.35}
 
-/* MÉTHODE ÉVALUATION */
-.eval{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
-.e-step{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
-.e-step .esco{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
-.e-step strong{display:block;font-size:.9rem;margin-bottom:.1rem}
-.e-step span{font-size:.84rem;color:var(--m);font-weight:300}
+/* TABLEAU */
+.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+thead tr{background:linear-gradient(135deg,#065f46,#1D9E75);color:white}
+thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.78rem}
+tbody tr{border-bottom:1px solid var(--b)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:#fafafa}
+tbody td{padding:.8rem 1rem;vertical-align:middle}
+.g{color:#16a34a;font-weight:600}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:var(--sky-l);border-left:4px solid var(--sky);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#082f49}
+.warn{background:#fffbeb;border-left:4px solid #d97706;border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#082f49,#075985);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#052e16,#065f46);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#0284c7,#f59e0b);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#1D9E75,#d97706);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.categorie{grid-template-columns:1fr;gap:.5rem}.c-right{text-align:left}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -123,9 +122,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Grenier en or : évaluer et vendre ses objets",
-  "description": "Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-415.html",
+  "headline": "Chèques vacances : utilisation maximale",
+  "description": "Chèques vacances : utilisation maximale — Jusqu'à 600€ d'aides loisirs. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-402.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -142,19 +141,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Grenier en or : évaluer et vendre ses objets">
-  <meta property="og:description" content="Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-415.html">
+  <meta property="og:title" content="Chèques vacances : utilisation maximale">
+  <meta property="og:description" content="Chèques vacances : utilisation maximale — Jusqu'à 600€ d'aides loisirs. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-402.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Grenier en or : évaluer et vendre ses objets">
-  <meta name="twitter:description" content="Grenier en or : évaluer et vendre ses objets — Des centaines d'€ dans vos tiroirs. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Chèques vacances : utilisation maximale">
+  <meta name="twitter:description" content="Chèques vacances : utilisation maximale — Jusqu'à 600€ d'aides loisirs. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-415.html" />
+<link rel="canonical" href="https://economya.fr/article-402.html" />
 </head>
 <body>
 <nav>
@@ -164,95 +163,92 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">Grenier en or : évaluer et vendre ses objets</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Grenier en or : évaluer et vendre ses objets", "item": "https://economya.fr/article-415.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Loisirs</span> › <span style="color:var(--t,#2C2C2A)">Chèques vacances : utilisation maximale</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Loisirs", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Chèques vacances : utilisation maximale", "item": "https://economya.fr/article-402.html"}]}</script>
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🏺 Revenus</div>
-    <h1>Grenier en or :<br><em>évaluer et vendre ses objets</em></h1>
-    <div class="savings-badge">💰 Des centaines d'€ dans vos tiroirs</div>
+    <div class="cat-pill">🎫 Loisirs</div>
+    <h1>Chèques vacances :<br><em>utilisation maximale</em></h1>
+    <div class="savings-badge">💰 Jusqu'à 600 € d'aides loisirs</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">💰 Revente & brocante</span>
+      <span class="theme-tag">🏖️ Vacances & aides</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Certains objets ordinaires peuvent valoir des centaines, voire des milliers d'euros. Jouets anciens, vinyles, vaisselle de grand-mère, vieilles consoles, monnaies, cartes Pokémon — voici comment identifier et évaluer ce qui se cache dans votre grenier, et comment vendre au meilleur prix.</p>
+  <p class="lead">Les chèques vacances ANCV permettent de financer vacances, loisirs, transport et culture avec une aide de l'employeur non soumise à cotisations sociales. Moins de 50 % des salariés y ayant accès les utilisent pleinement. Voici comment en tirer le maximum — et comment y accéder si vous n'en avez pas encore.</p>
 
-  <h2>💎 Les objets les plus souvent sous-estimés</h2>
-  <div class="categories">
-    <div class="categorie top">
-      <div class="c-icon">🃏</div>
-      <div class="c-body">
-        <div class="top-badge">⭐ Marché très actif en 2026</div>
-        <h3>Cartes Pokémon, Lorcana, Magic</h3>
-        <p>Une carte Pokémon Dracaufeu 1ère édition en bon état peut valoir plusieurs centaines d'euros. Le marché des cartes à collectionner est très actif. Vérifiez l'état, le numéro de série et la série avant d'évaluer.</p>
-        <div class="c-tags"><span class="ctag g">eBay France</span><span class="ctag">Cardmarket.com</span><span class="ctag g">Très recherchées</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">5–500 €/carte</span><span class="c-sub">selon rareté et état</span></div>
+  <h2>🎯 Les meilleurs usages des chèques vacances</h2>
+  <div class="usages">
+    <div class="usage top">
+      <span class="top-badge">⭐ Le plus courant</span>
+      <div class="u-icon">🏨</div>
+      <div class="u-name">Hôtels & hébergements</div>
+      <div class="u-eco">Jusqu'à 100 % du séjour</div>
+      <div class="u-desc">Acceptés dans 180 000 établissements (hôtels, campings, gîtes, VVF). Booking.com et Airbnb acceptent désormais les ANCV via la plateforme en ligne.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">🎮</div>
-      <div class="c-body">
-        <h3>Jeux vidéo vintage (NES, SNES, N64, GameBoy)</h3>
-        <p>Les jeux de 8e et 16e génération avec leur boîte et notice valent 5 à 200 € selon le titre. Certains jeux rares (JRPGs SNES, jeux Little Samson, Mega Man) atteignent plusieurs centaines d'euros. Cherchez sur PriceCharting.com.</p>
-        <div class="c-tags"><span class="ctag">PriceCharting.com</span><span class="ctag">eBay</span><span class="ctag g">Boîte = +50–100 %</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">5–300 €/jeu</span><span class="c-sub">avec boîte et notice</span></div>
+    <div class="usage">
+      <div class="u-icon">🚂</div>
+      <div class="u-name">SNCF & transports</div>
+      <div class="u-eco">Billets de train</div>
+      <div class="u-desc">Acceptés sur sncf-connect.com en paiement direct. Compagnies aériennes partenaires (Air France, Transavia). Ferries, cars longue distance.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">🎵</div>
-      <div class="c-body">
-        <h3>Vinyles 33 et 45 tours</h3>
-        <p>Un vinyle courant vaut 2–5 €, mais les pressages originaux des années 60–70 (Beatles, Rolling Stones, Pink Floyd 1ères éditions) peuvent valoir 20–200 €. Les éditions japonaises sont souvent les plus recherchées.</p>
-        <div class="c-tags"><span class="ctag">Discogs.com</span><span class="ctag g">1ères éditions ++</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">2–200 €/vinyle</span><span class="c-sub">selon édition</span></div>
+    <div class="usage">
+      <div class="u-icon">🎡</div>
+      <div class="u-name">Parcs de loisirs</div>
+      <div class="u-eco">Disneyland, Futuroscope…</div>
+      <div class="u-desc">Disneyland Paris, Futuroscope, Puy du Fou, Walibi, Europa Park et des centaines d'autres parcs acceptent les chèques vacances ANCV.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">🍽️</div>
-      <div class="c-body">
-        <h3>Vaisselle et art de la table anciens (Lunéville, Gien, Limoges)</h3>
-        <p>La vaisselle des grandes manufactures françaises (Lunéville, Gien, Haviland Limoges) est très recherchée. Un service complet peut valoir 200–1 000 €. Même des pièces isolées trouvent preneurs sur eBay et Selency.</p>
-        <div class="c-tags"><span class="ctag">Selency.fr</span><span class="ctag">eBay</span><span class="ctag g">Marque visible sous l'assiette</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">20–1 000 €</span><span class="c-sub">pièce ou service</span></div>
+    <div class="usage">
+      <div class="u-icon">🎭</div>
+      <div class="u-name">Culture & spectacles</div>
+      <div class="u-eco">Cinéma, théâtre, musées</div>
+      <div class="u-desc">Cinémas UGC, Pathé, MK2. Théâtres partenaires. Certains musées et expositions. Via la plateforme ANCV Connect en ligne.</div>
     </div>
-    <div class="categorie">
-      <div class="c-icon">📚</div>
-      <div class="c-body">
-        <h3>Livres anciens et BD d'origine</h3>
-        <p>Un Tintin ou Astérix en édition originale (couverture belge, sans ISBN) peut valoir 50–500 €. Les livres de poche des années 50–70 d'auteurs reconnus ont aussi de la valeur. Vérifiez sur Viabooks ou AbeBooks.</p>
-        <div class="c-tags"><span class="ctag">AbeBooks.com</span><span class="ctag g">Édition originale clé</span></div>
-      </div>
-      <div class="c-right"><span class="c-val">5–500 €/livre</span><span class="c-sub">édition originale</span></div>
+    <div class="usage">
+      <div class="u-icon">🍽️</div>
+      <div class="u-name">Restaurants</div>
+      <div class="u-eco">Partenaires ANCV</div>
+      <div class="u-desc">Les restaurateurs partenaires (liste sur ancv.com) acceptent les chèques vacances en paiement. Usage souvent méconnu.</div>
+    </div>
+    <div class="usage">
+      <div class="u-icon">⛵</div>
+      <div class="u-name">Activités nautiques & sport</div>
+      <div class="u-eco">Voile, ski, surf…</div>
+      <div class="u-desc">Centres nautiques, stations de ski, clubs de sport. Très large réseau de partenaires ANCV dans toute la France.</div>
     </div>
   </div>
 
-  <h2>🔍 Comment évaluer un objet avant de le vendre</h2>
-  <div class="eval">
-    <div class="e-step"><span class="esco">🔎</span><div><strong>Cherchez l'objet sur eBay — filtrez par "vendus"</strong><span>Sur eBay, cherchez votre objet et filtrez les résultats par "annonces terminées" + "vendus". Vous voyez ainsi le prix réel auquel des objets identiques ont été vendus — pas les prix demandés. C'est le vrai baromètre du marché.</span></div></div>
-    <div class="e-step"><span class="esco">🏷️</span><div><strong>Identifiez le fabricant, le modèle et l'édition</strong><span>Sur les vinyles : le label au centre et le numéro de catalogue. Sur les jeux vidéo : le code régional et le numéro de version. Sur la vaisselle : le marque au dos. Ces détails déterminent la valeur entre 2 € et 200 €.</span></div></div>
-    <div class="e-step"><span class="esco">📸</span><div><strong>Évaluez l'état objectivement</strong><span>Les collectionneurs utilisent une échelle précise : Mint (neuf), Near Mint (quasi-neuf), Excellent, Très bon, Bon, Acceptable. Un objet en état "Near Mint" peut valoir 5× plus qu'en état "acceptable". Soyez honnête dans vos annonces.</span></div></div>
-    <div class="e-step"><span class="esco">🏛️</span><div><strong>Pour les objets très anciens ou de valeur : commissaire-priseur</strong><span>Pour un objet potentiellement très précieux (tableau, argenterie ancienne, bijou), consultez un commissaire-priseur. L'évaluation est souvent gratuite si l'objet est mis en vente dans la maison. Une estimation erronée peut vous faire perdre des milliers d'euros.</span></div></div>
+  <h2>📋 Qui peut en bénéficier et comment ?</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Situation</th><th>Accès aux chèques vacances</th></tr></thead>
+      <tbody>
+        <tr><td>Salarié d'une entreprise avec CSE (Comité Social Économique)</td><td class="g">Via le CSE — renseignez-vous auprès de votre CE</td></tr>
+        <tr><td>Salarié d'une PME &lt; 50 salariés</td><td class="g">Employeur peut les proposer avec aide patronale exonérée</td></tr>
+        <tr><td>Agent de la fonction publique (État, collectivités, hôpital)</td><td class="g">Via ANCV directement ou action sociale employeur</td></tr>
+        <tr><td>Travailleur indépendant / micro-entrepreneur</td><td>Achat direct sur ancv.com sans abondement employeur</td></tr>
+        <tr><td>Demandeur d'emploi</td><td>Dispositifs locaux (CAF, associations) pour personnes précaires</td></tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="tip">
-    <strong>💡 Selency.fr : la bonne plateforme pour la brocante de qualité</strong>
-    Selency est le "LeBonCoin" de la brocante et de la décoration vintage. Les acheteurs y sont des amateurs avertis prêts à payer le juste prix pour un bel objet. Pour la vaisselle ancienne, le mobilier vintage, les luminaires et les bibelots de qualité, Selency rapporte souvent plus qu'eBay ou LeBonCoin.
+    <strong>💡 ANCV Connect : utiliser ses chèques vacances en ligne</strong>
+    La plateforme ANCV Connect permet d'utiliser vos chèques vacances directement en ligne pour réserver hôtels, billets SNCF, parcs de loisirs et bien d'autres. Plus besoin d'envoyer des carnets papier. Activez votre compte sur ancv.com et consultez la liste des partenaires en ligne — elle est bien plus longue que la liste des partenaires physiques.
   </div>
 
   <div class="warn">
-    <strong>ℹ️ Fiscalité des ventes de brocante et d'occasion</strong>
-    Les ventes d'objets personnels d'occasion sont généralement exonérées d'impôts (vous vendez des biens personnels, pas une activité commerciale). Exception : si vous achetez pour revendre (activité de négoce) ou si vos revenus de ventes dépassent 3 000 €/an sur une plateforme déclarant à l'administration. Les greniers de famille vendus occasionnellement sont en règle générale non imposables.
+    <strong>⚠️ Les chèques vacances expirent à la fin de l'année suivante</strong>
+    Les chèques vacances ANCV sont valables jusqu'au 31 décembre de l'année suivant l'année d'émission. Des chèques émis en 2024 expirent le 31 décembre 2025. Vérifiez régulièrement votre solde et planifiez leur utilisation avant la date d'expiration — les montants non utilisés sont perdus.
   </div>
 
   <div class="cta">
-    <h3>📬 Revente & brocante dans votre boîte mail</h3>
-    <p>Les meilleures astuces pour trouver et vendre des objets de valeur, chaque semaine.</p>
+    <h3>📬 Aides loisirs & vacances dans votre boîte mail</h3>
+    <p>Toutes les aides pour financer vos vacances et vos loisirs, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -293,7 +289,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne : devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting : avoir un 2e revenu légal</div></a><a class="sim-card" href="article-419.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Location de sa résidence principale : règles et revenus</div></a><a class="sim-card" href="article-420.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Fiverr et Malt : trouver ses premiers clients freelance</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-374.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Budget zéro basé : méthode et application</div></a><a class="sim-card" href="article-375.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Méthode 50/30/20 : appliquer concrètement</div></a><a class="sim-card" href="article-376.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">YNAB vs Bankin vs Linxo</div></a><a class="sim-card" href="article-377.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Couple et argent : gérer les finances à deux</div></a></div>
 </div>
 
 
