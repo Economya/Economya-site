@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Congé parental : droits et allocations — PreParE jusqu'à 600€/mois. Guide complet sur Economya.fr">
+<meta name="description" content="Congé parental : droits et allocations — PreParE jusqu'à 459€/mois. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Congé parental : droits et allocations — Economya.fr</title>
@@ -130,7 +130,7 @@ window.economyaLoadAds = function() {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Congé parental : droits et allocations",
-  "description": "Congé parental : droits et allocations — PreParE jusqu'à 600€/mois. Guide complet sur Economya.fr",
+  "description": "Congé parental : droits et allocations — PreParE jusqu'à 459€/mois. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-308.html",
   "publisher": {
     "@type": "Organization",
@@ -149,7 +149,7 @@ window.economyaLoadAds = function() {
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
   <meta property="og:title" content="Congé parental : droits et allocations">
-  <meta property="og:description" content="Congé parental : droits et allocations — PreParE jusqu'à 600€/mois. Guide complet sur Economya.fr">
+  <meta property="og:description" content="Congé parental : droits et allocations — PreParE jusqu'à 459€/mois. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-308.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -158,7 +158,7 @@ window.economyaLoadAds = function() {
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Congé parental : droits et allocations">
-  <meta name="twitter:description" content="Congé parental : droits et allocations — PreParE jusqu'à 600€/mois. Guide complet sur Economya.fr">
+  <meta name="twitter:description" content="Congé parental : droits et allocations — PreParE jusqu'à 459€/mois. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-308.html" />
 </head>
@@ -170,15 +170,18 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Famille</span> › <span style="color:var(--t,#2C2C2A)">Congé parental : droits et allocations</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Famille", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Congé parental : droits et allocations", "item": "https://economya.fr/article-308.html"}]}</script>
+
 
 <div class="ah">
   <div class="hi">
     <div class="cat-pill">👨‍👩‍👦 Famille</div>
     <h1>Congé parental :<br><em>droits et allocations</em></h1>
-    <div class="savings-badge">💰 PreParE jusqu'à 600 €/mois</div>
+    <div class="savings-badge">💰 PreParE jusqu'à 459 €/mois</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
-      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="meta-item">📅 Vérifié juin 2026</span>
       <span class="theme-tag">👶 Parentalité & aides</span>
     </div>
   </div>
@@ -186,7 +189,7 @@ window.economyaLoadAds = function() {
 
 <div class="ab">
 
-  <p class="lead">Le congé parental permet à l'un des parents de cesser ou réduire son activité professionnelle après la naissance d'un enfant, tout en percevant la PreParE (Prestation Partagée d'Éducation de l'Enfant). Un dispositif sous-utilisé qui peut représenter jusqu'à 600 € par mois pendant 6 mois.</p>
+  <p class="lead">Le congé parental permet à l'un des parents de cesser ou réduire son activité professionnelle après la naissance d'un enfant, tout en percevant la PreParE (Prestation Partagée d'Éducation de l'Enfant). Un dispositif sous-utilisé qui peut représenter jusqu'à 459 € par mois pendant 6 mois.</p>
 
   <h2>💶 Les différentes options de congé parental</h2>
 
@@ -204,7 +207,7 @@ window.economyaLoadAds = function() {
           <span class="otag warn">Pas de cotisation retraite</span>
         </div>
       </div>
-      <div class="opt-right"><span class="opt-amt">432 €/mois</span><span class="opt-sub">PreParE taux plein (2025)</span></div>
+      <div class="opt-right"><span class="opt-amt">459,70 €/mois</span><span class="opt-sub">PreParE taux plein (2026)</span></div>
     </div>
 
     <div class="opt">
@@ -217,20 +220,20 @@ window.economyaLoadAds = function() {
           <span class="otag">Maintien des droits à la retraite</span>
         </div>
       </div>
-      <div class="opt-right"><span class="opt-amt">278 €/mois</span><span class="opt-sub">PreParE taux partiel (mi-temps)</span></div>
+      <div class="opt-right"><span class="opt-amt">297,17 €/mois</span><span class="opt-sub">PreParE taux partiel (mi-temps, 2026)</span></div>
     </div>
 
     <div class="opt">
       <div class="opt-icon">👨</div>
       <div class="opt-body">
-        <h3>PreParE majorée (si les deux parents l'utilisent)</h3>
-        <p>Si les deux parents prennent chacun un congé parental, la durée totale est allongée de 6 mois et le montant est légèrement majoré. Le second parent (souvent le père) perçoit la PreParE augmentée.</p>
+        <h3>PreParE majorée (familles de 3 enfants ou plus)</h3>
+        <p>Réservée aux familles d'au moins 3 enfants en cessation totale d'activité, cette version majorée verse un montant plus élevé, mais sur une durée plus courte (8 mois maximum par parent, jusqu'au 1er anniversaire du plus jeune enfant). Ce choix est définitif et incompatible avec un temps partiel.</p>
         <div class="opt-tags">
           <span class="otag">+6 mois de durée</span>
           <span class="otag">Partage entre les deux parents</span>
         </div>
       </div>
-      <div class="opt-right"><span class="opt-amt">596 €/mois</span><span class="opt-sub">PreParE majorée 2025</span></div>
+      <div class="opt-right"><span class="opt-amt">751,40 €/mois</span><span class="opt-sub">PreParE majorée (2026)</span></div>
     </div>
 
   </div>
@@ -306,11 +309,6 @@ window.economyaLoadAds = function() {
 })();
 </script>
 
-<footer>
-  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
-</footer>
-
 <style>
 .similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
 .similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
@@ -323,9 +321,14 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-306.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Allocations familiales 2025 :montants et conditions</div></a><a class="sim-card" href="article-310.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Activités enfantsgratuites ou à petit prix</div></a><a class="sim-card" href="article-311.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Colonies de vacances CAF :financement</div></a><a class="sim-card" href="article-312.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Vêtements enfants pas chers :meilleures sources</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-306.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Allocations familiales 2026 : montants et conditions</div></a><a class="sim-card" href="article-310.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Activités enfantsgratuites ou à petit prix</div></a><a class="sim-card" href="article-311.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Colonies de vacances CAF : financement</div></a><a class="sim-card" href="article-312.html"><div class="sim-card-cat">Famille</div><div class="sim-card-title">Vêtements enfants pas chers : meilleures sources</div></a></div>
 </div>
-<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
 <p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
