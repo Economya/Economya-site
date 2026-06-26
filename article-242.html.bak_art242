@@ -204,7 +204,7 @@ window.economyaLoadAds = function() {
         <h3>Forfait journalier hospitalier</h3>
         <p>Participation aux frais d'hébergement, due pour chaque journée d'hospitalisation. Non remboursé par la Sécu, mais pris en charge par la plupart des mutuelles.</p>
       </div>
-      <div class="famount"><span class="amt red">23 €/jour</span><span class="sub">depuis mars 2026</span></div>
+      <div class="famount"><span class="amt red">22 €/jour</span><span class="sub">en 2025</span></div>
     </div>
     <div class="fcard">
       <div class="ficon">🚪</div>
@@ -265,7 +265,7 @@ window.economyaLoadAds = function() {
 
   <div class="tip">
     <strong>💡 Participation forfaitaire de 24 €</strong>
-    Depuis avril 2026, une participation forfaitaire de 32 € s'applique pour tout acte médical supérieur à 120€, y compris en hospitalisation de moins de 30 jours (hors ALD, maternité, accidents du travail). Elle est prise en charge par la plupart des mutuelles — vérifiez votre contrat.
+    Depuis 2024, une participation forfaitaire de 24 € s'applique pour toute hospitalisation de moins de 30 jours (hors ALD, maternité, accidents du travail). Elle est prise en charge par la plupart des mutuelles — vérifiez votre contrat.
   </div>
 
   <div class="warn">

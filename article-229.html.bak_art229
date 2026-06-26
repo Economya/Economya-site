@@ -215,7 +215,7 @@ window.economyaLoadAds = function() {
         <span class="disp-montant">Jusqu'à 5 000 €</span>
       </div>
       <div class="disp-body">
-        <div class="disp-desc">Chaque salarié accumule 500 € par an sur son CPF (800 € pour les non-qualifiés), plafonné à 5 000 € (8 000 € pour les non-qualifiés). Utilisable pour des formations certifiantes ou qualifiantes éligibles. Depuis avril 2026, un reste à charge de 150 € est demandé pour les financements directs (contre 100€ auparavant), sauf prise en charge par l'employeur ou France Travail. Consultez votre solde sur moncompteformation.gouv.fr.</div>
+        <div class="disp-desc">Chaque salarié accumule 500 € par an sur son CPF (800 € pour les non-qualifiés), plafonné à 5 000 € (8 000 € pour les non-qualifiés). Utilisable pour des formations certifiantes ou qualifiantes éligibles. En 2025, un reste à charge de 100 € est demandé pour les financements directs, sauf prise en charge par l'employeur ou France Travail. Consultez votre solde sur moncompteformation.gouv.fr.</div>
         <div class="disp-tags">
           <span class="disp-tag green">✅ Tous les actifs</span>
           <span class="disp-tag green">✅ Sans accord employeur</span>
