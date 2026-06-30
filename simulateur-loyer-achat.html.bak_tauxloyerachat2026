@@ -177,7 +177,7 @@ function calculate() {
 
   // ACHAT
   const emprunt = prix - apport;
-  const tauxMensuel = 0.034 / 12; // Taux indicatif ~3,4% (moyenne marché juin 2026, fluctue mensuellement)
+  const tauxMensuel = 0.035 / 12;
   const n = 25 * 12; // durée crédit 25 ans
   const mensualite = emprunt * tauxMensuel / (1 - Math.pow(1 + tauxMensuel, -n));
   const chargesAchat = prix * 0.003; // 0.3% du prix/an (charges + taxe foncière)
