@@ -226,8 +226,8 @@ footer strong{color:white}
 <script>
 const ABONNEMENTS = {
   streaming: [
-    { nom: 'Netflix', detail: 'Standard sans pub', prix: 14.99 },
-    { nom: 'Netflix', detail: 'Avec publicités', prix: 7.99 },
+    { nom: 'Netflix', detail: 'Standard sans pub', prix: 13.49 },
+    { nom: 'Netflix', detail: 'Avec publicités', prix: 4.99 },
     { nom: 'Disney+', detail: 'Standard', prix: 11.99 },
     { nom: 'Prime Video', detail: 'Amazon Prime', prix: 6.99 },
     { nom: 'Canal+', detail: 'Tous programmes', prix: 26.99 },
