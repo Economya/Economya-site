@@ -270,7 +270,7 @@ function calculate() {
   document.getElementById('v-parking').innerHTML = parking + ' <span>€/mois</span>';
 
   // Dépréciation : 15% la 1ère année, 10% les suivantes
-  const valeurFinale = achat * Math.pow(0.86, duree); // Décote ~14%/an (moyenne marché, varie 10-25% selon modèle/marque/km)
+  const valeurFinale = achat * Math.pow(0.88, duree);
   const depreciation = (achat - valeurFinale) / (duree * 12);
 
   const entretienMensuel = entretien / 12;
