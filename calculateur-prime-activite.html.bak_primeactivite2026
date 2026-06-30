@@ -244,8 +244,8 @@ const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 const FORFAITS = {
   seul:   { base: 638.28, logement: 67.84, enfants: 0 },
   couple: { base: 957.42, logement: 67.84, enfants: 0 },
-  seul1:  { base: 1392.19, logement: 101.77, enfants: 0 },
-  seul2:  { base: 1392.19, logement: 101.77, enfants: 0 }, // ⚠️ A VERIFIER sur caf.fr - montant 1 enfant utilise par defaut, sources divergentes pour 2 enfants
+  seul1:  { base: 765.94, logement: 101.77, enfants: 127.66 },
+  seul2:  { base: 765.94, logement: 101.77, enfants: 255.31 },
   couple1:{ base: 957.42, logement: 101.77, enfants: 127.66 },
   couple2:{ base: 957.42, logement: 101.77, enfants: 255.31 },
   couple3:{ base: 957.42, logement: 101.77, enfants: 382.97 },
