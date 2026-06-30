@@ -289,7 +289,7 @@ function calculate() {
   let impotNet = impotBrut;
   const seuilDecote = parts === 1 ? 1929 : 3191;
   if(impotBrut < seuilDecote) {
-    const decote = parts === 1 ? 897 - impotBrut * 0.4525 : 1483 - impotBrut * 0.4525;
+    const decote = parts === 1 ? 873 - impotBrut * 0.4525 : 1444 - impotBrut * 0.4525;
     impotNet = Math.max(0, impotBrut - Math.max(0, decote));
   }
 
