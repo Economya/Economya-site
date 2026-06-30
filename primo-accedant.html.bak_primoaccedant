@@ -363,7 +363,7 @@ function calcBudget() {
 function calcApport() {
   data.apport = parseInt(document.getElementById('apport').value);
   const pctApport = Math.round(data.apport / data.prix * 100);
-  const fraisNotaire = Math.round(data.prix * (data.typeBien === 'neuf' ? 0.025 : 0.08));
+  const fraisNotaire = Math.round(data.prix * (data.typeBien === 'neuf' ? 0.025 : 0.075));
   const apportMinRecomm = fraisNotaire + Math.round(data.prix * 0.10);
 
   let status, msg;
@@ -385,8 +385,8 @@ function calcApport() {
 function calcCredit() {
   const duree = parseInt(document.getElementById('duree')?.value || 20);
   data.duree = duree;
-  const montantEmprunte = data.prix - data.apport + Math.round(data.prix * 0.08);
-  const taux = 0.034; // 3,4% en 2026 (harmonise avec les autres outils)
+  const montantEmprunte = data.prix - data.apport + Math.round(data.prix * 0.075);
+  const taux = 0.035; // 3,5% en 2026
   const tauxMensuel = taux / 12;
   const n = duree * 12;
   const mensualite = Math.round(montantEmprunte * tauxMensuel * Math.pow(1 + tauxMensuel, n) / (Math.pow(1 + tauxMensuel, n) - 1));
@@ -418,7 +418,7 @@ function calcCredit() {
 }
 
 function calcFrais() {
-  const fraisNotaire = Math.round(data.prix * (data.typeBien === 'neuf' ? 0.025 : 0.08));
+  const fraisNotaire = Math.round(data.prix * (data.typeBien === 'neuf' ? 0.025 : 0.075));
   const fraisDossier = 1000;
   const garantie = Math.round(data.montantEmprunte * 0.015);
   const assuranceCout = Math.round(data.montantEmprunte * 0.002 / 12 * 12);
