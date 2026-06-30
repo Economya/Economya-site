@@ -255,10 +255,10 @@ function setType(type) {
 // Calcul émoluments notaire selon barème officiel
 function calcEmoluments(base) {
   let e = 0;
-  if(base <= 6500) e = base * 0.03870;
-  else if(base <= 17000) e = 6500*0.03870 + (base-6500)*0.01596;
-  else if(base <= 60000) e = 6500*0.03870 + 10500*0.01596 + (base-17000)*0.01064;
-  else e = 6500*0.03870 + 10500*0.01596 + 43000*0.01064 + (base-60000)*0.00799;
+  if(base <= 6500) e = base * 0.03945;
+  else if(base <= 17000) e = 6500*0.03945 + (base-6500)*0.01627;
+  else if(base <= 60000) e = 6500*0.03945 + 10500*0.01627 + (base-17000)*0.01085;
+  else e = 6500*0.03945 + 10500*0.01627 + 43000*0.01085 + (base-60000)*0.00814;
   return Math.max(e, 90); // minimum 90€
 }
 
