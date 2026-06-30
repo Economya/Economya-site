@@ -240,35 +240,6 @@ function setMode(m) {
   calculate();
 }
 
-function calculerCotisations(brutMensuel, statut) {
-  // Barème 2026 confirmé (sources convergentes URSSAF/AGIRC-ARRCO) :
-  // PMSS (Plafond Mensuel de la Sécurité Sociale) = 4005€ en 2026
-  const PMSS = 4005;
-  const trancheT1 = Math.min(brutMensuel, PMSS);
-  const trancheT2 = Math.max(0, brutMensuel - PMSS);
-
-  // Maladie salariale : SUPPRIMÉE depuis 2018 (0%)
-  const secu = 0;
-
-  // Vieillesse de base : plafonnée 6,90% (T1) + déplafonnée 0,40% (totalité)
-  const vieillessePlafonnee = trancheT1 * 0.0690;
-  const vieillesseDeplafonnee = brutMensuel * 0.0040;
-  const retraite = vieillessePlafonnee + vieillesseDeplafonnee;
-
-  // Retraite complémentaire AGIRC-ARRCO : 3,15% (T1, identique cadre/non-cadre
-  // depuis la fusion 2019) + 8,64% (T2, part au-delà du PMSS)
-  const retraite2 = trancheT1 * 0.0315 + trancheT2 * 0.0864;
-
-  // CSG/CRDS : 9,70% sur 98,25% du brut (abattement frais professionnels)
-  const csg = brutMensuel * 0.9825 * 0.0970;
-
-  // Prévoyance obligatoire cadre (1,5% sur T1) ; facultative non-cadre (~0,5%, variable)
-  const prev = statut === 'cadre' ? trancheT1 * 0.015 : brutMensuel * 0.005;
-
-  const total = secu + retraite + retraite2 + csg + prev;
-  return { secu, retraite, retraite2, csg, prev, total };
-}
-
 function calculate() {
   let valeur = +document.getElementById('salaire').value || 0;
   const periode = document.getElementById('periode').value;
@@ -276,23 +247,22 @@ function calculate() {
 
   if(periode === 'annuel') valeur = valeur / 12;
 
-  let brutMensuel, netAvantImpot, cot;
+  // Taux cotisations salariales 2026 (approximatifs)
+  const tauxSecu = 0.0075;
+  const tauxRetraite = 0.0690;
+  const tauxRetraite2 = statut === 'cadre' ? 0.0387 : 0.0270;
+  const tauxCSG = 0.0968;
+  const tauxPrev = statut === 'cadre' ? 0.015 : 0.005;
+  const tauxTotal = tauxSecu + tauxRetraite + tauxRetraite2 + tauxCSG + tauxPrev;
+
+  let brutMensuel, netAvantImpot;
 
   if(mode === 'brut') {
     brutMensuel = valeur;
-    cot = calculerCotisations(brutMensuel, statut);
-    netAvantImpot = brutMensuel - cot.total;
+    netAvantImpot = brutMensuel * (1 - tauxTotal);
   } else {
     netAvantImpot = valeur;
-    // Résolution itérative (le taux n'est plus fixe à cause du tranchement PMSS)
-    brutMensuel = netAvantImpot / 0.78; // estimation initiale
-    for (let i = 0; i < 8; i++) {
-      cot = calculerCotisations(brutMensuel, statut);
-      const netEstime = brutMensuel - cot.total;
-      const ecart = netAvantImpot - netEstime;
-      brutMensuel += ecart; // ajustement direct, converge en quelques itérations
-    }
-    cot = calculerCotisations(brutMensuel, statut);
+    brutMensuel = netAvantImpot / (1 - tauxTotal);
   }
 
   // Prélèvement à la source estimé (taux moyen ~10% pour salaire médian)
@@ -306,18 +276,18 @@ function calculate() {
   document.getElementById('r-pas').textContent = fmt(pas);
 
   document.getElementById('d-brut').textContent = fmt(brutMensuel);
-  document.getElementById('d-secu').textContent = '- ' + fmt(cot.secu);
-  document.getElementById('d-retraite').textContent = '- ' + fmt(cot.retraite);
-  document.getElementById('d-retraite2').textContent = '- ' + fmt(cot.retraite2);
-  document.getElementById('d-chomage').textContent = '- ' + fmt(cot.csg);
-  document.getElementById('d-prev').textContent = '- ' + fmt(cot.prev);
+  document.getElementById('d-secu').textContent = '- ' + fmt(brutMensuel * tauxSecu);
+  document.getElementById('d-retraite').textContent = '- ' + fmt(brutMensuel * tauxRetraite);
+  document.getElementById('d-retraite2').textContent = '- ' + fmt(brutMensuel * tauxRetraite2);
+  document.getElementById('d-chomage').textContent = '- ' + fmt(brutMensuel * tauxCSG);
+  document.getElementById('d-prev').textContent = '- ' + fmt(brutMensuel * tauxPrev);
   document.getElementById('d-net-avant').textContent = fmt(netAvantImpot);
   document.getElementById('d-pas2').textContent = '- ' + fmt(pas);
   document.getElementById('d-net-apres').textContent = fmt(netApresImpot);
 
   const ratio = (netApresImpot / brutMensuel * 100).toFixed(0);
   const tip = document.getElementById('tip-text');
-  tip.innerHTML = `<strong>💡 Info :</strong> Votre salaire net représente <strong>${ratio}%</strong> de votre brut. La règle générale : le net avant impôt est environ 76-78% du brut (cotisations salariales ~22-25% selon le statut et le dépassement du plafond de la Sécurité sociale).`;
+  tip.innerHTML = `<strong>💡 Info :</strong> Votre salaire net représente <strong>${ratio}%</strong> de votre brut. La règle générale : le net avant impôt est environ 78-80% du brut pour un non-cadre, 75-77% pour un cadre.`;
 }
 
 document.getElementById('salaire').addEventListener('input', calculate);
