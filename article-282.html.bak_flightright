@@ -2,76 +2,87 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Travel hacking France : meilleures cartes bancaires — Voyages offerts par votre banque. Guide complet sur Economya.fr">
+<meta name="description" content="Vacances hors saison : destinations et économies — jusqu'à -40% en mai ou septembre. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travel hacking France : meilleures cartes bancaires — Economya.fr</title>
+<title>Vacances hors saison : destinations et économies — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--blue:#1d4ed8;--blue-l:#eff6ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--violet:#7c3aed;--violet-l:#f5f3ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#0a1628,#1e3a8a,#1d4ed8);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'💳';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#1e0533,#4c1d95,#7c3aed);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🗓️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bfdbfe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#ddd6fe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#93c5fd;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#1d4ed8);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(29,78,216,.35)}
+.ah h1 em{color:#c4b5fd;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#7c3aed);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(124,58,237,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#7c3aed,#0891b2);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--blue);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--violet);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* CARTES CARDS */
-.cartes{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
-.ccard{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
-.ccard:hover{box-shadow:0 4px 18px rgba(29,78,216,.1)}
-.ccard.top{border:2px solid var(--g)}
-.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
-.cc-icon{font-size:2rem;flex-shrink:0;margin-top:.1rem}
-.cc-body h3{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
-.cc-body p{font-size:.83rem;color:var(--m);font-weight:300;margin:0 0 .45rem}
-.cc-tags{display:flex;flex-wrap:wrap;gap:.3rem}
-.cctag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:#f0f9ff;color:#0369a1}
-.cctag.g{background:var(--gl);color:var(--gd)}
-.cctag.o{background:var(--al);color:var(--ad)}
-.cc-right{text-align:right;flex-shrink:0}
-.cc-prix{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--blue);display:block;white-space:nowrap}
-.cc-sub{font-size:.7rem;color:var(--m)}
+/* CALENDRIER MOIS */
+.calendrier{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin:1.5rem 0}
+.mois{border-radius:var(--r);padding:.8rem;text-align:center;border:1px solid transparent}
+.mois.haute{background:#fef2f2;border-color:#fecaca}
+.mois.moyenne{background:#fffbeb;border-color:#fcd34d}
+.mois.basse{background:var(--gl);border-color:#86efac}
+.mois-name{font-weight:700;font-size:.85rem;margin-bottom:.2rem}
+.mois.haute .mois-name{color:#dc2626}
+.mois.moyenne .mois-name{color:#d97706}
+.mois.basse .mois-name{color:#16a34a}
+.mois-label{font-size:.68rem;font-weight:300}
+.mois.haute .mois-label{color:#7f1d1d}
+.mois.moyenne .mois-label{color:#78350f}
+.mois.basse .mois-label{color:#166534}
+.mois-eco{font-size:.7rem;font-weight:600;margin-top:.2rem}
+.mois.basse .mois-eco{color:#16a34a}
+.mois.moyenne .mois-eco{color:#d97706}
+.mois.haute .mois-eco{color:#dc2626}
 
-/* ASTUCES */
-.astuces{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
-.astuce{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
-.astuce .aico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
-.astuce strong{display:block;font-size:.92rem;margin-bottom:.15rem}
-.astuce span{font-size:.85rem;color:var(--m);font-weight:300}
-.astuce .atag{display:inline-block;margin-top:.35rem;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+/* DESTINATIONS GRID */
+.destinations{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0}
+.dest{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;transition:transform .2s,box-shadow .2s}
+.dest:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(124,58,237,.1)}
+.dest-flag{font-size:1.8rem;margin-bottom:.4rem}
+.dest-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+.dest-saison{display:inline-block;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px;margin-bottom:.4rem}
+.dest-eco{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--violet);margin:.15rem 0}
+.dest-desc{font-size:.78rem;color:var(--m);font-weight:300;line-height:1.4}
+
+/* AVANTAGES LISTE */
+.avantages{display:flex;flex-direction:column;gap:.75rem;margin:1.2rem 0}
+.av{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.9rem 1.1rem}
+.av .aic{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
+.av strong{color:var(--t);display:block;font-size:.9rem;margin-bottom:.1rem}
+.av span{color:var(--m);font-weight:300;font-size:.85rem}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:var(--blue-l);border-left:4px solid var(--blue);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#1e3a8a}
+.warn{background:var(--violet-l);border-left:4px solid var(--violet);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#1e0533}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#0a1628,#1e3a8a);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#1e0533,#4c1d95);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#1d4ed8,#7c3aed);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#7c3aed,#0891b2);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.ccard{grid-template-columns:1fr;gap:.5rem}.cc-right{text-align:left}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -125,9 +136,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Travel hacking France : meilleures cartes bancaires",
-  "description": "Travel hacking France : meilleures cartes bancaires — Voyages offerts par votre banque. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-281.html",
+  "headline": "Vacances hors saison : destinations et économies",
+  "description": "Vacances hors saison : destinations et économies — jusqu'à -40% en mai ou septembre. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-282.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -144,19 +155,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Travel hacking France : meilleures cartes bancaires">
-  <meta property="og:description" content="Travel hacking France : meilleures cartes bancaires — Voyages offerts par votre banque. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-281.html">
+  <meta property="og:title" content="Vacances hors saison : destinations et économies">
+  <meta property="og:description" content="Vacances hors saison : destinations et économies — jusqu'à -40% en mai ou septembre. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-282.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Travel hacking France : meilleures cartes bancaires">
-  <meta name="twitter:description" content="Travel hacking France : meilleures cartes bancaires — Voyages offerts par votre banque. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Vacances hors saison : destinations et économies">
+  <meta name="twitter:description" content="Vacances hors saison : destinations et économies — jusqu'à -40% en mai ou septembre. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-281.html" />
+<link rel="canonical" href="https://economya.fr/article-282.html" />
 </head>
 <body>
 <nav>
@@ -166,132 +177,111 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Voyages</span> › <span style="color:var(--t,#2C2C2A)">Travel hacking France : meilleures cartes bancaires</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Voyages", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Travel hacking France : meilleures cartes bancaires", "item": "https://economya.fr/article-281.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Voyages</span> › <span style="color:var(--t,#2C2C2A)">Vacances hors saison : destinations et économies</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Voyages", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Vacances hors saison : destinations et économies", "item": "https://economya.fr/article-282.html"}]}</script>
 
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">💳 Voyages</div>
-    <h1>Travel hacking France :<br><em>meilleures cartes bancaires</em></h1>
-    <div class="savings-badge">💰 Voyages offerts par votre banque</div>
+    <div class="cat-pill">🗓️ Voyages</div>
+    <h1>Vacances hors saison :<br><em>destinations et économies</em></h1>
+    <div class="savings-badge">💰 −40 % en mai ou septembre</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">✈️ Miles & avantages voyage</span>
+      <span class="theme-tag">🌍 Voyage malin</span>
     </div>
   </div>
 </div>
 
 <div class="ab">
 
-  <p class="lead">Le travel hacking — obtenir des voyages gratuits ou très bon marché grâce aux avantages de cartes bancaires — est bien développé aux États-Unis, mais existe aussi en France. Avec les bonnes cartes, vous pouvez accumuler des miles, accéder aux salons d'aéroport et voyager gratuitement.</p>
+  <p class="lead">Partir en mai ou septembre plutôt qu'en juillet-août, c'est souvent 30 à 50 % moins cher sur les vols et les hébergements, moins de monde sur les plages et les sites touristiques, et une météo souvent tout aussi belle. Voici les meilleures périodes et destinations.</p>
 
-  <h2>💳 Les meilleures cartes voyage en France</h2>
+  <h2>📅 Le calendrier des tarifs par mois</h2>
 
-  <div class="cartes">
-
-    <div class="ccard top">
-      <div class="cc-icon">✈️</div>
-      <div class="cc-body">
-        <div class="top-badge">⭐ Meilleure pour les miles</div>
-        <h3>Carte Gold Air France KLM (American Express)</h3>
-        <p>1,5 mile Flying Blue par euro dépensé + 3 miles sur les achats Air France. Bonus de bienvenue de 8 000 miles à l'ouverture. Accès salon Air France inclus 2 fois/an. Idéale pour les voyageurs fréquents AF/KLM.</p>
-        <div class="cc-tags">
-          <span class="cctag g">1,5 mile/€</span>
-          <span class="cctag g">8 000 miles bienvenue</span>
-          <span class="cctag">2 accès salon/an</span>
-        </div>
-      </div>
-      <div class="cc-right"><span class="cc-prix">19 €</span><span class="cc-sub">/mois</span></div>
-    </div>
-
-    <div class="ccard">
-      <div class="cc-icon">🌟</div>
-      <div class="cc-body">
-        <h3>Carte American Express Platinum</h3>
-        <p>La carte la plus complète du marché. Accès illimité à 1 400+ salons (Priority Pass), assurances voyage complètes, 2 miles/€ sur nombreux achats, conciergerie. Réservée aux grands voyageurs (amortissement à partir de 10+ vols/an).</p>
-        <div class="cc-tags">
-          <span class="cctag g">Priority Pass illimité</span>
-          <span class="cctag">2 miles/€</span>
-          <span class="cctag o">Haut de gamme</span>
-        </div>
-      </div>
-      <div class="cc-right"><span class="cc-prix">705 €</span><span class="cc-sub">/an</span></div>
-    </div>
-
-    <div class="ccard">
-      <div class="cc-icon">🔵</div>
-      <div class="cc-body">
-        <h3>Carte Visa Infinite (BNP, LCL, HSBC…)</h3>
-        <p>Les cartes Visa Infinite des grandes banques incluent assurances voyage haut de gamme, accès à des salons partenaires, remboursement de franchise, assistance médicale mondiale. Moins de miles mais plus de protection.</p>
-        <div class="cc-tags">
-          <span class="cctag g">Assurances premium</span>
-          <span class="cctag">Accès salons partenaires</span>
-          <span class="cctag o">Conditions de revenus</span>
-        </div>
-      </div>
-      <div class="cc-right"><span class="cc-prix">20–35 €</span><span class="cc-sub">/mois</span></div>
-    </div>
-
-    <div class="ccard">
-      <div class="cc-icon">🟢</div>
-      <div class="cc-body">
-        <h3>Carte Revolut Metal ou Ultra</h3>
-        <p>Cashback de 1 % sur tous les achats (convertible en miles via partenaires), accès salons LoungeKey, assurance voyage incluse, aucun frais à l'étranger. Excellent rapport qualité/prix pour les voyageurs occasionnels.</p>
-        <div class="cc-tags">
-          <span class="cctag g">1 % cashback</span>
-          <span class="cctag g">0 frais à l'étranger</span>
-          <span class="cctag">Accès LoungeKey</span>
-        </div>
-      </div>
-      <div class="cc-right"><span class="cc-prix">13–45 €</span><span class="cc-sub">/mois</span></div>
-    </div>
-
+  <div class="calendrier">
+    <div class="mois basse"><div class="mois-name">Janvier</div><div class="mois-label">Basse saison</div><div class="mois-eco">−40 %</div></div>
+    <div class="mois basse"><div class="mois-name">Février</div><div class="mois-label">Basse saison</div><div class="mois-eco">−35 %</div></div>
+    <div class="mois basse"><div class="mois-name">Mars</div><div class="mois-label">Épaule</div><div class="mois-eco">−30 %</div></div>
+    <div class="mois basse"><div class="mois-name">Avril</div><div class="mois-label">Épaule</div><div class="mois-eco">−25 %</div></div>
+    <div class="mois basse"><div class="mois-name">Mai</div><div class="mois-label">Pré-saison</div><div class="mois-eco">−30 %</div></div>
+    <div class="mois moyenne"><div class="mois-name">Juin</div><div class="mois-label">Début saison</div><div class="mois-eco">−15 %</div></div>
+    <div class="mois haute"><div class="mois-name">Juillet</div><div class="mois-label">Haute saison</div><div class="mois-eco">Prix max</div></div>
+    <div class="mois haute"><div class="mois-name">Août</div><div class="mois-label">Haute saison</div><div class="mois-eco">Prix max</div></div>
+    <div class="mois basse"><div class="mois-name">Septembre</div><div class="mois-label">Post-saison</div><div class="mois-eco">−30 %</div></div>
+    <div class="mois basse"><div class="mois-name">Octobre</div><div class="mois-label">Basse saison</div><div class="mois-eco">−35 %</div></div>
+    <div class="mois basse"><div class="mois-name">Novembre</div><div class="mois-label">Basse saison</div><div class="mois-eco">−40 %</div></div>
+    <div class="mois basse"><div class="mois-name">Décembre</div><div class="mois-label">Sauf fêtes</div><div class="mois-eco">−30 %</div></div>
   </div>
 
-  <h2>💡 Comment maximiser vos avantages</h2>
+  <h2>🌍 Les meilleures destinations hors saison</h2>
 
-  <div class="astuces">
-    <div class="astuce">
-      <span class="aico">🛒</span>
-      <div>
-        <strong>Payez tout par carte (même les petits achats)</strong>
-        <span>Courses, restaurants, essence, abonnements… Chaque euro dépensé génère des miles. Sur 2 000 € de dépenses mensuelles à 1,5 miles/€, c'est 36 000 miles/an — soit un aller-retour Europe offert.</span>
-        <span class="atag">💰 36 000 miles/an sur 2 000 €/mois</span>
-      </div>
+  <div class="destinations">
+    <div class="dest">
+      <div class="dest-flag">🇲🇦</div>
+      <div class="dest-name">Maroc</div>
+      <div class="dest-saison">🌟 Meilleur : mars–mai, sept–nov</div>
+      <div class="dest-eco">−35 %</div>
+      <div class="dest-desc">Températures idéales, pas de foules, tarifs hôtel divisés par 2. Marrakech, Essaouira, Atlas : parfait en dehors de l'été caniculaire.</div>
     </div>
-    <div class="astuce">
-      <span class="aico">🏨</span>
-      <div>
-        <strong>Utilisez les portails voyage de vos cartes</strong>
-        <span>Amex Travel, le portail voyage de certaines cartes Visa Infinite, offrent des miles ou du cashback supplémentaires sur les réservations d'hôtels et de vols effectuées via leur plateforme.</span>
-        <span class="atag">💰 Jusqu'à 5 miles/€ sur les voyages</span>
-      </div>
+    <div class="dest">
+      <div class="dest-flag">🇬🇷</div>
+      <div class="dest-name">Grèce (Athènes, Crète)</div>
+      <div class="dest-saison">🌟 Meilleur : mai, sept–oct</div>
+      <div class="dest-eco">−40 %</div>
+      <div class="dest-desc">Mer à 22–24°C, sites antiques sans files d'attente, hôtels à moitié prix. Septembre est le mois idéal pour la Grèce.</div>
     </div>
-    <div class="astuce">
-      <span class="aico">🎁</span>
-      <div>
-        <strong>Profitez des bonus de bienvenue</strong>
-        <span>La plupart des cartes premium offrent un bonus à l'ouverture (5 000 à 15 000 miles) si vous atteignez un seuil de dépenses dans les 3 premiers mois. Planifiez un gros achat (voyage, électroménager) au moment de l'ouverture.</span>
-        <span class="atag">💰 Jusqu'à 15 000 miles offerts</span>
-      </div>
+    <div class="dest">
+      <div class="dest-flag">🇵🇹</div>
+      <div class="dest-name">Portugal</div>
+      <div class="dest-saison">🌟 Meilleur : avril–juin, sept–oct</div>
+      <div class="dest-eco">−30 %</div>
+      <div class="dest-desc">Le Portugal est magnifique toute l'année. Mai et octobre offrent des tarifs très bas avec une météo douce et ensoleillée.</div>
+    </div>
+    <div class="dest">
+      <div class="dest-flag">🇮🇹</div>
+      <div class="dest-name">Italie (Rome, Sicile)</div>
+      <div class="dest-saison">🌟 Meilleur : avril–mai, sept–oct</div>
+      <div class="dest-eco">−35 %</div>
+      <div class="dest-desc">Rome en mai sans la foule du Colisée. La Sicile en septembre avec une mer encore chaude. Les prix chutent significativement hors été.</div>
+    </div>
+  </div>
+
+  <h2>✅ Les vrais avantages du hors-saison</h2>
+
+  <div class="avantages">
+    <div class="av">
+      <span class="aic">💰</span>
+      <div><strong>Économies significatives sur tout le voyage</strong><span>Vols, hébergements, locations de voiture, même les restaurants affichent des menus moins chers hors saison. L'économie globale dépasse souvent 40 % par rapport à juillet-août.</span></div>
+    </div>
+    <div class="av">
+      <span class="aic">🏖️</span>
+      <div><strong>Moins de monde sur les plages et sites touristiques</strong><span>Les musées sans files d'attente, les plages sans parasol collé contre parasol, les routes sans bouchons… Le voyage est tout simplement plus agréable.</span></div>
+    </div>
+    <div class="av">
+      <span class="aic">🌤️</span>
+      <div><strong>Météo souvent excellente</strong><span>Mai au Portugal ou en Espagne : 22–25°C, ciel bleu. Septembre en Grèce ou en Italie : mer chaude, températures parfaites. L'été n'a pas le monopole du beau temps.</span></div>
+    </div>
+    <div class="av">
+      <span class="aic">🏨</span>
+      <div><strong>Meilleur service dans les hôtels et restaurants</strong><span>Hors saison, le personnel est moins débordé, les tables sont disponibles sans réservation, et les hôtels accordent souvent des surclassements spontanés.</span></div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Les salons d'aéroport : un avantage très concret</strong>
-    L'accès aux salons (Priority Pass, LoungeKey, salons Air France…) vaut 35 à 50 € par visite. Si vous prenez 5 vols par an, cela représente 175 à 250 € d'avantage annuel — qui amortit largement la cotisation d'une carte premium.
+    <strong>💡 La règle des "épaules de saison"</strong>
+    Les périodes de mi-juin et de mi-septembre sont les points optimaux : les prix ont commencé à baisser mais le temps et la mer sont encore excellents. Ce sont souvent les meilleurs rapports qualité/prix de l'année pour les destinations méditerranéennes.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Le travel hacking n'est rentable qu'avec une gestion rigoureuse</strong>
-    Ces cartes ne sont avantageuses que si vous remboursez intégralement votre solde chaque mois. Les intérêts de crédit (15–20 % annuels) effacent rapidement tous les avantages accumulés. Réservez le travel hacking aux cartes débit ou aux CB remboursées à 100 % chaque mois.
+    <strong>⚠️ Certains endroits ferment hors saison</strong>
+    En basse saison, certains hôtels, restaurants et activités (locations de bateaux, sites touristiques secondaires) peuvent être fermés. Vérifiez les horaires d'ouverture avant de réserver, notamment pour les petites îles grecques ou les stations balnéaires françaises en novembre.
   </div>
 
   <div class="cta">
     <h3>📬 Voyages malins dans votre boîte mail</h3>
-    <p>Les meilleures astuces pour voyager plus pour moins cher, chaque semaine.</p>
+    <p>Les meilleures destinations et périodes pour voyager moins cher, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -337,12 +327,6 @@ window.economyaLoadAds = function() {
   <div class="sim-grid"><a class="sim-card" href="article-276.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Flying Blue, Miles&More : programmes fidélité décryptés</div></a><a class="sim-card" href="article-277.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Interrail 2026 : guide complet Europe en train</div></a><a class="sim-card" href="article-278.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Airbnb vs hôtel : que choisir selon les cas</div></a><a class="sim-card" href="article-279.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Bagages cabine seulement : le guide ultime</div></a></div>
 </div>
 
-
-
-  <div class="tip" style="background:#FAEEDA;border-left:4px solid #EF9F27;color:#633806">
-    <strong>✈️ Vol annulé ou retardé ? La loi vous protège</strong>
-    Un vol annulé ou retardé de plus de 3 heures au départ ou à l'arrivée de l'UE ouvre droit à une indemnisation pouvant atteindre 600€ par passager (règlement CE 261/2004). <a href="https://www.awin1.com/cread.php?awinmid=13334&awinaffid=2926395&ued=https%3A%2F%2Fwww.flightright.fr" target="_blank" rel="noopener sponsored">Flightright</a> vérifie gratuitement votre éligibilité et gère la procédure de réclamation auprès de la compagnie à votre place. Economya peut percevoir une commission sur ce lien, sans coût supplémentaire pour vous.
-  </div>
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
