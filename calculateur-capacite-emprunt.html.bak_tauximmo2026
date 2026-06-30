@@ -209,7 +209,7 @@ function calculate() {
 
   const mensualiteMax = revenus * 0.35;
   const mensualiteImmo = Math.max(0, mensualiteMax - credits);
-  const tauxMensuel = 0.034 / 12; // Taux indicatif ~3,4% (moyenne marché juin 2026, fluctue mensuellement - vérifiez les taux actuels avant simulation réelle)
+  const tauxMensuel = 0.035 / 12;
   const n = duree * 12;
 
   // Calcul montant empruntable
