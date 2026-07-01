@@ -139,8 +139,8 @@ footer strong{color:white}
       </div>
       <div class="field">
         <label>Taux d'intérêt</label>
-        <div class="val" id="v-taux">3,4 <span>%</span></div>
-        <input type="range" id="taux" min="0.5" max="8" step="0.1" value="3.4">
+        <div class="val" id="v-taux">3,5 <span>%</span></div>
+        <input type="range" id="taux" min="0.5" max="8" step="0.1" value="3.5">
       </div>
       <div class="field">
         <label>Durée du prêt</label>

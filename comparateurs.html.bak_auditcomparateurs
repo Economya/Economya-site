@@ -217,7 +217,7 @@ footer strong{color:white}
       <span class="comp-icon">📡</span>
       <div class="comp-cat">Mobile</div>
       <div class="comp-name">Forfaits 5G pas cher</div>
-      <div class="comp-desc">Comparez les meilleurs forfaits 5G à petit prix — Free, Bouygues, SFR, Orange. Dès 6,99 €/mois.</div>
+      <div class="comp-desc">Comparez les meilleurs forfaits 5G à petit prix — Free, Bouygues, SFR, Orange. Dès 6 €/mois.</div>
       <div class="comp-items">
         <span class="comp-item">Free</span>
         <span class="comp-item">Bouygues</span>
@@ -248,7 +248,7 @@ footer strong{color:white}
       <div class="comp-items">
         <span class="comp-item">LibreOffice</span>
         <span class="comp-item">GIMP</span>
-        <span class="comp-item">DaVinci Resolve</span>
+        <span class="comp-item">Avast</span>
       </div>
       <span class="comp-btn">Voir le comparatif →</span>
     </a>
