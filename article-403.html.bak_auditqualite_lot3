@@ -199,7 +199,7 @@ window.economyaLoadAds = function() {
       <div class="m-icon">🖼️</div>
       <div class="m-body">
         <h3>Musée d'Orsay</h3>
-        <p>Gratuit le premier dimanche de chaque mois (réservation obligatoire). Gratuit pour les moins de 18 ans et les 18–25 ans résidents UE. Tarif plein : 16 €.</p>
+        <p>Gratuit le premier jeudi de chaque mois de 18h à 21h45. Gratuit pour les moins de 18 ans et les 18–25 ans résidents UE. Tarif plein : 16 €.</p>
         <div class="m-tags"><span class="mtag g">Gratuit 1er jeudi du mois (soir)</span><span class="mtag g">Gratuit -26 ans UE</span></div>
       </div>
       <div class="m-right"><span class="m-tarif">0 € possible</span><span class="m-sub">1er jeudi soir</span></div>
@@ -207,7 +207,7 @@ window.economyaLoadAds = function() {
     <div class="musee">
       <div class="m-icon">🏺</div>
       <div class="m-body">
-        <h3>Centre Pompidou ⚠️ fermé pour travaux jusqu'en 2030</h3>
+        <h3>Centre Pompidou</h3>
         <p>Gratuit le premier dimanche de chaque mois. Gratuit pour les moins de 18 ans. Collections permanentes accessibles. Tarif plein : 15 €.</p>
         <div class="m-tags"><span class="mtag g">Gratuit 1er dimanche du mois</span><span class="mtag g">Gratuit -18 ans</span></div>
       </div>
