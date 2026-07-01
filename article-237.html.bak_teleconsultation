@@ -176,7 +176,7 @@ window.economyaLoadAds = function() {
   <p class="lead">Médecin introuvable dans votre secteur, délai de plusieurs semaines pour un rendez-vous, pas le temps de se déplacer : la téléconsultation est désormais remboursée à 100 % par l'Assurance maladie. Voici comment en profiter sans débourser un centime.</p>
 
   <h2>🏥 Ce qui est remboursé</h2>
-  <p>Depuis 2022, la téléconsultation est remboursée par la Sécu sur la base de <strong>25 €</strong> (contre 30 € pour une consultation classique en cabinet depuis décembre 2024), le reste pouvant être pris en charge par votre mutuelle. Deux conditions pour être pris en charge à 100 % :</p>
+  <p>Depuis 2022, la téléconsultation est remboursée <strong>au même tarif qu'une consultation classique</strong> (26,50 € par la Sécu, le reste par votre mutuelle). Deux conditions pour être pris en charge à 100 % :</p>
 
   <ul class="vlist">
     <li>
