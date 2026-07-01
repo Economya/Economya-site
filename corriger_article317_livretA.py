@@ -16,8 +16,8 @@ FICHIER = "article-317.html"
 ANCIEN = "Simple, 100 % sécurisé, disponible à tout moment. Taux 2,4 % en 2025. Plafond 22 950 €."
 NOUVEAU = "Simple, 100 % sécurisé, disponible à tout moment. Taux 1,5 % en 2026. Plafond 22 950 €."
 
-ANCIEN_BADGE = "2,4 %/an garanti"
-NOUVEAU_BADGE = "1,5 %/an garanti"
+ANCIEN_BADGE = '<span class="pl-rdt">2,4 %/an</span><span class="pl-sub">garanti</span>'
+NOUVEAU_BADGE = '<span class="pl-rdt">1,5 %/an</span><span class="pl-sub">garanti</span>'
 
 
 def main():
