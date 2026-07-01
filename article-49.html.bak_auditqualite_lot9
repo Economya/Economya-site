@@ -171,7 +171,7 @@ window.economyaLoadAds = function() {
   <h2>10 idées de sorties gratuites ou presque</h2>
 
   <ul class="idea-list">
-    <li><span class="num">1</span><div class="content"><h3>Les musées nationaux gratuits</h3><p>Orsay et le musée de Cluny sont gratuits le premier dimanche du mois. Le Louvre est gratuit le premier vendredi soir (18h-21h45, hors juillet-août). Le Centre Pompidou est actuellement fermé pour travaux jusqu'en 2030. Planifiez à l'avance.</p></div></li>
+    <li><span class="num">1</span><div class="content"><h3>Les musées nationaux le premier dimanche du mois</h3><p>Le Louvre, Orsay, le Centre Pompidou… tous gratuits pour tout le monde le premier dimanche du mois. Planifiez à l'avance.</p></div></li>
     <li><span class="num">2</span><div class="content"><h3>Les forêts domaniales et parcs naturels</h3><p>Accès libre et gratuit partout en France. Une carte IGN, un pique-nique maison et une journée inoubliable pour zéro euro.</p></div></li>
     <li><span class="num">3</span><div class="content"><h3>Les journées du patrimoine (septembre)</h3><p>Chaque année en septembre, des centaines de monuments habituellement payants ouvrent leurs portes gratuitement.</p></div></li>
     <li><span class="num">4</span><div class="content"><h3>La bibliothèque et la médiathèque</h3><p>Souvent gratuite, elle propose livres, BD, jeux de société, films et parfois des ateliers enfants. Un trésor sous-estimé.</p></div></li>

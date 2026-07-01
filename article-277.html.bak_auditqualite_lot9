@@ -2,80 +2,78 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Camping en France : atlas des sites gratuits — Nuits gratuites en pleine nature. Guide complet sur Economya.fr">
+<meta name="description" content="Interrail 2026 : guide complet Europe en train — Europe entière dès 283€. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Camping en France : atlas des sites gratuits — Economya.fr</title>
+<title>Interrail 2025 : guide complet Europe en train — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--sky:#0284c7;--sky-l:#f0f9ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--orange:#ea580c;--orange-l:#fff7ed;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#082f49,#0369a1,#0284c7);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'⛺';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#1c0900,#9a3412,#ea580c);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🚂';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1;text-align:center}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bae6fd;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fed7aa;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#7dd3fc;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#0284c7);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(2,132,199,.35)}
+.ah h1 em{color:#fdba74;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#ea580c);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(234,88,12,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#0284c7,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#ea580c,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--sky);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--orange);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* TYPES DE CAMPING */
-.types{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:1rem;margin:1.5rem 0}
-.type{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s,box-shadow .2s;position:relative}
-.type:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(2,132,199,.1)}
-.type.top{border:2px solid var(--g)}
-.top-badge{position:absolute;top:-10px;left:50%;transform:translateX(jusqu'à -50%);background:var(--g);color:white;font-size:.64rem;font-weight:700;padding:.14rem .65rem;border-radius:50px;white-space:nowrap}
-.type-icon{font-size:2rem;margin-bottom:.5rem}
-.type-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
-.type-prix{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:.2rem 0}
-.type.free .type-prix{color:#16a34a}
-.type.cheap .type-prix{color:var(--sky)}
-.type.paid .type-prix{color:var(--ad)}
-.type-desc{font-size:.78rem;color:var(--m);font-weight:300;line-height:1.4}
+/* PASS TABLEAU */
+.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+thead tr{background:linear-gradient(135deg,#9a3412,#ea580c);color:white}
+thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.8rem}
+tbody tr{border-bottom:1px solid var(--b)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:#fafafa}
+tbody td{padding:.8rem 1rem;vertical-align:middle}
+.g{color:#16a34a;font-weight:600}
+.o{color:var(--ad);font-weight:500}
+.r{color:#dc2626;font-weight:500}
 
-/* RÉGIONS */
-.regions{display:flex;flex-direction:column;gap:.85rem;margin:1.5rem 0}
-.region{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem}
-.region .rico{font-size:1.5rem;flex-shrink:0;margin-top:.05rem}
-.region strong{color:var(--t);display:block;font-size:.92rem;margin-bottom:.15rem}
-.region span{color:var(--m);font-weight:300;font-size:.85rem}
-.region .rtag{display:inline-block;margin-top:.3rem;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+/* ITINÉRAIRES IDÉES */
+.itins{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin:1.5rem 0}
+.itin{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;transition:transform .2s,box-shadow .2s}
+.itin:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(234,88,12,.1)}
+.itin-flag{font-size:1.4rem;margin-bottom:.4rem}
+.itin-name{font-weight:700;font-size:.9rem;margin-bottom:.3rem}
+.itin-duree{display:inline-block;background:var(--orange-l);color:var(--orange);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px;margin-bottom:.4rem}
+.itin-villes{font-size:.79rem;color:var(--m);font-weight:300;line-height:1.5}
 
-/* APPLIS */
-.applis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.9rem;margin:1.3rem 0}
-.ap{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem;text-align:center}
-.ap-icon{font-size:1.5rem;margin-bottom:.35rem}
-.ap-name{font-weight:700;font-size:.88rem;margin-bottom:.2rem}
-.ap-tag{display:inline-block;margin-bottom:.35rem;font-size:.68rem;font-weight:700;padding:.1rem .45rem;border-radius:50px}
-.ap-tag.free{background:var(--gl);color:var(--gd)}
-.ap-tag.paid{background:var(--al);color:var(--ad)}
-.ap-desc{font-size:.76rem;color:var(--m);font-weight:300;line-height:1.35}
+/* CONSEILS LISTE */
+.conseils{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
+.conseil{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
+.conseil .cico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+.conseil strong{display:block;font-size:.92rem;margin-bottom:.15rem}
+.conseil span{font-size:.85rem;color:var(--m);font-weight:300}
+.conseil .ctag{display:inline-block;margin-top:.35rem;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:var(--sky-l);border-left:4px solid var(--sky);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#082f49}
+.warn{background:var(--orange-l);border-left:4px solid var(--orange);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#7c2d12}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#082f49,#0369a1);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#1c0900,#9a3412);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#0284c7,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#ea580c,#7c3aed);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
 @media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
@@ -132,9 +130,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Camping en France : atlas des sites gratuits",
-  "description": "Camping en France : atlas des sites gratuits — Nuits gratuites en pleine nature. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-286.html",
+  "headline": "Interrail 2026 : guide complet Europe en train",
+  "description": "Interrail 2026 : guide complet Europe en train — Europe entière dès 283€. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-277.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -151,19 +149,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Camping en France : atlas des sites gratuits">
-  <meta property="og:description" content="Camping en France : atlas des sites gratuits — Nuits gratuites en pleine nature. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-286.html">
+  <meta property="og:title" content="Interrail 2026 : guide complet Europe en train">
+  <meta property="og:description" content="Interrail 2026 : guide complet Europe en train — Europe entière dès 283€. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-277.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Camping en France : atlas des sites gratuits">
-  <meta name="twitter:description" content="Camping en France : atlas des sites gratuits — Nuits gratuites en pleine nature. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Interrail 2026 : guide complet Europe en train">
+  <meta name="twitter:description" content="Interrail 2026 : guide complet Europe en train — Europe entière dès 283€. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-286.html" />
+<link rel="canonical" href="https://economya.fr/article-277.html" />
 </head>
 <body>
 <nav>
@@ -173,136 +171,131 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Voyages</span> › <span style="color:var(--t,#2C2C2A)">Camping en France : atlas des sites gratuits</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Voyages", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Camping en France : atlas des sites gratuits", "item": "https://economya.fr/article-286.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Voyages</span> › <span style="color:var(--t,#2C2C2A)">Interrail 2025 : guide complet Europe en train</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Voyages", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Interrail 2025 : guide complet Europe en train", "item": "https://economya.fr/article-277.html"}]}</script>
 
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">⛺ Voyages</div>
-    <h1>Camping en France :<br><em>atlas des sites gratuits</em></h1>
-    <div class="savings-badge">💰 Nuits gratuites en pleine nature</div>
+    <div class="cat-pill">🚂 Voyages</div>
+    <h1>Interrail 2026 :<br><em>guide complet Europe en train</em></h1>
+    <div class="savings-badge">💰 Europe entière dès 283 €</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">🌿 Nature & plein air</span>
+      <span class="theme-tag">🌍 Voyage & aventure</span>
     </div>
   </div>
 </div>
 
 <div class="ab">
 
-  <p class="lead">La France offre des milliers d'aires de camping gratuites ou quasi gratuites, des forêts domaniales aux aires de camping-car municipales. Entre le bivouac légal, les "aires naturelles" à 3–5 €/nuit et les campings municipaux à petits prix, il est possible de voyager en France pour presque rien.</p>
+  <p class="lead">Le pass Interrail permet de voyager en train dans 33 pays européens avec un seul billet. À partir de 283 € pour un adulte, c'est l'une des façons les plus économiques et les plus écologiques de découvrir l'Europe. Voici tout ce qu'il faut savoir pour bien le choisir.</p>
 
-  <h2>⛺ Les différentes options du moins au plus cher</h2>
+  <h2>🎟️ Les différents pass Interrail en 2026 — vérifiez les tarifs exacts sur interrail.eu</h2>
 
-  <div class="types">
-    <div class="type free top">
-      <span class="top-badge">⭐ 100 % gratuit</span>
-      <div class="type-icon">🌲</div>
-      <div class="type-name">Bivouac en forêt domaniale</div>
-      <div class="type-prix">0 €</div>
-      <div class="type-desc">Autorisé dans les forêts publiques de l'ONF (hors zones protégées) pour une nuit (installation après 19h, départ avant 9h). Aucune infrastructure mais nature totale.</div>
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Type de pass</th>
+          <th>Adulte (2e classe)</th>
+          <th>Jeune −28 ans</th>
+          <th>Senior +60 ans</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Global 4 jours / 1 mois</td><td class="o">283 €</td><td class="g">212 €</td><td class="g">255 €</td></tr>
+        <tr><td>Global 5 jours / 1 mois</td><td class="o">242 €</td><td class="g">182 €</td><td class="g">218 €</td></tr>
+        <tr><td>Global 7 jours / 1 mois</td><td class="o">299 €</td><td class="g">224 €</td><td class="g">269 €</td></tr>
+        <tr><td>Global 15 jours consécutifs</td><td class="o">397 €</td><td class="g">298 €</td><td class="g">357 €</td></tr>
+        <tr><td>Global 1 mois continu</td><td class="r">629 €</td><td class="o">472 €</td><td class="o">566 €</td></tr>
+        <tr><td>One Country (ex : France)</td><td class="g">dès 59 €</td><td class="g">dès 45 €</td><td class="g">dès 53 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:.8rem;color:var(--m)">* Tarifs indicatifs 2025 — vérifiez sur interrail.eu pour les prix exacts et les promotions en cours.</p>
+
+  <h2>🗺️ Idées d'itinéraires selon la durée</h2>
+
+  <div class="itins">
+    <div class="itin">
+      <div class="itin-flag">🇮🇹🇫🇷🇪🇸</div>
+      <div class="itin-name">Tour méditerranéen</div>
+      <div class="itin-duree">7 jours de train</div>
+      <div class="itin-villes">Paris → Lyon → Barcelone → Valence → Madrid (ou l'inverse). Paysages, gastronomie, soleil.</div>
     </div>
-    <div class="type free">
-      <div class="type-icon">🚐</div>
-      <div class="type-name">Aires camping-car municipales</div>
-      <div class="type-prix">0–5 €</div>
-      <div class="type-desc">Des milliers d'aires gratuites ou à prix symbolique dans les communes françaises. Eau, électricité parfois incluses. Idéal en van ou camping-car.</div>
+    <div class="itin">
+      <div class="itin-flag">🇩🇪🇨🇿🇦🇹🇭🇺</div>
+      <div class="itin-name">Europe centrale</div>
+      <div class="itin-duree">7–10 jours de train</div>
+      <div class="itin-villes">Paris → Strasbourg → Munich → Prague → Vienne → Budapest. Villes magnifiques, train de nuit possible.</div>
     </div>
-    <div class="type cheap">
-      <div class="type-icon">🏕️</div>
-      <div class="type-name">Aires naturelles de camping</div>
-      <div class="type-prix">3–8 €</div>
-      <div class="type-desc">Terrains agricoles ou naturels avec équipements minimalistes (WC, point d'eau). Souvent dans des cadres exceptionnels. Répertoriés sur camping-naturisme.com.</div>
+    <div class="itin">
+      <div class="itin-flag">🇳🇴🇸🇪🇩🇰</div>
+      <div class="itin-name">Scandinavie</div>
+      <div class="itin-duree">10–14 jours de train</div>
+      <div class="itin-villes">Copenhague → Stockholm → Oslo → Bergen. Fjords, nature sauvage, aurores boréales (en hiver).</div>
     </div>
-    <div class="type cheap">
-      <div class="type-icon">🏘️</div>
-      <div class="type-name">Camping municipal</div>
-      <div class="type-prix">8–15 €</div>
-      <div class="type-desc">Emplacements nus avec sanitaires. Moins chers que les campings privés, souvent bien situés. Parfaits pour les familles avec tente ou petite caravane.</div>
+    <div class="itin">
+      <div class="itin-flag">🇬🇧🇮🇪🇳🇱🇧🇪</div>
+      <div class="itin-name">Europe de l'Ouest</div>
+      <div class="itin-duree">5–7 jours de train</div>
+      <div class="itin-villes">Paris → Bruxelles → Amsterdam → Londres (Eurostar). Pratique et accessible pour un premier Interrail.</div>
     </div>
   </div>
 
-  <h2>🗺️ Les meilleures régions pour camper gratuitement</h2>
+  <h2>💡 Les conseils pour optimiser votre pass</h2>
 
-  <div class="regions">
-    <div class="region">
-      <span class="rico">🌲</span>
+  <div class="conseils">
+    <div class="conseil">
+      <span class="cico">🌙</span>
       <div>
-        <strong>Massif central (Ardèche, Cantal, Lozère)</strong>
-        <span>Forêts domaniales immenses, rivières propres, gorges sauvages. Le bivouac y est pratiqué librement loin des zones habitées. Quelques-unes des plus belles natures de France.</span>
-        <span class="rtag">🌿 Bivouac très accessible</span>
+        <strong>Utilisez les trains de nuit pour économiser l'hébergement</strong>
+        <span>Le train de nuit Paris-Vienne, Paris-Berlin ou Bruxelles-Prague vous épargne une nuit d'hôtel (50 à 100 €) tout en avançant dans votre voyage. Réservez la couchette à l'avance, surtout en été.</span>
+        <span class="ctag">💰 50–100 € d'hôtel économisés</span>
       </div>
     </div>
-    <div class="region">
-      <span class="rico">🏔️</span>
+    <div class="conseil">
+      <span class="cico">📅</span>
       <div>
-        <strong>Alpes et Pyrénées (hors zones protégées)</strong>
-        <span>Le bivouac est autorisé en altitude (généralement au-dessus de 2 500 m dans les parcs nationaux, vérifiez les règles locales). Vues à couper le souffle, totalement gratuites.</span>
-        <span class="rtag">⛰️ Altitude libre</span>
+        <strong>Choisissez le bon type de pass selon votre voyage</strong>
+        <span>Si vous visitez 2 pays, le pass "One Country" x2 est souvent moins cher que le Global. Si vous bougez beaucoup (5+ pays), le Global est plus avantageux. Faites le calcul avant d'acheter.</span>
+        <span class="ctag">💰 Jusqu'à 80 € économisés</span>
       </div>
     </div>
-    <div class="region">
-      <span class="rico">🌊</span>
+    <div class="conseil">
+      <span class="cico">🎫</span>
       <div>
-        <strong>Bretagne (hors zones de conservation)</strong>
-        <span>Aires camping-car gratuites très nombreuses dans les communes bretonnes. Plusieurs communes proposent aussi des emplacements de tente à petits prix face à la mer.</span>
-        <span class="rtag">🚐 Idéal van/camping-car</span>
+        <strong>Réservez les suppléments sur les TGV et ICE</strong>
+        <span>Certains trains rapides (TGV, Eurostar, AVE espagnol, Thalys) exigent un supplément de réservation même avec le pass (5 à 35 €). Réservez tôt pour les places disponibles.</span>
+        <span class="ctag">📋 À ne pas oublier</span>
       </div>
     </div>
-    <div class="region">
-      <span class="rico">🌿</span>
+    <div class="conseil">
+      <span class="cico">🧑‍🤝‍🧑</span>
       <div>
-        <strong>Forêts de Fontainebleau, Orléans, Rambouillet</strong>
-        <span>Accessibles depuis Paris, ces forêts domaniales permettent le bivouac d'une nuit. Parfait pour un weekend nature sans frais depuis la région parisienne.</span>
-        <span class="rtag">🚂 Accessible en train</span>
+        <strong>Voyagez à 2 ou en famille pour des réductions supplémentaires</strong>
+        <span>Le pass "2 adultes" permet une réduction de 5 à 10 % par rapport à deux pass individuels. Les enfants de moins de 12 ans voyagent gratuitement avec un adulte porteur d'un pass Global.</span>
+        <span class="ctag">💰 Enfants −12 ans gratuits</span>
       </div>
-    </div>
-  </div>
-
-  <h2>📱 Les meilleures applis pour trouver un spot</h2>
-
-  <div class="applis">
-    <div class="ap">
-      <div class="ap-icon">⛺</div>
-      <div class="ap-name">Park4Night</div>
-      <div class="ap-tag free">Gratuit</div>
-      <div class="ap-desc">La référence pour camping-cars et vans. 300 000+ spots en Europe, filtrages par équipements, avis communautaires.</div>
-    </div>
-    <div class="ap">
-      <div class="ap-icon">🗺️</div>
-      <div class="ap-name">Campercontact</div>
-      <div class="ap-tag free">Gratuit (limité)</div>
-      <div class="ap-desc">Grandes bases de données d'aires, avec prix et équipements. Fonctionne hors connexion.</div>
-    </div>
-    <div class="ap">
-      <div class="ap-icon">🌿</div>
-      <div class="ap-name">Bivouak</div>
-      <div class="ap-tag free">Gratuit</div>
-      <div class="ap-desc">Spécialisé bivouac et camping sauvage. Indique les zones autorisées et interdites en France.</div>
-    </div>
-    <div class="ap">
-      <div class="ap-icon">🏕️</div>
-      <div class="ap-name">Campwild</div>
-      <div class="ap-tag free">Gratuit</div>
-      <div class="ap-desc">Spots de camping sauvage géolocalisés, photos de la communauté. Bonne couverture des zones reculées.</div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Les règles du bivouac légal en France</strong>
-    Le bivouac (une nuit) est toléré dans les forêts domaniales publiques hors zones protégées, à condition d'arriver après 19h et de repartir avant 9h, sans feu, sans déchets. Il n'est pas autorisé dans les parcs nationaux (sauf zones dédiées en altitude) ni sur les plages de certains littoraux protégés.
+    <strong>💡 L'appli Rail Planner : indispensable</strong>
+    L'appli officielle Interrail (Rail Planner) fonctionne hors ligne. Elle liste tous les trains disponibles avec votre pass, indique les réservations obligatoires et vous sert de billet numérique. Téléchargez-la avant de partir.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Le camping sauvage n'est pas toujours légal</strong>
-    Sur terrain privé, il faut l'autorisation du propriétaire. En zone protégée (Natura 2000, réserve naturelle), le bivouac peut être interdit. Consultez toujours la réglementation locale sur le site de l'ONF ou de la mairie avant de vous installer.
+    <strong>⚠️ Le pass ne couvre pas les ferrys</strong>
+    L'Interrail inclut des réductions (mais pas la gratuité) sur certains ferrys (Grèce-Italie, Scandinavie…). Vérifiez les conditions sur le site officiel avant de prévoir une traversée maritime dans votre itinéraire.
   </div>
 
   <div class="cta">
-    <h3>📬 Voyages & nature dans votre boîte mail</h3>
-    <p>Les meilleurs spots gratuits et astuces plein air, chaque semaine.</p>
+    <h3>📬 Voyages malins dans votre boîte mail</h3>
+    <p>Les meilleures astuces pour voyager plus pour moins cher, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -345,7 +338,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-276.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Flying Blue, Miles&More : programmes fidélité décryptés</div></a><a class="sim-card" href="article-277.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Interrail 2025 : guide complet Europe en train</div></a><a class="sim-card" href="article-278.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Airbnb vs hôtel : que choisir selon les cas</div></a><a class="sim-card" href="article-279.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Bagages cabine seulement : le guide ultime</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-279.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Bagages cabine seulement : le guide ultime</div></a><a class="sim-card" href="article-280.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Voyager en famille pour moins de 2 000 €</div></a><a class="sim-card" href="article-281.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Travel hacking France : meilleures cartes bancaires</div></a><a class="sim-card" href="article-282.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Vacances hors saison : destinations et économies</div></a></div>
 </div>
 
 
