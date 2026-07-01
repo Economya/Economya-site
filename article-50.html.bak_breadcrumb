@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+  : root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:1rem}
   nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99;flex-wrap:wrap;gap:.4rem}
   .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
@@ -149,6 +149,9 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Les 10 appareils les plus gourmands chez vous</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Les 10 appareils les plus gourmands chez vous", "item": "https://economya.fr/article-50.html"}]}</script>
+
 
 <div class="article-hero">
   <div class="acat-badge">💡 Énergie · Article #50</div>
@@ -168,7 +171,7 @@ window.economyaLoadAds = function() {
   <p>En France, la facture d'électricité moyenne d'un foyer dépasse <strong>1 200 € par an</strong>. Pourtant, la plupart des ménages ignorent quels appareils consomment réellement le plus. Connaître les coupables, c'est déjà faire la moitié du chemin pour réduire sa facture.</p>
 
   <h2>Le classement des appareils les plus énergivores</h2>
-  <p>Les chiffres ci-dessous sont basés sur une utilisation moyenne française et un tarif réglementé EDF 2025 (environ 0,25 €/kWh).</p>
+  <p>Les chiffres ci-dessous sont basés sur une utilisation moyenne française et un tarif réglementé EDF 2026 (environ 0,194 €/kWh en option Base, après plusieurs baisses successives).</p>
 
   <ul class="device-list">
     <li><span class="num">1</span><div class="content"><h3>Le chauffage électrique</h3><p>Radiateurs à inertie, convecteurs, plancher chauffant… Le chauffage représente à lui seul 30 à 50 % de la facture en hiver.</p></div><span class="cost">~500 €/an</span></li>

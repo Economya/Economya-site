@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Prime de partage de la valeur 2025 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr">
+<meta name="description" content="Prime de partage de la valeur 2026 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prime de partage de la valeur 2025 — Economya.fr</title>
+<title>Prime de partage de la valeur 2026 — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -149,8 +149,8 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Prime de partage de la valeur 2025",
-  "description": "Prime de partage de la valeur 2025 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr",
+  "headline": "Prime de partage de la valeur 2026",
+  "description": "Prime de partage de la valeur 2026 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-223.html",
   "publisher": {
     "@type": "Organization",
@@ -168,8 +168,8 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Prime de partage de la valeur 2025">
-  <meta property="og:description" content="Prime de partage de la valeur 2025 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr">
+  <meta property="og:title" content="Prime de partage de la valeur 2026">
+  <meta property="og:description" content="Prime de partage de la valeur 2026 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-223.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -177,8 +177,8 @@ window.economyaLoadAds = function() {
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Prime de partage de la valeur 2025">
-  <meta name="twitter:description" content="Prime de partage de la valeur 2025 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Prime de partage de la valeur 2026">
+  <meta name="twitter:description" content="Prime de partage de la valeur 2026 — Jusqu'à 6 000€ exonérés. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-223.html" />
 </head>
@@ -190,10 +190,13 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Prime de partage de la valeur 2025</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Prime de partage de la valeur 2025", "item": "https://economya.fr/article-223.html"}]}</script>
+
 
 <div class="hero">
   <div class="hero-cat">🎁 <strong>Emploi</strong></div>
-  <h1>Prime de partage de la valeur 2025</h1>
+  <h1>Prime de partage de la valeur 2026</h1>
   <div class="hero-badge">💰 Jusqu'à 6 000 € exonérés</div>
   <div class="hero-meta">
     <span>📖 4 min de lecture</span>
@@ -203,7 +206,7 @@ window.economyaLoadAds = function() {
 </div>
 
 <article>
-  <p>La Prime de Partage de la Valeur (PPV) — anciennement prime Macron ou prime de pouvoir d'achat — est reconduite et pérennisée en 2025. Elle permet aux employeurs de verser une prime défiscalisée à leurs salariés, sans charges sociales ni impôt sur le revenu dans certaines limites. Pour les salariés, c'est de l'argent net immédiat. Pour les employeurs, c'est moins coûteux qu'une augmentation de salaire à valeur équivalente. Tour d'horizon complet des règles en vigueur.</p>
+  <p>La Prime de Partage de la Valeur (PPV) — anciennement prime Macron ou prime de pouvoir d'achat — est reconduite et pérennisée en 2026. Elle permet aux employeurs de verser une prime défiscalisée à leurs salariés, sans charges sociales ni impôt sur le revenu dans certaines limites. Pour les salariés, c'est de l'argent net immédiat. Pour les employeurs, c'est moins coûteux qu'une augmentation de salaire à valeur équivalente. Tour d'horizon complet des règles en vigueur.</p>
 
   <h2>Les deux plafonds selon la situation</h2>
 
@@ -350,11 +353,6 @@ window.economyaLoadAds = function() {
 })();
 </script>
 
-<footer>
-  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
-</footer>
-
 <style>
 .similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
 .similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
@@ -367,9 +365,14 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-216.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Bulletin de salaire : décrypter chaque ligne</div></a><a class="sim-card" href="article-217.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Négocier son salaire : scripts qui marchent</div></a><a class="sim-card" href="article-218.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Chômage ARE : calculer ses droits en 2025</div></a><a class="sim-card" href="article-219.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Rupture conventionnelle : tout savoir</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-216.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Bulletin de salaire : décrypter chaque ligne</div></a><a class="sim-card" href="article-217.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Négocier son salaire : scripts qui marchent</div></a><a class="sim-card" href="article-218.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Chômage ARE : calculer ses droits en 2026</div></a><a class="sim-card" href="article-219.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Rupture conventionnelle : tout ce qu'il faut savoir</div></a></div>
 </div>
-<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
 <p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>

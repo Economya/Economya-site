@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Dropshipping en 2025 : est-ce encore rentable ? — La vérité sans bullshit. Guide complet sur Economya.fr">
+<meta name="description" content="Dropshipping en 2026 : est-ce encore rentable ? — La vérité sans bullshit. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dropshipping en 2025 : est-ce encore rentable ? — Economya.fr</title>
+<title>Dropshipping en 2026 : est-ce encore rentable ? — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -19,12 +19,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .nav-back:hover{color:var(--g)}
 .ah{background:linear-gradient(135deg,#1a2e05,#365314,#65a30d);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
 .ah::before{content:'🎁';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
-.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1;text-align:center}
 .cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#d9f99d;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
 .ah h1 em{color:#bef264;font-style:normal}
 .savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#dc2626,#65a30d);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(101,163,13,.4)}
-.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
 .theme-tag{background:linear-gradient(135deg,#65a30d,#dc2626);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
@@ -127,8 +127,8 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Dropshipping en 2025 : est-ce encore rentable ?",
-  "description": "Dropshipping en 2025 : est-ce encore rentable ? — La vérité sans bullshit. Guide complet sur Economya.fr",
+  "headline": "Dropshipping en 2026 : est-ce encore rentable ?",
+  "description": "Dropshipping en 2026 : est-ce encore rentable ? — La vérité sans bullshit. Guide complet sur Economya.fr",
   "url": "https://economya.fr/article-429.html",
   "publisher": {
     "@type": "Organization",
@@ -146,8 +146,8 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Dropshipping en 2025 : est-ce encore rentable ?">
-  <meta property="og:description" content="Dropshipping en 2025 : est-ce encore rentable ? — La vérité sans bullshit. Guide complet sur Economya.fr">
+  <meta property="og:title" content="Dropshipping en 2026 : est-ce encore rentable ?">
+  <meta property="og:description" content="Dropshipping en 2026 : est-ce encore rentable ? — La vérité sans bullshit. Guide complet sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-429.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
@@ -155,8 +155,8 @@ window.economyaLoadAds = function() {
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Dropshipping en 2025 : est-ce encore rentable ?">
-  <meta name="twitter:description" content="Dropshipping en 2025 : est-ce encore rentable ? — La vérité sans bullshit. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Dropshipping en 2026 : est-ce encore rentable ?">
+  <meta name="twitter:description" content="Dropshipping en 2026 : est-ce encore rentable ? — La vérité sans bullshit. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-429.html" />
 </head>
@@ -168,10 +168,13 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Revenus</span> › <span style="color:var(--t,#2C2C2A)">Dropshipping en 2025 : est-ce encore rentable ?</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Revenus", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Dropshipping en 2025 : est-ce encore rentable ?", "item": "https://economya.fr/article-429.html"}]}</script>
+
 <div class="ah">
   <div class="hi">
     <div class="cat-pill">🎁 Revenus</div>
-    <h1>Dropshipping en 2025 :<br><em>est-ce encore rentable ?</em></h1>
+    <h1>Dropshipping en 2026 :<br><em>est-ce encore rentable ?</em></h1>
     <div class="savings-badge">💰 La vérité sans bullshit</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
@@ -181,9 +184,9 @@ window.economyaLoadAds = function() {
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Le dropshipping est présenté comme le "business parfait" sur YouTube — aucun stock, revenus passifs, liberté totale. La réalité est plus nuancée : le dropshipping générique depuis la Chine est devenu très difficile en 2025, mais certaines niches et approches restent rentables. Voici l'analyse honnête.</p>
+  <p class="lead">Le dropshipping est présenté comme le "business parfait" sur YouTube — aucun stock, revenus passifs, liberté totale. La réalité est plus nuancée : le dropshipping générique depuis la Chine est devenu très difficile, mais certaines niches et approches restent rentables. Voici l'analyse honnête.</p>
 
-  <h2>⚖️ Verdict 2025 : dropshipping oui ou non ?</h2>
+  <h2>⚖️ Verdict 2026 : dropshipping oui ou non ?</h2>
   <div class="verdict">
     <div class="verd oui">
       <div class="verd-title">✅ Ça marche encore si…</div>
@@ -225,7 +228,7 @@ window.economyaLoadAds = function() {
 
   <div class="tip">
     <strong>💡 La vraie opportunité : le dropshipping avec fournisseurs européens</strong>
-    Les fournisseurs européens de dropshipping (Brandsdistribution, BigBuy, Alidrop EU) livrent en 3 à 7 jours ouvrés. Les taux de satisfaction client sont 3× meilleurs qu'avec des fournisseurs asiatiques. La marge est légèrement inférieure mais le taux de retour chute dramatiquement et les avis positifs se construisent réellement. C'est la grande évolution du dropshipping 2025.
+    Les fournisseurs européens de dropshipping (Brandsdistribution, BigBuy, Alidrop EU) livrent en 3 à 7 jours ouvrés. Les taux de satisfaction client sont 3× meilleurs qu'avec des fournisseurs asiatiques. La marge est légèrement inférieure mais le taux de retour chute dramatiquement et les avis positifs se construisent réellement. C'est la grande évolution du dropshipping ces dernières années.
   </div>
 
   <div class="warn">
@@ -264,11 +267,6 @@ window.economyaLoadAds = function() {
 })();
 </script>
 
-<footer>
-  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil financier.</span>
-</footer>
-
 <style>
 .similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
 .similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
@@ -281,9 +279,14 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-415.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Grenier en or :évaluer et vendre ses objets</div></a><a class="sim-card" href="article-416.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Vendre ses créations en ligne :plateformes gratuites</div></a><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne :devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting :avoir un 2e revenu légal</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-415.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Grenier en or : évaluer et vendre ses objets</div></a><a class="sim-card" href="article-416.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Vendre ses créations en ligne : plateformes gratuites</div></a><a class="sim-card" href="article-417.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Tutorat en ligne : devenir prof et gagner sa vie</div></a><a class="sim-card" href="article-418.html"><div class="sim-card-cat">Revenus</div><div class="sim-card-title">Moonlighting : avoir un 2e revenu légal</div></a></div>
 </div>
-<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un conseil financier.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
 <p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>

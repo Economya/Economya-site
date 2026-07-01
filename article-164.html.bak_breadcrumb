@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maroc, Tunisie, Portugal : destinations low cost 2025 — Economya.fr</title>
+<title>Maroc, Tunisie, Portugal : destinations low cost 2026 — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{
+  : root{
     --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
     --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
     --terra:#C0392B;--terra-dark:#7B241C;--terra-light:#FDEDEC;
@@ -139,7 +139,7 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Maroc, Tunisie, Portugal : destinations low cost 2025",
+  "headline": "Maroc, Tunisie, Portugal : destinations low cost 2026",
   "description": "Conseils et astuces pour économiser au quotidien.",
   "url": "https://economya.fr/article-164.html",
   "publisher": {
@@ -158,7 +158,7 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Maroc, Tunisie, Portugal : destinations low cost 2025">
+  <meta property="og:title" content="Maroc, Tunisie, Portugal : destinations low cost 2026">
   <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
   <meta property="og:url" content="https://economya.fr/article-164.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
@@ -167,11 +167,11 @@ window.economyaLoadAds = function() {
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Maroc, Tunisie, Portugal : destinations low cost 2025">
+  <meta name="twitter:title" content="Maroc, Tunisie, Portugal : destinations low cost 2026">
   <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/article-164.html" />
-<meta name="description" content="Maroc, Tunisie, Portugal : destinations low cost 2025 — Economya.fr" />
+<meta name="description" content="Maroc, Tunisie, Portugal : destinations low cost 2026 — Economya.fr" />
 </head>
 <body>
 
@@ -182,10 +182,13 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Maroc, Tunisie, Portugal : destinations low cost 2025</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Maroc, Tunisie, Portugal : destinations low cost 2025", "item": "https://economya.fr/article-164.html"}]}</script>
+
 
 <div class="hero-art">
   <div class="acat">🌍 <strong>Voyages</strong></div>
-  <h1>Maroc, Tunisie, Portugal : destinations low cost 2025</h1>
+  <h1>Maroc, Tunisie, Portugal : destinations low cost 2026</h1>
   <div class="abadge">💰 Séjour tout compris dès 300€</div>
   <div class="meta">
     <span>📖 Lecture 5 min</span>
@@ -196,7 +199,7 @@ window.economyaLoadAds = function() {
 
 <article>
 
-  <p>Partir à l'étranger pour moins de 500 euros par personne, tout compris, c'est encore possible en 2025 — à condition de choisir les bonnes destinations et de réserver au bon moment. Maroc, Tunisie et Portugal sont trois valeurs sûres pour les voyageurs français qui cherchent dépaysement, soleil et gastronomie sans se ruiner. Chacune a ses atouts propres, ses meilleures saisons et ses pièges à éviter. Tour d'horizon complet.</p>
+  <p>Partir à l'étranger pour moins de 500 euros par personne, tout compris, c'est encore possible — à condition de choisir les bonnes destinations et de réserver au bon moment. Maroc, Tunisie et Portugal sont trois valeurs sûres pour les voyageurs français qui cherchent dépaysement, soleil et gastronomie sans se ruiner. Chacune a ses atouts propres, ses meilleures saisons et ses pièges à éviter. Tour d'horizon complet.</p>
 
   <h2>Les trois destinations en détail</h2>
 
@@ -249,7 +252,7 @@ window.economyaLoadAds = function() {
         <span class="dest-badge">Dès 400€/pers.</span>
       </div>
       <div class="dest-body">
-        <div class="dest-desc">Le Portugal est la destination européenne qui offre le meilleur rapport qualité-prix en 2025. Lisbonne reste moins chère que Paris, Madrid ou Rome sur la quasi-totalité des postes : hébergement, restauration, transports, musées. Un repas "menu du jour" (prato do dia) dans une tasca locale coûte 8 à 12 euros avec boisson. Le réseau de bus et de métro est efficace et peu cher. Et l'Algarve au sud offre des plages parmi les plus belles d'Europe à des tarifs encore très accessibles hors juillet-août.</div>
+        <div class="dest-desc">Le Portugal est la destination européenne qui offre le meilleur rapport qualité-prix. Lisbonne reste moins chère que Paris, Madrid ou Rome sur la quasi-totalité des postes : hébergement, restauration, transports, musées. Un repas "menu du jour" (prato do dia) dans une tasca locale coûte 8 à 12 euros avec boisson. Le réseau de bus et de métro est efficace et peu cher. Et l'Algarve au sud offre des plages parmi les plus belles d'Europe à des tarifs encore très accessibles hors juillet-août.</div>
         <div class="dest-grid">
           <div class="dest-item"><div class="dest-item-label">Vol Paris → Lisbonne</div><div class="dest-item-val">60–150€ A/R</div></div>
           <div class="dest-item"><div class="dest-item-label">Meilleure période</div><div class="dest-item-val">Mai–Juin / Sept–Oct</div></div>

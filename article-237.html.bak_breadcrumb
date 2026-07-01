@@ -19,12 +19,12 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .nav-back:hover{color:var(--g)}
 .ah{background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
 .ah::before{content:'📱';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
-.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1;text-align:center}
 .cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bfdbfe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
 .ah h1 em{color:#93c5fd;font-style:normal}
 .savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#3b82f6);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(59,130,246,.35)}
-.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
 .theme-tag{background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
@@ -155,6 +155,9 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Santé</span> › <span style="color:var(--t,#2C2C2A)">Téléconsultation médicale : consulter gratuitement</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Santé", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Téléconsultation médicale : consulter gratuitement", "item": "https://economya.fr/article-237.html"}]}</script>
+
 
 <div class="ah">
   <div class="hi">
@@ -173,7 +176,7 @@ window.economyaLoadAds = function() {
   <p class="lead">Médecin introuvable dans votre secteur, délai de plusieurs semaines pour un rendez-vous, pas le temps de se déplacer : la téléconsultation est désormais remboursée à 100 % par l'Assurance maladie. Voici comment en profiter sans débourser un centime.</p>
 
   <h2>🏥 Ce qui est remboursé</h2>
-  <p>Depuis 2022, la téléconsultation est remboursée <strong>au même tarif qu'une consultation classique</strong> (26,50 € par la Sécu, le reste par votre mutuelle). Deux conditions pour être pris en charge à 100 % :</p>
+  <p>Depuis 2022, la téléconsultation est remboursée par la Sécu sur la base de <strong>25 €</strong> (contre 30 € pour une consultation classique en cabinet depuis décembre 2024), le reste pouvant être pris en charge par votre mutuelle. Deux conditions pour être pris en charge à 100 % :</p>
 
   <ul class="vlist">
     <li>
@@ -190,7 +193,7 @@ window.economyaLoadAds = function() {
     </li>
   </ul>
 
-  <h2>📱 Les meilleures plateformes en 2025</h2>
+  <h2>📱 Les meilleures plateformes en 2026</h2>
 
   <div class="platforms">
     <div class="pcard">
@@ -286,11 +289,6 @@ window.economyaLoadAds = function() {
 })();
 </script>
 
-<footer>
-  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
-</footer>
-
 <style>
 .similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
 .similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
@@ -305,7 +303,12 @@ window.economyaLoadAds = function() {
   <h3>📚 Articles similaires</h3>
   <div class="sim-grid"><a class="sim-card" href="article-231.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">100% Santé : ce qui est vraiment remboursé</div></a><a class="sim-card" href="article-232.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">ALD : droits, prise en charge à 100%</div></a><a class="sim-card" href="article-233.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Complémentaire santé solidaire (CSS) gratuite</div></a><a class="sim-card" href="article-234.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Remboursement lunettes : toutes les aides</div></a></div>
 </div>
-<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
 <p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
