@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="PEE et PERCO : utiliser au mieux — Abondement employeur. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PEE et PERCO : utiliser au mieux — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#2C2C2A;line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#085041;text-decoration:none}
+  .logo span{color:#EF9F27}
+  .back{font-size:.82rem;color:#5F5E5A;text-decoration:none}
+  .back:hover{color:#1D9E75}
+
+  /* HERO — nuit ardoise → bleu royal → cyan clair */
+  .hero{background:linear-gradient(135deg,#080C1C 0%,#182060 32%,#2840C8 62%,#4888E8 84%,#90C8F8 100%);padding:3.8rem 2rem 3.2rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'🐣';position:absolute;font-size:14rem;opacity:.05;top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none}
+  .hero-cat{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.05em}
+  .hero-cat strong{color:#fff}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:900;color:#fff;line-height:1.1;max-width:640px;margin:.3rem auto .9rem}
+  .hero-badge{display:inline-block;background:linear-gradient(90deg,#90C8F8,#4888E8);color:#080C1C;font-size:.82rem;font-weight:700;padding:.35rem 1.1rem;border-radius:50px}
+  .hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+  .hero-meta span{font-size:.73rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.09);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300;line-height:1.75}
+  h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#182060;margin:2.2rem 0 .8rem}
+
+  /* COMPARATIF PEE VS PERCO */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin:1.5rem 0}
+  .comp{border-radius:13px;overflow:hidden;border:1px solid rgba(0,0,0,.08)}
+  .comp-head{padding:.75rem 1rem;color:#fff;font-weight:700;font-size:.9rem}
+  .comp-head.pee{background:linear-gradient(135deg,#182060,#2840C8)}
+  .comp-head.perco{background:linear-gradient(135deg,#3A0860,#8820C8)}
+  .comp-body{background:#fff;padding:.85rem 1rem}
+  .comp-row{display:flex;justify-content:space-between;gap:.5rem;padding:.3rem 0;border-bottom:1px dotted rgba(0,0,0,.07);font-size:.82rem}
+  .comp-row:last-child{border-bottom:none}
+  .comp-label{font-weight:300;color:#5F5E5A}
+  .comp-val{font-weight:500;color:#2C2C2A;text-align:right;font-size:.8rem}
+
+  /* SUPPORTS D'INVESTISSEMENT */
+  .supports{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin:1.5rem 0}
+  .support{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:11px;padding:.85rem .8rem;text-align:center}
+  .support-ico{font-size:1.5rem;margin-bottom:.35rem}
+  .support-nom{font-weight:500;font-size:.83rem;color:#182060;margin-bottom:.2rem}
+  .support-risque{display:inline-block;font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;margin-bottom:.3rem}
+  .support-risque.faible{background:#ECFDF5;color:#065F46}
+  .support-risque.moyen{background:#FEF3C7;color:#713F12}
+  .support-risque.eleve{background:#FEE2E2;color:#7F1D1D}
+  .support-desc{font-size:.74rem;font-weight:300;color:#5F5E5A;line-height:1.4}
+
+  /* STRATÉGIE PAR ÂGE */
+  .strategies{display:flex;flex-direction:column;gap:.6rem;margin:1.5rem 0}
+  .strat{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:11px;display:grid;grid-template-columns:90px 1fr;overflow:hidden}
+  .strat-age{background:linear-gradient(135deg,#182060,#2840C8);color:#90C8F8;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:1.1rem;padding:.8rem;text-align:center;line-height:1.2}
+  .strat-body{padding:.75rem 1rem}
+  .strat-titre{font-weight:500;font-size:.87rem;color:#182060;margin-bottom:.2rem}
+  .strat-desc{font-size:.8rem;font-weight:300;color:#5F5E5A;line-height:1.5}
+
+  /* SIMULATION */
+  .simul{background:linear-gradient(135deg,#080C1C,#182060);border-radius:13px;padding:1.3rem 1.5rem;margin:1.5rem 0;color:#fff}
+  .simul h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#90C8F8;margin-bottom:.9rem}
+  .simul-row{display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.84rem}
+  .simul-row:last-child{border-bottom:none;padding-top:.55rem;margin-top:.2rem}
+  .simul-lab{font-weight:300;color:rgba(255,255,255,.8)}
+  .simul-val{font-weight:600;color:#90C8F8;white-space:nowrap}
+  .simul-lab.total{font-weight:600;color:#fff}
+  .simul-val.total{font-size:1rem}
+  .simul-val.green{color:#6EE7B7}
+
+  /* ERREURS À ÉVITER */
+  .erreurs{display:flex;flex-direction:column;gap:.5rem;margin:1.4rem 0}
+  .erreur{display:flex;gap:.75rem;align-items:flex-start;padding:.7rem 1rem;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.07)}
+  .erreur-ico{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+  .erreur-text{font-size:.83rem;font-weight:300;color:#2C2C2A;line-height:1.5}
+  .erreur-text strong{font-weight:500;color:#7B1D1D;display:block;margin-bottom:.1rem}
+
+  .encadre{border-left:4px solid #2840C8;background:#EEF4FF;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+  .encadre strong{display:block;color:#182060;font-size:.9rem;margin-bottom:.3rem}
+  .encadre p{font-size:.84rem;font-weight:300;color:#2840C8;margin:0;line-height:1.6}
+
+  .conseil{background:linear-gradient(135deg,#080C1C,#182060);border-radius:13px;padding:1.3rem 1.5rem;margin:2rem 0;color:#fff;border:1px solid rgba(144,200,248,.1)}
+  .conseil strong{display:block;color:#90C8F8;font-weight:500;font-size:.93rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:#085041;color:rgba(255,255,255,.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:#fff}
+  footer a{color:#EF9F27;text-decoration:none}
+  @media(max-width:500px){.compare{grid-template-columns:1fr}.supports{grid-template-columns:1fr 1fr}.strat{grid-template-columns:70px 1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "PEE et PERCO : utiliser au mieux",
+  "description": "PEE et PERCO : utiliser au mieux — Abondement employeur. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-225.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="PEE et PERCO : utiliser au mieux">
+  <meta property="og:description" content="PEE et PERCO : utiliser au mieux — Abondement employeur. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-225.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PEE et PERCO : utiliser au mieux">
+  <meta name="twitter:description" content="PEE et PERCO : utiliser au mieux — Abondement employeur. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-225.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">PEE et PERCO : utiliser au mieux</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "PEE et PERCO : utiliser au mieux", "item": "https://economya.fr/article-225.html"}]}</script>
+
+
+<div class="hero">
+  <div class="hero-cat">🐣 <strong>Emploi</strong></div>
+  <h1>PEE et PERCO : utiliser au mieux</h1>
+  <div class="hero-badge">💰 Abondement employeur — argent gratuit</div>
+  <div class="hero-meta">
+    <span>📖 5 min de lecture</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>💼 Épargne salariale</span>
+  </div>
+</div>
+
+<article>
+  <p>Le Plan d'Épargne Entreprise (PEE) et le Plan d'Épargne Retraite Collectif (PERCO, remplacé progressivement par le PER collectif) sont deux des outils d'épargne les plus avantageux fiscalement accessibles aux salariés. Pourtant, moins de 40 % des salariés éligibles les utilisent à leur plein potentiel — et beaucoup ne savent même pas ce que leur employeur abonde. C'est de l'argent gratuit laissé sur la table chaque année.</p>
+
+  <h2>PEE vs PERCO / PER collectif : les différences essentielles</h2>
+
+  <div class="compare">
+    <div class="comp">
+      <div class="comp-head pee">📦 Plan Épargne Entreprise (PEE)</div>
+      <div class="comp-body">
+        <div class="comp-row"><span class="comp-label">Durée de blocage</span><span class="comp-val">5 ans (sauf cas légaux)</span></div>
+        <div class="comp-row"><span class="comp-label">Alimentation</span><span class="comp-val">Versements volontaires + intéressement/participation</span></div>
+        <div class="comp-row"><span class="comp-label">Plafond versements volontaires</span><span class="comp-val">25 % du salaire brut/an</span></div>
+        <div class="comp-row"><span class="comp-label">Abondement max employeur</span><span class="comp-val">300 % du versement, max 3 519 €</span></div>
+        <div class="comp-row"><span class="comp-label">Fiscalité à la sortie</span><span class="comp-val">Plus-values exonérées d'IR (hors PS)</span></div>
+        <div class="comp-row"><span class="comp-label">Idéal pour</span><span class="comp-val">Projet à 5 ans+ (immobilier, enfants)</span></div>
+      </div>
+    </div>
+    <div class="comp">
+      <div class="comp-head perco">🎯 PERCO / PER Collectif</div>
+      <div class="comp-body">
+        <div class="comp-row"><span class="comp-label">Durée de blocage</span><span class="comp-val">Jusqu'à la retraite (sauf cas légaux)</span></div>
+        <div class="comp-row"><span class="comp-label">Alimentation</span><span class="comp-val">Versements volontaires + épargne salariale</span></div>
+        <div class="comp-row"><span class="comp-label">Plafond versements volontaires</span><span class="comp-val">10 % des revenus N-1</span></div>
+        <div class="comp-row"><span class="comp-label">Abondement max employeur</span><span class="comp-val">16 % du PASS (7 036 €/an)</span></div>
+        <div class="comp-row"><span class="comp-label">Fiscalité à la sortie</span><span class="comp-val">Capital exonéré IR / rente imposable</span></div>
+        <div class="comp-row"><span class="comp-label">Idéal pour</span><span class="comp-val">Compléter la retraite</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Quels supports choisir dans votre PEE ?</h2>
+
+  <div class="supports">
+    <div class="support">
+      <div class="support-ico">🏦</div>
+      <div class="support-nom">Fonds monétaires</div>
+      <span class="support-risque faible">Risque faible</span>
+      <div class="support-desc">Rendement proche de 0 à 3 % selon les taux. Idéal si vous prévoyez un déblocage anticipé proche ou si vous êtes proche des 5 ans.</div>
+    </div>
+    <div class="support">
+      <div class="support-ico">📊</div>
+      <div class="support-nom">Fonds obligataires</div>
+      <span class="support-risque moyen">Risque modéré</span>
+      <div class="support-desc">Obligations d'entreprises ou d'États. Rendement 3–5 %/an historiquement. Bon compromis risque/rendement à 5 ans.</div>
+    </div>
+    <div class="support">
+      <div class="support-ico">🌍</div>
+      <div class="support-nom">Fonds actions diversifiés</div>
+      <span class="support-risque eleve">Risque élevé</span>
+      <div class="support-desc">ETF ou fonds actions monde. Rendement historique 7–9 %/an sur 10 ans. Volatilité forte à court terme. Meilleur choix si horizon > 5 ans.</div>
+    </div>
+    <div class="support">
+      <div class="support-ico">🏢</div>
+      <div class="support-nom">FCPE actions entreprise</div>
+      <span class="support-risque eleve">Risque concentré</span>
+      <div class="support-desc">Actions de votre propre employeur. Rendement potentiellement élevé mais risque fort (si l'entreprise va mal, vous perdez salaire ET épargne en même temps). À limiter à 10–20 %.</div>
+    </div>
+    <div class="support">
+      <div class="support-ico">🌱</div>
+      <div class="support-nom">Fonds ISR / solidaires</div>
+      <span class="support-risque moyen">Risque modéré</span>
+      <div class="support-desc">Investissement socialement responsable. Performance comparable aux fonds classiques selon les études. Obligation d'en proposer au moins un dans chaque PEE depuis 2010.</div>
+    </div>
+    <div class="support">
+      <div class="support-ico">⚖️</div>
+      <div class="support-nom">Fonds équilibrés</div>
+      <span class="support-risque moyen">Risque mixte</span>
+      <div class="support-desc">Mix actions/obligations géré automatiquement. Simple à choisir pour les non-initiés. Moins optimal qu'un fonds actions pur sur longue durée, mais moins volatile.</div>
+    </div>
+  </div>
+
+  <h2>La stratégie selon votre âge et horizon</h2>
+
+  <div class="strategies">
+    <div class="strat">
+      <div class="strat-age">20–35<br>ans</div>
+      <div class="strat-body">
+        <div class="strat-titre">Tout sur les actions — le temps est votre allié</div>
+        <div class="strat-desc">À cet horizon, les corrections boursières se récupèrent toujours. Choisissez un fonds actions monde ou ETF MSCI World dans votre PEE. Maximisez l'abondement employeur avant tout autre investissement. Le PERCO pour la retraite peut aussi être 100 % actions.</div>
+      </div>
+    </div>
+    <div class="strat">
+      <div class="strat-age">35–50<br>ans</div>
+      <div class="strat-body">
+        <div class="strat-titre">70 % actions / 30 % obligations — équilibre optimal</div>
+        <div class="strat-desc">Continuez à profiter de la croissance des marchés tout en sécurisant progressivement une partie. Sur le PEE : actions pour le long terme, obligataire pour la partie que vous pourriez débloquer pour un projet. PERCO toujours orienté actions.</div>
+      </div>
+    </div>
+    <div class="strat">
+      <div class="strat-age">50–60<br>ans</div>
+      <div class="strat-body">
+        <div class="strat-titre">Sécurisation progressive — piloter vers la sortie</div>
+        <div class="strat-desc">Commencez à basculer vers des fonds moins risqués. La plupart des PERCO/PER collectifs proposent une gestion à horizon automatique qui fait cette sécurisation pour vous. Sur le PEE, déplacez vers le monétaire les sommes dont vous aurez besoin dans les 3 ans.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Simulation — impact de l'abondement sur 10 ans</h2>
+
+  <div class="simul">
+    <h3>🧮 Versement de 1 500 €/an sur PEE — abondement employeur 100 % — rendement 7 %/an</h3>
+    <div class="simul-row"><span class="simul-lab">Versement salarié annuel</span><span class="simul-val">1 500 €</span></div>
+    <div class="simul-row"><span class="simul-lab">Abondement employeur (100 %)</span><span class="simul-val green">+ 1 500 € gratuits</span></div>
+    <div class="simul-row"><span class="simul-lab">Total investi par an</span><span class="simul-val">3 000 €</span></div>
+    <div class="simul-row"><span class="simul-lab">Valeur après 10 ans (7 %/an)</span><span class="simul-val green">≈ 41 000 €</span></div>
+    <div class="simul-row"><span class="simul-lab">Sans abondement (même versement)</span><span class="simul-val">≈ 20 700 €</span></div>
+    <div class="simul-row">
+      <span class="simul-lab total">Gain grâce à l'abondement sur 10 ans</span>
+      <span class="simul-val total green">+ 20 300 € (argent de l'employeur + intérêts composés)</span>
+    </div>
+  </div>
+
+  <h2>Les 4 erreurs les plus coûteuses</h2>
+
+  <div class="erreurs">
+    <div class="erreur">
+      <span class="erreur-ico">⚠️</span>
+      <div class="erreur-text"><strong>Ne pas verser suffisamment pour déclencher l'abondement maximum</strong>Si votre employeur abonde jusqu'à 2 000 € par an, verser seulement 500 € vous fait rater 1 500 € gratuits. Vérifiez le plafond d'abondement de votre accord PEE et calrez vos versements en conséquence — c'est la priorité absolue.</div>
+    </div>
+    <div class="erreur">
+      <span class="erreur-ico">⚠️</span>
+      <div class="erreur-text"><strong>Laisser l'intéressement et la participation partir en cash par défaut</strong>Par défaut, si vous ne choisissez pas, l'intéressement est versé en cash (et imposé). La décision doit être active et prise dans le délai imparti (15 jours après réception de l'avis). Prévoyez un rappel dans votre agenda chaque année à la période de clôture.</div>
+    </div>
+    <div class="erreur">
+      <span class="erreur-ico">⚠️</span>
+      <div class="erreur-text"><strong>Placer sur le FCPE actions de l'entreprise à plus de 20 %</strong>Concentrer trop d'épargne sur les actions de votre employeur est risqué : en cas de faillite ou de forte chute du cours, vous perdez simultanément votre emploi et une partie de votre épargne. Limitez à 10–20 % maximum.</div>
+    </div>
+    <div class="erreur">
+      <span class="erreur-ico">⚠️</span>
+      <div class="erreur-text"><strong>Oublier de rééquilibrer son allocation</strong>Si vous avez choisi un fonds actions en 2015 et ne l'avez jamais retouché, votre exposition au risque a peut-être doublé avec la hausse des marchés. Vérifiez votre répartition une fois par an et rééquilibrez si nécessaire.</div>
+    </div>
+  </div>
+
+  <div class="encadre">
+    <strong>📌 Quitter l'entreprise : que deviennent vos avoirs PEE ?</strong>
+    <p>En quittant votre employeur (démission, licenciement, retraite), vous pouvez soit laisser vos avoirs sur le PEE (ils continuent de fructifier mais vous ne pouvez plus y verser ni bénéficier de l'abondement), soit les transférer vers le PEE de votre nouvel employeur dans les 3 mois, soit les récupérer si les 5 ans de blocage sont écoulés. Le transfert vers un nouveau PEE est souvent la meilleure option — les avoirs restent investis, exonérés, et la durée de blocage reste acquise.</p>
+  </div>
+
+  <div class="conseil">
+    <strong>📱 Vérifiez votre PEE dès aujourd'hui — 15 minutes chrono</strong>
+    <p>Connectez-vous à la plateforme de votre gestionnaire de PEE (Amundi ESR, BNP Épargne Salariale, Natixis Interépargne…). Vérifiez : (1) le taux et le plafond d'abondement de votre entreprise ; (2) la répartition actuelle de vos avoirs ; (3) les versements programmés en cours. Si vous n'avez pas de versements programmés, mettez-en en place — même 50 €/mois pour déclencher l'abondement. Ce quart d'heure peut vous rapporter plusieurs milliers d'euros sur les prochaines années sans aucun effort supplémentaire.</p>
+  </div>
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-216.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Bulletin de salaire : décrypter chaque ligne</div></a><a class="sim-card" href="article-217.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Négocier son salaire : scripts qui marchent</div></a><a class="sim-card" href="article-218.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Chômage ARE : calculer ses droits en 2026</div></a><a class="sim-card" href="article-219.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Rupture conventionnelle : tout savoir</div></a></div>
+</div>
+
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

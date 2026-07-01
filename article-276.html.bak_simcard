@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Flying Blue, Miles&More : programmes fidélité décryptés — Vols gratuits avec vos points. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flying Blue, Miles&More : programmes fidélité décryptés — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--sky:#0284c7;--sky-l:#f0f9ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#082f49,#075985,#0284c7);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'✈️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1;text-align:center}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bae6fd;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#7dd3fc;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#0284c7);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(2,132,199,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#0284c7,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--sky);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* PROGRAMMES CARDS */
+.programmes{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+.prog{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem 1.5rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.prog:hover{box-shadow:0 4px 18px rgba(2,132,199,.1)}
+.prog.top{border:2px solid var(--g)}
+.top-badge{display:inline-block;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;margin-bottom:.3rem}
+.prog-icon{font-size:2rem;flex-shrink:0;margin-top:.1rem}
+.prog-body h3{font-size:.95rem;font-weight:700;margin-bottom:.2rem}
+.prog-body p{font-size:.83rem;color:var(--m);font-weight:300;margin:0 0 .45rem}
+.prog-tags{display:flex;flex-wrap:wrap;gap:.3rem}
+.ptag{font-size:.68rem;font-weight:600;padding:.1rem .45rem;border-radius:50px;background:#f0f9ff;color:#0369a1}
+.ptag.g{background:var(--gl);color:var(--gd)}
+.prog-right{text-align:right;flex-shrink:0}
+.prog-note{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--sky);display:block;white-space:nowrap}
+.prog-sub{font-size:.7rem;color:var(--m)}
+
+/* ASTUCES LISTE */
+.astuces{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
+.astuce{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
+.astuce .aico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
+.astuce strong{display:block;font-size:.92rem;margin-bottom:.15rem}
+.astuce span{font-size:.85rem;color:var(--m);font-weight:300}
+.astuce .atag{display:inline-block;margin-top:.35rem;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+
+/* TABLEAU */
+.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+thead tr{background:linear-gradient(135deg,#075985,#0284c7);color:white}
+thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.8rem}
+tbody tr{border-bottom:1px solid var(--b)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:#fafafa}
+tbody td{padding:.8rem 1rem;vertical-align:middle}
+.g{color:#16a34a;font-weight:600}
+.o{color:var(--ad);font-weight:500}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--sky-l);border-left:4px solid var(--sky);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#082f49}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#082f49,#075985);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#0284c7,#7c3aed);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.prog{grid-template-columns:1fr;gap:.5rem}.prog-right{text-align:left}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Flying Blue, Miles&More : programmes fidélité décryptés",
+  "description": "Flying Blue, Miles&More : programmes fidélité décryptés — Vols gratuits avec vos points. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-276.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Flying Blue, Miles&More : programmes fidélité décryptés">
+  <meta property="og:description" content="Flying Blue, Miles&More : programmes fidélité décryptés — Vols gratuits avec vos points. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-276.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Flying Blue, Miles&More : programmes fidélité décryptés">
+  <meta name="twitter:description" content="Flying Blue, Miles&More : programmes fidélité décryptés — Vols gratuits avec vos points. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-276.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Voyages</span> › <span style="color:var(--t,#2C2C2A)">Flying Blue, Miles&More : programmes fidélité décryptés</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Voyages", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Flying Blue, Miles&More : programmes fidélité décryptés", "item": "https://economya.fr/article-276.html"}]}</script>
+
+
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">✈️ Voyages</div>
+    <h1>Flying Blue, Miles&More :<br><em>programmes fidélité décryptés</em></h1>
+    <div class="savings-badge">💰 Vols gratuits avec vos points</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="theme-tag">🎫 Miles & points voyage</span>
+    </div>
+  </div>
+</div>
+
+<div class="ab">
+
+  <p class="lead">Les programmes de fidélité aériens permettent d'obtenir des vols gratuits, des surclassements et des accès salons. Mais entre Flying Blue (Air France), Miles&More (Lufthansa) et les programmes des alliances, il est facile de se perdre. Voici comment en tirer le maximum sans dépenser plus.</p>
+
+  <h2>✈️ Les principaux programmes en Europe</h2>
+
+  <div class="programmes">
+
+    <div class="prog top">
+      <div class="prog-icon">🔵</div>
+      <div class="prog-body">
+        <div class="top-badge">⭐ Meilleur pour les Français</div>
+        <h3>Flying Blue (Air France / KLM)</h3>
+        <p>Le programme de référence pour les voyageurs français. Miles utilisables sur Air France, KLM, et 30+ compagnies partenaires (Delta, Kenya Airways…). Promotions "Promo Awards" régulières avec des vols dès 5 000 miles A/R Europe.</p>
+        <div class="prog-tags">
+          <span class="ptag g">Promo Awards mensuelle</span>
+          <span class="ptag">Alliance SkyTeam</span>
+          <span class="ptag">Miles valables 24 mois</span>
+        </div>
+      </div>
+      <div class="prog-right"><span class="prog-note">⭐⭐⭐⭐⭐</span><span class="prog-sub">flyingblue.com</span></div>
+    </div>
+
+    <div class="prog">
+      <div class="prog-icon">🟡</div>
+      <div class="prog-body">
+        <h3>Miles & More (Lufthansa Group)</h3>
+        <p>Programme du groupe Lufthansa (Swiss, Austrian, Brussels Airlines). Miles utilisables sur les 26 membres Star Alliance. Forte valeur en classe Affaires long-courrier. Miles valables 36 mois si activité régulière.</p>
+        <div class="prog-tags">
+          <span class="ptag">Star Alliance</span>
+          <span class="ptag">Excellent en Business</span>
+          <span class="ptag g">Miles 36 mois</span>
+        </div>
+      </div>
+      <div class="prog-right"><span class="prog-note">⭐⭐⭐⭐</span><span class="prog-sub">miles-and-more.com</span></div>
+    </div>
+
+    <div class="prog">
+      <div class="prog-icon">🟠</div>
+      <div class="prog-body">
+        <h3>Avios (British Airways / Iberia)</h3>
+        <p>Programme oneworld. Très avantageux pour les courts et moyens courriers (calcul au segment, pas à la distance). Iberia Plus offre régulièrement des promotions sur les vols transatlantiques Madrid-USA.</p>
+        <div class="prog-tags">
+          <span class="ptag">Alliance oneworld</span>
+          <span class="ptag g">Court-courrier efficace</span>
+          <span class="ptag">Transatlantique attractif</span>
+        </div>
+      </div>
+      <div class="prog-right"><span class="prog-note">⭐⭐⭐⭐</span><span class="prog-sub">ba.com / iberia.com</span></div>
+    </div>
+
+  </div>
+
+  <h2>💡 Les meilleures astuces pour accumuler des miles</h2>
+
+  <div class="astuces">
+    <div class="astuce">
+      <span class="aico">💳</span>
+      <div>
+        <strong>Utilisez une carte bancaire qui génère des miles</strong>
+        <span>Les cartes Amex (avec transfert vers Flying Blue), la Carte Gold Air France KLM et certaines cartes Visa premium créditent des miles sur chaque achat du quotidien. 1 à 2 miles par euro dépensé.</span>
+        <span class="atag">💰 5 000–15 000 miles/an sans voyager</span>
+      </div>
+    </div>
+    <div class="astuce">
+      <span class="aico">🛒</span>
+      <div>
+        <strong>Achetez via les portails shopping des programmes</strong>
+        <span>Flying Blue Shopping, Miles&More Shopping permettent de cumuler des miles en achetant chez FNAC, Amazon, Booking… jusqu'à 10 miles par euro chez certains partenaires.</span>
+        <span class="atag">💰 Jusqu'à 10 miles/€</span>
+      </div>
+    </div>
+    <div class="astuce">
+      <span class="aico">🏨</span>
+      <div>
+        <strong>Liez vos réservations hôtel et voiture</strong>
+        <span>Accor, Marriott, Hertz, Avis… sont partenaires des grandes alliances. Réservez via les portails fidélité pour cumuler des miles sur chaque nuit d'hôtel ou journée de location.</span>
+        <span class="atag">💰 500–2 000 miles/réservation</span>
+      </div>
+    </div>
+    <div class="astuce">
+      <span class="aico">📅</span>
+      <div>
+        <strong>Profitez des promotions Promo Awards (Flying Blue)</strong>
+        <span>Chaque mois, Flying Blue publie des vols en promotion à moitié miles. Paris-New York en économique peut passer de 35 000 à 17 500 miles. Activez les alertes sur l'appli.</span>
+        <span class="atag">💰 −50 % de miles requis</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>📊 Combien de miles pour un vol gratuit ?</h2>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Destination (A/R depuis Paris)</th>
+          <th>Économique</th>
+          <th>Business</th>
+          <th>Valeur approximative</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Europe (Londres, Madrid, Rome)</td><td class="g">10 000–20 000</td><td class="o">30 000–50 000</td><td>150–300 €</td></tr>
+        <tr><td>Afrique du Nord (Maroc, Tunisie)</td><td class="g">15 000–25 000</td><td class="o">40 000–60 000</td><td>250–500 €</td></tr>
+        <tr><td>New York / USA</td><td class="o">30 000–50 000</td><td class="r">80 000–120 000</td><td>600–2 000 €</td></tr>
+        <tr><td>Tokyo / Asie</td><td class="o">40 000–70 000</td><td class="r">100 000–180 000</td><td>800–3 000 €</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tip">
+    <strong>💡 La meilleure valeur : la classe Affaires en long-courrier</strong>
+    Un billet Business Paris-New York coûte 3 000 à 6 000 € en tarif normal. Avec 100 000 miles (accumulables en 2–3 ans avec une carte premium), vous économisez jusqu'à 5 000 €. C'est là que les programmes de fidélité offrent leur meilleur rendement.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Attention à la dépréciation des miles</strong>
+    Les compagnies réévaluent régulièrement leurs barèmes à la hausse (plus de miles requis pour les mêmes vols). Utilisez vos miles dans les 12 à 24 mois suivant leur accumulation plutôt que d'attendre. Les miles "dormants" perdent de la valeur chaque année.
+  </div>
+
+  <div class="tip">
+    <strong>✈️ Vol annulé ou retardé ? Vos miles ne suffisent pas, mais la loi vous protège</strong>
+    Un vol annulé ou retardé de plus de 3 heures au départ ou à l'arrivée de l'UE ouvre droit à une indemnisation pouvant atteindre 600€ par passager, indépendamment de vos points de fidélité. <a href="https://www.awin1.com/cread.php?awinmid=13334&awinaffid=2926395&ued=https%3A%2F%2Fwww.flightright.fr" rel="sponsored noopener" target="_blank">Flightright</a> vérifie gratuitement votre éligibilité et gère la procédure de réclamation auprès de la compagnie à votre place.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Voyages malins dans votre boîte mail</h3>
+    <p>Les meilleures astuces pour voyager plus pour moins cher, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-278.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Airbnb vs hôtel : que choisir selon les cas</div></a><a class="sim-card" href="article-279.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Bagages cabine seulement : le guide ultime</div></a><a class="sim-card" href="article-280.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Voyager en famillepour moins de 2 000 €</div></a><a class="sim-card" href="article-281.html"><div class="sim-card-cat">Voyages</div><div class="sim-card-title">Travel hacking France : meilleures cartes bancaires</div></a></div>
+</div>
+
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

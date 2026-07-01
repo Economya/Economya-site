@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="ALD : droits, prise en charge à 100% — Soins entièrement remboursés. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALD : droits, prise en charge à 100% — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#2C2C2A;line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#085041;text-decoration:none}
+  .logo span{color:#EF9F27}
+  .back{font-size:.82rem;color:#5F5E5A;text-decoration:none}
+  .back:hover{color:#1D9E75}
+
+  /* HERO — rouge grenat → rose profond → corail doré */
+  .hero{background:linear-gradient(135deg,#140408 0%,#4A0818 32%,#9A1838 62%,#D84860 84%,#F8A890 100%);padding:3.8rem 2rem 3.2rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'❤️‍🩹';position:absolute;font-size:14rem;opacity:.05;top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none}
+  .hero-cat{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.05em}
+  .hero-cat strong{color:#fff}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:900;color:#fff;line-height:1.1;max-width:640px;margin:.3rem auto .9rem}
+  .hero-badge{display:inline-block;background:linear-gradient(90deg,#F8A890,#D84860);color:#140408;font-size:.82rem;font-weight:700;padding:.35rem 1.1rem;border-radius:50px}
+  .hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+  .hero-meta span{font-size:.73rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.09);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300;line-height:1.75}
+  h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#4A0818;margin:2.2rem 0 .8rem}
+
+  /* CE QUE COUVRE L'ALD */
+  .couverture{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.5rem 0}
+  .couv{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:11px;padding:.85rem 1rem}
+  .couv-ico{font-size:1.3rem;margin-bottom:.3rem}
+  .couv-titre{font-weight:500;font-size:.86rem;color:#4A0818;margin-bottom:.2rem}
+  .couv-desc{font-size:.78rem;font-weight:300;color:#5F5E5A;line-height:1.45}
+  .couv-badge{display:inline-block;margin-top:.3rem;font-size:.7rem;font-weight:600;padding:.1rem .45rem;border-radius:50px}
+  .couv-badge.full{background:#FFE8EC;color:#4A0818}
+  .couv-badge.partial{background:#FEF3C7;color:#713F12}
+
+  /* 30 ALD COURANTES */
+  .ald-liste{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin:1.5rem 0}
+  .ald-item{background:#fff;border:1px solid rgba(0,0,0,.07);border-radius:8px;padding:.5rem .8rem;font-size:.8rem;font-weight:300;color:#2C2C2A;display:flex;gap:.5rem;align-items:center;line-height:1.35}
+  .ald-item::before{content:'•';color:#9A1838;font-weight:700;flex-shrink:0}
+
+  /* TIMELINE PROCÉDURE */
+  .timeline{display:flex;flex-direction:column;gap:0;margin:1.5rem 0;position:relative}
+  .timeline::before{content:'';position:absolute;left:21px;top:22px;bottom:22px;width:2px;background:linear-gradient(180deg,#9A1838,#D84860 60%,rgba(216,72,96,.1))}
+  .tl{display:grid;grid-template-columns:44px 1fr;gap:.9rem;padding:.7rem 0;align-items:flex-start}
+  .tl-dot{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#4A0818,#9A1838);color:#F8A890;font-family:'Playfair Display',serif;font-weight:900;font-size:.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1;box-shadow:0 2px 10px rgba(154,24,56,.3)}
+  .tl-body{padding-top:.3rem}
+  .tl-titre{font-weight:500;font-size:.9rem;color:#4A0818;margin-bottom:.2rem}
+  .tl-desc{font-size:.83rem;font-weight:300;color:#5F5E5A;line-height:1.55}
+  .tl-badge{display:inline-block;margin-top:.3rem;font-size:.72rem;font-weight:600;padding:.1rem .55rem;border-radius:50px;background:#FFE8EC;color:#4A0818}
+
+  /* SIMULATION */
+  .simul{background:linear-gradient(135deg,#140408,#4A0818);border-radius:13px;padding:1.3rem 1.5rem;margin:1.5rem 0;color:#fff}
+  .simul h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#F8A890;margin-bottom:.9rem}
+  .simul-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+  .simul-col h4{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.45);margin-bottom:.6rem;padding-bottom:.3rem;border-bottom:1px solid rgba(255,255,255,.09)}
+  .simul-row{display:flex;justify-content:space-between;padding:.35rem 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.83rem}
+  .simul-row:last-child{border-bottom:none;padding-top:.45rem}
+  .simul-lab{font-weight:300;color:rgba(255,255,255,.75)}
+  .simul-val{font-weight:600;color:#F8A890;white-space:nowrap}
+  .simul-lab.total{font-weight:600;color:#fff}
+  .simul-val.green{color:#6EE7B7}
+  .simul-val.red{color:#FF8080}
+
+  /* DROITS MÉCONNUS */
+  .droits{display:flex;flex-direction:column;gap:.5rem;margin:1.4rem 0}
+  .droit{display:flex;gap:.75rem;align-items:flex-start;padding:.7rem 1rem;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.07)}
+  .droit-ico{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+  .droit-text{font-size:.83rem;font-weight:300;color:#2C2C2A;line-height:1.5}
+  .droit-text strong{font-weight:500;color:#4A0818;display:block;margin-bottom:.1rem}
+
+  .encadre{border-left:4px solid #9A1838;background:#FFF0F3;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+  .encadre strong{display:block;color:#4A0818;font-size:.9rem;margin-bottom:.3rem}
+  .encadre p{font-size:.84rem;font-weight:300;color:#7A1830;margin:0;line-height:1.6}
+
+  .conseil{background:linear-gradient(135deg,#140408,#4A0818);border-radius:13px;padding:1.3rem 1.5rem;margin:2rem 0;color:#fff;border:1px solid rgba(248,168,144,.1)}
+  .conseil strong{display:block;color:#F8A890;font-weight:500;font-size:.93rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:#085041;color:rgba(255,255,255,.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:#fff}
+  footer a{color:#EF9F27;text-decoration:none}
+  @media(max-width:500px){.couverture{grid-template-columns:1fr}.ald-liste{grid-template-columns:1fr}.simul-grid{grid-template-columns:1fr}.timeline::before{left:18px}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ALD : droits, prise en charge à 100%",
+  "description": "ALD : droits, prise en charge à 100% — Soins entièrement remboursés. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-232.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="ALD : droits, prise en charge à 100%">
+  <meta property="og:description" content="ALD : droits, prise en charge à 100% — Soins entièrement remboursés. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-232.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ALD : droits, prise en charge à 100%">
+  <meta name="twitter:description" content="ALD : droits, prise en charge à 100% — Soins entièrement remboursés. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-232.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">ALD : droits, prise en charge à 100%</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "ALD : droits, prise en charge à 100%", "item": "https://economya.fr/article-232.html"}]}</script>
+
+
+<div class="hero">
+  <div class="hero-cat">❤️‍🩹 <strong>Santé</strong></div>
+  <h1>ALD : droits, prise en charge à 100%</h1>
+  <div class="hero-badge">💰 Soins entièrement remboursés</div>
+  <div class="hero-meta">
+    <span>📖 5 min de lecture</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🏥 Maladies chroniques</span>
+  </div>
+</div>
+
+<article>
+  <p>L'Affection de Longue Durée (ALD) est une reconnaissance officielle par la Sécurité Sociale d'une maladie grave ou chronique qui nécessite un traitement prolongé et coûteux. Une fois reconnue en ALD, tous les soins liés à cette affection sont remboursés à 100% du tarif de la Sécurité Sociale — sans avance de frais ni ticket modérateur. En France, plus de 12 millions de personnes bénéficient d'une ALD. Mais beaucoup ignorent l'étendue réelle de leurs droits, et certains ne font jamais la demande alors qu'ils y auraient droit.</p>
+
+  <h2>Ce que couvre vraiment la prise en charge à 100%</h2>
+
+  <div class="couverture">
+    <div class="couv">
+      <div class="couv-ico">💊</div>
+      <div class="couv-titre">Médicaments liés à l'ALD</div>
+      <div class="couv-desc">Tous les médicaments prescrits dans le cadre du protocole de soins ALD sont remboursés à 100% du tarif Sécu. Les médicaments sans rapport avec l'ALD restent remboursés normalement.</div>
+      <span class="couv-badge full">100% remboursé</span>
+    </div>
+    <div class="couv">
+      <div class="couv-ico">🩺</div>
+      <div class="couv-titre">Consultations médecin</div>
+      <div class="couv-desc">Consultations chez le médecin traitant et les spécialistes en rapport avec l'ALD, remboursées à 100%. Hors ALD : tarif normal (70%).</div>
+      <span class="couv-badge full">100% remboursé</span>
+    </div>
+    <div class="couv">
+      <div class="couv-ico">🏥</div>
+      <div class="couv-titre">Hospitalisations</div>
+      <div class="couv-desc">Les hospitalisations en lien avec l'ALD sont prises en charge à 100% (hors forfait journalier hospitalier, pris en charge par la mutuelle si vous en avez une).</div>
+      <span class="couv-badge full">100% + mutuelle</span>
+    </div>
+    <div class="couv">
+      <div class="couv-ico">🩻</div>
+      <div class="couv-titre">Examens et analyses</div>
+      <div class="couv-desc">Radiographies, IRM, scanner, analyses biologiques prescrits pour le suivi de l'ALD : 100% remboursés. Les examens hors protocole ALD restent à tarif normal.</div>
+      <span class="couv-badge full">100% remboursé</span>
+    </div>
+    <div class="couv">
+      <div class="couv-ico">🚑</div>
+      <div class="couv-titre">Transports médicaux</div>
+      <div class="couv-desc">Les transports sanitaires (ambulance, VSL, taxi conventionné) liés aux soins de l'ALD sont pris en charge à 100% sur prescription médicale.</div>
+      <span class="couv-badge full">100% sur prescription</span>
+    </div>
+    <div class="couv">
+      <div class="couv-ico">🧑‍⚕️</div>
+      <div class="couv-titre">Kinésithérapie et soins infirmiers</div>
+      <div class="couv-desc">Les soins paramédicaux (kiné, infirmier à domicile, orthophoniste) prescrits dans le cadre du protocole ALD sont remboursés à 100%.</div>
+      <span class="couv-badge full">100% remboursé</span>
+    </div>
+    <div class="couv">
+      <div class="couv-ico">🛏️</div>
+      <div class="couv-titre">Forfait journalier hospitalier</div>
+      <div class="couv-desc">Ce forfait (20 €/jour en hôpital) n'est PAS pris en charge par la Sécu dans le cadre de l'ALD. Il reste à votre charge ou couvert par votre mutuelle si vous en avez une.</div>
+      <span class="couv-badge partial">Non inclus ALD</span>
+    </div>
+    <div class="couv">
+      <div class="couv-ico">🦷</div>
+      <div class="couv-titre">Soins dentaires et optique</div>
+      <div class="couv-desc">Les soins dentaires et optiques ne sont généralement pas couverts à 100% par l'ALD sauf cas particulier lié directement à la maladie. Le 100% Santé reste le dispositif principal.</div>
+      <span class="couv-badge partial">Hors ALD en général</span>
+    </div>
+  </div>
+
+  <h2>Les 30 ALD exonérantes les plus fréquentes</h2>
+
+  <div class="ald-liste">
+    <div class="ald-item">Diabète de type 1 et 2</div>
+    <div class="ald-item">Cancer (toutes formes)</div>
+    <div class="ald-item">Insuffisance cardiaque</div>
+    <div class="ald-item">Maladie coronarienne</div>
+    <div class="ald-item">Hypertension artérielle sévère</div>
+    <div class="ald-item">Accident vasculaire cérébral</div>
+    <div class="ald-item">Insuffisance respiratoire</div>
+    <div class="ald-item">Sclérose en plaques</div>
+    <div class="ald-item">Maladie de Parkinson</div>
+    <div class="ald-item">Épilepsie sévère</div>
+    <div class="ald-item">Insuffisance rénale chronique</div>
+    <div class="ald-item">Polyarthrite rhumatoïde</div>
+    <div class="ald-item">Maladie de Crohn</div>
+    <div class="ald-item">Rectocolite hémorragique</div>
+    <div class="ald-item">VIH / SIDA</div>
+    <div class="ald-item">Hépatite chronique active</div>
+    <div class="ald-item">Trouble bipolaire sévère</div>
+    <div class="ald-item">Schizophrénie</div>
+    <div class="ald-item">Maladie d'Alzheimer</div>
+    <div class="ald-item">Mucoviscidose</div>
+    <div class="ald-item">Hémophilie</div>
+    <div class="ald-item">Maladie de Gaucher</div>
+    <div class="ald-item">Spondylarthrite ankylosante</div>
+    <div class="ald-item">Lupus érythémateux</div>
+    <div class="ald-item">Thyroïde (hypothyroïdie grave)</div>
+    <div class="ald-item">Artériopathie oblitérante</div>
+    <div class="ald-item">Diabète insipide</div>
+    <div class="ald-item">Myopathies graves</div>
+    <div class="ald-item">Greffe d'organe</div>
+    <div class="ald-item">ALD hors liste (maladies graves)</div>
+  </div>
+
+  <h2>Comment faire la demande d'ALD — 4 étapes</h2>
+
+  <div class="timeline">
+    <div class="tl">
+      <div class="tl-dot">1</div>
+      <div class="tl-body">
+        <div class="tl-titre">Consulter son médecin traitant</div>
+        <div class="tl-desc">Votre médecin traitant est le seul à pouvoir initier la demande d'ALD. Lors d'une consultation, il évalue si votre état correspond aux critères médicaux d'une ALD et rédige le protocole de soins.</div>
+        <span class="tl-badge">Initiative du médecin traitant</span>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-dot">2</div>
+      <div class="tl-body">
+        <div class="tl-titre">Rédaction du protocole de soins (PIRES)</div>
+        <div class="tl-desc">Le médecin traitant et le médecin-conseil de l'Assurance Maladie co-signent un protocole de soins qui liste précisément les actes et médicaments couverts à 100% dans le cadre de l'ALD.</div>
+        <span class="tl-badge">Document de référence de vos droits</span>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-dot">3</div>
+      <div class="tl-body">
+        <div class="tl-titre">Validation par le médecin-conseil CPAM</div>
+        <div class="tl-desc">La demande est examinée par le médecin-conseil de votre caisse d'Assurance Maladie. Il peut accepter, modifier ou refuser. En cas de refus, vous pouvez contester dans les 2 mois.</div>
+        <span class="tl-badge">Délai : 3 à 6 semaines</span>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-dot">4</div>
+      <div class="tl-body">
+        <div class="tl-titre">Mise à jour de la carte Vitale</div>
+        <div class="tl-desc">Une fois l'ALD accordée, mettez à jour votre carte Vitale en pharmacie ou dans une borne automatique CPAM. Désormais, les soins liés à l'ALD sont automatiquement pris en charge à 100% lors de la lecture de la carte.</div>
+        <span class="tl-badge">Mise à jour Vitale obligatoire</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Simulation — économies annuelles avec une ALD diabète type 2</h2>
+
+  <div class="simul">
+    <h3>🧮 Suivi annuel diabète type 2 — avec et sans ALD</h3>
+    <div class="simul-grid">
+      <div>
+        <h4>Sans ALD (70% Sécu)</h4>
+        <div class="simul-row"><span class="simul-lab">Consultations (12/an)</span><span class="simul-val red">72 € restant</span></div>
+        <div class="simul-row"><span class="simul-lab">Médicaments (12 mois)</span><span class="simul-val red">180 € restant</span></div>
+        <div class="simul-row"><span class="simul-lab">Analyses biologiques</span><span class="simul-val red">90 € restant</span></div>
+        <div class="simul-row"><span class="simul-lab">Matériel (lecteur, bandelettes)</span><span class="simul-val red">120 € restant</span></div>
+        <div class="simul-row"><span class="simul-lab total">Reste à charge annuel</span><span class="simul-val red">≈ 462 €</span></div>
+      </div>
+      <div>
+        <h4>Avec ALD (100% Sécu)</h4>
+        <div class="simul-row"><span class="simul-lab">Consultations (12/an)</span><span class="simul-val green">0 €</span></div>
+        <div class="simul-row"><span class="simul-lab">Médicaments (12 mois)</span><span class="simul-val green">0 €</span></div>
+        <div class="simul-row"><span class="simul-lab">Analyses biologiques</span><span class="simul-val green">0 €</span></div>
+        <div class="simul-row"><span class="simul-lab">Matériel (lecteur, bandelettes)</span><span class="simul-val green">0 €</span></div>
+        <div class="simul-row"><span class="simul-lab total">Reste à charge annuel</span><span class="simul-val green">0 € (base Sécu)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Les droits méconnus liés à l'ALD</h2>
+
+  <div class="droits">
+    <div class="droit">
+      <span class="droit-ico">💼</span>
+      <div class="droit-text"><strong>Arrêts de travail prolongés sans délai de carence</strong>En cas d'arrêt maladie lié à une ALD, le délai de carence de 3 jours est supprimé dès le 1er jour. Les IJSS sont versées à partir du 1er jour d'arrêt, sans attendre.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">🏠</span>
+      <div class="droit-text"><strong>Aménagement du poste de travail</strong>Un salarié en ALD peut demander un aménagement de son poste via le médecin du travail et la RQTH (Reconnaissance Qualité de Travailleur Handicapé). Cette reconnaissance ouvre des droits supplémentaires : aides à l'emploi, primes de maintien dans l'emploi, aménagement des horaires.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">📋</span>
+      <div class="droit-text"><strong>Renouvellement automatique du protocole</strong>Le protocole de soins ALD est renouvelable et doit être mis à jour régulièrement par votre médecin traitant. Si vos traitements évoluent, demandez une mise à jour du protocole pour que les nouveaux médicaments ou actes soient bien pris en charge à 100%.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">🚗</span>
+      <div class="droit-text"><strong>Transports non médicalisés partiellement remboursés</strong>Si votre état nécessite des transports réguliers pour des soins liés à l'ALD (dialyse, chimiothérapie…), les taxis et véhicules sanitaires légers sont pris en charge sur prescription médicale, même hors urgence.</div>
+    </div>
+  </div>
+
+  <div class="encadre">
+    <strong>📌 ALD et impôt sur le revenu : pas d'exonération automatique</strong>
+    <p>Contrairement à ce que beaucoup pensent, avoir une ALD ne signifie pas automatiquement être exonéré d'impôt sur le revenu. La prise en charge à 100% est une couverture médicale, pas un avantage fiscal. En revanche, les personnes invalides (pensionnés d'invalidité, titulaires de la carte d'invalidité) bénéficient d'abattements spécifiques sur leur déclaration de revenus — à ne pas confondre avec l'ALD.</p>
+  </div>
+
+  <div class="conseil">
+    <strong>📞 Si votre médecin n'a pas encore fait la demande : prenez l'initiative</strong>
+    <p>Certains médecins omettent de proposer l'ALD à leurs patients, soit par méconnaissance administrative, soit parce qu'ils ne pensent pas à le faire de façon systématique. Si vous souffrez d'une maladie chronique listée parmi les 30 ALD exonérantes ou d'une affection grave nécessitant des soins coûteux prolongés, parlez-en explicitement à votre médecin traitant en demandant : "Suis-je éligible à une prise en charge en ALD ?" Cette question simple peut vous faire économiser plusieurs centaines d'euros par an — et garantit un meilleur suivi médical coordonné.</p>
+  </div>
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-234.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Remboursement lunettes : toutes les aides</div></a><a class="sim-card" href="article-235.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Soins dentaires : réduire la facture</div></a><a class="sim-card" href="article-236.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Médicaments génériques : économiser à l'officine</div></a><a class="sim-card" href="article-237.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Téléconsultation médicale : consulter gratuitement</div></a></div>
+</div>
+
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
