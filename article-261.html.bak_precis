@@ -234,7 +234,7 @@ window.economyaLoadAds = function() {
         <tr><td>Fabrication</td><td class="g">Score environnemental européen requis (hors Chine pour certains modèles)</td></tr>
         <tr><td>Conservation</td><td>Garder le véhicule au moins 1 an (pas de revente immédiate)</td></tr>
         <tr><td>Revenus modestes</td><td class="g">Bonus majoré jusqu'à 7 000 € si RFR ≤ 15 400 €</td></tr>
-        <tr><td>Leasing social</td><td class="g">100 € à 150 €/mois pour les éligibles (revenus ≤ 16 880 €)</td></tr>
+        <tr><td>Leasing social</td><td class="g">100 € à 150 €/mois pour les éligibles (revenus ≤ 15 400 €)</td></tr>
       </tbody>
     </table>
   </div>
