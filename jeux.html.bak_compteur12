@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jeux Finance — Economya.fr</title>
-<meta name="description" content="10 jeux gratuits pour apprendre à gérer votre argent en jouant ! Economya.fr">
+<meta name="description" content="12 jeux gratuits pour apprendre à gérer votre argent en jouant ! Economya.fr">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -104,7 +104,7 @@ footer strong{color:#93c5fd}
 
 <div class="hero">
   <h1>🎮 Jeux <em>Finance</em></h1>
-  <p>Apprenez à gérer votre argent en jouant ! 10 jeux gratuits et éducatifs pour devenir un expert des économies.</p>
+  <p>Apprenez à gérer votre argent en jouant ! 12 jeux gratuits et éducatifs pour devenir un expert des économies.</p>
   <div class="hero-stats">
     <div class="hstat"><span class="hstat-val">10</span><span class="hstat-lbl">Jeux disponibles</span></div>
     <div class="hstat"><span class="hstat-val">100%</span><span class="hstat-lbl">Gratuit</span></div>
