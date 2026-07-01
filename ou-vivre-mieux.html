@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Où vivre mieux avec votre salaire ? — Economya.fr</title>
+<meta name="description" content="Comparez votre pouvoir d'achat réel entre 13 grandes villes françaises selon votre salaire. Découvrez où vous vivriez le plus confortablement. Gratuit sur Economya.fr">
+<link rel="canonical" href="https://economya.fr/ou-vivre-mieux.html" />
+<meta property="og:title" content="Où vivre mieux avec votre salaire ? — Economya.fr">
+<meta property="og:description" content="Comparez votre pouvoir d'achat réel entre 13 grandes villes françaises selon votre salaire.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://economya.fr/ou-vivre-mieux.html">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--bg:#FAFAF8;--t:#2C2C2A;--m:#5F5E5A;--w:#fff;--b:rgba(0,0,0,0.08);--r:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem}
+.hero{background:linear-gradient(135deg,#082f49,#0c4a6e,#0891b2);color:white;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'🏙️';position:absolute;font-size:14rem;right:-1rem;top:-2rem;opacity:.08}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);color:white;padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:900;margin-bottom:.4rem}
+.hero p{font-size:.95rem;opacity:.85;max-width:480px;margin:0 auto}
+.wrap{max-width:680px;margin:0 auto;padding:1.5rem}
+.card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:1.5rem;margin-bottom:1.2rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.field{margin-bottom:1.2rem}
+.field label{display:block;font-size:.82rem;font-weight:700;color:var(--gd);margin-bottom:.4rem}
+.field input[type="number"]{width:100%;padding:.7rem 1rem;border:1px solid var(--b);border-radius:10px;font-family:inherit;font-size:1rem}
+.field select{width:100%;padding:.7rem 1rem;border:1px solid var(--b);border-radius:10px;font-family:inherit;font-size:.95rem;background:var(--w)}
+.btn-go{width:100%;background:var(--g);color:white;border:none;padding:.9rem;border-radius:50px;font-weight:700;font-size:1rem;cursor:pointer;font-family:inherit}
+.btn-go:hover{background:var(--gd)}
+.results{display:none}
+.results.show{display:block}
+.result-hero{text-align:center;padding:1.5rem 0;border-bottom:1px solid var(--b);margin-bottom:1rem}
+.result-hero .emoji{font-size:2.5rem;display:block;margin-bottom:.3rem}
+.result-hero h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gd)}
+.city-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--b);font-size:.88rem}
+.city-row:last-child{border-bottom:none}
+.city-name{font-weight:700;color:var(--t);display:flex;align-items:center;gap:.4rem}
+.city-name .rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:900}
+.city-equiv{font-family:'Playfair Display',serif;font-weight:900;color:var(--g);font-size:1.05rem}
+.city-equiv.worse{color:var(--m)}
+.city-current{background:var(--al);border-radius:10px;padding:.5rem .7rem;margin:0 -0.7rem}
+.tip{background:#f0fdf4;border-left:4px solid var(--g);border-radius:0 12px 12px 0;padding:1rem 1.2rem;font-size:.85rem;color:var(--t);line-height:1.6;margin-top:1.2rem}
+.share-row{display:flex;gap:.5rem;margin-top:1rem}
+.btn-share{flex:1;background:transparent;border:2px solid var(--g);color:var(--gd);padding:.6rem 1rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.82rem}
+.source-note{font-size:.72rem;color:var(--m);text-align:center;margin-top:.8rem}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="jeux.html">← Retour aux jeux</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="toggleMenu()">×</button>
+  <a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a>
+</div>
+
+<div class="hero">
+  <span class="hero-badge">🏙️ Comparateur de villes</span>
+  <h1>Où vivriez-vous mieux<br>avec votre salaire ?</h1>
+  <p>Entrez votre salaire et votre ville actuelle pour découvrir votre pouvoir d'achat réel ailleurs en France.</p>
+</div>
+
+<div class="wrap">
+  <div class="card">
+    <div class="field">
+      <label for="salaire">💶 Votre salaire net mensuel</label>
+      <input type="number" id="salaire" value="2200" min="800" max="20000" step="50">
+    </div>
+    <div class="field">
+      <label for="ville">📍 Votre ville actuelle</label>
+      <select id="ville">
+        <option value="paris">Paris</option>
+        <option value="lyon">Lyon</option>
+        <option value="marseille">Marseille</option>
+        <option value="toulouse" selected>Toulouse</option>
+        <option value="nantes">Nantes</option>
+        <option value="bordeaux">Bordeaux</option>
+        <option value="lille">Lille</option>
+        <option value="strasbourg">Strasbourg</option>
+        <option value="montpellier">Montpellier</option>
+        <option value="nice">Nice</option>
+        <option value="rennes">Rennes</option>
+        <option value="grenoble">Grenoble</option>
+        <option value="saintetienne">Saint-Étienne</option>
+      </select>
+    </div>
+    <button class="btn-go" onclick="calculer()">Comparer les villes →</button>
+  </div>
+
+  <div class="results" id="results">
+    <div class="card">
+      <div class="result-hero">
+        <span class="emoji" id="r-emoji">🏆</span>
+        <h2 id="r-titre">Vous vivriez mieux à...</h2>
+      </div>
+      <div id="city-list"></div>
+      <div class="tip" id="r-tip"></div>
+      <div class="share-row">
+        <button class="btn-share" onclick="partager()">📤 Partager mon résultat</button>
+      </div>
+      <p class="source-note">Estimations basées sur les loyers moyens 2026 (données marché, hors charges). Le pouvoir d'achat réel dépend aussi du marché de l'emploi local, qu'il faut vérifier avant tout déménagement.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Loyers moyens 2026 (€/m², appartement standard, source: agrégation données marché 2026 - LocService, Meilleurtaux/Lokimo, observatoires des loyers)
+const VILLES = {
+  paris:        {nom:'Paris',         emoji:'🗼', loyerM2: 33.0},
+  lyon:         {nom:'Lyon',          emoji:'🦁', loyerM2: 15.2},
+  nice:         {nom:'Nice',          emoji:'🌊', loyerM2: 19.0},
+  bordeaux:     {nom:'Bordeaux',      emoji:'🍷', loyerM2: 15.6},
+  montpellier:  {nom:'Montpellier',   emoji:'☀️', loyerM2: 14.8},
+  marseille:    {nom:'Marseille',     emoji:'⛵', loyerM2: 14.5},
+  rennes:       {nom:'Rennes',        emoji:'🏰', loyerM2: 13.7},
+  strasbourg:   {nom:'Strasbourg',    emoji:'🏛️', loyerM2: 13.3},
+  lille:        {nom:'Lille',         emoji:'🎡', loyerM2: 13.6},
+  toulouse:     {nom:'Toulouse',      emoji:'🚀', loyerM2: 13.0},
+  nantes:       {nom:'Nantes',        emoji:'🌳', loyerM2: 12.5},
+  grenoble:     {nom:'Grenoble',      emoji:'⛰️', loyerM2: 12.4},
+  saintetienne: {nom:'Saint-Étienne', emoji:'🏭', loyerM2: 9.5},
+};
+
+const PART_LOYER = 0.30; // part moyenne du loyer dans un budget mensuel
+const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+
+function calculer() {
+  const salaire = +document.getElementById('salaire').value || 2200;
+  const villeActuelle = document.getElementById('ville').value;
+  const refLoyer = VILLES[villeActuelle].loyerM2;
+
+  // Equivalent de pouvoir d'achat dans chaque ville :
+  // on ajuste uniquement la part "loyer" du budget en fonction du ratio de loyer au m²
+  const resultats = Object.entries(VILLES).map(([key, v]) => {
+    const ratio = v.loyerM2 / refLoyer;
+    const equivalent = salaire * (1 - PART_LOYER) + salaire * PART_LOYER * (refLoyer / v.loyerM2);
+    return {key, ...v, equivalent, ratio};
+  }).sort((a, b) => b.equivalent - a.equivalent);
+
+  const meilleure = resultats[0];
+  const actuelle = resultats.find(r => r.key === villeActuelle);
+
+  document.getElementById('r-emoji').textContent = meilleure.emoji;
+  document.getElementById('r-titre').textContent =
+    meilleure.key === villeActuelle
+      ? `Vous êtes déjà bien installé à ${meilleure.nom} !`
+      : `Vous vivriez mieux à ${meilleure.nom}`;
+
+  const list = document.getElementById('city-list');
+  list.innerHTML = resultats.map((r, i) => {
+    const isCurrent = r.key === villeActuelle;
+    const cls = r.equivalent < salaire ? 'worse' : '';
+    return `
+      <div class="city-row ${isCurrent ? 'city-current' : ''}">
+        <span class="city-name"><span class="rank">${i+1}</span>${r.emoji} ${r.nom}${isCurrent ? ' (vous)' : ''}</span>
+        <span class="city-equiv ${cls}">${fmt(r.equivalent)}</span>
+      </div>`;
+  }).join('');
+
+  const ecart = Math.round(((meilleure.equivalent - salaire) / salaire) * 100);
+  const tip = document.getElementById('r-tip');
+  if (meilleure.key === villeActuelle) {
+    tip.innerHTML = `💡 Avec ${fmt(salaire)}/mois, ${meilleure.nom} offre déjà le meilleur équilibre coût de la vie / salaire parmi les 13 villes comparées.`;
+  } else {
+    tip.innerHTML = `💡 Avec le même salaire de ${fmt(salaire)}/mois, votre pouvoir d'achat à ${meilleure.nom} équivaudrait à environ <strong>${fmt(meilleure.equivalent)}</strong> à ${VILLES[villeActuelle].nom} (+${ecart}% de pouvoir d'achat réel). Avant de songer à déménager, pensez aussi à vérifier le marché de l'emploi local dans votre secteur.`;
+  }
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('results').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function partager() {
+  const salaire = +document.getElementById('salaire').value || 2200;
+  const villeActuelle = VILLES[document.getElementById('ville').value].nom;
+  const text = `🏙️ Avec ${salaire}€/mois à ${villeActuelle}, j'ai découvert où je vivrais le mieux en France ! Testez le comparateur sur economya.fr`;
+  if (navigator.share) {
+    navigator.share({title:'Economya.fr', text, url:'https://economya.fr/ou-vivre-mieux.html'});
+  } else {
+    navigator.clipboard.writeText(text + ' https://economya.fr/ou-vivre-mieux.html');
+    alert('Résultat copié, prêt à partager !');
+  }
+}
+
+function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}
+
+window.addEventListener('DOMContentLoaded', calculer);
+</script>
+
+<div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div id="economya-cmp-simple" style="display:flex;gap:10px;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;"> Cookies nécessaires (toujours actifs)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;"> Mesure d'audience (Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;"> Publicité personnalisée
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+<script>
+(function(){
+function getC(){
+  try {
+    var r = localStorage.getItem('economya_consent');
+    return r ? JSON.parse(r) : null;
+  } catch(e){ return null; }
+}
+function setC(analytics, publicite){
+  try {
+    localStorage.setItem('economya_consent', JSON.stringify({
+      analytics: analytics, publicite: publicite, date: new Date().toISOString()
+    }));
+  } catch(e){}
+}
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
+Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les loyers moyens 2026 et ne prennent pas en compte le marché de l'emploi local, les autres postes de dépense (transport, alimentation) ni votre situation personnelle exacte. Nous recommandons de vérifier ces estimations avant toute décision de déménagement.
+</div>
+</body>
+</html>

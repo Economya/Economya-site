@@ -127,28 +127,6 @@ footer strong{color:#93c5fd}
       </div>
     </a>
 
-    <a class="game-card" href="ou-vivre-mieux.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#082f49,#0c4a6e,#0891b2)">🏙️<div class="game-badge new">Nouveau</div></div>
-      <div class="game-info">
-        <div class="game-cat">Comparateur</div>
-        <div class="game-title">Où vivre mieux ?</div>
-        <div class="game-desc">Comparez votre pouvoir d'achat réel entre 13 grandes villes françaises selon votre salaire.</div>
-        <div class="game-meta"><span class="game-tag">📍 13 villes</span><span class="game-tag">⏱️ 1 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
-      </div>
-    </a>
-
-    <a class="game-card" href="calendrier-bons-plans.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#4a1d96,#7c3aed,#a855f7)">📅<div class="game-badge new">Nouveau</div></div>
-      <div class="game-info">
-        <div class="game-cat">Calendrier</div>
-        <div class="game-title">Calendrier des Bons Plans</div>
-        <div class="game-desc">La meilleure astuce pour économiser chaque mois de l'année 2026 : soldes, impôts, Black Friday...</div>
-        <div class="game-meta"><span class="game-tag">📅 12 mois</span><span class="game-tag">⏱️ 1 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
-      </div>
-    </a>
-
     <a class="game-card" href="le-bon-deal.html">
       <div class="game-thumb purple">⚖️<div class="game-badge new">40 questions</div></div>
       <div class="game-info">
