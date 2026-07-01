@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le vrai coût mensuel d'un appartement — Charges, taxe foncière, assurance — Economya.fr</title>
+<meta name="description" content="Au-delà du crédit : calculez le coût mensuel réel d'un appartement en propriété (charges de copropriété, taxe foncière, assurance, entretien). Outil gratuit.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculateur du coût réel d'un appartement",
+  "description": "Calculez le coût mensuel réel d'un appartement en propriété : charges de copropriété, taxe foncière, assurance habitation et provision travaux.",
+  "url": "https://economya.fr/calculateur-cout-appartement.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"},
+  "publisher": {"@type": "Organization", "name": "Economya.fr", "url": "https://economya.fr"},
+  "inLanguage": "fr-FR"
+}
+</script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Economya.fr">
+<meta property="og:title" content="Le vrai coût mensuel d'un appartement — Charges, taxe foncière, assurance">
+<meta property="og:description" content="Au-delà du crédit : calculez le coût mensuel réel d'un appartement en propriété. Outil gratuit.">
+<meta property="og:url" content="https://economya.fr/calculateur-cout-appartement.html">
+<meta property="og:image" content="https://economya.fr/og-image.svg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Le vrai coût mensuel d'un appartement — Charges, taxe foncière, assurance">
+<meta name="twitter:description" content="Au-delà du crédit : calculez le coût mensuel réel d'un appartement en propriété. Outil gratuit.">
+<meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/calculateur-cout-appartement.html" />
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--red:#ef4444;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem}
+.hero{background:linear-gradient(135deg,var(--gd),#0d2f26);color:white;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'🏢';position:absolute;font-size:14rem;right:-1rem;top:-2rem;opacity:.07}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);color:white;padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4.5vw,2.2rem);font-weight:900;margin-bottom:.5rem;max-width:700px;margin-left:auto;margin-right:auto}
+.hero h1 em{color:var(--a);font-style:normal}
+.hero p{color:rgba(255,255,255,.75);font-size:.95rem;max-width:600px;margin:0 auto}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+
+.card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:1.5rem;margin-bottom:1.2rem;box-shadow:0 2px 10px rgba(0,0,0,.03)}
+.card h2{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gd);margin-bottom:1rem}
+
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:.82rem;font-weight:600;color:var(--t);margin-bottom:.4rem}
+.field .hint{font-size:.72rem;color:var(--m);margin-top:.3rem}
+.field input{width:100%;padding:.75rem 1rem;border:1.5px solid var(--b);border-radius:12px;font-size:1rem;font-family:inherit;background:var(--bg);color:var(--t)}
+.field input:focus{outline:none;border-color:var(--g)}
+
+.check-row{display:flex;align-items:flex-start;gap:.6rem;background:var(--bg);border-radius:12px;padding:.8rem 1rem;margin-bottom:1.1rem}
+.check-row input[type="checkbox"]{width:18px;height:18px;margin-top:.15rem;accent-color:var(--g);flex-shrink:0}
+.check-row label{font-size:.82rem;color:var(--t);font-weight:600}
+.check-row .hint{font-size:.72rem;color:var(--m);margin-top:.2rem;font-weight:400}
+
+.btn-calc{width:100%;background:var(--g);color:white;border:none;padding:1rem;border-radius:50px;font-weight:700;font-size:1rem;cursor:pointer;font-family:inherit;transition:transform .1s,background .2s}
+.btn-calc:hover{background:var(--gd);transform:scale(1.01)}
+
+.result{display:none;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.total-banner{background:linear-gradient(135deg,var(--gd),var(--g));border-radius:var(--r);padding:1.6rem;text-align:center;margin-bottom:1.2rem;color:white}
+.total-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.7);margin-bottom:.3rem}
+.total-val{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:900;color:var(--a);display:block}
+.total-sub{font-size:.8rem;color:rgba(255,255,255,.65);margin-top:.3rem}
+
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--b);font-size:.88rem}
+.detail-row:last-child{border-bottom:none}
+.detail-row .lbl{color:var(--m)}
+.detail-row .val{font-weight:700;color:var(--t);font-family:'Playfair Display',serif;font-size:1.02rem}
+.detail-row.credit .val{color:var(--gd)}
+
+.explain{background:#f0fdf4;border-left:4px solid var(--g);border-radius:0 12px 12px 0;padding:1rem 1.2rem;font-size:.85rem;color:var(--t);line-height:1.6;margin-top:.8rem}
+
+.source-note{font-size:.72rem;color:var(--m);margin-top:1rem;line-height:1.5}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:1rem}
+footer strong{color:white}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <a class="nav-back" href="outils-gratuits.html">← Tous les outils</a>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="toggleMenu()">X</button>
+  <a href="index.html">Accueil</a>
+  <a href="jeux.html">Jeux</a>
+  <a href="outils-gratuits.html">Outils gratuits</a>
+  <a href="comparateurs.html">Comparateurs</a>
+  <a href="a-propos.html">A propos</a>
+  <a href="recherche.html">Rechercher</a>
+</div>
+
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <a href="outils-gratuits.html" style="color:inherit;text-decoration:none">Outils gratuits</a> › <span style="color:var(--t)">Coût réel d'un appartement</span></div>
+
+<section class="hero">
+  <span class="hero-badge">🆕 Nouveau · Au-delà du crédit</span>
+  <h1>Le <em>vrai</em> coût mensuel d'un appartement</h1>
+  <p>Le crédit n'est qu'une partie de la facture. Charges de copropriété, taxe foncière, assurance, entretien : voici ce qu'être propriétaire coûte vraiment chaque mois.</p>
+</section>
+
+<div class="container">
+
+  <div class="card">
+    <h2>🏢 Votre bien</h2>
+    <div class="field">
+      <label for="prixBien">Prix d'achat du bien</label>
+      <input type="number" id="prixBien" placeholder="Ex : 220000" min="0" step="1000">
+    </div>
+    <div class="field">
+      <label for="surface">Surface habitable (m²)</label>
+      <input type="number" id="surface" placeholder="Ex : 55" min="1" step="1">
+      <div class="hint">Sert à estimer vos charges de copropriété.</div>
+    </div>
+    <div class="field">
+      <label for="mensualite">Mensualité de crédit (optionnel)</label>
+      <input type="number" id="mensualite" placeholder="Ex : 950" min="0" step="10">
+      <div class="hint">Utilisez notre <a href="simulateur-credit-immo.html" style="color:var(--g)">simulateur de crédit immobilier</a> pour l'obtenir.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📋 Charges de propriétaire</h2>
+    <div class="field">
+      <label for="chargesCopro">Charges de copropriété annuelles</label>
+      <input type="number" id="chargesCopro" placeholder="Calculé automatiquement" min="0" step="10">
+      <div class="hint">Moyenne nationale 2026 : ~51 €/m²/an. Modifiable si vous avez le montant exact du syndic.</div>
+    </div>
+    <div class="field">
+      <label for="taxeFonciere">Taxe foncière annuelle</label>
+      <input type="number" id="taxeFonciere" placeholder="Ex : 1090" min="0" step="10">
+      <div class="hint">Moyenne nationale ~1 090 €/an, mais varie énormément selon la commune (de ~560 € à plus de 3 500 €/an). Renseignez-vous en mairie ou auprès du vendeur.</div>
+    </div>
+    <div class="field">
+      <label for="assurance">Assurance habitation annuelle</label>
+      <input type="number" id="assurance" placeholder="Ex : 200" min="0" step="10">
+      <div class="hint">Moyenne nationale propriétaire occupant, appartement : ~200 €/an.</div>
+    </div>
+    <div class="check-row">
+      <input type="checkbox" id="inclureTravaux" checked>
+      <div>
+        <label for="inclureTravaux">Inclure une provision travaux / entretien</label>
+        <div class="hint">Règle courante : environ 1 %/an de la valeur du bien à provisionner pour l'entretien courant et les imprévus.</div>
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calculer()">Calculer le coût mensuel réel</button>
+  </div>
+
+  <div class="result" id="result">
+    <div class="total-banner">
+      <div class="total-label">Coût mensuel total</div>
+      <span class="total-val" id="totalMensuel">—</span>
+      <div class="total-sub" id="totalSub">charges + taxe + assurance + entretien</div>
+    </div>
+
+    <div class="card">
+      <h2>📋 Le détail</h2>
+      <div class="detail-row credit" id="row-credit" style="display:none"><span class="lbl">Mensualité de crédit</span><span class="val" id="r-credit">—</span></div>
+      <div class="detail-row"><span class="lbl">Charges de copropriété</span><span class="val" id="r-copro">—</span></div>
+      <div class="detail-row"><span class="lbl">Taxe foncière (lissée /mois)</span><span class="val" id="r-taxe">—</span></div>
+      <div class="detail-row"><span class="lbl">Assurance habitation</span><span class="val" id="r-assurance">—</span></div>
+      <div class="detail-row" id="row-travaux"><span class="lbl">Provision travaux/entretien</span><span class="val" id="r-travaux">—</span></div>
+      <div class="explain" id="r-explain"></div>
+    </div>
+
+    <div class="source-note">
+      Sources : charges de copropriété — moyenne nationale 2026 ~51 €/m²/an ; taxe foncière — moyenne nationale ~1 090 €/logement/an (variable selon la commune) ; assurance habitation propriétaire occupant appartement — moyenne nationale ~200 €/an. Ces montants sont des moyennes indicatives : renseignez les valeurs exactes de votre bien dès que vous les connaissez pour un calcul plus précis.
+    </div>
+  </div>
+
+</div>
+
+<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
+Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur des moyennes nationales qui peuvent différer fortement de votre situation réelle (commune, syndic, état du bien). Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
+</div>
+
+<footer>
+  <strong>Economya.fr</strong> · Finances personnelles, simplement.
+</footer>
+
+<script>
+function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}
+
+const CHARGES_COPRO_M2_AN = 51;
+const TAXE_FONCIERE_DEFAUT = 1090;
+const ASSURANCE_DEFAUT = 200;
+const TAUX_PROVISION_TRAVAUX = 0.01; // 1%/an de la valeur du bien
+
+function fmtM(v){
+  return v.toLocaleString('fr-FR', {maximumFractionDigits: 0}) + ' €';
+}
+
+document.getElementById('surface').addEventListener('input', function(){
+  const surface = parseFloat(this.value);
+  const chargesInput = document.getElementById('chargesCopro');
+  if(surface > 0 && !chargesInput.dataset.userEdited){
+    chargesInput.value = Math.round(surface * CHARGES_COPRO_M2_AN);
+  }
+});
+document.getElementById('chargesCopro').addEventListener('input', function(){
+  this.dataset.userEdited = 'true';
+});
+
+function calculer(){
+  const prixBien = parseFloat(document.getElementById('prixBien').value) || 0;
+  const surface = parseFloat(document.getElementById('surface').value) || 0;
+  const mensualite = parseFloat(document.getElementById('mensualite').value) || 0;
+  let chargesCopro = parseFloat(document.getElementById('chargesCopro').value);
+  let taxeFonciere = parseFloat(document.getElementById('taxeFonciere').value);
+  let assurance = parseFloat(document.getElementById('assurance').value);
+  const inclureTravaux = document.getElementById('inclureTravaux').checked;
+
+  if(!surface && !prixBien){
+    alert('Merci de renseigner au moins la surface ou le prix du bien.');
+    return;
+  }
+
+  if(isNaN(chargesCopro)) chargesCopro = Math.round(surface * CHARGES_COPRO_M2_AN);
+  if(isNaN(taxeFonciere)) taxeFonciere = TAXE_FONCIERE_DEFAUT;
+  if(isNaN(assurance)) assurance = ASSURANCE_DEFAUT;
+
+  const provisionTravaux = inclureTravaux ? (prixBien * TAUX_PROVISION_TRAVAUX) : 0;
+
+  const chargesCoproMois = chargesCopro / 12;
+  const taxeFonciereMois = taxeFonciere / 12;
+  const assuranceMois = assurance / 12;
+  const travauxMois = provisionTravaux / 12;
+
+  const totalHorsCredit = chargesCoproMois + taxeFonciereMois + assuranceMois + travauxMois;
+  const totalAvecCredit = totalHorsCredit + mensualite;
+
+  document.getElementById('r-copro').textContent = fmtM(chargesCoproMois) + '/mois';
+  document.getElementById('r-taxe').textContent = fmtM(taxeFonciereMois) + '/mois';
+  document.getElementById('r-assurance').textContent = fmtM(assuranceMois) + '/mois';
+
+  const rowTravaux = document.getElementById('row-travaux');
+  if(inclureTravaux){
+    rowTravaux.style.display = 'flex';
+    document.getElementById('r-travaux').textContent = fmtM(travauxMois) + '/mois';
+  } else {
+    rowTravaux.style.display = 'none';
+  }
+
+  const rowCredit = document.getElementById('row-credit');
+  if(mensualite > 0){
+    rowCredit.style.display = 'flex';
+    document.getElementById('r-credit').textContent = fmtM(mensualite) + '/mois';
+    document.getElementById('totalMensuel').textContent = fmtM(totalAvecCredit);
+    document.getElementById('totalSub').textContent = 'crédit + charges + taxe + assurance' + (inclureTravaux ? ' + entretien' : '');
+  } else {
+    rowCredit.style.display = 'none';
+    document.getElementById('totalMensuel').textContent = fmtM(totalHorsCredit);
+    document.getElementById('totalSub').textContent = 'charges + taxe + assurance' + (inclureTravaux ? ' + entretien' : '') + ' (hors crédit)';
+  }
+
+  const explain = document.getElementById('r-explain');
+  if(mensualite > 0){
+    explain.innerHTML = `<strong>💡 À retenir :</strong> au-delà de votre mensualité de crédit de ${fmtM(mensualite)}, être propriétaire vous coûte ${fmtM(totalHorsCredit)}/mois supplémentaires en frais fixes — souvent sous-estimés au moment de l'achat.`;
+  } else {
+    explain.innerHTML = `<strong>💡 À retenir :</strong> même sans compter le crédit, être propriétaire de ce bien représente ${fmtM(totalHorsCredit)}/mois de charges fixes incompressibles. Ajoutez votre mensualité de crédit pour connaître le coût total.`;
+  }
+
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+</script>
+
+</body>
+</html>
