@@ -77,7 +77,7 @@ footer strong{color:white}
   <h1>Outils <em>gratuits</em> pour vos finances</h1>
   <p>Simulateurs, calculateurs, quiz et comparateurs 100% gratuits pour prendre les meilleures décisions.</p>
   <div class="hero-stats">
-    <div class="stat"><span class="stat-num">30</span><div class="stat-lbl">Outils disponibles</div></div>
+    <div class="stat"><span class="stat-num">28</span><div class="stat-lbl">Outils disponibles</div></div>
     <div class="stat"><span class="stat-num">100%</span><div class="stat-lbl">Gratuit</div></div>
     <div class="stat"><span class="stat-num">0</span><div class="stat-lbl">Inscription requise</div></div>
   </div>
@@ -192,18 +192,6 @@ footer strong{color:white}
     </a>
   </div>
 
-  <div class="section-title">🏘️ Propriétaire & Copropriété</div>
-  <div class="tools-grid">
-    <a href="calculateur-cout-appartement.html" class="tool-card featured">
-      <span class="new-badge">🆕 Nouveau</span>
-      <span class="tool-icon">🏢</span>
-      <div class="tool-cat">Calculateur</div>
-      <div class="tool-name">Coût réel d'un appartement</div>
-      <div class="tool-desc">Au-delà du crédit : charges de copropriété, taxe foncière, assurance, entretien.</div>
-      <span class="tool-btn">Calculer →</span>
-    </a>
-  </div>
-
   <div class="section-title">💼 Emploi, Fiscalité & Transport</div>
   <div class="tools-grid">
     <a href="calculateur-salaire.html" class="tool-card featured">
@@ -302,14 +290,6 @@ footer strong{color:white}
       <div class="tool-name">Quel voyageur économe êtes-vous ?</div>
       <div class="tool-desc">Backpacker, Voyageur Malin ou Globe-Trotter ? Voyagez mieux pour moins cher.</div>
       <span class="tool-btn">Faire le quiz →</span>
-    </a>
-    <a href="calculateur-budget-vacances.html" class="tool-card">
-      <span class="new-badge">🆕 Nouveau</span>
-      <span class="tool-icon">🧳</span>
-      <div class="tool-cat">Calculateur</div>
-      <div class="tool-name">Budget vacances</div>
-      <div class="tool-desc">Combien va coûter votre voyage ? Budget chiffré par poste et épargne mensuelle nécessaire.</div>
-      <span class="tool-btn">Calculer →</span>
     </a>
     <a href="calculateur-pouvoir-achat.html" class="tool-card">
       <span class="viral-badge">🆕 Nouveau</span>
