@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Coopératives d'achats : rejoindre et économiser — -20 à -40% sur votre panier. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coopératives d'achats : rejoindre et économiser — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--amber:#d97706;--amber-l:#fffbeb;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🏪';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#fcd34d;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#d97706,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* TYPES */
+.types{display:flex;flex-direction:column;gap:1rem;margin:1.5rem 0}
+.type{background:var(--w);border:1px solid var(--b);border-radius:var(--r);overflow:hidden;transition:box-shadow .2s}
+.type:hover{box-shadow:0 4px 18px rgba(217,119,6,.1)}
+.type.top{border:2px solid var(--g)}
+.t-header{padding:.85rem 1.2rem;display:flex;justify-content:space-between;align-items:center}
+.type.ali .t-header{background:linear-gradient(135deg,#065f46,#1D9E75)}
+.type.achat .t-header{background:linear-gradient(135deg,#082f49,#0284c7)}
+.type.energie .t-header{background:linear-gradient(135deg,#1a2e05,#65a30d)}
+.type.sante .t-header{background:linear-gradient(135deg,#4c1d95,#7c3aed)}
+.t-name{font-weight:700;color:white;font-size:.9rem;display:flex;align-items:center;gap:.4rem}
+.top-badge{display:inline-block;background:var(--g);color:white;font-size:.62rem;font-weight:700;padding:.1rem .5rem;border-radius:50px}
+.t-eco{font-size:.8rem;color:rgba(255,255,255,.85)}
+.t-body{padding:1rem 1.2rem;display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+@media(max-width:520px){.t-body{grid-template-columns:1fr}}
+.t-col-title{font-size:.72rem;font-weight:600;text-transform:uppercase;color:var(--m);margin-bottom:.35rem}
+.t-list{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+.t-list li{font-size:.82rem;font-weight:300;padding-left:.7rem;position:relative;color:var(--t)}
+.t-list li::before{position:absolute;left:0}
+.t-note{font-size:.83rem;color:var(--m);font-weight:300;padding:.6rem 1.2rem .9rem;border-top:1px solid var(--b)}
+
+/* ÉTAPES REJOINDRE */
+.steps{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
+.step{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.9rem 1.1rem}
+.step.top{border:2px solid var(--g)}
+.sico{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
+.step strong{display:block;font-size:.9rem;margin-bottom:.1rem}
+.step span{font-size:.84rem;color:var(--m);font-weight:300}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#1c1000,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#d97706,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Coopératives d'achats : rejoindre et économiser",
+  "description": "Coopératives d'achats : rejoindre et économiser — -20 à -40% sur votre panier. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-471.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Coopératives d'achats : rejoindre et économiser">
+  <meta property="og:description" content="Coopératives d'achats : rejoindre et économiser — -20 à -40% sur votre panier. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-471.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Coopératives d'achats : rejoindre et économiser">
+  <meta name="twitter:description" content="Coopératives d'achats : rejoindre et économiser — -20 à -40% sur votre panier. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-471.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Lifestyle</span> › <span style="color:var(--t,#2C2C2A)">Coopératives d'achats : rejoindre et économiser</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Lifestyle", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Coopératives d'achats : rejoindre et économiser", "item": "https://economya.fr/article-471.html"}]}</script>
+
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">🏪 Lifestyle</div>
+    <h1>Coopératives d'achats :<br><em>rejoindre et économiser</em></h1>
+    <div class="savings-badge">💰 −20 à −40 % sur votre panier</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="theme-tag">🛒 Achats groupés & coopératives</span>
+    </div>
+  </div>
+</div>
+<div class="ab">
+  <p class="lead">Les coopératives d'achats permettent à leurs membres d'acheter en commun — alimentaire, énergie, assurance, matériaux — en supprimant les intermédiaires et en bénéficiant de la force d'achat du groupe. Économies de 20 à 40 % sur les produits alimentaires, jusqu'à 30 % sur l'énergie. Voici les principales coopératives actives en France.</p>
+
+  <h2>🛒 Les types de coopératives et leurs économies</h2>
+  <div class="types">
+    <div class="type ali top">
+      <div class="t-header"><span class="t-name">🥕 Coopératives alimentaires <span class="top-badge">⭐ Économies les plus fortes</span></span><span class="t-eco">−20 à −40 %</span></div>
+      <div class="t-body">
+        <div><div class="t-col-title">Comment ça marche</div><ul class="t-list"><li>:: Achat direct producteurs</li><li>:: Pas de marge distributeur</li><li>:: Travail bénévole des membres (3h/mois)</li><li>:: Adhésion + part sociale (~100 €)</li></ul></div>
+        <div><div class="t-col-title">Exemples actifs</div><ul class="t-list"><li>:: La Louve (Paris 18e)</li><li>:: Commun'bio (Lyon)</li><li>:: Les Épiceries alternatives (partout)</li><li>:: AMAP (panier de légumes direct)</li></ul></div>
+      </div>
+      <div class="t-note">Modèle Park Slope Food Coop (New York) adapté en France. La Louve (Paris) compte 9 000 membres et vend 30 % moins cher que le bio du supermarché.</div>
+    </div>
+    <div class="type achat">
+      <div class="t-header"><span class="t-name">🛍️ Groupements d'achats divers</span><span class="t-eco">−10 à −30 %</span></div>
+      <div class="t-body">
+        <div><div class="t-col-title">Produits concernés</div><ul class="t-list"><li>:: Matériaux de construction</li><li>:: Équipements informatiques</li><li>:: Fournitures scolaires</li><li>:: Matériel sportif</li></ul></div>
+        <div><div class="t-col-title">Où trouver</div><ul class="t-list"><li>:: Groupon (deals groupés)</li><li>:: Groupements associatifs locaux</li><li>:: Comités d'entreprise</li><li>:: Syndicats de copropriété</li></ul></div>
+      </div>
+      <div class="t-note">Moins structurés que les coopératives alimentaires, ces groupements se forment ponctuellement autour d'un achat commun pour obtenir un tarif de gros.</div>
+    </div>
+    <div class="type energie">
+      <div class="t-header"><span class="t-name">⚡ Coopératives d'énergie</span><span class="t-eco">−10 à −30 %</span></div>
+      <div class="t-body">
+        <div><div class="t-col-title">Comment ça marche</div><ul class="t-list"><li>:: Achat groupé d'électricité verte</li><li>:: Production locale (panneaux solaires)</li><li>:: Investissement collectif dans les EnR</li></ul></div>
+        <div><div class="t-col-title">Exemples</div><ul class="t-list"><li>:: Enercoop (coop nationale)</li><li>:: Énergie Partagée</li><li>:: Coopératives solaires locales</li></ul></div>
+      </div>
+      <div class="t-note">Enercoop est la coopérative d'électricité verte la plus connue. Tarifs parfois légèrement supérieurs aux offres classiques mais 100 % renouvelable et sans marge spéculative.</div>
+    </div>
+    <div class="type sante">
+      <div class="t-header"><span class="t-name">💊 Groupements santé & mutuelle</span><span class="t-eco">−5 à −20 %</span></div>
+      <div class="t-body">
+        <div><div class="t-col-title">Types</div><ul class="t-list"><li>:: Mutuelles (Harmonie, MGEN, etc.)</li><li>:: Pharmacies coopératives</li><li>:: Achats groupés médicaments</li></ul></div>
+        <div><div class="t-col-title">Accès</div><ul class="t-list"><li>:: Via syndicats / CE</li><li>:: Mutuelles professionnelles</li><li>:: Mutuelles de fonctionnaires</li></ul></div>
+      </div>
+      <div class="t-note">Les mutuelles sont techniquement des coopératives. Les offres collectives (via CE, syndicats) sont souvent 10–20 % moins chères que les offres individuelles.</div>
+    </div>
+  </div>
+
+  <h2>🪜 Comment rejoindre une coopérative alimentaire</h2>
+  <div class="steps">
+    <div class="step top">
+      <span class="sico">🔍</span>
+      <div>
+        <strong>Trouvez la coopérative ou AMAP la plus proche</strong>
+        <span>Sur coopalim.org ou le site des AMAP (reseau-amap.org), recherchez les groupements actifs dans votre ville ou département. Les grandes villes ont souvent plusieurs options. Les AMAP (paniers de légumes en direct du producteur) sont présentes partout en France.</span>
+      </div>
+    </div>
+    <div class="step">
+      <span class="sico">📋</span>
+      <div>
+        <strong>Assistez à une réunion d'information ou commandez un panier d'essai</strong>
+        <span>La plupart des coopératives organisent des portes ouvertes ou permettent un panier d'essai avant l'adhésion. Cela permet de tester la qualité des produits et de rencontrer les membres avant de s'engager.</span>
+      </div>
+    </div>
+    <div class="step">
+      <span class="sico">💶</span>
+      <div>
+        <strong>Adhérez (part sociale + cotisation annuelle)</strong>
+        <span>L'adhésion comprend généralement une part sociale (50–200 € récupérables en sortant) et une cotisation annuelle modeste (10–30 €). La part sociale est un investissement, pas une dépense — vous la récupérez si vous quittez la coopérative.</span>
+      </div>
+    </div>
+    <div class="step">
+      <span class="sico">⏰</span>
+      <div>
+        <strong>Planifiez votre bénévolat mensuel (2–3h)</strong>
+        <span>Les coopératives alimentaires comme La Louve demandent en contrepartie environ 3 heures de bénévolat par mois (mise en rayon, caisse, gestion). C'est le modèle qui permet d'éliminer les coûts salariaux et donc de pratiquer des prix très bas.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Les AMAP : le groupement d'achat le plus accessible et le plus répandu</strong>
+    Une AMAP (Association pour le Maintien d'une Agriculture Paysanne) vous lie directement à un producteur local. Vous payez à l'avance un panier hebdomadaire ou mensuel. Pas de part sociale élevée, pas de bénévolat obligatoire. Économies de 15–25 % par rapport au bio en supermarché, produits ultra-frais. Le réseau AMAP compte plus de 2 000 groupements en France.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Les coopératives demandent un engagement régulier</strong>
+    La contrepartie des économies dans une coopérative alimentaire, c'est du bénévolat régulier. Si vous n'êtes pas disponible pour vos créneaux, vous risquez des pénalités ou une exclusion. Évaluez honnêtement votre disponibilité avant d'adhérer. Les AMAP, plus souples, sont une meilleure option pour les emplois du temps chargés.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Coopératives & économies dans votre boîte mail</h3>
+    <p>Les meilleures astuces pour consommer mieux et moins cher en commun, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-387.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Désencombrement rentable : transformer ses placards en cash</div></a><a class="sim-card" href="article-388.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Consommation consciente : acheter moins et mieux</div></a><a class="sim-card" href="article-389.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Vivre avec 1 000 €/mois : méthodes et témoignages</div></a><a class="sim-card" href="article-390.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Burn-out : récupérer sans se ruiner</div></a></div>
+</div>
+
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

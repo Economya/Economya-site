@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="ChatGPT gratuit : tout ce qu'on peut faire en 2026 — IA gratuite au quotidien. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatGPT gratuit : tout ce qu'on peut faire en 2026 — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--violet:#7c3aed;--violet-l:#f5f3ff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#0f0624,#2e1065,#7c3aed);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🤖';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#ddd6fe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#c4b5fd;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#10b981,#7c3aed);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(124,58,237,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#7c3aed,#0891b2);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--violet);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* TABLEAU GRATUIT vs PAYANT */
+.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+thead tr{background:linear-gradient(135deg,#2e1065,#7c3aed);color:white}
+thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.8rem}
+tbody tr{border-bottom:1px solid var(--b)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:#fafafa}
+tbody td{padding:.8rem 1rem;vertical-align:middle}
+.g{color:#16a34a;font-weight:600}
+.o{color:var(--ad);font-weight:500}
+.r{color:#dc2626;font-weight:500}
+
+/* USAGES CARDS */
+.usages{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.9rem;margin:1.5rem 0}
+.usage-card{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;transition:transform .2s,box-shadow .2s}
+.usage-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(124,58,237,.1)}
+.usage-icon{font-size:1.8rem;margin-bottom:.5rem}
+.usage-title{font-weight:700;font-size:.9rem;margin-bottom:.35rem}
+.usage-desc{font-size:.82rem;color:var(--m);font-weight:300;line-height:1.5}
+.usage-tag{display:inline-block;margin-top:.5rem;font-size:.7rem;font-weight:700;padding:.12rem .5rem;border-radius:50px}
+.usage-tag.free{background:var(--gl);color:var(--gd)}
+.usage-tag.pro{background:var(--violet-l);color:var(--violet)}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--violet-l);border-left:4px solid var(--violet);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#2e1065}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+/* PROMPTS EXEMPLES */
+.prompts{display:flex;flex-direction:column;gap:.7rem;margin:1.2rem 0}
+.prompt{background:var(--violet-l);border:1px solid #ddd6fe;border-radius:var(--r);padding:.9rem 1.1rem;font-size:.86rem}
+.prompt .plabel{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--violet);margin-bottom:.3rem}
+.prompt .ptext{color:#2e1065;font-family:monospace;font-size:.84rem;line-height:1.5}
+
+.cta{background:linear-gradient(135deg,#0f0624,#2e1065);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#7c3aed,#0891b2);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ChatGPT gratuit : tout ce qu'on peut faire en 2026",
+  "description": "ChatGPT gratuit : tout ce qu'on peut faire en 2026 — IA gratuite au quotidien. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-246.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="ChatGPT gratuit : tout ce qu'on peut faire en 2026">
+  <meta property="og:description" content="ChatGPT gratuit : tout ce qu'on peut faire en 2026 — IA gratuite au quotidien. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-246.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ChatGPT gratuit : tout ce qu'on peut faire en 2026">
+  <meta name="twitter:description" content="ChatGPT gratuit : tout ce qu'on peut faire en 2026 — IA gratuite au quotidien. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-246.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Tech</span> › <span style="color:var(--t,#2C2C2A)">ChatGPT gratuit : tout ce qu'on peut faire en 2025</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Tech", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "ChatGPT gratuit : tout ce qu'on peut faire en 2025", "item": "https://economya.fr/article-246.html"}]}</script>
+
+
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">🤖 Tech</div>
+    <h1>ChatGPT gratuit :<br><em>tout ce qu'on peut faire en 2026</em></h1>
+    <div class="savings-badge">💰 IA gratuite au quotidien</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié juin 2026</span>
+      <span class="theme-tag">🧠 Intelligence artificielle</span>
+    </div>
+  </div>
+</div>
+
+<div class="ab">
+
+  <p class="lead">ChatGPT version gratuite reste l'un des outils les plus puissants accessibles sans débourser un centime (notez qu'un palier intermédiaire "Go" à 8€/mois existe désormais entre le gratuit et le Plus). Rédaction, recherche, code, résumés, traduction, conseils… Voici ce que vous pouvez vraiment en tirer — et où la version payante devient utile.</p>
+
+  <h2>📊 Gratuit vs payant : ce qui change vraiment</h2>
+
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Fonctionnalité</th>
+          <th>Gratuit (modèle de base, dernière génération GPT-5)</th>
+          <th>Plus (23 €/mois)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Conversations texte illimitées</td><td class="g">✔ Oui</td><td class="g">✔ Oui</td></tr>
+        <tr><td>Analyse d'images</td><td class="g">✔ Oui</td><td class="g">✔ Oui</td></tr>
+        <tr><td>Navigation web</td><td class="g">✔ Oui (limité)</td><td class="g">✔ Illimité</td></tr>
+        <tr><td>GPT-4o (modèle complet)</td><td class="o">Limité (quotas)</td><td class="g">✔ Prioritaire</td></tr>
+        <tr><td>Génération d'images (DALL·E)</td><td class="r">✘ Non</td><td class="g">✔ Oui</td></tr>
+        <tr><td>Mémoire personnalisée</td><td class="o">Limitée</td><td class="g">✔ Avancée</td></tr>
+        <tr><td>Analyse de fichiers (PDF, Excel)</td><td class="o">Limitée</td><td class="g">✔ Illimitée</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>🚀 Ce que vous pouvez faire gratuitement</h2>
+
+  <div class="usages">
+    <div class="usage-card">
+      <div class="usage-icon">✍️</div>
+      <div class="usage-title">Rédiger & corriger</div>
+      <div class="usage-desc">Emails, lettres de motivation, articles, posts LinkedIn, dissertations. ChatGPT corrige le style, la grammaire et adapte le ton à votre cible.</div>
+      <span class="usage-tag free">✔ 100% gratuit</span>
+    </div>
+    <div class="usage-card">
+      <div class="usage-icon">🔍</div>
+      <div class="usage-title">Rechercher & résumer</div>
+      <div class="usage-desc">Résumés de documents, explications de concepts complexes, fiches de révision, synthèses de textes longs. Gain de temps considérable.</div>
+      <span class="usage-tag free">✔ 100% gratuit</span>
+    </div>
+    <div class="usage-card">
+      <div class="usage-icon">💻</div>
+      <div class="usage-title">Coder & déboguer</div>
+      <div class="usage-desc">Écrire des scripts Python, Excel, SQL, corriger des bugs, expliquer du code existant. Idéal pour les débutants comme pour les pros.</div>
+      <span class="usage-tag free">✔ 100% gratuit</span>
+    </div>
+    <div class="usage-card">
+      <div class="usage-icon">🌍</div>
+      <div class="usage-title">Traduire & adapter</div>
+      <div class="usage-desc">Traduction naturelle dans 50+ langues, avec adaptation culturelle du ton. Bien meilleur que Google Traduction sur les textes complexes.</div>
+      <span class="usage-tag free">✔ 100% gratuit</span>
+    </div>
+    <div class="usage-card">
+      <div class="usage-icon">🧮</div>
+      <div class="usage-title">Calculer & analyser</div>
+      <div class="usage-desc">Aide pour les calculs, tableaux de budget, comparaisons de devis, simulations financières simples. Pensez à vérifier les chiffres.</div>
+      <span class="usage-tag free">✔ 100% gratuit</span>
+    </div>
+    <div class="usage-card">
+      <div class="usage-icon">🎯</div>
+      <div class="usage-title">Brainstormer & créer</div>
+      <div class="usage-desc">Idées de noms, de slogans, de cadeaux, de menus, de projets. ChatGPT génère des dizaines d'idées en quelques secondes.</div>
+      <span class="usage-tag free">✔ 100% gratuit</span>
+    </div>
+  </div>
+
+  <h2>💬 Des prompts concrets pour bien débuter</h2>
+
+  <div class="prompts">
+    <div class="prompt">
+      <div class="plabel">💰 Économies</div>
+      <div class="ptext">« Analyse ce devis d'assurance habitation et dis-moi si les garanties sont standards ou si je paye trop cher pour ce que j'ai. »</div>
+    </div>
+    <div class="prompt">
+      <div class="plabel">📝 Rédaction</div>
+      <div class="ptext">« Rédige un email professionnel pour négocier une réduction de loyer avec mon propriétaire, en restant courtois mais ferme. »</div>
+    </div>
+    <div class="prompt">
+      <div class="plabel">🍽️ Quotidien</div>
+      <div class="ptext">« Donne-moi un menu de la semaine avec 5 dîners à moins de 3 € par personne, avec liste de courses optimisée. »</div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 Alternatives gratuites à connaître</strong>
+    Si ChatGPT atteint ses quotas gratuits : Mistral Le Chat (français, très bon), Google Gemini, Perplexity AI pour la recherche web en temps réel. Tous gratuits et complémentaires selon les usages.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Ne partagez jamais de données sensibles</strong>
+    Évitez de coller des documents contenant vos coordonnées bancaires, numéros de Sécu, mots de passe ou données personnelles sensibles. ChatGPT peut utiliser ces données pour améliorer ses modèles (désactivable dans les paramètres).
+  </div>
+
+  <div class="cta">
+    <h3>📬 Tech & économies dans votre boîte mail</h3>
+    <p>Les meilleurs outils gratuits pour économiser au quotidien, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-248.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">Smartphone reconditionné : le comparatif complet</div></a><a class="sim-card" href="article-249.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">Forfait 5G pas cher : comparatif opérateurs 2026</div></a><a class="sim-card" href="article-250.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">VPN : gratuit ou payant, lequel choisir ?</div></a><a class="sim-card" href="article-251.html"><div class="sim-card-cat">Tech</div><div class="sim-card-title">Antivirus gratuit : les meilleurs en 2026</div></a></div>
+</div>
+
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
