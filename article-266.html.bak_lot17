@@ -2,83 +2,92 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Bonus écologique 2026 : montants et conditions — Jusqu'à 7 000€ de bonus. Guide complet sur Economya.fr">
+<meta name="description" content="Leasing social VE 2026 : conditions et dossier — VE dès 100€/mois. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bonus écologique 2026 : montants et conditions — Economya.fr</title>
+<title>Leasing social VE 2026 : conditions et dossier — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--lime:#65a30d;--lime-l:#f7fee7;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--cyan:#0891b2;--cyan-l:#ecfeff;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#1a2e05,#365314,#65a30d);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🌿';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#0c1445,#0369a1,#0891b2);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'⚡';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1;text-align:center}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#d9f99d;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#a5f3fc;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#bef264;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#65a30d);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(101,163,13,.4)}
+.ah h1 em{color:#67e8f9;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#0891b2);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(8,145,178,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#65a30d,#059669);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#0891b2,#059669);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--lime);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--cyan);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* BONUS CARDS */
-.bonus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0}
-.bcard{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem;text-align:center;transition:transform .2s,box-shadow .2s;position:relative}
-.bcard:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(101,163,13,.12)}
-.bcard.best{border:2px solid var(--lime)}
-.best-tag{position:absolute;top:-10px;left:50%;transform:translateX(jusqu'à -50%);background:var(--lime);color:white;font-size:.65rem;font-weight:700;padding:.14rem .65rem;border-radius:50px;white-space:nowrap}
-.bcard-icon{font-size:2rem;margin-bottom:.5rem}
-.bcard-name{font-weight:700;font-size:.92rem;margin-bottom:.2rem}
-.bcard-amount{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--lime);margin:.3rem 0}
-.bcard-cond{font-size:.75rem;color:var(--m);font-weight:300;line-height:1.4}
+/* STAT BAND */
+.stat-band{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border-radius:var(--r);overflow:hidden;margin:1.5rem 0}
+.stat-cell{background:var(--w);padding:1.2rem 1rem;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:700;color:var(--cyan);display:block}
+.stat-lbl{font-size:.74rem;color:var(--m);margin-top:.2rem}
 
-/* TABLEAU */
-.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
-table{width:100%;border-collapse:collapse;font-size:.86rem}
-thead tr{background:linear-gradient(135deg,#365314,#65a30d);color:white}
-thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.8rem}
-tbody tr{border-bottom:1px solid var(--b)}
-tbody tr:last-child{border-bottom:none}
-tbody tr:nth-child(even){background:#fafafa}
-tbody td{padding:.8rem 1rem;vertical-align:middle}
-.g{color:#16a34a;font-weight:600}
-.o{color:var(--ad);font-weight:500}
-.r{color:#dc2626;font-weight:500}
+/* VOITURES DISPO */
+.voitures{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1rem;margin:1.5rem 0}
+.vcard{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;text-align:center;transition:transform .2s,box-shadow .2s}
+.vcard:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(8,145,178,.1)}
+.vcard.top{border:2px solid var(--g)}
+.vcar-icon{font-size:2rem;margin-bottom:.4rem}
+.vcar-name{font-weight:700;font-size:.9rem;margin-bottom:.2rem}
+.vcar-auto{font-size:.75rem;color:var(--m);margin-bottom:.4rem}
+.vcar-price{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--cyan);margin:.2rem 0}
+.vcar-sub{font-size:.7rem;color:var(--m)}
 
 /* ÉTAPES */
 .steps{display:flex;flex-direction:column;gap:.85rem;margin:1.2rem 0}
 .step{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem;transition:box-shadow .2s}
-.step:hover{box-shadow:0 4px 16px rgba(101,163,13,.1)}
-.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#365314,#65a30d);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step:hover{box-shadow:0 4px 16px rgba(8,145,178,.1)}
+.sn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#0369a1,#0891b2);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .sc h3{font-size:.92rem;font-weight:600;margin-bottom:.2rem}
 .sc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
+
+/* CONDITIONS */
+.conds{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.5rem 0}
+@media(max-width:500px){.conds{grid-template-columns:1fr}}
+.cond-card{border-radius:var(--r);padding:1.1rem}
+.cond-card.ok{background:var(--gl);border:1px solid #bbf7d0}
+.cond-card.ko{background:#fef2f2;border:1px solid #fecaca}
+.cond-label{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.5rem;display:block}
+.cond-card.ok .cond-label{color:var(--gd)}
+.cond-card.ko .cond-label{color:#dc2626}
+.cond-card ul{list-style:none;display:flex;flex-direction:column;gap:.3rem}
+.cond-card li{font-size:.84rem;line-height:1.45}
+.cond-card.ok li{color:var(--gd)}
+.cond-card.ok li::before{content:'✓ ';font-weight:700}
+.cond-card.ko li{color:#7f1d1d}
+.cond-card.ko li::before{content:'✗ ';font-weight:700}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:var(--lime-l);border-left:4px solid var(--lime);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#365314}
+.warn{background:var(--cyan-l);border-left:4px solid var(--cyan);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#0c4a6e}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
 
-.cta{background:linear-gradient(135deg,#1a2e05,#365314);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta{background:linear-gradient(135deg,#0c1445,#0369a1);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#65a30d,#059669);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#0891b2,#059669);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
-@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}.stat-band{grid-template-columns:1fr}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -132,9 +141,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Bonus écologique 2026 : montants et conditions",
-  "description": "Bonus écologique 2026 : montants et conditions — Jusqu'à 7 000€ de bonus. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-261.html",
+  "headline": "Leasing social VE 2026 : conditions et dossier",
+  "description": "Leasing social VE 2026 : conditions et dossier — VE dès 100€/mois. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-266.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -151,19 +160,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Bonus écologique 2026 : montants et conditions">
-  <meta property="og:description" content="Bonus écologique 2026 : montants et conditions — Jusqu'à 7 000€ de bonus. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-261.html">
+  <meta property="og:title" content="Leasing social VE 2026 : conditions et dossier">
+  <meta property="og:description" content="Leasing social VE 2026 : conditions et dossier — VE dès 100€/mois. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-266.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bonus écologique 2026 : montants et conditions">
-  <meta name="twitter:description" content="Bonus écologique 2026 : montants et conditions — Jusqu'à 7 000€ de bonus. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Leasing social VE 2026 : conditions et dossier">
+  <meta name="twitter:description" content="Leasing social VE 2026 : conditions et dossier — VE dès 100€/mois. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-261.html" />
+<link rel="canonical" href="https://economya.fr/article-266.html" />
 </head>
 <body>
 <nav>
@@ -173,118 +182,137 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Transport</span> › <span style="color:var(--t,#2C2C2A)">Bonus écologique 2026 : montants et conditions</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Transport", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Bonus écologique 2026 : montants et conditions", "item": "https://economya.fr/article-261.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Transport</span> › <span style="color:var(--t,#2C2C2A)">Leasing social VE 2026 : conditions et dossier</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Transport", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Leasing social VE 2026 : conditions et dossier", "item": "https://economya.fr/article-266.html"}]}</script>
 
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🌿 Transport</div>
-    <h1>Bonus écologique 2026 :<br><em> montants et conditions</em></h1>
-    <div class="savings-badge">💰 Jusqu'à 7 000 € de bonus</div>
+    <div class="cat-pill">⚡ Transport</div>
+    <h1>Leasing social VE 2026 :<br><em> conditions et dossier</em></h1>
+    <div class="savings-badge">💰 Véhicule électrique dès 100 €/mois</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">🚗 Mobilité verte</span>
+      <span class="theme-tag">🚗 Mobilité électrique</span>
     </div>
   </div>
 </div>
 
 <div class="ab">
 
-  <p class="lead">Acheter un véhicule électrique en 2026 peut rapporter jusqu'à 7 700 € d'aides cumulées grâce au bonus écologique et au surbonus batterie européenne. Des conditions de revenus et de résidence s'appliquent. Voici le guide complet pour ne rien rater.</p>
+  <p class="lead">Le leasing social permet aux ménages modestes de louer un véhicule électrique neuf à partir de 100 €/mois — assurance et entretien inclus. ⚠️ Ce dispositif fonctionne par éditions limitées dans le temps (3e édition : réouverture le 16 juillet 2026, 50 000 contrats disponibles, généralement épuisés en quelques semaines) — vérifiez les dates d'ouverture actuelles avant de monter votre dossier. Voici tout ce qu'il faut savoir pour préparer votre dossier.</p>
 
-  <h2>💶 Les aides disponibles en 2026</h2>
+  <div class="stat-band">
+    <div class="stat-cell"><span class="stat-num">100 €</span><span class="stat-lbl">loyer mensuel minimum</span></div>
+    <div class="stat-cell"><span class="stat-num">16 880 €</span><span class="stat-lbl">revenu fiscal max pour éligibilité (2026)</span></div>
+    <div class="stat-cell"><span class="stat-num">50 000</span><span class="stat-lbl">véhicules disponibles par session</span></div>
+  </div>
 
-  <div class="bonus-grid">
-    <div class="bcard best">
-      <span class="best-tag">⭐ Plus avantageux</span>
-      <div class="bcard-icon">⚡</div>
-      <div class="bcard-name">Bonus écologique voiture électrique</div>
-      <div class="bcard-amount">Jusqu'à 5 700 €</div>
-      <div class="bcard-cond">Pour les revenus > 15 400 €/an. Leasing social et revenus modestes : jusqu'à 7 000 €. Véhicule ≤ 47 000 €, fabriqué en Europe.</div>
+  <h2>🚗 Les modèles disponibles au leasing social</h2>
+
+  <div class="voitures">
+    <div class="vcard top">
+      <div class="vcar-icon">🔵</div>
+      <div class="vcar-name">Renault 5 E-Tech</div>
+      <div class="vcar-auto">Citadine — 150 km d'autonomie</div>
+      <div class="vcar-price">~100 €</div>
+      <div class="vcar-sub">/mois tout compris</div>
     </div>
-    <div class="bcard">
-      <div class="bcard-icon">🛵</div>
-      <div class="bcard-name">Bonus vélo cargo électrique</div>
-      <div class="bcard-amount">400 €</div>
-      <div class="bcard-cond">Pour l'achat d'un vélo cargo électrique. Cumulable avec les aides régionales et locales.</div>
+    <div class="vcard">
+      <div class="vcar-icon">🟡</div>
+      <div class="vcar-name">Citroën ë-C3</div>
+      <div class="vcar-auto">Citadine — 320 km d'autonomie</div>
+      <div class="vcar-price">~100 €</div>
+      <div class="vcar-sub">/mois tout compris</div>
     </div>
-    <div class="bcard">
-      <div class="bcard-icon">🏘️</div>
-      <div class="bcard-name">Aides régionales & locales</div>
-      <div class="bcard-amount">500–3000 €</div>
-      <div class="bcard-cond">Île-de-France, Auvergne-Rhône-Alpes, certaines métropoles proposent des aides complémentaires. Variable selon lieu de résidence.</div>
+    <div class="vcard">
+      <div class="vcar-icon">🟢</div>
+      <div class="vcar-name">Peugeot e-208</div>
+      <div class="vcar-auto">Citadine — 362 km d'autonomie</div>
+      <div class="vcar-price">~120 €</div>
+      <div class="vcar-sub">/mois tout compris</div>
+    </div>
+    <div class="vcard">
+      <div class="vcar-icon">🔴</div>
+      <div class="vcar-name">Fiat 500e</div>
+      <div class="vcar-auto">Citadine — 320 km d'autonomie</div>
+      <div class="vcar-price">~130 €</div>
+      <div class="vcar-sub">/mois tout compris</div>
     </div>
   </div>
 
-  <h2>📋 Conditions d'éligibilité au bonus</h2>
+  <h2>✅ Conditions d'éligibilité</h2>
 
-  <div class="tw">
-    <table>
-      <thead>
-        <tr>
-          <th>Critère</th>
-          <th>Condition requise</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Type de véhicule</td><td>100 % électrique ou hydrogène uniquement (pas hybride)</td></tr>
-        <tr><td>Prix du véhicule</td><td class="g">≤ 47 000 € TTC (neuf)</td></tr>
-        <tr><td>Fabrication</td><td class="g">Score environnemental européen requis (hors Chine pour certains modèles)</td></tr>
-        <tr><td>Conservation</td><td>Garder le véhicule au moins 1 an (pas de revente immédiate)</td></tr>
-        <tr><td>Revenus modestes</td><td class="g">Bonus majoré jusqu'à 7 000 € si RFR ≤ 15 400 €</td></tr>
-        <tr><td>Leasing social</td><td class="g">100 € à 150 €/mois pour les éligibles (revenus ≤ 15 400 €)</td></tr>
-      </tbody>
-    </table>
+  <div class="conds">
+    <div class="cond-card ok">
+      <span class="cond-label">✅ Conditions requises</span>
+      <ul>
+        <li>Revenu fiscal ≤ 16 880 €/an</li>
+        <li>Résidence en France</li>
+        <li>Trajets domicile-travail > 15 km OU pas de TC adaptés</li>
+        <li>Permis de conduire valide</li>
+        <li>Pas de leasing social en cours</li>
+      </ul>
+    </div>
+    <div class="cond-card ko">
+      <span class="cond-label">✗ Causes d'inéligibilité</span>
+      <ul>
+        <li>Revenu fiscal > 16 880 €</li>
+        <li>Résidence hors France</li>
+        <li>Déjà bénéficiaire d'un leasing social</li>
+        <li>Absence de permis B valide</li>
+        <li>Formulaire incomplet ou pièces manquantes</li>
+      </ul>
+    </div>
   </div>
 
-  <h2>🪜 Comment faire la demande</h2>
+  <h2>🪜 Comment préparer votre dossier</h2>
 
   <div class="steps">
     <div class="step">
       <div class="sn">1</div>
       <div class="sc">
-        <h3>Vérifiez l'éligibilité du véhicule</h3>
-        <p>Tous les véhicules électriques ne sont pas éligibles. Consultez la liste officielle sur le site bonus.ecologie.gouv.fr avant de signer un bon de commande.</p>
+        <h3>Rassemblez les pièces justificatives</h3>
+        <p>Avis d'imposition N-1, justificatif de domicile de moins de 3 mois, permis de conduire recto-verso, justificatif de trajet domicile-travail (attestation employeur ou déclaration sur l'honneur).</p>
       </div>
     </div>
     <div class="step">
       <div class="sn">2</div>
       <div class="sc">
-        <h3>Le concessionnaire déduit souvent le bonus directement</h3>
-        <p>Dans la plupart des cas, le bonus est déduit du prix à l'achat chez le concessionnaire. C'est lui qui effectue la demande de remboursement auprès de l'ASP (Agence de Services et de Paiement).</p>
+        <h3>Surveillez l'ouverture des sessions</h3>
+        <p>Le leasing social ouvre par sessions limitées (50 000 véhicules environ). Les places partent en quelques jours. Inscrivez-vous à la newsletter officielle sur leasingsocial.gouv.fr pour être alerté à l'ouverture.</p>
       </div>
     </div>
     <div class="step">
       <div class="sn">3</div>
       <div class="sc">
-        <h3>Demande directe si achat entre particuliers</h3>
-        <p>Si vous achetez un véhicule électrique d'occasion à un particulier, la demande se fait directement sur le site de l'ASP (asp-public.fr) dans les 6 mois suivant l'achat.</p>
+        <h3>Déposez votre dossier en ligne rapidement</h3>
+        <p>Dès l'ouverture, connectez-vous sur le site officiel et déposez votre dossier complet. Le traitement est quasi instantané si tout est en ordre. Choisissez votre modèle et votre concessionnaire.</p>
       </div>
     </div>
     <div class="step">
       <div class="sn">4</div>
       <div class="sc">
-        <h3>Cumulez avec les aides locales</h3>
-        <p>Après le bonus national, renseignez-vous auprès de votre région, département et commune. Les aides locales (Île-de-France Mobilités, Grand Paris…) sont souvent cumulables.</p>
+        <h3>Récupérez votre véhicule chez le concessionnaire</h3>
+        <p>Une fois le dossier validé, prenez rendez-vous avec le concessionnaire partenaire. Le contrat de location est de 3 ans. À l'issue, possibilité de rachat du véhicule à valeur résiduelle.</p>
       </div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Le leasing social : la meilleure offre pour les revenus modestes</strong>
-    Si votre revenu fiscal de référence est inférieur à 16 880 €, le leasing social vous permet de louer un véhicule électrique neuf dès 100 €/mois tout compris. Les sessions d'ouverture sont limitées — surveillez le site officiel pour les prochaines vagues.
+    <strong>💡 Ce qui est inclus dans le loyer</strong>
+    Le loyer mensuel comprend généralement l'assurance tous risques, l'entretien et les réparations, l'assistance en cas de panne et parfois une dotation de recharge. C'est un véritable "tout compris" sans mauvaise surprise.
   </div>
 
   <div class="warn">
-    <strong>⚠️ Attention au score environnemental</strong>
-    Depuis 2024, seuls les véhicules ayant obtenu un bon score environnemental (tenant compte de l'empreinte carbone de fabrication) sont éligibles. Certains modèles fabriqués en Chine ont été exclus. Vérifiez avant d'acheter sur le site officiel.
+    <strong>⚠️ Les places sont très limitées</strong>
+    La première édition du leasing social (2024) a vu ses 50 000 places partir en quelques semaines. Préparez votre dossier à l'avance et soyez prêt à soumettre le jour J de l'ouverture. Il n'y a pas de liste d'attente — premier arrivé, premier servi.
   </div>
 
   <div class="cta">
-    <h3>📬 Aides & mobilité dans votre boîte mail</h3>
-    <p>Les aides disponibles pour vous déplacer moins cher, chaque semaine.</p>
+    <h3>📬 Mobilité verte dans votre boîte mail</h3>
+    <p>Les aides et ouvertures de sessions en avant-première, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -327,7 +355,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-263.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Malus écologique 2026 : barème complet</div></a><a class="sim-card" href="article-264.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Permis de conduire moins cher : toutes les options</div></a><a class="sim-card" href="article-265.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Train pas cher : cartes SNCF et astuces 2026</div></a><a class="sim-card" href="article-266.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Leasing social VE 2026 : conditions et dossier</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-261.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Bonus écologique 2026 : montants et conditions</div></a><a class="sim-card" href="article-262.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Assurance auto : comparer et économiser</div></a><a class="sim-card" href="article-263.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Malus écologique 2026 : barème complet</div></a><a class="sim-card" href="article-264.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Permis de conduire moins cher : toutes les options</div></a></div>
 </div>
 
 
