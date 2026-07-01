@@ -2,62 +2,93 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="Téléconsultation médicale gratuite — Consulter sans avancer de frais. Guide complet sur Economya.fr">
+<meta name="description" content="Location longue durée vs achat : que choisir — Le vrai calcul. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Téléconsultation médicale : consulter gratuitement — Economya.fr</title>
+<title>Location longue durée vs achat : que choisir — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--blue:#2563EB;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--rose:#be185d;--rose-l:#fdf2f8;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
 nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
-.ah{background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'📱';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah{background:linear-gradient(135deg,#1a0011,#831843,#be185d);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🔄';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1;text-align:center}
-.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bfdbfe;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fbcfe8;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
-.ah h1 em{color:#93c5fd;font-style:normal}
-.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#3b82f6);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(59,130,246,.35)}
+.ah h1 em{color:#f9a8d4;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#f59e0b,#be185d);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(190,24,93,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#be185d,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
-.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--blue);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--rose);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
-.platforms{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin:1.5rem 0}
-.pcard{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem;transition:transform .2s,box-shadow .2s}
-.pcard:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(37,99,235,.1)}
-.pcard .picon{font-size:1.8rem;margin-bottom:.5rem}
-.pcard .pname{font-weight:700;font-size:.93rem;margin-bottom:.3rem}
-.pcard .pprice{display:inline-block;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:700;padding:.13rem .5rem;border-radius:50px;margin-bottom:.45rem}
-.pcard .pdesc{font-size:.81rem;color:var(--m);font-weight:300}
-.steps-h{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:1.5rem 0;text-align:center}
-.step-h{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem .9rem}
-.snum{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto .6rem}
-.step-h h3{font-size:.84rem;font-weight:600;margin-bottom:.25rem}
-.step-h p{font-size:.79rem;color:var(--m);font-weight:300;margin:0}
-.vlist{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin:1.2rem 0}
-.vlist li{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.9rem 1.1rem;font-size:.9rem}
-.vlist li .ic{font-size:1.2rem;flex-shrink:0;margin-top:.05rem}
-.vlist li strong{color:var(--t);display:block;margin-bottom:.1rem;font-size:.89rem}
-.vlist li span{color:var(--m);font-weight:300;font-size:.85rem}
+
+/* COMPARATIF CARDS */
+.versus{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
+@media(max-width:540px){.versus{grid-template-columns:1fr}}
+.vs-card{border-radius:var(--r);padding:1.4rem;border:2px solid transparent}
+.vs-card.lld{background:linear-gradient(135deg,#f0f9ff,#dbeafe);border-color:#93c5fd}
+.vs-card.achat{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-color:#86efac}
+.vs-title{font-weight:700;font-size:1rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
+.vs-card.lld .vs-title{color:#1d4ed8}
+.vs-card.achat .vs-title{color:#16a34a}
+.vs-pros{list-style:none;display:flex;flex-direction:column;gap:.4rem;margin-bottom:.8rem}
+.vs-pros li{font-size:.82rem;font-weight:300;line-height:1.4;padding-left:.8rem;position:relative}
+.vs-pros li::before{content:'✓';position:absolute;left:0;font-weight:700}
+.vs-card.lld .vs-pros li{color:#1e3a8a}
+.vs-card.lld .vs-pros li::before{color:#1d4ed8}
+.vs-card.achat .vs-pros li{color:#14532d}
+.vs-card.achat .vs-pros li::before{color:#16a34a}
+.vs-cons{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.vs-cons li{font-size:.82rem;font-weight:300;line-height:1.4;padding-left:.8rem;position:relative;opacity:.75}
+.vs-cons li::before{content:'−';position:absolute;left:0;font-weight:700}
+.vs-card.lld .vs-cons li{color:#1e3a8a}
+.vs-card.achat .vs-cons li{color:#14532d}
+
+/* TABLEAU CHIFFRES */
+.tw{overflow-x:auto;margin:1.3rem 0;border-radius:var(--r);border:1px solid var(--b)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+thead tr{background:linear-gradient(135deg,#831843,#be185d);color:white}
+thead th{padding:.85rem 1rem;text-align:left;font-weight:600;font-size:.8rem}
+tbody tr{border-bottom:1px solid var(--b)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:nth-child(even){background:#fafafa}
+tbody td{padding:.8rem 1rem;vertical-align:middle}
+.g{color:#16a34a;font-weight:600}
+.o{color:var(--ad);font-weight:500}
+.r{color:#dc2626;font-weight:500}
+
+/* PROFILS */
+.profils{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
+.profil{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
+.profil .pico{font-size:1.4rem;flex-shrink:0;margin-top:.05rem}
+.profil strong{display:block;font-size:.92rem;margin-bottom:.15rem}
+.profil span{font-size:.85rem;color:var(--m);font-weight:300}
+.profil .ptag{display:inline-block;margin-top:.3rem;font-size:.7rem;font-weight:700;padding:.1rem .5rem;border-radius:50px}
+.profil .ptag.lld{background:#dbeafe;color:#1d4ed8}
+.profil .ptag.achat{background:#dcfce7;color:#16a34a}
+
+/* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
 .tip strong{display:block;font-weight:600;margin-bottom:.25rem}
-.warn{background:#eff6ff;border-left:4px solid var(--blue);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#1e3a8a}
+.warn{background:var(--rose-l);border-left:4px solid var(--rose);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#831843}
 .warn strong{display:block;font-weight:600;margin-bottom:.25rem}
-.cta{background:linear-gradient(135deg,#0f172a,#1e3a8a);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+
+.cta{background:linear-gradient(135deg,#1a0011,#831843);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
 .cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
 .cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
 .cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
-.cta-form button{background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+.cta-form button{background:linear-gradient(135deg,#be185d,#7c3aed);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
 footer strong{color:white}
 @media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
@@ -114,9 +145,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Téléconsultation médicale gratuite",
-  "description": "Téléconsultation médicale gratuite — Consulter sans avancer de frais. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-237.html",
+  "headline": "Location longue durée vs achat : que choisir",
+  "description": "Location longue durée vs achat : que choisir — Le vrai calcul. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-268.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -133,19 +164,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Téléconsultation médicale gratuite">
-  <meta property="og:description" content="Téléconsultation médicale gratuite — Consulter sans avancer de frais. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-237.html">
+  <meta property="og:title" content="Location longue durée vs achat : que choisir">
+  <meta property="og:description" content="Location longue durée vs achat : que choisir — Le vrai calcul. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-268.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Téléconsultation médicale gratuite">
-  <meta name="twitter:description" content="Téléconsultation médicale gratuite — Consulter sans avancer de frais. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Location longue durée vs achat : que choisir">
+  <meta name="twitter:description" content="Location longue durée vs achat : que choisir — Le vrai calcul. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-237.html" />
+<link rel="canonical" href="https://economya.fr/article-268.html" />
 </head>
 <body>
 <nav>
@@ -155,116 +186,141 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Santé</span> › <span style="color:var(--t,#2C2C2A)">Téléconsultation médicale gratuite</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Santé", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Téléconsultation médicale gratuite", "item": "https://economya.fr/article-237.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Transport</span> › <span style="color:var(--t,#2C2C2A)">Location longue durée vs achat : que choisir</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Transport", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Location longue durée vs achat : que choisir", "item": "https://economya.fr/article-268.html"}]}</script>
 
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">📱 Santé</div>
-    <h1>Téléconsultation médicale :<br><em>consulter gratuitement</em></h1>
-    <div class="savings-badge">💰 Consulter sans avancer de frais</div>
+    <div class="cat-pill">🔄 Transport</div>
+    <h1>LLD vs achat :<br><em>le vrai calcul</em></h1>
+    <div class="savings-badge">💰 Choisissez la bonne option</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">🩺 Santé numérique</span>
+      <span class="theme-tag">🚗 Financement auto</span>
     </div>
   </div>
 </div>
 
 <div class="ab">
-  <p class="lead">Médecin introuvable dans votre secteur, délai de plusieurs semaines pour un rendez-vous, pas le temps de se déplacer : la téléconsultation est désormais remboursée à 100 % par l'Assurance maladie. Voici comment en profiter sans débourser un centime.</p>
 
-  <h2>🏥 Ce qui est remboursé</h2>
-  <p>Depuis 2022, la téléconsultation est remboursée par la Sécu sur la base de <strong>25 €</strong> (contre 30 € pour une consultation classique en cabinet depuis décembre 2024), le reste pouvant être pris en charge par votre mutuelle. Deux conditions pour être pris en charge à 100 % :</p>
+  <p class="lead">Location Longue Durée ou achat cash/crédit ? C'est l'une des questions financières les plus fréquentes autour de l'automobile. La réponse dépend de votre usage, de votre situation fiscale et de la valeur du véhicule. Voici le vrai calcul, sans langue de bois.</p>
 
-  <ul class="vlist">
-    <li>
-      <span class="ic">✅</span>
-      <div><strong>Votre médecin traitant la propose</strong><span>C'est la voie royale : remboursement intégral, suivi de dossier, ordonnance valide immédiatement.</span></div>
-    </li>
-    <li>
-      <span class="ic">✅</span>
-      <div><strong>Vous passez par le Service d'Accès aux Soins (15)</strong><span>En cas d'urgence non vitale, le 15 oriente vers une téléconsultation remboursée sous 30 minutes.</span></div>
-    </li>
-    <li>
-      <span class="ic">⚠️</span>
-      <div><strong>Plateformes privées sans médecin traitant</strong><span>Doctolib, Livi, Qare… remboursées si le médecin consulté accepte d'être votre correspondant déclaré, sinon remboursement partiel.</span></div>
-    </li>
-  </ul>
+  <h2>⚖️ LLD vs Achat : les avantages de chaque option</h2>
 
-  <h2>📱 Les meilleures plateformes en 2026</h2>
-
-  <div class="platforms">
-    <div class="pcard">
-      <div class="picon">🩺</div>
-      <div class="pname">Doctolib</div>
-      <div class="pprice">💰 Remboursé Sécu</div>
-      <div class="pdesc">La plus utilisée. Large choix de spécialistes, ordonnance électronique, RDV rapide.</div>
+  <div class="versus">
+    <div class="vs-card lld">
+      <div class="vs-title">🔵 Location Longue Durée</div>
+      <ul class="vs-pros">
+        <li>Loyer fixe tout compris (entretien, assurance)</li>
+        <li>Toujours un véhicule récent et garanti</li>
+        <li>Pas d'immobilisation de capital</li>
+        <li>Déductible fiscalement (pro/indépendant)</li>
+        <li>Pas de souci de revente</li>
+      </ul>
+      <ul class="vs-cons">
+        <li>Aucune propriété du véhicule</li>
+        <li>Kilométrage limité (pénalités si dépassement)</li>
+        <li>Coût total supérieur sur 5–10 ans</li>
+      </ul>
     </div>
-    <div class="pcard">
-      <div class="picon">💬</div>
-      <div class="pname">Livi</div>
-      <div class="pprice">💰 Remboursé Sécu</div>
-      <div class="pdesc">Consultation en moins de 30 min, disponible 7j/7, dossier médical intégré.</div>
-    </div>
-    <div class="pcard">
-      <div class="picon">🏥</div>
-      <div class="pname">Medadom</div>
-      <div class="pprice">💰 Remboursé Sécu</div>
-      <div class="pdesc">Bornes en pharmacie + appli. Idéal sans médecin traitant. Réseau national.</div>
-    </div>
-    <div class="pcard">
-      <div class="picon">📞</div>
-      <div class="pname">Qare</div>
-      <div class="pprice">💰 Partiellement</div>
-      <div class="pdesc">Spécialistes accessibles vite (dermato, psy, pédiatre). Vérifiez le remboursement avant.</div>
+    <div class="vs-card achat">
+      <div class="vs-title">🟢 Achat (cash ou crédit)</div>
+      <ul class="vs-pros">
+        <li>Propriété complète du véhicule</li>
+        <li>Pas de limite de kilométrage</li>
+        <li>Coût total inférieur à long terme</li>
+        <li>Liberté totale (modifications, revente)</li>
+        <li>Pas de loyer à payer après remboursement</li>
+      </ul>
+      <ul class="vs-cons">
+        <li>Immobilisation de capital importante</li>
+        <li>Risque de dépréciation rapide</li>
+        <li>Frais imprévus (réparations hors garantie)</li>
+      </ul>
     </div>
   </div>
 
-  <h2>🪜 Comment ça se passe</h2>
+  <h2>📊 Le vrai calcul sur 3 ans (exemple Peugeot 208)</h2>
 
-  <div class="steps-h">
-    <div class="step-h">
-      <div class="snum">1</div>
-      <h3>Prenez RDV en ligne</h3>
-      <p>Sur la plateforme ou via votre médecin. Souvent dispo sous 2h.</p>
+  <div class="tw">
+    <table>
+      <thead>
+        <tr>
+          <th>Poste de dépense</th>
+          <th>LLD (350 €/mois)</th>
+          <th>Achat cash (18 000 €)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Coût d'acquisition / loyers</td><td class="r">12 600 €</td><td class="o">18 000 €</td></tr>
+        <tr><td>Assurance tous risques</td><td class="g">Incluse</td><td class="r">+2 400 € (800 €/an)</td></tr>
+        <tr><td>Entretien / réparations</td><td class="g">Inclus</td><td class="r">+1 200 € estimés</td></tr>
+        <tr><td>Valeur résiduelle / revente</td><td class="r">0 € (pas propriétaire)</td><td class="g">+10 500 € (3 ans)</td></tr>
+        <tr><td><strong>Coût net total</strong></td><td class="r"><strong>12 600 €</strong></td><td class="g"><strong>11 100 €</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size:.8rem;color:var(--m)">* Simulation sur 36 mois, 15 000 km/an. La LLD inclut assurance et entretien dans le loyer. La revente après 3 ans est estimée à 58 % du prix neuf pour une 208 essence bien entretenue.</p>
+
+  <h2>👥 Quel profil devrait choisir quoi ?</h2>
+
+  <div class="profils">
+    <div class="profil">
+      <span class="pico">💼</span>
+      <div>
+        <strong>Travailleur indépendant / chef d'entreprise</strong>
+        <span>La LLD est déductible des charges professionnelles. L'avantage fiscal peut rendre la LLD moins chère que l'achat, même sur le long terme.</span>
+        <span class="ptag lld">→ LLD recommandée</span>
+      </div>
     </div>
-    <div class="step-h">
-      <div class="snum">2</div>
-      <h3>Consultez par vidéo</h3>
-      <p>Depuis votre smartphone ou ordi. Connexion stable requise.</p>
+    <div class="profil">
+      <span class="pico">🧳</span>
+      <div>
+        <strong>Grand rouleur (+ 25 000 km/an)</strong>
+        <span>Les pénalités kilométriques en LLD peuvent dépasser 1 000 €/an. L'achat est presque toujours plus avantageux pour les gros rouleurs.</span>
+        <span class="ptag achat">→ Achat recommandé</span>
+      </div>
     </div>
-    <div class="step-h">
-      <div class="snum">3</div>
-      <h3>Recevez l'ordonnance</h3>
-      <p>Par e-mail ou directement en pharmacie connectée.</p>
+    <div class="profil">
+      <span class="pico">🏠</span>
+      <div>
+        <strong>Particulier avec capital disponible</strong>
+        <span>Acheter cash un véhicule d'occasion de 2–3 ans (après la forte dépréciation initiale) reste la solution la moins chère sur 5 ans. La LLD coûte plus cher à profil équivalent.</span>
+        <span class="ptag achat">→ Achat occasion recommandé</span>
+      </div>
     </div>
-    <div class="step-h">
-      <div class="snum">4</div>
-      <h3>Zéro avance</h3>
-      <p>Tiers payant activé = vous ne déboursez rien.</p>
+    <div class="profil">
+      <span class="pico">🔄</span>
+      <div>
+        <strong>Amateur de nouveautés (changement tous les 3 ans)</strong>
+        <span>Si vous aimez changer de voiture régulièrement, la LLD évite les tracas de la revente et la dépréciation initiale. C'est confortable mais plus cher.</span>
+        <span class="ptag lld">→ LLD acceptable</span>
+      </div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Astuce mutuelle</strong>
-    Certaines mutuelles (Malakoff Humanis, Alan, Harmonie…) offrent des téléconsultations illimitées gratuites à leurs adhérents, en plus du remboursement Sécu. Vérifiez votre espace adhérent avant de payer quoi que ce soit.
+    <strong>💡 L'option la moins chère : l'occasion de 2–4 ans</strong>
+    Un véhicule d'occasion de 2 à 4 ans a déjà subi sa plus forte dépréciation (30 à 40 %). Vous achetez l'essentiel de la durée de vie utile du véhicule pour 60 % du prix neuf. C'est mathématiquement la solution la moins chère sur 5 ans.
   </div>
 
   <div class="warn">
-    <strong>ℹ️ Limites à connaître</strong>
-    La téléconsultation ne remplace pas un examen physique. Pour tout symptôme nécessitant auscultation ou examens complémentaires, le médecin vous orientera vers une consultation en présentiel.
+    <strong>⚠️ Méfiez-vous des offres LLD "à partir de X €/mois"</strong>
+    Ces prix d'appel affichent souvent un premier loyer majoré de 3 000 à 5 000 € non mentionné dans le titre. Raisonnez toujours en coût total sur la durée du contrat, premier loyer majoré inclus.
   </div>
 
   <div class="cta">
-    <h3>📬 Santé & économies dans votre boîte mail</h3>
-    <p>Les meilleures astuces pour payer moins cher vos soins, chaque semaine.</p>
+    <h3>📬 Mobilité & budget dans votre boîte mail</h3>
+    <p>Les meilleures astuces pour financer votre voiture moins cher, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
     </div>
   </div>
+
 </div>
 
 
@@ -301,7 +357,7 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-231.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">100% Santé : ce qui est vraiment remboursé</div></a><a class="sim-card" href="article-232.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">ALD : droits, prise en charge à 100%</div></a><a class="sim-card" href="article-233.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Complémentaire santé solidaire (CSS) gratuite</div></a><a class="sim-card" href="article-234.html"><div class="sim-card-cat">Sante</div><div class="sim-card-title">Remboursement lunettes : toutes les aides</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-261.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Bonus écologique 2026 : montants et conditions</div></a><a class="sim-card" href="article-262.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Assurance auto : comparer et économiser</div></a><a class="sim-card" href="article-263.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Malus écologique 2026 : barème complet</div></a><a class="sim-card" href="article-264.html"><div class="sim-card-cat">Transport</div><div class="sim-card-title">Permis de conduire moins cher : toutes les options</div></a></div>
 </div>
 
 
