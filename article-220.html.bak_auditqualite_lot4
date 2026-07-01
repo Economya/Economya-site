@@ -214,8 +214,8 @@ window.economyaLoadAds = function() {
     <div class="cond">
       <div class="cond-num">1</div>
       <div class="cond-body">
-        <div class="cond-titre">5 ans d'activité salariée continue</div>
-        <div class="cond-desc">Vous devez justifier d'au moins 5 ans (1 300 jours) d'activité salariée continue au cours des 60 derniers mois, chez un ou plusieurs employeurs — l'ancienneté n'a pas besoin d'être chez le même employeur. Les congés sans solde, sabbatiques ou périodes de disponibilité ne sont pas pris en compte.</div>
+        <div class="cond-titre">5 ans d'ancienneté chez le même employeur</div>
+        <div class="cond-desc">Vous devez justifier de 5 années continues de contrat de travail chez votre employeur actuel au moment de la démission. Les contrats précédents ne comptent pas, sauf s'ils n'ont pas été interrompus plus d'une période normale entre deux contrats.</div>
         <span class="cond-badge">Durée : 1 826 jours minimum</span>
       </div>
     </div>
