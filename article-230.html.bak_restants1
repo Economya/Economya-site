@@ -221,7 +221,7 @@ window.economyaLoadAds = function() {
         <div class="prime-desc">La part patronale (50–60 % de la valeur du titre) est exonérée de charges et d'IR. Utilisables dans les restaurants, supermarchés et désormais livraisons de repas.</div>
       </div>
       <div class="prime-right">
-        <div class="prime-plafond">7,32 €</div>
+        <div class="prime-plafond">7,18 €</div>
         <div class="prime-label">par titre (part patronale max)</div>
         <span class="prime-tag exo">Exo automatique</span>
       </div>
@@ -339,10 +339,10 @@ window.economyaLoadAds = function() {
     <div class="simul-row"><span class="simul-lab">Salaire brut de base</span><span class="simul-val">35 000 €</span></div>
     <div class="simul-row"><span class="simul-lab">Net salarial après cotisations + IR (TMI 11 %)</span><span class="simul-val">22 400 € net</span></div>
     <div class="simul-row"><span class="simul-lab">PPV ajoutée (3 000 €, exonérée)</span><span class="simul-val gold">+ 3 000 € nets</span></div>
-    <div class="simul-row"><span class="simul-lab">Titres-restaurant (180 jours × 7,32 € patronal)</span><span class="simul-val gold">+ 1 318 € nets</span></div>
+    <div class="simul-row"><span class="simul-lab">Titres-restaurant (180 jours × 7,18 € patronal)</span><span class="simul-val gold">+ 1 292 € nets</span></div>
     <div class="simul-row"><span class="simul-lab">Forfait mobilité durable (vélo)</span><span class="simul-val gold">+ 700 € nets</span></div>
     <div class="simul-row"><span class="simul-lab">Indemnité télétravail (150 j × 2,70 €)</span><span class="simul-val gold">+ 405 € nets</span></div>
-    <div class="simul-row"><span class="simul-lab">Total avantages non imposables</span><span class="simul-val gold">5 423 € nets</span></div>
+    <div class="simul-row"><span class="simul-lab">Total avantages non imposables</span><span class="simul-val gold">5 397 € nets</span></div>
     <div class="simul-row">
       <span class="simul-lab total">Pouvoir d'achat réel vs 35 k€ bruts seuls</span>
       <span class="simul-val total">+ 24 % de pouvoir d'achat net</span>
