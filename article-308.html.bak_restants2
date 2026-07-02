@@ -251,11 +251,11 @@ window.economyaLoadAds = function() {
         </tr>
       </thead>
       <tbody>
-        <tr><td>PreParE taux plein (1 enfant)</td><td class="g">459,70 €/mois</td><td>6 mois</td><td>Arrêt total d'activité</td></tr>
-        <tr><td>PreParE taux plein (2 enfants+)</td><td class="g">459,70 €/mois</td><td>jusqu'aux 3 ans</td><td>Arrêt total d'activité</td></tr>
-        <tr><td>PreParE majorée (2ème parent)</td><td class="g">751,40 €/mois</td><td>+6 mois</td><td>2ème parent aussi en congé</td></tr>
-        <tr><td>PreParE mi-temps</td><td class="o">297,17 €/mois</td><td>idem</td><td>Réduction à 50 %</td></tr>
-        <tr><td>PreParE 60 %</td><td class="o">171,42 €/mois</td><td>idem</td><td>Réduction à 40 %</td></tr>
+        <tr><td>PreParE taux plein (1 enfant)</td><td class="g">432 €/mois</td><td>6 mois</td><td>Arrêt total d'activité</td></tr>
+        <tr><td>PreParE taux plein (2 enfants+)</td><td class="g">432 €/mois</td><td>jusqu'aux 3 ans</td><td>Arrêt total d'activité</td></tr>
+        <tr><td>PreParE majorée (2ème parent)</td><td class="g">596 €/mois</td><td>+6 mois</td><td>2ème parent aussi en congé</td></tr>
+        <tr><td>PreParE mi-temps</td><td class="o">278 €/mois</td><td>idem</td><td>Réduction à 50 %</td></tr>
+        <tr><td>PreParE 60 %</td><td class="o">195 €/mois</td><td>idem</td><td>Réduction à 40 %</td></tr>
       </tbody>
     </table>
   </div>
