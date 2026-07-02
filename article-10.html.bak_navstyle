@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manger sainement pour moins de 150€/mois — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:1rem}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.back{font-size:.8rem;color:var(--m);text-decoration:none;display:flex;align-items:center;gap:.4rem}
+.back:hover{color:var(--g)}
+
+.article-hero{background:linear-gradient(135deg,#052e16,#15803d 60%,#4ade80 120%);color:white;padding:4rem 2rem 3rem;text-align:center}
+.article-cat{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1.2rem}
+.article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.2;max-width:680px;margin:0 auto 1rem}
+.article-hero h1 em{color:var(--a);font-style:normal}
+.article-meta{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,0.6)}
+.savings-badge{display:inline-block;background:var(--a);color:white;padding:.5rem 1.2rem;border-radius:50px;font-weight:500;font-size:.9rem;margin-top:1.2rem}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+.intro-box{background:var(--gl);border-left:4px solid var(--g);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin-bottom:2.5rem;font-size:.95rem;color:var(--gd);font-weight:500}
+
+h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:2.5rem 0 .8rem;color:var(--gd)}
+p{margin-bottom:1rem;color:var(--m);font-weight:300}
+p strong{color:var(--t);font-weight:500}
+
+/* PILIER CARDS */
+.pilier-grid{display:grid;gap:1rem;margin:1.5rem 0}
+.pilier-card{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.2rem 1.4rem;display:grid;grid-template-columns:2.8rem 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.pilier-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07)}
+.pilier-icon{width:2.8rem;height:2.8rem;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.pilier-body h3{font-size:.95rem;font-weight:500;color:var(--t);margin-bottom:.3rem}
+.pilier-body p{margin:0;font-size:.83rem;color:var(--m);font-weight:300;line-height:1.55}
+.pilier-gain{background:var(--al);color:var(--ad);font-size:.7rem;font-weight:500;padding:.2rem .6rem;border-radius:50px;white-space:nowrap;align-self:start}
+
+/* MENU SEMAINE */
+.menu-wrap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
+.menu-title{background:var(--gd);color:white;padding:.8rem 1.2rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.menu-row{display:grid;grid-template-columns:5rem 1fr 1fr;padding:.65rem 1rem;border-bottom:1px solid var(--b);font-size:.82rem;gap:.8rem;align-items:center}
+.menu-row:last-child{border-bottom:none}
+.menu-row:nth-child(even){background:var(--bg)}
+.menu-jour{font-weight:500;color:var(--gd)}
+.menu-cout{color:var(--g);font-weight:500;text-align:right;white-space:nowrap}
+
+/* ALIMENT GRID */
+.aliment-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.8rem;margin:1.5rem 0}
+.aliment-card{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:.9rem 1rem;transition:box-shadow .2s}
+.aliment-card:hover{box-shadow:0 3px 14px rgba(0,0,0,0.06)}
+.aliment-emoji{font-size:1.5rem;margin-bottom:.4rem}
+.aliment-name{font-size:.85rem;font-weight:500;color:var(--t);margin-bottom:.15rem}
+.aliment-prix{font-size:.75rem;color:var(--g);font-weight:500}
+.aliment-desc{font-size:.72rem;color:var(--m);font-weight:300;line-height:1.3;margin-top:.2rem}
+
+.tip-box{background:var(--al);border:1px solid rgba(239,159,39,0.3);border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.tip-box .tip-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ad);margin-bottom:.5rem}
+.tip-box p{margin:0;font-size:.9rem;color:var(--ad)}
+
+.warn-box{background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.warn-box .warn-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:#991B1B;margin-bottom:.5rem}
+.warn-box p{margin:0;font-size:.88rem;color:#7F1D1D}
+
+.recap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:2rem 0}
+.recap-title{background:var(--gd);color:white;padding:.8rem 1.2rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.recap-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.2rem;border-bottom:1px solid var(--b);font-size:.85rem;gap:1rem}
+.recap-row:last-child{border-bottom:none;font-weight:500;background:var(--gl)}
+.recap-row span:last-child{color:var(--g);font-weight:500;text-align:right}
+
+.article-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b);margin-top:3rem;gap:1rem;flex-wrap:wrap}
+.art-nav-btn{display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%}
+.art-nav-btn .nav-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m)}
+.art-nav-btn .nav-title{font-size:.85rem;font-weight:500;color:var(--gd)}
+.art-nav-btn:hover .nav-title{color:var(--g)}
+.art-nav-btn.next{text-align:right;margin-left:auto}
+
+footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.8rem;font-size:.8rem}
+footer strong{color:white}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none}
+
+@media(max-width:640px){
+  .article-wrap{padding:2rem 1rem 4rem}
+  nav{padding:.8rem 1rem}
+  .pilier-card{grid-template-columns:2.5rem 1fr;grid-template-rows:auto auto}
+  .pilier-gain{grid-column:2}
+  .menu-row{grid-template-columns:4rem 1fr auto}
+  .aliment-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}
+}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Manger sainement pour moins de 150€/mois",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-10.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Manger sainement pour moins de 150€/mois">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-10.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Manger sainement pour moins de 150€/mois">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-10.html" />
+<meta name="description" content="Manger sainement pour moins de 150€/mois — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Retour aux articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Alimentation</span> › <span style="color:var(--t,#2C2C2A)">Manger sainement pour moins de 150€/mois</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Alimentation", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Manger sainement pour moins de 150€/mois", "item": "https://economya.fr/article-10.html"}]}</script>
+
+
+<div class="article-hero">
+  <div class="article-cat">🥗 Alimentation</div>
+  <h1>Manger sainement pour <em>moins de 150€/mois</em></h1>
+  <div class="savings-badge">💰 5€ par jour, repas complets inclus</div>
+  <div class="article-meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🇫🇷 Prix France</span>
+  </div>
+</div>
+
+<div class="article-wrap">
+
+  <div class="intro-box">
+    Un Français dépense en moyenne <strong>300 à 450€ par mois</strong> en alimentation seul. Pourtant, il est tout à fait possible de manger équilibré, varié et savoureux pour moins de 150€ par mois — soit environ 5€ par jour. Ce n'est pas une question de privation, mais d'organisation et de méthode.
+  </div>
+
+  <p>L'idée reçue que bien manger coûte cher est l'un des grands mythes de l'alimentation moderne. Les produits ultra-transformés et les plats préparés sont souvent <strong>plus chers au kilo</strong> que leurs équivalents faits maison, tout en étant bien moins nutritifs. La clé est de revenir à des bases simples, de cuisiner un peu plus, et d'acheter malin.</p>
+
+  <h2>Les 6 piliers du budget alimentaire maîtrisé</h2>
+
+  <div class="pilier-grid">
+
+    <div class="pilier-card">
+      <div class="pilier-icon" style="background:#E1F5EE">📋</div>
+      <div class="pilier-body">
+        <h3>Planifier ses repas à la semaine</h3>
+        <p>C'est la base de tout. Avant de faire vos courses, définissez vos 7 dîners et 5 déjeuners de la semaine. Listez exactement ce dont vous avez besoin. Résultat : zéro achat impulsif, zéro gaspillage, et une liste de courses réduite de 20 à 30%. Le batch cooking (préparer plusieurs repas d'un coup le dimanche) amplifie encore l'effet.</p>
+      </div>
+      <div class="pilier-gain">-20 à -30%</div>
+    </div>
+
+    <div class="pilier-card">
+      <div class="pilier-icon" style="background:#FAEEDA">🌾</div>
+      <div class="pilier-body">
+        <h3>Miser sur les protéines économiques</h3>
+        <p>Les légumineuses (lentilles, pois chiches, haricots) sont les alliées numéro un du budget santé : riches en protéines et fibres, excellentes pour la santé, et disponibles à moins de 2€ le kilo. Les œufs (moins de 2€ les 6), le thon en boîte, les sardines et le poulet entier complètent une alimentation protéinée sans exploser le budget.</p>
+      </div>
+      <div class="pilier-gain">Protéines à 1-3€/portion</div>
+    </div>
+
+    <div class="pilier-card">
+      <div class="pilier-icon" style="background:#EFF6FF">🧊</div>
+      <div class="pilier-body">
+        <h3>Adopter les légumes surgelés</h3>
+        <p>Les légumes surgelés sont souvent meilleurs nutritionnellement que les légumes frais vendus en grande surface (congelés quelques heures après la récolte). Ils coûtent deux à trois fois moins cher, ne se gaspillent pas, et sont disponibles toute l'année. Un sac d'épinards, de brocolis ou de petits pois surgelés revient à moins d'1€ la portion.</p>
+      </div>
+      <div class="pilier-gain">2 à 3 fois moins cher</div>
+    </div>
+
+    <div class="pilier-card">
+      <div class="pilier-icon" style="background:#F0FDF4">🏷️</div>
+      <div class="pilier-body">
+        <h3>Privilégier les marques distributeur</h3>
+        <p>Les produits sous marque distributeur (Carrefour, Auchan, Lidl, etc.) sont souvent fabriqués par les mêmes usines que les grandes marques, avec des recettes très proches. Leur prix est en moyenne 30 à 40% inférieur. Sur une liste de courses complète, basculer systématiquement vers les MDD peut économiser 50 à 80€ par mois sans aucune différence perceptible au goût.</p>
+      </div>
+      <div class="pilier-gain">-30 à -40% sur l'épicerie</div>
+    </div>
+
+    <div class="pilier-card">
+      <div class="pilier-icon" style="background:#FDF4FF">♻️</div>
+      <div class="pilier-body">
+        <h3>Cuisiner les restes et anti-gaspi</h3>
+        <p>Le gaspillage alimentaire coûte en moyenne <strong>150€ par an</strong> à un foyer d'une personne. Cuisiner les restes (riz de la veille en salade, légumes en soupe, pain rassis en pain perdu) élimine ce poste. Les applications Too Good To Go et les rayons "anti-gaspi" des supermarchés permettent en plus de récupérer des produits proches de la DLC à -50 ou jusqu'à -70%.</p>
+      </div>
+      <div class="pilier-gain">150€/an économisés</div>
+    </div>
+
+    <div class="pilier-card">
+      <div class="pilier-icon" style="background:#FFF7ED">🛒</div>
+      <div class="pilier-body">
+        <h3>Choisir le bon supermarché selon les rayons</h3>
+        <p>Aucun supermarché n'est le moins cher sur tous les rayons. Lidl et Aldi excellent sur les produits frais, les légumes et les basiques. Les hard-discounters battent tout le monde sur l'épicerie sèche. Les marchés de fin de journée permettent d'acheter fruits et légumes 50% moins cher. Apprendre à combiner deux ou trois points de vente optimise significativement le budget.</p>
+      </div>
+      <div class="pilier-gain">-15 à -25% global</div>
+    </div>
+
+  </div>
+
+  <h2>Exemple de menu à 5€/jour</h2>
+
+  <div class="menu-wrap">
+    <div class="menu-title">🗓️ Une semaine type équilibrée</div>
+    <div class="menu-row">
+      <span class="menu-jour">Lundi</span>
+      <span>Lentilles corail au curry + riz basmati</span>
+      <span class="menu-cout">~1,80€</span>
+    </div>
+    <div class="menu-row">
+      <span class="menu-jour">Mardi</span>
+      <span>Omelette aux légumes surgelés + salade verte</span>
+      <span class="menu-cout">~1,60€</span>
+    </div>
+    <div class="menu-row">
+      <span class="menu-jour">Mercredi</span>
+      <span>Poulet rôti + haricots verts + pommes de terre</span>
+      <span class="menu-cout">~2,50€</span>
+    </div>
+    <div class="menu-row">
+      <span class="menu-jour">Jeudi</span>
+      <span>Soupe maison (restes légumes) + tartines</span>
+      <span class="menu-cout">~0,90€</span>
+    </div>
+    <div class="menu-row">
+      <span class="menu-jour">Vendredi</span>
+      <span>Pasta e fagioli (pâtes + haricots blancs)</span>
+      <span class="menu-cout">~1,40€</span>
+    </div>
+    <div class="menu-row">
+      <span class="menu-jour">Samedi</span>
+      <span>Sardines grillées + taboulé maison</span>
+      <span class="menu-cout">~2,20€</span>
+    </div>
+    <div class="menu-row">
+      <span class="menu-jour">Dimanche</span>
+      <span>Gratin de légumes + œufs durs</span>
+      <span class="menu-cout">~1,70€</span>
+    </div>
+  </div>
+
+  <h2>Les aliments champions du rapport qualité/prix</h2>
+
+  <div class="aliment-grid">
+    <div class="aliment-card">
+      <div class="aliment-emoji">🥚</div>
+      <div class="aliment-name">Œufs</div>
+      <div class="aliment-prix">~0,30€/unité</div>
+      <div class="aliment-desc">Protéines complètes, vitamines, ultra-polyvalents en cuisine.</div>
+    </div>
+    <div class="aliment-card">
+      <div class="aliment-emoji">🫘</div>
+      <div class="aliment-name">Lentilles</div>
+      <div class="aliment-prix">~1,50€/kg</div>
+      <div class="aliment-desc">Protéines + fibres + fer. Cuisson rapide, aucun trempage.</div>
+    </div>
+    <div class="aliment-card">
+      <div class="aliment-emoji">🐟</div>
+      <div class="aliment-name">Sardines en boîte</div>
+      <div class="aliment-prix">~1,00€/boîte</div>
+      <div class="aliment-desc">Oméga-3, calcium, protéines. Meilleure source de calcium.</div>
+    </div>
+    <div class="aliment-card">
+      <div class="aliment-emoji">🍚</div>
+      <div class="aliment-name">Riz complet</div>
+      <div class="aliment-prix">~1,20€/kg</div>
+      <div class="aliment-desc">Glucides complexes, fibres, rassasiant. Base de nombreux plats.</div>
+    </div>
+    <div class="aliment-card">
+      <div class="aliment-emoji">🥦</div>
+      <div class="aliment-name">Brocolis surgelés</div>
+      <div class="aliment-prix">~0,80€/portion</div>
+      <div class="aliment-desc">Vitamines C et K, antioxydants. Aussi nutritifs que frais.</div>
+    </div>
+    <div class="aliment-card">
+      <div class="aliment-emoji">🧅</div>
+      <div class="aliment-name">Oignons & ail</div>
+      <div class="aliment-prix">~0,10€/unité</div>
+      <div class="aliment-desc">Base aromatique de presque tous les plats. Longue conservation.</div>
+    </div>
+    <div class="aliment-card">
+      <div class="aliment-emoji">🍅</div>
+      <div class="aliment-name">Tomates pelées</div>
+      <div class="aliment-prix">~0,60€/boîte</div>
+      <div class="aliment-desc">Base de sauces, soupes, plats mijotés. Plus nutritives que fraîches.</div>
+    </div>
+    <div class="aliment-card">
+      <div class="aliment-emoji">🍌</div>
+      <div class="aliment-name">Bananes</div>
+      <div class="aliment-prix">~0,25€/unité</div>
+      <div class="aliment-desc">Fruit le moins cher, riche en potassium, idéal en-cas rassasiant.</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 La règle des 80/20 alimentaire</div>
+    <p>80% de votre alimentation peut être ultra-simple et économique (légumineuses, céréales, légumes surgelés, œufs). Les 20% restants peuvent être des plaisirs plus élaborés ou plus coûteux. Cette répartition permet de tenir un budget serré sans frustration, tout en mangeant de façon complète et équilibrée chaque semaine.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">⚠️ Le vrai ennemi du budget alimentaire</div>
+    <p>Ce n'est pas le prix des aliments, c'est <strong>le gaspillage et les achats non planifiés</strong>. Faire ses courses le ventre vide, sans liste, dans un grand supermarché le samedi matin : c'est la recette garantie pour dépasser son budget de 30 à 50%. La liste de courses écrite avant de partir est le meilleur outil de maîtrise budgétaire alimentaire qui existe.</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-title">📊 Budget alimentaire type à 150€/mois</div>
+    <div class="recap-row"><span>Épicerie sèche (riz, pâtes, légumineuses, conserves)</span><span>~35€/mois</span></div>
+    <div class="recap-row"><span>Légumes frais et surgelés</span><span>~30€/mois</span></div>
+    <div class="recap-row"><span>Protéines (œufs, poulet, poisson boîte, légumineuses)</span><span>~35€/mois</span></div>
+    <div class="recap-row"><span>Fruits, produits laitiers, pain</span><span>~30€/mois</span></div>
+    <div class="recap-row"><span>Condiments, huile, épices (amorti sur plusieurs mois)</span><span>~20€/mois</span></div>
+    <div class="recap-row"><span><strong>Total mensuel</strong></span><span><strong>~150€/mois</strong></span></div>
+  </div>
+
+  <p>Manger sainement pour 150€ par mois n'est pas une contrainte : c'est une compétence. Elle s'acquiert en quelques semaines de pratique, et les bénéfices sont doubles — <strong>meilleure santé, meilleur portefeuille</strong>. Commencez par planifier vos repas de la semaine prochaine avant de faire vos courses : c'est le premier pas, et souvent le plus transformateur.</p>
+
+  <div class="article-nav">
+    <a class="art-nav-btn" href="article-9.html">
+      <span class="nav-label">← Article précédent</span>
+      <span class="nav-title">Loyer : 5 façons légales de payer moins cher</span>
+    </a>
+    <a class="art-nav-btn next" href="article-11.html">
+      <span class="nav-label">Article suivant →</span>
+      <span class="nav-title">Smartphone reconditionné : économiser jusqu'à 400€</span>
+    </a>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-10.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-10.html&text=Manger%20sainement%20pour%20moins%20de%20150%E2%82%AC/mois" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-10.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=Manger%20sainement%20pour%20moins%20de%20150%E2%82%AC/mois - https://economya.fr/article-10.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-10.html&description=Manger%20sainement%20pour%20moins%20de%20150%E2%82%AC/mois" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="https://economya.fr/article-10.html"]').forEach(function(a){
+    a.href = a.href.replace(/https://economya.fr/article-10.html/g, url).replace(/Manger%20sainement%20pour%20moins%20de%20150%E2%82%AC/mois/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="index.html">Accueil</a> · Cet site contient des liens partenaires.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

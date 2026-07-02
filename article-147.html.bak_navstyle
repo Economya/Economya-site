@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protection contre les arnaques financières — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  : root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --steel:#1B2A4A;--steel-mid:#2E4A7A;--electric:#00D4FF;--warn:#FF4C4C;--safe:#00E5A0;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#060C18 0%,#1B2A4A 38%,#2E4A7A 68%,#00D4FF 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'🛡️';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--safe),var(--electric));
+    color:#060C18;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--steel);margin:2rem 0 .7rem}
+
+  /* Arnaques radar */
+  .arnaques{display:flex;flex-direction:column;gap:.7rem;margin:1.5rem 0}
+  .arnaque{border-radius:11px;overflow:hidden;border:1px solid rgba(255,76,76,.15)}
+  .arnaque-head{background:linear-gradient(90deg,#3A0A0A,#7A1010);padding:.65rem 1rem;display:flex;justify-content:space-between;align-items:center}
+  .arnaque-nom{color:#fff;font-weight:500;font-size:.88rem}
+  .arnaque-danger{background:var(--warn);color:#fff;font-size:.65rem;font-weight:700;padding:.1rem .5rem;border-radius:50px;letter-spacing:.04em}
+  .arnaque-body{background:#fff;padding:.8rem 1rem;font-size:.84rem;font-weight:300;color:var(--m);line-height:1.55}
+  .arnaque-signal{margin-top:.5rem;font-size:.78rem;color:var(--warn);font-weight:500}
+
+  /* Checklist protection */
+  .checklist{background:linear-gradient(135deg,#EAF6FF,#E0FFF6);border:1px solid rgba(0,212,255,.2);border-radius:13px;padding:1.2rem 1.4rem;margin:1.8rem 0}
+  .checklist h3{font-family:'Playfair Display',serif;font-weight:700;color:var(--steel);font-size:1rem;margin-bottom:.9rem}
+  .check-item{display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.6rem;font-size:.87rem;font-weight:300}
+  .check-item:last-child{margin-bottom:0}
+  .check-icon{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--safe),var(--electric));color:#060C18;font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.05rem}
+  .check-text{color:var(--t);line-height:1.5}
+  .check-text strong{font-weight:500}
+
+  /* Ressources */
+  .ressources{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1.5rem 0}
+  .ressource{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:.8rem 1rem;font-size:.84rem}
+  .ressource-icon{font-size:1.3rem;margin-bottom:.3rem}
+  .ressource-name{font-weight:500;color:var(--steel);margin-bottom:.15rem;font-size:.87rem}
+  .ressource-desc{font-weight:300;color:var(--m);line-height:1.45;font-size:.8rem}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:480px){.ressources{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Protection contre les arnaques financières",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-147.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Protection contre les arnaques financières">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-147.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Protection contre les arnaques financières">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-147.html" />
+<meta name="description" content="Protection contre les arnaques financières — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Protection contre les arnaques financières</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Protection contre les arnaques financières", "item": "https://economya.fr/article-147.html"}]}</script>
+
+
+<div class="hero-art">
+  <div class="acat">🛡️ <strong>Finance</strong></div>
+  <h1>Protection contre les arnaques financières</h1>
+  <div class="abadge">💰 Évitez les escroqueries</div>
+  <div class="meta">
+    <span>📖 Lecture 5 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🔐 Sécurité financière</span>
+  </div>
+</div>
+
+<article>
+
+  <p>Les arnaques financières coûtent chaque année plusieurs milliards d'euros aux Français. Et contrairement à ce qu'on imagine, leurs victimes ne sont pas uniquement des personnes âgées ou peu informées — les jeunes actifs, les cadres et les investisseurs expérimentés se font piéger eux aussi, à des niveaux de sophistication croissants. La meilleure protection reste la connaissance : savoir reconnaître les schémas, les signaux d'alarme et les bons réflexes avant qu'il ne soit trop tard.</p>
+
+  <h2>Les arnaques les plus répandues en 2026</h2>
+
+  <div class="arnaques">
+    <div class="arnaque">
+      <div class="arnaque-head">
+        <span class="arnaque-nom">📈 Investissements miracles (crypto, forex, options binaires)</span>
+        <span class="arnaque-danger">TRÈS FRÉQUENT</span>
+      </div>
+      <div class="arnaque-body">
+        Des "coachs" sur Instagram ou TikTok promettent des rendements de 30 à 200 % par mois via des plateformes inconnues. Les premières semaines, les gains s'affichent sur le tableau de bord — mais l'argent n'existe pas. Au moment du retrait, des "frais de déblocage" apparaissent, puis plus rien.
+        <div class="arnaque-signal">⚠️ Signal d'alarme : rendement garanti, plateforme non régulée AMF, pression à investir vite.</div>
+      </div>
+    </div>
+    <div class="arnaque">
+      <div class="arnaque-head">
+        <span class="arnaque-nom">📞 Phishing bancaire et usurpation d'identité</span>
+        <span class="arnaque-danger">EN HAUSSE</span>
+      </div>
+      <div class="arnaque-body">
+        Un "conseiller bancaire" appelle pour signaler une fraude sur votre compte et demande vos codes de sécurité pour "protéger" votre argent. Ou un SMS prétendant venir de votre banque vous invite à cliquer sur un lien frauduleux. La technique du spoofing permet d'afficher le vrai numéro de votre banque sur votre écran.
+        <div class="arnaque-signal">⚠️ Signal d'alarme : demande de code, urgence fabriquée, lien dans un SMS ou email.</div>
+      </div>
+    </div>
+    <div class="arnaque">
+      <div class="arnaque-head">
+        <span class="arnaque-nom">🏠 Arnaques immobilières (faux propriétaires, locations fictives)</span>
+        <span class="arnaque-danger">FRÉQUENT</span>
+      </div>
+      <div class="arnaque-body">
+        Une annonce de location à prix attractif sur Le Bon Coin ou PAP. Le "propriétaire" est à l'étranger, envoie un contrat d'apparence sérieuse et demande un virement pour bloquer le logement. L'appartement existe souvent — mais appartient à quelqu'un d'autre dont les photos ont été volées.
+        <div class="arnaque-signal">⚠️ Signal d'alarme : prix bien en dessous du marché, propriétaire indisponible pour visiter, virement demandé avant tout.</div>
+      </div>
+    </div>
+    <div class="arnaque">
+      <div class="arnaque-head">
+        <span class="arnaque-nom">👴 Démarchage téléphonique et produits financiers douteux</span>
+        <span class="arnaque-danger">CIBLÉ SENIORS</span>
+      </div>
+      <div class="arnaque-body">
+        Des commerciaux insistants vendent par téléphone des placements en forêts, diamants, vins ou terres agricoles avec des promesses de rendements élevés et une défiscalisation "exclusive". Ces produits existent parfois légalement, mais les frais cachés et l'absence de marché secondaire en font des pièges quasi-irréversibles.
+        <div class="arnaque-signal">⚠️ Signal d'alarme : démarchage non sollicité, produit "rare" ou "confidentiel", pression sur la décision rapide.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Les réflexes qui sauvent</h2>
+
+  <div class="checklist">
+    <h3>🛡️ Votre checklist anti-arnaque</h3>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div class="check-text"><strong>Vérifiez sur le registre AMF</strong> — tout intermédiaire financier légal en France doit figurer sur le registre REGAFI ou la liste blanche de l'AMF (amf-france.org). Une minute de vérification peut tout changer.</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div class="check-text"><strong>Ne rappelez jamais un numéro reçu par SMS</strong> — raccrochez et appelez vous-même votre banque via le numéro figurant au dos de votre carte ou sur son site officiel.</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div class="check-text"><strong>Méfiez-vous de l'urgence</strong> — toute proposition qui "expire ce soir" ou nécessite une décision immédiate est un signal d'alarme classique. Les vrais investissements n'ont pas de compte à rebours.</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div class="check-text"><strong>Ne partagez jamais vos codes</strong> — ni par téléphone, ni par email, ni en réponse à un SMS. Votre banque ne vous les demandera jamais, quelles que soient les circonstances.</div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon">✓</div>
+      <div class="check-text"><strong>Signalez systématiquement</strong> — signalement.gouv.fr permet de signaler toute tentative d'arnaque en quelques clics. Chaque signalement aide les autorités à identifier et bloquer les escrocs.</div>
+    </div>
+  </div>
+
+  <h2>Où se retourner si vous avez été victime</h2>
+
+  <div class="ressources">
+    <div class="ressource">
+      <div class="ressource-icon">🏛️</div>
+      <div class="ressource-name">AMF (Autorité des Marchés Financiers)</div>
+      <div class="ressource-desc">Régulateur des marchés financiers. Publie les listes noires et reçoit les signalements de fraude à l'investissement.</div>
+    </div>
+    <div class="ressource">
+      <div class="ressource-icon">🌐</div>
+      <div class="ressource-name">Cybermalveillance.gouv.fr</div>
+      <div class="ressource-desc">Plateforme d'assistance aux victimes de cyberarnaque, avec mise en relation vers des professionnels agréés.</div>
+    </div>
+    <div class="ressource">
+      <div class="ressource-icon">⚖️</div>
+      <div class="ressource-name">Dépôt de plainte en ligne</div>
+      <div class="ressource-desc">Via masecurite.fr pour les arnaques financières, sans se déplacer au commissariat. Essentiel pour toute procédure de remboursement bancaire.</div>
+    </div>
+    <div class="ressource">
+      <div class="ressource-icon">📞</div>
+      <div class="ressource-name">Info Escroqueries (0 805 805 817)</div>
+      <div class="ressource-desc">Numéro gratuit du ministère de l'Intérieur pour signaler une tentative ou obtenir des conseils en cas de doute.</div>
+    </div>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-147.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-147.html&text=Protection%20contre%20les%20arnaques%20financi%C3%A8res" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-147.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=Protection%20contre%20les%20arnaques%20financi%C3%A8res - https://economya.fr/article-147.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-147.html&description=Protection%20contre%20les%20arnaques%20financi%C3%A8res" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="https://economya.fr/article-147.html"]').forEach(function(a){
+    a.href = a.href.replace(/https://economya.fr/article-147.html/g, url).replace(/Protection%20contre%20les%20arnaques%20financi%C3%A8res/g, titre);
+  });
+})();
+</script>
+
+
+<div class="article-nav">
+  <a class="art-nav-btn" href="article-146.html">
+    <span class="nav-label">← Article précédent</span>
+    <span class="nav-title">Savon solide maison : faire soi-même</span>
+  </a>
+  <a class="art-nav-btn next" href="article-148.html">
+    <span class="nav-label">Article suivant →</span>
+    <span class="nav-title">Herbes aromatiques en pot : zéro achat en supermarché</span>
+  </a>
+</div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

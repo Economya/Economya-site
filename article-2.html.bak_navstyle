@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quel fournisseur d'électricité choisir en 2026 ? — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:1rem}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.back{font-size:.8rem;color:var(--m);text-decoration:none;display:flex;align-items:center;gap:.4rem}
+.back:hover{color:var(--g)}
+
+.article-hero{background:linear-gradient(135deg,#1a1a2e,#16213e 60%,#0f3460);color:white;padding:4rem 2rem 3rem;text-align:center}
+.article-cat{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1.2rem}
+.article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.2;max-width:680px;margin:0 auto 1rem}
+.article-hero h1 em{color:var(--a);font-style:normal}
+.article-meta{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,0.6)}
+.savings-badge{display:inline-block;background:var(--a);color:white;padding:.5rem 1.2rem;border-radius:50px;font-weight:500;font-size:.9rem;margin-top:1.2rem}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+.intro-box{background:var(--gl);border-left:4px solid var(--g);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin-bottom:2.5rem;font-size:.95rem;color:var(--gd);font-weight:500}
+
+h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:2.5rem 0 .8rem;color:var(--gd)}
+p{margin-bottom:1rem;color:var(--m);font-weight:300}
+p strong{color:var(--t);font-weight:500}
+
+/* FOURNISSEUR CARDS */
+.fournisseur-grid{display:grid;gap:1rem;margin:1.5rem 0}
+.fournisseur-card{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.2rem 1.4rem;transition:box-shadow .2s}
+.fournisseur-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07)}
+.fournisseur-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;gap:1rem}
+.fournisseur-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd)}
+.fournisseur-tag{font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:50px;white-space:nowrap;flex-shrink:0}
+.tag-top{background:#E1F5EE;color:#085041}
+.tag-mid{background:#FAEEDA;color:#633806}
+.tag-eco{background:#EFF6FF;color:#1e40af}
+.fournisseur-card p{margin:0;font-size:.85rem;color:var(--m);font-weight:300;line-height:1.5}
+.fournisseur-detail{display:flex;gap:1.5rem;margin-top:.8rem;flex-wrap:wrap}
+.fournisseur-detail span{font-size:.78rem;color:var(--m)}
+.fournisseur-detail span strong{color:var(--t)}
+
+/* WARNING BOX */
+.warn-box{background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.warn-box .warn-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:#991B1B;margin-bottom:.5rem}
+.warn-box p{margin:0;font-size:.88rem;color:#7F1D1D}
+
+.tip-box{background:var(--al);border:1px solid rgba(239,159,39,0.3);border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.tip-box .tip-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ad);margin-bottom:.5rem}
+.tip-box p{margin:0;font-size:.9rem;color:var(--ad)}
+
+/* STEPS */
+.steps{display:grid;gap:.8rem;margin:1.5rem 0;counter-reset:step}
+.step-item{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:1rem 1.2rem;display:flex;gap:1rem;align-items:flex-start}
+.step-num{width:2rem;height:2rem;border-radius:50%;background:var(--gd);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-body h3{font-size:.9rem;font-weight:500;color:var(--t);margin-bottom:.2rem}
+.step-body p{margin:0;font-size:.82rem;color:var(--m);font-weight:300}
+
+.recap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:2rem 0}
+.recap-title{background:var(--gd);color:white;padding:.8rem 1.2rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.recap-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.2rem;border-bottom:1px solid var(--b);font-size:.85rem}
+.recap-row:last-child{border-bottom:none;font-weight:500;background:var(--gl)}
+.recap-row span:last-child{color:var(--g);font-weight:500}
+
+.article-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b);margin-top:3rem;gap:1rem;flex-wrap:wrap}
+.art-nav-btn{display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%}
+.art-nav-btn .nav-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m)}
+.art-nav-btn .nav-title{font-size:.85rem;font-weight:500;color:var(--gd)}
+.art-nav-btn:hover .nav-title{color:var(--g)}
+.art-nav-btn.next{text-align:right;margin-left:auto}
+
+footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.8rem;font-size:.8rem}
+footer strong{color:white}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none}
+
+@media(max-width:640px){
+  .article-wrap{padding:2rem 1rem 4rem}
+  nav{padding:.8rem 1rem}
+}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Quel fournisseur d'électricité choisir en 2025 ?",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-2.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Quel fournisseur d'électricité choisir en 2026 ?">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-2.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Quel fournisseur d'électricité choisir en 2026 ?">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-2.html" />
+<meta name="description" content="Quel fournisseur d'électricité choisir en 2026 ? — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Retour aux articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Énergie</span> › <span style="color:var(--t,#2C2C2A)">Quel fournisseur d'électricité choisir en 2026 ?</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Énergie", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Quel fournisseur d'électricité choisir en 2026 ?", "item": "https://economya.fr/article-2.html"}]}</script>
+
+
+<div class="article-hero">
+  <div class="article-cat">⚡ Énergie</div>
+  <h1>Quel fournisseur d'électricité choisir <em>en 2026 ?</em></h1>
+  <div class="savings-badge">💰 Économisez jusqu'à 240€ par an</div>
+  <div class="article-meta">
+    <span>📖 Lecture 3 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🇫🇷 Marché français</span>
+  </div>
+</div>
+
+<div class="article-wrap">
+
+  <div class="intro-box">
+    La facture d'électricité d'un foyer français tourne autour de <strong>1 200 à 1 800€ par an</strong>. Changer de fournisseur ou d'offre peut représenter une économie de 10 à 20% sans rien changer à sa consommation. Le problème ? S'y retrouver dans la jungle des offres.
+  </div>
+
+  <p>Depuis l'ouverture du marché de l'énergie à la concurrence, les Français peuvent choisir librement leur fournisseur d'électricité. Pourtant, <strong>plus de la moitié des foyers restent au tarif réglementé EDF</strong> par habitude ou par peur de se tromper. Or, les alternatives peuvent être bien plus avantageuses selon votre profil de consommation.</p>
+
+  <h2>Les principaux fournisseurs en 2026</h2>
+
+  <div class="fournisseur-grid">
+
+    <div class="fournisseur-card">
+      <div class="fournisseur-header">
+        <div class="fournisseur-name">EDF — Tarif Réglementé (TRV)</div>
+        <span class="fournisseur-tag tag-mid">Référence</span>
+      </div>
+      <p>Le tarif de référence fixé par l'État. Stable et sans mauvaise surprise, mais rarement le moins cher. Bonne option si vous avez une faible consommation ou recherchez la simplicité absolue.</p>
+      <div class="fournisseur-detail">
+        <span><strong>Point fort :</strong> Stabilité garantie</span>
+        <span><strong>Point faible :</strong> Pas optimisé au prix</span>
+      </div>
+    </div>
+
+    <div class="fournisseur-card">
+      <div class="fournisseur-header">
+        <div class="fournisseur-name">TotalEnergies</div>
+        <span class="fournisseur-tag tag-top">Recommandé</span>
+      </div>
+      <p>L'un des acteurs alternatifs les plus sérieux. Propose des offres indexées sur le TRV avec une remise fixe, et des offres à prix fixe sur 1 ou 2 ans. Service client solide et application bien pensée.</p>
+      <div class="fournisseur-detail">
+        <span><strong>Économie :</strong> 5 à 12% vs EDF</span>
+        <span><strong>Engagement :</strong> Sans ou avec</span>
+      </div>
+    </div>
+
+    <div class="fournisseur-card">
+      <div class="fournisseur-header">
+        <div class="fournisseur-name">Engie</div>
+        <span class="fournisseur-tag tag-top">Recommandé</span>
+      </div>
+      <p>Deuxième acteur historique du marché. Offres compétitives notamment pour les gros consommateurs et les foyers chauffés à l'électricité. Offre "Vert Électrique" 100% renouvelable intéressante.</p>
+      <div class="fournisseur-detail">
+        <span><strong>Économie :</strong> 5 à 15% vs EDF</span>
+        <span><strong>Point fort :</strong> Énergie verte</span>
+      </div>
+    </div>
+
+    <div class="fournisseur-card">
+      <div class="fournisseur-header">
+        <div class="fournisseur-name">Ekwateur</div>
+        <span class="fournisseur-tag tag-eco">100% renouvelable</span>
+      </div>
+      <p>Fournisseur 100% renouvelable et engagé. Tarifs compétitifs pour ceux qui veulent allier économies et impact environnemental. Transparent sur l'origine de l'énergie, avec un suivi de consommation précis.</p>
+      <div class="fournisseur-detail">
+        <span><strong>Économie :</strong> 3 à 10% vs EDF</span>
+        <span><strong>Point fort :</strong> Éthique et transparent</span>
+      </div>
+    </div>
+
+    <div class="fournisseur-card">
+      <div class="fournisseur-header">
+        <div class="fournisseur-name">Octopus Energy</div>
+        <span class="fournisseur-tag tag-top">Meilleur tarif HC/HP</span>
+      </div>
+      <p>Arrivé en France récemment, Octopus propose des offres innovantes avec des heures creuses très avantageuses. Idéal si vous pouvez décaler votre consommation (lave-linge, véhicule électrique, chauffe-eau).</p>
+      <div class="fournisseur-detail">
+        <span><strong>Économie :</strong> Jusqu'à 20% avec HC/HP</span>
+        <span><strong>Point fort :</strong> Flexibilité tarifaire</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">⚠️ Attention</div>
+    <p>Méfiez-vous des offres à prix fixe sur plusieurs années : elles peuvent paraître attractives mais si les prix du marché baissent, vous restez bloqué. Privilégiez les offres indexées sur le TRV avec une remise garantie, sauf si vous avez une très forte consommation et souhaitez sécuriser votre budget énergie.</p>
+  </div>
+
+  <h2>Comment bien choisir en 4 étapes</h2>
+
+  <div class="steps">
+    <div class="step-item">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Calculez votre consommation annuelle</h3>
+        <p>Retrouvez votre consommation en kWh sur votre dernière facture EDF. C'est la base de tout comparatif sérieux.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Utilisez le comparateur officiel</h3>
+        <p>Le site <strong>comparateur-energie.gouv.fr</strong> est le seul outil officiel et neutre. Il compare toutes les offres légales du marché sur la base de votre consommation réelle.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Vérifiez les conditions de résiliation</h3>
+        <p>En France, changer de fournisseur est gratuit et sans coupure. Le nouveau fournisseur s'occupe de tout. Méfiez-vous uniquement des frais de résiliation anticipée sur certains contrats à prix fixe.</p>
+      </div>
+    </div>
+    <div class="step-item">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Pensez aux heures creuses</h3>
+        <p>Si vous pouvez décaler votre consommation la nuit (lave-linge, lave-vaisselle, chauffe-eau), l'option heures pleines/heures creuses peut vous faire économiser 15 à 20% supplémentaires.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 Astuce</div>
+    <p>Le changement de fournisseur ne demande que <strong>10 minutes</strong> en ligne et prend effet en 2 à 3 semaines. Vous ne risquez aucune coupure. Si vous n'êtes pas satisfait, vous pouvez revenir au TRV EDF à tout moment, sans frais.</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-title">📊 Économies estimées selon le profil</div>
+    <div class="recap-row"><span>Studio / faible consommation (2 000 kWh/an)</span><span>~50€/an</span></div>
+    <div class="recap-row"><span>Appartement 3 pièces (4 500 kWh/an)</span><span>~120€/an</span></div>
+    <div class="recap-row"><span>Maison sans chauffage élec (6 000 kWh/an)</span><span>~160€/an</span></div>
+    <div class="recap-row"><span>Maison avec chauffage électrique (12 000 kWh/an)</span><span>~240€/an</span></div>
+    <div class="recap-row"><span><strong>Avec optimisation HC/HP en plus</strong></span><span><strong>+50 à 100€ supplémentaires</strong></span></div>
+  </div>
+
+  <p>Changer de fournisseur d'électricité est l'une des économies les plus faciles à réaliser : <strong>10 minutes de démarches pour 100 à 240€ d'économies annuelles</strong>. Prenez 5 minutes cette semaine pour simuler sur le comparateur officiel — vous pourriez être agréablement surpris.</p>
+
+  <div class="article-nav">
+    <a class="art-nav-btn" href="article-1.html">
+      <span class="nav-label">← Article précédent</span>
+      <span class="nav-title">Les 8 apps pour ne plus payer plein tarif</span>
+    </a>
+    <a class="art-nav-btn next" href="article-3.html">
+      <span class="nav-label">Article suivant →</span>
+      <span class="nav-title">Les 3 meilleures cartes bancaires gratuites avec cashback</span>
+    </a>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-2.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-2.html&text=Quel%20fournisseur%20d%27%C3%A9lectricit%C3%A9%20choisir%20en%202026%20%3F" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-2.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=Quel%20fournisseur%20d%27%C3%A9lectricit%C3%A9%20choisir%20en%202026%20%3F - https://economya.fr/article-2.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-2.html&description=Quel%20fournisseur%20d%27%C3%A9lectricit%C3%A9%20choisir%20en%202026%20%3F" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="https://economya.fr/article-2.html"]').forEach(function(a){
+    a.href = a.href.replace(/https://economya.fr/article-2.html/g, url).replace(/Quel%20fournisseur%20d%27%C3%A9lectricit%C3%A9%20choisir%20en%202026%20%3F/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="index.html">Accueil</a> · Cet site contient des liens partenaires.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

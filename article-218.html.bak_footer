@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="description" content="Chômage ARE : calculer ses droits en 2026 — Jusqu'à 75% du salaire. Guide complet sur Economya.fr">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chômage ARE : calculer ses droits en 2026 — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:#FAFAF8;color:#2C2C2A;line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:#fff;border-bottom:1px solid rgba(0,0,0,.08);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:#085041;text-decoration:none}
+  .logo span{color:#EF9F27}
+  .back{font-size:.82rem;color:#5F5E5A;text-decoration:none}
+  .back:hover{color:#1D9E75}
+
+  /* HERO — nuit marine → bleu saphir → turquoise */
+  .hero{background:linear-gradient(135deg,#020C18 0%,#083060 32%,#1060B0 62%,#20A0D0 84%,#80E0F0 100%);padding:3.8rem 2rem 3.2rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'🛡️';position:absolute;font-size:14rem;opacity:.05;top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none}
+  .hero-cat{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.05em}
+  .hero-cat strong{color:#fff}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,2.7rem);font-weight:900;color:#fff;line-height:1.1;max-width:640px;margin:.3rem auto .9rem}
+  .hero-badge{display:inline-block;background:linear-gradient(90deg,#80E0F0,#20A0D0);color:#020C18;font-size:.82rem;font-weight:700;padding:.35rem 1.1rem;border-radius:50px}
+  .hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+  .hero-meta span{font-size:.73rem;color:rgba(255,255,255,.5);background:rgba(255,255,255,.09);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem 5rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300;line-height:1.75}
+  h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:#083060;margin:2.2rem 0 .8rem}
+
+  /* CONDITIONS ELIGIBILITE */
+  .conditions{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1.5rem 0}
+  .cond{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:11px;padding:.85rem 1rem;display:flex;gap:.7rem;align-items:flex-start}
+  .cond-ico{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+  .cond-ico.oui{background:linear-gradient(135deg,#065F46,#1D9E75);color:#fff}
+  .cond-ico.non{background:linear-gradient(135deg,#7F1D1D,#B91C1C);color:#fff}
+  .cond-text{font-size:.83rem;font-weight:300;color:#2C2C2A;line-height:1.5}
+  .cond-text strong{display:block;font-weight:500;color:#083060;margin-bottom:.1rem}
+
+  /* CALCUL ARE — visuel étapes */
+  .calcul-are{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:13px;overflow:hidden;margin:1.5rem 0}
+  .calcul-head{background:linear-gradient(90deg,#083060,#1060B0);padding:.8rem 1.2rem;color:#fff;font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem}
+  .calcul-step{display:grid;grid-template-columns:36px 1fr auto;gap:.7rem;align-items:center;padding:.7rem 1.1rem;border-bottom:1px solid rgba(0,0,0,.06)}
+  .calcul-step:last-child{border-bottom:none;background:#EFF6FF}
+  .calcul-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#083060,#1060B0);color:#80E0F0;font-family:'Playfair Display',serif;font-weight:900;font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .calcul-label{font-size:.84rem;font-weight:300;color:#2C2C2A}
+  .calcul-label strong{display:block;font-weight:500;color:#083060;margin-bottom:.1rem}
+  .calcul-result{font-weight:700;color:#1060B0;font-size:.88rem;white-space:nowrap;text-align:right}
+  .calcul-result.final{color:#065F46;font-size:1rem}
+
+  /* SIMULATION */
+  .simul{background:linear-gradient(135deg,#020C18,#083060);border-radius:13px;padding:1.3rem 1.5rem;margin:1.5rem 0;color:#fff}
+  .simul h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#80E0F0;margin-bottom:.9rem}
+  .simul-row{display:flex;justify-content:space-between;padding:.38rem 0;border-bottom:1px solid rgba(255,255,255,.07);font-size:.84rem}
+  .simul-row:last-child{border-bottom:none;padding-top:.5rem;margin-top:.2rem}
+  .simul-lab{font-weight:300;color:rgba(255,255,255,.8)}
+  .simul-val{font-weight:600;color:#80E0F0;white-space:nowrap}
+  .simul-lab.total{font-weight:600;color:#fff}
+  .simul-val.total{font-size:1rem}
+  .simul-val.green{color:#6EE7B7}
+
+  /* DURÉE INDEMNISATION */
+  .durees{display:grid;grid-template-columns:repeat(3,1fr);gap:.65rem;margin:1.5rem 0}
+  .duree{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:11px;padding:.85rem .8rem;text-align:center}
+  .duree-age{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#5F5E5A;margin-bottom:.3rem}
+  .duree-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:#1060B0;line-height:1}
+  .duree-unite{font-size:.72rem;color:#5F5E5A;font-weight:300;margin-top:.15rem}
+  .duree-condition{font-size:.73rem;font-weight:300;color:#5F5E5A;margin-top:.3rem;line-height:1.35}
+
+  /* DROITS MÉCONNUS */
+  .droits{display:flex;flex-direction:column;gap:.5rem;margin:1.4rem 0}
+  .droit{display:flex;gap:.75rem;align-items:flex-start;padding:.7rem 1rem;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.07)}
+  .droit-ico{font-size:1rem;flex-shrink:0;margin-top:.1rem}
+  .droit-text{font-size:.83rem;font-weight:300;color:#2C2C2A;line-height:1.5}
+  .droit-text strong{font-weight:500;color:#083060;display:block;margin-bottom:.1rem}
+
+  .encadre{border-left:4px solid #1060B0;background:#EFF6FF;border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+  .encadre strong{display:block;color:#083060;font-size:.9rem;margin-bottom:.3rem}
+  .encadre p{font-size:.84rem;font-weight:300;color:#1060B0;margin:0;line-height:1.6}
+
+  .conseil{background:linear-gradient(135deg,#020C18,#083060);border-radius:13px;padding:1.3rem 1.5rem;margin:2rem 0;color:#fff;border:1px solid rgba(128,224,240,.1)}
+  .conseil strong{display:block;color:#80E0F0;font-weight:500;font-size:.93rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.8);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:#085041;color:rgba(255,255,255,.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:#fff}
+  footer a{color:#EF9F27;text-decoration:none}
+  @media(max-width:500px){.conditions{grid-template-columns:1fr}.durees{grid-template-columns:1fr 1fr}.calcul-step{grid-template-columns:32px 1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Chômage ARE : calculer ses droits en 2026",
+  "description": "Chômage ARE : calculer ses droits en 2026 — Jusqu'à 75% du salaire. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-218.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Chômage ARE : calculer ses droits en 2026">
+  <meta property="og:description" content="Chômage ARE : calculer ses droits en 2026 — Jusqu'à 75% du salaire. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-218.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chômage ARE : calculer ses droits en 2026">
+  <meta name="twitter:description" content="Chômage ARE : calculer ses droits en 2026 — Jusqu'à 75% du salaire. Guide complet sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-218.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Chômage ARE : calculer ses droits en 2026</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Chômage ARE : calculer ses droits en 2026", "item": "https://economya.fr/article-218.html"}]}</script>
+
+
+<div class="hero">
+  <div class="hero-cat">🛡️ <strong>Emploi</strong></div>
+  <h1>Chômage ARE : calculer ses droits en 2026</h1>
+  <div class="hero-badge">💰 Jusqu'à 75 % du salaire</div>
+  <div class="hero-meta">
+    <span>📖 6 min de lecture</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>💼 Allocation chômage</span>
+  </div>
+</div>
+
+<article>
+  <p>L'Allocation de Retour à l'Emploi (ARE) est l'une des aides les plus importantes du système social français — et l'une des plus mal connues dans ses règles de calcul. Combien vais-je toucher ? Pendant combien de temps ? Puis-je cumuler avec une activité ? Que se passe-t-il si je démissionne ? Les réponses à ces questions ont des conséquences financières considérables et méritent d'être comprises avant — pas pendant — une période de chômage.</p>
+
+  <h2>Les conditions d'éligibilité</h2>
+
+  <div class="conditions">
+    <div class="cond">
+      <div class="cond-ico oui">✓</div>
+      <div class="cond-text"><strong>Avoir travaillé au moins 6 mois</strong>130 jours travaillés ou 910 heures dans les 24 derniers mois (36 mois pour les + de 53 ans).</div>
+    </div>
+    <div class="cond">
+      <div class="cond-ico oui">✓</div>
+      <div class="cond-text"><strong>Involontairement privé d'emploi</strong>Licenciement, fin de CDD, rupture conventionnelle, démission légitime, ou démission pour reconversion (voir conditions).</div>
+    </div>
+    <div class="cond">
+      <div class="cond-ico oui">✓</div>
+      <div class="cond-text"><strong>Être en recherche active d'emploi</strong>Inscription à France Travail obligatoire. Actualisation mensuelle de sa situation. Accepter les offres raisonnables d'emploi.</div>
+    </div>
+    <div class="cond">
+      <div class="cond-ico oui">✓</div>
+      <div class="cond-text"><strong>Résider en France</strong>Être domicilié en France métropolitaine ou DROM. Les travailleurs frontaliers ont des règles spécifiques selon les accords bilatéraux.</div>
+    </div>
+    <div class="cond">
+      <div class="cond-ico non">✗</div>
+      <div class="cond-text"><strong>Démission simple (règle générale)</strong>Une démission sans motif légitime n'ouvre pas droit à l'ARE. Exception : démission pour reconversion après 5 ans d'ancienneté + projet validé par la CPIR.</div>
+    </div>
+    <div class="cond">
+      <div class="cond-ico non">✗</div>
+      <div class="cond-text"><strong>Départ en retraite</strong>Le départ volontaire en retraite ferme les droits à l'ARE, même si l'entreprise y incite. La mise à la retraite par l'employeur ouvre les droits.</div>
+    </div>
+  </div>
+
+  <h2>Comment se calcule l'ARE — les 4 étapes</h2>
+
+  <div class="calcul-are">
+    <div class="calcul-head">🧮 Calcul de l'ARE — méthode officielle France Travail</div>
+    <div class="calcul-step">
+      <div class="calcul-num">1</div>
+      <div class="calcul-label">
+        <strong>Salaire journalier de référence (SJR)</strong>
+        Total des salaires bruts des 12 derniers mois ÷ nombre de jours travaillés
+      </div>
+      <div class="calcul-result">= SJR</div>
+    </div>
+    <div class="calcul-step">
+      <div class="calcul-num">2</div>
+      <div class="calcul-label">
+        <strong>Calcul selon la méthode A (40,4 % du SJR + 12,95 €)</strong>
+        Première formule possible
+      </div>
+      <div class="calcul-result">= Méthode A</div>
+    </div>
+    <div class="calcul-step">
+      <div class="calcul-num">3</div>
+      <div class="calcul-label">
+        <strong>Calcul selon la méthode B (57 % du SJR)</strong>
+        Deuxième formule possible
+      </div>
+      <div class="calcul-result">= Méthode B</div>
+    </div>
+    <div class="calcul-step">
+      <div class="calcul-num">4</div>
+      <div class="calcul-label">
+        <strong>ARE retenue = le plus élevé des deux, dans une fourchette</strong>
+        Minimum 32,13 €/jour · Maximum 75 % du SJR · Plancher légal selon salaire
+      </div>
+      <div class="calcul-result final">ARE journalière</div>
+    </div>
+  </div>
+
+  <h2>Simulation concrète — 3 profils</h2>
+
+  <div class="simul">
+    <h3>📊 Exemples de calcul ARE mensuels (30 jours)</h3>
+    <div class="simul-row"><span class="simul-lab">SMIC (1 867 € brut) — SJR = 61,56 €</span><span class="simul-val">≈ 1 141 €/mois</span></div>
+    <div class="simul-row"><span class="simul-lab">2 500 € brut — SJR = 82,50 €</span><span class="simul-val">≈ 1 530 €/mois</span></div>
+    <div class="simul-row"><span class="simul-lab">4 000 € brut — SJR = 132 €</span><span class="simul-val">≈ 2 380 €/mois</span></div>
+    <div class="simul-row"><span class="simul-lab">Plafond ARE (salaires > 11 600 €/mois)</span><span class="simul-val green">Plafond : 291,06 €/jour</span></div>
+    <div class="simul-row"><span class="simul-lab total">Taux de remplacement moyen constaté</span><span class="simul-val total">57 à 75 % du salaire net</span></div>
+  </div>
+
+  <h2>Durée d'indemnisation selon l'âge</h2>
+
+  <div class="durees">
+    <div class="duree">
+      <div class="duree-age">Moins de 53 ans</div>
+      <div class="duree-val">18</div>
+      <div class="duree-unite">mois maximum</div>
+      <div class="duree-condition">Si 6 mois de travail dans les 24 derniers mois</div>
+    </div>
+    <div class="duree">
+      <div class="duree-age">53 à 54 ans</div>
+      <div class="duree-val">22,5</div>
+      <div class="duree-unite">mois maximum</div>
+      <div class="duree-condition">Si 6 mois dans les 36 derniers mois</div>
+    </div>
+    <div class="duree">
+      <div class="duree-age">55 ans et +</div>
+      <div class="duree-val">27</div>
+      <div class="duree-unite">mois maximum</div>
+      <div class="duree-condition">Si 6 mois dans les 36 derniers mois</div>
+    </div>
+  </div>
+
+  <h2>Les droits méconnus qui changent tout</h2>
+
+  <div class="droits">
+    <div class="droit">
+      <span class="droit-ico">💼</span>
+      <div class="droit-text"><strong>Cumul ARE + activité partielle</strong>Si vous retrouvez un emploi à temps partiel ou des missions en freelance, vous pouvez cumuler l'ARE avec ces revenus. France Travail déduit partiellement les revenus de l'allocation — mais vous touchez plus qu'avec l'ARE seule. Le calcul : ARE × (1 - 70 % des jours travaillés dans le mois).</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">🔄</span>
+      <div class="droit-text"><strong>Rechargement des droits</strong>Si vous retrouvez un emploi puis êtes à nouveau au chômage, vos droits se rechargent si vous avez travaillé au moins 130 jours depuis la dernière ouverture de droits. Vous bénéficiez alors du reliquat de l'ancien droit + le nouveau — le plus favorable s'applique.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">🏥</span>
+      <div class="droit-text"><strong>Maintien des droits à la retraite</strong>Les périodes de chômage indemnisé comptent comme des trimestres validés pour la retraite (jusqu'à 50 trimestres reconstitués). Ce n'est pas une perte sèche pour votre future pension — loin de là.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">📚</span>
+      <div class="droit-text"><strong>ARE + formation : maintien de l'allocation</strong>Si vous vous formez pendant votre chômage (formation éligible), l'ARE est maintenue pendant toute la durée de la formation. C'est la fenêtre idéale pour une reconversion sans perte de revenus.</div>
+    </div>
+    <div class="droit">
+      <span class="droit-ico">🏠</span>
+      <div class="droit-text"><strong>Exonération totale d'impôt en dessous du seuil</strong>L'ARE est soumise à l'impôt sur le revenu, mais si vos revenus totaux de l'année restent sous le seuil d'imposition (autour de 16 000 € pour un célibataire), vous ne paierez aucun impôt dessus.</div>
+    </div>
+  </div>
+
+  <div class="encadre">
+    <strong>⏰ Le délai de carence : à ne pas confondre avec le différé</strong>
+    <p>Deux mécanismes retardent le versement de l'ARE. Le délai de carence fixe (7 jours) : applicable à toutes les ouvertures de droits, incompressible. Le différé d'indemnisation : calculé sur les indemnités de départ reçues (indemnités de licenciement supra-légales, indemnités compensatoires de préavis…). Ce différé peut retarder le premier versement de plusieurs semaines à plusieurs mois si vous avez reçu des sommes importantes. Anticipez-le dans votre plan de trésorerie.</p>
+  </div>
+
+  <div class="conseil">
+    <strong>📱 Actualiser sa situation avant le 15 du mois — sans exception</strong>
+    <p>L'actualisation mensuelle sur france-travail.fr est obligatoire pour recevoir l'ARE. Si vous oubliez une seule actualisation, le versement est suspendu jusqu'à régularisation — et vous devrez parfois rembourser les sommes versées par erreur. L'application France Travail envoie des rappels, mais ne comptez pas dessus : programmez vous-même une alarme le 10 de chaque mois pour vous souvenir d'actualiser avant le 15. Ce réflexe simple évite des blocages de paiement qui peuvent durer plusieurs semaines.</p>
+  </div>
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-218.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-218.html&text=Ch%C3%B4mage%20ARE%20%3A%20calculer%20ses%20droits%20en%202026" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-218.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=Ch%C3%B4mage%20ARE%20%3A%20calculer%20ses%20droits%20en%202026 - https://economya.fr/article-218.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-218.html&description=Ch%C3%B4mage%20ARE%20%3A%20calculer%20ses%20droits%20en%202026" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="https://economya.fr/article-218.html"]').forEach(function(a){
+    a.href = a.href.replace(/https://economya.fr/article-218.html/g, url).replace(/Ch%C3%B4mage%20ARE%20%3A%20calculer%20ses%20droits%20en%202026/g, titre);
+  });
+})();
+</script>
+
+<style>
+.similaires{max-width:760px;margin:2rem auto;padding:0 2rem 1rem}
+.similaires h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:#085041}
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.sim-card{background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;padding:.9rem;text-decoration:none;color:#2C2C2A;transition:transform .2s,box-shadow .2s;display:block}
+.sim-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(29,158,117,.1)}
+.sim-card-title{font-size:.82rem;font-weight:600;line-height:1.3;color:#085041}
+.sim-card-cat{font-size:.68rem;color:#1D9E75;font-weight:500;margin-bottom:.3rem;text-transform:uppercase}
+</style>
+
+<div class="similaires">
+  <h3>📚 Articles similaires</h3>
+  <div class="sim-grid"><a class="sim-card" href="article-216.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Bulletin de salaire : décrypter chaque ligne</div></a><a class="sim-card" href="article-220.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Démissionner pour reconversion : droits au chômage</div></a><a class="sim-card" href="article-221.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Arrêt maladie : ce que touche vraiment le salarié</div></a><a class="sim-card" href="article-222.html"><div class="sim-card-cat">Emploi</div><div class="sim-card-title">Télétravail : droits, indemnités, équipement</div></a></div>
+</div>
+
+
+
+<div class="article-nav">
+  <a class="art-nav-btn" href="article-217.html">
+    <span class="nav-label">← Article précédent</span>
+    <span class="nav-title">Négocier son salaire : scripts qui marchent</span>
+  </a>
+  <a class="art-nav-btn next" href="article-219.html">
+    <span class="nav-label">Article suivant →</span>
+    <span class="nav-title">Rupture conventionnelle : tout ce qu'il faut savoir</span>
+  </a>
+</div>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
