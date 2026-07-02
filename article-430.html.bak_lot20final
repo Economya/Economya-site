@@ -225,10 +225,10 @@ window.economyaLoadAds = function() {
       </div>
     </div>
     <div class="seuil">
-      <div class="s-montant">—</div>
+      <div class="s-montant">77 700 €</div>
       <div class="s-body">
-        <h3>Pas de seuil pour la flat tax</h3>
-        <p>Le PFU (Prélèvement Forfaitaire Unique) de 31,4 % (depuis 2026) s'applique sur tous les revenus financiers (dividendes, plus-values), quel que soit leur montant. Option pour le barème progressif si votre taux marginal est inférieur à 30 %.</p>
+        <h3>Seuil de la flat tax sur les investissements financiers</h3>
+        <p>Le PFU (Prélèvement Forfaitaire Unique) de 31,4 % (depuis 2026) s'applique sur les revenus financiers (dividendes, plus-values). Option pour le barème progressif si votre taux marginal est inférieur à 30 %.</p>
         <span class="stag">📊 Optimisation fiscale</span>
       </div>
     </div>
