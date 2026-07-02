@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spa et hammam pas cher : se détendre sans se ruiner — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  : root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --rose:#8B2252;--rose-mid:#C2185B;--rose-light:#FCE4EC;
+    --blush:#F8BBD9;--mauve:#6A1E4E;--pearl:#FFF5F9;--gold:#D4A843;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#1A0010 0%,#6A1E4E 35%,#C2185B 68%,#D4A843 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'🌺';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--blush),var(--gold));
+    color:#1A0010;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--mauve);margin:2rem 0 .7rem}
+
+  /* Options spa */
+  .options{display:flex;flex-direction:column;gap:.7rem;margin:1.5rem 0}
+  .opt{border-radius:12px;overflow:hidden;border:1px solid rgba(194,24,91,.12)}
+  .opt-head{display:grid;grid-template-columns:1fr auto;align-items:center;padding:.7rem 1.1rem;color:#fff;gap:.5rem}
+  .opt-head.h1{background:linear-gradient(90deg,#1A0010,#6A1E4E)}
+  .opt-head.h2{background:linear-gradient(90deg,#3A0025,#8B2252)}
+  .opt-head.h3{background:linear-gradient(90deg,#1B3A2A,#2E7D32)}
+  .opt-head.h4{background:linear-gradient(90deg,#1A0A2E,#512DA8)}
+  .opt-head.h5{background:linear-gradient(90deg,#2D1B00,#D4A843);color:#1A0010}
+  .opt-title{font-weight:600;font-size:.9rem}
+  .opt-price{font-weight:700;font-size:.85rem;white-space:nowrap;background:rgba(255,255,255,.15);padding:.15rem .6rem;border-radius:50px}
+  .opt-body{background:var(--w);padding:.85rem 1.1rem;font-size:.84rem;font-weight:300;color:var(--m);line-height:1.55}
+  .opt-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+  .otag{font-size:.7rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;background:var(--rose-light);color:var(--rose)}
+
+  /* Recette scrub maison */
+  .diy-spa{background:var(--pearl);border:1px solid rgba(194,24,91,.12);border-radius:13px;overflow:hidden;margin:1.5rem 0}
+  .diy-head{background:linear-gradient(90deg,var(--mauve),var(--rose-mid));padding:.8rem 1.2rem;color:#fff}
+  .diy-head h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;margin-bottom:.1rem}
+  .diy-head p{font-size:.75rem;color:rgba(255,255,255,.7);margin:0}
+  .diy-grid{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .diy-col{padding:.9rem 1.1rem}
+  .diy-col:first-child{border-right:1px solid rgba(194,24,91,.1)}
+  .diy-label{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--rose);margin-bottom:.55rem}
+  .diy-item{font-size:.83rem;font-weight:300;padding:.2rem 0;border-bottom:1px dotted rgba(194,24,91,.12);color:var(--t);display:flex;justify-content:space-between;gap:.5rem}
+  .diy-item span{font-weight:500;color:var(--mauve);white-space:nowrap}
+  .diy-step{display:flex;gap:.6rem;margin-bottom:.45rem;font-size:.83rem;font-weight:300;align-items:flex-start}
+  .diy-n{background:var(--rose-mid);color:#fff;border-radius:50%;width:20px;height:20px;font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.05rem}
+
+  .conseil{
+    background:linear-gradient(135deg,#1A0010,#6A1E4E);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff
+  }
+  .conseil strong{display:block;color:var(--blush);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:500px){.diy-grid{grid-template-columns:1fr}.diy-col:first-child{border-right:none;border-bottom:1px solid rgba(194,24,91,.1)}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Spa et hammam pas cher : se détendre sans se ruiner",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-156.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Spa et hammam pas cher : se détendre sans se ruiner">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-156.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Spa et hammam pas cher : se détendre sans se ruiner">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-156.html" />
+<meta name="description" content="Spa et hammam pas cher : se détendre sans se ruiner — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Spa et hammam pas cher : se détendre sans se ruiner</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Spa et hammam pas cher : se détendre sans se ruiner", "item": "https://economya.fr/article-156.html"}]}</script>
+
+
+<div class="hero-art">
+  <div class="acat">🌺 <strong>Bien-être</strong></div>
+  <h1>Spa et hammam pas cher : se détendre sans se ruiner</h1>
+  <div class="abadge">💰 Spa dès 10€</div>
+  <div class="meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🧖 Bien-être & relaxation</span>
+  </div>
+</div>
+
+<article>
+
+  <p>Un après-midi dans un spa parisien haut de gamme peut facilement dépasser les 150 euros — avant même le moindre soin. Pourtant, les bienfaits de la chaleur, de la vapeur et de la détente profonde ne sont pas réservés aux budgets sans limite. Entre les hammams municipaux, les piscines thermales, les offres flash et le spa maison bien pensé, il existe toute une gamme d'options pour se ressourcer vraiment, à une fraction du prix affiché dans les brochures de luxe.</p>
+
+  <h2>Toutes les options, du moins cher au plus accessible</h2>
+
+  <div class="options">
+    <div class="opt">
+      <div class="opt-head h1">
+        <span class="opt-title">🕌 Hammam municipal ou associatif</span>
+        <span class="opt-price">4 – 12€</span>
+      </div>
+      <div class="opt-body">
+        Présents dans de nombreuses villes françaises, souvent gérés par des associations ou des centres municipaux, les hammams traditionnels offrent une expérience authentique à des prix imbattables. Certains proposent en plus un massage au savon beldi pour moins de 20 euros tout compris. Cherchez dans votre ville "hammam municipal" ou "bain maure".
+        <div class="opt-tags"><span class="otag">✅ Très économique</span><span class="otag">✅ Expérience authentique</span></div>
+      </div>
+    </div>
+
+    <div class="opt">
+      <div class="opt-head h2">
+        <span class="opt-title">🏊 Piscine municipale avec espace bien-être</span>
+        <span class="opt-price">5 – 15€</span>
+      </div>
+      <div class="opt-body">
+        De nombreuses piscines publiques rénovées incluent désormais sauna, hammam et jacuzzi accessibles avec le ticket d'entrée standard ou pour un léger supplément. Les centres nautiques modernes (Aquaboulevard à Paris, les Aqualudics en province) proposent des espaces détente de qualité pour 10 à 15 euros. À vérifier dans votre commune avant d'aller ailleurs.
+        <div class="opt-tags"><span class="otag">✅ Accessible en abonnement</span><span class="otag">✅ Souvent méconnu</span></div>
+      </div>
+    </div>
+
+    <div class="opt">
+      <div class="opt-head h3">
+        <span class="opt-title">🎟️ Offres flash et applications bien-être</span>
+        <span class="opt-price">15 – 40€</span>
+      </div>
+      <div class="opt-body">
+        Des applications comme Treatwell, Groupon ou La Zén proposent régulièrement des accès spa à -50 ou jusqu'à -70% sur des établissements de qualité. Les créneaux du matin en semaine sont systématiquement moins chers. Les spas cherchent à remplir leurs heures creuses — en jouant là-dessus, on accède à des établissements haut de gamme pour le prix d'un hammam de quartier.
+        <div class="opt-tags"><span class="otag">✅ Qualité premium</span><span class="otag">✅ Créneaux creux jusqu'à -30%</span><span class="otag">✅ Idéal cadeau</span></div>
+      </div>
+    </div>
+
+    <div class="opt">
+      <div class="opt-head h4">
+        <span class="opt-title">💳 Abonnements fitness avec spa inclus</span>
+        <span class="opt-price">30 – 60€/mois</span>
+      </div>
+      <div class="opt-body">
+        Certaines salles de sport moyennes et hautes gamme (Club Med Gym, Moving, Gymnase Club) incluent sauna, hammam et parfois piscine dans leur abonnement mensuel. Si vous faites du sport régulièrement, cet accès illimité revient à quelques euros par session — bien moins qu'un accès ponctuel dans un spa indépendant.
+        <div class="opt-tags"><span class="otag">✅ Accès illimité</span><span class="otag">✅ Rentable dès 2 visites/semaine</span></div>
+      </div>
+    </div>
+
+    <div class="opt">
+      <div class="opt-head h5">
+        <span class="opt-title">🛁 Le spa maison : l'option zéro euro</span>
+        <span class="opt-price">0 – 10€</span>
+      </div>
+      <div class="opt-body">
+        Avec un bain chaud, quelques huiles essentielles, un gommage maison et une bougie, il est possible de recréer une grande partie de l'expérience spa à domicile. L'huile de coco, le sel d'Epsom et la lavande sont les trois ingrédients de base d'une routine bien-être efficace — disponibles pour moins de 10 euros au total.
+        <div class="opt-tags"><span class="otag">✅ Zéro déplacement</span><span class="otag">✅ Personnalisable à l'infini</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Recette : gommage corps maison effet spa</h2>
+
+  <div class="diy-spa">
+    <div class="diy-head">
+      <h3>✨ Scrub sucre-huile de coco au jasmin</h3>
+      <p>Pour 3 utilisations · Coût total : ~1,50€ · Valeur équivalente en boutique : 25€</p>
+    </div>
+    <div class="diy-grid">
+      <div class="diy-col">
+        <div class="diy-label">Ingrédients</div>
+        <div class="diy-item">Sucre roux <span>4 càs</span></div>
+        <div class="diy-item">Huile de coco fondue <span>2 càs</span></div>
+        <div class="diy-item">Miel <span>1 càs</span></div>
+        <div class="diy-item">HE jasmin ou lavande <span>5 gouttes</span></div>
+        <div class="diy-item">Zeste de citron <span>optionnel</span></div>
+      </div>
+      <div class="diy-col">
+        <div class="diy-label">Préparation</div>
+        <div class="diy-step"><div class="diy-n">1</div>Mélanger sucre, huile et miel dans un bol jusqu'à consistance homogène.</div>
+        <div class="diy-step"><div class="diy-n">2</div>Ajouter les huiles essentielles et le zeste. Mélanger.</div>
+        <div class="diy-step"><div class="diy-n">3</div>Sur peau humide, masser en cercles doux pendant 2 min.</div>
+        <div class="diy-step"><div class="diy-n">4</div>Rincer à l'eau tiède. Peau soyeuse garantie.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conseil">
+    <strong>🌺 Le bon timing pour les offres flash</strong>
+    <p>Les meilleures offres spa apparaissent le lundi matin sur Groupon et Treatwell — les établissements cherchent à remplir les créneaux de la semaine. En vous abonnant aux alertes email de ces plateformes avec votre ville et "spa" en mot-clé, vous recevez les promotions dès leur mise en ligne. Les offres les plus agressives (jusqu'à -70%) partent en quelques heures : l'alerte en temps réel fait toute la différence.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-156.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-156.html&text=Spa%20et%20hammam%20pas%20cher%20%3A%20se%20d%C3%A9tendre%20sans%20se%20ruiner" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-156.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=Spa%20et%20hammam%20pas%20cher%20%3A%20se%20d%C3%A9tendre%20sans%20se%20ruiner - https://economya.fr/article-156.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-156.html&description=Spa%20et%20hammam%20pas%20cher%20%3A%20se%20d%C3%A9tendre%20sans%20se%20ruiner" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="https://economya.fr/article-156.html"]').forEach(function(a){
+    a.href = a.href.replace(/https://economya.fr/article-156.html/g, url).replace(/Spa%20et%20hammam%20pas%20cher%20%3A%20se%20d%C3%A9tendre%20sans%20se%20ruiner/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

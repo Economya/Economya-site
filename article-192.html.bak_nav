@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Téléphonie fixe et box internet : payer moins — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  : root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --dark:#0A0F20;--mid:#152244;--blue:#1B4FD8;
+    --cyan:#00D4FF;--neon:#39FF7A;--gold:#FFD166;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#04060F 0%,#0A0F20 28%,#152244 55%,#1B4FD8 78%,#00D4FF 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'📡';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--neon),var(--cyan));
+    color:#04060F;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--mid);margin:2rem 0 .7rem}
+
+  /* Offres box comparées */
+  .offres{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.83rem}
+  .offres thead tr{background:linear-gradient(90deg,var(--dark),var(--blue));color:#fff}
+  .offres thead th{padding:.62rem .9rem;text-align:left;font-weight:500}
+  .offres tbody tr:nth-child(even){background:#EEF3FF}
+  .offres tbody tr:nth-child(odd){background:var(--w)}
+  .offres tbody td{padding:.55rem .9rem;border-bottom:1px solid var(--b);font-weight:300;vertical-align:middle}
+  .offres tbody td:first-child{font-weight:500;color:var(--mid)}
+  .offres td.prix-cher{color:#B91C1C;font-weight:600;white-space:nowrap}
+  .offres td.prix-ok{color:var(--gd);font-weight:600;white-space:nowrap}
+  .offres td.win{background:#E8FFF2;color:var(--gd);font-weight:700}
+
+  /* Astuces négociation */
+  .astuces{display:flex;flex-direction:column;gap:.7rem;margin:1.5rem 0}
+  .astuce{background:var(--w);border:1px solid var(--b);border-radius:11px;overflow:hidden;display:grid;grid-template-columns:56px 1fr}
+  .astuce-num{background:linear-gradient(180deg,var(--dark),var(--blue));color:var(--neon);font-family:'Playfair Display',serif;font-weight:900;font-size:1.2rem;display:flex;align-items:center;justify-content:center}
+  .astuce-body{padding:.8rem 1rem}
+  .astuce-title{font-weight:500;font-size:.9rem;color:var(--mid);margin-bottom:.2rem}
+  .astuce-desc{font-size:.83rem;font-weight:300;color:var(--m);line-height:1.55}
+
+  /* Calcul économies */
+  .calcul{display:grid;grid-template-columns:1fr auto 1fr;gap:.6rem;align-items:center;margin:1.5rem 0;background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.1rem 1.2rem}
+  .calc-block{text-align:center}
+  .calc-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--m);margin-bottom:.3rem}
+  .calc-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900}
+  .calc-val.rouge{color:#B91C1C}
+  .calc-val.vert{color:var(--gd)}
+  .calc-sub{font-size:.72rem;color:var(--m);margin-top:.15rem;font-weight:300}
+  .calc-arrow{font-size:1.3rem;color:var(--blue);text-align:center}
+
+  .conseil{
+    background:linear-gradient(135deg,#04060F,#0A0F20);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff;
+    border:1px solid rgba(0,212,255,.12)
+  }
+  .conseil strong{display:block;color:var(--gold);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:500px){.calcul{grid-template-columns:1fr}.calc-arrow{transform:rotate(90deg)}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Téléphonie fixe et box internet : payer moins",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-192.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Téléphonie fixe et box internet : payer moins">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-192.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Téléphonie fixe et box internet : payer moins">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-192.html" />
+<meta name="description" content="Téléphonie fixe et box internet : payer moins — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Téléphonie fixe et box internet : payer moins</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Téléphonie fixe et box internet : payer moins", "item": "https://economya.fr/article-192.html"}]}</script>
+
+
+<div class="hero-art">
+  <div class="acat">📡 <strong>High-tech</strong></div>
+  <h1>Téléphonie fixe et box internet : payer moins</h1>
+  <div class="abadge">💰 Box à 10€/mois, ça existe</div>
+  <div class="meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🌐 Connexion & économies</span>
+  </div>
+</div>
+
+<article>
+
+  <p>L'abonnement box internet est l'une des dépenses les plus automatiques du foyer — prélevée chaque mois sans qu'on y pense, souvent depuis des années sans jamais avoir été renégociée. Et pourtant, les écarts de prix entre les opérateurs peuvent atteindre 40 euros par mois pour des services techniquement identiques. En France, la concurrence entre opérateurs est particulièrement forte — Free, SFR, Orange, Bouygues se disputent les clients avec des offres promotionnelles agressives. Connaître les règles du jeu permet de payer deux à trois fois moins pour la même connexion.</p>
+
+  <h2>Comparatif des offres box fibre en 2026</h2>
+
+  <table class="offres">
+    <thead>
+      <tr><th>Opérateur & offre</th><th>Débit fibre</th><th>Prix promo (1 an)</th><th>Prix après promo</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Free Révolution</td>
+        <td>8 Gb/s down</td>
+        <td class="prix-ok">19,99€/mois</td>
+        <td class="prix-cher">39,99€/mois</td>
+      </tr>
+      <tr>
+        <td>Bouygues Bbox Must</td>
+        <td>2 Gb/s</td>
+        <td class="prix-ok">22,99€/mois</td>
+        <td class="prix-cher">40,99€/mois</td>
+      </tr>
+      <tr>
+        <td>SFR Box 7</td>
+        <td>2 Gb/s</td>
+        <td class="prix-ok">24,99€/mois</td>
+        <td class="prix-cher">45,99€/mois</td>
+      </tr>
+      <tr>
+        <td>Orange Livebox Max</td>
+        <td>2 Gb/s</td>
+        <td class="prix-cher">39,99€/mois</td>
+        <td class="prix-cher">49,99€/mois</td>
+      </tr>
+      <tr>
+        <td class="win">Free Pop (sans TV)</td>
+        <td>8 Gb/s down</td>
+        <td class="win">9,99€/mois</td>
+        <td class="win">29,99€/mois</td>
+      </tr>
+      <tr>
+        <td>Prixtel / La Poste Mobile Box</td>
+        <td>1 Gb/s</td>
+        <td class="prix-ok">14,99€/mois</td>
+        <td class="prix-ok">24,99€/mois</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:.8rem;color:var(--m);margin-top:-.7rem;margin-bottom:1.3rem">Tarifs indicatifs juin 2026 — vérifiez les offres du moment sur les sites des opérateurs ou sur comparateurs.</p>
+
+  <h2>Ce que ça change vraiment sur l'année</h2>
+
+  <div class="calcul">
+    <div class="calc-block">
+      <div class="calc-label">Orange Livebox (fidèle historique)</div>
+      <div class="calc-val rouge">600€</div>
+      <div class="calc-sub">50€/mois × 12 · Sans négociation</div>
+    </div>
+    <div class="calc-arrow">→</div>
+    <div class="calc-block">
+      <div class="calc-label">Free Pop après négociation</div>
+      <div class="calc-val vert">120€</div>
+      <div class="calc-sub">10€/mois × 12 · Même débit fibre</div>
+    </div>
+  </div>
+
+  <h2>Les six astuces pour payer moins sans changer de confort</h2>
+
+  <div class="astuces">
+    <div class="astuce">
+      <div class="astuce-num">1</div>
+      <div class="astuce-body">
+        <div class="astuce-title">Négocier avec son opérateur actuel avant de partir</div>
+        <div class="astuce-desc">Appelez le service client en disant que vous avez trouvé une offre moins chère chez un concurrent et que vous envisagez de partir. Dans 60 à 70 % des cas, un "service fidélisation" proposera une remise immédiate de 10 à 20 euros par mois, parfois sur 12 mois. Cette technique fonctionne mieux en fin de période d'engagement.</div>
+      </div>
+    </div>
+    <div class="astuce">
+      <div class="astuce-num">2</div>
+      <div class="astuce-body">
+        <div class="astuce-title">Changer d'opérateur tous les 12 à 24 mois</div>
+        <div class="astuce-desc">Les meilleures offres sont toujours réservées aux nouveaux clients. Après la période promotionnelle (12 mois en général), le prix double souvent. En changeant d'opérateur à l'issue de chaque promo, on reste toujours sur le tarif le plus bas. La portabilité du numéro fixe est gratuite et rapide.</div>
+      </div>
+    </div>
+    <div class="astuce">
+      <div class="astuce-num">3</div>
+      <div class="astuce-body">
+        <div class="astuce-title">Supprimer les options inutiles (TV, sécurité…)</div>
+        <div class="astuce-desc">L'option TV incluse dans les box "tout-en-un" coûte souvent 5 à 15 euros supplémentaires par mois. Si vous utilisez Netflix, Disney+ ou des antennes hertziennes, cette option est superflue. Idem pour les options de sécurité, les espaces cloud ou les services de sauvegarde proposés en bundle.</div>
+      </div>
+    </div>
+    <div class="astuce">
+      <div class="astuce-num">4</div>
+      <div class="astuce-body">
+        <div class="astuce-title">Utiliser un comparateur avant toute décision</div>
+        <div class="astuce-desc">Des sites comme Que Choisir, MoneyVox ou UFC-Que Choisir publient régulièrement des comparatifs actualisés des offres box. Les offres changent fréquemment — une vérification mensuelle pendant la période de recherche permet de ne pas rater une promotion flash.</div>
+      </div>
+    </div>
+    <div class="astuce">
+      <div class="astuce-num">5</div>
+      <div class="astuce-body">
+        <div class="astuce-title">Vérifier si la fibre est disponible chez vous</div>
+        <div class="astuce-desc">La fibre est désormais disponible dans plus de 85 % des logements français. Si vous avez encore une offre ADSL, vous payez probablement plus cher pour moins. Le passage à la fibre est souvent accompagné d'une offre promotionnelle attractive de votre opérateur ou d'un concurrent.</div>
+      </div>
+    </div>
+    <div class="astuce">
+      <div class="astuce-num">6</div>
+      <div class="astuce-body">
+        <div class="astuce-title">Grouper avec le forfait mobile (offres couplées)</div>
+        <div class="astuce-desc">La plupart des opérateurs proposent des remises si vous prenez une box et un ou plusieurs forfaits mobiles chez eux. Selon les offres, la remise peut atteindre 5 à 10 euros par mois sur la box et/ou sur le mobile — parfois cumulable pour plusieurs membres du foyer.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conseil">
+    <strong>📞 Le script qui fonctionne avec le service client</strong>
+    <p>"Bonjour, je suis client chez vous depuis [X] ans et j'ai reçu une offre de [concurrent] à [prix] euros par mois pour une fibre équivalente. Je préférerais rester chez vous si vous pouvez vous aligner, sinon je vais devoir résilier." Simple, poli, efficace. Le service fidélisation a généralement une marge de 10 à 20 euros par mois et des offres qui ne sont pas affichées sur le site. La clé est de mentionner un concurrent réel avec un vrai prix — les agents vérifient.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-192.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-192.html&text=T%C3%A9l%C3%A9phonie%20fixe%20et%20box%20internet%20%3A%20payer%20moins" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-192.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=T%C3%A9l%C3%A9phonie%20fixe%20et%20box%20internet%20%3A%20payer%20moins - https://economya.fr/article-192.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-192.html&description=T%C3%A9l%C3%A9phonie%20fixe%20et%20box%20internet%20%3A%20payer%20moins" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="https://economya.fr/article-192.html"]').forEach(function(a){
+    a.href = a.href.replace(/https://economya.fr/article-192.html/g, url).replace(/T%C3%A9l%C3%A9phonie%20fixe%20et%20box%20internet%20%3A%20payer%20moins/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
