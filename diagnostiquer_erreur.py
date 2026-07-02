@@ -1,6 +1,0 @@
-c = open('article-132.html', encoding='utf-8').read()
-print("Contient 'class=\"article-hero\"' :", 'class="article-hero"' in c)
-print("Contient 'class=\"hero\"' :", 'class="hero"' in c)
-print()
-idx = c.find('<body')
-print(c[idx:idx+1500])
