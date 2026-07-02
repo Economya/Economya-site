@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T'as combien dans les mains ? — Economya.fr</title>
+<meta name="description" content="6 scènes de vie. Devine le prix total. Sauras-tu estimer comme un pro ? Un jeu Economya.fr">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --paper:#FAF6EE;
+    --panel:#FFFFFF;
+    --kraft:#E9DFC8;
+    --ink:#20261F;
+    --ink-dim:#767065;
+    --coral:#FF6B49;
+    --coral-dark:#E14D2A;
+    --green:#2E8B57;
+    --green-soft:#E4F2E9;
+    --coral-soft:#FFE9E1;
+    --radius:20px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    background: var(--paper);
+    background-image:
+      radial-gradient(circle at 15% 10%, rgba(255,107,73,.06), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(46,139,87,.06), transparent 40%);
+    color: var(--ink);
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+    font-family:'Inter', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .app{ width:100%; max-width:430px; }
+  .screen{ display:none; }
+  .screen.active{ display:block; animation: fadeIn .35s ease; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:translateY(0);} }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--coral-dark); font-weight:700; margin-bottom:14px;
+    font-family:'Space Mono', monospace;
+  }
+  .eyebrow::before{ content:'🏷️'; }
+
+  h1.title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:36px; line-height:1.05; font-weight:700; letter-spacing:-0.02em;
+    margin-bottom:14px;
+  }
+  h1.title span{ color:var(--coral); }
+
+  p.lede{ color:var(--ink-dim); font-size:15px; line-height:1.55; margin-bottom:26px; }
+
+  .rules{
+    background:var(--panel); border:1.5px dashed var(--kraft); border-radius:var(--radius);
+    padding:18px 20px; margin-bottom:26px;
+  }
+  .rules-row{ display:flex; align-items:center; gap:12px; padding:8px 0; font-size:14px; color:var(--ink-dim); }
+  .rules-row b{ color:var(--ink); font-weight:600; }
+  .rules-row .tag{ font-size:18px; width:24px; text-align:center; flex-shrink:0; }
+
+  .btn{
+    width:100%; border:none; border-radius:14px; padding:17px 20px;
+    font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:700;
+    cursor:pointer; transition: transform .12s ease, filter .12s ease;
+  }
+  .btn:active{ transform: scale(.97); }
+  .btn-primary{ background:var(--coral); color:#fff; box-shadow: 0 8px 20px rgba(255,107,73,.28); }
+  .btn-primary:hover{ filter:brightness(1.05); }
+  .btn-ghost{ background:transparent; border:1.5px solid var(--kraft); color:var(--ink); margin-top:10px; }
+
+  .brand-footer{ text-align:center; margin-top:22px; font-size:12px; color:var(--ink-dim); }
+  .brand-footer a{ color:var(--coral-dark); text-decoration:none; font-weight:700; }
+
+  /* ---------- JEU ---------- */
+  .hud{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
+  .progress-wrap{ flex:1; height:6px; background:var(--kraft); border-radius:99px; margin-right:14px; overflow:hidden; }
+  .progress-bar{ height:100%; background:var(--coral); width:0%; transition: width .35s ease; }
+  .round-pill{
+    font-family:'Space Mono', monospace; font-weight:700; font-size:13px;
+    background:var(--panel); border:1.5px solid var(--kraft); border-radius:99px;
+    padding:6px 14px; white-space:nowrap;
+  }
+
+  .scene-card{
+    background:var(--panel); border-radius:24px; padding:26px 22px;
+    box-shadow: 0 14px 34px rgba(32,38,31,.08);
+    margin-bottom:22px;
+  }
+  .scene-title{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:18px;
+    margin-bottom:16px;
+  }
+  .scene-items{
+    display:flex; flex-wrap:wrap; gap:10px; margin-bottom:6px;
+  }
+  .scene-item{
+    background: var(--paper); border:1px solid var(--kraft); border-radius:12px;
+    padding:10px 12px; display:flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:500;
+  }
+  .scene-item .emoji{ font-size:20px; }
+
+  .guess-zone{ margin-top:24px; }
+  .guess-display{
+    text-align:center; margin-bottom:16px;
+  }
+  .guess-num{
+    font-family:'Space Mono', monospace; font-weight:700; font-size:42px; color:var(--coral-dark);
+  }
+  .guess-sub{ font-size:12px; color:var(--ink-dim); margin-top:2px; }
+
+  input[type=range]{
+    width:100%; height:8px; border-radius:99px;
+    background: linear-gradient(to right, var(--coral) 0%, var(--kraft) 0%);
+    appearance:none; -webkit-appearance:none; outline:none; margin:10px 0 4px;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    appearance:none; -webkit-appearance:none;
+    width:26px; height:26px; border-radius:50%;
+    background:#fff; border:4px solid var(--coral);
+    box-shadow: 0 2px 8px rgba(0,0,0,.18);
+    cursor:pointer;
+  }
+  input[type=range]::-moz-range-thumb{
+    width:26px; height:26px; border-radius:50%;
+    background:#fff; border:4px solid var(--coral);
+    box-shadow: 0 2px 8px rgba(0,0,0,.18); cursor:pointer;
+  }
+  .range-labels{ display:flex; justify-content:space-between; font-size:11px; color:var(--ink-dim); font-family:'Space Mono', monospace; }
+
+  .flash-reveal{
+    display:none; margin-top:18px; padding:16px; border-radius:16px;
+    text-align:center; font-family:'Space Grotesk', sans-serif;
+  }
+  .flash-reveal.show{ display:block; animation: fadeIn .3s ease; }
+  .flash-reveal .real{ font-size:26px; font-weight:700; }
+  .flash-reveal .verdict{ font-size:13px; margin-top:4px; font-weight:600; }
+  .flash-reveal.good{ background:var(--green-soft); color:var(--green); }
+  .flash-reveal.bad{ background:var(--coral-soft); color:var(--coral-dark); }
+
+  /* ---------- RÉSULTAT (façon ticket de caisse) ---------- */
+  .receipt{
+    background:#fff; border-radius:4px;
+    padding:26px 24px 30px;
+    box-shadow: 0 14px 34px rgba(32,38,31,.10);
+    font-family:'Space Mono', monospace;
+    position:relative;
+    margin: 20px 0 24px;
+  }
+  .receipt::before, .receipt::after{
+    content:'';
+    position:absolute; left:0; right:0; height:10px;
+    background-image: radial-gradient(circle, var(--paper) 6px, transparent 7px);
+    background-size: 18px 18px;
+    background-position: -3px 0;
+  }
+  .receipt::before{ top:-5px; }
+  .receipt::after{ bottom:-5px; transform: rotate(180deg); }
+
+  .receipt-head{ text-align:center; margin-bottom:14px; }
+  .receipt-head .store{ font-weight:700; font-size:15px; letter-spacing:.05em; }
+  .receipt-head .sub{ font-size:11px; color:var(--ink-dim); margin-top:2px; }
+  .receipt-divider{ border-top:1.5px dashed var(--kraft); margin:12px 0; }
+  .receipt-line{ display:flex; justify-content:space-between; font-size:12.5px; padding:4px 0; }
+  .receipt-line.total{ font-weight:700; font-size:15px; padding-top:8px; }
+  .receipt-line .lab{ color:var(--ink-dim); }
+  .receipt-line.total .lab{ color:var(--ink); }
+
+  .score-headline{ text-align:center; margin: 20px 0 6px; }
+  .score-headline .big{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:44px; color:var(--coral-dark);
+  }
+  .score-headline .lab{ font-size:13px; color:var(--ink-dim); }
+
+  @media (max-width:380px){
+    h1.title{ font-size:30px; }
+    .guess-num{ font-size:34px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ÉCRAN ACCUEIL -->
+  <div class="screen active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Le prix juste</div>
+    <h1 class="title">T'as combien<br>dans les <span>mains</span> ?</h1>
+    <p class="lede">6 scènes de la vie de tous les jours. À toi d'estimer le prix total, au plus proche possible. Ton flair pour les prix vaut-il de l'or ?</p>
+
+    <div class="rules">
+      <div class="rules-row"><div class="tag">🛒</div><div>Un <b>panier de courses</b>, un <b>salon meublé</b>, une <b>soirée resto</b>…</div></div>
+      <div class="rules-row"><div class="tag">🎚️</div><div>Ajuste le curseur, <b>valide ton estimation</b></div></div>
+      <div class="rules-row"><div class="tag">🧾</div><div>Plus tu es proche, <b>plus tu marques de points</b></div></div>
+    </div>
+
+    <button class="btn btn-primary" onclick="startGame()">Estimer le premier prix</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <!-- ÉCRAN JEU -->
+  <div class="screen" id="screen-game">
+    <div class="hud">
+      <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="round-pill" id="roundPill">1 / 6</div>
+    </div>
+
+    <div class="scene-card">
+      <div class="scene-title" id="sceneTitle">…</div>
+      <div class="scene-items" id="sceneItems"></div>
+
+      <div class="guess-zone">
+        <div class="guess-display">
+          <div class="guess-num" id="guessNum">0 €</div>
+          <div class="guess-sub">ton estimation</div>
+        </div>
+        <input type="range" id="slider" min="0" max="100" value="50">
+        <div class="range-labels"><span id="minLab">0€</span><span id="maxLab">100€</span></div>
+      </div>
+
+      <div class="flash-reveal" id="flashReveal">
+        <div class="real" id="realPrice">—</div>
+        <div class="verdict" id="verdictText">—</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="validateBtn" onclick="validateGuess()">Valider mon estimation</button>
+  </div>
+
+  <!-- ÉCRAN RÉSULTAT -->
+  <div class="screen" id="screen-result">
+    <div class="eyebrow">Ticket final</div>
+    <div class="score-headline">
+      <div class="big" id="finalPct">0%</div>
+      <div class="lab">de précision moyenne sur 6 scènes</div>
+    </div>
+
+    <div class="receipt">
+      <div class="receipt-head">
+        <div class="store">ECONOMYA · TICKET DE JEU</div>
+        <div class="sub" id="receiptDate">—</div>
+      </div>
+      <div class="receipt-divider"></div>
+      <div id="receiptLines"></div>
+      <div class="receipt-divider"></div>
+      <div class="receipt-line total"><span class="lab">SCORE TOTAL</span><span id="receiptTotal">0 / 600</span></div>
+    </div>
+
+    <div class="share-row">
+      <button class="btn btn-primary" onclick="shareResult()">Partager mon ticket</button>
+    </div>
+    <button class="btn btn-ghost" onclick="restartGame()">Rejouer</button>
+
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+</div>
+
+<script>
+// ---------- Données des scènes ----------
+// realTotal en euros, min/max = bornes du curseur
+const SCENES = [
+  {
+    title: "🛒 Le panier de courses de la semaine",
+    items: [
+      {emoji:"🥖", name:"Pain de campagne"},
+      {emoji:"🥩", name:"Steaks hachés x4"},
+      {emoji:"🥦", name:"Brocoli"},
+      {emoji:"🧀", name:"Camembert"},
+      {emoji:"🍝", name:"Pâtes 500g"},
+      {emoji:"🍫", name:"Tablette de chocolat"},
+    ],
+    realTotal: 34, min:0, max:80
+  },
+  {
+    title: "🛋️ Le salon tout juste meublé",
+    items: [
+      {emoji:"🛋️", name:"Canapé 3 places"},
+      {emoji:"🪑", name:"Table basse"},
+      {emoji:"💡", name:"Lampadaire"},
+      {emoji:"🖼️", name:"Cadre déco"},
+      {emoji:"🪴", name:"Plante d'intérieur"},
+    ],
+    realTotal: 780, min:0, max:2500
+  },
+  {
+    title: "🍽️ La soirée resto à deux",
+    items: [
+      {emoji:"🥗", name:"2 entrées"},
+      {emoji:"🍝", name:"2 plats"},
+      {emoji:"🍷", name:"1 bouteille de vin"},
+      {emoji:"🍰", name:"1 dessert partagé"},
+      {emoji:"☕", name:"2 cafés"},
+    ],
+    realTotal: 92, min:0, max:220
+  },
+  {
+    title: "🎒 La rentrée scolaire d'un collégien",
+    items: [
+      {emoji:"🎒", name:"Cartable"},
+      {emoji:"📓", name:"Lot de cahiers"},
+      {emoji:"✏️", name:"Trousse complète"},
+      {emoji:"🧮", name:"Calculatrice"},
+      {emoji:"👟", name:"Paire de baskets"},
+    ],
+    realTotal: 165, min:0, max:400
+  },
+  {
+    title: "🚗 Le plein d'essence + le lave-auto",
+    items: [
+      {emoji:"⛽", name:"Plein 50 litres"},
+      {emoji:"🧴", name:"Lave-vitre"},
+      {emoji:"🧼", name:"Passage lave-auto"},
+    ],
+    realTotal: 96, min:0, max:200
+  },
+  {
+    title: "🎂 L'anniversaire d'enfant à la maison",
+    items: [
+      {emoji:"🎂", name:"Gâteau d'anniversaire"},
+      {emoji:"🎈", name:"Décorations & ballons"},
+      {emoji:"🎁", name:"3 petits cadeaux"},
+      {emoji:"🍬", name:"Bonbons & goodies"},
+      {emoji:"🥤", name:"Boissons pour 10 enfants"},
+    ],
+    realTotal: 145, min:0, max:350
+  },
+];
+
+// ---------- État ----------
+let idx = 0;
+let totalScore = 0;
+let results = [];
+const MAX_PER_ROUND = 100;
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startGame(){
+  idx = 0; totalScore = 0; results = [];
+  showScreen('screen-game');
+  loadScene();
+}
+
+function loadScene(){
+  if(idx >= SCENES.length){ return endGame(); }
+  const s = SCENES[idx];
+  document.getElementById('sceneTitle').textContent = s.title;
+  const itemsWrap = document.getElementById('sceneItems');
+  itemsWrap.innerHTML = '';
+  s.items.forEach(it=>{
+    const el = document.createElement('div');
+    el.className = 'scene-item';
+    el.innerHTML = `<span class="emoji">${it.emoji}</span><span>${it.name}</span>`;
+    itemsWrap.appendChild(el);
+  });
+
+  const slider = document.getElementById('slider');
+  slider.min = s.min; slider.max = s.max;
+  slider.value = Math.round((s.min + s.max) / 2);
+  updateSliderVisual();
+
+  document.getElementById('minLab').textContent = s.min + '€';
+  document.getElementById('maxLab').textContent = s.max + '€';
+  document.getElementById('progressBar').style.width = (idx/SCENES.length*100) + '%';
+  document.getElementById('roundPill').textContent = (idx+1) + ' / ' + SCENES.length;
+
+  document.getElementById('flashReveal').classList.remove('show','good','bad');
+  document.getElementById('validateBtn').textContent = 'Valider mon estimation';
+  document.getElementById('validateBtn').onclick = validateGuess;
+}
+
+function updateSliderVisual(){
+  const slider = document.getElementById('slider');
+  const pct = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+  slider.style.background = `linear-gradient(to right, var(--coral) ${pct}%, var(--kraft) ${pct}%)`;
+  document.getElementById('guessNum').textContent = Number(slider.value).toLocaleString('fr-FR') + ' €';
+}
+document.getElementById('slider').addEventListener('input', updateSliderVisual);
+
+function validateGuess(){
+  const s = SCENES[idx];
+  const guess = Number(document.getElementById('slider').value);
+  const diffPct = Math.abs(guess - s.realTotal) / s.realTotal;
+  const roundScore = Math.max(0, Math.round(MAX_PER_ROUND * (1 - Math.min(diffPct*1.6, 1))));
+  totalScore += roundScore;
+  results.push({ title: s.title, guess, real: s.realTotal, score: roundScore });
+
+  const reveal = document.getElementById('flashReveal');
+  document.getElementById('realPrice').textContent = 'Prix réel : ' + s.realTotal + ' €';
+  let verdict;
+  if(diffPct <= 0.1){ verdict = '🎯 Très proche ! +' + roundScore + ' pts'; reveal.classList.add('good'); }
+  else if(diffPct <= 0.3){ verdict = '👍 Pas mal ! +' + roundScore + ' pts'; reveal.classList.add('good'); }
+  else { verdict = '😅 Un peu loin. +' + roundScore + ' pts'; reveal.classList.add('bad'); }
+  document.getElementById('verdictText').textContent = verdict;
+  reveal.classList.add('show');
+
+  document.getElementById('slider').disabled = true;
+  const btn = document.getElementById('validateBtn');
+  btn.textContent = idx === SCENES.length - 1 ? 'Voir mon ticket final' : 'Scène suivante';
+  btn.onclick = nextScene;
+}
+
+function nextScene(){
+  document.getElementById('slider').disabled = false;
+  idx++;
+  loadScene();
+}
+
+function endGame(){
+  document.getElementById('progressBar').style.width = '100%';
+  showScreen('screen-result');
+
+  const avgPct = Math.round(totalScore / (SCENES.length * MAX_PER_ROUND) * 100);
+  document.getElementById('finalPct').textContent = avgPct + '%';
+  document.getElementById('receiptTotal').textContent = totalScore + ' / ' + (SCENES.length*MAX_PER_ROUND);
+  document.getElementById('receiptDate').textContent = new Date().toLocaleDateString('fr-FR', {day:'2-digit', month:'2-digit', year:'numeric'}) + ' — economya.fr';
+
+  const lines = document.getElementById('receiptLines');
+  lines.innerHTML = '';
+  results.forEach(r=>{
+    const row = document.createElement('div');
+    row.className = 'receipt-line';
+    row.innerHTML = `<span class="lab">${r.title.replace(/^[^\s]+\s/,'')}</span><span>${r.score} pts</span>`;
+    lines.appendChild(row);
+  });
+}
+
+function restartGame(){ startGame(); }
+
+function shareResult(){
+  const avgPct = Math.round(totalScore / (SCENES.length * MAX_PER_ROUND) * 100);
+  const text = `J'ai eu ${avgPct}% de précision sur "T'as combien dans les mains ?" d'Economya.fr 🧾 À toi de tenter ta chance :`;
+  const url = 'https://economya.fr';
+  if(navigator.share){
+    navigator.share({ title:"T'as combien dans les mains ?", text, url }).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(text + ' ' + url).then(()=>{
+      alert('Résultat copié ! Colle-le où tu veux le partager 🎉');
+    });
+  }
+}
+</script>
+
+</body>
+</html>

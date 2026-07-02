@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Radar à Arnaques — Economya.fr</title>
+<meta name="description" content="10 messages. 15 secondes chacun. Sauras-tu repérer les arnaques ? Teste ton flair sur Economya.fr">
+<style>
+  :root{
+    --bg:#0E1116;
+    --panel:#171B23;
+    --panel2:#1F2430;
+    --line:#2A3140;
+    --ink:#F2F4F8;
+    --ink-dim:#9AA4B8;
+    --danger:#FF5A45;
+    --safe:#3DDC84;
+    --warn:#FFC24B;
+    --accent:#7C9CFF;
+    --radius:18px;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: radial-gradient(circle at 50% -10%, #1A2030 0%, var(--bg) 55%);
+    color: var(--ink);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    font-family:'Inter', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .app{ width:100%; max-width:420px; }
+
+  /* ---------- Écran d'accueil ---------- */
+  .screen{ display:none; }
+  .screen.active{ display:block; animation: fadeIn .35s ease; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--accent); font-weight:600; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px rgba(124,156,255,.18); }
+
+  h1.title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:38px; line-height:1.05; font-weight:700;
+    letter-spacing:-0.02em;
+    margin-bottom:14px;
+  }
+  h1.title span{ color:var(--danger); }
+
+  p.lede{ color:var(--ink-dim); font-size:15px; line-height:1.55; margin-bottom:28px; }
+
+  .rules{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px 20px;
+    margin-bottom:26px;
+  }
+  .rules-row{ display:flex; align-items:center; gap:12px; padding:9px 0; font-size:14px; color:var(--ink-dim); }
+  .rules-row b{ color:var(--ink); font-weight:600; }
+  .rules-row .tag{
+    width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+    font-size:14px; flex-shrink:0;
+  }
+  .tag.d{ background:rgba(255,90,69,.15); }
+  .tag.s{ background:rgba(61,220,132,.15); }
+  .tag.t{ background:rgba(255,194,75,.15); }
+
+  .btn{
+    width:100%;
+    border:none; border-radius:14px;
+    padding:16px 20px;
+    font-family:'Space Grotesk', sans-serif;
+    font-size:16px; font-weight:600;
+    cursor:pointer;
+    transition: transform .12s ease, filter .12s ease;
+  }
+  .btn:active{ transform: scale(.97); }
+  .btn-primary{ background:var(--ink); color:#0E1116; }
+  .btn-primary:hover{ filter:brightness(1.08); }
+  .btn-ghost{
+    background:transparent; border:1px solid var(--line); color:var(--ink);
+    margin-top:10px;
+  }
+
+  .brand-footer{
+    text-align:center; margin-top:22px; font-size:12px; color:var(--ink-dim);
+  }
+  .brand-footer a{ color:var(--accent); text-decoration:none; font-weight:600; }
+
+  /* ---------- Écran de jeu ---------- */
+  .hud{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:18px;
+  }
+  .progress-wrap{ flex:1; height:6px; background:var(--panel); border-radius:99px; margin-right:14px; overflow:hidden; }
+  .progress-bar{ height:100%; background:linear-gradient(90deg, var(--accent), var(--safe)); width:0%; transition: width .3s ease; }
+  .score-pill{
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:14px;
+    background:var(--panel); border:1px solid var(--line); border-radius:99px;
+    padding:6px 14px; white-space:nowrap;
+  }
+
+  .timer-ring{
+    width:44px; height:44px; margin: 0 auto 20px;
+    position:relative;
+  }
+  .timer-ring svg{ transform: rotate(-90deg); }
+  .timer-ring circle{ fill:none; stroke-width:4; }
+  .timer-bg{ stroke: var(--panel2); }
+  .timer-fg{ stroke: var(--warn); stroke-linecap:round; transition: stroke-dashoffset .2s linear, stroke .2s ease; }
+  .timer-num{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:14px;
+  }
+
+  .card{
+    background: var(--panel);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:26px 22px;
+    min-height:230px;
+    display:flex; flex-direction:column; justify-content:center;
+    position:relative;
+    overflow:hidden;
+    margin-bottom:22px;
+  }
+  .card::before{
+    content:'';
+    position:absolute; top:-40%; right:-30%;
+    width:220px; height:220px; border-radius:50%;
+    background: radial-gradient(circle, rgba(124,156,255,.10), transparent 70%);
+  }
+  .card-kind{
+    font-size:11px; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--ink-dim); font-weight:600; margin-bottom:10px;
+  }
+  .card-text{
+    font-size:18px; line-height:1.5; font-weight:500;
+    font-family:'Space Grotesk', sans-serif;
+  }
+  .card-from{
+    margin-top:16px; font-size:13px; color:var(--ink-dim);
+  }
+
+  .choices{ display:flex; gap:12px; }
+  .choice{
+    flex:1; border:none; border-radius:16px; padding:18px 10px;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px;
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    cursor:pointer; transition: transform .1s ease;
+  }
+  .choice:active{ transform:scale(.96); }
+  .choice-arnaque{ background:rgba(255,90,69,.13); color:var(--danger); border:1px solid rgba(255,90,69,.35); }
+  .choice-safe{ background:rgba(61,220,132,.13); color:var(--safe); border:1px solid rgba(61,220,132,.35); }
+
+  .flash{
+    position:fixed; inset:0; pointer-events:none; opacity:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px;
+    z-index:20;
+  }
+  .flash.show{ animation: flashPop .55s ease forwards; }
+  @keyframes flashPop{
+    0%{ opacity:0; }
+    15%{ opacity:1; }
+    100%{ opacity:0; }
+  }
+  .flash-badge{
+    padding:10px 22px; border-radius:99px;
+    background:var(--panel2); border:1px solid var(--line);
+  }
+  .flash-badge.correct{ color:var(--safe); border-color: rgba(61,220,132,.4); }
+  .flash-badge.wrong{ color:var(--danger); border-color: rgba(255,90,69,.4); }
+
+  /* ---------- Écran résultat ---------- */
+  .result-score{
+    font-family:'Space Grotesk', sans-serif; font-weight:700;
+    font-size:64px; line-height:1; letter-spacing:-0.02em;
+    margin: 18px 0 6px;
+  }
+  .result-score span{ font-size:26px; color:var(--ink-dim); font-weight:500; }
+  .result-label{ font-size:15px; color:var(--ink-dim); margin-bottom:26px; }
+
+  .badge-share{
+    background:linear-gradient(135deg, var(--panel2), var(--panel));
+    border:1px solid var(--line); border-radius:20px; padding:22px;
+    margin-bottom:22px; text-align:center;
+  }
+  .badge-title{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:17px; margin-bottom:6px; }
+  .badge-sub{ font-size:13px; color:var(--ink-dim); }
+  .badge-emoji{ font-size:40px; margin-bottom:10px; }
+
+  .share-row{ display:flex; gap:10px; margin-bottom:12px; }
+  .share-row .btn{ font-size:14px; padding:14px; }
+
+  .recap{ margin: 22px 0; }
+  .recap-row{
+    display:flex; align-items:center; gap:10px; padding:9px 0;
+    border-bottom:1px solid var(--line); font-size:13px;
+  }
+  .recap-row:last-child{ border-bottom:none; }
+  .recap-dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .recap-dot.ok{ background:var(--safe); }
+  .recap-dot.ko{ background:var(--danger); }
+  .recap-text{ flex:1; color:var(--ink-dim); }
+
+  @media (max-width:380px){
+    h1.title{ font-size:32px; }
+    .card{ padding:22px 18px; min-height:200px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="flash" id="flash"><div class="flash-badge" id="flashBadge"></div></div>
+
+<div class="app">
+
+  <!-- ÉCRAN ACCUEIL -->
+  <div class="screen active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Le radar</div>
+    <h1 class="title">Le Radar à <span>Arnaques</span></h1>
+    <p class="lede">10 messages défilent. 15 secondes chacun. SMS, pub, DM Instagram, appel — sauras-tu repérer ce qui est une arnaque et ce qui ne l'est pas ?</p>
+
+    <div class="rules">
+      <div class="rules-row"><div class="tag d">🚩</div><div><b>Swipe / tape "Arnaque"</b> si le message te semble frauduleux</div></div>
+      <div class="rules-row"><div class="tag s">✅</div><div><b>Swipe / tape "Pas arnaque"</b> si le message te semble légitime</div></div>
+      <div class="rules-row"><div class="tag t">⏱️</div><div><b>15 secondes</b> par message, sinon c'est raté</div></div>
+    </div>
+
+    <button class="btn btn-primary" onclick="startGame()">Lancer le radar</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <!-- ÉCRAN JEU -->
+  <div class="screen" id="screen-game">
+    <div class="hud">
+      <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="score-pill" id="scorePill">0 / 0</div>
+    </div>
+
+    <div class="timer-ring">
+      <svg width="44" height="44">
+        <circle class="timer-bg" cx="22" cy="22" r="18"></circle>
+        <circle class="timer-fg" id="timerRing" cx="22" cy="22" r="18" stroke-dasharray="113" stroke-dashoffset="0"></circle>
+      </svg>
+      <div class="timer-num" id="timerNum">15</div>
+    </div>
+
+    <div class="card" id="card">
+      <div class="card-kind" id="cardKind">SMS</div>
+      <div class="card-text" id="cardText">…</div>
+      <div class="card-from" id="cardFrom"></div>
+    </div>
+
+    <div class="choices">
+      <button class="choice choice-arnaque" onclick="answer(true)">🚩 Arnaque</button>
+      <button class="choice choice-safe" onclick="answer(false)">✅ Pas arnaque</button>
+    </div>
+  </div>
+
+  <!-- ÉCRAN RÉSULTAT -->
+  <div class="screen" id="screen-result">
+    <div class="eyebrow">Résultat</div>
+    <div class="result-score" id="resultScore">0<span id="resultTotal">/10</span></div>
+    <div class="result-label" id="resultLabel">arnaques correctement repérées</div>
+
+    <div class="badge-share">
+      <div class="badge-emoji" id="badgeEmoji">🛡️</div>
+      <div class="badge-title" id="badgeTitle">Œil de lynx</div>
+      <div class="badge-sub" id="badgeSub">Peu de choses t'échappent.</div>
+    </div>
+
+    <div class="share-row">
+      <button class="btn btn-primary" onclick="shareResult()">Partager mon score</button>
+    </div>
+    <button class="btn btn-ghost" onclick="restartGame()">Rejouer</button>
+
+    <div class="recap" id="recap"></div>
+
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+</div>
+
+<script>
+// ---------- Données ----------
+// isScam: true = arnaque réelle, false = message légitime
+const DECK = [
+  { kind:"SMS", from:"06 12 34 56 78", text:"Colissimo : votre colis est en attente. Réglez 1,99€ de frais de douane sous 24h ou il sera retourné : livraison-colis-fr.info", isScam:true, explain:"Faux lien de livraison + petit montant pour capter une carte bancaire. Un vrai transporteur ne demande jamais de frais par SMS avec un lien externe." },
+  { kind:"Email", from:"impots.gouv-remboursement.com", text:"Suite à un trop-perçu, un remboursement de 217,50€ vous est dû. Cliquez ici pour le recevoir sous 48h.", isScam:true, explain:"Nom de domaine trafiqué (le vrai site est impots.gouv.fr). Les impôts ne remboursent jamais via un lien par email." },
+  { kind:"DM Instagram", from:"@invest_marie_fr", text:"Salut ! J'ai gagné 4200€ ce mois-ci avec cette plateforme de trading, je peux te montrer comment faire si tu es motivé(e) 💰", isScam:true, explain:"Promesse de gain facile + contact non sollicité = schéma classique d'arnaque à l'investissement (souvent crypto)." },
+  { kind:"Appel", from:"Numéro masqué", text:"Bonjour, je suis technicien Microsoft, votre ordinateur envoie des alertes de virus, je dois prendre le contrôle à distance pour le nettoyer.", isScam:true, explain:"Microsoft n'appelle jamais spontanément les particuliers. Objectif : accès à distance pour voler des données ou de l'argent." },
+  { kind:"Email", from:"votrebanque-securite.net", text:"Une connexion inhabituelle a été détectée sur votre compte. Confirmez votre identité sous 2h pour éviter un blocage.", isScam:true, explain:"Urgence artificielle + faux domaine ('votrebanque' n'est jamais le vrai nom de votre banque). Phishing classique." },
+  { kind:"SMS", from:"CAF", text:"Votre dossier CAF a été mis à jour. Consultez votre espace personnel sur caf.fr pour plus de détails.", isScam:false, explain:"Domaine officiel (caf.fr), pas de lien suspect, pas de demande d'argent ni de données urgentes." },
+  { kind:"Email", from:"boutique-decathlon.fr", text:"Votre commande #48213 a été expédiée. Suivez-la depuis votre compte client sur decathlon.fr.", isScam:false, explain:"Domaine officiel connu, ton neutre, invite à se connecter sur le vrai site plutôt qu'un lien externe." },
+  { kind:"Appel", from:"Doctolib", text:"Bonjour, c'est le cabinet du Dr Martin, votre rendez-vous de demain 14h est confirmé.", isScam:false, explain:"Contact prévisible lié à une démarche que vous avez initiée vous-même, aucune demande d'argent ou de données." },
+  { kind:"DM LinkedIn", from:"Sophie R. — Recruteuse RH", text:"Bonjour, votre profil correspond à un poste ouvert chez nous, seriez-vous disponible pour un échange téléphonique cette semaine ?", isScam:false, explain:"Pas de promesse irréaliste, pas de lien, pas de demande d'argent — une prise de contact professionnelle standard." },
+  { kind:"SMS", from:"Ameli", text:"Votre carte Vitale a bien été mise à jour suite à votre déclaration de changement de situation.", isScam:false, explain:"Confirmation neutre d'une démarche officielle, aucun lien ni demande d'action urgente." },
+];
+
+// ---------- État ----------
+let order = [];
+let idx = 0;
+let score = 0;
+let answers = []; // {correct: bool, item}
+let timeLeft = 15;
+let timerInterval = null;
+const TOTAL_TIME = 15;
+const CIRC = 113; // 2*pi*18
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startGame(){
+  order = shuffle(DECK);
+  idx = 0; score = 0; answers = [];
+  showScreen('screen-game');
+  loadCard();
+}
+
+function loadCard(){
+  if(idx >= order.length){ return endGame(); }
+  const item = order[idx];
+  document.getElementById('cardKind').textContent = item.kind;
+  document.getElementById('cardText').textContent = item.text;
+  document.getElementById('cardFrom').textContent = "De : " + item.from;
+  document.getElementById('progressBar').style.width = (idx/order.length*100) + '%';
+  document.getElementById('scorePill').textContent = score + ' / ' + order.length;
+  startTimer();
+}
+
+function startTimer(){
+  clearInterval(timerInterval);
+  timeLeft = TOTAL_TIME;
+  updateRing();
+  timerInterval = setInterval(()=>{
+    timeLeft -= 0.1;
+    if(timeLeft <= 0){
+      timeLeft = 0;
+      updateRing();
+      clearInterval(timerInterval);
+      registerAnswer(null); // temps écoulé
+    } else {
+      updateRing();
+    }
+  }, 100);
+}
+
+function updateRing(){
+  const ring = document.getElementById('timerRing');
+  const pct = timeLeft / TOTAL_TIME;
+  ring.style.strokeDashoffset = CIRC * (1-pct);
+  ring.style.stroke = pct < 0.3 ? 'var(--danger)' : 'var(--warn)';
+  document.getElementById('timerNum').textContent = Math.ceil(timeLeft);
+}
+
+function answer(saidScam){
+  clearInterval(timerInterval);
+  registerAnswer(saidScam);
+}
+
+function registerAnswer(saidScam){
+  const item = order[idx];
+  const correct = saidScam === item.isScam;
+  if(saidScam !== null && correct) score++;
+  answers.push({item, correct: saidScam !== null && correct, timedOut: saidScam===null});
+  flashResult(saidScam===null ? false : correct);
+  idx++;
+  setTimeout(loadCard, 650);
+}
+
+function flashResult(correct){
+  const flash = document.getElementById('flash');
+  const badge = document.getElementById('flashBadge');
+  badge.textContent = correct ? '✅ Bien vu' : '❌ Raté';
+  badge.className = 'flash-badge ' + (correct ? 'correct':'wrong');
+  flash.classList.remove('show'); void flash.offsetWidth;
+  flash.classList.add('show');
+}
+
+function endGame(){
+  document.getElementById('progressBar').style.width = '100%';
+  showScreen('screen-result');
+  document.getElementById('resultScore').innerHTML = score + '<span id="resultTotal">/' + order.length + '</span>';
+
+  let emoji, title, sub;
+  const pct = score/order.length;
+  if(pct === 1){ emoji='🛡️'; title='Radar infaillible'; sub="Aucune arnaque ne te passe sous le nez."; }
+  else if(pct >= 0.8){ emoji='🕵️'; title='Œil de lynx'; sub="Peu de choses t'échappent."; }
+  else if(pct >= 0.5){ emoji='🙂'; title='Vigilance correcte'; sub="Un bon réflexe, à affiner encore un peu."; }
+  else { emoji='⚠️'; title='Radar à réviser'; sub="Ce quiz t'a montré les pièges classiques — relis-les !"; }
+
+  document.getElementById('badgeEmoji').textContent = emoji;
+  document.getElementById('badgeTitle').textContent = title;
+  document.getElementById('badgeSub').textContent = sub;
+
+  const recap = document.getElementById('recap');
+  recap.innerHTML = '';
+  answers.forEach(a=>{
+    const row = document.createElement('div');
+    row.className = 'recap-row';
+    row.innerHTML = `<div class="recap-dot ${a.correct ? 'ok':'ko'}"></div><div class="recap-text">${a.item.explain}</div>`;
+    recap.appendChild(row);
+  });
+}
+
+function restartGame(){ startGame(); }
+
+function shareResult(){
+  const text = `J'ai détecté ${score}/${order.length} arnaques sur Le Radar à Arnaques d'Economya.fr 🛡️ À toi de jouer :`;
+  const url = 'https://economya.fr';
+  if(navigator.share){
+    navigator.share({ title:'Le Radar à Arnaques', text, url }).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(text + ' ' + url).then(()=>{
+      alert('Résultat copié ! Colle-le où tu veux le partager 🎉');
+    });
+  }
+}
+</script>
+
+</body>
+</html>
