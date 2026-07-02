@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sport à domicile sans matériel — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  : root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --fire:#B5250A;--fire-mid:#E53935;--fire-light:#FFF3F3;
+    --orange:#F57C00;--neon:#E8FF57;--dark:#1A0A00;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#1A0A00 0%,#B5250A 38%,#E53935 65%,#E8FF57 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'💪';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--neon),#fff);
+    color:#1A0A00;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--fire);margin:2rem 0 .7rem}
+
+  /* Programme semaine */
+  .programme{background:var(--w);border:1px solid var(--b);border-radius:13px;overflow:hidden;margin:1.5rem 0}
+  .prog-head{background:linear-gradient(90deg,var(--dark),var(--fire));padding:.8rem 1.1rem;color:#fff;font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700}
+  .prog-jour{border-bottom:1px solid var(--b)}
+  .prog-jour:last-child{border-bottom:none}
+  .prog-jour-head{display:grid;grid-template-columns:90px 1fr auto;align-items:center;padding:.6rem 1rem;gap:.5rem;cursor:default}
+  .prog-jour-nom{font-weight:600;font-size:.85rem;color:var(--fire)}
+  .prog-jour-type{font-size:.8rem;font-weight:300;color:var(--m)}
+  .prog-dur{font-size:.75rem;font-weight:600;background:var(--fire-light);color:var(--fire);padding:.1rem .5rem;border-radius:50px;white-space:nowrap}
+  .prog-exos{padding:.4rem 1rem .7rem;display:flex;flex-wrap:wrap;gap:.4rem}
+  .exo{font-size:.75rem;font-weight:400;background:#F5F5F5;color:var(--t);padding:.2rem .55rem;border-radius:50px}
+  .prog-jour:nth-child(even) .prog-jour-head{background:#FAFAF8}
+  .repos{background:var(--fire-light);color:var(--fire-mid);font-size:.8rem;font-weight:500;padding:.55rem 1rem;font-style:italic}
+
+  /* Comparatif salle vs maison */
+  .versus{display:grid;grid-template-columns:1fr auto 1fr;gap:.5rem;align-items:center;margin:1.5rem 0}
+  .versus-block{border-radius:12px;overflow:hidden;border:1px solid var(--b)}
+  .versus-head{padding:.65rem .9rem;color:#fff;text-align:center;font-weight:700;font-size:.87rem}
+  .versus-head.salle{background:linear-gradient(135deg,#1A1A2E,#16213E)}
+  .versus-head.maison{background:linear-gradient(135deg,var(--fire),var(--orange))}
+  .versus-body{background:var(--w);padding:.7rem .9rem;font-size:.82rem;font-weight:300;line-height:1.6}
+  .versus-item{padding:.2rem 0;border-bottom:1px dotted var(--b);color:var(--m)}
+  .versus-item:last-child{border-bottom:none}
+  .versus-mid{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--fire);text-align:center}
+
+  /* Ressources gratuites */
+  .ressources{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1.5rem 0}
+  .ressource{background:var(--w);border:1px solid var(--b);border-radius:11px;padding:.85rem 1rem}
+  .ressource-icon{font-size:1.3rem;margin-bottom:.3rem}
+  .ressource-nom{font-weight:500;font-size:.88rem;color:var(--fire);margin-bottom:.2rem}
+  .ressource-desc{font-size:.8rem;font-weight:300;color:var(--m);line-height:1.45}
+
+  .conseil{
+    background:linear-gradient(135deg,#1A0A00,#B5250A);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff
+  }
+  .conseil strong{display:block;color:var(--neon);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:500px){.versus{grid-template-columns:1fr}.versus-mid{display:none}.ressources{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sport à domicile sans matériel",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-175.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Sport à domicile sans matériel">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-175.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sport à domicile sans matériel">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-175.html" />
+<meta name="description" content="Sport à domicile sans matériel — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Sport à domicile sans matériel</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Sport à domicile sans matériel", "item": "https://economya.fr/article-175.html"}]}</script>
+
+
+<div class="hero-art">
+  <div class="acat">💪 <strong>Sport & Santé</strong></div>
+  <h1>Sport à domicile sans matériel</h1>
+  <div class="abadge">💰 0€ de salle de sport</div>
+  <div class="meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🏠 Entraînement maison</span>
+  </div>
+</div>
+
+<article>
+
+  <p>Un abonnement de salle de sport coûte entre 20 et 60 euros par mois — et selon une étude menée auprès des abonnés, environ 67 % d'entre eux n'y vont pas assez souvent pour rentabiliser leur abonnement. Pour ceux-là, la salle est une dépense mensuelle récurrente qui finance essentiellement la culpabilité. La bonne nouvelle : un programme de sport efficace, progressif et complet peut se faire entièrement à domicile, sans le moindre équipement, en 30 à 45 minutes trois fois par semaine.</p>
+
+  <h2>Salle de sport vs entraînement maison</h2>
+
+  <div class="versus">
+    <div class="versus-block">
+      <div class="versus-head salle">🏋️ Salle de sport</div>
+      <div class="versus-body">
+        <div class="versus-item">30–60€/mois d'abonnement</div>
+        <div class="versus-item">Trajet aller-retour : 20–40 min</div>
+        <div class="versus-item">Horaires contraints</div>
+        <div class="versus-item">Attente aux machines</div>
+        <div class="versus-item">Machines variées disponibles</div>
+        <div class="versus-item">Cours collectifs inclus</div>
+      </div>
+    </div>
+    <div class="versus-mid">VS</div>
+    <div class="versus-block">
+      <div class="versus-head maison">🏠 Maison sans matériel</div>
+      <div class="versus-body">
+        <div class="versus-item">0€ par mois</div>
+        <div class="versus-item">Trajet : 0 minute</div>
+        <div class="versus-item">À toute heure</div>
+        <div class="versus-item">Aucune attente</div>
+        <div class="versus-item">Poids du corps uniquement</div>
+        <div class="versus-item">Ressources YouTube gratuites</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Programme complet sur 5 jours — sans matériel</h2>
+
+  <div class="programme">
+    <div class="prog-head">📅 Programme hebdomadaire — niveau débutant/intermédiaire</div>
+
+    <div class="prog-jour">
+      <div class="prog-jour-head">
+        <span class="prog-jour-nom">Lundi</span>
+        <span class="prog-jour-type">Haut du corps · Force</span>
+        <span class="prog-dur">30 min</span>
+      </div>
+      <div class="prog-exos">
+        <span class="exo">Pompes classiques × 3 séries</span>
+        <span class="exo">Pompes serré (triceps)</span>
+        <span class="exo">Dips sur chaise</span>
+        <span class="exo">Superman (dos)</span>
+        <span class="exo">Planche 3 × 30s</span>
+      </div>
+    </div>
+
+    <div class="prog-jour">
+      <div class="prog-jour-head">
+        <span class="prog-jour-nom">Mardi</span>
+        <span class="prog-jour-type">Bas du corps · Force</span>
+        <span class="prog-dur">30 min</span>
+      </div>
+      <div class="prog-exos">
+        <span class="exo">Squats × 4 séries</span>
+        <span class="exo">Fentes avant alternées</span>
+        <span class="exo">Pont fessier × 3 séries</span>
+        <span class="exo">Mollets debout</span>
+        <span class="exo">Squat jump</span>
+      </div>
+    </div>
+
+    <div class="prog-jour">
+      <div class="prog-jour-head">
+        <span class="prog-jour-nom">Mercredi</span>
+        <span class="prog-jour-type">Repos actif</span>
+        <span class="prog-dur">20 min</span>
+      </div>
+      <div class="repos">🚶 Marche rapide ou étirements doux — laissez les muscles récupérer</div>
+    </div>
+
+    <div class="prog-jour">
+      <div class="prog-jour-head">
+        <span class="prog-jour-nom">Jeudi</span>
+        <span class="prog-jour-type">Cardio · Endurance</span>
+        <span class="prog-dur">25 min</span>
+      </div>
+      <div class="prog-exos">
+        <span class="exo">Jumping jacks × 3 min</span>
+        <span class="exo">Mountain climbers</span>
+        <span class="exo">Burpees × 3 séries</span>
+        <span class="exo">High knees 60s</span>
+        <span class="exo">HIIT 20s/10s × 8 rounds</span>
+      </div>
+    </div>
+
+    <div class="prog-jour">
+      <div class="prog-jour-head">
+        <span class="prog-jour-nom">Vendredi</span>
+        <span class="prog-jour-type">Full body · Circuit</span>
+        <span class="prog-dur">35 min</span>
+      </div>
+      <div class="prog-exos">
+        <span class="exo">Pompes × 15</span>
+        <span class="exo">Squats × 20</span>
+        <span class="exo">Crunchs × 20</span>
+        <span class="exo">Fentes × 10/jambe</span>
+        <span class="exo">Dips × 12</span>
+        <span class="exo">Planche latérale 30s</span>
+        <span class="exo">4 tours sans pause</span>
+      </div>
+    </div>
+
+    <div class="prog-jour">
+      <div class="prog-jour-head">
+        <span class="prog-jour-nom">Week-end</span>
+        <span class="prog-jour-type">Repos complet</span>
+        <span class="prog-dur">—</span>
+      </div>
+      <div class="repos">😴 Récupération essentielle — c'est pendant le repos que les muscles se construisent</div>
+    </div>
+
+  </div>
+
+  <h2>Les meilleures ressources gratuites</h2>
+
+  <div class="ressources">
+    <div class="ressource">
+      <div class="ressource-icon">▶️</div>
+      <div class="ressource-nom">Pamela Reif (YouTube)</div>
+      <div class="ressource-desc">Des centaines de programmes sans matériel, tous niveaux, très bien structurés. Parmi les meilleures chaînes fitness gratuites.</div>
+    </div>
+    <div class="ressource">
+      <div class="ressource-icon">▶️</div>
+      <div class="ressource-nom">Thibault Geoffray</div>
+      <div class="ressource-desc">Référence française du fitness à domicile. Programmes progressifs, explications claires, adapté aux débutants.</div>
+    </div>
+    <div class="ressource">
+      <div class="ressource-icon">📱</div>
+      <div class="ressource-nom">Nike Training Club (app)</div>
+      <div class="ressource-desc">Application gratuite avec des centaines de séances guidées sans matériel, tous niveaux et durées.</div>
+    </div>
+    <div class="ressource">
+      <div class="ressource-icon">📱</div>
+      <div class="ressource-nom">Freeletics</div>
+      <div class="ressource-desc">Programmes HIIT intensifs basés sur le poids du corps. Version gratuite suffisante pour débuter sérieusement.</div>
+    </div>
+    <div class="ressource">
+      <div class="ressource-icon">▶️</div>
+      <div class="ressource-nom">Yoga with Adriene</div>
+      <div class="ressource-desc">Pour les séances de récupération active et la mobilité. 11 millions d'abonnés, des centaines de séances gratuites.</div>
+    </div>
+    <div class="ressource">
+      <div class="ressource-icon">📱</div>
+      <div class="ressource-nom">7 Minute Workout</div>
+      <div class="ressource-desc">Pour les jours chargés — un circuit complet en 7 minutes, basé sur des études scientifiques. Gratuit et efficace.</div>
+    </div>
+  </div>
+
+  <div class="conseil">
+    <strong>💡 Le seul équipement qui vaut vraiment 20€</strong>
+    <p>Si vous souhaitez investir dans un seul accessoire pour démultiplier votre entraînement à domicile, choisissez une bande de résistance (ou "élastique de musculation"). Vendue 5 à 20 euros selon la résistance, elle permet d'ajouter de la tension à tous les exercices au poids de corps — squats, fentes, pompes, exercices des épaules — et de cibler les muscles avec une précision impossible sans matériel. C'est l'investissement le plus rentable de tout équipement fitness, loin devant les haltères, les kettlebells ou le vélo d'appartement.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · <a href="index.html">Retour à l'accueil</a><br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

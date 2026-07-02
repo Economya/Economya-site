@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bus, train, covoiturage : se déplacer moins cher — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:1rem}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.back{font-size:.8rem;color:var(--m);text-decoration:none;display:flex;align-items:center;gap:.4rem}
+.back:hover{color:var(--g)}
+
+.article-hero{background:linear-gradient(135deg,#1e3a5f,#1d4ed8 55%,#3b82f6);color:white;padding:4rem 2rem 3rem;text-align:center}
+.article-cat{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1.2rem}
+.article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.2;max-width:680px;margin:0 auto 1rem}
+.article-hero h1 em{color:var(--a);font-style:normal}
+.article-meta{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,0.6)}
+.savings-badge{display:inline-block;background:var(--a);color:white;padding:.5rem 1.2rem;border-radius:50px;font-weight:500;font-size:.9rem;margin-top:1.2rem}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+.intro-box{background:var(--gl);border-left:4px solid var(--g);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin-bottom:2.5rem;font-size:.95rem;color:var(--gd);font-weight:500}
+
+h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:2.5rem 0 .8rem;color:var(--gd)}
+p{margin-bottom:1rem;color:var(--m);font-weight:300}
+p strong{color:var(--t);font-weight:500}
+
+/* MOYEN CARDS */
+.moyen-grid{display:grid;gap:1.2rem;margin:1.5rem 0}
+.moyen-card{background:var(--w);border:1px solid var(--b);border-radius:14px;overflow:hidden;transition:box-shadow .2s}
+.moyen-card:hover{box-shadow:0 5px 22px rgba(0,0,0,0.08)}
+.moyen-header{padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;border-bottom:1px solid var(--b);background:var(--bg)}
+.moyen-left{display:flex;align-items:center;gap:.9rem}
+.moyen-icon{font-size:1.7rem}
+.moyen-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--gd)}
+.moyen-type{font-size:.73rem;color:var(--m);margin-top:.1rem}
+.moyen-cout{text-align:right;flex-shrink:0}
+.cout-val{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;color:var(--g);line-height:1}
+.cout-label{font-size:.63rem;color:var(--m)}
+.moyen-body{padding:.9rem 1.5rem 1.1rem}
+.moyen-body p{margin:0 0 .5rem;font-size:.84rem;color:var(--m);font-weight:300;line-height:1.55}
+.moyen-body p:last-child{margin:0}
+.moyen-tags{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+.mtag{font-size:.68rem;font-weight:500;padding:.15rem .5rem;border-radius:50px}
+.mtag-g{background:var(--gl);color:var(--gd)}
+.mtag-a{background:var(--al);color:var(--ad)}
+.mtag-b{background:#EFF6FF;color:#1e40af}
+
+/* TRAIN ASTUCES */
+.train-grid{display:grid;gap:.9rem;margin:1.5rem 0}
+.train-item{background:var(--w);border:1px solid var(--b);border-left:4px solid var(--g);border-radius:0 10px 10px 0;padding:1rem 1.2rem}
+.train-item h3{font-size:.92rem;font-weight:500;color:var(--t);margin-bottom:.25rem}
+.train-item p{margin:0;font-size:.82rem;color:var(--m);font-weight:300;line-height:1.5}
+.train-eco{font-size:.72rem;color:var(--g);font-weight:500;margin-top:.3rem}
+
+/* COMPARATIF */
+.comp-wrap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
+.comp-head{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;background:var(--gd);color:white;font-size:.72rem;font-weight:500;padding:.7rem 1rem;gap:.5rem}
+.comp-row{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;padding:.65rem 1rem;border-bottom:1px solid var(--b);font-size:.8rem;gap:.5rem;align-items:center}
+.comp-row:last-child{border-bottom:none;background:var(--gl);font-weight:500}
+.comp-row:nth-child(even){background:var(--bg)}
+.c-good{color:var(--g);font-weight:500}
+.c-bad{color:#ef4444}
+.c-mid{color:var(--a)}
+
+.tip-box{background:var(--al);border:1px solid rgba(239,159,39,0.3);border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.tip-box .tip-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ad);margin-bottom:.5rem}
+.tip-box p{margin:0;font-size:.9rem;color:var(--ad)}
+
+.warn-box{background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.warn-box .warn-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:#991B1B;margin-bottom:.5rem}
+.warn-box p{margin:0;font-size:.88rem;color:#7F1D1D}
+
+.recap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:2rem 0}
+.recap-title{background:var(--gd);color:white;padding:.8rem 1.2rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.recap-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.2rem;border-bottom:1px solid var(--b);font-size:.85rem;gap:1rem}
+.recap-row:last-child{border-bottom:none;font-weight:500;background:var(--gl)}
+.recap-row span:last-child{color:var(--g);font-weight:500;text-align:right}
+
+.article-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b);margin-top:3rem;gap:1rem;flex-wrap:wrap}
+.art-nav-btn{display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%}
+.art-nav-btn .nav-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m)}
+.art-nav-btn .nav-title{font-size:.85rem;font-weight:500;color:var(--gd)}
+.art-nav-btn:hover .nav-title{color:var(--g)}
+.art-nav-btn.next{text-align:right;margin-left:auto}
+
+footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.8rem;font-size:.8rem}
+footer strong{color:white}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none}
+
+@media(max-width:640px){
+  .article-wrap{padding:2rem 1rem 4rem}
+  nav{padding:.8rem 1rem}
+  .moyen-header{flex-wrap:wrap}
+  .comp-head,.comp-row{font-size:.7rem;padding:.6rem .6rem;grid-template-columns:1.2fr 1fr 1fr 1fr}
+}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Bus, train, covoiturage : se déplacer moins cher",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-38.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Bus, train, covoiturage : se déplacer moins cher">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-38.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Bus, train, covoiturage : se déplacer moins cher">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-38.html" />
+<meta name="description" content="Bus, train, covoiturage : se déplacer moins cher — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Retour aux articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Transport</span> › <span style="color:var(--t,#2C2C2A)">Bus, train, covoiturage : se déplacer moins cher</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Transport", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Bus, train, covoiturage : se déplacer moins cher", "item": "https://economya.fr/article-38.html"}]}</script>
+
+
+<div class="article-hero">
+  <div class="article-cat">🚌 Transport</div>
+  <h1>Bus, train, covoiturage : <em>se déplacer moins cher</em></h1>
+  <div class="savings-badge">💰 Jusqu'à -60% sur vos trajets</div>
+  <div class="article-meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🇫🇷 Solutions disponibles en France</span>
+  </div>
+</div>
+
+<div class="article-wrap">
+
+  <div class="intro-box">
+    Les transports représentent en moyenne <strong>15 à 20% du budget</strong> des ménages français. Entre voiture, train et transports en commun, les alternatives économiques existent pour presque tous les trajets — à condition de les connaître et de s'organiser un peu à l'avance. Voici le panorama complet des solutions pour voyager moins cher en France.
+  </div>
+
+  <p>La France dispose d'un réseau de transport terrestre parmi les plus denses d'Europe. Bus longue distance, covoiturage, trains à petits prix, abonnements régionaux : les options se sont considérablement diversifiées depuis quelques années. Le voyageur informé peut réduire ses dépenses de transport de 40 à 60% par rapport à un usage non optimisé.</p>
+
+  <h2>Les principales alternatives économiques</h2>
+
+  <div class="moyen-grid">
+
+    <div class="moyen-card">
+      <div class="moyen-header">
+        <div class="moyen-left">
+          <div class="moyen-icon">🚗</div>
+          <div>
+            <div class="moyen-name">Covoiturage longue distance</div>
+            <div class="moyen-type">BlaBlaCar · Trajet partagé entre particuliers</div>
+          </div>
+        </div>
+        <div class="moyen-cout">
+          <div class="cout-val">~0,06€/km</div>
+          <div class="cout-label">vs ~0,20€ en voiture seul</div>
+        </div>
+      </div>
+      <div class="moyen-body">
+        <p>BlaBlaCar est la référence du covoiturage en France avec plus de 20 millions de membres. Paris-Lyon revient à 15 à 25€ en covoiturage contre 40 à 80€ en TGV ou 60 à 80€ en voiture seul. La plateforme garantit les paiements et assure une notation des conducteurs. Pour les trajets réguliers, BlaBlaCar Daily (covoiturage courte distance) propose des abonnements mensuels très avantageux pour les navetteurs.</p>
+        <div class="moyen-tags">
+          <span class="mtag mtag-g">Paris-Lyon dès 15€</span>
+          <span class="mtag mtag-g">Très flexible</span>
+          <span class="mtag mtag-b">Dépend des conducteurs disponibles</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="moyen-card">
+      <div class="moyen-header">
+        <div class="moyen-left">
+          <div class="moyen-icon">🚌</div>
+          <div>
+            <div class="moyen-name">Bus longue distance (FlixBus, BlaBlaBus)</div>
+            <div class="moyen-type">Réseau national et européen · Confort correct</div>
+          </div>
+        </div>
+        <div class="moyen-cout">
+          <div class="cout-val">Dès 5€</div>
+          <div class="cout-label">Paris-Lyon par exemple</div>
+        </div>
+      </div>
+      <div class="moyen-body">
+        <p>FlixBus et BlaBlaBus desservent plus de 200 villes françaises et européennes avec des prix défiant toute concurrence. Paris-Lyon peut descendre à 5 à 15€ en réservant à l'avance. Le confort est correct (WiFi, prise électrique, toilettes) pour un trajet de 4 à 6h. Idéal pour les voyageurs avec beaucoup de temps et peu de budget. La réservation en avance est indispensable pour les meilleurs tarifs.</p>
+        <div class="moyen-tags">
+          <span class="mtag mtag-g">Prix imbattables</span>
+          <span class="mtag mtag-a">Trajet plus long qu'en train</span>
+          <span class="mtag mtag-b">Réseau européen étendu</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="moyen-card">
+      <div class="moyen-header">
+        <div class="moyen-left">
+          <div class="moyen-icon">🚆</div>
+          <div>
+            <div class="moyen-name">Train SNCF : les bons tarifs</div>
+            <div class="moyen-type">TGV Inoui, Ouigo, Intercités · Selon timing</div>
+          </div>
+        </div>
+        <div class="moyen-cout">
+          <div class="cout-val">Dès 19€</div>
+          <div class="cout-label">avec Ouigo ou en avance</div>
+        </div>
+      </div>
+      <div class="moyen-body">
+        <p>Le train reste le mode le plus rapide entre les grandes villes françaises, et peut être très abordable avec la bonne approche. Ouigo (marque low cost SNCF) propose des TGV dès 19€ Paris-Lyon ou Paris-Marseille. Les cartes de réduction (Avantage Jeune, Avantage Senior) offrent 30 à 60% de réduction sur tous les trajets. L'abonnement TGV Max (79€/mois) permet de voyager en TGV illimité sous réserve de disponibilité — rentable dès 2 à 3 trajets mensuels.</p>
+        <div class="moyen-tags">
+          <span class="mtag mtag-g">Ouigo dès 19€</span>
+          <span class="mtag mtag-g">Le plus rapide</span>
+          <span class="mtag mtag-a">Réservation à l'avance indispensable</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="moyen-card">
+      <div class="moyen-header">
+        <div class="moyen-left">
+          <div class="moyen-icon">🚇</div>
+          <div>
+            <div class="moyen-name">Transports en commun urbains</div>
+            <div class="moyen-type">Métro, bus, tram · Abonnements mensuels</div>
+          </div>
+        </div>
+        <div class="moyen-cout">
+          <div class="cout-val">~85€/mois</div>
+          <div class="cout-label">Paris (Navigo toutes zones)</div>
+        </div>
+      </div>
+      <div class="moyen-body">
+        <p>L'abonnement mensuel aux transports en commun est toujours plus économique que l'utilisation au ticket ou à la carte. À Paris, le Navigo mensuel à 86,40€ toutes zones est remboursé à 50% par l'employeur (loi obligatoire) — soit 43€ nets pour des déplacements illimités. Dans les autres grandes villes, les abonnements mensuels oscillent entre 30 et 60€ avec les mêmes remboursements employeur partiels.</p>
+        <div class="moyen-tags">
+          <span class="mtag mtag-g">50% remboursé employeur</span>
+          <span class="mtag mtag-g">Illimité dans la zone</span>
+          <span class="mtag mtag-b">Varie selon la ville</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Les 5 astuces pour payer le train moins cher</h2>
+
+  <div class="train-grid">
+    <div class="train-item">
+      <h3>🎫 La carte Avantage SNCF : la meilleure réduction</h3>
+      <p>Les cartes Avantage (Jeune -27 ans, Senior +60 ans, Week-end, Famille) coûtent 49 à 79€/an et offrent 30 à 60% de réduction sur tous les billets SNCF. Pour deux allers-retours longue distance dans l'année, la carte est largement rentabilisée. La carte Avantage Jeune est particulièrement intéressante : dès 2 trajets Paris-Lyon, elle est amortie.</p>
+      <div class="train-eco">Économie : 30 à 60% sur chaque billet</div>
+    </div>
+    <div class="train-item">
+      <h3>⏰ Réserver le plus tôt possible (J-90)</h3>
+      <p>Les tarifs SNCF sont dynamiques : les billets les moins chers sont mis en vente 90 jours avant le départ et partent rapidement. Un Paris-Bordeaux peut coûter 25€ réservé 3 mois à l'avance et 90€ la semaine du voyage. L'ouverture de la billetterie à J-90 est le meilleur moment pour trouver les tarifs Prem's.</p>
+      <div class="train-eco">Économie : jusqu'à -70% vs achat tardif</div>
+    </div>
+    <div class="train-item">
+      <h3>🌙 Voyager aux heures creuses</h3>
+      <p>Les trains du mardi, mercredi et jeudi matin ou en début d'après-midi sont systématiquement moins chers que ceux du vendredi soir et du dimanche. La flexibilité d'une heure ou deux sur l'horaire peut réduire le prix de 20 à 40% sur le même trajet.</p>
+      <div class="train-eco">Économie : 20 à 40% selon l'horaire</div>
+    </div>
+    <div class="train-item">
+      <h3>🔔 Activer les alertes de prix sur SNCF Connect et Trainline</h3>
+      <p>SNCF Connect et l'application Trainline permettent de créer des alertes sur un trajet. Dès qu'un billet Prem's (tarif le plus bas) se libère suite à une annulation, vous êtes notifié. C'est ainsi qu'on attrape les bonnes affaires de dernière minute pour des voyages flexibles.</p>
+      <div class="train-eco">Parfois -50 à -70% de réduction</div>
+    </div>
+    <div class="train-item">
+      <h3>💳 L'abonnement TGV Max à 79€/mois</h3>
+      <p>Pour les voyageurs fréquents avec une bonne flexibilité horaire, TGV Max permet de voyager en TGV illimité sous réserve de disponibilité (billets libérés 30 jours avant le départ). Rentable dès 2 à 3 allers-retours longue distance par mois. Idéal pour les travailleurs en télétravail partiel qui font de longs trajets.</p>
+      <div class="train-eco">Rentable dès 2-3 AR/mois</div>
+    </div>
+  </div>
+
+  <h2>Comparatif des modes de transport selon le trajet</h2>
+
+  <div class="comp-wrap">
+    <div class="comp-head">
+      <span>Trajet exemple</span>
+      <span>Voiture seul</span>
+      <span>Train (TGV)</span>
+      <span>Covoiturage / Bus</span>
+    </div>
+    <div class="comp-row">
+      <span>Paris → Lyon (460 km)</span>
+      <span class="c-bad">~75€ + péage</span>
+      <span class="c-mid">25–90€ (Ouigo/TGV)</span>
+      <span class="c-good">5–25€ (bus/covoit)</span>
+    </div>
+    <div class="comp-row">
+      <span>Paris → Marseille (775 km)</span>
+      <span class="c-bad">~120€ + péage</span>
+      <span class="c-mid">29–120€ (Ouigo/TGV)</span>
+      <span class="c-good">9–35€ (bus/covoit)</span>
+    </div>
+    <div class="comp-row">
+      <span>Paris → Bordeaux (580 km)</span>
+      <span class="c-bad">~90€ + péage</span>
+      <span class="c-mid">25–100€ (TGV)</span>
+      <span class="c-good">8–30€ (bus/covoit)</span>
+    </div>
+    <div class="comp-row">
+      <span>Paris → Rennes (350 km)</span>
+      <span class="c-bad">~60€ + péage</span>
+      <span class="c-mid">20–80€ (TGV)</span>
+      <span class="c-good">7–22€ (bus/covoit)</span>
+    </div>
+    <div class="comp-row">
+      <span>Trajet domicile-travail (30 km)</span>
+      <span class="c-bad">~180€/mois voiture</span>
+      <span class="c-mid">~43€/mois Navigo (50% employeur)</span>
+      <span class="c-good">~20€/mois BlaBlaCar Daily</span>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 La combinaison gagnante selon votre profil</div>
+    <p>Pour les <strong>navetteurs quotidiens</strong> : abonnement TC mensuel (50% remboursé employeur) + vélo pour le dernier kilomètre. Pour les <strong>voyages occasionnels</strong> : Ouigo ou covoiturage BlaBlaCar réservés à l'avance. Pour les <strong>voyageurs fréquents flexibles</strong> : TGV Max à 79€/mois. Pour les <strong>trajets européens</strong> : FlixBus ou BlaBlaBus réservés 2 à 4 semaines à l'avance.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">⚠️ Le coût réel de la voiture personnelle</div>
+    <p>Beaucoup de conducteurs sous-estiment le coût réel de leur voiture en ne comptant que l'essence. Le coût total inclut l'assurance, l'entretien, les pneus, le contrôle technique, l'amortissement du véhicule et le stationnement. Pour une voiture moyenne, ce coût total dépasse souvent <strong>0,30 à 0,50€ par kilomètre</strong>. Calculé sur 15 000 km/an, c'est 4 500 à 7 500€ par an — souvent plus que la somme de tous les transports en commun et covoiturages de l'année.</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-title">📊 Économies annuelles selon la stratégie</div>
+    <div class="recap-row"><span>Covoiturage vs voiture seul (4 trajets longue distance/an)</span><span>~300€/an</span></div>
+    <div class="recap-row"><span>Ouigo vs TGV plein tarif (mêmes trajets)</span><span>~200€/an</span></div>
+    <div class="recap-row"><span>Carte Avantage SNCF (amortie dès 2 trajets)</span><span>~300€/an en réductions</span></div>
+    <div class="recap-row"><span>Abonnement TC vs voiture pour navette quotidienne</span><span>~1 500€/an</span></div>
+    <div class="recap-row"><span><strong>Économie totale pour un voyageur actif optimisé</strong></span><span><strong>jusqu'à 1 500€/an</strong></span></div>
+  </div>
+
+  <p>Se déplacer moins cher en France est une question d'anticipation et de bonne combinaison des moyens de transport. <strong>BlaBlaCar pour les trajets longue distance, Ouigo avec une carte Avantage pour le train, et l'abonnement TC pour le quotidien</strong> : ces trois choix couvrent la majorité des situations pour un coût réduit de 40 à 60% par rapport à un usage non optimisé.</p>
+
+  <div class="article-nav">
+    <a class="art-nav-btn" href="article-37.html">
+      <span class="nav-label">← Article précédent</span>
+      <span class="nav-title">Épargner 100€/mois sans s'en apercevoir</span>
+    </a>
+    <a class="art-nav-btn next" href="article-39.html">
+      <span class="nav-label">Article suivant →</span>
+      <span class="nav-title">Produits ménagers maison : recettes économiques</span>
+    </a>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="index.html">Accueil</a> · Cet site contient des liens partenaires.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
