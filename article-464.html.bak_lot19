@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="description" content="TDAH et budget : gérer ses finances autrement — Systèmes adaptés au TDAH. Guide complet sur Economya.fr">
+<meta name="description" content="Désencombrement : méthode KonMari et revenus — 500 à 2 000€ en désencombrant. Guide complet sur Economya.fr">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TDAH et budget : gérer ses finances autrement — Economya.fr</title>
+<title>Désencombrement : méthode KonMari et revenus — Economya.fr</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -18,7 +18,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .nav-back:hover{color:var(--g)}
 .ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
-.ah::before{content:'🧠';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.ah::before{content:'⚡';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
 .hi{max-width:760px;margin:0 auto;position:relative;z-index:1;text-align:center}
 .cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
 .ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
@@ -26,28 +26,32 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
 .meta-row{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
 .meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
-.theme-tag{background:linear-gradient(135deg,#d97706,#7c3aed);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.theme-tag{background:linear-gradient(135deg,#d97706,#be185d);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
 .ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
 .lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
 h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
 p{margin-bottom:1rem;font-size:.95rem}
 
-/* DÉFIS */
-.defis{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:.9rem;margin:1.5rem 0}
-.defi{background:#fef2f2;border:1px solid #fecaca;border-radius:var(--r);padding:1.1rem;text-align:center}
-.defi-icon{font-size:1.6rem;margin-bottom:.4rem}
-.defi-name{font-weight:700;font-size:.88rem;color:#dc2626;margin-bottom:.2rem}
-.defi-desc{font-size:.76rem;color:#7f1d1d;font-weight:300;line-height:1.35}
+/* ÉTAPES KONMARI */
+.konmari{display:flex;flex-direction:column;gap:.85rem;margin:1.5rem 0}
+.km{display:grid;grid-template-columns:38px 1fr;gap:.9rem;align-items:start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.2rem;transition:box-shadow .2s}
+.km:hover{box-shadow:0 4px 16px rgba(217,119,6,.1)}
+.km.top{border:2px solid var(--g)}
+.kn{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#92400e,#d97706);color:white;font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.kc h3{font-size:.92rem;font-weight:700;margin-bottom:.2rem}
+.kc p{font-size:.84rem;color:var(--m);font-weight:300;margin:0}
+.kc .ktag{display:inline-block;margin-top:.35rem;background:var(--amber-l);color:var(--ad);font-size:.7rem;font-weight:600;padding:.12rem .55rem;border-radius:50px}
+.ktag.g{background:var(--gl);color:var(--gd)}
 
-/* STRATÉGIES */
-.strategies{display:flex;flex-direction:column;gap:.85rem;margin:1.5rem 0}
-.strat{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1rem 1.3rem;display:flex;gap:.9rem;align-items:flex-start;transition:box-shadow .2s}
-.strat:hover{box-shadow:0 4px 16px rgba(217,119,6,.1)}
-.strat.top{border:2px solid var(--g)}
-.sico{font-size:1.3rem;flex-shrink:0;margin-top:.05rem}
-.strat strong{display:block;font-size:.92rem;margin-bottom:.15rem}
-.strat span{font-size:.85rem;color:var(--m);font-weight:300}
-.strat .stag{display:inline-block;margin-top:.35rem;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+/* REVENUS */
+.revenus{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:.9rem;margin:1.5rem 0}
+.revenu{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem;text-align:center;transition:transform .2s}
+.revenu:hover{transform:translateY(-2px)}
+.revenu.top{border:2px solid var(--g)}
+.r-icon{font-size:1.6rem;margin-bottom:.35rem}
+.r-cat{font-weight:700;font-size:.88rem;margin-bottom:.2rem}
+.r-montant{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--amber);margin:.15rem 0}
+.r-note{font-size:.74rem;color:var(--m);font-weight:300;line-height:1.3}
 
 /* ENCADRÉS */
 .tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
@@ -117,9 +121,9 @@ window.economyaLoadAds = function() {
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "TDAH et budget : gérer ses finances autrement",
-  "description": "TDAH et budget : gérer ses finances autrement — Systèmes adaptés au TDAH. Guide complet sur Economya.fr",
-  "url": "https://economya.fr/article-382.html",
+  "headline": "Désencombrement : méthode KonMari et revenus",
+  "description": "Désencombrement : méthode KonMari et revenus — 500 à 2 000€ en désencombrant. Guide complet sur Economya.fr",
+  "url": "https://economya.fr/article-464.html",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -136,19 +140,19 @@ window.economyaLoadAds = function() {
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="TDAH et budget : gérer ses finances autrement">
-  <meta property="og:description" content="TDAH et budget : gérer ses finances autrement — Systèmes adaptés au TDAH. Guide complet sur Economya.fr">
-  <meta property="og:url" content="https://economya.fr/article-382.html">
+  <meta property="og:title" content="Désencombrement : méthode KonMari et revenus">
+  <meta property="og:description" content="Désencombrement : méthode KonMari et revenus — 500 à 2 000€ en désencombrant. Guide complet sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-464.html">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="TDAH et budget : gérer ses finances autrement">
-  <meta name="twitter:description" content="TDAH et budget : gérer ses finances autrement — Systèmes adaptés au TDAH. Guide complet sur Economya.fr">
+  <meta name="twitter:title" content="Désencombrement : méthode KonMari et revenus">
+  <meta name="twitter:description" content="Désencombrement : méthode KonMari et revenus — 500 à 2 000€ en désencombrant. Guide complet sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/article-382.html" />
+<link rel="canonical" href="https://economya.fr/article-464.html" />
 </head>
 <body>
 <nav>
@@ -158,103 +162,119 @@ window.economyaLoadAds = function() {
 
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Bien-être</span> › <span style="color:var(--t,#2C2C2A)">TDAH et budget : gérer ses finances autrement</span></div>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Bien-être", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "TDAH et budget : gérer ses finances autrement", "item": "https://economya.fr/article-382.html"}]}</script>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Lifestyle</span> › <span style="color:var(--t,#2C2C2A)">Désencombrement : méthode KonMari et revenus</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Lifestyle", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Désencombrement : méthode KonMari et revenus", "item": "https://economya.fr/article-464.html"}]}</script>
 
 <div class="ah">
   <div class="hi">
-    <div class="cat-pill">🧠 Bien-être</div>
-    <h1>TDAH et budget :<br><em> gérer ses finances autrement</em></h1>
-    <div class="savings-badge">💰 Systèmes adaptés au TDAH</div>
+    <div class="cat-pill">⚡ Lifestyle</div>
+    <h1>Désencombrement :<br><em> méthode KonMari et revenus</em></h1>
+    <div class="savings-badge">💰 500 à 2 000 € en désencombrant</div>
     <div class="meta-row">
       <span class="meta-item">⏱ 4 min de lecture</span>
       <span class="meta-item">📅 Vérifié juin 2026</span>
-      <span class="theme-tag">🧠 TDAH & finances</span>
+      <span class="theme-tag">🏠 Minimalisme & revenus</span>
     </div>
   </div>
 </div>
 <div class="ab">
-  <p class="lead">Le TDAH (Trouble Déficitaire de l'Attention avec ou sans Hyperactivité) rend la gestion budgétaire particulièrement difficile : impulsivité dans les achats, oublis de paiements, difficulté à planifier. Mais des systèmes spécifiquement adaptés au cerveau TDAH existent et fonctionnent. L'objectif n'est pas de "mieux se discipliner" mais de créer des systèmes qui travaillent avec votre cerveau, pas contre lui.</p>
+  <p class="lead">Marie Kondo a popularisé la méthode KonMari — trier ses affaires par catégorie en ne gardant que ce qui "procure de la joie". Au-delà du bien-être, le désencombrement génère des revenus concrets : les objets triés se vendent sur Vinted, LeBonCoin, eBay ou Facebook Marketplace. Un désencombrement sérieux peut rapporter 500 à 2 000 €.</p>
 
-  <h2>⚠️ Les défis spécifiques TDAH avec l'argent</h2>
-  <div class="defis">
-    <div class="defi">
-      <div class="defi-icon">🛍️</div>
-      <div class="defi-name">Achats impulsifs</div>
-      <div class="defi-desc">La recherche de dopamine immédiate via les achats est un mécanisme courant dans le TDAH.</div>
+  <h2>📦 La méthode KonMari en 5 catégories</h2>
+  <div class="konmari">
+    <div class="km top">
+      <div class="kn">1</div>
+      <div class="kc">
+        <h3>Vêtements — commencez ici (le plus impactant)</h3>
+        <p>Rassemblez TOUS les vêtements de la maison sur le lit. Tenez chaque pièce et demandez-vous "est-ce que cela me procure de la joie ?". Si non, mettez de côté pour donner ou vendre. Ordre : hauts, bas, vêtements d'extérieur, chaussettes/sous-vêtements, accessoires, vêtements d'occasion. La plupart des gens éliminent 50–70 % de leur garde-robe.</p>
+        <span class="ktag g">Commence toujours par les vêtements</span>
+      </div>
     </div>
-    <div class="defi">
-      <div class="defi-icon">📋</div>
-      <div class="defi-name">Oublis de paiements</div>
-      <div class="defi-desc">Factures oubliées, abonnements non résiliés, délais manqués malgré les bonnes intentions.</div>
+    <div class="km">
+      <div class="kn">2</div>
+      <div class="kc">
+        <h3>Livres</h3>
+        <p>Posez tous vos livres sur le sol (KonMari insiste : pas sur les étagères). Gardez uniquement ceux que vous relirez ou qui vous sont précieux. Les autres : vente en ligne (Price Minister / Momox), Babelio, marchés de bouquinistes.</p>
+        <span class="ktag">Momox, babelio.com</span>
+      </div>
     </div>
-    <div class="defi">
-      <div class="defi-icon">🔮</div>
-      <div class="defi-name">Difficulté à projeter</div>
-      <div class="defi-desc">"Aveuglément temporel" : le futur paraît abstrait, ce qui rend l'épargne longue terme très difficile.</div>
+    <div class="km">
+      <div class="kn">3</div>
+      <div class="kc">
+        <h3>Papiers et documents</h3>
+        <p>La règle KonMari est simple : jetez tout sauf ce qui est en cours de traitement, ce qui doit être conservé (contrats, garanties, actes) et ce qui est à valeur sentimentale. Numérisez ce qui peut l'être. Conservation légale : 10 ans pour la compta, 5 ans pour les relevés bancaires.</p>
+      </div>
     </div>
-    <div class="defi">
-      <div class="defi-icon">😤</div>
-      <div class="defi-name">Paralysie par le budget</div>
-      <div class="defi-desc">Les systèmes budgétaires complexes génèrent de la paralysie plutôt que de l'action.</div>
+    <div class="km">
+      <div class="kn">4</div>
+      <div class="kc">
+        <h3>Komono (divers : cuisine, salle de bain, déco, outillage)</h3>
+        <p>Toutes les catégories "diverses" — un tiroir à la fois. Cuisine : ustensiles, électroménager de comptoir, vaisselle en double. Salle de bain : produits non utilisés, cosmétiques expirés. Outillage : l'astuce de la boîte (si vous n'avez pas ouvert la boîte depuis 2 ans, vous ne manquerez pas ce qu'elle contient).</p>
+        <span class="ktag">Tioir par tiroir</span>
+      </div>
+    </div>
+    <div class="km">
+      <div class="kn">5</div>
+      <div class="kc">
+        <h3>Souvenirs (laissez pour la fin)</h3>
+        <p>Les plus difficiles à trier. Photos, lettres, objets d'enfance — KonMari recommande de les traiter en dernier car votre "muscle du tri" est alors développé. Gardez les souvenirs authentiquement précieux ; un objet dont vous ne vous souveniez pas il y a 10 minutes n'est probablement pas indispensable.</p>
+      </div>
     </div>
   </div>
 
-  <h2>✅ Les stratégies qui fonctionnent avec un cerveau TDAH</h2>
-  <div class="strategies">
-    <div class="strat top">
-      <span class="sico">🤖</span>
-      <div>
-        <strong>Tout automatiser au maximum — c'est la priorité absolue</strong>
-        <span>Virement automatique vers épargne le jour du salaire, prélèvements automatiques pour toutes les factures, renouvellements auto des abonnements essentiels. Le cerveau TDAH s'oublie — les systèmes automatiques ne s'oublient jamais. Chaque automatisation est une décision de moins à prendre.</span>
-        <span class="stag">🎯 Automatiser = se protéger de soi-même</span>
-      </div>
+  <h2>💰 Ce que vous pouvez gagner en revendant</h2>
+  <div class="revenus">
+    <div class="revenu top">
+      <div class="r-icon">👗</div>
+      <div class="r-cat">Vêtements (Vinted)</div>
+      <div class="r-montant">100–500 €</div>
+      <div class="r-note">Marques valorisées. Photos soignées = + 30 % de prix.</div>
     </div>
-    <div class="strat">
-      <span class="sico">💳</span>
-      <div>
-        <strong>Utiliser des comptes séparés avec des budgets physiques</strong>
-        <span>Plusieurs comptes bien nommés (Loyer, Courses, Loisirs) rendent la situation visible et concrète. Quand le compte "Loisirs" est vide, c'est fini — pas besoin de calcul mental. Les néobanques (Boursobank, Revolut) permettent des "espaces" ou "enveloppes" virtuels facilement.</span>
-      </div>
+    <div class="revenu">
+      <div class="r-icon">📱</div>
+      <div class="r-cat">Électronique (eBay, BackMarket)</div>
+      <div class="r-montant">50–800 €</div>
+      <div class="r-note">Smartphones, tablettes, consoles. Marché très actif.</div>
     </div>
-    <div class="strat">
-      <span class="sico">⏱️</span>
-      <div>
-        <strong>La règle des 24h pour les achats non essentiels</strong>
-        <span>Avant tout achat non prévu au-dessus de 30–50 €, attendez 24 heures. Ajoutez l'article au panier ou prenez en photo, puis revenez le lendemain. Cette friction artificielle stoppe environ 70 % des achats impulsifs. L'envie passe souvent en quelques heures.</span>
-        <span class="stag">💡 Simple et très efficace</span>
-      </div>
+    <div class="revenu">
+      <div class="r-icon">📚</div>
+      <div class="r-cat">Livres (Momox, Recyclivre)</div>
+      <div class="r-montant">20–100 €</div>
+      <div class="r-note">Vente par lot ou à l'unité. Momox rachète directement.</div>
     </div>
-    <div class="strat">
-      <span class="sico">📅</span>
-      <div>
-        <strong>Un seul "jour budget" par mois, pas plus</strong>
-        <span>Choisissez un jour fixe du mois (ex : le 5) pour regarder vos comptes, vérifier les dépenses, ajuster. En dehors de ce jour, ne regardez pas. Cette ritualisation hebdomadaire réduit l'anxiété et l'hypervigilance sur les finances, deux comportements courants dans le TDAH.</span>
-      </div>
+    <div class="revenu">
+      <div class="r-icon">🧸</div>
+      <div class="r-cat">Jouets enfants (Vinted, LBC)</div>
+      <div class="r-montant">50–300 €</div>
+      <div class="r-note">Jouets neufs ou peu usagés très demandés.</div>
     </div>
-    <div class="strat">
-      <span class="sico">🎮</span>
-      <div>
-        <strong>Gamifiez vos objectifs financiers</strong>
-        <span>Le cerveau TDAH répond bien aux récompenses immédiates et visuelles. Créez un "compteur de victoires" pour votre épargne, utilisez YNAB (très visuel), ou créez un tableau de progression pour vos objectifs. Chaque palier atteint = une petite récompense définie à l'avance.</span>
-        <span class="stag">🎯 Dopamine par les objectifs</span>
-      </div>
+    <div class="revenu">
+      <div class="r-icon">🍽️</div>
+      <div class="r-cat">Vaisselle & déco (Selency, LBC)</div>
+      <div class="r-montant">50–400 €</div>
+      <div class="r-note">Marques (Ikea, Maisons du Monde) bien côtées.</div>
+    </div>
+    <div class="revenu">
+      <div class="r-icon">🔧</div>
+      <div class="r-cat">Outillage & sport (LBC)</div>
+      <div class="r-montant">50–200 €</div>
+      <div class="r-note">Vélos, appareils de sport, outils en bon état.</div>
     </div>
   </div>
 
   <div class="tip">
-    <strong>💡 Le "budget à enveloppe unique" pour le TDAH</strong>
-    Une méthode très efficace pour le TDAH : retirez en espèces votre budget "dépenses variables" en début de mois (alimentation + loisirs + divers). Quand l'enveloppe est vide, c'est fini. Pas de calcul, pas d'app, pas de surveillance. Concret, visuel, immédiat. Beaucoup de personnes TDAH trouvent ça révolutionnaire.
+    <strong>💡 La règle des 2 semaines pour décider</strong>
+    Si vous hésitez sur un objet, placez-le dans un carton fermé pendant 2 semaines. Si vous ne l'avez pas cherché ni manqué pendant cette période, vous pouvez le vendre ou donner sans regret. Cette règle contourne le biais d'aversion aux pertes qui pousse à garder des objets "au cas où".
   </div>
 
   <div class="warn">
-    <strong>ℹ️ Ne vous jugez pas par rapport aux méthodes neurotypiques</strong>
-    Les méthodes budgétaires standard sont conçues pour des cerveaux neurotypiques. Si elles ne fonctionnent pas pour vous, ce n'est pas un échec de votre part — c'est un problème d'adaptation. Cherchez des systèmes compatibles avec votre fonctionnement réel, pas des systèmes qui semblent "raisonnables" sur le papier mais que vous n'utiliserez jamais.
+    <strong>⚠️ Désencombrez avant d'acheter, pas en parallèle</strong>
+    Une erreur commune : acheter de nouveaux rangements pour "mieux organiser" ses affaires avant de désencombrer. KonMari est formelle : aucun achat de rangement avant la fin du tri. Les espaces de rangement dont vous avez besoin apparaissent naturellement après le désencombrement — et ils sont souvent 50 % moins nombreux qu'anticipé.
   </div>
 
   <div class="cta">
-    <h3>📬 TDAH & finances dans votre boîte mail</h3>
-    <p>Les meilleures stratégies pour gérer son argent avec un cerveau différent, chaque semaine.</p>
+    <h3>📬 Minimalisme & revenus dans votre boîte mail</h3>
+    <p>Les meilleures astuces pour désencombrer et générer des revenus, chaque semaine.</p>
     <div class="cta-form">
       <input type="email" placeholder="votre@email.fr" />
       <button>Je m'abonne</button>
@@ -295,13 +315,13 @@ window.economyaLoadAds = function() {
 
 <div class="similaires">
   <h3>📚 Articles similaires</h3>
-  <div class="sim-grid"><a class="sim-card" href="article-374.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Budget zéro basé : méthode et application</div></a><a class="sim-card" href="article-375.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Méthode 50/30/20 : appliquer concrètement</div></a><a class="sim-card" href="article-376.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">YNAB vs Bankin vs Linxo : quel outil budget choisir</div></a><a class="sim-card" href="article-377.html"><div class="sim-card-cat">Finance</div><div class="sim-card-title">Couple et argent : gérer les finances à deux</div></a></div>
+  <div class="sim-grid"><a class="sim-card" href="article-387.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Désencombrement rentable : transformer ses placards en cash</div></a><a class="sim-card" href="article-388.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Consommation consciente : acheter moins et mieux</div></a><a class="sim-card" href="article-389.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Vivre avec 1 000€/mois : méthodes et témoignages</div></a><a class="sim-card" href="article-390.html"><div class="sim-card-cat">Lifestyle</div><div class="sim-card-title">Burn-out : récupérer sans se ruiner</div></a></div>
 </div>
 
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Cet article est informatif, pas un avis médical.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer><script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">

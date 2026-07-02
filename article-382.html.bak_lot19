@@ -194,7 +194,7 @@ window.economyaLoadAds = function() {
       <div class="defi-desc">"Aveuglément temporel" : le futur paraît abstrait, ce qui rend l'épargne longue terme très difficile.</div>
     </div>
     <div class="defi">
-      <div class="defi-icon">😤</div>
+      class="defi-icon">😤</div>
       <div class="defi-name">Paralysie par le budget</div>
       <div class="defi-desc">Les systèmes budgétaires complexes génèrent de la paralysie plutôt que de l'action.</div>
     </div>
