@@ -234,7 +234,7 @@ window.economyaLoadAds = function() {
       <div class="un">3</div>
       <div class="uc">
         <h3>Déposez plainte à la police ou en ligne</h3>
-        <p>Déposez plainte pour usurpation d'identité (délit pénal en France, article 226-4-1 du Code Pénal). En ligne sur plainte-en-ligne.masecurite.interieur.gouv.fr ou en gendarmerie/commissariat. Conservez le récépissé de plainte — il vous sera utile pour contester des crédits frauduleux.</p>
+        <p>Déposez plainte pour usurpation d'identité (délit pénal en France, article 226-4-1 du Code Pénal). En ligne sur plainte-en-ligne.masse.fr ou en gendarmerie/commissariat. Conservez le récépissé de plainte — il vous sera utile pour contester des crédits frauduleux.</p>
         <span class="utag">📋 Récépissé indispensable</span>
       </div>
     </div>
