@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Erreurs de prix en grande surface : quand le distributeur doit vous rembourser — Economya.fr</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{color:white;padding:3rem 2rem 2.5rem}
+.hero-cat{display:inline-block;background:rgba(255,255,255,.18);color:white;padding:.3rem .8rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.8rem;line-height:1.2}
+.hero-badge{display:inline-block;background:var(--a);color:white;padding:.4rem 1rem;border-radius:50px;font-size:.82rem;font-weight:700;margin-top:.5rem}
+.hero-meta{font-size:.78rem;color:rgba(255,255,255,.7);margin-top:.8rem}
+.container{max-width:800px;margin:0 auto;padding:2.5rem 1.5rem}
+.content p{margin-bottom:1.2rem;line-height:1.8;font-size:.95rem;color:var(--t)}
+.content h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);margin:2rem 0 .8rem;padding-left:1rem;border-left:4px solid var(--g)}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){.hamburger{display:flex}nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}nav li{display:none!important}}
+</style>
+<link rel="canonical" href="https://economya.fr/article-525.html" />
+<meta name="description" content="Erreurs de prix en grande surface : quand le distributeur doit vous rembourser — Economya.fr" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","publisher":"Economya.fr"}</script></head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+  
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Erreurs de prix en grande surface : quand le distributeur doit vous rembourser</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Erreurs de prix en grande surface : quand le distributeur doit vous rembourser", "item": "https://economya.fr/article-525.html"}]}</script>
+
+<div class="hero" data-hero-centered="1" style="text-align:center;background:linear-gradient(135deg,#11998e,#38ef7d)">
+  <div class="hero-cat" style="display:inline-block;margin:0 auto 1rem">🔧 Hacks Malins</div>
+  <h1 style="text-align:center">Erreurs de prix en grande surface : quand le distributeur doit vous rembourser</h1>
+  <div class="hero-badge" style="display:inline-block;margin:.5rem auto">💸 Remboursements garantis par la loi</div>
+  <div class="hero-meta" style="text-align:center;margin-top:.8rem">📖 5 min · Vérifié juin 2026 · 🇫🇷</div>
+</div><div class="container">
+  <div class="content">
+    
+    <p>La loi française est claire : si le prix affiché en rayon est inférieur au prix scanné en caisse, c'est le prix affiché qui s'applique. Et dans certains cas, vous avez droit à bien plus qu'un simple remboursement de la différence. Des millions d'euros sont réclamés chaque année par des consommateurs informés — et la grande majorité des Français ne sait pas que ce droit existe.</p>
+    <h2>Le cadre légal : l'article L112-1 du Code de la consommation</h2>
+    <p>Tout professionnel vendant des produits à des consommateurs est tenu d'afficher les prix de façon visible et lisible. En cas de discordance entre le prix affiché et le prix scanné, le consommateur est en droit d'exiger le prix le plus bas. C'est une obligation légale, pas un geste commercial. Le commerçant ne peut pas refuser sous prétexte d'"erreur d'étiquetage".</p>
+    <h2>La règle du scan : le prix scanné fait foi... en votre faveur</h2>
+    <p>Si la caisse affiche 5,99€ pour un produit étiqueté 4,99€ en rayon, vous payez 4,99€ — point final. Mais allons plus loin : si l'erreur est systématique (plusieurs clients concernés), le distributeur peut être sanctionné par la DGCCRF pour pratique commerciale trompeuse. Signalez les erreurs répétées via SignalConso.gouv.fr.</p>
+    <h2>Les cas où vous obtenez le produit gratuit</h2>
+    <p>Certaines enseignes (Leclerc, Intermarché, Système U) ont une politique interne "satisfait ou remboursé + gratuit" en cas d'erreur de prix. Ce n'est pas légalement obligatoire mais certaines chartes clients le prévoient. Renseignez-vous sur la politique spécifique de votre enseigne — elle est souvent affichée en service client ou disponible sur le site.</p>
+    <h2>Comment repérer les erreurs systématiquement</h2>
+    <p>La méthode : photographiez les étiquettes des produits qui vous intéressent avant de passer en caisse. Vérifiez votre ticket de caisse article par article avant de quitter le magasin. Les erreurs sont plus fréquentes sur les produits en promotion, les articles en tête de gondole et les rayons récemment réassortis. En moyenne, un consommateur attentif repère 2 à 3 erreurs par mois.</p>
+    <h2>Que faire quand vous repérez une erreur ?</h2>
+    <p>Restez calme et poli. Montrez votre ticket de caisse et la photo de l'étiquette (ou demandez à retourner en rayon). Demandez à parler au responsable si le caissier conteste. Citez l'article L112-1 du Code de la consommation si nécessaire. Dans 95% des cas, le remboursement est immédiat. En cas de refus, conservez vos preuves et signalez à la DGCCRF.</p>
+    <h2>Les applications pour scanner les prix</h2>
+    <p>Yuka, Open Food Facts et plusieurs applications de fidélité permettent de scanner les produits et de vérifier les prix en ligne. Certaines extensions navigateur comme Honey ou Capital One Shopping alertent sur les écarts de prix. Ces outils ne détectent pas les erreurs en rayon mais aident à contextualiser si un "prix soldé" est réellement avantageux.</p>
+    <h2>Les arnaques légales à connaître</h2>
+    <p>Prix de référence fictifs ("prix conseillé" inventé), fausses promotions (prix augmenté avant solde), unités de mesure trompeuses (prix au kilo caché)... Ces pratiques sont légalement encadrées mais répandues. Le réflexe : toujours comparer le prix au kilo/litre (affiché en petit sous l'étiquette) plutôt que le prix unitaire. C'est souvent révélateur.</p>
+
+  </div>
+</div>
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-525.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-525.html&text=Erreurs%20de%20prix%20en%20grande%20surface%20%3A%20quand%20le%20distributeur%20doit%20vous%20rembourser" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-525.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=Erreurs%20de%20prix%20en%20grande%20surface%20%3A%20quand%20le%20distributeur%20doit%20vous%20rembourser%20-%20https://economya.fr/article-525.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-525.html&description=Erreurs%20de%20prix%20en%20grande%20surface%20%3A%20quand%20le%20distributeur%20doit%20vous%20rembourser" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+
+
+<div class="article-nav" data-nav-styled="1" style="display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b,#e5e5e5);margin-top:3rem;gap:1rem;flex-wrap:wrap;max-width:900px;margin-left:auto;margin-right:auto;padding-left:1.5rem;padding-right:1.5rem"><a href="article-524.html" style="display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%;"><span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m,#8899bb)">← Article précédent</span><span style="font-size:.85rem;font-weight:500;color:var(--gd,#085041)">Enchères La Poste et SNCF : racheter des bagages perdus à prix cassé</span></a><a href="article-526.html" style="display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%;text-align:right;align-items:flex-end"><span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m,#8899bb)">Article suivant →</span><span style="font-size:.85rem;font-weight:500;color:var(--gd,#085041)">Location d'appareils électroménagers : le vrai calcul financier en 2026</span></a></div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Les informations fournies sont à titre indicatif.</span>
+</footer>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
