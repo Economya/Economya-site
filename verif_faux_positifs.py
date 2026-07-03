@@ -1,0 +1,10 @@
+c1 = open('article-102.html', encoding='utf-8').read()
+idx1 = c1.find('savings') if 'savings' in c1 else c1.find('saving')
+print("=== article-102 (soi-disant sans savings-badge) ===")
+print(c1[max(0,idx1-60):idx1+150] if idx1 != -1 else "RIEN TROUVE DU TOUT")
+print()
+
+c2 = open('article-516.html', encoding='utf-8').read()
+print("=== article-516 (soi-disant sans meta row) ===")
+idx2 = c2.find('hero')
+print(c2[max(0,idx2-30):idx2+500])
