@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Télétravail : réduire ses frais professionnels — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  : root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --ink:#1C2B4A;--ink-mid:#2E4070;--sky:#4FC3F7;--aqua:#00E5FF;--lime:#CCFF90;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#060D1A 0%,#1C2B4A 35%,#2E4070 65%,#4FC3F7 88%,#CCFF90 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'💬';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--lime),var(--aqua));
+    color:#060D1A;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--ink);margin:2rem 0 .7rem}
+
+  /* Déductions fiscales */
+  .deductions{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.87rem}
+  .deductions thead tr{background:linear-gradient(90deg,var(--ink),var(--ink-mid));color:#fff}
+  .deductions thead th{padding:.65rem .9rem;text-align:left;font-weight:500}
+  .deductions tbody tr:nth-child(even){background:#EFF6FF}
+  .deductions tbody tr:nth-child(odd){background:var(--w)}
+  .deductions tbody td{padding:.6rem .9rem;border-bottom:1px solid var(--b);font-weight:300}
+  .deductions tbody td:first-child{font-weight:500;color:var(--ink)}
+  .deductions tbody td.montant{font-weight:600;color:var(--gd);white-space:nowrap}
+
+  /* Postes d'économie */
+  .postes{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1.5rem 0}
+  .poste{background:var(--w);border:1px solid var(--b);border-radius:11px;padding:.9rem 1rem}
+  .poste-top{display:flex;align-items:center;gap:.5rem;margin-bottom:.35rem}
+  .poste-icon{font-size:1.2rem}
+  .poste-title{font-weight:500;font-size:.88rem;color:var(--ink)}
+  .poste-desc{font-size:.81rem;font-weight:300;color:var(--m);line-height:1.5}
+  .poste-gain{display:inline-block;background:#EFF6FF;color:var(--ink);font-size:.72rem;font-weight:600;padding:.1rem .5rem;border-radius:50px;margin-top:.35rem}
+
+  .conseil{
+    background:linear-gradient(135deg,#060D1A,#2E4070);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff;
+    border:1px solid rgba(79,195,247,.15)
+  }
+  .conseil strong{display:block;color:var(--lime);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:500px){.postes{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Télétravail : réduire ses frais professionnels",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-154.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Télétravail : réduire ses frais professionnels">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-154.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Télétravail : réduire ses frais professionnels">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-154.html" />
+<meta name="description" content="Télétravail : réduire ses frais professionnels — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Télétravail : réduire ses frais professionnels</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Télétravail : réduire ses frais professionnels", "item": "https://economya.fr/article-154.html"}]}</script>
+
+
+<div class="hero-art">
+  <div class="acat">💬 <strong>Emploi</strong></div>
+  <h1>Télétravail : réduire ses frais professionnels</h1>
+  <div class="abadge">💰 Déductez vos charges pro</div>
+  <div class="meta">
+    <span>📖 Lecture 5 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🏠 Home office & fiscalité</span>
+  </div>
+</div>
+
+<article>
+
+  <p>Le télétravail est souvent présenté comme une économie — plus de transport, plus de repas au restaurant le midi, plus de café en chemin. Et c'est vrai. Mais derrière ces économies visibles se cachent des coûts nouveaux : facture électrique en hausse, abonnement internet sollicité davantage, bureau à aménager, matériel à acheter. La bonne nouvelle : une grande partie de ces dépenses peut être récupérée, soit via votre employeur, soit via votre déclaration d'impôts. Encore faut-il savoir exactement comment.</p>
+
+  <h2>Ce que votre employeur doit ou peut vous rembourser</h2>
+
+  <p>En France, l'employeur a l'obligation de prendre en charge les frais engagés par le salarié dans le cadre du télétravail, dès lors que celui-ci est régulier. Dans la pratique, deux modalités coexistent : l'allocation forfaitaire journalière (exonérée de charges jusqu'à 2,70 euros par jour de télétravail en 2026, soit environ 22 euros par mois pour deux jours par semaine, dans la limite de 59,40 €/mois) ou le remboursement sur justificatifs des dépenses réelles engagées.</p>
+
+  <p>Beaucoup de salariés ignorent qu'ils peuvent demander à leur employeur le remboursement de leur abonnement internet au prorata des jours télétravaillés, d'une partie de leur loyer si une pièce est dédiée au travail, ou encore du matériel informatique et de bureau. Ces demandes sont légitimes et encadrées par la loi — il suffit de les formuler.</p>
+
+  <h2>Les déductions fiscales possibles à la déclaration</h2>
+
+  <table class="deductions">
+    <thead>
+      <tr><th>Dépense</th><th>Condition</th><th>Montant déductible</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Abonnement internet</td><td>Usage pro démontrable</td><td class="montant">Jusqu'à 50% du forfait</td></tr>
+      <tr><td>Électricité & chauffage</td><td>Pièce dédiée ou calcul prorata</td><td class="montant">Prorata m² & jours</td></tr>
+      <tr><td>Loyer ou charges</td><td>Pièce dédiée au travail</td><td class="montant">m² bureau / m² total</td></tr>
+      <tr><td>Matériel informatique</td><td>Usage pro majoritaire</td><td class="montant">Jusqu'à 100%</td></tr>
+      <tr><td>Mobilier de bureau</td><td>Usage pro exclusif</td><td class="montant">Amortissement sur 3 ans</td></tr>
+      <tr><td>Fournitures & consommables</td><td>Justificatifs requis</td><td class="montant">100% du montant réel</td></tr>
+    </tbody>
+  </table>
+
+  <p>Ces déductions s'appliquent si vous optez pour les frais réels à la déclaration d'impôts, plutôt que l'abattement forfaitaire de 10 %. Ce choix est avantageux dès lors que vos frais réels dépassent 10 % de votre salaire net — ce qui est souvent le cas pour les télétravailleurs réguliers avec des frais de logement significatifs.</p>
+
+  <h2>Les économies du quotidien à ne pas négliger</h2>
+
+  <div class="postes">
+    <div class="poste">
+      <div class="poste-top"><span class="poste-icon">🚇</span><span class="poste-title">Transport</span></div>
+      <div class="poste-desc">Deux jours de TT par semaine économisent 40 % des frais de transport annuels. Pensez à déclarer votre abonnement réduit si vous avez renégocié avec votre opérateur.</div>
+      <span class="poste-gain">💰 400–1 200€/an</span>
+    </div>
+    <div class="poste">
+      <div class="poste-top"><span class="poste-icon">🍱</span><span class="poste-title">Repas du midi</span></div>
+      <div class="poste-desc">Manger chez soi le midi coûte 2 à 4€ contre 10 à 15€ au restaurant ou en brasserie. Sur 100 jours de TT, l'économie est substantielle.</div>
+      <span class="poste-gain">💰 600–1 100€/an</span>
+    </div>
+    <div class="poste">
+      <div class="poste-top"><span class="poste-icon">☕</span><span class="poste-title">Café & petits achats</span></div>
+      <div class="poste-desc">L'absence de machine à café du bureau, de boulangerie en bas et de distributeur automatique réduit mécaniquement les dépenses impulsives du quotidien.</div>
+      <span class="poste-gain">💰 200–500€/an</span>
+    </div>
+    <div class="poste">
+      <div class="poste-top"><span class="poste-icon">👔</span><span class="poste-title">Tenue vestimentaire</span></div>
+      <div class="poste-desc">Moins de jours en représentation = moins d'achats de vêtements professionnels, de pressing et de chaussures de ville. Un poste souvent sous-estimé.</div>
+      <span class="poste-gain">💰 100–300€/an</span>
+    </div>
+  </div>
+
+  <div class="conseil">
+    <strong>📋 L'astuce du tableau de suivi</strong>
+    <p>Tenez un tableau mensuel de vos jours de télétravail et des dépenses engagées (factures internet, électricité, matériel). Ce document devient votre base de justification pour les remboursements employeur et la déclaration fiscale. Quinze minutes par mois peuvent se traduire par plusieurs centaines d'euros récupérés en fin d'année. L'application Indy ou un simple tablier Google Sheets suffit amplement.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-154.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-154.html&text=T%C3%A9l%C3%A9travail%20%3A%20r%C3%A9duire%20ses%20frais%20professionnels" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-154.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=T%C3%A9l%C3%A9travail%20%3A%20r%C3%A9duire%20ses%20frais%20professionnels - https://economya.fr/article-154.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-154.html&description=T%C3%A9l%C3%A9travail%20%3A%20r%C3%A9duire%20ses%20frais%20professionnels" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="https://economya.fr/article-154.html"]').forEach(function(a){
+    a.href = a.href.replace(/https://economya.fr/article-154.html/g, url).replace(/T%C3%A9l%C3%A9travail%20%3A%20r%C3%A9duire%20ses%20frais%20professionnels/g, titre);
+  });
+})();
+</script>
+
+
+<div class="article-nav" data-nav-styled="1" style="display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b,#e5e5e5);margin-top:3rem;gap:1rem;flex-wrap:wrap;max-width:900px;margin-left:auto;margin-right:auto;padding-left:1.5rem;padding-right:1.5rem"><a href="article-153.html" style="display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%;"><span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m,#8899bb)">← Article précédent</span><span style="font-size:.85rem;font-weight:500;color:var(--gd,#085041)">Faire ses propres conserves et bocaux</span></a><a href="article-155.html" style="display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%;text-align:right;align-items:flex-end"><span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m,#8899bb)">Article suivant →</span><span style="font-size:.85rem;font-weight:500;color:var(--gd,#085041)">Billets de sport moins chers : foot, tennis et concerts</span></a></div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
