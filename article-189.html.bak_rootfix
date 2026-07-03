@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animaux de compagnie : soins vétérinaires moins chers — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  : root{
+    --g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;
+    --t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1);
+    --teal:#0B5C68;--teal-mid:#0E8A9E;--teal-light:#E0F5F8;
+    --coral:#E05A3A;--lemon:#F5D547;--mint:#2ECFB0;
+  }
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .back{font-size:.82rem;color:var(--m);text-decoration:none}
+  .back:hover{color:var(--g)}
+
+  .hero-art{
+    background:linear-gradient(135deg,#021418 0%,#0B5C68 35%,#0E8A9E 65%,#2ECFB0 88%,#F5D547 100%);
+    padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden
+  }
+  .hero-art::before{
+    content:'🐾';position:absolute;font-size:13rem;opacity:.06;
+    top:50%;left:50%;transform:translate(jusqu'à -50%,jusqu'à -50%);pointer-events:none
+  }
+  .acat{font-size:.85rem;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:.6rem;letter-spacing:.04em}
+  .acat strong{color:#fff}
+  .hero-art h1{
+    font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.6rem);
+    font-weight:900;line-height:1.1;color:#fff;max-width:620px;margin:0 auto .9rem
+  }
+  .abadge{
+    display:inline-block;
+    background:linear-gradient(90deg,var(--lemon),var(--mint));
+    color:#021418;font-size:.82rem;font-weight:700;padding:.35rem 1rem;
+    border-radius:50px;margin-top:.4rem
+  }
+  .meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:1.2rem}
+  .meta span{font-size:.74rem;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);padding:.2rem .75rem;border-radius:50px}
+
+  article{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+  article p{margin-bottom:1.3rem;font-size:.97rem;font-weight:300}
+  article h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--teal);margin:2rem 0 .7rem}
+
+  /* Coûts vétérinaires */
+  .couts{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.84rem}
+  .couts thead tr{background:linear-gradient(90deg,var(--teal),var(--teal-mid));color:#fff}
+  .couts thead th{padding:.62rem .9rem;text-align:left;font-weight:500}
+  .couts tbody tr:nth-child(even){background:var(--teal-light)}
+  .couts tbody tr:nth-child(odd){background:var(--w)}
+  .couts tbody td{padding:.55rem .9rem;border-bottom:1px solid var(--b);font-weight:300;vertical-align:middle}
+  .couts tbody td:first-child{font-weight:500;color:var(--teal)}
+  .couts td.prix{color:#B91C1C;font-weight:500;white-space:nowrap}
+  .couts td.assure{color:var(--gd);font-weight:600;white-space:nowrap}
+
+  /* Solutions économies */
+  .solutions{display:flex;flex-direction:column;gap:.8rem;margin:1.5rem 0}
+  .sol{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;display:grid;grid-template-columns:64px 1fr}
+  .sol-icon{background:linear-gradient(180deg,var(--teal),var(--teal-mid));display:flex;align-items:center;justify-content:center;font-size:1.7rem}
+  .sol-body{padding:.85rem 1rem}
+  .sol-title{font-weight:500;font-size:.92rem;color:var(--teal);margin-bottom:.2rem}
+  .sol-desc{font-size:.83rem;font-weight:300;color:var(--m);line-height:1.55;margin-bottom:.35rem}
+  .sol-gain{display:inline-block;background:var(--teal-light);color:var(--teal);font-size:.72rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+
+  /* Assurances comparées */
+  .assurances{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin:1.5rem 0}
+  .assurance{background:var(--w);border:1px solid var(--b);border-radius:11px;overflow:hidden}
+  .assurance-head{background:linear-gradient(90deg,var(--teal),var(--teal-mid));padding:.6rem .9rem;color:#fff;display:flex;justify-content:space-between;align-items:center}
+  .assurance-nom{font-weight:600;font-size:.87rem}
+  .assurance-prix{color:var(--lemon);font-weight:700;font-size:.83rem}
+  .assurance-body{padding:.75rem .9rem;font-size:.81rem;font-weight:300;color:var(--m);line-height:1.5}
+  .assurance-tag{display:inline-block;margin-top:.35rem;font-size:.69rem;font-weight:500;padding:.1rem .45rem;border-radius:50px;background:var(--teal-light);color:var(--teal)}
+
+  .conseil{
+    background:linear-gradient(135deg,#021418,#0B5C68);
+    border-radius:12px;padding:1.2rem 1.4rem;margin:1.8rem 0;color:#fff;
+    border:1px solid rgba(46,207,176,.12)
+  }
+  .conseil strong{display:block;color:var(--lemon);font-weight:500;font-size:.92rem;margin-bottom:.4rem}
+  .conseil p{font-size:.88rem;color:rgba(255,255,255,.82);font-weight:300;margin:0;line-height:1.65}
+
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  footer a{color:var(--a);text-decoration:none}
+  @media(max-width:500px){.assurances{grid-template-columns:1fr}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Animaux de compagnie : soins vétérinaires moins chers",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-189.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Animaux de compagnie : soins vétérinaires moins chers">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-189.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Animaux de compagnie : soins vétérinaires moins chers">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-189.html" />
+<meta name="description" content="Animaux de compagnie : soins vétérinaires moins chers — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Animaux de compagnie : soins vétérinaires moins chers</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Animaux de compagnie : soins vétérinaires moins chers", "item": "https://economya.fr/article-189.html"}]}</script>
+
+
+<div class="hero-art">
+  <div class="acat">🐾 <strong>Animaux</strong></div>
+  <h1>Animaux de compagnie : soins vétérinaires moins chers</h1>
+  <div class="abadge">💰 Réduisez la facture vétérinaire de 50%</div>
+  <div class="meta">
+    <span>📖 Lecture 5 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🐶 Santé animale & budget</span>
+  </div>
+</div>
+
+<article>
+
+  <p>Posséder un animal de compagnie est une source de bonheur indiscutable — et une source de dépenses tout aussi indiscutable. Les soins vétérinaires ont augmenté de 30 à 40 % en dix ans, et une opération chirurgicale pour un chien ou un chat peut facilement dépasser 1 500 à 3 000 euros. Pourtant, plusieurs leviers permettent de réduire significativement la facture annuelle — sans jamais sacrifier la santé ou le bien-être de votre animal.</p>
+
+  <h2>Ce que coûtent vraiment les soins vétérinaires</h2>
+
+  <table class="couts">
+    <thead>
+      <tr><th>Acte vétérinaire</th><th>Prix moyen</th><th>Avec assurance (franchise déduite)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Consultation de routine</td><td class="prix">35–60€</td><td class="assure">0–10€</td></tr>
+      <tr><td>Vaccins annuels (chien)</td><td class="prix">60–90€</td><td class="assure">0–20€</td></tr>
+      <tr><td>Stérilisation chatte</td><td class="prix">180–350€</td><td class="assure">50–100€</td></tr>
+      <tr><td>Stérilisation chien</td><td class="prix">120–250€</td><td class="assure">30–80€</td></tr>
+      <tr><td>Détartrage dentaire</td><td class="prix">150–300€</td><td class="assure">40–100€</td></tr>
+      <tr><td>Fracture / opération</td><td class="prix">800–3 000€</td><td class="assure">200–800€</td></tr>
+      <tr><td>Radio + échographie</td><td class="prix">120–250€</td><td class="assure">30–80€</td></tr>
+      <tr><td>Traitement cancer</td><td class="prix">2 000–8 000€</td><td class="assure">500–2 000€</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Les solutions pour payer moins</h2>
+
+  <div class="solutions">
+    <div class="sol">
+      <div class="sol-icon">🎓</div>
+      <div class="sol-body">
+        <div class="sol-title">Les cliniques vétérinaires d'écoles</div>
+        <div class="sol-desc">Les écoles nationales vétérinaires (Alfort, Lyon, Nantes, Toulouse) proposent des consultations et actes réalisés par des étudiants sous supervision de vétérinaires expérimentés, à des tarifs 30 à 60 % inférieurs aux cliniques privées. Idéal pour les soins courants, les stérilisations et les bilans de santé.</div>
+        <span class="sol-gain">💰 -30 à -60% sur les soins courants</span>
+      </div>
+    </div>
+    <div class="sol">
+      <div class="sol-icon">💊</div>
+      <div class="sol-body">
+        <div class="sol-title">Médicaments en parapharmacie et en ligne</div>
+        <div class="sol-desc">Depuis 2015, les médicaments vétérinaires non soumis à prescription peuvent être achetés en dehors des cabinets vétérinaires. Les antiparasitaires (puces, tiques, vers), les compléments alimentaires et de nombreux produits d'hygiène sont deux à trois fois moins chers sur des sites agréés comme VetAffaires, Zooplus ou 1001 Pattes que chez le vétérinaire.</div>
+        <span class="sol-gain">💰 -50 à -70% sur les antiparasitaires</span>
+      </div>
+    </div>
+    <div class="sol">
+      <div class="sol-icon">🏥</div>
+      <div class="sol-body">
+        <div class="sol-title">Les associations et cliniques solidaires</div>
+        <div class="sol-desc">Des associations comme La SPA, la Fondation Brigitte Bardot ou les cliniques vétérinaires solidaires (présentes dans de nombreuses grandes villes) proposent des soins à tarifs réduits voire gratuits pour les propriétaires en difficulté financière. Les vacances antirabiques et stérilisations groupées organisées en mairie sont également très bon marché.</div>
+        <span class="sol-gain">💰 Soins à tarif réduit ou gratuits</span>
+      </div>
+    </div>
+    <div class="sol">
+      <div class="sol-icon">💰</div>
+      <div class="sol-body">
+        <div class="sol-title">Négocier et comparer les devis</div>
+        <div class="sol-desc">Les honoraires vétérinaires ne sont pas réglementés en France — chaque praticien fixe librement ses tarifs. Il est tout à fait normal et légal de demander un devis détaillé avant toute intervention, et de comparer entre deux ou trois cliniques de votre secteur. Pour les actes programmés (stérilisation, détartrage), les écarts peuvent atteindre 50 % entre les cliniques d'un même quartier.</div>
+        <span class="sol-gain">💰 Écarts pouvant dépasser 50% selon la clinique</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>L'assurance santé animale : ça vaut le coup ?</h2>
+
+  <p>L'assurance pour animaux est encore peu répandue en France — moins de 5 % des chiens et chats sont assurés, contre 80 % au Royaume-Uni. Et pourtant, pour un animal sujet aux accidents ou appartenant à une race prédisposée à certaines maladies (golden retriever, bouledogue, maine coon), elle peut être rentable dès la première année.</p>
+
+  <div class="assurances">
+    <div class="assurance">
+      <div class="assurance-head"><span class="assurance-nom">Assur O'Poil</span><span class="assurance-prix">15–30€/mois</span></div>
+      <div class="assurance-body">Bonne couverture accidents et maladies, franchise raisonnable. Parmi les mieux notées par les propriétaires pour la rapidité du remboursement.
+        <span class="assurance-tag">✅ Remboursement rapide</span>
+      </div>
+    </div>
+    <div class="assurance">
+      <div class="assurance-head"><span class="assurance-nom">Santévet</span><span class="assurance-prix">18–45€/mois</span></div>
+      <div class="assurance-body">Leader du marché, large gamme de formules. Couverture complète incluant soins dentaires et prévention selon la formule choisie.
+        <span class="assurance-tag">✅ Leader marché · Formules flexibles</span>
+      </div>
+    </div>
+    <div class="assurance">
+      <div class="assurance-head"><span class="assurance-nom">Dalma</span><span class="assurance-prix">12–25€/mois</span></div>
+      <div class="assurance-body">Néo-assureur 100% en ligne, tarifs compétitifs. Souscription et déclaration de sinistres via app. Idéale pour les jeunes propriétaires connectés.
+        <span class="assurance-tag">✅ 100% digital · Prix bas</span>
+      </div>
+    </div>
+    <div class="assurance">
+      <div class="assurance-head"><span class="assurance-nom">Acheel</span><span class="assurance-prix">10–22€/mois</span></div>
+      <div class="assurance-body">Modulable au mois, sans engagement. Bon rapport qualité-prix pour les animaux en bonne santé avec couverture accidents prioritaire.
+        <span class="assurance-tag">✅ Sans engagement · Modulable</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="conseil">
+    <strong>🩺 La prévention : le meilleur investissement</strong>
+    <p>La mesure la plus efficace pour réduire les frais vétérinaires à long terme reste la prévention. Un animal vacciné à jour, stérilisé, traité régulièrement contre les parasites, nourri de façon adaptée et pesé une fois par an coûte bien moins cher qu'un animal traité en urgence. La consultation annuelle de bilan — souvent 40 à 60 euros — permet de détecter tôt des problèmes dentaires, des tumeurs ou des maladies chroniques qui coûteraient dix fois plus cher à traiter tardivement. Pensez aussi à noter l'historique médical de votre animal dans un carnet — cela facilite les consultations et évite de refaire des examens inutiles.</p>
+  </div>
+
+</article>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-189.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-189.html&text=Animaux%20de%20compagnie%20%3A%20soins%20v%C3%A9t%C3%A9rinaires%20moins%20chers" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-189.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=Animaux%20de%20compagnie%20%3A%20soins%20v%C3%A9t%C3%A9rinaires%20moins%20chers - https://economya.fr/article-189.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-189.html&description=Animaux%20de%20compagnie%20%3A%20soins%20v%C3%A9t%C3%A9rinaires%20moins%20chers" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="https://economya.fr/article-189.html"]').forEach(function(a){
+    a.href = a.href.replace(/https://economya.fr/article-189.html/g, url).replace(/Animaux%20de%20compagnie%20%3A%20soins%20v%C3%A9t%C3%A9rinaires%20moins%20chers/g, titre);
+  });
+})();
+</script>
+
+
+<div class="article-nav" data-nav-styled="1" style="display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b,#e5e5e5);margin-top:3rem;gap:1rem;flex-wrap:wrap;max-width:900px;margin-left:auto;margin-right:auto;padding-left:1.5rem;padding-right:1.5rem"><a href="article-188.html" style="display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%;"><span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m,#8899bb)">← Article précédent</span><span style="font-size:.85rem;font-weight:500;color:var(--gd,#085041)">Pêche et cueillette : se nourrir gratuitement</span></a><a href="article-190.html" style="display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%;text-align:right;align-items:flex-end"><span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m,#8899bb)">Article suivant →</span><span style="font-size:.85rem;font-weight:500;color:var(--gd,#085041)">Retraite : préparer sa retraite dès maintenant</span></a></div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html" style="color:inherit;text-decoration:underline">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:inherit;text-decoration:underline">Politique de confidentialité</a> · <a href="contact.html" style="color:inherit;text-decoration:underline">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

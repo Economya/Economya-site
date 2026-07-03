@@ -1,0 +1,5 @@
+c = open('article-123.html', encoding='utf-8').read()
+idx = c.find(':root')
+print(c[idx:idx+300])
+print()
+print("Contient --gd: dans le fichier:", '--gd:' in c)
