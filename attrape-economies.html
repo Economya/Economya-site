@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Attrape tes Économies — Economya.fr</title>
+<meta name="description" content="Attrape les bons plans, esquive les pièges à dépenses. Vitesse croissante, combos. Un jeu Economya.fr">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --bg-top:#1B0E2E;
+    --bg-bottom:#0A0614;
+    --good:#3DDC84;
+    --bad:#FF4D6D;
+    --gold:#FFC94B;
+    --ink:#F5F0FF;
+    --ink-dim:#A99FC7;
+    --panel:rgba(255,255,255,.06);
+    --panel-line:rgba(255,255,255,.12);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; overflow:hidden; }
+  body{
+    background: radial-gradient(circle at 50% -10%, var(--bg-top) 0%, var(--bg-bottom) 65%);
+    color: var(--ink);
+    font-family:'Inter', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    user-select:none;
+    position:relative;
+  }
+  .wrap{ width:100%; height:100%; max-width:460px; margin:0 auto; position:relative; }
+
+  .overlay{
+    position:absolute; inset:0; z-index:10;
+    display:none; flex-direction:column; align-items:center; justify-content:center;
+    padding:26px; background: linear-gradient(180deg, rgba(10,6,20,.5), rgba(10,6,20,.95) 40%);
+    text-align:center;
+  }
+  .overlay.active{ display:flex; animation: fadeIn .35s ease; }
+  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:14px; }
+  .eyebrow::before{ content:'🎯'; }
+
+  h1.title{ font-family:'Space Grotesk', sans-serif; font-size:36px; font-weight:800; letter-spacing:-0.02em; line-height:1.08; margin-bottom:14px; }
+  h1.title span{ color:var(--gold); }
+  p.lede{ color:var(--ink-dim); font-size:14.5px; line-height:1.55; margin-bottom:22px; max-width:340px; }
+
+  .legend{ display:flex; gap:10px; margin-bottom:26px; flex-wrap:wrap; justify-content:center; }
+  .legend-item{ display:flex; align-items:center; gap:7px; background:var(--panel); border:1px solid var(--panel-line); border-radius:99px; padding:8px 14px; font-size:12.5px; font-weight:600; }
+  .dot{ width:10px; height:10px; border-radius:50%; }
+  .dot.good{ background:var(--good); }
+  .dot.bad{ background:var(--bad); }
+
+  .btn{ border:none; border-radius:14px; padding:16px 34px; font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:700; cursor:pointer; transition: transform .12s ease, filter .12s ease; }
+  .btn:active{ transform: scale(.96); }
+  .btn-primary{ background:var(--gold); color:#2A1900; box-shadow:0 10px 26px rgba(255,201,75,.28); }
+  .btn-ghost{ background:transparent; border:1.5px solid var(--panel-line); color:var(--ink); margin-top:12px; padding:13px 30px; font-size:14px; }
+
+  .brand-footer{ margin-top:20px; font-size:12px; color:var(--ink-dim); }
+  .brand-footer a{ color:var(--gold); text-decoration:none; font-weight:700; }
+
+  .go-score{ font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:64px; color:var(--gold); line-height:1; margin: 6px 0 4px; }
+  .go-label{ font-size:13px; color:var(--ink-dim); margin-bottom:6px; }
+  .go-best{ font-size:13px; color:var(--ink-dim); margin-bottom:20px; }
+  .go-best b{ color:var(--ink); }
+
+  #hud{ position:absolute; top:0; left:0; right:0; z-index:5; display:flex; align-items:center; justify-content:space-between; padding:16px 18px; pointer-events:none; }
+  .hud-score{ font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:26px; text-shadow: 0 2px 10px rgba(0,0,0,.4); }
+  .hud-lives{ font-size:20px; letter-spacing:4px; }
+  .combo-toast{ position:absolute; top:70px; left:50%; transform:translateX(-50%); font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:16px; color:var(--gold); opacity:0; z-index:6; pointer-events:none; text-shadow:0 2px 8px rgba(0,0,0,.5); }
+  .combo-toast.show{ animation: comboPop .6s ease forwards; }
+  @keyframes comboPop{ 0%{opacity:0; transform:translateX(-50%) translateY(6px) scale(.9);} 20%{opacity:1; transform:translateX(-50%) translateY(0) scale(1.05);} 75%{opacity:1;} 100%{opacity:0; transform:translateX(-50%) translateY(-10px);} }
+
+  canvas{ display:block; width:100%; height:100%; touch-action:none; }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="wrap">
+  <canvas id="game"></canvas>
+  <div id="hud" style="display:none;">
+    <div class="hud-score" id="hudScore">0</div>
+    <div class="hud-lives" id="hudLives">❤️❤️❤️</div>
+  </div>
+  <div class="combo-toast" id="comboToast"></div>
+
+  <div class="overlay active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Attrape</div>
+    <h1 class="title">Attrape tes <span>Économies</span></h1>
+    <p class="lede">Fais glisser ton panier pour attraper les bons plans et esquiver les pièges à dépenses. Ça accélère vite !</p>
+    <div class="legend">
+      <div class="legend-item"><span class="dot good"></span>À attraper</div>
+      <div class="legend-item"><span class="dot bad"></span>À esquiver</div>
+    </div>
+    <button class="btn btn-primary" onclick="startGame()">Jouer</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <div class="overlay" id="screen-over">
+    <div class="eyebrow">Partie terminée</div>
+    <div class="go-score" id="goScore">0</div>
+    <div class="go-label">économies attrapées</div>
+    <div class="go-best">Record : <b id="goBest">0</b></div>
+    <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+    <button class="btn btn-ghost" onclick="shareResult()">Partager mon score</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+const wrap = document.getElementById('wrap');
+let W,H,DPR;
+function resize(){
+  DPR = Math.min(window.devicePixelRatio||1, 2);
+  W = wrap.clientWidth; H = wrap.clientHeight;
+  canvas.width = W*DPR; canvas.height = H*DPR;
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+window.addEventListener('resize', resize);
+
+const GOOD = [
+  {emoji:'💰', pts:10}, {emoji:'🎁', pts:15}, {emoji:'🏷️', pts:12},
+  {emoji:'💳', pts:10}, {emoji:'📈', pts:20}, {emoji:'🪙', pts:8},
+];
+const BAD = [
+  {emoji:'📉'}, {emoji:'🧾'}, {emoji:'💸'}, {emoji:'📢'}, {emoji:'⚠️'},
+];
+
+let basket = { x:0, w:70, h:14 };
+let items = [];
+let score = 0, lives = 3, combo = 0, best = 0;
+let running = false;
+let spawnTimer = 0, spawnInterval = 900, fallSpeed = 2.2, elapsed = 0;
+let rafStarted = false;
+
+try{ best = parseInt(localStorage.getItem('attrapeEconomiesBest')||'0',10); }catch(e){}
+
+function showScreen(id){
+  document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function startGame(){
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-over').classList.remove('active');
+  document.getElementById('hud').style.display='flex';
+  resize();
+  basket.x = W/2;
+  items = []; score = 0; lives = 3; combo = 0;
+  spawnTimer = 0; spawnInterval = 900; fallSpeed = 2.2; elapsed = 0;
+  running = true;
+  updateHud();
+  if(!rafStarted){ rafStarted = true; requestAnimationFrame(loop); }
+}
+
+function updateHud(){
+  document.getElementById('hudScore').textContent = score;
+  document.getElementById('hudLives').textContent = '❤️'.repeat(Math.max(0,lives));
+}
+function showCombo(text){
+  const el = document.getElementById('comboToast');
+  el.textContent = text;
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+}
+
+function spawnItem(){
+  const isGood = Math.random() < 0.62;
+  const pool = isGood ? GOOD : BAD;
+  const def = pool[Math.floor(Math.random()*pool.length)];
+  items.push({
+    x: 30 + Math.random()*(W-60),
+    y: -20,
+    r: 18,
+    good: isGood,
+    emoji: def.emoji,
+    pts: def.pts || 0,
+    speed: fallSpeed + Math.random()*0.6
+  });
+}
+
+function endGame(){
+  running = false;
+  document.getElementById('hud').style.display='none';
+  if(score > best){ best = score; try{ localStorage.setItem('attrapeEconomiesBest', String(best)); }catch(e){} }
+  document.getElementById('goScore').textContent = score;
+  document.getElementById('goBest').textContent = best;
+  showScreen('screen-over');
+}
+
+function pointerX(clientX){
+  const rect = canvas.getBoundingClientRect();
+  return clientX - rect.left;
+}
+function moveBasket(clientX){
+  if(!running) return;
+  basket.x = Math.max(basket.w/2, Math.min(W-basket.w/2, pointerX(clientX)));
+}
+canvas.addEventListener('pointerdown', e=>moveBasket(e.clientX));
+canvas.addEventListener('pointermove', e=>{ if(e.buttons===1 || e.pointerType==='touch') moveBasket(e.clientX); });
+canvas.addEventListener('touchmove', e=>{ moveBasket(e.touches[0].clientX); e.preventDefault(); }, {passive:false});
+
+function loop(ts){
+  ctx.clearRect(0,0,W,H);
+  const bg = ctx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'rgba(255,255,255,.02)'); bg.addColorStop(1,'rgba(0,0,0,.05)');
+  ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+
+  if(running){
+    elapsed++;
+    spawnTimer++;
+    if(spawnTimer > spawnInterval/16){
+      spawnTimer = 0;
+      spawnItem();
+      if(spawnInterval > 380) spawnInterval -= 6;
+      if(fallSpeed < 6) fallSpeed += 0.015;
+    }
+
+    for(let i=items.length-1;i>=0;i--){
+      const it = items[i];
+      it.y += it.speed;
+
+      const basketTop = H - 60;
+      const hitX = Math.abs(it.x - basket.x) < basket.w/2 + it.r*0.5;
+      const hitY = it.y + it.r > basketTop && it.y < basketTop + basket.h + 10;
+
+      if(hitY && hitX){
+        if(it.good){
+          combo++;
+          const bonus = it.pts + Math.floor(combo/3)*2;
+          score += bonus;
+          if(combo>=3 && combo%3===0) showCombo('🔥 Combo x'+combo);
+        } else {
+          combo = 0;
+          lives--;
+          updateHud();
+          if(lives<=0){ endGame(); return; }
+        }
+        updateHud();
+        items.splice(i,1);
+        continue;
+      }
+
+      if(it.y > H + 30){
+        if(it.good){ combo = 0; }
+        items.splice(i,1);
+        continue;
+      }
+    }
+  }
+
+  // dessiner items
+  items.forEach(it=>{
+    ctx.font = '32px serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(it.emoji, it.x, it.y);
+  });
+
+  // panier
+  ctx.save();
+  ctx.translate(basket.x, H-60);
+  ctx.fillStyle = 'rgba(255,201,75,.9)';
+  ctx.beginPath();
+  ctx.roundRect(-basket.w/2, 0, basket.w, basket.h, 8);
+  ctx.fill();
+  ctx.font = '22px serif';
+  ctx.textAlign='center'; ctx.textBaseline='bottom';
+  ctx.fillText('🧺', 0, -2);
+  ctx.restore();
+
+  requestAnimationFrame(loop);
+}
+
+function shareResult(){
+  const text = `J'ai attrapé ${score} points d'économies avant de craquer sur Attrape tes Économies (Economya.fr) 🎯 À toi de jouer :`;
+  const url = 'https://economya.fr';
+  if(navigator.share){ navigator.share({title:'Attrape tes Économies', text, url}).catch(()=>{}); }
+  else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
+}
+
+resize();
+</script>
+</body>
+</html>

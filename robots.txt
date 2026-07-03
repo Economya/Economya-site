@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.economya.fr/sitemap.xml
+Sitemap: https://economya.fr/sitemap.xml
