@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avoir un animal de compagnie pas cher — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:1rem}
+
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.4rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.back{font-size:.8rem;color:var(--m);text-decoration:none;display:flex;align-items:center;gap:.4rem}
+.back:hover{color:var(--g)}
+
+.article-hero{background:linear-gradient(135deg,#292524,#78350f 55%,#b45309);color:white;padding:4rem 2rem 3rem;text-align:center}
+.article-cat{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1.2rem}
+.article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.2;max-width:680px;margin:0 auto 1rem}
+.article-hero h1 em{color:var(--a);font-style:normal}
+.article-meta{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.5rem;font-size:.8rem;color:rgba(255,255,255,0.6)}
+.savings-badge{display:inline-block;background:var(--a);color:white;padding:.5rem 1.2rem;border-radius:50px;font-weight:500;font-size:.9rem;margin-top:1.2rem}
+
+.article-wrap{max-width:720px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+.intro-box{background:var(--gl);border-left:4px solid var(--g);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin-bottom:2.5rem;font-size:.95rem;color:var(--gd);font-weight:500}
+
+h2{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;margin:2.5rem 0 .8rem;color:var(--gd)}
+p{margin-bottom:1rem;color:var(--m);font-weight:300}
+p strong{color:var(--t);font-weight:500}
+
+/* ANIMAL CARDS */
+.animal-grid{display:grid;gap:1.2rem;margin:1.5rem 0}
+.animal-card{background:var(--w);border:1px solid var(--b);border-radius:14px;overflow:hidden;transition:box-shadow .2s}
+.animal-card:hover{box-shadow:0 5px 22px rgba(0,0,0,0.08)}
+.animal-header{padding:1rem 1.4rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;border-bottom:1px solid var(--b);background:var(--bg)}
+.animal-left{display:flex;align-items:center;gap:.8rem}
+.animal-icon{font-size:1.6rem}
+.animal-name{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:700;color:var(--gd)}
+.animal-type{font-size:.72rem;color:var(--m);margin-top:.1rem}
+.animal-cout{text-align:right;flex-shrink:0}
+.cout-val{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:900;color:var(--g);line-height:1}
+.cout-label{font-size:.62rem;color:var(--m)}
+.animal-body{padding:.9rem 1.4rem}
+.animal-body p{margin:0 0 .5rem;font-size:.84rem;color:var(--m);font-weight:300;line-height:1.55}
+.animal-body p:last-child{margin:0}
+.animal-footer{background:var(--gl);border-top:1px solid rgba(29,158,117,0.15);padding:.6rem 1.4rem;display:flex;gap:1.5rem;flex-wrap:wrap}
+.animal-stat{font-size:.75rem;color:var(--gd)}
+.animal-stat strong{font-weight:600}
+
+/* LEVIER GRID */
+.levier-grid{display:grid;gap:.9rem;margin:1.5rem 0}
+.levier-card{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1.1rem 1.4rem;display:grid;grid-template-columns:2.5rem 1fr auto;gap:1rem;align-items:start;transition:box-shadow .2s}
+.levier-card:hover{box-shadow:0 4px 18px rgba(0,0,0,0.07)}
+.levier-icon{width:2.5rem;height:2.5rem;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.levier-body h3{font-size:.93rem;font-weight:500;color:var(--t);margin-bottom:.25rem}
+.levier-body p{margin:0;font-size:.82rem;color:var(--m);font-weight:300;line-height:1.5}
+.levier-gain{background:var(--al);color:var(--ad);font-size:.7rem;font-weight:500;padding:.2rem .6rem;border-radius:50px;white-space:nowrap;align-self:start}
+
+/* ASSURANCE TABLE */
+.assurance{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:1.5rem 0}
+.assurance-head{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;background:var(--gd);color:white;font-size:.73rem;font-weight:500;padding:.7rem 1rem;gap:.5rem}
+.assurance-row{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;padding:.65rem 1rem;border-bottom:1px solid var(--b);font-size:.8rem;gap:.5rem;align-items:center}
+.assurance-row:last-child{border-bottom:none}
+.assurance-row:nth-child(even){background:var(--bg)}
+.a-good{color:var(--g);font-weight:500}
+.a-bad{color:#ef4444}
+.a-mid{color:var(--a);font-weight:500}
+
+.tip-box{background:var(--al);border:1px solid rgba(239,159,39,0.3);border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.tip-box .tip-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--ad);margin-bottom:.5rem}
+.tip-box p{margin:0;font-size:.9rem;color:var(--ad)}
+
+.warn-box{background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:1.2rem 1.5rem;margin:2rem 0}
+.warn-box .warn-label{font-size:.7rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:#991B1B;margin-bottom:.5rem}
+.warn-box p{margin:0;font-size:.88rem;color:#7F1D1D}
+
+.recap{background:var(--w);border:1px solid var(--b);border-radius:12px;overflow:hidden;margin:2rem 0}
+.recap-title{background:var(--gd);color:white;padding:.8rem 1.2rem;font-family:'Playfair Display',serif;font-size:1rem;font-weight:700}
+.recap-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.2rem;border-bottom:1px solid var(--b);font-size:.85rem;gap:1rem}
+.recap-row:last-child{border-bottom:none;font-weight:500;background:var(--gl)}
+.recap-row span:last-child{color:var(--g);font-weight:500;text-align:right}
+
+.article-nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b);margin-top:3rem;gap:1rem;flex-wrap:wrap}
+.art-nav-btn{display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%}
+.art-nav-btn .nav-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m)}
+.art-nav-btn .nav-title{font-size:.85rem;font-weight:500;color:var(--gd)}
+.art-nav-btn:hover .nav-title{color:var(--g)}
+.art-nav-btn.next{text-align:right;margin-left:auto}
+
+footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.8rem;font-size:.8rem}
+footer strong{color:white}
+footer a{color:rgba(255,255,255,0.5);text-decoration:none}
+
+@media(max-width:640px){
+  .article-wrap{padding:2rem 1rem 4rem}
+  nav{padding:.8rem 1rem}
+  .levier-card{grid-template-columns:2.2rem 1fr;grid-template-rows:auto auto}
+  .levier-gain{grid-column:2}
+  .assurance-head,.assurance-row{font-size:.7rem;padding:.6rem .7rem}
+  .animal-header{flex-wrap:wrap}
+}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Avoir un animal de compagnie pas cher",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-17.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Avoir un animal de compagnie pas cher">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-17.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Avoir un animal de compagnie pas cher">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-17.html" />
+<meta name="description" content="Avoir un animal de compagnie pas cher — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="back" href="index.html">← Retour aux articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span>Animaux</span> › <span style="color:var(--t,#2C2C2A)">Avoir un animal de compagnie pas cher</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Animaux", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 3, "name": "Avoir un animal de compagnie pas cher", "item": "https://economya.fr/article-17.html"}]}</script>
+
+
+<div class="article-hero">
+  <div class="article-cat">🐾 Animaux</div>
+  <h1>Avoir un animal de compagnie <em>pas cher</em></h1>
+  <div class="savings-badge">💰 Jusqu'à 800€ économisés par an</div>
+  <div class="article-meta">
+    <span>📖 Lecture 4 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🇫🇷 Conseils pour la France</span>
+  </div>
+</div>
+
+<div class="article-wrap">
+
+  <div class="intro-box">
+    Un chien coûte en moyenne <strong>1 000 à 2 500€ par an</strong>, un chat entre <strong>600 et 1 500€</strong>. Ces chiffres peuvent faire peur, mais ils correspondent souvent à des dépenses mal optimisées. Alimentation, soins vétérinaires, accessoires : chaque poste peut être réduit significativement sans compromettre le bien-être de l'animal.
+  </div>
+
+  <p>La France compte plus de 30 millions d'animaux de compagnie. Pourtant, le budget moyen dépensé par leurs propriétaires est souvent bien supérieur au nécessaire. Entre les croquettes de grande marque surfacturées, les accessoires inutiles et les soins vétérinaires non anticipés, les économies possibles sont considérables — à condition de s'y prendre intelligemment.</p>
+
+  <h2>Coût réel par type d'animal</h2>
+
+  <div class="animal-grid">
+
+    <div class="animal-card">
+      <div class="animal-header">
+        <div class="animal-left">
+          <div class="animal-icon">🐕</div>
+          <div>
+            <div class="animal-name">Chien</div>
+            <div class="animal-type">Petit, moyen ou grand gabarit</div>
+          </div>
+        </div>
+        <div class="animal-cout">
+          <div class="cout-val">800–2500€</div>
+          <div class="cout-label">/an selon taille</div>
+        </div>
+      </div>
+      <div class="animal-body">
+        <p>Le chien est l'animal de compagnie le plus coûteux : nourriture, soins vétérinaires, toilettage, garde en votre absence et accessoires représentent un budget conséquent. Un grand chien mange deux à trois fois plus qu'un petit, ce qui multiplie d'autant les frais alimentaires annuels. L'adoption en refuge (100 à 300€ avec vaccins et stérilisation inclus) est bien plus économique que l'achat chez un éleveur (800 à 3 000€).</p>
+      </div>
+      <div class="animal-footer">
+        <span class="animal-stat"><strong>Alimentation :</strong> 30–60% du budget</span>
+        <span class="animal-stat"><strong>Vétérinaire :</strong> 20–40% du budget</span>
+        <span class="animal-stat"><strong>Garde :</strong> poste souvent sous-estimé</span>
+      </div>
+    </div>
+
+    <div class="animal-card">
+      <div class="animal-header">
+        <div class="animal-left">
+          <div class="animal-icon">🐈</div>
+          <div>
+            <div class="animal-name">Chat</div>
+            <div class="animal-type">Intérieur ou extérieur</div>
+          </div>
+        </div>
+        <div class="animal-cout">
+          <div class="cout-val">400–1200€</div>
+          <div class="cout-label">/an</div>
+        </div>
+      </div>
+      <div class="animal-body">
+        <p>Le chat est l'animal de compagnie le plus autonome et généralement le moins coûteux parmi les animaux populaires. Un chat stérilisé et vacciné coûte principalement en nourriture (150 à 300€/an) et en visites vétérinaires annuelles. Un chat adopté en refuge (50 à 200€ avec stérilisation et vaccins) revient bien moins cher qu'un chat de race (500 à 2 000€). La litière représente un poste non négligeable : optez pour la litière agglomérante en grand format.</p>
+      </div>
+      <div class="animal-footer">
+        <span class="animal-stat"><strong>Alimentation :</strong> 150–300€/an</span>
+        <span class="animal-stat"><strong>Litière :</strong> 80–150€/an</span>
+        <span class="animal-stat"><strong>Vétérinaire :</strong> 100–300€/an</span>
+      </div>
+    </div>
+
+    <div class="animal-card">
+      <div class="animal-header">
+        <div class="animal-left">
+          <div class="animal-icon">🐠</div>
+          <div>
+            <div class="animal-name">Poisson / Reptile / Rongeur</div>
+            <div class="animal-type">Animaux à faible budget</div>
+          </div>
+        </div>
+        <div class="animal-cout">
+          <div class="cout-val">50–200€</div>
+          <div class="cout-label">/an</div>
+        </div>
+      </div>
+      <div class="animal-body">
+        <p>Pour ceux qui souhaitent la compagnie d'un animal avec un budget très limité, les rongeurs (lapin, cochon d'Inde, hamster), les poissons ou les reptiles représentent des alternatives économiques. Hors investissement initial de l'habitat (aquarium, terrarium, cage), les frais annuels restent très modérés. Ces animaux conviennent particulièrement aux petits logements et aux budgets serrés.</p>
+      </div>
+      <div class="animal-footer">
+        <span class="animal-stat"><strong>Idéal pour :</strong> petits logements</span>
+        <span class="animal-stat"><strong>Budget :</strong> parmi les plus faibles</span>
+      </div>
+    </div>
+
+  </div>
+
+  <h2>Les 6 leviers pour réduire le budget animal</h2>
+
+  <div class="levier-grid">
+
+    <div class="levier-card">
+      <div class="levier-icon" style="background:#E1F5EE">🏠</div>
+      <div class="levier-body">
+        <h3>Adopter en refuge plutôt qu'acheter</h3>
+        <p>L'adoption en SPA ou refuge coûte 100 à 300€ et inclut généralement stérilisation, vaccinations à jour et identification. L'achat chez un éleveur coûte 800 à 3 000€ pour les mêmes prestations en plus. Financièrement et éthiquement, l'adoption est imbattable.</p>
+      </div>
+      <div class="levier-gain">-500 à -2 700€ à l'acquisition</div>
+    </div>
+
+    <div class="levier-card">
+      <div class="levier-icon" style="background:#FAEEDA">🥘</div>
+      <div class="levier-body">
+        <h3>Choisir la bonne alimentation sans surpayer</h3>
+        <p>Les croquettes de grande marque (Royal Canin, Hill's) coûtent 3 à 5 fois plus cher que des alternatives de qualité équivalente. Des marques comme Josera, Yarrah ou Acti-Mix offrent d'excellentes compositions à prix bien inférieur. Comparez les ingrédients, pas les publicités. Les croquettes en grand format (10 à 15 kg) coûtent également 20 à 30% moins cher au kilo.</p>
+      </div>
+      <div class="levier-gain">Jusqu'à -200€/an</div>
+    </div>
+
+    <div class="levier-card">
+      <div class="levier-icon" style="background:#EFF6FF">💊</div>
+      <div class="levier-body">
+        <h3>Acheter les médicaments et antiparasitaires en ligne</h3>
+        <p>Les antiparasitaires (Frontline, Advantix, Stronghold) sont vendus deux à trois fois moins cher sur des pharmacies vétérinaires en ligne agréées (VetoPharma, VetShop) qu'en cabinet vétérinaire. Idem pour les vermifuges. Demandez l'ordonnance à votre vétérinaire et commandez en ligne : c'est légal et très économique.</p>
+      </div>
+      <div class="levier-gain">Jusqu'à -150€/an</div>
+    </div>
+
+    <div class="levier-card">
+      <div class="levier-icon" style="background:#FEF2F2">🏥</div>
+      <div class="levier-body">
+        <h3>Souscrire une assurance santé animale adaptée</h3>
+        <p>Une assurance santé pour chien ou chat coûte 15 à 40€/mois mais peut couvrir 70 à 100% des frais vétérinaires. Une opération imprévue peut coûter 1 000 à 3 000€ : sans assurance, cette dépense arrive toujours sans prévenir. Comparez sur des sites comme Assurland ou Animaux.com pour trouver la meilleure offre selon l'âge et la race de votre animal.</p>
+      </div>
+      <div class="levier-gain">Protection contre les grosses dépenses</div>
+    </div>
+
+    <div class="levier-card">
+      <div class="levier-icon" style="background:#F0FDF4">🐕</div>
+      <div class="levier-body">
+        <h3>Utiliser le pet sitting entre particuliers</h3>
+        <p>La garde en pension pour chien coûte 25 à 50€ par nuit — soit 175 à 350€ pour une semaine de vacances. Des plateformes comme Pawshake ou Rover mettent en relation avec des pet sitters particuliers à 10 à 25€ la nuit. Pour les chats, beaucoup de voisins ou amis acceptent de nourrir gratuitement contre le même service rendu.</p>
+      </div>
+      <div class="levier-gain">Jusqu'à -200€ par voyage</div>
+    </div>
+
+    <div class="levier-card">
+      <div class="levier-icon" style="background:#FDF4FF">🧸</div>
+      <div class="levier-body">
+        <h3>Fabriquer les jouets et accessoires soi-même</h3>
+        <p>Un chat n'a pas besoin d'un arbre à chat à 200€ : une boîte en carton, une balle de papier aluminium ou une plume au bout d'une ficelle l'occupent tout autant. Pour les chiens, une vieille chaussette nouée fait un excellent jouet de mordant. Les accessoires DIY coûtent presque rien et sont souvent aussi appréciés que les versions commerciales.</p>
+      </div>
+      <div class="levier-gain">Jusqu'à -100€/an</div>
+    </div>
+
+  </div>
+
+  <h2>Assurance santé animale : vaut-elle le coup ?</h2>
+
+  <div class="assurance">
+    <div class="assurance-head">
+      <span>Situation</span>
+      <span>Sans assurance</span>
+      <span>Avec assurance</span>
+      <span>Verdict</span>
+    </div>
+    <div class="assurance-row">
+      <span>Visite annuelle + vaccins</span>
+      <span>80–150€</span>
+      <span class="a-good">Remboursé 70–100%</span>
+      <span class="a-good">Assurance gagne</span>
+    </div>
+    <div class="assurance-row">
+      <span>Opération imprévue (fracture)</span>
+      <span class="a-bad">1 000–3 000€</span>
+      <span class="a-good">100–900€</span>
+      <span class="a-good">Assurance indispensable</span>
+    </div>
+    <div class="assurance-row">
+      <span>Traitement chronique (diabète)</span>
+      <span class="a-bad">500–1 500€/an</span>
+      <span class="a-good">Couvert selon contrat</span>
+      <span class="a-good">Assurance gagne</span>
+    </div>
+    <div class="assurance-row">
+      <span>Animal en bonne santé toute sa vie</span>
+      <span class="a-mid">200–400€/an</span>
+      <span class="a-mid">180–480€/an (primes)</span>
+      <span class="a-mid">Équilibré</span>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 La règle du fonds d'urgence vétérinaire</div>
+    <p>Si vous ne souhaitez pas souscrire d'assurance, constituez un <strong>fonds d'urgence vétérinaire de 500 à 1 000€</strong> sur un livret dédié. Ce coussin financier vous évite d'être pris en défaut lors d'une urgence et vous évite les décisions douloureuses liées au coût des soins. Alimentez-le de 20 à 30€ par mois — c'est souvent moins cher qu'une assurance pour un animal en bonne santé.</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="warn-label">⚠️ Ne lésinez jamais sur la stérilisation et les vaccins</div>
+    <p>La stérilisation (150 à 300€ selon l'animal et la clinique) est un investissement qui évite des portées non désirées coûteuses à gérer, et réduit le risque de certains cancers et maladies. Les vaccins annuels (50 à 80€) préviennent des maladies qui coûteraient des centaines voire des milliers d'euros à traiter. Ces dépenses préventives sont parmi les meilleures économies à long terme pour un propriétaire d'animal.</p>
+  </div>
+
+  <div class="recap">
+    <div class="recap-title">📊 Budget chien optimisé vs budget standard</div>
+    <div class="recap-row"><span>Acquisition (adoption refuge vs éleveur)</span><span>200€ vs 1 500€</span></div>
+    <div class="recap-row"><span>Alimentation (marque alternative vs premium)</span><span>200€/an vs 450€/an</span></div>
+    <div class="recap-row"><span>Antiparasitaires (en ligne vs vétérinaire)</span><span>60€/an vs 180€/an</span></div>
+    <div class="recap-row"><span>Garde (pet sitter vs pension)</span><span>100€/voyage vs 300€/voyage</span></div>
+    <div class="recap-row"><span>Jouets et accessoires (DIY vs commerce)</span><span>20€/an vs 120€/an</span></div>
+    <div class="recap-row"><span><strong>Économie annuelle totale</strong></span><span><strong>jusqu'à 800€/an</strong></span></div>
+  </div>
+
+  <p>Avoir un animal de compagnie est une belle expérience — et elle n'a pas besoin d'être ruineuse. <strong>Adoption, alimentation bien choisie, antiparasitaires en ligne et pet sitting entre particuliers</strong> : ces quatre leviers suffisent à réduire drastiquement la facture annuelle sans rien retirer au bonheur de votre animal. La vraie richesse d'un animal, c'est le temps qu'on lui consacre, pas l'argent qu'on lui dépense.</p>
+
+  <div class="article-nav" data-nav-styled="1" style="display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b,#e5e5e5);margin-top:3rem;gap:1rem;flex-wrap:wrap;max-width:900px;margin-left:auto;margin-right:auto;padding-left:1.5rem;padding-right:1.5rem"><a href="article-16.html" style="display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%;"><span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m,#8899bb)">← Article précédent</span><span style="font-size:.85rem;font-weight:500;color:var(--gd,#085041)">Bébé pas cher : tout équiper sans se ruiner</span></a><a href="article-18.html" style="display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%;text-align:right;align-items:flex-end"><span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m,#8899bb)">Article suivant →</span><span style="font-size:.85rem;font-weight:500;color:var(--gd,#085041)">Médicaments : payer 3 fois moins cher légalement</span></a></div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-17.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-17.html&text=Avoir%20un%20animal%20de%20compagnie%20pas%20cher" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-17.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=Avoir%20un%20animal%20de%20compagnie%20pas%20cher - https://economya.fr/article-17.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-17.html&description=Avoir%20un%20animal%20de%20compagnie%20pas%20cher" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="https://economya.fr/article-17.html"]').forEach(function(a){
+    a.href = a.href.replace(/https://economya.fr/article-17.html/g, url).replace(/Avoir%20un%20animal%20de%20compagnie%20pas%20cher/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="index.html">Accueil</a> · Cet site contient des liens partenaires.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
