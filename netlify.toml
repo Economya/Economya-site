@@ -1,27 +1,14 @@
-# Redirections pour éliminer les doublons d'URL (www / .html)
+# Redirections pour éliminer les doublons d'URL (www)
 # qui empêchent Google d'indexer correctement le site.
 # Chaque page ne doit exister qu'à UNE seule adresse.
+#
+# La redirection .html -> sans extension est gérée séparément dans le
+# fichier `_redirects` (généré par generate_redirects.py), car Netlify
+# n'autorise pas les jokers "*" au milieu d'un chemin comme "/*.html".
 
-# 1) www.economya.fr → economya.fr (redirection permanente 301)
+# www.economya.fr → economya.fr (redirection permanente 301)
 [[redirects]]
   from = "https://www.economya.fr/*"
   to = "https://economya.fr/:splat"
   status = 301
   force = true
-
-# 2) Version .html → version sans extension (redirection permanente 301)
-#    Ex: /article-1.html → /article-1
-[[redirects]]
-  from = "/*.html"
-  to = "/:splat"
-  status = 301
-  force = true
-
-# 3) Sécurité : ne jamais rediriger les fichiers qui ne sont pas des pages HTML
-#    (ce bloc n'est utile que si vous avez des fichiers portant ".html" dans leur nom
-#    sans être des pages, ce qui n'est normalement pas le cas ici — laissé en commentaire
-#    pour référence si besoin un jour)
-# [[redirects]]
-#   from = "/assets/*.html"
-#   to = "/assets/:splat.html"
-#   status = 200
