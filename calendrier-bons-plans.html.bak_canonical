@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Calendrier des Bons Plans 2026 — Economya.fr</title>
+<meta name="description" content="Découvrez la meilleure astuce pour économiser chaque mois de l'année 2026 : soldes, impôts, Black Friday, aides sociales. Calendrier interactif gratuit sur Economya.fr">
+<link rel="canonical" href="https://economya.fr/calendrier-bons-plans.html" />
+<meta property="og:title" content="Le Calendrier des Bons Plans 2026 — Economya.fr">
+<meta property="og:description" content="La meilleure astuce pour économiser chaque mois de l'année 2026.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://economya.fr/calendrier-bons-plans.html">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--bg:#FAFAF8;--t:#2C2C2A;--m:#5F5E5A;--w:#fff;--b:rgba(0,0,0,0.08);--r:16px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem}
+.hero{background:linear-gradient(135deg,#4a1d96,#7c3aed,#a855f7);color:white;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'📅';position:absolute;font-size:14rem;right:-1rem;top:-2rem;opacity:.08}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);color:white;padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,2.8rem);font-weight:900;margin-bottom:.4rem}
+.hero p{font-size:.95rem;opacity:.85;max-width:480px;margin:0 auto}
+.wrap{max-width:680px;margin:0 auto;padding:1.5rem}
+.months-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1.5rem}
+.month-btn{background:var(--w);border:2px solid var(--b);border-radius:12px;padding:.8rem .3rem;text-align:center;cursor:pointer;font-family:inherit;transition:all .15s}
+.month-btn:hover{border-color:var(--g)}
+.month-btn.active{background:var(--gl);border-color:var(--g)}
+.month-btn .m-emoji{font-size:1.3rem;display:block;margin-bottom:.2rem}
+.month-btn .m-name{font-size:.72rem;font-weight:700;color:var(--gd)}
+.month-btn.current{box-shadow:0 0 0 2px var(--a)}
+.card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:1.5rem;margin-bottom:1.2rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.card-header{text-align:center;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--b)}
+.card-header .emoji{font-size:2.5rem;display:block;margin-bottom:.3rem}
+.card-header h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gd)}
+.card-header .period{font-size:.78rem;color:var(--m);text-transform:uppercase;letter-spacing:.05em;font-weight:700}
+.action-item{display:flex;gap:.7rem;padding:.8rem 0;border-bottom:1px solid var(--b)}
+.action-item:last-child{border-bottom:none}
+.action-num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--g);color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem}
+.action-text strong{display:block;color:var(--t);font-size:.92rem;margin-bottom:.15rem}
+.action-text span{font-size:.84rem;color:var(--m);line-height:1.5}
+.share-row{display:flex;gap:.5rem;margin-top:1.2rem}
+.btn-share{flex:1;background:transparent;border:2px solid var(--g);color:var(--gd);padding:.6rem 1rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.82rem}
+.btn-next{flex:1;background:var(--g);color:white;border:none;padding:.6rem 1rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.82rem}
+.source-note{font-size:.72rem;color:var(--m);text-align:center;margin-top:.8rem}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+  .months-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="jeux.html">← Retour aux jeux</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="toggleMenu()">×</button>
+  <a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a>
+</div>
+
+<div class="hero">
+  <span class="hero-badge">📅 Calendrier interactif</span>
+  <h1>Le Calendrier<br>des Bons Plans 2026</h1>
+  <p>Cliquez sur un mois et découvrez les 3 meilleures actions à faire pour économiser, dès maintenant.</p>
+</div>
+
+<div class="wrap">
+  <div class="months-grid" id="months-grid"></div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="emoji" id="m-emoji">📅</span>
+      <h2 id="m-titre">Choisissez un mois</h2>
+      <div class="period" id="m-periode"></div>
+    </div>
+    <div id="actions-list"></div>
+    <div class="share-row">
+      <button class="btn-share" onclick="partager()">📤 Partager</button>
+      <button class="btn-next" onclick="moisActuel()">📍 Mois actuel</button>
+    </div>
+    <p class="source-note">Dates officielles vérifiées (soldes, Black Friday : economie.gouv.fr, info.gouv.fr) — calendrier 2026. Certaines dates (déclaration d'impôts) varient selon votre département, vérifiez sur impots.gouv.fr.</p>
+  </div>
+</div>
+
+<script>
+const MOIS = [
+  {id:0, nom:'Janvier', emoji:'❄️', periode:'1er - 31 janvier 2026', actions:[
+    {titre:'Soldes d\'hiver', desc:'Du 7 janvier au 3 février 2026 dans la majorité des départements (dates spécifiques en outre-mer et certains départements de l\'Est). Profitez-en pour l\'électroménager et le textile, jusqu\'à -50% sur les fins de série.'},
+    {titre:'Modulez votre taux de prélèvement à la source', desc:'Si vos revenus ont changé en 2025, ajustez votre taux sur impots.gouv.fr dès le 1er janvier pour éviter une régularisation surprise plus tard.'},
+    {titre:'Faites le bilan de votre épargne 2025', desc:'Vérifiez si vos versements PER restent cohérents avec votre tranche d\'imposition pour l\'année qui commence.'},
+  ]},
+  {id:1, nom:'Février', emoji:'💝', periode:'1er - 28 février 2026', actions:[
+    {titre:'Fin des soldes d\'hiver', desc:'Les soldes d\'hiver se terminent le 3 février 2026 — les derniers jours sont souvent les meilleurs pour les très grosses remises sur le stock restant.'},
+    {titre:'Vérifiez les nouveaux taux des livrets réglementés', desc:'Livret A, LEP et LDDS sont parfois révisés au 1er février — vérifiez que votre épargne reste bien placée.'},
+    {titre:'Anticipez la Saint-Valentin malin', desc:'Réservez restaurants et activités tôt pour éviter les tarifs majorés de dernière minute.'},
+  ]},
+  {id:2, nom:'Mars', emoji:'🌱', periode:'1er - 31 mars 2026', actions:[
+    {titre:'Préparez votre déclaration de revenus', desc:'Rassemblez vos justificatifs (dons, frais réels, garde d\'enfants) avant l\'ouverture du service de déclaration en ligne, généralement en avril.'},
+    {titre:'Comparez votre assurance auto et habitation', desc:'Le printemps est une bonne période pour résilier et changer d\'assureur avant l\'échéance annuelle de beaucoup de contrats.'},
+    {titre:'Surveillez les French Days de printemps', desc:'Une bonne fenêtre pour le high-tech et l\'électroménager hors période de soldes officielles.'},
+  ]},
+  {id:3, nom:'Avril', emoji:'🌷', periode:'1er - 30 avril 2026', actions:[
+    {titre:'Déclarez vos revenus en ligne', desc:'Le service de déclaration en ligne ouvre généralement en avril, avec des dates limites variables selon votre département (1ère à 3ème zone) — vérifiez sur impots.gouv.fr.'},
+    {titre:'Vérifiez la revalorisation des aides CAF', desc:'Plusieurs aides sociales sont réévaluées au 1er avril — vos droits peuvent évoluer même sans changement de situation.'},
+    {titre:'CPF : utilisez votre solde avant le reste à charge', desc:'Le reste à charge CPF est de 150€ depuis avril 2026 — anticipez vos démarches de formation pour optimiser votre budget.'},
+  ]},
+  {id:4, nom:'Mai', emoji:'🌸', periode:'1er - 31 mai 2026', actions:[
+    {titre:'Date limite déclaration papier', desc:'La déclaration papier des revenus a généralement une date limite à la mi-mai — ne tardez pas si vous déclarez par courrier.'},
+    {titre:'Réservez vos vacances d\'été hors haute saison', desc:'Réserver en mai pour un départ en juin ou septembre permet souvent d\'économiser jusqu\'à 40% par rapport à juillet-août.'},
+    {titre:'Vérifiez vos droits aux chèques-vacances', desc:'Anticipez vos démarches employeur ou CAF si vous êtes éligible, avant la période estivale.'},
+  ]},
+  {id:5, nom:'Juin', emoji:'☀️', periode:'1er - 30 juin 2026', actions:[
+    {titre:'Soldes d\'été dès le 24 juin', desc:'Les soldes d\'été 2026 démarrent le mercredi 24 juin à 8h pour la majorité des départements métropolitains.'},
+    {titre:'Dernière ligne droite pour la déclaration en ligne', desc:'Les dates limites de déclaration en ligne s\'échelonnent généralement fin mai-début juin selon votre zone.'},
+    {titre:'Préparez la rentrée scolaire en avance', desc:'Profitez des soldes pour acheter cartables et fournitures à prix réduit avant la flambée de prix d\'août-septembre.'},
+  ]},
+  {id:6, nom:'Juillet', emoji:'🏖️', periode:'1er - 31 juillet 2026', actions:[
+    {titre:'Soldes d\'été jusqu\'au 21 juillet (28 juillet en 2026)', desc:'Les soldes d\'été se terminent normalement le 21 juillet, prolongées exceptionnellement au 28 juillet 2026 en raison de la canicule.'},
+    {titre:'Voyagez en évitant le pic du 14 juillet', desc:'Les tarifs de transport et d\'hébergement explosent autour des grands chassés-croisés — décalez vos dates si possible.'},
+    {titre:'Vérifiez vos garanties carte bancaire avant de partir', desc:'Beaucoup de cartes premium incluent une assurance voyage qui peut vous éviter une souscription séparée.'},
+  ]},
+  {id:7, nom:'Août', emoji:'🌅', periode:'1er - 31 août 2026', actions:[
+    {titre:'Allocation de rentrée scolaire (ARS)', desc:'L\'ARS est généralement versée mi-août par la CAF, automatiquement pour les foyers éligibles sous conditions de ressources.'},
+    {titre:'Anticipez les fournitures de rentrée', desc:'Comparez les prix avant la dernière semaine d\'août, période où la demande fait grimper les tarifs.'},
+    {titre:'Vérifiez votre mutuelle avant la rentrée santé', desc:'Profitez de la fin de l\'été pour comparer les offres avant la reprise des consultations de rentrée.'},
+  ]},
+  {id:8, nom:'Septembre', emoji:'🎒', periode:'1er - 30 septembre 2026', actions:[
+    {titre:'Renégociez vos abonnements et assurances', desc:'La rentrée est une bonne période pour faire le point sur tous vos contrats annuels et résilier ce qui ne sert plus.'},
+    {titre:'Vérifiez votre éligibilité à l\'ARS si pas encore reçue', desc:'Si vous n\'avez pas perçu l\'allocation de rentrée scolaire en août, vérifiez votre dossier auprès de la CAF.'},
+    {titre:'Inscrivez-vous aux activités associatives', desc:'Souvent moins chères et de meilleure qualité que les salles de sport privées pour démarrer une nouvelle activité.'},
+  ]},
+  {id:9, nom:'Octobre', emoji:'🍂', periode:'1er - 31 octobre 2026', actions:[
+    {titre:'Préparez votre budget chauffage pour l\'hiver', desc:'Comparez les fournisseurs d\'énergie avant la saison froide — les prix de l\'électricité et du gaz varient selon les offres.'},
+    {titre:'French Days d\'automne', desc:'Une bonne fenêtre promotionnelle hors soldes officielles pour l\'équipement de la maison avant l\'hiver.'},
+    {titre:'Anticipez vos cadeaux de fin d\'année', desc:'Repérer les bonnes affaires dès octobre permet d\'étaler le budget des fêtes sur plusieurs mois.'},
+  ]},
+  {id:10, nom:'Novembre', emoji:'🛍️', periode:'1er - 30 novembre 2026', actions:[
+    {titre:'Black Friday le vendredi 27 novembre', desc:'L\'événement s\'étend désormais sur toute la semaine (Black Week) jusqu\'au Cyber Monday le lundi suivant.'},
+    {titre:'Comparez avant d\'acheter pendant le Black Friday', desc:'Vérifiez l\'historique des prix avec des outils dédiés : certaines "promos" affichent un prix de référence gonflé avant la remise.'},
+    {titre:'Anticipez le budget cadeaux de Noël', desc:'Profitez du Black Friday pour étaler vos achats de fin d\'année plutôt que de tout faire en décembre.'},
+  ]},
+  {id:11, nom:'Décembre', emoji:'🎄', periode:'1er - 31 décembre 2026', actions:[
+    {titre:'Prime de partage de la valeur (PPV)', desc:'Si votre employeur la propose, vérifiez si elle peut encore être versée avant la fin de l\'année fiscale.'},
+    {titre:'Faites le bilan annuel de votre épargne', desc:'Profitez de la fin d\'année pour vérifier que vos versements (PER, assurance-vie) sont cohérents avec votre situation fiscale.'},
+    {titre:'Préparez le 1er janvier pour les soldes d\'hiver', desc:'Repérez dès décembre les articles que vous voulez acheter en soldes — vous gagnerez du temps début janvier.'},
+  ]},
+];
+
+let moisActif = 0;
+
+function afficherMois(id) {
+  moisActif = id;
+  const m = MOIS[id];
+
+  document.querySelectorAll('.month-btn').forEach((btn, i) => {
+    btn.classList.toggle('active', i === id);
+  });
+
+  document.getElementById('m-emoji').textContent = m.emoji;
+  document.getElementById('m-titre').textContent = m.nom + ' 2026';
+  document.getElementById('m-periode').textContent = m.periode;
+
+  document.getElementById('actions-list').innerHTML = m.actions.map((a, i) => `
+    <div class="action-item">
+      <span class="action-num">${i+1}</span>
+      <div class="action-text">
+        <strong>${a.titre}</strong>
+        <span>${a.desc}</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function initGrid() {
+  const grid = document.getElementById('months-grid');
+  const moisCourant = new Date().getMonth(); // 0-indexé, cohérent avec MOIS[].id
+  grid.innerHTML = MOIS.map(m => `
+    <button class="month-btn ${m.id === moisCourant ? 'current' : ''}" onclick="afficherMois(${m.id})">
+      <span class="m-emoji">${m.emoji}</span>
+      <span class="m-name">${m.nom.slice(0,3)}</span>
+    </button>
+  `).join('');
+}
+
+function moisActuel() {
+  afficherMois(new Date().getMonth());
+  document.getElementById('months-grid').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function partager() {
+  const m = MOIS[moisActif];
+  const text = `📅 ${m.nom} 2026 : "${m.actions[0].titre}" — découvrez les 3 meilleures astuces du mois sur le Calendrier des Bons Plans d'economya.fr !`;
+  if (navigator.share) {
+    navigator.share({title:'Economya.fr', text, url:'https://economya.fr/calendrier-bons-plans.html'});
+  } else {
+    navigator.clipboard.writeText(text + ' https://economya.fr/calendrier-bons-plans.html');
+    alert('Astuce copiée, prête à partager !');
+  }
+}
+
+function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}
+
+window.addEventListener('DOMContentLoaded', function(){
+  initGrid();
+  afficherMois(new Date().getMonth());
+});
+</script>
+
+<div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1000px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div id="economya-cmp-simple" style="display:flex;gap:10px;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;"> Cookies nécessaires (toujours actifs)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;"> Mesure d'audience (Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;"> Publicité personnalisée
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+<script>
+(function(){
+function getC(){
+  try {
+    var r = localStorage.getItem('economya_consent');
+    return r ? JSON.parse(r) : null;
+  } catch(e){ return null; }
+}
+function setC(analytics, publicite){
+  try {
+    localStorage.setItem('economya_consent', JSON.stringify({
+      analytics: analytics, publicite: publicite, date: new Date().toISOString()
+    }));
+  } catch(e){}
+}
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
+Les dates et informations fournies sont données à titre indicatif pour l'année 2026 et peuvent varier selon votre situation personnelle ou votre département (notamment les dates de déclaration de revenus). Vérifiez toujours les informations officielles avant toute démarche importante.
+</div>
+</body>
+</html>

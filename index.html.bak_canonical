@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Economya.fr — Vivez bien, dépensez moins</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99;flex-wrap:wrap;gap:.4rem}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);cursor:pointer}
+  .logo span{color:var(--a)}
+  .nl{display:flex;gap:.7rem;list-style:none;flex-wrap:wrap}
+  .nl a{text-decoration:none;color:var(--m);font-size:.76rem;font-weight:500;cursor:pointer}
+  .nl a:hover{color:var(--g)}
+  .ncta{background:var(--g);color:white!important;padding:.3rem .8rem;border-radius:50px}
+  .hero{background:linear-gradient(135deg,#04342C,#0F6E56 60%,#1D9E75);color:white;padding:4.5rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden}
+  .hero::before{content:'€';position:absolute;font-size:20rem;font-family:'Playfair Display',serif;font-weight:900;color:rgba(255,255,255,0.04);top:-2rem;left:-1.5rem;line-height:1;pointer-events:none}
+  .hbadge{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.25rem .8rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1rem}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;line-height:1.1;margin-bottom:.9rem;max-width:650px;margin-left:auto;margin-right:auto}
+  .hero h1 em{color:var(--a);font-style:normal}
+  .hero>p{font-size:.95rem;color:rgba(255,255,255,0.75);max-width:480px;margin:0 auto 1.8rem;font-weight:300}
+  .hform{display:flex;gap:.5rem;max-width:400px;margin:0 auto .7rem;flex-wrap:wrap}
+  .hform input{flex:1;min-width:170px;padding:.75rem 1rem;border-radius:50px;border:none;font-size:.88rem;font-family:inherit;outline:none}
+  .hform button{background:var(--a);color:white;border:none;padding:.75rem 1.3rem;border-radius:50px;font-size:.88rem;font-weight:500;cursor:pointer;font-family:inherit}
+  .hsub{font-size:.72rem;color:rgba(255,255,255,0.4)}
+  .hstats{display:flex;justify-content:center;flex-wrap:wrap;gap:1.8rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.1)}
+  .snum{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700}
+  .slbl{font-size:.72rem;color:rgba(255,255,255,0.5)}
+  section{padding:3.5rem 1.8rem}
+  .stag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.68rem;font-weight:500;padding:.2rem .7rem;border-radius:50px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.7rem}
+  .stitle{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:700;margin-bottom:.7rem}
+  .ssub{color:var(--m);font-size:.92rem;max-width:500px;font-weight:300}
+  .asec{background:white}
+  .agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:.9rem;margin-top:2rem}
+  .acard{border:1px solid var(--b);border-radius:11px;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer;text-decoration:none;color:inherit;display:block}
+  .acard:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.07)}
+  .athumb{height:70px;display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+  .abody{padding:.7rem}
+  .acat{font-size:.6rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--g);margin-bottom:.2rem}
+  .atitle{font-family:'Playfair Display',serif;font-size:.82rem;font-weight:700;margin-bottom:.25rem;line-height:1.3}
+  .abadge{display:inline-block;background:var(--al);color:var(--ad);font-size:.58rem;font-weight:500;padding:.08rem .4rem;border-radius:50px;margin-top:.25rem}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1.2rem;margin-top:2rem}
+  .step{text-align:center}
+  .stepn{width:44px;height:44px;border-radius:50%;background:var(--gl);color:var(--gd);font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto .8rem}
+  .step h3{font-size:.9rem;font-weight:500;margin-bottom:.3rem}
+  .step p{font-size:.82rem;color:var(--m);font-weight:300}
+  .nlsec{background:linear-gradient(135deg,#FAEEDA,#FFF8EE);text-align:center}
+  .nlbox{max-width:480px;margin:0 auto}
+  .nlbox .stitle{color:var(--ad)}
+  .nlform{display:flex;gap:.5rem;margin-top:1.2rem;flex-wrap:wrap}
+  .nlform input{flex:1;min-width:170px;padding:.75rem 1rem;border:1px solid var(--b);border-radius:50px;font-size:.88rem;font-family:inherit;outline:none;background:white}
+  .nlform button{background:var(--a);color:white;border:none;padding:.75rem 1.2rem;border-radius:50px;font-weight:500;cursor:pointer;font-family:inherit}
+  .nlperks{display:flex;justify-content:center;gap:1rem;margin-top:.9rem;flex-wrap:wrap}
+  .nlperk{font-size:.75rem;color:var(--m)}
+  .nlperk::before{content:'✓ ';color:var(--g);font-weight:700}
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  @media(max-width:640px){nav{padding:.8rem 1rem}.nl{display:none}.hero{padding:3.5rem 1.2rem 3rem}section{padding:2.2rem 1rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo):not([aria-label]), nav > div:not(.mobile-menu){display:none!important}
+  nav ul{display:none!important}
+}
+</style>
+<!-- Google Analytics -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Economya.fr — Vivez bien, dépensez moins",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/index.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Economya.fr — Vivez bien, dépensez moins">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/index.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Economya.fr — Vivez bien, dépensez moins">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/index.html" />
+<meta name="description" content="Economya.fr — Vivez bien, dépensez moins" />
+</head>
+<body>
+
+<nav>
+  <div class="logo">Econom<span>ya</span>.fr</div>
+  <ul class="nl">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="comparateurs.html">Comparateurs</a></li>
+    <li><a href="a-propos.html">À propos</a></li>
+    <li><a href="jeux.html">🎮 Jeux</a></li>
+    <li><a href="outils-gratuits.html" style="background:var(--g);color:white;padding:.4rem .9rem;border-radius:50px;font-weight:700;text-decoration:none">🛠️ Outils gratuits</a></li>
+    <li><a href="#nl" class="ncta">Newsletter</a></li>
+  </ul>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+<!-- Menu hamburger mobile -->
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <span></span><span></span><span></span>
+</button>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="index.html">🏠 Accueil</a>
+  <a href="jeux.html">🎮 Jeux</a>
+  <a href="outils-gratuits.html">🛠️ Outils gratuits</a>
+  <a href="comparateurs.html">🔍 Comparateurs</a>
+  <a href="a-propos.html">ℹ️ À propos</a>
+  <a href="recherche.html">🔎 Rechercher</a>
+  <a href="#nl" class="nav-cta" onclick="toggleMenu()">📬 Newsletter</a>
+</div>
+<script>
+function toggleMenu(){
+  var m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+</script>
+</nav>
+
+<div class="hero">
+  <div class="hbadge">🇫🇷 Le guide des économies du quotidien</div>
+  <h1>Vivez bien,<br><em>dépensez moins.</em></h1>
+  <p>Chaque semaine, les meilleures astuces, codes promo et comparatifs pour garder plus d'argent dans votre poche.</p>
+  <form action="https://8c3516b5.sibforms.com/serve/MUIFAJ7Uw5h5Fjb8WPWvxzffQ8pcvJ7gIdeCWQHWqGm-ovG94xuIqP1HX7FWoPMTkBLZz6o-pkHCgDxXe7D_2o4X0BwLHldjyE3p6jqiajS2rYCpWpdRI44saG6YZ-m_jwv-SVXVmMm8PMkQ9Dh0rZ0X_hQg3UC3KKqm8CeDvvkj1CLAR3IBPt6ZOLCLgEOOtsFOzYGVT6MINtcZOQ==" method="POST" class="hform"><input type="email" name="EMAIL" placeholder="votre@email.fr" required/><button type="submit">Je m'abonne</button></form>
+  <p class="hsub">Sans spam · Désabonnement en 1 clic</p>
+  <div class="hstats">
+    <div><div class="snum">347€</div><div class="slbl">économisés en moyenne/an</div></div>
+    <div><div class="snum">527</div><div class="slbl">articles disponibles</div></div>
+    <div><div class="snum">100%</div><div class="slbl">gratuit pour les lecteurs</div></div>
+  </div>
+</div>
+
+<section class="asec">
+  <div class="stag">527 articles disponibles</div>
+  <h2 class="stitle">Tous nos articles</h2>
+  <p class="ssub">Sélectionnés et testés chaque semaine.</p>
+  <div class="agrid">
+
+    <a class="acard" href="article-1.html"><div class="athumb" style="background:#E1F5EE">🛒</div><div class="abody"><div class="acat">Courses</div><div class="atitle">Les 8 apps pour ne plus jamais payer plein tarif au supermarché</div><div class="abadge">💰 Jusqu'à 80€/mois</div></div></a>
+    <a class="acard" href="article-2.html"><div class="athumb" style="background:#FAEEDA">⚡</div><div class="abody"><div class="acat">Énergie</div><div class="atitle">Quel fournisseur d'électricité choisir en 2025 ?</div><div class="abadge">💰 Jusqu'à 240€/an</div></div></a>
+    <a class="acard" href="article-3.html"><div class="athumb" style="background:#EEEDFE">💳</div><div class="abody"><div class="acat">Banque</div><div class="atitle">Les 3 meilleures cartes bancaires gratuites avec cashback</div><div class="abadge">💰 Jusqu'à 150€/an</div></div></a>
+    <a class="acard" href="article-4.html"><div class="athumb" style="background:#FEF2F2">🚗</div><div class="abody"><div class="acat">Assurances</div><div class="atitle">Assurance auto : payer 2 fois moins cher</div><div class="abadge">💰 Jusqu'à 400€/an</div></div></a>
+    <a class="acard" href="article-5.html"><div class="athumb" style="background:#F0FDF4">🏥</div><div class="abody"><div class="acat">Assurances</div><div class="atitle">Mutuelle santé : trouver la moins chère</div><div class="abadge">💰 Jusqu'à 600€/an</div></div></a>
+    <a class="acard" href="article-6.html"><div class="athumb" style="background:#FFF7ED">🏠</div><div class="abody"><div class="acat">Assurances</div><div class="atitle">Assurance habitation : tout ce que vous payez en trop</div><div class="abadge">💰 Jusqu'à 200€/an</div></div></a>
+    <a class="acard" href="article-7.html"><div class="athumb" style="background:#EFF6FF">📱</div><div class="abody"><div class="acat">Téléphonie</div><div class="atitle">Forfait mobile : payer 5€ au lieu de 30€</div><div class="abadge">💰 Jusqu'à 400€/an</div></div></a>
+    <a class="acard" href="article-8.html"><div class="athumb" style="background:#F0FDF4">✈️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">7 techniques pour payer ses vols moitié prix</div><div class="abadge">💰 Jusqu'à -70%</div></div></a>
+    <a class="acard" href="article-9.html"><div class="athumb" style="background:#FFF0F6">📚</div><div class="abody"><div class="acat">Loisirs</div><div class="atitle">Loyer : 5 façons légales de payer moins cher</div><div class="abadge">💰 Économisez jusqu'à 300€/an</div></div></a>
+    <a class="acard" href="article-10.html"><div class="athumb" style="background:#FFFBEB">🏡</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Manger sainement pour moins de 150€/mois</div><div class="abadge">💰 Jusqu'à 1200€/an</div></div></a>
+    <a class="acard" href="article-11.html"><div class="athumb" style="background:#EFF6FF">🎬</div><div class="abody"><div class="acat">Streaming</div><div class="atitle">Smartphone reconditionné : économiser jusqu'à 400€</div><div class="abadge">💰 Économisez jusqu'à 150€/an</div></div></a>
+    <a class="acard" href="article-12.html"><div class="athumb" style="background:#F0FDF4">🍽️</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Faire du sport régulièrement pour moins cher</div><div class="abadge">💰 Économisez jusqu'à 400€/an</div></div></a>
+    <a class="acard" href="article-13.html"><div class="athumb" style="background:#FEF2F2">🚴</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Netflix, Spotify et Prime pour moins cher</div><div class="abadge">💰 Jusqu'à 200€/an</div></div></a>
+    <a class="acard" href="article-14.html"><div class="athumb" style="background:#FDF4FF">👕</div><div class="abody"><div class="acat">Mode</div><div class="atitle">Carburant : 6 astuces pour payer son essence moins cher</div><div class="abadge">💰 jusqu'à -60% sur votre garde-robe</div></div></a>
+    <a class="acard" href="article-15.html"><div class="athumb" style="background:#FFF7ED">🏋️</div><div class="abody"><div class="acat">Sport</div><div class="atitle">Se former et apprendre gratuitement en ligne</div><div class="abadge">💰 Économisez jusqu'à 500€/an</div></div></a>
+    <a class="acard" href="article-16.html"><div class="athumb" style="background:#F0F9FF">💊</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Bébé pas cher : tout équiper sans se ruiner</div><div class="abadge">💰 Jusqu'à -40%</div></div></a>
+    <a class="acard" href="article-17.html"><div class="athumb" style="background:#FFF0F6">🎓</div><div class="abody"><div class="acat">Éducation</div><div class="atitle">Avoir un animal de compagnie pas cher</div><div class="abadge">💰 Économisez jusqu'à 1000€</div></div></a>
+    <a class="acard" href="article-18.html"><div class="athumb" style="background:#FFFBEB">🌱</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Médicaments : payer 3 fois moins cher légalement</div><div class="abadge">💰 Jusqu'à 600€/an</div></div></a>
+    <a class="acard" href="article-19.html"><div class="athumb" style="background:#EFF6FF">🐾</div><div class="abody"><div class="acat">Animaux</div><div class="atitle">S'habiller stylé pour moins de 30€/mois</div><div class="abadge">💰 Jusqu'à 500€/an</div></div></a>
+    <a class="acard" href="article-20.html"><div class="athumb" style="background:#F0FDF4">🎁</div><div class="abody"><div class="acat">Cadeaux</div><div class="atitle">Meubler et décorer son appartement pour pas cher</div><div class="abadge">💰 Cadeaux à partir de 0€</div></div></a>
+    <a class="acard" href="article-21.html"><div class="athumb" style="background:#FEF2F2">🔑</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Réduire sa facture d'eau : 8 gestes simples</div><div class="abadge">💰 Simulation personnalisée</div></div></a>
+    <a class="acard" href="article-22.html"><div class="athumb" style="background:#FDF4FF">🌊</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Livres, cinéma, musées : accéder à la culture gratuitement</div><div class="abadge">💰 jusqu'à -50% en mai-juin</div></div></a>
+    <a class="acard" href="article-23.html"><div class="athumb" style="background:#FFF7ED">🤳</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Vélo et trottinette : se déplacer à moindre coût</div><div class="abadge">💰 Économisez jusqu'à 400€</div></div></a>
+    <a class="acard" href="article-24.html"><div class="athumb" style="background:#F0F9FF">🚿</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Potager urbain : produire ses légumes toute l'année</div><div class="abadge">💰 Jusqu'à 150€/an</div></div></a>
+    <a class="acard" href="article-25.html"><div class="athumb" style="background:#FFF0F6">🧳</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Offrir de beaux cadeaux sans se ruiner</div><div class="abadge">💰 Économisez 30% sur tout</div></div></a>
+    <a class="acard" href="article-26.html"><div class="athumb" style="background:#F0F9FF">🧓</div><div class="abody"><div class="acat">Retraite</div><div class="atitle">Préparer sa retraite sans se ruiner : guide 30-50 ans</div><div class="abadge">💰 Des milliers économisés</div></div></a>
+    <a class="acard" href="article-27.html"><div class="athumb" style="background:#FFF0F6">☕</div><div class="abody"><div class="acat">Quotidien</div><div class="atitle">Café, restaurant, cantine : réduire ses dépenses du midi</div><div class="abadge">💰 Jusqu'à 150€/mois</div></div></a>
+    <a class="acard" href="article-28.html"><div class="athumb" style="background:#FFFBEB">🌍</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Voyager low cost en Europe : les meilleures destinations</div><div class="abadge">💰 Week-end dès 100€</div></div></a>
+    <a class="acard" href="article-29.html"><div class="athumb" style="background:#EFF6FF">🔧</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Réparer plutôt que jeter : économiser sur l'électroménager</div><div class="abadge">💰 Jusqu'à 500€ économisés</div></div></a>
+    <a class="acard" href="article-30.html"><div class="athumb" style="background:#F0FDF4">📋</div><div class="abody"><div class="acat">Impôts</div><div class="atitle">Déductions fiscales méconnues pour payer moins d'impôts</div><div class="abadge">💰 Jusqu'à 1000€ récupérés</div></div></a>
+    <a class="acard" href="article-31.html"><div class="athumb" style="background:#FEF2F2">🍷</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Vin et spiritueux : boire bien pour moins cher</div><div class="abadge">💰 jusqu'à -50% sur votre cave</div></div></a>
+    <a class="acard" href="article-32.html"><div class="athumb" style="background:#F0FDF4">🏕️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Camping et plein air : vacances pas chères en France</div><div class="abadge">💰 Dès 30€/nuit</div></div></a>
+    <a class="acard" href="article-33.html"><div class="athumb" style="background:#FDF4FF">💻</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Ordinateur reconditionné : guide d'achat complet</div><div class="abadge">💰 Jusqu'à -60%</div></div></a>
+    <a class="acard" href="article-34.html"><div class="athumb" style="background:#FFF7ED">🎮</div><div class="abody"><div class="acat">Gaming</div><div class="atitle">Jouer aux jeux vidéo sans se ruiner en 2025</div><div class="abadge">💰 Jeux à partir de 0€</div></div></a>
+    <a class="acard" href="article-35.html"><div class="athumb" style="background:#F0F9FF">🍳</div><div class="abody"><div class="acat">Cuisine</div><div class="atitle">Cuisiner gastronomique pour moins de 5€ par personne</div><div class="abadge">💰 Restaurant à la maison</div></div></a>
+    <a class="acard" href="article-36.html"><div class="athumb" style="background:#FFF0F6">🧴</div><div class="abody"><div class="acat">Beauté</div><div class="atitle">Soins beauté : les alternatives pas chères qui fonctionnent</div><div class="abadge">💰 jusqu'à -70% vs grandes marques</div></div></a>
+    <a class="acard" href="article-37.html"><div class="athumb" style="background:#FFFBEB">🏦</div><div class="abody"><div class="acat">Épargne</div><div class="atitle">Épargner 100€/mois sans s'en apercevoir</div><div class="abadge">💰 1200€/an économisés</div></div></a>
+    <a class="acard" href="article-38.html"><div class="athumb" style="background:#EFF6FF">🚌</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Bus, train, covoiturage : se déplacer moins cher</div><div class="abadge">💰 Jusqu'à -60%</div></div></a>
+    <a class="acard" href="article-39.html"><div class="athumb" style="background:#F0FDF4">🌿</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Produits ménagers maison : recettes économiques</div><div class="abadge">💰 Jusqu'à 200€/an</div></div></a>
+    <a class="acard" href="article-40.html"><div class="athumb" style="background:#FEF2F2">📸</div><div class="abody"><div class="acat">Loisirs</div><div class="atitle">Photographie : débuter sans dépenser une fortune</div><div class="abadge">💰 Économisez jusqu'à 1000€</div></div></a>
+    <a class="acard" href="article-41.html"><div class="athumb" style="background:#FDF4FF">🎵</div><div class="abody"><div class="acat">Musique</div><div class="atitle">Écouter de la musique gratuitement et légalement</div><div class="abadge">💰 Économisez jusqu'à 120€/an</div></div></a>
+    <a class="acard" href="article-42.html"><div class="athumb" style="background:#FFF7ED">🏋️</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Perdre du poids sans dépenser : les méthodes gratuites qui marchent</div><div class="abadge">💰 Zéro € nécessaires</div></div></a>
+    <a class="acard" href="article-43.html"><div class="athumb" style="background:#F0F9FF">🛁</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Réduire sa facture de chauffage de 30% cet hiver</div><div class="abadge">💰 Jusqu'à 400€/an</div></div></a>
+    <a class="acard" href="article-44.html"><div class="athumb" style="background:#F0FDF4">🤝</div><div class="abody"><div class="acat">Solidarité</div><div class="atitle">Économie collaborative : emprunter, partager, échanger</div><div class="abadge">💰 Des centaines économisés</div></div></a>
+    <a class="acard" href="article-45.html"><div class="athumb" style="background:#FFF0F6">🎨</div><div class="abody"><div class="acat">Loisirs créatifs</div><div class="atitle">Loisirs créatifs pas chers : peinture, couture, poterie</div><div class="abadge">💰 Activités dès 0€</div></div></a>
+    <a class="acard" href="article-46.html"><div class="athumb" style="background:#FFFBEB">🐕</div><div class="abody"><div class="acat">Animaux</div><div class="atitle">Dog sitting : partir en vacances sans frais de pension</div><div class="abadge">💰 Économisez jusqu'à 300€/voyage</div></div></a>
+    <a class="acard" href="article-47.html"><div class="athumb" style="background:#EFF6FF">🏗️</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Travaux : économiser jusqu'à 40% sur les artisans</div><div class="abadge">💰 Jusqu'à -40%</div></div></a>
+    <a class="acard" href="article-48.html"><div class="athumb" style="background:#F0FDF4">🧘</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">Méditation et bien-être : les meilleures ressources gratuites</div><div class="abadge">💰 Économisez jusqu'à 200€/an</div></div></a>
+    <a class="acard" href="article-49.html"><div class="athumb" style="background:#FEF2F2">🎪</div><div class="abody"><div class="acat">Sorties</div><div class="atitle">Sortir en famille sans se ruiner : 10 idées</div><div class="abadge">💰 Week-ends à 0€</div></div></a>
+    <a class="acard" href="article-50.html"><div class="athumb" style="background:#FDF4FF">💡</div><div class="abody"><div class="acat">Énergie</div><div class="atitle">Les 10 appareilsles plus gourmands chez vous</div><div class="abadge">💰 Jusqu'à 300€/an</div></div></a>
+    <a class="acard" href="article-51.html"><div class="athumb" style="background:#F0F9FF">📈</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Investir en Boursequand on est débutant</div><div class="abadge">💰 Faites fructifier votre argent</div></div></a>
+    <a class="acard" href="article-52.html"><div class="athumb" style="background:#F0FDF4">🥦</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Manger bio sans se ruiner</div><div class="abadge">💰 Bio dès 2€/repas</div></div></a>
+    <a class="acard" href="article-53.html"><div class="athumb" style="background:#FFF0F6">🎒</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Rentrée scolaire pas chère</div><div class="abadge">💰 Jusqu'à 200€ économisés</div></div></a>
+    <a class="acard" href="article-54.html"><div class="athumb" style="background:#FFFBEB">🌞</div><div class="abody"><div class="acat">Énergie</div><div class="atitle">Panneaux solaires : rentables ou pas ? Le guide honnête</div><div class="abadge">💰 Jusqu'à 1000€/an</div></div></a>
+    <a class="acard" href="article-55.html"><div class="athumb" style="background:#EFF6FF">🏊</div><div class="abody"><div class="acat">Loisirs</div><div class="atitle">Piscine municipalevs abonnement fitness</div><div class="abadge">💰 Économisez jusqu'à 500€/an</div></div></a>
+    <a class="acard" href="article-56.html"><div class="athumb" style="background:#FEF2F2">🧾</div><div class="abody"><div class="acat">Administratif</div><div class="atitle">Démarches administrativesgratuites en ligne</div><div class="abadge">💰 Évitez les arnaques</div></div></a>
+    <a class="acard" href="article-57.html"><div class="athumb" style="background:#F0FDF4">🍕</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Livraison de repas : manger livré sans se ruiner</div><div class="abadge">💰 jusqu'à -40% sur vos commandes</div></div></a>
+    <a class="acard" href="article-58.html"><div class="athumb" style="background:#FDF4FF">🎄</div><div class="abody"><div class="acat">Cadeaux</div><div class="atitle">Noël pas cher : organiser les fêtes sans se ruiner</div><div class="abadge">💰 Économisez jusqu'à 400€ à Noël</div></div></a>
+    <a class="acard" href="article-59.html"><div class="athumb" style="background:#FFF7ED">🏖️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Vacances en France pas chères</div><div class="abadge">💰 Séjour dès 50€/nuit</div></div></a>
+    <a class="acard" href="article-60.html"><div class="athumb" style="background:#F0F9FF">🧠</div><div class="abody"><div class="acat">Santé mentale</div><div class="atitle">Psychologue pas cher : accéder au soutien</div><div class="abadge">💰 Remboursement jusqu'à 100%</div></div></a>
+    <a class="acard" href="article-61.html"><div class="athumb" style="background:#F0FDF4">🚙</div><div class="abody"><div class="acat">Auto</div><div class="atitle">Acheter une voiture d'occasion : guide anti-arnaque</div><div class="abadge">💰 Économisez jusqu'à 5000€+</div></div></a>
+    <a class="acard" href="article-62.html"><div class="athumb" style="background:#FFF0F6">👓</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Lunettes pas chères : où acheter en 2025</div><div class="abadge">💰 Lunettes dès 10€</div></div></a>
+    <a class="acard" href="article-63.html"><div class="athumb" style="background:#FFFBEB">☀️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Last minute : les meilleures offres de voyages</div><div class="abadge">💰 -50 à -70%</div></div></a>
+    <a class="acard" href="article-64.html"><div class="athumb" style="background:#EFF6FF">🧺</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Lessive et lave-linge : économiser sur la buanderie</div><div class="abadge">💰 Jusqu'à 150€/an</div></div></a>
+    <a class="acard" href="article-65.html"><div class="athumb" style="background:#FEF2F2">🎯</div><div class="abody"><div class="acat">Quotidien</div><div class="atitle">Budget mensuel : créer et tenir un budget</div><div class="abadge">💰 Reprenez le contrôle</div></div></a>
+    <a class="acard" href="article-66.html"><div class="athumb" style="background:#F0FDF4">🌾</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">AMAP et circuits courts : manger local et pas cher</div><div class="abadge">💰 -20 à -40% sur les légumes</div></div></a>
+    <a class="acard" href="article-67.html"><div class="athumb" style="background:#FDF4FF">🎻</div><div class="abody"><div class="acat">Musique</div><div class="atitle">Apprendre un instrument sans professeur payant</div><div class="abadge">💰 Économisez jusqu'à 1000€/an</div></div></a>
+    <a class="acard" href="article-68.html"><div class="athumb" style="background:#FFF7ED">🛺</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Location de voiture pas chère</div><div class="abadge">💰 Voiture dès 15€/jour</div></div></a>
+    <a class="acard" href="article-69.html"><div class="athumb" style="background:#F0F9FF">🏡</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Acheter sa première résidence : les aides méconnues</div><div class="abadge">💰 Jusqu'à 40 000€ d'aides</div></div></a>
+    <a class="acard" href="article-70.html"><div class="athumb" style="background:#FFF0F6">🧹</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Ménage à domicile pas cher : toutes les options</div><div class="abadge">💰 50% pris en charge</div></div></a>
+    <a class="acard" href="article-71.html"><div class="athumb" style="background:#FFFBEB">📦</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Amazon : astucespour payer moins cher</div><div class="abadge">💰 -10 à -30% systématiquement</div></div></a>
+    <a class="acard" href="article-72.html"><div class="athumb" style="background:#EFF6FF">🎤</div><div class="abody"><div class="acat">Sorties</div><div class="atitle">Concerts et festivals pas chers</div><div class="abadge">💰 Places dès 0€</div></div></a>
+    <a class="acard" href="article-73.html"><div class="athumb" style="background:#FEF2F2">🥊</div><div class="abody"><div class="acat">Sport</div><div class="atitle">Arts martiaux et sports de combat pas chers</div><div class="abadge">💰 Dès 20€/mois</div></div></a>
+    <a class="acard" href="article-74.html"><div class="athumb" style="background:#F0FDF4">🌺</div><div class="abody"><div class="acat">Jardin</div><div class="atitle">Fleurs et plantes d'intérieur sans se ruiner</div><div class="abadge">💰 Plantes dès 0€</div></div></a>
+    <a class="acard" href="article-75.html"><div class="athumb" style="background:#FDF4FF">🏄</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Sports nautiques pas chers</div><div class="abadge">💰 Initiations dès 20€</div></div></a>
+    <a class="acard" href="article-76.html"><div class="athumb" style="background:#FFF7ED">🛍️</div><div class="abody"><div class="acat">Shopping</div><div class="atitle">Black Friday : acheter malin ou éviter le piège ?</div><div class="abadge">💰 Vraies économies vs illusions</div></div></a>
+    <a class="acard" href="article-77.html"><div class="athumb" style="background:#F0F9FF">🚘</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Covoiturage longue distance : le guide complet</div><div class="abadge">💰 Trajets dès 10€</div></div></a>
+    <a class="acard" href="article-78.html"><div class="athumb" style="background:#FFF0F6">💄</div><div class="abody"><div class="acat">Beauté</div><div class="atitle">Cosmétiques et soins pas chers : le guide complet</div><div class="abadge">💰 Économisez jusqu'à 200€/an</div></div></a>
+    <a class="acard" href="article-79.html"><div class="athumb" style="background:#FFFBEB">🐾</div><div class="abody"><div class="acat">Animaux</div><div class="atitle">Garde d'animaux pas chère : toutes les solutions</div><div class="abadge">💰 Garde dès 0€</div></div></a>
+    <a class="acard" href="article-80.html"><div class="athumb" style="background:#EFF6FF">💧</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Réduire sa facture d'eausans effort</div><div class="abadge">💰 Jusqu'à 200€/an</div></div></a>
+    <a class="acard" href="article-81.html"><div class="athumb" style="background:#F0FDF4">🧽</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Faire ses propres produits ménagers</div><div class="abadge">💰 jusqu'à -80% sur les produits ménagers</div></div></a>
+    <a class="acard" href="article-82.html"><div class="athumb" style="background:#FEF2F2">🏠</div><div class="abody"><div class="acat">Assurances</div><div class="atitle">Assurance habitation pas chère</div><div class="abadge">💰 Jusqu'à 200€/an</div></div></a>
+    <a class="acard" href="article-83.html"><div class="athumb" style="background:#FDF4FF">🌱</div><div class="abody"><div class="acat">Jardin</div><div class="atitle">Jardinage et potager pas cher</div><div class="abadge">💰 Légumes gratuits toute l'année</div></div></a>
+    <a class="acard" href="article-84.html"><div class="athumb" style="background:#FFF7ED">🍱</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Bien manger au bureau sans dépenser une fortune</div><div class="abadge">💰 Économisez jusqu'à 1500€/an</div></div></a>
+    <a class="acard" href="article-85.html"><div class="athumb" style="background:#F0F9FF">📡</div><div class="abody"><div class="acat">Internet</div><div class="atitle">Réduire sa factureinternet et téléphone fixe</div><div class="abadge">💰 Jusqu'à 360€/an</div></div></a>
+    <a class="acard" href="article-86.html"><div class="athumb" style="background:#FFF0F6">🚄</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Voyager en train pas cher</div><div class="abadge">💰 Billets dès 19€</div></div></a>
+    <a class="acard" href="article-87.html"><div class="athumb" style="background:#FFFBEB">🌍</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Apprendre une languegratuitement</div><div class="abadge">💰 Économisez jusqu'à 1800€/an</div></div></a>
+    <a class="acard" href="article-88.html"><div class="athumb" style="background:#EFF6FF">💰</div><div class="abody"><div class="acat">Épargne</div><div class="atitle">Épargner avecde petits revenus</div><div class="abadge">💰 Dès 20€/mois</div></div></a>
+    <a class="acard" href="article-89.html"><div class="athumb" style="background:#F0FDF4">👴</div><div class="abody"><div class="acat">Seniors</div><div class="atitle">Bien vieillir sans se ruiner</div><div class="abadge">💰 Des centaines d'€ d'aides</div></div></a>
+    <a class="acard" href="article-90.html"><div class="athumb" style="background:#FEF2F2">🛋️</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Meubler son appartement pas cher : le guide complet</div><div class="abadge">💰 Appartement meublé dès 500€</div></div></a>
+    <a class="acard" href="article-91.html"><div class="athumb" style="background:#FDF4FF">🥩</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Réduire sa consommation de viandeintelligemment</div><div class="abadge">💰 -150€/an sur l'alimentation</div></div></a>
+    <a class="acard" href="article-92.html"><div class="athumb" style="background:#FFF7ED">📱</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Les meilleures applicationspour économiser</div><div class="abadge">💰 Économies automatiques</div></div></a>
+    <a class="acard" href="article-93.html"><div class="athumb" style="background:#F0F9FF">💊</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Faire des économiessur les médicaments</div><div class="abadge">💰 Jusqu'à 300€/an</div></div></a>
+    <a class="acard" href="article-94.html"><div class="athumb" style="background:#FFF0F6">🏷️</div><div class="abody"><div class="acat">Brocante</div><div class="atitle">Le guide du vide-grenierréussi</div><div class="abadge">💰 Gagnez 200 à 500€</div></div></a>
+    <a class="acard" href="article-95.html"><div class="athumb" style="background:#FFFBEB">✈️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Voyager avec des miles et des points : le guide débutant</div><div class="abadge">💰 Vols gratuits ou à -80%</div></div></a>
+    <a class="acard" href="article-96.html"><div class="athumb" style="background:#EFF6FF">💼</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Freelance et revenuscomplémentaires</div><div class="abadge">💰 +200 à +1000€/mois</div></div></a>
+    <a class="acard" href="article-97.html"><div class="athumb" style="background:#F0FDF4">♻️</div><div class="abody"><div class="acat">Quotidien</div><div class="atitle">Zéro déchet et économies : les deux vont ensemble</div><div class="abadge">💰 Jusqu'à 500€/an</div></div></a>
+    <a class="acard" href="article-98.html"><div class="athumb" style="background:#FEF2F2">🏖️</div><div class="abody"><div class="acat">Retraite</div><div class="atitle">Préparer sa retraite sans se tromper</div><div class="abadge">💰 Des centaines €/mois en plus</div></div></a>
+    <a class="acard" href="article-99.html"><div class="athumb" style="background:#FDF4FF">⭐</div><div class="abody"><div class="acat">Quotidien</div><div class="atitle">50 habitudesdes gens vraiment économes</div><div class="abadge">💰 Synthèse des meilleures pratiques</div></div></a>
+    <a class="acard" href="article-100.html"><div class="athumb" style="background:#FFF7ED">🏆</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Le grand récap : votre plan d'action pour économiser</div><div class="abadge">💰 5000€ économisés en 12 mois</div></div></a>
+
+    <a class="acard" href="article-101.html"><div class="athumb" style="background:#E8F5E9">🧠</div><div class="abody"><div class="acat">Finance</div><div class="atitle">La psychologie de l'argent : comprendre ses comportements financiers</div><div class="abadge">💰 Arrêtez de vous saboter</div></div></a>
+    <a class="acard" href="article-102.html"><div class="athumb" style="background:#FFF9C4">🥗</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Repas équilibrésà moins de 2 €</div><div class="abadge">💰 7 repas pour 14€</div></div></a>
+    <a class="acard" href="article-103.html"><div class="athumb" style="background:#E3F2FD">👶</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Layette et puériculture : équiper bébé sans se ruiner</div><div class="abadge">💰 Économisez jusqu'à 1000€</div></div></a>
+    <a class="acard" href="article-104.html"><div class="athumb" style="background:#FCE4EC">🚀</div><div class="abody"><div class="acat">Finance</div><div class="atitle">FIRE : atteindrel'indépendance financière</div><div class="abadge">💰 Liberté avant 50 ans</div></div></a>
+    <a class="acard" href="article-105.html"><div class="athumb" style="background:#E8EAF6">🦺</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Négocier son salaire sans complexe : le guide complet</div><div class="abadge">💰 +5 à +20% de salaire</div></div></a>
+    <a class="acard" href="article-106.html"><div class="athumb" style="background:#F1F8E9">🎪</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Anniversaires d'enfants pas chers et réussis</div><div class="abadge">💰 Fête réussie pour 30€</div></div></a>
+    <a class="acard" href="article-107.html"><div class="athumb" style="background:#E0F7FA">🧁</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Pâtisserie maison : épater sans dépenser</div><div class="abadge">💰 Gâteau à 2€/part</div></div></a>
+    <a class="acard" href="article-108.html"><div class="athumb" style="background:#FFF3E0">🔐</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Cybersécurité gratuite : protéger ses données</div><div class="abadge">💰 Antivirus et VPN gratuits</div></div></a>
+    <a class="acard" href="article-109.html"><div class="athumb" style="background:#F3E5F5">🎯</div><div class="abody"><div class="acat">Quotidien</div><div class="atitle">Voyager en train pas cher : maîtriser la SNCF</div><div class="abadge">💰 jusqu'à -30% de dépenses globales</div></div></a>
+    <a class="acard" href="article-110.html"><div class="athumb" style="background:#E8F5E9">🧶</div><div class="abody"><div class="acat">Loisirs créatifs</div><div class="atitle">Réduire sa facture d'électricité de 30% : les gestes concrets</div><div class="abadge">💰 Vêtements faits main dès 5€</div></div></a>
+    <a class="acard" href="article-111.html"><div class="athumb" style="background:#FFF9C4">🏰</div><div class="abody"><div class="acat">Culture</div><div class="atitle">Les soldes : acheter malin sans se faire avoir</div><div class="abadge">💰 Voyages enrichissants à 0€</div></div></a>
+    <a class="acard" href="article-112.html"><div class="athumb" style="background:#E3F2FD">🏗️</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Colocation : bien choisirses colocataires et son contrat</div><div class="abadge">💰 Jusqu'à 70% subventionné</div></div></a>
+    <a class="acard" href="article-113.html"><div class="athumb" style="background:#FCE4EC">🧘</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">Téléphonie mobile : payer moins de 10 € par mois</div><div class="abadge">💰 Économisez jusqu'à 600€/an de cours</div></div></a>
+    <a class="acard" href="article-114.html"><div class="athumb" style="background:#E8EAF6">🦷</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Crédit à la consommation : les pièges à éviter</div><div class="abadge">💰 Prothèses sans reste à charge</div></div></a>
+    <a class="acard" href="article-115.html"><div class="athumb" style="background:#F1F8E9">📻</div><div class="abody"><div class="acat">Culture</div><div class="atitle">Jardinage et potager : se nourrir depuis son balcon</div><div class="abadge">💰 Formation gratuite en continu</div></div></a>
+    <a class="acard" href="article-116.html"><div class="athumb" style="background:#E0F7FA">🪑</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Déménager sans se ruiner</div><div class="abadge">💰 Maison neuve à petit prix</div></div></a>
+    <a class="acard" href="article-117.html"><div class="athumb" style="background:#FFF3E0">🐓</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Bien dormir sans dépenser : le guide du sommeil économique</div><div class="abadge">💰 Repas à 1,50€/personne</div></div></a>
+    <a class="acard" href="article-118.html"><div class="athumb" style="background:#F3E5F5">🌐</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Faire ses produitsménagers maison</div><div class="abadge">💰 Site pro à 0€/an</div></div></a>
+    <a class="acard" href="article-119.html"><div class="athumb" style="background:#E8F5E9">🚑</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Voyager pas cher : les secrets du slow travel</div><div class="abadge">💰 Évitez les consultations à 60€</div></div></a>
+    <a class="acard" href="article-120.html"><div class="athumb" style="background:#FFF9C4">🌍</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Gérer un budget en couple sans se disputer</div><div class="abadge">💰 Vivre à l'étranger moins cher</div></div></a>
+    <a class="acard" href="article-121.html"><div class="athumb" style="background:#E3F2FD">🧴</div><div class="abody"><div class="acat">Beauté</div><div class="atitle">Parfum pas cher : les alternatives aux grandes marques</div><div class="abadge">💰 Parfum dès 10€</div></div></a>
+    <a class="acard" href="article-122.html"><div class="athumb" style="background:#FCE4EC">🏆</div><div class="abody"><div class="acat">Sport</div><div class="atitle">Participer à un marathon sans se ruiner</div><div class="abadge">💰 Préparation complète à 50€</div></div></a>
+    <a class="acard" href="article-123.html"><div class="athumb" style="background:#E8EAF6">🪴</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Faire germerses graines chez soi</div><div class="abadge">💰 Superaliments à 0,20€/portion</div></div></a>
+    <a class="acard" href="article-124.html"><div class="athumb" style="background:#F1F8E9">📝</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">CV et lettres de motivationgratuits et efficaces</div><div class="abadge">💰 Ne payez plus les services de CV</div></div></a>
+    <a class="acard" href="article-125.html"><div class="athumb" style="background:#E0F7FA">🚗</div><div class="abody"><div class="acat">Auto</div><div class="atitle">Entretien voitureà faire soi-même</div><div class="abadge">💰 Économisez jusqu'à 500€/an de garage</div></div></a>
+    <a class="acard" href="article-126.html"><div class="athumb" style="background:#FFF3E0">🎸</div><div class="abody"><div class="acat">Musique</div><div class="atitle">Acheter sa guitareau meilleur prix</div><div class="abadge">💰 Guitare dès 60€</div></div></a>
+    <a class="acard" href="article-127.html"><div class="athumb" style="background:#F3E5F5">💡</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Ampoules LED : le guide complet pour économiser</div><div class="abadge">💰 jusqu'à -80% sur la facture éclairage</div></div></a>
+    <a class="acard" href="article-128.html"><div class="athumb" style="background:#E8F5E9">🤿</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Plongée sous-marine pas chère</div><div class="abadge">💰 Baptême dès 30€</div></div></a>
+    <a class="acard" href="article-129.html"><div class="athumb" style="background:#FFF9C4">🧑‍🏫</div><div class="abody"><div class="acat">Éducation</div><div class="atitle">Soutien scolaire gratuit ou pas cher : toutes les options</div><div class="abadge">💰 Cours gratuits certifiés</div></div></a>
+    <a class="acard" href="article-130.html"><div class="athumb" style="background:#E3F2FD">🧊</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Congélateur : votre meilleur allié anti-gaspillage</div><div class="abadge">💰 Économisez jusqu'à 400€/an</div></div></a>
+    <a class="acard" href="article-131.html"><div class="athumb" style="background:#FCE4EC">🏔️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Ski pas cher : profiter de la montagne sans se ruiner</div><div class="abadge">💰 Forfait dès 20€/jour</div></div></a>
+    <a class="acard" href="article-132.html"><div class="athumb" style="background:#E8EAF6">🖨️</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Cartouches d'encre : arrêtez de payer trop cher</div><div class="abadge">💰 jusqu'à -70% sur les cartouches</div></div></a>
+    <a class="acard" href="article-133.html"><div class="athumb" style="background:#F1F8E9">🚐</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Van life et road trip en France pas cher</div><div class="abadge">💰 Van dès 5000€</div></div></a>
+    <a class="acard" href="article-134.html"><div class="athumb" style="background:#E0F7FA">🔋</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Voiture électrique : économiser sur la recharge</div><div class="abadge">💰 Rechargez à 5cts/kWh</div></div></a>
+    <a class="acard" href="article-135.html"><div class="athumb" style="background:#FFF3E0">🧑‍🍳</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Cuisiner en famille pour moins de 50€/semaine</div><div class="abadge">💰 7 repas pour 4 à 50€</div></div></a>
+    <a class="acard" href="article-136.html"><div class="athumb" style="background:#F3E5F5">🌊</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Hôtels : payer moins cher avec les bons outils</div><div class="abadge">💰 -30 à -50%</div></div></a>
+    <a class="acard" href="article-137.html"><div class="athumb" style="background:#E8F5E9">🛒</div><div class="abody"><div class="acat">Shopping</div><div class="atitle">Codes promo : les meilleures extensions navigateur</div><div class="abadge">💰 -5 à -30% sur tout</div></div></a>
+    <a class="acard" href="article-138.html"><div class="athumb" style="background:#FFF9C4">✂️</div><div class="abody"><div class="acat">Beauté</div><div class="atitle">Coiffeur pas cher : toutes les alternatives</div><div class="abadge">💰 Coupe dès 0€</div></div></a>
+    <a class="acard" href="article-139.html"><div class="athumb" style="background:#E3F2FD">🐟</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Poisson et fruits de mer pas chers</div><div class="abadge">💰 Poisson frais dès 5€/kg</div></div></a>
+    <a class="acard" href="article-140.html"><div class="athumb" style="background:#FCE4EC">🎓</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Études supérieures : financer sans s'endetter</div><div class="abadge">💰 Bourses et aides méconnues</div></div></a>
+    <a class="acard" href="article-141.html"><div class="athumb" style="background:#E8EAF6">🔐</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Logiciels gratuits pour remplacer les suites payantes</div><div class="abadge">💰 Économisez jusqu'à 500€/an</div></div></a>
+    <a class="acard" href="article-142.html"><div class="athumb" style="background:#F1F8E9">🤱</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Garde d'enfants pas chère : toutes les options</div><div class="abadge">💰 Jusqu'à 85% remboursé</div></div></a>
+    <a class="acard" href="article-143.html"><div class="athumb" style="background:#E0F7FA">🍺</div><div class="abody"><div class="acat">Sorties</div><div class="atitle">Soirées et apéros pas chers : profiter sans se ruiner</div><div class="abadge">💰 Soirée réussie pour 5€</div></div></a>
+    <a class="acard" href="article-144.html"><div class="athumb" style="background:#FFF3E0">🏗️</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Investir dans l'immobilier avec 10 000€</div><div class="abadge">💰 SCPI et crowdfunding immo</div></div></a>
+    <a class="acard" href="article-145.html"><div class="athumb" style="background:#F3E5F5">🎬</div><div class="abody"><div class="acat">Culture</div><div class="atitle">Cinéma : ne jamais payer plein tarif</div><div class="abadge">💰 Séance dès 2€</div></div></a>
+    <a class="acard" href="article-146.html"><div class="athumb" style="background:#E8F5E9">🧼</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Savon solide maison : faire soi-même</div><div class="abadge">💰 100 savons pour 10€</div></div></a>
+    <a class="acard" href="article-147.html"><div class="athumb" style="background:#FFF9C4">🛡️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Protection contre les arnaques financières</div><div class="abadge">💰 Évitez les escroqueries</div></div></a>
+    <a class="acard" href="article-148.html"><div class="athumb" style="background:#E3F2FD">🌿</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Herbes aromatiques en pot : zéro achat en supermarché</div><div class="abadge">💰 Basilic, persil, ciboulette gratuits</div></div></a>
+    <a class="acard" href="article-149.html"><div class="athumb" style="background:#FCE4EC">🚲</div><div class="abody"><div class="acat">Transport</div><div class="atitle">VAE (vélo électrique) : tout ce qu'il faut savoir</div><div class="abadge">💰 Bonus jusqu'à 400€</div></div></a>
+    <a class="acard" href="article-150.html"><div class="athumb" style="background:#E8EAF6">🎮</div><div class="abody"><div class="acat">Loisirs</div><div class="atitle">Jeux de société : la bibliothèque vs l'achat</div><div class="abadge">💰 100 jeux pour 0€</div></div></a>
+    <a class="acard" href="article-151.html"><div class="athumb" style="background:#F1F8E9">🏡</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Décoration intérieure DIY tendance</div><div class="abadge">💰 Maison Pinterest pour 50€</div></div></a>
+    <a class="acard" href="article-152.html"><div class="athumb" style="background:#E0F7FA">👗</div><div class="abody"><div class="acat">Mode</div><div class="atitle">Capsule wardrobe : 20 pièces pour tout porter</div><div class="abadge">💰 Réduisez votre garde-robe de 70%</div></div></a>
+    <a class="acard" href="article-153.html"><div class="athumb" style="background:#FFF3E0">🫙</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Faire ses propres conserves et bocaux</div><div class="abadge">💰 Légumes d'hiver à petit prix</div></div></a>
+    <a class="acard" href="article-154.html"><div class="athumb" style="background:#F3E5F5">💬</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Télétravail : réduire ses frais professionnels</div><div class="abadge">💰 Déductez vos charges pro</div></div></a>
+    <a class="acard" href="article-155.html"><div class="athumb" style="background:#E8F5E9">🏟️</div><div class="abody"><div class="acat">Sport</div><div class="atitle">Billets de sport moins chers : foot, tennis et concerts</div><div class="abadge">💰 Places dès 5€</div></div></a>
+    <a class="acard" href="article-156.html"><div class="athumb" style="background:#FFF9C4">🌺</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">Spa et hammam pas cher : se détendre sans se ruiner</div><div class="abadge">💰 Spa dès 10€</div></div></a>
+    <a class="acard" href="article-157.html"><div class="athumb" style="background:#E3F2FD">🔑</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Colocation : vivre moins cher à plusieurs</div><div class="abadge">💰 Loyer divisé par 2 ou 3</div></div></a>
+    <a class="acard" href="article-158.html"><div class="athumb" style="background:#FCE4EC">📊</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Cryptomonnaies : comprendre sans perdre d'argent</div><div class="abadge">💰 Investir sereinement</div></div></a>
+    <a class="acard" href="article-159.html"><div class="athumb" style="background:#E8EAF6">🦮</div><div class="abody"><div class="acat">Animaux</div><div class="atitle">Alimentation animale : cuisiner pour son chien ou chat</div><div class="abadge">💰 jusqu'à -50% sur la nourriture animale</div></div></a>
+    <a class="acard" href="article-160.html"><div class="athumb" style="background:#F1F8E9">🍫</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Chocolat, café, thé de qualité sans se ruiner</div><div class="abadge">💰 Grands crus à petits prix</div></div></a>
+    <a class="acard" href="article-161.html"><div class="athumb" style="background:#E0F7FA">📱</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Tablette reconditionnée : le bon plan high-tech</div><div class="abadge">💰 iPad dès 150€</div></div></a>
+    <a class="acard" href="article-162.html"><div class="athumb" style="background:#FFF3E0">🏕️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Randonnée et trek : s'équiper sans se ruiner</div><div class="abadge">💰 Équipement complet pour 100€</div></div></a>
+    <a class="acard" href="article-163.html"><div class="athumb" style="background:#F3E5F5">🚿</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Plomberie : petites réparations soi-même</div><div class="abadge">💰 Évitez le plombier à 100€/h</div></div></a>
+    <a class="acard" href="article-164.html"><div class="athumb" style="background:#E8F5E9">🌍</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Maroc, Tunisie, Portugal : destinations low cost 2025</div><div class="abadge">💰 Séjour tout compris dès 300€</div></div></a>
+    <a class="acard" href="article-165.html"><div class="athumb" style="background:#FFF9C4">🏋️</div><div class="abody"><div class="acat">Sport</div><div class="atitle">Jardinage urbain sur balcon</div><div class="abadge">💰 -60 à -80% sur le matériel</div></div></a>
+    <a class="acard" href="article-166.html"><div class="athumb" style="background:#E3F2FD">🧑‍🤝‍🧑</div><div class="abody"><div class="acat">Solidarité</div><div class="atitle">Impôts : déductions et crédits méconnus</div><div class="abadge">💰 Courses à -70% pour les éligibles</div></div></a>
+    <a class="acard" href="article-167.html"><div class="athumb" style="background:#FCE4EC">🖼️</div><div class="abody"><div class="acat">Culture</div><div class="atitle">Courses en ligne : éviter les pièges</div><div class="abadge">💰 Œuvres originales dès 20€</div></div></a>
+    <a class="acard" href="article-168.html"><div class="athumb" style="background:#E8EAF6">🤖</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Miel, confiture, épicerie fine maison</div><div class="abadge">💰 IA gratuite pour travailler mieux</div></div></a>
+    <a class="acard" href="article-169.html"><div class="athumb" style="background:#F1F8E9">🏠</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Assurance habitation : bien comparer</div><div class="abadge">💰 Économisez 1 mois de loyer</div></div></a>
+    <a class="acard" href="article-170.html"><div class="athumb" style="background:#E0F7FA">☕</div><div class="abody"><div class="acat">Quotidien</div><div class="atitle">Manger bio sans exploser son budget</div><div class="abadge">💰 Arrêtez les capsules à 0,50€</div></div></a>
+    <a class="acard" href="article-171.html"><div class="athumb" style="background:#FFF3E0">🎪</div><div class="abody"><div class="acat">Sorties</div><div class="atitle">Mutuelle santé : décrypter son contrat</div><div class="abadge">💰 Week-end découverte à 0€</div></div></a>
+    <a class="acard" href="article-172.html"><div class="athumb" style="background:#F3E5F5">💐</div><div class="abody"><div class="acat">Quotidien</div><div class="atitle">Fêtes de fin d'année sans se ruiner</div><div class="abadge">💰 Bouquets dès 2€</div></div></a>
+    <a class="acard" href="article-173.html"><div class="athumb" style="background:#E8F5E9">🧮</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Loisirs créatifs pas chers</div><div class="abadge">💰 Récupérez jusqu'à 500€</div></div></a>
+    <a class="acard" href="article-174.html"><div class="athumb" style="background:#FFF9C4">🌮</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Épargner avec un petit salaire</div><div class="abadge">💰 Repas complet à 5€</div></div></a>
+    <a class="acard" href="article-175.html"><div class="athumb" style="background:#E3F2FD">🏊</div><div class="abody"><div class="acat">Sport</div><div class="atitle">Sport à domicile sans matériel</div><div class="abadge">💰 Économisez jusqu'à 1000€ de cours/an</div></div></a>
+    <a class="acard" href="article-176.html"><div class="athumb" style="background:#FCE4EC">🔒</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Véhicule d'occasion : les pièges à éviter</div><div class="abadge">💰 Frais divisés par 5</div></div></a>
+    <a class="acard" href="article-177.html"><div class="athumb" style="background:#E8EAF6">🌱</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Eau du robinet vs eau en bouteille</div><div class="abadge">💰 Engrais gratuit et ordures réduites</div></div></a>
+    <a class="acard" href="article-178.html"><div class="athumb" style="background:#F1F8E9">🎓</div><div class="abody"><div class="acat">Éducation</div><div class="atitle">Transports longue distance pas chers</div><div class="abadge">💰 Diplômes reconnus gratuits</div></div></a>
+    <a class="acard" href="article-179.html"><div class="athumb" style="background:#E0F7FA">🧳</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Maquillage et soins pas chers : les vraies alternatives</div><div class="abadge">💰 Économisez 50-100€ par vol</div></div></a>
+    <a class="acard" href="article-180.html"><div class="athumb" style="background:#FFF3E0">🍄</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Livres : lire beaucoup pour moins cher</div><div class="abadge">💰 Champignons et fruits sauvages à 0€</div></div></a>
+    <a class="acard" href="article-181.html"><div class="athumb" style="background:#F3E5F5">🎠</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Freelance : gérer son argent quand on est indépendant</div><div class="abadge">💰 Activités dès 0€</div></div></a>
+    <a class="acard" href="article-182.html"><div class="athumb" style="background:#E8F5E9">🏦</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Jardinage sans dépenses : récupérer et troquer</div><div class="abadge">💰 Zéro frais bancaires</div></div></a>
+    <a class="acard" href="article-183.html"><div class="athumb" style="background:#FFF9C4">🧵</div><div class="abody"><div class="acat">Mode</div><div class="atitle">Pannes électriques simples : les gérer soi-même</div><div class="abadge">💰 Allongez la vie de vos habits</div></div></a>
+    <a class="acard" href="article-184.html"><div class="athumb" style="background:#E3F2FD">🛁</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">Concerts et festivals : y aller pour moins cher</div><div class="abadge">💰 Spa à domicile pour 5€</div></div></a>
+    <a class="acard" href="article-185.html"><div class="athumb" style="background:#FCE4EC">🌙</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">Produire son électricité avec des panneaux solaires</div><div class="abadge">💰 Plus besoin de somnifères</div></div></a>
+    <a class="acard" href="article-186.html"><div class="athumb" style="background:#E8EAF6">🧓</div><div class="abody"><div class="acat">Seniors</div><div class="atitle">Produits ménagers maison : tout faire soi-même</div><div class="abadge">💰 Milliers d'€ non réclamés</div></div></a>
+    <a class="acard" href="article-187.html"><div class="athumb" style="background:#F1F8E9">🚰</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Changer de banque et économiser</div><div class="abadge">💰 Économisez jusqu'à 500€/an</div></div></a>
+    <a class="acard" href="article-188.html"><div class="athumb" style="background:#E0F7FA">📦</div><div class="abody"><div class="acat">Quotidien</div><div class="atitle">Pêche et cueillette : se nourrir gratuitement</div><div class="abadge">💰 Évitez les pièges</div></div></a>
+    <a class="acard" href="article-189.html"><div class="athumb" style="background:#FFF3E0">🎭</div><div class="abody"><div class="acat">Culture</div><div class="atitle">Animaux de compagnie : soins vétérinaires moins chers</div><div class="abadge">💰 Places dès 5€</div></div></a>
+    <a class="acard" href="article-190.html"><div class="athumb" style="background:#F3E5F5">🌻</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Retraite : préparer sa retraite dès maintenant</div><div class="abadge">💰 jusqu'à -40% en achetant en vrac</div></div></a>
+    <a class="acard" href="article-191.html"><div class="athumb" style="background:#E8F5E9">🏄</div><div class="abody"><div class="acat">Sport</div><div class="atitle">Location de matériel : éviter d'acheter ce qu'on utilise rarement</div><div class="abadge">💰 Sport complet à 0€</div></div></a>
+    <a class="acard" href="article-192.html"><div class="athumb" style="background:#FFF9C4">🏺</div><div class="abody"><div class="acat">Loisirs créatifs</div><div class="atitle">Téléphonie fixe et box internet : payer moins</div><div class="abadge">💰 Dès 10€/séance</div></div></a>
+    <a class="acard" href="article-193.html"><div class="athumb" style="background:#E3F2FD">🧠</div><div class="abody"><div class="acat">Éducation</div><div class="atitle">Meubles et déco : le guide de l'occasion</div><div class="abadge">💰 Boostez vos capacités à 0€</div></div></a>
+    <a class="acard" href="article-194.html"><div class="athumb" style="background:#FCE4EC">🏰</div><div class="abody"><div class="acat">Culture</div><div class="atitle">Éclairage LED : réduire sa facture d'électricité</div><div class="abadge">💰 Pass gratuit et réductions</div></div></a>
+    <a class="acard" href="article-195.html"><div class="athumb" style="background:#E8EAF6">📐</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Tourisme solidaire et écovolontariat</div><div class="abadge">💰 Rangements futés à petit prix</div></div></a>
+    <a class="acard" href="article-196.html"><div class="athumb" style="background:#F1F8E9">🌱</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Bien manger au bureau sans dépenser</div><div class="abadge">💰 Plantes gratuites par bouturage</div></div></a>
+    <a class="acard" href="article-197.html"><div class="athumb" style="background:#E0F7FA">🛻</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Donations et héritages : optimiser la transmission</div><div class="abadge">💰 Utilitaire dès 3000€</div></div></a>
+    <a class="acard" href="article-198.html"><div class="athumb" style="background:#FFF3E0">🧪</div><div class="abody"><div class="acat">Maison</div><div class="atitle">Faire son pain maison</div><div class="abadge">💰 Achetez sans risque</div></div></a>
+    <a class="acard" href="article-199.html"><div class="athumb" style="background:#F3E5F5">🏠</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Apprendre une langue gratuitement</div><div class="abadge">💰 Gagnez 500-2000€/mois</div></div></a>
+    <a class="acard" href="article-200.html"><div class="athumb" style="background:#E8F5E9">🏆</div><div class="abody"><div class="acat">Finance</div><div class="atitle">200 astuces pour changer votre rapport à l'argent</div><div class="abadge">💰 Le grand guide final</div></div></a>
+<a class="acard" href="article-201.html"><div class="athumb" style="background:#E3F2FD">🏠</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Acheter sa résidence principale : le guide complet 2025</div><div class="abadge">💰 Le bon moment pour acheter</div></div></a>
+    <a class="acard" href="article-202.html"><div class="athumb" style="background:#E8F5E9">💳</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Renégocier son crédit immobilier</div><div class="abadge">💰 Jusqu'à 20 000€ économisés</div></div></a>
+    <a class="acard" href="article-203.html"><div class="athumb" style="background:#FFF3E0">🏡</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">PTZ 2025 : conditions, simulation, communes éligibles</div><div class="abadge">💰 Jusqu'à 100 000€ sans intérêts</div></div></a>
+    <a class="acard" href="article-204.html"><div class="athumb" style="background:#F3E5F5">⚖️</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Frais de notaire : comment les calculer exactement</div><div class="abadge">💰 Évitez les mauvaises surprises</div></div></a>
+    <a class="acard" href="article-205.html"><div class="athumb" style="background:#E8F5E9">🔑</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Dépôt de garantie : récupérer sa caution</div><div class="abadge">💰 Récupérez chaque centime</div></div></a>
+    <a class="acard" href="article-206.html"><div class="athumb" style="background:#E1F5EE">🌿</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Rénovation énergétique : toutes les aides 2025</div><div class="abadge">💰 Jusqu'à 90% des travaux financés</div></div></a>
+    <a class="acard" href="article-207.html"><div class="athumb" style="background:#FFF8E1">📊</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Investir en LMNP : guide complet</div><div class="abadge">💰 Rendement 5–7% net</div></div></a>
+    <a class="acard" href="article-208.html"><div class="athumb" style="background:#FCE4EC">🏘️</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Charges de copropriété : comment les contester</div><div class="abadge">💰 Réduisez vos charges</div></div></a>
+    <a class="acard" href="article-209.html"><div class="athumb" style="background:#E8EAF6">🖼️</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Home staging : valoriser son bien pour vendre</div><div class="abadge">💰 +10% sur le prix de vente</div></div></a>
+    <a class="acard" href="article-210.html"><div class="athumb" style="background:#F1F8E9">📝</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Bail locatif : droits et obligations du locataire</div><div class="abadge">💰 Protégez-vous juridiquement</div></div></a>
+    <a class="acard" href="article-211.html"><div class="athumb" style="background:#E0F7FA">🏗️</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Construction maison : éviter les arnaques</div><div class="abadge">💰 Économisez 30 000€</div></div></a>
+    <a class="acard" href="article-212.html"><div class="athumb" style="background:#FFF3E0">📋</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Diagnostics immobiliers : lesquels sont obligatoires</div><div class="abadge">💰 Ne payez pas l'inutile</div></div></a>
+    <a class="acard" href="article-213.html"><div class="athumb" style="background:#F3E5F5">🤝</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Viager : acheter ou vendre, avantages et risques</div><div class="abadge">💰 Acheter à 30–50% de décote</div></div></a>
+    <a class="acard" href="article-214.html"><div class="athumb" style="background:#E8F5E9">👥</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Bail en colocation : rédiger un contrat solide soi-même</div><div class="abadge">💰 Loyer divisé par 2 ou 3</div></div></a>
+    <a class="acard" href="article-215.html"><div class="athumb" style="background:#FFF9C4">🏦</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">SCI familiale : créer et gérer</div><div class="abadge">💰 Optimisez la transmission</div></div></a>
+    <a class="acard" href="article-216.html"><div class="athumb" style="background:#E3F2FD">📄</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Bulletin de salaire : décrypter chaque ligne</div><div class="abadge">💰 Comprendre ce qu'on vous prend</div></div></a>
+    <a class="acard" href="article-217.html"><div class="athumb" style="background:#E1F5EE">💬</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Négocier son salaire : scripts qui marchent</div><div class="abadge">💰 +2 000 à +5 000€/an</div></div></a>
+    <a class="acard" href="article-218.html"><div class="athumb" style="background:#FFF8E1">🛡️</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Chômage ARE : calculer ses droits en 2025</div><div class="abadge">💰 Jusqu'à 75% du salaire</div></div></a>
+    <a class="acard" href="article-219.html"><div class="athumb" style="background:#FCE4EC">🤝</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Rupture conventionnelle : tout ce qu'il faut savoir</div><div class="abadge">💰 Négociez chaque euro</div></div></a>
+    <a class="acard" href="article-220.html"><div class="athumb" style="background:#E8EAF6">🔄</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Démissionner pour reconversion : droits au chômage</div><div class="abadge">💰 Partir sans perdre ses droits</div></div></a>
+    <a class="acard" href="article-221.html"><div class="athumb" style="background:#F1F8E9">🏥</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Arrêt maladie : ce que touche vraiment le salarié</div><div class="abadge">💰 Compléments et prévoyance</div></div></a>
+    <a class="acard" href="article-222.html"><div class="athumb" style="background:#E0F7FA">💻</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Télétravail : droits, indemnités, équipement</div><div class="abadge">💰 Déduisez vos frais</div></div></a>
+    <a class="acard" href="article-223.html"><div class="athumb" style="background:#FFF3E0">🎁</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Prime de partage de la valeur 2025</div><div class="abadge">💰 Jusqu'à 6 000€ exonérés</div></div></a>
+    <a class="acard" href="article-224.html"><div class="athumb" style="background:#F3E5F5">📈</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Intéressement et participation : optimiser</div><div class="abadge">💰 Défiscalisez vos primes</div></div></a>
+    <a class="acard" href="article-225.html"><div class="athumb" style="background:#E8F5E9">🐣</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">PEE et PERCO : utiliser au mieux</div><div class="abadge">💰 Abondement employeur</div></div></a>
+    <a class="acard" href="article-226.html"><div class="athumb" style="background:#FFF9C4">⏱️</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Heures supplémentaires : calcul et récupération</div><div class="abadge">💰 Ne laissez rien passer</div></div></a>
+    <a class="acard" href="article-227.html"><div class="athumb" style="background:#E3F2FD">🎯</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Portage salarial : avantages et inconvénients</div><div class="abadge">💰 Indépendant avec filet</div></div></a>
+    <a class="acard" href="article-228.html"><div class="athumb" style="background:#FAEEDA">📅</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">CDD : droits et prime de précarité</div><div class="abadge">💰 10% en fin de contrat</div></div></a>
+    <a class="acard" href="article-229.html"><div class="athumb" style="background:#E1F5EE">🎓</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Reconversion professionnelle : financer sa formation</div><div class="abadge">💰 CPF, OPCO et aides</div></div></a>
+    <a class="acard" href="article-230.html"><div class="athumb" style="background:#F1F8E9">💰</div><div class="abody"><div class="acat">Emploi</div><div class="atitle">Primes non imposables : ce qu'on peut verser</div><div class="abadge">💰 Optimisez votre net</div></div></a>
+    <a class="acard" href="article-231.html"><div class="athumb" style="background:#E0F7FA">🦷</div><div class="abody"><div class="acat">Santé</div><div class="atitle">100% Santé : ce qui est vraiment remboursé</div><div class="abadge">💰 0€ de reste à charge</div></div></a>
+    <a class="acard" href="article-232.html"><div class="athumb" style="background:#FFF3E0">💊</div><div class="abody"><div class="acat">Santé</div><div class="atitle">ALD : droits, prise en charge à 100%</div><div class="abadge">💰 Soins entièrement remboursés</div></div></a>
+    <a class="acard" href="article-233.html"><div class="athumb" style="background:#F3E5F5">🆓</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Complémentaire santé solidaire (CSS) gratuite</div><div class="abadge">💰 Mutuelle gratuite ou 1€/jour</div></div></a>
+    <a class="acard" href="article-234.html"><div class="athumb" style="background:#E8F5E9">👓</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Remboursement lunettes : toutes les aides</div><div class="abadge">💰 Lunettes à 0€ possibles</div></div></a>
+    <a class="acard" href="article-235.html"><div class="athumb" style="background:#FFF9C4">😁</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Soins dentaires : réduire la facture</div><div class="abadge">💰 Jusqu'à 70% remboursé</div></div></a>
+    <a class="acard" href="article-236.html"><div class="athumb" style="background:#E3F2FD">💉</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Médicaments génériques : économiser à l'officine</div><div class="abadge">💰 Jusqu'à -70% sur les médicaments</div></div></a>
+    <a class="acard" href="article-237.html"><div class="athumb" style="background:#FAEEDA">📱</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Téléconsultation médicale : consulter gratuitement</div><div class="abadge">💰 Consulter sans avancer de frais</div></div></a>
+    <a class="acard" href="article-238.html"><div class="athumb" style="background:#E1F5EE">♿</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Allocation adulte handicapé : vos droits en 2025</div><div class="abadge">💰 Jusqu'à 1 016€/mois</div></div></a>
+    <a class="acard" href="article-239.html"><div class="athumb" style="background:#F1F8E9">🏥</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Reste à charge zéro : comment en bénéficier</div><div class="abadge">💰 Soins sans débourser un centime</div></div></a>
+    <a class="acard" href="article-240.html"><div class="athumb" style="background:#E0F7FA">🏠</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Aide à domicile : les aides financières</div><div class="abadge">💰 APA et PCH décryptées</div></div></a>
+    <a class="acard" href="article-241.html"><div class="athumb" style="background:#FFF3E0">🛡️</div><div class="abody"><div class="acat">Santé</div><div class="atitle">PUMA : droits automatiques à la Sécu</div><div class="abadge">💰 Droits automatiques à la Sécu</div></div></a>
+    <a class="acard" href="article-242.html"><div class="athumb" style="background:#FCE4EC">🏨</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Hospitalisation : éviter les frais cachés</div><div class="abadge">💰 Chambre particulière remboursée</div></div></a>
+    <a class="acard" href="article-243.html"><div class="athumb" style="background:#E8EAF6">🌿</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Médecine douce : ce que rembourse votre mutuelle</div><div class="abadge">💰 Ostéo, acupuncture pris en charge</div></div></a>
+    <a class="acard" href="article-244.html"><div class="athumb" style="background:#FFF9C4">🩺</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Soins transfrontaliers : se faire soigner moins cher</div><div class="abadge">💰 Belgique, Espagne, moins cher</div></div></a>
+    <a class="acard" href="article-245.html"><div class="athumb" style="background:#E3F2FD">❤️</div><div class="abody"><div class="acat">Santé</div><div class="atitle">Don d'organes : ce qu'il faut savoir</div><div class="abadge">💰 Guide complet</div></div></a>
+    <a class="acard" href="article-246.html"><div class="athumb" style="background:#EDE7F6">🤖</div><div class="abody"><div class="acat">Tech</div><div class="atitle">ChatGPT gratuit : tout ce qu'on peut faire en 2025</div><div class="abadge">💰 IA gratuite au quotidien</div></div></a>
+    <a class="acard" href="article-247.html"><div class="athumb" style="background:#E8EAF6">✨</div><div class="abody"><div class="acat">Tech</div><div class="atitle">IA pour économiser : les meilleurs outils gratuits</div><div class="abadge">💰 Automatisez vos économies</div></div></a>
+    <a class="acard" href="article-248.html"><div class="athumb" style="background:#E3F2FD">📱</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Smartphone reconditionné : le comparatif complet</div><div class="abadge">💰 iPhone à partir de 200€</div></div></a>
+    <a class="acard" href="article-249.html"><div class="athumb" style="background:#F3E5F5">📡</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Forfait 5G pas cher : comparatif opérateurs 2025</div><div class="abadge">💰 5G dès 6€/mois</div></div></a>
+    <a class="acard" href="article-250.html"><div class="athumb" style="background:#E8F5E9">🔒</div><div class="abody"><div class="acat">Tech</div><div class="atitle">VPN : gratuit ou payant, lequel choisir en 2026 ?</div><div class="abadge">💰 Protégez-vous gratuitement</div></div></a>
+    <a class="acard" href="article-251.html"><div class="athumb" style="background:#FFF8E1">🛡️</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Antivirus gratuit : les meilleurs en 2025</div><div class="abadge">💰 Protection sans abonnement</div></div></a>
+    <a class="acard" href="article-252.html"><div class="athumb" style="background:#FCE4EC">🎬</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Netflix 2025 : partage de compte, règles, prix</div><div class="abadge">💰 Compte légal dès 4,99€/mois</div></div></a>
+    <a class="acard" href="article-253.html"><div class="athumb" style="background:#E0F7FA">📊</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Applications de budget : les meilleures gratuites</div><div class="abadge">💰 Gérez vos finances en 5 min</div></div></a>
+    <a class="acard" href="article-254.html"><div class="athumb" style="background:#FFF3E0">📝</div><div class="abody"><div class="acat">Tech</div><div class="atitle">IA pour rédiger son CV : outils et méthode</div><div class="abadge">💰 CV parfait gratuitement</div></div></a>
+    <a class="acard" href="article-255.html"><div class="athumb" style="background:#E8EAF6">💻</div><div class="abody"><div class="acat">Tech</div><div class="atitle">MacBook, ThinkPad, Dell : quel PC reconditionné choisir ?</div><div class="abadge">💰 PC performant dès 250€</div></div></a>
+    <a class="acard" href="article-256.html"><div class="athumb" style="background:#F1F8E9">☁️</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Cloud gratuit : comparer les offres 2025</div><div class="abadge">💰 15 à 100 Go gratuits</div></div></a>
+    <a class="acard" href="article-257.html"><div class="athumb" style="background:#E3F2FD">✂️</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Désabonnement et résiliation : outils gratuits</div><div class="abadge">💰 Économisez en 2 clics</div></div></a>
+    <a class="acard" href="article-258.html"><div class="athumb" style="background:#F3E5F5">🧠</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Deepseek, Mistral, Gemini : quel IA gratuit choisir ?</div><div class="abadge">💰 Le meilleur IA selon vos besoins</div></div></a>
+    <a class="acard" href="article-259.html"><div class="athumb" style="background:#FAEEDA">🔐</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Piratage informatique : se protéger gratuitement</div><div class="abadge">💰 Évitez les arnaques coûteuses</div></div></a>
+    <a class="acard" href="article-260.html"><div class="athumb" style="background:#E8F5E9">👤</div><div class="abody"><div class="acat">Tech</div><div class="atitle">Données personnelles : les récupérer et les protéger</div><div class="abadge">💰 Votre vie privée a de la valeur</div></div></a>
+    <a class="acard" href="article-261.html"><div class="athumb" style="background:#FFF9C4">🌿</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Bonus écologique 2025 : montants et conditions</div><div class="abadge">💰 Jusqu'à 7 000€ de bonus</div></div></a>
+    <a class="acard" href="article-262.html"><div class="athumb" style="background:#E3F2FD">🚗</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Assurance auto : comparer et économiser</div><div class="abadge">💰 Jusqu'à 400€ économisés/an</div></div></a>
+    <a class="acard" href="article-263.html"><div class="athumb" style="background:#FAEEDA">⚠️</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Malus écologique 2025 : barème complet</div><div class="abadge">💰 Évitez jusqu'à 60 000€ de malus</div></div></a>
+    <a class="acard" href="article-264.html"><div class="athumb" style="background:#E1F5EE">🚦</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Permis de conduire moins cher : toutes les options</div><div class="abadge">💰 Permis dès 800€</div></div></a>
+    <a class="acard" href="article-265.html"><div class="athumb" style="background:#F1F8E9">🚆</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Train pas cher : cartes SNCF et astuces 2025</div><div class="abadge">💰 jusqu'à -50% sur chaque billet</div></div></a>
+    <a class="acard" href="article-266.html"><div class="athumb" style="background:#E0F7FA">⚡</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Leasing social VE 2025 : conditions et dossier</div><div class="abadge">💰 VE dès 100€/mois</div></div></a>
+    <a class="acard" href="article-267.html"><div class="athumb" style="background:#FFF3E0">🤝</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Covoiturage domicile-travail : aides et déductions</div><div class="abadge">💰 Jusqu'à 3 000€/an défiscalisés</div></div></a>
+    <a class="acard" href="article-268.html"><div class="athumb" style="background:#FCE4EC">🔄</div><div class="abody"><div class="acat">Transport</div><div class="atitle">LLD vs achat : le vrai calcul</div><div class="abadge">💰 Le vrai calcul</div></div></a>
+    <a class="acard" href="article-269.html"><div class="athumb" style="background:#E8EAF6">📬</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Contester une amende : procédure complète</div><div class="abadge">💰 50% des recours aboutissent</div></div></a>
+    <a class="acard" href="article-270.html"><div class="athumb" style="background:#F3E5F5">🏷️</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Vignette Crit'Air : tout savoir</div><div class="abadge">💰 Évitez les amendes de 135€</div></div></a>
+    <a class="acard" href="article-271.html"><div class="athumb" style="background:#E8F5E9">⛽</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Carburant : où trouver le moins cher</div><div class="abadge">💰 Jusqu'à 15 centimes de moins/litre</div></div></a>
+    <a class="acard" href="article-272.html"><div class="athumb" style="background:#FFF9C4">🚲</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Vélo cargo électrique : aides à l'achat</div><div class="abadge">💰 Jusqu'à 2 000€ de subvention</div></div></a>
+    <a class="acard" href="article-273.html"><div class="athumb" style="background:#E3F2FD">🔧</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Contrôle technique : points clés et coûts</div><div class="abadge">💰 Préparez votre voiture</div></div></a>
+    <a class="acard" href="article-274.html"><div class="athumb" style="background:#FAEEDA">🛣️</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Péages : comment les éviter légalement</div><div class="abadge">💰 Des centaines économisés/an</div></div></a>
+    <a class="acard" href="article-275.html"><div class="athumb" style="background:#E1F5EE">🔩</div><div class="abody"><div class="acat">Transport</div><div class="atitle">Pneus : quand les changer et où acheter moins cher</div><div class="abadge">💰 jusqu'à -40% en commandant en ligne</div></div></a>
+    <a class="acard" href="article-276.html"><div class="athumb" style="background:#E0F7FA">✈️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Flying Blue, Miles&More : programmes fidélité décryptés</div><div class="abadge">💰 Vols gratuits avec vos points</div></div></a>
+    <a class="acard" href="article-277.html"><div class="athumb" style="background:#FFF3E0">🚂</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Interrail 2025 : guide complet Europe en train</div><div class="abadge">💰 Europe entière dès 209€</div></div></a>
+    <a class="acard" href="article-278.html"><div class="athumb" style="background:#FCE4EC">🛏️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Airbnb vs hôtel : que choisir selon les cas</div><div class="abadge">💰 Jusqu'à -50% sur l'hébergement</div></div></a>
+    <a class="acard" href="article-279.html"><div class="athumb" style="background:#E8EAF6">🎒</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Bagages cabine seulement : le guide ultime</div><div class="abadge">💰 Économisez 50–120€ par vol</div></div></a>
+    <a class="acard" href="article-280.html"><div class="athumb" style="background:#F1F8E9">👨‍👩‍👧</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Voyager en famillepour moins de 2 000 €</div><div class="abadge">💰 4 personnes, vrai budget</div></div></a>
+    <a class="acard" href="article-281.html"><div class="athumb" style="background:#E3F2FD">💳</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Travel hacking France : meilleures cartes bancaires</div><div class="abadge">💰 Voyages offerts par votre banque</div></div></a>
+    <a class="acard" href="article-282.html"><div class="athumb" style="background:#F3E5F5">🗓️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Vacances hors saison : destinations et économies</div><div class="abadge">💰 jusqu'à -40% en mai ou septembre</div></div></a>
+    <a class="acard" href="article-283.html"><div class="athumb" style="background:#FAEEDA">🐢</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Slow travel : voyager moins cher en restant plus</div><div class="abadge">💰 Coût journalier divisé par 2</div></div></a>
+    <a class="acard" href="article-284.html"><div class="athumb" style="background:#E8F5E9">🚢</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Croisière pas chère : les vraies astuces</div><div class="abadge">💰 Croisière dès 400€/pers.</div></div></a>
+    <a class="acard" href="article-285.html"><div class="athumb" style="background:#FFF9C4">🔁</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Échange de maison : comment ça marche</div><div class="abadge">💰 Hébergement gratuit partout</div></div></a>
+    <a class="acard" href="article-286.html"><div class="athumb" style="background:#E0F7FA">⛺</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Camping en France : atlas des sites gratuits</div><div class="abadge">💰 Nuits gratuites en pleine nature</div></div></a>
+    <a class="acard" href="article-287.html"><div class="athumb" style="background:#FFF3E0">🌏</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Visa Working Holiday : Australie, Canada, Nouvelle-Zélande</div><div class="abadge">💰 Voyager et travailler 2 ans</div></div></a>
+    <a class="acard" href="article-288.html"><div class="athumb" style="background:#FCE4EC">🌍</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Financer un tour du monde : méthode réaliste</div><div class="abadge">💰 Tour du monde dès 12 000€</div></div></a>
+    <a class="acard" href="article-289.html"><div class="athumb" style="background:#E8EAF6">🎓</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Étudier à l'étrangermoins cher qu'en France</div><div class="abadge">💰 Master gratuit en Europe</div></div></a>
+    <a class="acard" href="article-290.html"><div class="athumb" style="background:#F3E5F5">🛡️</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Assurance voyage : quand est-elle vraiment utile ?</div><div class="abadge">💰 Couvrez-vous sans sur-payer</div></div></a>
+    <a class="acard" href="article-291.html"><div class="athumb" style="background:#E8F5E9">♻️</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Zéro gaspillage alimentaire : méthode complète</div><div class="abadge">💰 400€ économisés/an</div></div></a>
+    <a class="acard" href="article-292.html"><div class="athumb" style="background:#FFF9C4">🥗</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Manger équilibréà petit budget</div><div class="abadge">💰 Repas complet à 2€</div></div></a>
+    <a class="acard" href="article-293.html"><div class="athumb" style="background:#E3F2FD">❄️</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Congélation : tout ce qu'on peut congeler</div><div class="abadge">💰 Zéro gaspillage au congélateur</div></div></a>
+    <a class="acard" href="article-294.html"><div class="athumb" style="background:#FAEEDA">📅</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">DLC vs DDM : dates de péremption expliquées</div><div class="abadge">💰 Arrêtez de jeter trop tôt</div></div></a>
+    <a class="acard" href="article-295.html"><div class="athumb" style="background:#E1F5EE">🌱</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Manger vegan pas cher : menu de la semaine</div><div class="abadge">💰 1€/repas, c'est possible</div></div></a>
+    <a class="acard" href="article-296.html"><div class="athumb" style="background:#F1F8E9">🍎</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Alimentation anti-inflammatoire : pas chère</div><div class="abadge">💰 Santé sans supplément à 40€</div></div></a>
+    <a class="acard" href="article-297.html"><div class="athumb" style="background:#E0F7FA">🌽</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Légumes et fruits de saison : calendrier et prix</div><div class="abadge">💰 jusqu'à -50% hors saison vs en saison</div></div></a>
+    <a class="acard" href="article-298.html"><div class="athumb" style="background:#FFF3E0">🌾</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Cuisiner pour les intolérants sans se ruiner</div><div class="abadge">💰 Sans gluten, sans lactose, pas cher</div></div></a>
+    <a class="acard" href="article-299.html"><div class="athumb" style="background:#FCE4EC">🫧</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Boissons fermentées maison : kéfir, kombucha</div><div class="abadge">💰 0,10€ par litre</div></div></a>
+    <a class="acard" href="article-300.html"><div class="athumb" style="background:#E8EAF6">🧈</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Faire son beurre, yaourtet fromage frais maison</div><div class="abadge">💰 3× moins cher qu'en magasin</div></div></a>
+    <a class="acard" href="article-301.html"><div class="athumb" style="background:#E8F5E9">📱</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Applications anti-gaspi : les meilleures en 2026</div><div class="abadge">💰 Repas à -70% avec Too Good To Go</div></div></a>
+    <a class="acard" href="article-302.html"><div class="athumb" style="background:#FFF9C4">🗓️</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Menus semaine à 30 € : idées et recettes</div><div class="abadge">💰 5 repas pour 4 à 1,50€/pers.</div></div></a>
+    <a class="acard" href="article-303.html"><div class="athumb" style="background:#E3F2FD">🥫</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Boîtes de conserve : recettes rapides et économiques</div><div class="abadge">💰 Repas complet à 0,80€</div></div></a>
+    <a class="acard" href="article-304.html"><div class="athumb" style="background:#FAEEDA">🌮</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">AMAP : rejoindre et économiser</div><div class="abadge">💰 Bio local à -30%</div></div></a>
+    <a class="acard" href="article-305.html"><div class="athumb" style="background:#E1F5EE">🔥</div><div class="abody"><div class="acat">Alimentation</div><div class="atitle">Cuisiner sans four : équipements alternatifs</div><div class="abadge">💰 Économisez sur l'énergie</div></div></a>
+    <a class="acard" href="article-306.html"><div class="athumb" style="background:#FCE4EC">👶</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Allocations familiales 2025 : montants et conditions</div><div class="abadge">💰 Jusqu'à 350€/mois</div></div></a>
+    <a class="acard" href="article-307.html"><div class="athumb" style="background:#F3E5F5">🎀</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Prime naissance CAF : toutes les aides</div><div class="abadge">💰 Jusqu'à 1 000€ à la naissance</div></div></a>
+    <a class="acard" href="article-308.html"><div class="athumb" style="background:#E8F5E9">👨‍👩‍👦</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Congé parental : droits et allocations</div><div class="abadge">💰 PreParE jusqu'à 600€/mois</div></div></a>
+    <a class="acard" href="article-309.html"><div class="athumb" style="background:#FFF9C4">🎒</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Fournitures scolaires pas chères : le guide</div><div class="abadge">💰 Rentrée complète pour 30€</div></div></a>
+    <a class="acard" href="article-310.html"><div class="athumb" style="background:#E3F2FD">🎡</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Activités enfantsgratuites ou à petit prix</div><div class="abadge">💰 Weekend enfants à 0€</div></div></a>
+    <a class="acard" href="article-311.html"><div class="athumb" style="background:#FAEEDA">🏕️</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Colonies de vacances CAF : financement</div><div class="abadge">💰 Colo payée à 80% par la CAF</div></div></a>
+    <a class="acard" href="article-312.html"><div class="athumb" style="background:#E1F5EE">👕</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Vêtements enfants pas chers : meilleures sources</div><div class="abadge">💰 Vinted, tailles dessus</div></div></a>
+    <a class="acard" href="article-313.html"><div class="athumb" style="background:#F1F8E9">🎂</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Anniversaire enfant : organiser pour moins de 50 €</div><div class="abadge">💰 Fête réussie à petit prix</div></div></a>
+    <a class="acard" href="article-314.html"><div class="athumb" style="background:#E0F7FA">🛏️</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Chambre bébé complèteà petit budget</div><div class="abadge">💰 Tout pour 300€ max</div></div></a>
+    <a class="acard" href="article-315.html"><div class="athumb" style="background:#FFF3E0">⚖️</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Garde alternée : impact sur les aides sociales</div><div class="abadge">💰 Optimisez vos droits</div></div></a>
+    <a class="acard" href="article-316.html"><div class="athumb" style="background:#FCE4EC">💛</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Parent isolé : toutes les aides disponibles</div><div class="abadge">💰 ASF, RSA majoré, réductions</div></div></a>
+    <a class="acard" href="article-317.html"><div class="athumb" style="background:#E8EAF6">📚</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Études supérieures des enfants : épargner tôt</div><div class="abadge">💰 50€/mois pendant 18 ans</div></div></a>
+    <a class="acard" href="article-318.html"><div class="athumb" style="background:#F3E5F5">🎭</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Pass Culture 300 € : utiliser intelligemment</div><div class="abadge">💰 Concerts, livres, formations</div></div></a>
+    <a class="acard" href="article-319.html"><div class="athumb" style="background:#FAEEDA">🛒</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Poussette d'occasion : ce qu'il faut vérifier</div><div class="abadge">💰 Poussette à -70%</div></div></a>
+    <a class="acard" href="article-320.html"><div class="athumb" style="background:#E8F5E9">🎮</div><div class="abody"><div class="acat">Famille</div><div class="atitle">Jeux éducatifs gratuitspour enfants</div><div class="abadge">💰 Apprendre en jouant à 0€</div></div></a>
+    <a class="acard" href="article-321.html"><div class="athumb" style="background:#E8F5E9">❄️</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Réduire sa facture d'énergieen hiver</div><div class="abadge">💰 Jusqu'à 400€ économisés</div></div></a>
+    <a class="acard" href="article-322.html"><div class="athumb" style="background:#FFF9C4">🌡️</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Pompe à chaleur : aides et rentabilité 2025</div><div class="abadge">💰 MaPrimeRénov' jusqu'à 11 000€</div></div></a>
+    <a class="acard" href="article-323.html"><div class="athumb" style="background:#E3F2FD">🏠</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Isolation des combles : coût et subventions</div><div class="abadge">💰 Isolation à 1€ possible</div></div></a>
+    <a class="acard" href="article-324.html"><div class="athumb" style="background:#FAEEDA">⚡</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Véhicule électrique : vrai coût vs essence sur 5 ans</div><div class="abadge">💰 3 000€ économisés/an</div></div></a>
+    <a class="acard" href="article-325.html"><div class="athumb" style="background:#E1F5EE">🔧</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Bonus réparabilité : liste des appareils concernés</div><div class="abadge">💰 Jusqu'à 45€ par réparation</div></div></a>
+    <a class="acard" href="article-326.html"><div class="athumb" style="background:#F1F8E9">👗</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Slow fashion : consommer mieux et moins</div><div class="abadge">💰 Mode durable sans se ruiner</div></div></a>
+    <a class="acard" href="article-327.html"><div class="athumb" style="background:#E0F7FA">🌿</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Alimentation durable sans se ruiner</div><div class="abadge">💰 Local, bio, pas cher</div></div></a>
+    <a class="acard" href="article-328.html"><div class="athumb" style="background:#FFF3E0">💧</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Économiser l'eauau quotidien</div><div class="abadge">💰 jusqu'à -30% sur la facture eau</div></div></a>
+    <a class="acard" href="article-329.html"><div class="athumb" style="background:#FCE4EC">🌲</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Bilan carbone personnel : comment le réduire</div><div class="abadge">💰 Moins de gaz = moins de charges</div></div></a>
+    <a class="acard" href="article-330.html"><div class="athumb" style="background:#E8EAF6">♻️</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Compostage urbain : guide pratique débutant</div><div class="abadge">💰 Engrais gratuit pour le jardin</div></div></a>
+    <a class="acard" href="article-331.html"><div class="athumb" style="background:#F1F8E9">🌾</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Chaudière à granulés : prix et subventions</div><div class="abadge">💰 Jusqu'à 10 000€ d'aide</div></div></a>
+    <a class="acard" href="article-332.html"><div class="athumb" style="background:#E3F2FD">📱</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Empreinte numérique : réduire et économiser</div><div class="abadge">💰 Moins de data = moins cher</div></div></a>
+    <a class="acard" href="article-333.html"><div class="athumb" style="background:#F3E5F5">🧵</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Textile recyclé : où acheter vraiment moins cher</div><div class="abadge">💰 Friperies et sites recommandés</div></div></a>
+    <a class="acard" href="article-334.html"><div class="athumb" style="background:#FAEEDA">☀️</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Achat groupéde panneaux solaires</div><div class="abadge">💰 jusqu'à -20% via groupement</div></div></a>
+    <a class="acard" href="article-335.html"><div class="athumb" style="background:#E8F5E9">🤝</div><div class="abody"><div class="acat">Écologie</div><div class="atitle">Communauté énergétique locale : comment rejoindre</div><div class="abadge">💰 Électricité moins chère ensemble</div></div></a>
+    <a class="acard" href="article-336.html"><div class="athumb" style="background:#FFF8E1">📈</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">ETF World : comment investir simplement</div><div class="abadge">💰 Le placement préféré des riches</div></div></a>
+    <a class="acard" href="article-337.html"><div class="athumb" style="background:#E3F2FD">🏦</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Livret A vs LEP vs LDDS : que choisir en 2025</div><div class="abadge">💰 LEP à 4% : ouvrez-le</div></div></a>
+    <a class="acard" href="article-338.html"><div class="athumb" style="background:#E8EAF6">📊</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Ouvrir son premier PEA : démarche et premiers achats</div><div class="abadge">💰 Commencez avec 50€</div></div></a>
+    <a class="acard" href="article-339.html"><div class="athumb" style="background:#FAEEDA">💼</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">PEA : ouvrir, gérer, optimiser</div><div class="abadge">💰 0% d'impôt après 5 ans</div></div></a>
+    <a class="acard" href="article-340.html"><div class="athumb" style="background:#E1F5EE">🔒</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Fonds euros vs unités de compte : arbitrer intelligemment</div><div class="abadge">💰 152 500€ transmis sans impôts</div></div></a>
+    <a class="acard" href="article-341.html"><div class="athumb" style="background:#F1F8E9">🏢</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">SCPI : guide complet 2025</div><div class="abadge">💰 Immobilier dès 200€</div></div></a>
+    <a class="acard" href="article-342.html"><div class="athumb" style="background:#E0F7FA">📅</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Investir 100 €/mois en Bourse : simulation sur 20 ans</div><div class="abadge">💰 100€/mois = 41 000€ en 20 ans</div></div></a>
+    <a class="acard" href="article-343.html"><div class="athumb" style="background:#FFF3E0">🔄</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">DCA : stratégie d'investissement régulier</div><div class="abadge">💰 Investir sans stress de marché</div></div></a>
+    <a class="acard" href="article-344.html"><div class="athumb" style="background:#FCE4EC">₿</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Bitcoin en 2025 : acheter, stocker, sécuriser</div><div class="abadge">💰 Guide sans jargon</div></div></a>
+    <a class="acard" href="article-345.html"><div class="athumb" style="background:#E8EAF6">🥇</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Or physique : acheter et stocker en France</div><div class="abadge">💰 Valeur refuge accessible</div></div></a>
+    <a class="acard" href="article-346.html"><div class="athumb" style="background:#F3E5F5">🏘️</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Immeuble de rapport : premier achat à petit budget</div><div class="abadge">💰 Rendement 8–12% possible</div></div></a>
+    <a class="acard" href="article-347.html"><div class="athumb" style="background:#E8F5E9">🛋️</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Colocation investisseur : maximiser le rendement</div><div class="abadge">💰 +3% de rendement vs location simple</div></div></a>
+    <a class="acard" href="article-348.html"><div class="athumb" style="background:#FFF9C4">🏠</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Airbnb vs Booking : quelle plateforme choisir pour louer</div><div class="abadge">💰 Le vrai calcul avant de se lancer</div></div></a>
+    <a class="acard" href="article-349.html"><div class="athumb" style="background:#E3F2FD">📝</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Location saisonnière : cadre légal 2025</div><div class="abadge">💰 Évitez les amendes</div></div></a>
+    <a class="acard" href="article-350.html"><div class="athumb" style="background:#FAEEDA">🅿️</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Parkings et caves : les petits investissements immobiliers rentables</div><div class="abadge">💰 Rendement 7–10% avec peu d'effort</div></div></a>
+    <a class="acard" href="article-351.html"><div class="athumb" style="background:#EDE7F6">🎓</div><div class="abody"><div class="acat">Formation</div><div class="atitle">CPF 2025 : ce qu'on peut encore financer</div><div class="abadge">💰 Jusqu'à 5 000€ disponibles</div></div></a>
+    <a class="acard" href="article-352.html"><div class="athumb" style="background:#E8EAF6">📚</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Formation professionnelle gratuite : toutes les options</div><div class="abadge">💰 Se former sans débourser</div></div></a>
+    <a class="acard" href="article-353.html"><div class="athumb" style="background:#E3F2FD">💻</div><div class="abody"><div class="acat">Formation</div><div class="atitle">MOOC gratuits : les 20 meilleurs en 2025</div><div class="abadge">💰 Harvard, MIT, Polytechnique gratuit</div></div></a>
+    <a class="acard" href="article-354.html"><div class="athumb" style="background:#F3E5F5">👨‍💻</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Apprendre à coder gratuitement : parcours complet 2025</div><div class="abadge">💰 Développeur sans école à 10 000€</div></div></a>
+    <a class="acard" href="article-355.html"><div class="athumb" style="background:#FAEEDA">▶️</div><div class="abody"><div class="acat">Formation</div><div class="atitle">YouTube pour apprendre : les chaînes sérieuses</div><div class="abadge">💰 Expertise gratuite sur tous les sujets</div></div></a>
+    <a class="acard" href="article-356.html"><div class="athumb" style="background:#E8F5E9">🏆</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Certifications gratuites reconnues : Google, Meta, IBM</div><div class="abadge">💰 CV boosté sans frais</div></div></a>
+    <a class="acard" href="article-357.html"><div class="athumb" style="background:#FFF9C4">🔨</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Apprentissage : avantages financiers pour l'apprenti</div><div class="abadge">💰 Salaire + diplôme = combo gagnant</div></div></a>
+    <a class="acard" href="article-358.html"><div class="athumb" style="background:#E0F7FA">📜</div><div class="abody"><div class="acat">Formation</div><div class="atitle">VAE : obtenir un diplôme par son expérience</div><div class="abadge">💰 Diplômé sans reprendre les cours</div></div></a>
+    <a class="acard" href="article-359.html"><div class="athumb" style="background:#FFF3E0">🛤️</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Bac pro vs BTS vs BUT : que choisir selon votre projet</div><div class="abadge">💰 Quel parcours pour quel salaire</div></div></a>
+    <a class="acard" href="article-360.html"><div class="athumb" style="background:#FCE4EC">🌍</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Erasmus+ : toutes les bourses disponibles</div><div class="abadge">💰 Jusqu'à 700€/mois pour étudier à l'étranger</div></div></a>
+    <a class="acard" href="article-361.html"><div class="athumb" style="background:#E8EAF6">📊</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Master à l'étranger : financer son projet</div><div class="abadge">💰 Master gratuit en Allemagne</div></div></a>
+    <a class="acard" href="article-362.html"><div class="athumb" style="background:#F3E5F5">⚡</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Bootcamp coding : rentabilité et alternatives</div><div class="abadge">💰 ROI en moins de 6 mois</div></div></a>
+    <a class="acard" href="article-363.html"><div class="athumb" style="background:#E8F5E9">🧩</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Micro-learning : apprendre 15 min par jour</div><div class="abadge">💰 Compétence en 3 mois</div></div></a>
+    <a class="acard" href="article-364.html"><div class="athumb" style="background:#FFF9C4">🎯</div><div class="abody"><div class="acat">Formation</div><div class="atitle">AFPA : formations financées pour demandeurs d'emploi</div><div class="abadge">💰 Financement 100% possible</div></div></a>
+    <a class="acard" href="article-365.html"><div class="athumb" style="background:#E3F2FD">💡</div><div class="abody"><div class="acat">Formation</div><div class="atitle">Cours en ligne payants vs gratuits : quand payer</div><div class="abadge">💰 Ne payez que ce qui vaut le coup</div></div></a>
+    <a class="acard" href="article-366.html"><div class="athumb" style="background:#E0F2F1">🏠</div><div class="abody"><div class="acat">Social</div><div class="atitle">APL 2025 : calcul et demande à la CAF</div><div class="abadge">💰 Jusqu'à 400€/mois d'aide</div></div></a>
+    <a class="acard" href="article-367.html"><div class="athumb" style="background:#FCE4EC">🤲</div><div class="abody"><div class="acat">Social</div><div class="atitle">RSA : conditions et démarches en 2025</div><div class="abadge">💰 Jusqu'à 635€/mois</div></div></a>
+    <a class="acard" href="article-368.html"><div class="athumb" style="background:#E8F5E9">💼</div><div class="abody"><div class="acat">Social</div><div class="atitle">Prime d'activité : simulation et demande</div><div class="abadge">💰 Jusqu'à 300€/mois en plus</div></div></a>
+    <a class="acard" href="article-369.html"><div class="athumb" style="background:#FFF8E1">💰</div><div class="abody"><div class="acat">Social</div><div class="atitle">Aides sociales non demandées :6 Mds€ non réclamés</div><div class="abadge">💰 Réclamez ce qui vous est dû</div></div></a>
+    <a class="acard" href="article-370.html"><div class="athumb" style="background:#E3F2FD">🥕</div><div class="abody"><div class="acat">Social</div><div class="atitle">Aide alimentaire : toutes les ressources en France</div><div class="abadge">💰 Banques alimentaires et épiceries sociales</div></div></a>
+    <a class="acard" href="article-371.html"><div class="athumb" style="background:#FAEEDA">⚠️</div><div class="abody"><div class="acat">Social</div><div class="atitle">Surendettement : procédure et sortie de crise</div><div class="abadge">💰 Commission Banque de France</div></div></a>
+    <a class="acard" href="article-372.html"><div class="athumb" style="background:#E1F5EE">💳</div><div class="abody"><div class="acat">Social</div><div class="atitle">Crédit à la consommation : les pièges et alternatives</div><div class="abadge">💰 Évitez les taux à 20%</div></div></a>
+    <a class="acard" href="article-373.html"><div class="athumb" style="background:#F1F8E9">🔄</div><div class="abody"><div class="acat">Social</div><div class="atitle">Rachat de crédit : quand c'est vraiment utile</div><div class="abadge">💰 Mensualités réduites de 30%</div></div></a>
+    <a class="acard" href="article-374.html"><div class="athumb" style="background:#E0F7FA">📋</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Budget zéro basé : méthode et application</div><div class="abadge">💰 Chaque euro a un rôle</div></div></a>
+    <a class="acard" href="article-375.html"><div class="athumb" style="background:#FFF3E0">📊</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Méthode 50/30/20 : appliquer concrètement</div><div class="abadge">💰 Budget automatique en 3 enveloppes</div></div></a>
+    <a class="acard" href="article-376.html"><div class="athumb" style="background:#FCE4EC">📱</div><div class="abody"><div class="acat">Finance</div><div class="atitle">YNAB vs Bankin vs Linxo : quel outil budget choisir</div><div class="abadge">💰 Gérez vos finances comme un pro</div></div></a>
+    <a class="acard" href="article-377.html"><div class="athumb" style="background:#E8EAF6">👫</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Couple et argent : gérer les finances à deux</div><div class="abadge">💰 Sans disputes, avec clarté</div></div></a>
+    <a class="acard" href="article-378.html"><div class="athumb" style="background:#F3E5F5">⚖️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Divorce et argent : protéger son patrimoine</div><div class="abadge">💰 Anticipez les conséquences</div></div></a>
+    <a class="acard" href="article-379.html"><div class="athumb" style="background:#E8F5E9">💸</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Finances après séparation : repartir de zéro</div><div class="abadge">💰 Guide de reconstruction</div></div></a>
+    <a class="acard" href="article-380.html"><div class="athumb" style="background:#FFF9C4">🧒</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Ados et argent de poche : apprendre à gérer</div><div class="abadge">💰 Les bases de la gestion dès 12 ans</div></div></a>
+    <a class="acard" href="article-381.html"><div class="athumb" style="background:#E3F2FD">😰</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">Anxiété financière : reconnaître et surmonter</div><div class="abadge">💰 Reprendre le contrôle</div></div></a>
+    <a class="acard" href="article-382.html"><div class="athumb" style="background:#FAEEDA">🧠</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">TDAH et budget : gérer ses finances autrement</div><div class="abadge">💰 Systèmes adaptés au TDAH</div></div></a>
+    <a class="acard" href="article-383.html"><div class="athumb" style="background:#E1F5EE">📈</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Inflation 2025 : s'adapter et protéger son pouvoir d'achat</div><div class="abadge">💰 Vos stratégies anti-inflation</div></div></a>
+    <a class="acard" href="article-384.html"><div class="athumb" style="background:#F1F8E9">👩</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Femmes et argent : rattraper son retard</div><div class="abadge">💰 Retraite, investissement, salaire</div></div></a>
+    <a class="acard" href="article-385.html"><div class="athumb" style="background:#E0F7FA">✈️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Expatriation : optimiser ses finances à l'étranger</div><div class="abadge">💰 Fiscalité avantageuse</div></div></a>
+    <a class="acard" href="article-386.html"><div class="athumb" style="background:#FFF3E0">🌴</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Retraite à l'étranger : les pays les moins chers</div><div class="abadge">💰 Retraite confortable avec 1 200€/mois</div></div></a>
+    <a class="acard" href="article-387.html"><div class="athumb" style="background:#FCE4EC">📦</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Désencombrement rentable : transformer ses placards en cash</div><div class="abadge">💰 1 000€ dans vos placards</div></div></a>
+    <a class="acard" href="article-388.html"><div class="athumb" style="background:#E8EAF6">🌿</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Consommation consciente : acheter moins et mieux</div><div class="abadge">💰 Qualité vs quantité</div></div></a>
+    <a class="acard" href="article-389.html"><div class="athumb" style="background:#F3E5F5">🏠</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Vivre avec 1 000 €/mois : méthodes et témoignages</div><div class="abadge">💰 C'est possible, voici comment</div></div></a>
+    <a class="acard" href="article-390.html"><div class="athumb" style="background:#FAEEDA">🔥</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Burn-out : récupérer sans se ruiner</div><div class="abadge">💰 Se soigner sans s'endetter</div></div></a>
+    <a class="acard" href="article-391.html"><div class="athumb" style="background:#E8F5E9">🧘</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">Accompagnement psy sans se ruiner : MonPsy, Nightline, pairs</div><div class="abadge">💰 Thérapie dès 15€ la séance</div></div></a>
+    <a class="acard" href="article-392.html"><div class="athumb" style="background:#FFF9C4">🧘</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">Cohérence cardiaque et pleine conscience : apps et méthodes gratuites</div><div class="abadge">💰 Zéro stress, zéro dépense</div></div></a>
+    <a class="acard" href="article-393.html"><div class="athumb" style="background:#E3F2FD">🏃</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">Strava, Garmin, Polar : tracker son sport sans abonnement</div><div class="abadge">💰 Musculaire, cardio, yoga à 0€</div></div></a>
+    <a class="acard" href="article-394.html"><div class="athumb" style="background:#FAEEDA">⏰</div><div class="abody"><div class="acat">Bien-être</div><div class="atitle">Jeûne intermittent : bénéfices santé et économies</div><div class="abadge">💰 jusqu'à -20% sur les courses alimentaires</div></div></a>
+    <a class="acard" href="article-395.html"><div class="athumb" style="background:#E1F5EE">🐌</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Slow living : ralentir pour dépenser moins</div><div class="abadge">💰 La sobriété comme choix</div></div></a>
+    <a class="acard" href="article-396.html"><div class="athumb" style="background:#F1F8E9">🏠</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Tiny house en France : construire ou acheter</div><div class="abadge">💰 Logement dès 30 000€</div></div></a>
+    <a class="acard" href="article-397.html"><div class="athumb" style="background:#E0F7FA">🚐</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Aménager son van : guide budget et matériaux</div><div class="abadge">💰 800€/mois tout compris</div></div></a>
+    <a class="acard" href="article-398.html"><div class="athumb" style="background:#FFF3E0">💻</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Bali, Tbilissi, Lisbonne : les meilleures bases pour nomades</div><div class="abadge">💰 Travailler depuis le monde entier</div></div></a>
+    <a class="acard" href="article-399.html"><div class="athumb" style="background:#FCE4EC">🌾</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Ruralité choisie : économiser en quittant la ville</div><div class="abadge">💰 Loyer divisé par 3</div></div></a>
+    <a class="acard" href="article-400.html"><div class="athumb" style="background:#E8EAF6">🌻</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Permaculture etautonomie alimentaire</div><div class="abadge">💰 Légumes gratuits toute l'année</div></div></a>
+    <a class="acard" href="article-401.html"><div class="athumb" style="background:#F3E5F5">🏠</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Maison passive : coûts et économies sur 20 ans</div><div class="abadge">💰 Facture chauffage proche de 0€</div></div></a>
+    <a class="acard" href="article-402.html"><div class="athumb" style="background:#E8F5E9">🎫</div><div class="abody"><div class="acat">Loisirs</div><div class="atitle">Chèques vacances : utilisation maximale</div><div class="abadge">💰 Jusqu'à 600€ d'aides loisirs</div></div></a>
+    <a class="acard" href="article-403.html"><div class="athumb" style="background:#FFF9C4">🎨</div><div class="abody"><div class="acat">Culture</div><div class="atitle">Musées gratuits : tous les jours et horaires</div><div class="abadge">💰 Louvre, Orsay : gratuit les soirs</div></div></a>
+    <a class="acard" href="article-404.html"><div class="athumb" style="background:#E3F2FD">🎟️</div><div class="abody"><div class="acat">Culture</div><div class="atitle">Sorties culturelles à prix réduit : carte jeune, Pass Culture</div><div class="abadge">💰 jusqu'à -50% cinéma, théâtre, concerts</div></div></a>
+    <a class="acard" href="article-405.html"><div class="athumb" style="background:#FAEEDA">🔨</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Repair café : réparer au lieu d'acheter</div><div class="abadge">💰 Réparer gratuitement avec des experts</div></div></a>
+    <a class="acard" href="article-406.html"><div class="athumb" style="background:#E1F5EE">📚</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Bibliothèque d'objets : emprunter au lieu d'acheter</div><div class="abadge">💰 Perceuse, tente, vélo à 0€</div></div></a>
+    <a class="acard" href="article-407.html"><div class="athumb" style="background:#F1F8E9">🛒</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Soldes : comment acheter vraiment moins cher</div><div class="abadge">💰 Les vraies bonnes affaires</div></div></a>
+    <a class="acard" href="article-408.html"><div class="athumb" style="background:#E0F7FA">🖤</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Cyber Monday et ventes flash : les vraies fenêtres d'achat</div><div class="abadge">💰 Les prix vraiment en baisse</div></div></a>
+    <a class="acard" href="article-409.html"><div class="athumb" style="background:#FFF3E0">💳</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Cashback cumulé : empiler cartes, extensions et apps</div><div class="abadge">💰 Jusqu'à 2% remboursé sur vos achats</div></div></a>
+    <a class="acard" href="article-410.html"><div class="athumb" style="background:#FCE4EC">🏦</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Néobanques 2025 : le comparatif complet</div><div class="abadge">💰 Zéro frais, cashback, assurances</div></div></a>
+    <a class="acard" href="article-411.html"><div class="athumb" style="background:#E8EAF6">✈️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Cartes Amex, Visa : accumuler des miles en France</div><div class="abadge">💰 Voyages offerts par votre carte</div></div></a>
+    <a class="acard" href="article-412.html"><div class="athumb" style="background:#F3E5F5">🛡️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Garanties légales acheteur : droits et procédures</div><div class="abadge">💰 2 ans de garantie minimum</div></div></a>
+    <a class="acard" href="article-413.html"><div class="athumb" style="background:#E8F5E9">⚠️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Arnaques en ligne : reconnaître et signaler</div><div class="abadge">💰 Protégez vos économies</div></div></a>
+    <a class="acard" href="article-414.html"><div class="athumb" style="background:#FFF9C4">🆔</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Identité numérique volée : que faire</div><div class="abadge">💰 Réagir vite pour éviter le pire</div></div></a>
+    <a class="acard" href="article-415.html"><div class="athumb" style="background:#E3F2FD">🏺</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Grenier en or : évaluer et vendre ses objets</div><div class="abadge">💰 Des centaines d'€ dans vos tiroirs</div></div></a>
+    <a class="acard" href="article-416.html"><div class="athumb" style="background:#FAEEDA">✏️</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Vendre ses créations en ligne : plateformes gratuites</div><div class="abadge">💰 Etsy, Fiverr, Redbubble</div></div></a>
+    <a class="acard" href="article-417.html"><div class="athumb" style="background:#E1F5EE">👨‍🏫</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Tutorat en ligne : devenir prof et gagner sa vie</div><div class="abadge">💰 30–50€/h en enseignant</div></div></a>
+    <a class="acard" href="article-418.html"><div class="athumb" style="background:#F1F8E9">🌙</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Moonlighting : avoir un 2e revenu légal</div><div class="abadge">💰 +500 à +2 000€/mois</div></div></a>
+    <a class="acard" href="article-419.html"><div class="athumb" style="background:#E0F7FA">🏠</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Location de sa résidence principale : règles et revenus</div><div class="abadge">💰 Règles et optimisation fiscale</div></div></a>
+    <a class="acard" href="article-420.html"><div class="athumb" style="background:#FFF3E0">💼</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Fiverr et Malt : trouver ses premiers clients freelance</div><div class="abadge">💰 Premiers revenus en 2 semaines</div></div></a>
+    <a class="acard" href="article-421.html"><div class="athumb" style="background:#FCE4EC">🚀</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Side hustle :20 idées testées en France</div><div class="abadge">💰 Trouvez votre 2e source de revenus</div></div></a>
+    <a class="acard" href="article-422.html"><div class="athumb" style="background:#E8EAF6">💤</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Revenus passifs réels : ce qui marche vraiment</div><div class="abadge">💰 Gagner pendant qu'on dort</div></div></a>
+    <a class="acard" href="article-423.html"><div class="athumb" style="background:#F3E5F5">🔗</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Affiliation en ligne : démarrer gratuitement</div><div class="abadge">💰 Commissions sans créer de produit</div></div></a>
+    <a class="acard" href="article-424.html"><div class="athumb" style="background:#E8F5E9">📧</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Newsletter payante : monétiser son expertise</div><div class="abadge">💰 1 000 abonnés = 1 000€/mois</div></div></a>
+    <a class="acard" href="article-425.html"><div class="athumb" style="background:#FFF9C4">🛍️</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Vendre sur Vinted : optimiser ses revenus</div><div class="abadge">💰 500 à 2 000€ dans vos armoires</div></div></a>
+    <a class="acard" href="article-426.html"><div class="athumb" style="background:#E3F2FD">🛒</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Leboncoin : vendre plus vite et plus cher</div><div class="abadge">💰 Astuces pour doubler vos prix</div></div></a>
+    <a class="acard" href="article-427.html"><div class="athumb" style="background:#FAEEDA">📦</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Amazon FBA en 2025 : encore rentable ?</div><div class="abadge">💰 Le vrai calcul de rentabilité</div></div></a>
+    <a class="acard" href="article-428.html"><div class="athumb" style="background:#E1F5EE">🏭</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">E-commerce : lancer une boutique pour 0 €</div><div class="abadge">💰 Shopify, Etsy, sans capital</div></div></a>
+    <a class="acard" href="article-429.html"><div class="athumb" style="background:#F1F8E9">🎁</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Dropshipping en 2025 : est-ce encore rentable ?</div><div class="abadge">💰 La vérité sans bullshit</div></div></a>
+    <a class="acard" href="article-430.html"><div class="athumb" style="background:#E0F7FA">🏷️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Seuils de revenus : impôts et aides en 2025</div><div class="abadge">💰 Ne dépassez pas les plafonds clés</div></div></a>
+    <a class="acard" href="article-431.html"><div class="athumb" style="background:#FFF3E0">🎯</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Niches fiscales méconnues : les 10 meilleures</div><div class="abadge">💰 Jusqu'à 10 000€ de réduction d'impôt</div></div></a>
+    <a class="acard" href="article-432.html"><div class="athumb" style="background:#FCE4EC">🎗️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Don aux associations : déduction fiscale</div><div class="abadge">💰 66% déduit de votre impôt</div></div></a>
+    <a class="acard" href="article-433.html"><div class="athumb" style="background:#E8EAF6">📊</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Déclaration de revenus 2025 : cases méconnues</div><div class="abadge">💰 Cases que personne ne coche</div></div></a>
+    <a class="acard" href="article-434.html"><div class="athumb" style="background:#F3E5F5">📑</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Avis d'imposition : le décrypter complètement</div><div class="abadge">💰 Vérifiez chaque chiffre</div></div></a>
+    <a class="acard" href="article-435.html"><div class="athumb" style="background:#E8F5E9">💸</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Remboursement d'impôt : comment l'accélérer</div><div class="abadge">💰 Récupérez votre trop-perçu</div></div></a>
+    <a class="acard" href="article-436.html"><div class="athumb" style="background:#FFF9C4">🔍</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Contrôle fiscal : droits du contribuable</div><div class="abadge">💰 Comment se défendre</div></div></a>
+    <a class="acard" href="article-437.html"><div class="athumb" style="background:#E3F2FD">📜</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Dividendes : comprendre la flat tax</div><div class="abadge">💰 Optimiser ses revenus boursiers</div></div></a>
+    <a class="acard" href="article-438.html"><div class="athumb" style="background:#FAEEDA">🏠</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Plus-value immobilière : calcul et exonérations</div><div class="abadge">💰 Exonérations méconnues</div></div></a>
+    <a class="acard" href="article-439.html"><div class="athumb" style="background:#E1F5EE">🤔</div><div class="abody"><div class="acat">Finance</div><div class="atitle">PER collectif vs individuel : que choisir</div><div class="abadge">💰 Quel plan retraite est le meilleur</div></div></a>
+    <a class="acard" href="article-440.html"><div class="athumb" style="background:#F1F8E9">📉</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Épargne salariale : les pièges à éviter</div><div class="abadge">💰 Ne laissez pas dormir vos primes</div></div></a>
+    <a class="acard" href="article-441.html"><div class="athumb" style="background:#E0F7FA">🏗️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Défiscalisation immobilière : loi Denormandie 2025</div><div class="abadge">💰 jusqu'à -21% d'impôt sur 12 ans</div></div></a>
+    <a class="acard" href="article-442.html"><div class="athumb" style="background:#FFF3E0">🛠️</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Auto-entrepreneur : charges, cotisations, simulation</div><div class="abadge">💰 Ce qu'il vous reste vraiment</div></div></a>
+    <a class="acard" href="article-443.html"><div class="athumb" style="background:#FCE4EC">💼</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Financer sa créationd'entreprise à 0 €</div><div class="abadge">💰 ACRE, ARCE, subventions</div></div></a>
+    <a class="acard" href="article-444.html"><div class="athumb" style="background:#E8EAF6">🏦</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Fichier FICP : en sortir plus vite</div><div class="abadge">💰 Retrouver sa liberté financière</div></div></a>
+    <a class="acard" href="article-445.html"><div class="athumb" style="background:#F3E5F5">📈</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Scoring bancaire : comment l'améliorer</div><div class="abadge">💰 Accéder aux meilleurs taux</div></div></a>
+    <a class="acard" href="article-446.html"><div class="athumb" style="background:#E8F5E9">🏦</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Banque en lignepour interdit bancaire</div><div class="abadge">💰 Compte garanti même en difficultés</div></div></a>
+    <a class="acard" href="article-447.html"><div class="athumb" style="background:#FFF9C4">💰</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Matelas de sécurité : calculer et constituer en 6 mois</div><div class="abadge">💰 3 mois de charges en réserve</div></div></a>
+    <a class="acard" href="article-448.html"><div class="athumb" style="background:#E3F2FD">🆘</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Urgences financières : le plan de survie</div><div class="abadge">💰 Que faire quand tout s'effondre</div></div></a>
+    <a class="acard" href="article-449.html"><div class="athumb" style="background:#FAEEDA">🔎</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Ciclade : rechercher un contrat d'assurance-vie oublié</div><div class="abadge">💰 Des millions non réclamés chaque an</div></div></a>
+    <a class="acard" href="article-450.html"><div class="athumb" style="background:#E1F5EE">🧓</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Retraites complémentaires : retrouver des droits perdus</div><div class="abadge">💰 Vérifiez votre relevé de carrière</div></div></a>
+    <a class="acard" href="article-451.html"><div class="athumb" style="background:#F1F8E9">💤</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Comptes dormants : procédure pour récupérer son dû</div><div class="abadge">💰 Cherchez dans la base FICOBA</div></div></a>
+    <a class="acard" href="article-452.html"><div class="athumb" style="background:#E0F7FA">📜</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Testament : l'écrire soi-même légalement</div><div class="abadge">💰 Sans notaire, 100% valide</div></div></a>
+    <a class="acard" href="article-453.html"><div class="athumb" style="background:#FFF3E0">🏡</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">SCPI papier-pierre : investir à partir de 200 €</div><div class="abadge">💰 Immobilier sans gestion</div></div></a>
+    <a class="acard" href="article-454.html"><div class="athumb" style="background:#FCE4EC">🔥</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Indépendance financière à 40 ans : le plan chiffré</div><div class="abadge">💰 Retraite à 45 ans, c'est possible</div></div></a>
+    <a class="acard" href="article-455.html"><div class="athumb" style="background:#E8EAF6">⚖️</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Retraite à 50 ans : est-ce possible en France ?</div><div class="abadge">💰 Les conditions et le plan</div></div></a>
+    <a class="acard" href="article-456.html"><div class="athumb" style="background:#F3E5F5">🏆</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Habitudes des gens riches : ce que dit la science</div><div class="abadge">💰 Adoptez les bons réflexes</div></div></a>
+    <a class="acard" href="article-457.html"><div class="athumb" style="background:#E8F5E9">🧩</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Psychologie de l'argent : les biais cognitifs</div><div class="abadge">💰 Arrêtez de vous saboter</div></div></a>
+    <a class="acard" href="article-458.html"><div class="athumb" style="background:#FFF9C4">📖</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Livres incontournablessur la finance personnelle</div><div class="abadge">💰 Les 10 livres qui changent tout</div></div></a>
+    <a class="acard" href="article-459.html"><div class="athumb" style="background:#E3F2FD">▶️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Chaînes YouTube finance : les meilleures en français</div><div class="abadge">💰 Apprendre la finance gratuitement</div></div></a>
+    <a class="acard" href="article-460.html"><div class="athumb" style="background:#FAEEDA">🎙️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Podcasts finances personnelles : les meilleurs en 2025</div><div class="abadge">💰 S'enrichir en écoutant</div></div></a>
+    <a class="acard" href="article-461.html"><div class="athumb" style="background:#E1F5EE">📊</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Simulateur retraite : anticiper avec précision</div><div class="abadge">💰 Calculez votre future pension</div></div></a>
+    <a class="acard" href="article-462.html"><div class="athumb" style="background:#F1F8E9">🏦</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Bilan patrimonial gratuit : comment le faire soi-même</div><div class="abadge">💰 Connaître sa situation nette</div></div></a>
+    <a class="acard" href="article-463.html"><div class="athumb" style="background:#E0F7FA">🎯</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Objectif financier : comment le poser et l'atteindre</div><div class="abadge">💰 SMART goals financiers</div></div></a>
+    <a class="acard" href="article-464.html"><div class="athumb" style="background:#FFF3E0">⚡</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Désencombrement : méthode KonMari et revenus</div><div class="abadge">💰 500 à 2 000€ en désencombrant</div></div></a>
+    <a class="acard" href="article-465.html"><div class="athumb" style="background:#FCE4EC">🌍</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Coliving : vivre en communauté, réduire les coûts</div><div class="abadge">💰 Loyer partagé, vie sociale offerte</div></div></a>
+    <a class="acard" href="article-466.html"><div class="athumb" style="background:#E8EAF6">🛠️</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Négociation salariale : scripts et psychologie</div><div class="abadge">💰 Les mots exacts qui fonctionnent</div></div></a>
+    <a class="acard" href="article-467.html"><div class="athumb" style="background:#F3E5F5">🎓</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Vendre des formations en ligne : outils gratuits</div><div class="abadge">💰 Monétisez votre expertise</div></div></a>
+    <a class="acard" href="article-468.html"><div class="athumb" style="background:#E8F5E9">🔈</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Podcaster et monétiser : guide débutant complet</div><div class="abadge">💰 Premiers revenus en 6 mois</div></div></a>
+    <a class="acard" href="article-469.html"><div class="athumb" style="background:#FFF9C4">🖨️</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Print on demand : créer sans stock ni capital</div><div class="abadge">💰 T-shirts, livres, objets sans frais</div></div></a>
+    <a class="acard" href="article-470.html"><div class="athumb" style="background:#E3F2FD">🤝</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Troc et échanges de services : plateformes actives</div><div class="abadge">💰 Obtenir sans dépenser</div></div></a>
+    <a class="acard" href="article-471.html"><div class="athumb" style="background:#FAEEDA">🏪</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Coopératives d'achats : rejoindre et économiser</div><div class="abadge">💰 -20 à -40% sur votre panier</div></div></a>
+    <a class="acard" href="article-472.html"><div class="athumb" style="background:#E1F5EE">🏡</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Habitat participatif : acheter en commun</div><div class="abadge">💰 Propriétaire pour moins cher</div></div></a>
+    <a class="acard" href="article-473.html"><div class="athumb" style="background:#F1F8E9">🌲</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Groupement Forestier d'Investissement (GFI) : rendement et fiscalité</div><div class="abadge">💰 Réduction d'impôt et rendement</div></div></a>
+    <a class="acard" href="article-474.html"><div class="athumb" style="background:#E0F7FA">🏢</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Crowdfunding immobilier : risques et rendements réels</div><div class="abadge">💰 8–12% de rendement potentiel</div></div></a>
+    <a class="acard" href="article-475.html"><div class="athumb" style="background:#FFF3E0">🌾</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Reconversion agricole : aides et réalité du métier</div><div class="abadge">💰 JA, DJA et dotations à l'installation</div></div></a>
+    <a class="acard" href="article-476.html"><div class="athumb" style="background:#FCE4EC">🎟️</div><div class="abody"><div class="acat">Loisirs</div><div class="atitle">Vieilles Charrues, Hellfest, Rock en Seine : festivals pas chers</div><div class="abadge">💰 Accès gratuit + repas + camping</div></div></a>
+    <a class="acard" href="article-477.html"><div class="athumb" style="background:#E8EAF6">🎭</div><div class="abody"><div class="acat">Culture</div><div class="atitle">Réductions jeunes et étudiantspour le spectacle vivant</div><div class="abadge">💰 Places à 5€ dans les grandes salles</div></div></a>
+    <a class="acard" href="article-478.html"><div class="athumb" style="background:#F3E5F5">🌍</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Bretagne, Occitanie, Auvergne : week-ends France pas chers</div><div class="abadge">💰 Week-end complet dès 80€</div></div></a>
+    <a class="acard" href="article-479.html"><div class="athumb" style="background:#E8F5E9">🌿</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Bénévolat à l'international : partir gratuitement</div><div class="abadge">💰 Voyage pris en charge</div></div></a>
+    <a class="acard" href="article-480.html"><div class="athumb" style="background:#FFF9C4">🏠</div><div class="abody"><div class="acat">Voyages</div><div class="atitle">Hospitality exchange : Couchsurfing et alternatives</div><div class="abadge">💰 Hébergement gratuit partout</div></div></a>
+    <a class="acard" href="article-481.html"><div class="athumb" style="background:#E3F2FD">💡</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Argent et bonheur : ce que dit la science</div><div class="abadge">💰 Le seuil au-delà duquel ça ne change rien</div></div></a>
+    <a class="acard" href="article-482.html"><div class="athumb" style="background:#FAEEDA">🪙</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Monnaie locale : utiliser et en bénéficier</div><div class="abadge">💰 Bonus de 5 à 10%</div></div></a>
+    <a class="acard" href="article-483.html"><div class="athumb" style="background:#E1F5EE">📊</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">Micro-BIC vs BNC : quel régime choisir</div><div class="abadge">💰 Optimisez votre statut</div></div></a>
+    <a class="acard" href="article-484.html"><div class="athumb" style="background:#F1F8E9">💰</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">ACRE : exonération de cotisations à la création</div><div class="abadge">💰 50% de cotisations en moins</div></div></a>
+    <a class="acard" href="article-485.html"><div class="athumb" style="background:#E0F7FA">🔍</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Médiation bancaire : quand et comment y recourir</div><div class="abadge">💰 Gratuit et souvent efficace</div></div></a>
+    <a class="acard" href="article-486.html"><div class="athumb" style="background:#FFF3E0">📞</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Négociation avec les créanciers : méthode complète</div><div class="abadge">💰 Réduire ses dettes légalement</div></div></a>
+    <a class="acard" href="article-487.html"><div class="athumb" style="background:#FCE4EC">🏦</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Microcrédit : accéder au financement sans banque</div><div class="abadge">💰 Jusqu'à 12 000€ via l'Adie</div></div></a>
+    <a class="acard" href="article-488.html"><div class="athumb" style="background:#E8EAF6">🛡️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Droit à l'oubli bancaire : après un surendettement</div><div class="abadge">💰 Repartir sur de bonnes bases</div></div></a>
+    <a class="acard" href="article-489.html"><div class="athumb" style="background:#F3E5F5">🏗️</div><div class="abody"><div class="acat">Revenus</div><div class="atitle">BPI France : aides aux entrepreneurs</div><div class="abadge">💰 Prêts, garanties, subventions</div></div></a>
+    <a class="acard" href="article-490.html"><div class="athumb" style="background:#E8F5E9">🌏</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Aides régionales : trouver celles disponibles</div><div class="abadge">💰 Des milliers € selon votre région</div></div></a>
+    <a class="acard" href="article-491.html"><div class="athumb" style="background:#FFF9C4">💳</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Carte Mastercard World Elite gratuite : comment l'obtenir</div><div class="abadge">💰 Assurances et avantages premium</div></div></a>
+    <a class="acard" href="article-492.html"><div class="athumb" style="background:#E3F2FD">📱</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Revolut, N26, Lydia : quelle néobanque en 2025</div><div class="abadge">💰 Zéro frais, cashback, lounge</div></div></a>
+    <a class="acard" href="article-493.html"><div class="athumb" style="background:#FAEEDA">💤</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Caisse des Dépôts : retrouver les avoirs bancaires oubliés</div><div class="abadge">💰 Cherchez votre argent oublié</div></div></a>
+    <a class="acard" href="article-494.html"><div class="athumb" style="background:#E1F5EE">🎓</div><div class="abody"><div class="acat">Lifestyle</div><div class="atitle">Work and travel : travailler en voyageant légalement</div><div class="abadge">💰 Se financer en voyageant</div></div></a>
+    <a class="acard" href="article-495.html"><div class="athumb" style="background:#F1F8E9">🏖️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Taux d'épargne de 50 % : comment y arriver concrètement</div><div class="abadge">💰 La méthode complète pas à pas</div></div></a>
+    <a class="acard" href="article-496.html"><div class="athumb" style="background:#E0F7FA">🧱</div><div class="abody"><div class="acat">Investissement</div><div class="atitle">Actions françaises à dividende : sélection 2025</div><div class="abadge">💰 5 à 8% de rendement annuel</div></div></a>
+    <a class="acard" href="article-497.html"><div class="athumb" style="background:#FFF3E0">📋</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Défiscalisation : toutes les niches légales 2025</div><div class="abadge">💰 Réduisez votre impôt de 30%</div></div></a>
+    <a class="acard" href="article-498.html"><div class="athumb" style="background:#FCE4EC">🛡️</div><div class="abody"><div class="acat">Finance</div><div class="atitle">Assurance rapatriement : quand est-elle vraiment utile</div><div class="abadge">💰 Votre carte bleue vous couvre peut-être</div></div></a>
+    <a class="acard" href="article-499.html"><div class="athumb" style="background:#E8EAF6">🔮</div><div class="abody"><div class="acat">Finance</div><div class="atitle">L'avenir de l'économie frugale : tendances 2025–2030</div><div class="abadge">💰 Ce qui va changer pour vos finances</div></div></a>
+    <a class="acard" href="article-500.html"><div class="athumb" style="background:#E1F5EE">🏆</div><div class="abody"><div class="acat">Finance</div><div class="atitle">500 articles sur l'argent
+      ce qu'on a vraiment appris</div><div class="abadge">💰 Le grand bilan final</div></div></a>
+    <a class="acard" href="article-501.html"><div class="athumb" style="background:#EDE7F6">🤖</div><div class="abody"><div class="acat">Intelligence Artificielle</div><div class="atitle">ChatGPT, Gemini, Claude : 15 façons d'économiser avec l'IA gratuitement</div><div class="abadge">💡 Jusqu'à 500€/mois</div></div></a>
+    <a class="acard" href="article-502.html"><div class="athumb" style="background:#EDE7F6">🛍️</div><div class="abody"><div class="acat">Intelligence Artificielle</div><div class="atitle">IA et shopping : comment l'intelligence artificielle vous fait économiser</div><div class="abadge">🤖 Shopping intelligent</div></div></a>
+    <a class="acard" href="article-503.html"><div class="athumb" style="background:#EDE7F6">🚀</div><div class="abody"><div class="acat">Intelligence Artificielle</div><div class="atitle">Automatiser ses finances avec l'IA : le guide complet 2026</div><div class="abadge">🚀 Finances en pilote auto</div></div></a>
+    <a class="acard" href="article-504.html"><div class="athumb" style="background:#FFF3E0">👗</div><div class="abody"><div class="acat">Seconde Main</div><div class="atitle">Vinted expert : revendre 500€/mois de vêtements</div><div class="abadge">💰 Jusqu'à 500€/mois</div></div></a>
+    <a class="acard" href="article-505.html"><div class="athumb" style="background:#FFF3E0">📱</div><div class="abody"><div class="acat">Seconde Main</div><div class="atitle">Back Market vs Recommerce vs Fnac reconditionné : le comparatif 2026</div><div class="abadge">📱 Économisez jusqu'à 60%</div></div></a>
+    <a class="acard" href="article-506.html"><div class="athumb" style="background:#FFF3E0">💶</div><div class="abody"><div class="acat">Seconde Main</div><div class="atitle">Leboncoin pro : acheter et revendre pour gagner sa vie</div><div class="abadge">💶 1000-3000€/mois possible</div></div></a>
+    <a class="acard" href="article-507.html"><div class="athumb" style="background:#E0F7FA">🌍</div><div class="abody"><div class="acat">Nomadisme Digital</div><div class="atitle">Télétravailler depuis le Portugal : fiscalité et économies en 2026</div><div class="abadge">🌍 jusqu'à -40% sur votre coût de vie</div></div></a>
+    <a class="acard" href="article-508.html"><div class="athumb" style="background:#E0F7FA">💻</div><div class="abody"><div class="acat">Nomadisme Digital</div><div class="atitle">Nomade digital débutant : vivre et travailler de n'importe où en 2026</div><div class="abadge">🌍 Liberté géographique totale</div></div></a>
+    <a class="acard" href="article-509.html"><div class="athumb" style="background:#FCE4EC">📈</div><div class="abody"><div class="acat">Inflation</div><div class="atitle">Inflation 2026 : protéger son pouvoir d'achat concrètement</div><div class="abadge">📈 Protégez votre pouvoir d'achat</div></div></a>
+    <a class="acard" href="article-510.html"><div class="athumb" style="background:#E8F5E9">🏠</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Renégocier son crédit immobilier en 2026 : économiser des milliers d'euros</div><div class="abadge">🏠 Jusqu'à 50 000€ économisés</div></div></a>
+    <a class="acard" href="article-511.html"><div class="athumb" style="background:#E8F5E9">🏡</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Louer via Airbnb : maximiser ses revenus locatifs en 2026</div><div class="abadge">🏠 Revenus x2 vs location classique</div></div></a>
+    <a class="acard" href="article-512.html"><div class="athumb" style="background:#E8F5E9">🏗️</div><div class="abody"><div class="acat">Immobilier</div><div class="atitle">Acheter en SCI : avantages, pièges et guide complet 2026</div><div class="abadge">🏗️ Optimisation patrimoniale</div></div></a>
+    <a class="acard" href="article-513.html"><div class="athumb" style="background:#E0F7FA">🗺️</div><div class="abody"><div class="acat">Nomadisme Digital</div><div class="atitle">Les pays les moins chers pour télétravailler en 2026</div><div class="abadge">🌍 Vivez mieux pour moins cher</div></div></a>
+    <a class="acard" href="article-514.html"><div class="athumb" style="background:#FCE4EC">💹</div><div class="abody"><div class="acat">Inflation</div><div class="atitle">Investir en période d'inflation : les meilleures stratégies 2026</div><div class="abadge">📈 Battez l'inflation</div></div></a>
+    <a class="acard" href="article-515.html"><div class="athumb" style="background:#FCE4EC">🛒</div><div class="abody"><div class="acat">Inflation</div><div class="atitle">Panier anti-inflation : faire ses courses intelligemment en 2026</div><div class="abadge">🛒 jusqu'à -20% sur vos courses</div></div></a>
+    <a class="acard" href="article-516.html"><div class="athumb" style="background:#FCE4EC">🧠</div><div class="abody"><div class="acat">Psychologie &amp; Argent</div><div class="atitle">L'effet Diderot : pourquoi chaque achat en appelle un autre</div><div class="abadge">🧠 -200€/mois en moyenne</div></div></a>
+    <a class="acard" href="article-517.html"><div class="athumb" style="background:#E8EAF6">💡</div><div class="abody"><div class="acat">Psychologie &amp; Argent</div><div class="atitle">Le biais cognitif qui vous fait perdre 200€/mois sans le savoir</div><div class="abadge">💡 2 400€ perdus/an</div></div></a>
+    <a class="acard" href="article-518.html"><div class="athumb" style="background:#E8F5E9">🎁</div><div class="abody"><div class="acat">Hacks Malins</div><div class="atitle">Devenir testeur de produits rémunéré en France : le guide complet</div><div class="abadge">💰 200-500€/mois possible</div></div></a>
+    <a class="acard" href="article-519.html"><div class="athumb" style="background:#FFF3E0">🚗</div><div class="abody"><div class="acat">Hacks Malins</div><div class="atitle">Casse auto : acheter ses pièces à -80% légalement en 2026</div><div class="abadge">🚗 jusqu'à -80% vs pièces neuves</div></div></a>
+    <a class="acard" href="article-520.html"><div class="athumb" style="background:#E0F7FA">🌍</div><div class="abody"><div class="acat">Géographie &amp; Argent</div><div class="atitle">Les pays qui paient pour que vous vous installiez chez eux en 2026</div><div class="abadge">🌍 Jusqu'à 30 000€ offerts</div></div></a>
+    <a class="acard" href="article-521.html"><div class="athumb" style="background:#EDE7F6">🏦</div><div class="abody"><div class="acat">Géographie &amp; Argent</div><div class="atitle">Ouvrir un compte bancaire à l'étranger légalement : guide complet 2026</div><div class="abadge">🏦 100% légal et déclaré</div></div></a>
+    <a class="acard" href="article-522.html"><div class="athumb" style="background:#E0F7FA">💶</div><div class="abody"><div class="acat">Géographie &amp; Argent</div><div class="atitle">Le géo-arbitrage : vivre en France avec un salaire étranger</div><div class="abadge">💶 +40% de pouvoir d'achat</div></div></a>
+    <a class="acard" href="article-523.html"><div class="athumb" style="background:#FFF8E1">📦</div><div class="abody"><div class="acat">Hacks Malins</div><div class="atitle">Racheter les stocks dormants des PME : comment trouver et négocier</div><div class="abadge">💰 jusqu'à -70% sur les prix du marché</div></div></a>
+    <a class="acard" href="article-524.html"><div class="athumb" style="background:#E8EAF6">🎯</div><div class="abody"><div class="acat">Hacks Malins</div><div class="atitle">Enchères La Poste et SNCF : racheter des bagages perdus à prix cassé</div><div class="abadge">📦 Des trésors à -90%</div></div></a>
+    <a class="acard" href="article-525.html"><div class="athumb" style="background:#FFF3E0">🛒</div><div class="abody"><div class="acat">Hacks Malins</div><div class="atitle">Erreurs de prix en grande surface : quand le distributeur doit vous rembourser</div><div class="abadge">💸 Remboursements garantis par la loi</div></div></a>
+    <a class="acard" href="article-526.html"><div class="athumb" style="background:#E8F5E9">🔌</div><div class="abody"><div class="acat">Hacks Malins</div><div class="atitle">Location d'appareils électroménagers : le vrai calcul financier en 2026</div><div class="abadge">📊 Acheter ou louer ?</div></div></a>
+    <a class="acard" href="article-527.html"><div class="athumb" style="background:#FCE4EC">💹</div><div class="abody"><div class="acat">Hacks Malins</div><div class="atitle">Devenir arbitragiste du quotidien : acheter bas, revendre haut légalement</div><div class="abadge">💰 1 000-3 000€/mois possible</div></div></a>
+
+
+  </div>
+</section>
+
+<section class="hsec">
+  <div class="stag">Comment ça marche</div>
+  <h2 class="stitle">Simple comme bonjour</h2>
+  <div class="steps">
+    <div class="step"><div class="stepn">1</div><h3>On cherche pour vous</h3><p>Notre équipe déniche les vraies économies.</p></div>
+    <div class="step"><div class="stepn">2</div><h3>On teste & compare</h3><p>Chaque bon plan est vérifié et chiffré.</p></div>
+    <div class="step"><div class="stepn">3</div><h3>Vous recevez le meilleur</h3><p>2 fois par semaine dans votre boîte mail.</p></div>
+    <div class="step"><div class="stepn">4</div><h3>Vous économisez</h3><p>Nos lecteurs économisent en moyenne 347€/an.</p></div>
+  </div>
+</section>
+
+<section class="nlsec" id="nl">
+  <div class="nlbox">
+    <div class="stag" style="background:rgba(239,159,39,0.15);color:var(--ad)">Newsletter gratuite</div>
+    <h2 class="stitle">Ne ratez plus aucun bon plan</h2>
+    <p class="ssub" style="margin:0 auto">Rejoignez nos lecteurs malins qui économisent chaque semaine.</p>
+    <form action="https://8c3516b5.sibforms.com/serve/MUIFAJ7Uw5h5Fjb8WPWvxzffQ8pcvJ7gIdeCWQHWqGm-ovG94xuIqP1HX7FWoPMTkBLZz6o-pkHCgDxXe7D_2o4X0BwLHldjyE3p6jqiajS2rYCpWpdRI44saG6YZ-m_jwv-SVXVmMm8PMkQ9Dh0rZ0X_hQg3UC3KKqm8CeDvvkj1CLAR3IBPt6ZOLCLgEOOtsFOzYGVT6MINtcZOQ==" method="POST" class="nlform"><input type="email" name="EMAIL" placeholder="votre@email.fr" required/><button type="submit">Je m'abonne</button></form>
+    <div class="nlperks"><span class="nlperk">Gratuit pour toujours</span><span class="nlperk">2 emails/semaine</span><span class="nlperk">Désabonnement en 1 clic</span></div>
+  </div>
+</section>
+
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html" style="color:rgba(255,255,255,.7)">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:rgba(255,255,255,.7)">Politique de confidentialité</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.7)">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

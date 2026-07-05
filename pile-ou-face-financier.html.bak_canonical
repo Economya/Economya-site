@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pile ou Face Financier — Economya.fr</title>
+<meta name="description" content="15 dilemmes financiers, un choix, un fait réel. Jouez gratuitement sur Economya.fr">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--rd:#ef4444;--rdl:#fef2f2}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#1a0533,#7c2d92,#a855f7);color:white;padding:3rem 1.5rem 2.5rem;text-align:center}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);padding:.35rem 1rem;border-radius:50px;font-size:.78rem;font-weight:700;margin-bottom:.8rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.6rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:var(--a);font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.85);max-width:480px;margin:0 auto}
+
+.container{max-width:680px;margin:0 auto;padding:2.5rem 1.5rem}
+
+.idle{text-align:center}
+.idle p{color:var(--m);font-size:.95rem;line-height:1.6;margin-bottom:1.8rem;max-width:480px;margin-left:auto;margin-right:auto}
+.coin-wrap{display:flex;justify-content:center;margin-bottom:2rem}
+.coin{width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,var(--a),#d97706);display:flex;align-items:center;justify-content:center;font-size:3.2rem;box-shadow:0 10px 30px rgba(239,159,39,.4);cursor:pointer;transition:transform .15s}
+.coin:hover{transform:scale(1.05)}
+.coin.flipping{animation:flip .8s ease}
+@keyframes flip{0%{transform:rotateY(0)}50%{transform:rotateY(900deg) scale(1.15)}100%{transform:rotateY(1080deg)}}
+.btn-start{background:linear-gradient(135deg,var(--gd),var(--g));color:white;border:none;padding:.9rem 2.6rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;font-size:1rem}
+
+.stats-bar{display:flex;justify-content:center;gap:2rem;padding:1rem;background:var(--w);border-bottom:1px solid var(--b);flex-wrap:wrap}
+.stat-item{text-align:center}
+.stat-val{display:block;font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd)}
+.stat-lbl{font-size:.7rem;color:var(--m);text-transform:uppercase;letter-spacing:.05em}
+
+.dilemma-card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.06);margin-bottom:1.5rem}
+.dilemma-num{font-size:.72rem;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.8rem}
+.dilemma-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--gd);margin-bottom:1.5rem;line-height:1.4}
+
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:.5rem}
+.choice-btn{padding:1.3rem 1rem;border-radius:16px;font-weight:700;font-size:.95rem;cursor:pointer;font-family:inherit;border:3px solid var(--b);background:var(--bg);color:var(--t);transition:all .2s;line-height:1.3}
+.choice-btn:hover{border-color:var(--g);background:var(--gl)}
+.choice-btn.chosen{border-color:var(--g);background:var(--gl);color:var(--gd)}
+
+.fact-card{background:var(--al);border-radius:var(--r);border:1px solid var(--a);padding:1.5rem;margin-top:1rem;display:none}
+.fact-card.show{display:block;animation:fadein .3s}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.fact-label{font-size:.72rem;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:.06em;margin-bottom:.5rem}
+.fact-text{font-size:.92rem;color:var(--t);line-height:1.6}
+.fact-source{font-size:.75rem;color:var(--m);font-style:italic;margin-top:.6rem;display:block}
+
+.btn-next{display:block;margin:1.2rem auto 0;background:var(--gd);color:white;border:none;padding:.8rem 2.2rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.9rem}
+
+.result-screen{display:none;text-align:center}
+.result-screen.show{display:block}
+.result-icon{font-size:3rem;margin-bottom:1rem}
+.result-title{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;color:var(--gd);margin-bottom:.8rem}
+.result-text{color:var(--m);font-size:.95rem;margin-bottom:1.8rem}
+.btn-restart{background:linear-gradient(135deg,var(--gd),var(--g));color:white;border:none;padding:.8rem 2.2rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.95rem}
+
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div:not(.mobile-menu){display:none}
+}
+@media(max-width:480px){.choices{grid-template-columns:1fr}}
+</style>
+<link rel="canonical" href="https://economya.fr/pile-ou-face-financier.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="jeux.html">← Jeux</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-btn" onclick="toggleMenu()">✕</button>
+  <a href="index.html">Accueil</a>
+  <a href="jeux.html">Jeux</a>
+  <a href="outils-gratuits.html">Outils gratuits</a>
+  <a href="comparateurs.html">Comparateurs</a>
+  <a href="a-propos.html">A propos</a>
+  <a href="recherche.html">Rechercher</a>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">🪙 Pile ou Face</div>
+  <h1>Pile ou <em>Face</em> Financier</h1>
+  <p>15 dilemmes d'argent. Un choix. Un fait réel derrière chaque décision.</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-val" id="s-num">0/15</span><span class="stat-lbl">Dilemme</span></div>
+  <div class="stat-item"><span class="stat-val" id="s-a">0</span><span class="stat-lbl">Choix A</span></div>
+  <div class="stat-item"><span class="stat-val" id="s-b">0</span><span class="stat-lbl">Choix B</span></div>
+</div>
+
+<div class="container">
+
+  <div class="idle" id="screen-idle">
+    <p>15 dilemmes financiers classiques. Vous choisissez une option, on vous montre un fait ou un chiffre réel lié à ce choix. Aucune bonne ou mauvaise réponse — juste de quoi réfléchir.</p>
+    <div class="coin-wrap"><div class="coin">🪙</div></div>
+    <button class="btn-start" onclick="startGame()">Lancer la pièce</button>
+  </div>
+
+  <div id="screen-game" style="display:none">
+    <div class="dilemma-card">
+      <div class="dilemma-num" id="dilemma-counter">Dilemme 1 / 15</div>
+      <div class="dilemma-title" id="dilemma-title"></div>
+      <div class="choices">
+        <button class="choice-btn" id="choice-a" onclick="chooseOption('a')"></button>
+        <button class="choice-btn" id="choice-b" onclick="chooseOption('b')"></button>
+      </div>
+    </div>
+    <div class="fact-card" id="fact-card">
+      <div class="fact-label">📊 Le fait</div>
+      <div class="fact-text" id="fact-text"></div>
+      <span class="fact-source" id="fact-source"></span>
+      <button class="btn-next" onclick="nextDilemma()">Dilemme suivant →</button>
+    </div>
+  </div>
+
+  <div class="result-screen" id="screen-result">
+    <div class="result-icon">🏁</div>
+    <div class="result-title">Tu as fait tes 15 choix</div>
+    <div class="result-text" id="result-text"></div>
+    <button class="btn-restart" onclick="restartGame()">Rejouer avec d'autres dilemmes</button>
+  </div>
+
+</div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Outils indicatifs, ne constituent pas des conseils financiers ou fiscaux.</span>
+</footer>
+
+<script>
+function toggleMenu(){
+  var m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+
+var dilemmas = [
+  {title:"Louer ou acheter son logement ?",a:"Louer",b:"Acheter",fact:"En France, le délai moyen pour qu'un achat devienne plus avantageux qu'une location se situe généralement autour de 8 à 10 ans de détention, selon les zones et les frais de notaire.",source:"Notaires de France"},
+  {title:"CDI à salaire fixe ou freelance à revenus variables ?",a:"CDI fixe",b:"Freelance",fact:"Un freelance facture en moyenne 30 à 50% de plus qu'un salarié sur une mission équivalente, pour compenser l'absence de congés payés, mutuelle et cotisations chômage.",source:"URSSAF"},
+  {title:"Tout investir en bourse ou tout sur un Livret A ?",a:"Bourse",b:"Livret A",fact:"Sur les 20 dernières années, le CAC 40 a affiché un rendement annuel moyen net supérieur à celui du Livret A, mais avec une volatilité largement plus élevée et des années négatives.",source:"Euronext / Banque de France"},
+  {title:"Voiture neuve à crédit ou occasion payée cash ?",a:"Neuve à crédit",b:"Occasion cash",fact:"Une voiture neuve perd en moyenne 15 à 20% de sa valeur dès la première année, contre une dépréciation beaucoup plus lente sur un véhicule d'occasion récent.",source:"Argus"},
+  {title:"Vivre seul ou en colocation à 30 ans ?",a:"Seul",b:"Colocation",fact:"Le loyer moyen d'une colocation est généralement inférieur de 30 à 40% au coût d'un logement individuel équivalent dans les grandes villes françaises.",source:"Observatoire des loyers"},
+  {title:"Rembourser ses dettes vite ou épargner en parallèle ?",a:"Rembourser vite",b:"Épargner en parallèle",fact:"Un crédit à la consommation affiche souvent un taux supérieur à 5-6%, largement au-dessus du rendement d'un Livret A — rembourser vite limite généralement le coût total des intérêts.",source:"Banque de France"},
+  {title:"PEA ou assurance vie pour commencer à investir ?",a:"PEA",b:"Assurance vie",fact:"Le PEA devient totalement exonéré d'impôt sur les plus-values après 5 ans de détention (hors prélèvements sociaux), contre 8 ans pour l'avantage fiscal plein de l'assurance vie.",source:"Service Public"},
+  {title:"Déménager en province pour le coût de la vie ou rester en ville pour le salaire ?",a:"Province",b:"Grande ville",fact:"Le loyer moyen au m² à Paris est généralement 2 à 3 fois supérieur à celui de villes moyennes de province, ce qui peut compenser un écart de salaire significatif.",source:"INSEE"},
+  {title:"Acheter neuf à crédit ou occasion sans dette ?",a:"Neuf à crédit",b:"Occasion sans dette",fact:"Un achat sans crédit évite totalement le coût des intérêts, mais le neuf bénéficie généralement d'une garantie constructeur plus longue.",source:"Economya.fr"},
+  {title:"Travailler plus pour gagner plus ou optimiser ses dépenses ?",a:"Gagner plus",b:"Dépenser moins",fact:"1€ économisé équivaut à environ 1,3 à 1,4€ gagné avant impôt pour un salarié moyen, une fois prises en compte les charges sociales et l'impôt sur le revenu.",source:"Economya.fr"},
+  {title:"Investir dans l'immobilier locatif ou en bourse ?",a:"Immobilier locatif",b:"Bourse",fact:"L'immobilier locatif offre un effet de levier via le crédit que la bourse ne permet généralement pas, mais avec des frais d'entrée et de gestion nettement plus élevés.",source:"Economya.fr"},
+  {title:"Épargner d'abord ou se faire plaisir d'abord chaque mois ?",a:"Épargner d'abord",b:"Se faire plaisir d'abord",fact:"La méthode dite du 'paiement à soi-même' (épargne automatique dès réception du salaire) est largement recommandée par les conseillers en gestion de patrimoine pour sécuriser l'épargne avant qu'elle ne soit dépensée.",source:"Economya.fr"},
+  {title:"Souscrire une mutuelle premium ou une mutuelle basique ?",a:"Mutuelle premium",b:"Mutuelle basique",fact:"L'écart de cotisation entre une mutuelle basique et une mutuelle premium peut représenter plusieurs centaines d'euros par an, à mettre en balance avec les besoins de soins réels.",source:"Economya.fr"},
+  {title:"Garder son épargne liquide ou la bloquer sur un placement long terme ?",a:"Épargne liquide",b:"Placement bloqué",fact:"Les conseillers recommandent généralement de conserver 3 à 6 mois de dépenses courantes en épargne disponible avant de bloquer le reste sur des placements long terme.",source:"Economya.fr"},
+  {title:"Faire ses courses au supermarché classique ou en circuit court plus cher ?",a:"Supermarché classique",b:"Circuit court",fact:"Le circuit court peut coûter plus cher à l'achat, mais réduit souvent le gaspillage alimentaire grâce à des quantités mieux adaptées aux besoins réels du foyer.",source:"Economya.fr"}
+];
+
+var current = 0;
+var countA = 0;
+var countB = 0;
+var shuffled = [];
+
+function shuffleArray(arr){
+  var a = arr.slice();
+  for(var i = a.length - 1; i > 0; i--){
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function startGame(){
+  shuffled = shuffleArray(dilemmas);
+  current = 0;
+  countA = 0;
+  countB = 0;
+  document.getElementById('screen-idle').style.display = 'none';
+  document.getElementById('screen-game').style.display = 'block';
+  document.getElementById('screen-result').classList.remove('show');
+  showDilemma();
+}
+
+function showDilemma(){
+  var d = shuffled[current];
+  document.getElementById('dilemma-counter').textContent = 'Dilemme ' + (current + 1) + ' / ' + shuffled.length;
+  document.getElementById('s-num').textContent = (current + 1) + '/' + shuffled.length;
+  document.getElementById('dilemma-title').textContent = d.title;
+  document.getElementById('choice-a').textContent = d.a;
+  document.getElementById('choice-b').textContent = d.b;
+  document.getElementById('choice-a').classList.remove('chosen');
+  document.getElementById('choice-b').classList.remove('chosen');
+  document.getElementById('fact-card').classList.remove('show');
+}
+
+function chooseOption(opt){
+  var d = shuffled[current];
+  document.getElementById('choice-a').classList.toggle('chosen', opt === 'a');
+  document.getElementById('choice-b').classList.toggle('chosen', opt === 'b');
+  if(opt === 'a'){ countA++; document.getElementById('s-a').textContent = countA; }
+  else { countB++; document.getElementById('s-b').textContent = countB; }
+  document.getElementById('fact-text').textContent = d.fact;
+  document.getElementById('fact-source').textContent = 'Source : ' + d.source;
+  document.getElementById('fact-card').classList.add('show');
+}
+
+function nextDilemma(){
+  current++;
+  if(current >= shuffled.length){
+    showResult();
+  } else {
+    showDilemma();
+  }
+}
+
+function showResult(){
+  document.getElementById('screen-game').style.display = 'none';
+  document.getElementById('screen-result').classList.add('show');
+  var text = 'Tu as choisi l\'option A ' + countA + ' fois et l\'option B ' + countB + ' fois sur ' + shuffled.length + ' dilemmes. Chaque situation est différente — l\'idée n\'est pas qu\'il y ait une bonne réponse, mais de connaître les faits avant de décider.';
+  document.getElementById('result-text').textContent = text;
+}
+
+function restartGame(){
+  document.getElementById('screen-result').classList.remove('show');
+  document.getElementById('screen-idle').style.display = 'block';
+  document.getElementById('s-a').textContent = '0';
+  document.getElementById('s-b').textContent = '0';
+  document.getElementById('s-num').textContent = '0/' + dilemmas.length;
+}
+</script>
+</body>
+</html>

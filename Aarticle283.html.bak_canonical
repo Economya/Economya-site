@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slow travel : voyager moins cher en restant plus — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--amber:#d97706;--amber-l:#fffbeb;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--r:14px}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.nav-back:hover{color:var(--g)}
+.ah{background:linear-gradient(135deg,#1c1000,#92400e,#d97706);color:white;padding:3rem 2rem 2.5rem;position:relative;overflow:hidden}
+.ah::before{content:'🐢';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none;line-height:1}
+.hi{max-width:760px;margin:0 auto;position:relative;z-index:1}
+.cat-pill{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fde68a;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.28rem .9rem;border-radius:50px;margin-bottom:.9rem}
+.ah h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:.9rem}
+.ah h1 em{color:#fcd34d;font-style:normal}
+.savings-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,#16a34a,#d97706);color:white;font-size:.88rem;font-weight:700;padding:.45rem 1.2rem;border-radius:50px;margin-bottom:1.3rem;box-shadow:0 4px 14px rgba(217,119,6,.35)}
+.meta-row{display:flex;flex-wrap:wrap;gap:.6rem}
+.meta-item{display:inline-flex;align-items:center;gap:.3rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:.22rem .7rem;border-radius:50px;color:rgba(255,255,255,.8);font-size:.74rem}
+.theme-tag{background:linear-gradient(135deg,#d97706,#16a34a);color:white;font-weight:600;padding:.22rem .8rem;border-radius:50px;font-size:.72rem}
+.ab{max-width:760px;margin:0 auto;padding:2.5rem 2rem 4rem}
+.lead{font-size:1.05rem;color:var(--m);font-weight:300;border-left:4px solid var(--amber);padding-left:1.2rem;margin-bottom:2rem;line-height:1.8}
+h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 1rem;display:flex;align-items:center;gap:.5rem}
+p{margin-bottom:1rem;font-size:.95rem}
+
+/* COMPARISON BUDGET */
+.comp{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:1.5rem 0}
+@media(max-width:500px){.comp{grid-template-columns:1fr}}
+.comp-card{border-radius:var(--r);padding:1.3rem;border:2px solid transparent}
+.comp-card.fast{background:#fef2f2;border-color:#fecaca}
+.comp-card.slow{background:var(--gl);border-color:#86efac}
+.comp-title{font-weight:700;font-size:.95rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
+.comp-card.fast .comp-title{color:#dc2626}
+.comp-card.slow .comp-title{color:#16a34a}
+.comp-items{display:flex;flex-direction:column;gap:.4rem}
+.comp-item{display:flex;justify-content:space-between;font-size:.83rem;padding:.3rem 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.comp-item:last-child{border-bottom:none;font-weight:700;padding-top:.5rem}
+.comp-card.fast .comp-item{color:#7f1d1d}
+.comp-card.slow .comp-item{color:#166534}
+.comp-item span:last-child{font-weight:600}
+
+/* PRINCIPES LISTE */
+.principes{display:flex;flex-direction:column;gap:.8rem;margin:1.2rem 0}
+.principe{display:flex;align-items:flex-start;gap:.9rem;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:.95rem 1.1rem}
+.principe .pico{font-size:1.4rem;flex-shrink:0;margin-top:.05rem}
+.principe strong{display:block;font-size:.92rem;margin-bottom:.15rem}
+.principe span{font-size:.85rem;color:var(--m);font-weight:300}
+.principe .ptag{display:inline-block;margin-top:.35rem;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.1rem .5rem;border-radius:50px}
+
+/* DESTINATIONS SLOW */
+.destinations{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:.9rem;margin:1.5rem 0}
+.dest{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem;text-align:center;transition:transform .2s}
+.dest:hover{transform:translateY(-2px)}
+.dest-flag{font-size:1.6rem;margin-bottom:.4rem}
+.dest-name{font-weight:700;font-size:.88rem;margin-bottom:.2rem}
+.dest-cout{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--amber);margin:.15rem 0}
+.dest-desc{font-size:.75rem;color:var(--m);font-weight:300;line-height:1.35}
+
+/* ENCADRÉS */
+.tip{background:var(--gl);border-left:4px solid var(--g);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:var(--gd)}
+.tip strong{display:block;font-weight:600;margin-bottom:.25rem}
+.warn{background:var(--amber-l);border-left:4px solid var(--amber);border-radius:var(--r);padding:1.1rem 1.4rem;margin:1.5rem 0;font-size:.9rem;color:#78350f}
+.warn strong{display:block;font-weight:600;margin-bottom:.25rem}
+
+.cta{background:linear-gradient(135deg,#1c1000,#92400e);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:2.5rem;color:white}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:.4rem}
+.cta p{color:rgba(255,255,255,.7);font-size:.86rem;margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:none;font-size:.86rem;font-family:inherit}
+.cta-form button{background:linear-gradient(135deg,#d97706,#16a34a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem}
+footer strong{color:white}
+@media(max-width:640px){.ah{padding:2rem 1.2rem}.ab{padding:1.8rem 1.1rem 3rem}.ah::before{font-size:8rem}}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){.hamburger{display:flex}nav .nav-links,nav>a:not(.logo){display:none}nav ul{display:none}}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Slow travel : voyager moins cher en restant plus",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/Aarticle283.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Slow travel : voyager moins cher en restant plus">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/Aarticle283.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Slow travel : voyager moins cher en restant plus">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/Aarticle283.html" />
+<meta name="description" content="Slow travel : voyager moins cher en restant plus — Economya.fr" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+
+<div class="ah">
+  <div class="hi">
+    <div class="cat-pill">🐢 Voyages</div>
+    <h1>Slow travel :<br><em>voyager moins cher en restant plus</em></h1>
+    <div class="savings-badge">💰 Coût journalier divisé par 2</div>
+    <div class="meta-row">
+      <span class="meta-item">⏱ 4 min de lecture</span>
+      <span class="meta-item">📅 Vérifié mai 2025</span>
+      <span class="theme-tag">🌿 Voyage durable & malin</span>
+    </div>
+  </div>
+</div>
+
+<div class="ab">
+
+  <p class="lead">Le slow travel, c'est l'art de rester plus longtemps au même endroit plutôt que de courir de ville en ville. Paradoxe : plus vous restez, moins vous dépensez par jour. Louer un appartement une semaine coûte moins cher que trois hôtels différents — et vous vivez mieux.</p>
+
+  <h2>📊 Le vrai calcul : fast travel vs slow travel (7 jours)</h2>
+
+  <div class="comp">
+    <div class="comp-card fast">
+      <div class="comp-title">🚀 Fast travel (4 villes)</div>
+      <div class="comp-items">
+        <div class="comp-item"><span>4 vols internes</span><span>320 €</span></div>
+        <div class="comp-item"><span>4 hôtels (90 €/nuit)</span><span>630 €</span></div>
+        <div class="comp-item"><span>Transports locaux</span><span>120 €</span></div>
+        <div class="comp-item"><span>Repas (resto chaque soir)</span><span>280 €</span></div>
+        <div class="comp-item"><span>Activités touristiques</span><span>200 €</span></div>
+        <div class="comp-item"><span>Total</span><span>1 550 €</span></div>
+      </div>
+    </div>
+    <div class="comp-card slow">
+      <div class="comp-title">🐢 Slow travel (1 destination)</div>
+      <div class="comp-items">
+        <div class="comp-item"><span>1 vol aller-retour</span><span>120 €</span></div>
+        <div class="comp-item"><span>Appartement 7 nuits</span><span>350 €</span></div>
+        <div class="comp-item"><span>Transport local</span><span>30 €</span></div>
+        <div class="comp-item"><span>Repas (cuisine + 2 restos)</span><span>130 €</span></div>
+        <div class="comp-item"><span>Activités locales</span><span>80 €</span></div>
+        <div class="comp-item"><span>Total</span><span>710 €</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h2>🌿 Les principes du slow travel</h2>
+
+  <div class="principes">
+    <div class="principe">
+      <span class="pico">🏠</span>
+      <div>
+        <strong>Louer un appartement plutôt que des hôtels</strong>
+        <span>Un appartement avec cuisine à 50–70 €/nuit sur une semaine revient moins cher que des hôtels à 90 €/nuit sur 3 villes. Et vous cuisinez — économie massive sur les repas.</span>
+        <span class="ptag">💰 −50 % sur l'hébergement</span>
+      </div>
+    </div>
+    <div class="principe">
+      <span class="pico">🛒</span>
+      <div>
+        <strong>Faire ses courses au marché local</strong>
+        <span>Petit-déjeuner et déjeuner en appart, un seul repas au restaurant le soir : sur 7 jours, vous économisez 150 à 200 € par rapport à manger dehors à chaque repas.</span>
+        <span class="ptag">💰 −20 à −30 €/jour sur la nourriture</span>
+      </div>
+    </div>
+    <div class="principe">
+      <span class="pico">🗺️</span>
+      <div>
+        <strong>Explorer en profondeur plutôt qu'en largeur</strong>
+        <span>Un seul vol aller-retour au lieu de 4 vols internes. Les plages isolées, les villages cachés, les spots locaux sont souvent gratuits et bien plus authentiques que les musées à 20 €.</span>
+        <span class="ptag">💰 −200 à −400 € sur les transports</span>
+      </div>
+    </div>
+    <div class="principe">
+      <span class="pico">💼</span>
+      <div>
+        <strong>Travailler à distance pendant le voyage (workation)</strong>
+        <span>Si vous êtes en télétravail, étendez votre séjour à 2–3 semaines. Le coût journalier chute encore : l'appartement amorti sur 14 jours coûte 35 €/nuit au lieu de 70 €.</span>
+        <span class="ptag">💰 Coût journalier divisé par 2</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>🌍 Les meilleures destinations slow travel abordables</h2>
+
+  <div class="destinations">
+    <div class="dest">
+      <div class="dest-flag">🇵🇹</div>
+      <div class="dest-name">Lisbonne</div>
+      <div class="dest-cout">40–60 €/jour</div>
+      <div class="dest-desc">Appart., marchés locaux, tramways. Gastronomie délicieuse et bon marché.</div>
+    </div>
+    <div class="dest">
+      <div class="dest-flag">🇪🇸</div>
+      <div class="dest-name">Séville</div>
+      <div class="dest-cout">35–55 €/jour</div>
+      <div class="dest-desc">Tapas à 1–2 €, hébergement accessible, vie de quartier intense et gratuite.</div>
+    </div>
+    <div class="dest">
+      <div class="dest-flag">🇬🇷</div>
+      <div class="dest-name">Crète (hors juillet-août)</div>
+      <div class="dest-cout">30–50 €/jour</div>
+      <div class="dest-desc">Plages magnifiques, tavernes locales à 8–12 €, locations de villa très abordables.</div>
+    </div>
+    <div class="dest">
+      <div class="dest-flag">🇲🇪</div>
+      <div class="dest-name">Monténégro</div>
+      <div class="dest-cout">25–40 €/jour</div>
+      <div class="dest-desc">Mer Adriatique, montagnes, hébergements très bon marché. Europe méconnue et magnifique.</div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>💡 La workation : slow travel + télétravail</strong>
+    Si votre employeur autorise le télétravail depuis l'étranger (vérifiez les conditions fiscales et sociales), combiner une semaine de congés avec deux semaines de télétravail vous permet de profiter d'une destination sur 3 semaines pour le prix d'un aller-retour.
+  </div>
+
+  <div class="warn">
+    <strong>⚠️ Vérifiez les règles de télétravail à l'étranger</strong>
+    Travailler depuis l'étranger plus de 90 jours par an peut entraîner des obligations fiscales dans le pays d'accueil. Pour des séjours courts (moins de 90 jours), c'est généralement sans problème pour les ressortissants UE. Consultez votre employeur et votre comptable.
+  </div>
+
+  <div class="cta">
+    <h3>📬 Voyages malins dans votre boîte mail</h3>
+    <p>Les meilleures astuces pour voyager plus pour moins cher, chaque semaine.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr" />
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jardinage et potager pas cher — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.7;font-size:1rem}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99;flex-wrap:wrap;gap:.4rem}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+  .logo span{color:var(--a)}
+  .nl{display:flex;gap:.7rem;list-style:none;flex-wrap:wrap}
+  .nl a{text-decoration:none;color:var(--m);font-size:.76rem;font-weight:500}
+  .nl a:hover{color:var(--g)}
+  .ncta{background:var(--g);color:white!important;padding:.3rem .8rem;border-radius:50px}
+  .article-hero{background:linear-gradient(135deg,#04342C,#0F6E56 60%,#1D9E75);color:white;padding:3.5rem 2rem 3rem;text-align:center}
+  .acat-badge{display:inline-block;background:rgba(225,245,238,0.15);color:#A8E6CF;border:1px solid rgba(168,230,207,0.3);padding:.25rem .8rem;border-radius:50px;font-size:.72rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em;margin-bottom:1rem}
+  .article-hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:900;line-height:1.15;margin-bottom:.8rem;max-width:640px;margin-left:auto;margin-right:auto}
+  .article-hero h1 em{color:var(--a);font-style:normal}
+  .article-hero .intro{font-size:.95rem;color:rgba(255,255,255,0.75);max-width:500px;margin:0 auto 1.5rem;font-weight:300}
+  .meta{display:flex;justify-content:center;gap:1.5rem;font-size:.75rem;color:rgba(255,255,255,0.5);flex-wrap:wrap}
+  .saving-pill{display:inline-flex;align-items:center;gap:.4rem;background:var(--al);color:var(--ad);font-weight:600;font-size:.85rem;padding:.45rem 1.1rem;border-radius:50px;margin-top:1.4rem}
+  .article-body{max-width:720px;margin:0 auto;padding:3rem 1.8rem 4rem}
+  .article-body h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;margin:2.2rem 0 .7rem;color:var(--gd)}
+  .article-body p{color:var(--t);font-weight:300;margin-bottom:1rem;font-size:.97rem}
+  .article-body strong{font-weight:500;color:var(--t)}
+  .tip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;margin:1.2rem 0 2rem}
+  .tcard{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:1rem 1.1rem}
+  .tcard .emoji{font-size:1.4rem;margin-bottom:.4rem}
+  .tcard h3{font-size:.85rem;font-weight:500;color:var(--gd);margin-bottom:.2rem}
+  .tcard p{font-size:.78rem;color:var(--m);margin:0;font-weight:300}
+  .tcard .tag{display:inline-block;background:var(--gl);color:var(--gd);font-size:.6rem;font-weight:500;padding:.1rem .5rem;border-radius:50px;margin-top:.5rem;text-transform:uppercase}
+  .veggie-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem;margin:1.2rem 0 2rem}
+  .vcard{background:var(--w);border:1px solid var(--b);border-radius:10px;padding:.8rem 1rem;text-align:center}
+  .vcard .emoji{font-size:1.6rem;display:block;margin-bottom:.3rem}
+  .vcard h3{font-size:.8rem;font-weight:500;color:var(--gd);margin-bottom:.15rem}
+  .vcard p{font-size:.72rem;color:var(--m);margin:0;font-weight:300}
+  .tip-box{background:var(--gl);border-left:3px solid var(--g);border-radius:0 10px 10px 0;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.9rem}
+  .tip-box strong{color:var(--gd);display:block;margin-bottom:.3rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+  .saving-box{background:var(--al);border-radius:12px;padding:1.4rem 1.6rem;margin:2rem 0;text-align:center}
+  .saving-box .amount{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--ad)}
+  .saving-box p{font-size:.85rem;color:var(--ad);margin:0;font-weight:300}
+  .back-link{display:inline-flex;align-items:center;gap:.4rem;color:var(--g);font-size:.82rem;font-weight:500;text-decoration:none;margin-bottom:2rem}
+  .back-link:hover{text-decoration:underline}
+  footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
+  footer strong{color:white}
+  @media(max-width:640px){nav{padding:.8rem 1rem}.nl{display:none}.article-hero{padding:2.5rem 1.2rem 2rem}.article-body{padding:2rem 1.2rem 3rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links,nav > a:not(.logo),nav > div:not(.mobile-menu){display:none!important}
+  nav li{display:none!important}
+}
+</style>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Jardinage et potager pas cher",
+  "description": "Conseils et astuces pour économiser au quotidien.",
+  "url": "https://economya.fr/article-83.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Jardinage et potager pas cher">
+  <meta property="og:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta property="og:url" content="https://economya.fr/article-83.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Jardinage et potager pas cher">
+  <meta name="twitter:description" content="Conseils, outils et astuces pour économiser au quotidien sur Economya.fr">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/article-83.html" />
+<meta name="description" content="Jardinage et potager pas cher — Economya.fr" />
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <ul class="nl">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="articles.html#a1">Courses</a></li>
+    <li><a href="articles.html#a4">Assurances</a></li>
+    <li><a href="articles.html#a7">Mobile</a></li>
+    <li><a href="articles.html#a51">Investir</a></li>
+    <li><a href="articles.html#a60">Santé mentale</a></li>
+    <li><a href="index.html#nl" class="ncta">Newsletter</a></li>
+  </ul>
+  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div role="navigation" aria-label="Fil d'Ariane" style="max-width:900px;margin:0 auto;padding:.7rem 1.5rem;font-size:.78rem;color:var(--m,#5F5E5A);display:flex;flex-wrap:wrap;align-items:center;gap:.35rem"><a href="index.html" style="color:inherit;text-decoration:none">Accueil</a> › <span style="color:var(--t,#2C2C2A)">Jardinage et potager pas cher</span></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://economya.fr/index.html"}, {"@type": "ListItem", "position": 2, "name": "Jardinage et potager pas cher", "item": "https://economya.fr/article-83.html"}]}</script>
+
+
+<div class="article-hero">
+  <div class="acat-badge">🌱 Jardin · Article #83</div>
+  <h1>Jardinage et potager<br><em> pas cher</em></h1>
+  <p class="intro">Un potager peut produire des centaines d'euros de légumes frais par an pour un investissement de départ inférieur à 30 €. Graines, compost, outils d'occasion : voici comment démarrer sans se ruiner.</p>
+  <div class="saving-pill">💰 Légumes gratuits toute l'année</div>
+  <div class="meta" style="margin-top:1rem">
+    <span>📖 Lecture : 3 min</span>
+    <span>✅ Vérifié juin 2026</span>
+    <span>🇫🇷 Adapté au marché français</span>
+  </div>
+</div>
+
+<div class="article-body">
+  <a href="index.html" class="back-link">← Retour aux articles</a>
+
+  <p>Un jardin potager bien conduit peut produire <strong>200 à 500 € de légumes par an</strong> pour un investissement initial de 20 à 50 €. C'est l'un des meilleurs rendements financiers qui soit — sans compter la satisfaction de manger ce qu'on a semé. Et contrairement à une idée reçue tenace, on n'a pas besoin d'un grand jardin : un balcon ensoleillé, quelques bacs et des graines suffisent pour démarrer.</p>
+
+  <h2>Les 6 astuces pour jardiner à moindre coût</h2>
+
+  <div class="tip-grid">
+    <div class="tcard">
+      <div class="emoji">🌱</div>
+      <h3>Semer plutôt qu'acheter des plants</h3>
+      <p>Un sachet de graines (1-2 €) produit 30 à 100 plants selon l'espèce. Acheter des plants en jardinerie coûte 10 à 20 fois plus cher. Semez en intérieur dès février pour avoir une longueur d'avance.</p>
+      <span class="tag">10× moins cher</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">🔄</div>
+      <h3>Récupérer ses propres graines</h3>
+      <p>Laissez monter en graines quelques plants de tomates, courgettes, haricots ou salades en fin de saison. Récoltez et séchez les graines : l'année suivante, vous semez gratuitement.</p>
+      <span class="tag">Gratuit</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">♻️</div>
+      <h3>Faire son compost</h3>
+      <p>Un composteur (30-50 € neuf, souvent gratuit via la mairie) transforme vos déchets de cuisine en engrais naturel. Fini les sacs de terreau à 10 € — votre sol s'enrichit gratuitement toute l'année.</p>
+      <span class="tag">Engrais gratuit</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">🛠️</div>
+      <h3>Outils d'occasion</h3>
+      <p>Bêche, râteau, arrosoir, sécateur — tous ces outils se trouvent en parfait état sur Leboncoin ou en brocante pour 2 à 10 € pièce. Le matériel de jardinage d'occasion est souvent de meilleure qualité que le neuf bas de gamme.</p>
+      <span class="tag">jusqu'à -80% vs neuf</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">🌧️</div>
+      <h3>Récupérer l'eau de pluie</h3>
+      <p>Un tonneau récupérateur (40-80 €) stocke l'eau de pluie pour arroser gratuitement. En été, il peut couvrir 80 % des besoins en eau d'un petit potager. Rentabilisé en une saison.</p>
+      <span class="tag">Arrosage gratuit</span>
+    </div>
+    <div class="tcard">
+      <div class="emoji">🤝</div>
+      <h3>Les grainothèques et trocs de plants</h3>
+      <p>De nombreuses bibliothèques et mairies hébergent des grainothèques où chacun dépose et emprunte des graines gratuitement. Les groupes Facebook locaux organisent aussi des trocs de plants au printemps.</p>
+      <span class="tag">Gratuit</span>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Astuce Economya.fr</strong>
+    Beaucoup de communes distribuent gratuitement des composteurs à leurs habitants — il suffit de demander au service environnement de la mairie. Certaines offrent aussi de la terre, du paillage ou des plants gratuits dans le cadre de leurs programmes de jardinage urbain. Vérifiez ce que propose votre commune avant d'acheter quoi que ce soit.
+  </div>
+
+  <h2>Les légumes les plus rentables à cultiver</h2>
+
+  <div class="veggie-grid">
+    <div class="vcard"><span class="emoji">🍅</span><h3>Tomates</h3><p>Rendement élevé, valeur en magasin forte. 1 plant = 3-5 kg.</p></div>
+    <div class="vcard"><span class="emoji">🥒</span><h3>Courgettes</h3><p>Production abondante, peu d'entretien. 1 plant suffit pour une famille.</p></div>
+    <div class="vcard"><span class="emoji">🌿</span><h3>Herbes aromatiques</h3><p>Basilic, persil, ciboulette — cher en magasin, gratuit au jardin.</p></div>
+    <div class="vcard"><span class="emoji">🥬</span><h3>Salades</h3><p>Pousse vite, se renouvelle. Idéal pour débutants en pot ou bac.</p></div>
+    <div class="vcard"><span class="emoji">🫘</span><h3>Haricots verts</h3><p>Semis facile, récolte abondante, graines récupérables chaque année.</p></div>
+    <div class="vcard"><span class="emoji">🌶️</span><h3>Piments & poivrons</h3><p>Très chers en supermarché. Se cultivent en pot sur un balcon ensoleillé.</p></div>
+  </div>
+
+  <h2>Jardiner sans jardin : les alternatives urbaines</h2>
+  <p>Pas de jardin ? Ce n'est pas un obstacle. Un balcon orienté sud avec quelques bacs en bois (récupérés ou fabriqués avec des palettes gratuites) suffit pour cultiver tomates, herbes et salades. Les jardins partagés et jardins familiaux proposent des parcelles à louer pour 30 à 100 € par an selon les communes — un investissement très vite rentabilisé. Renseignez-vous auprès de votre mairie ou de votre office HLM.</p>
+
+  <div class="saving-box">
+    <div class="amount">300 € de légumes/an</div>
+    <p>C'est la valeur marchande des légumes produits par un potager de 10 m² bien conduit — pour un investissement de départ inférieur à 30 € en graines et substrat.</p>
+  </div>
+
+  <p>Le potager est bien plus qu'une économie : c'est une connexion avec les saisons, une activité physique douce et une source de fierté incomparable. Manger des tomates que l'on a semées soi-même en février, c'est une expérience qui change durablement le rapport à la nourriture — et au budget alimentaire. Commencez petit, une culture à la fois, et laissez le jardin vous surprendre.</p>
+
+  <div class="tip-box" style="background:var(--al);border-color:var(--a)">
+    <strong style="color:var(--ad)">📬 Bon plan exclusif</strong>
+    <span style="color:var(--ad);font-size:.88rem">Abonnez-vous à la newsletter Economya.fr pour recevoir chaque semaine les meilleures astuces jardin, alimentation et économies du quotidien.</span>
+  </div>
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://economya.fr/article-83.html" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=https://economya.fr/article-83.html&text=Jardinage%20et%20potager%20pas%20cher" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://economya.fr/article-83.html" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=Jardinage%20et%20potager%20pas%20cher - https://economya.fr/article-83.html" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=https://economya.fr/article-83.html&description=Jardinage%20et%20potager%20pas%20cher" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="https://economya.fr/article-83.html"]').forEach(function(a){
+    a.href = a.href.replace(/https://economya.fr/article-83.html/g, url).replace(/Jardinage%20et%20potager%20pas%20cher/g, titre);
+  });
+})();
+</script>
+
+
+<div class="article-nav" data-nav-styled="1" style="display:flex;justify-content:space-between;align-items:center;padding:1.5rem 0;border-top:1px solid var(--b,#e5e5e5);margin-top:3rem;gap:1rem;flex-wrap:wrap;max-width:900px;margin-left:auto;margin-right:auto;padding-left:1.5rem;padding-right:1.5rem"><a href="article-82.html" style="display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%;"><span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m,#8899bb)">← Article précédent</span><span style="font-size:.85rem;font-weight:500;color:var(--gd,#085041)">Assurance habitation pas chère</span></a><a href="article-84.html" style="display:flex;flex-direction:column;gap:.2rem;text-decoration:none;max-width:45%;text-align:right;align-items:flex-end"><span style="font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--m,#8899bb)">Article suivant →</span><span style="font-size:.85rem;font-weight:500;color:var(--gd,#085041)">Bien manger au bureau sans dépenser une fortune</span></a></div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html" style="color:inherit;text-decoration:underline">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:inherit;text-decoration:underline">Politique de confidentialité</a> · <a href="contact.html" style="color:inherit;text-decoration:underline">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>

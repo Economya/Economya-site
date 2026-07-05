@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Si vous étiez une marque, laquelle seriez-vous ? — Economya.fr</title>
+<meta name="description" content="Lidl, Apple, Hermès ou Primark ? Découvrez quelle marque représente votre profil financier en 8 questions fun !">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);color:white;padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'🛍️';position:absolute;font-size:16rem;right:-1rem;top:-2rem;opacity:.07;pointer-events:none}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:#EF9F27;font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:480px;margin:0 auto}
+.container{max-width:700px;margin:0 auto;padding:2.5rem 1.5rem}
+.progress-wrap{margin-bottom:2rem}
+.progress-bar{height:8px;background:var(--b);border-radius:50px;overflow:hidden;margin-bottom:.5rem}
+.progress-fill{height:100%;background:linear-gradient(90deg,#0f3460,#EF9F27);border-radius:50px;transition:width .4s ease}
+.progress-text{font-size:.8rem;color:var(--m);text-align:right}
+.question-card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;box-shadow:0 4px 20px rgba(0,0,0,.04);display:none}
+.question-card.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.q-num{font-size:.75rem;font-weight:600;color:#0f3460;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
+.q-text{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;line-height:1.4}
+.options{display:flex;flex-direction:column;gap:.8rem}
+.option{background:var(--bg);border:2px solid var(--b);border-radius:12px;padding:1rem 1.3rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:.8rem}
+.option:hover{border-color:#0f3460;background:#e8eaf6}
+.option.selected{border-color:#0f3460;background:#e8eaf6}
+.opt-icon{font-size:1.4rem;flex-shrink:0}
+.opt-text{font-size:.9rem;line-height:1.4}
+.btn-next{background:linear-gradient(135deg,#1a1a2e,#0f3460);color:white;border:none;padding:.8rem 2rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.95rem;margin-top:1.5rem;display:none}
+.result-card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04);display:none;text-align:center}
+.result-card.active{display:block;animation:fadeIn .4s ease}
+.result-emoji{font-size:5rem;margin-bottom:.5rem;display:block}
+.result-type{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;margin-bottom:.3rem}
+.result-subtitle{font-size:.95rem;color:var(--m);margin-bottom:1rem}
+.traits{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1.5rem}
+.trait{padding:.3rem .9rem;border-radius:50px;font-size:.78rem;font-weight:600}
+.result-desc{font-size:.92rem;color:var(--m);line-height:1.8;margin-bottom:1.5rem;max-width:500px;margin-left:auto;margin-right:auto}
+.result-tips{border-radius:var(--r);padding:1.3rem 1.5rem;text-align:left;margin-bottom:1.5rem}
+.result-tips h3{font-size:.9rem;font-weight:700;margin-bottom:.8rem}
+.result-tips ul{list-style:none;font-size:.85rem;line-height:1.7}
+.result-tips ul li{padding:.25rem 0;padding-left:1.4rem;position:relative}
+.share-text{background:var(--bg);border-radius:12px;padding:1rem;font-size:.85rem;color:var(--m);margin-bottom:1rem;font-style:italic}
+.btn-retry{background:transparent;border:2px solid var(--g);color:var(--gd);padding:.7rem 1.8rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.9rem}
+.cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:1.5rem}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
+.cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:150px;padding:.65rem 1rem;border-radius:50px;border:1px solid var(--b);font-size:.86rem;font-family:inherit}
+.cta-form button{background:var(--a);color:white;border:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.86rem}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Si vous étiez une marque, laquelle seriez-vous ?">
+  <meta property="og:description" content="Lidl, Apple, Hermès ou Primark ? Découvrez quelle marque représente votre profil financier en 8 questions fun !">
+  <meta property="og:url" content="https://economya.fr/quiz-marque.html">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Si vous étiez une marque, laquelle seriez-vous ?">
+  <meta name="twitter:description" content="Lidl, Apple, Hermès ou Primark ? Découvrez quelle marque représente votre profil financier en 8 questions fun !">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/quiz-marque.html" />
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+
+<!-- Menu hamburger mobile -->
+
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="hero">
+  <h1>Si vous étiez une <em>marque</em>, laquelle seriez-vous ?</h1>
+  <p>Lidl, Apple, Hermès ou Primark ? 8 questions pour révéler votre marque financière.</p>
+</div>
+<div class="container">
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+    <div class="progress-text" id="progress-text">Question 1 sur 8</div>
+  </div>
+
+  <div class="question-card active" data-q="0">
+    <div class="q-num">Question 1 sur 8</div>
+    <div class="q-text">Comment choisissez-vous vos achats quotidiens ?</div>
+    <div class="options">
+      <div class="option" data-marque="lidl"><span class="opt-icon">🏷️</span><span class="opt-text">Je compare les prix et je prends toujours le meilleur rapport qualité/prix</span></div>
+      <div class="option" data-marque="apple"><span class="opt-icon">✨</span><span class="opt-text">Je privilégie la qualité et le design — quitte à payer plus cher</span></div>
+      <div class="option" data-marque="hermes"><span class="opt-icon">💎</span><span class="opt-text">Je n'achète que le meilleur — la qualité n'a pas de prix</span></div>
+      <div class="option" data-marque="primark"><span class="opt-icon">🛍️</span><span class="opt-text">Je suis les tendances sans me ruiner — le style accessible c'est ma spécialité</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="1">
+    <div class="q-num">Question 2 sur 8</div>
+    <div class="q-text">Votre garde-robe ressemble à...</div>
+    <div class="options">
+      <div class="option" data-marque="lidl"><span class="opt-icon">👕</span><span class="opt-text">Peu de vêtements mais tous utiles et durables</span></div>
+      <div class="option" data-marque="apple"><span class="opt-icon">🎨</span><span class="opt-text">Des pièces intemporelles et de qualité soigneusement choisies</span></div>
+      <div class="option" data-marque="hermes"><span class="opt-icon">👔</span><span class="opt-text">Des pièces exclusives que peu de gens ont</span></div>
+      <div class="option" data-marque="primark"><span class="opt-icon">👗</span><span class="opt-text">Plein de vêtements tendance achetés en promo</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="2">
+    <div class="q-num">Question 3 sur 8</div>
+    <div class="q-text">Au restaurant, vous choisissez...</div>
+    <div class="options">
+      <div class="option" data-marque="lidl"><span class="opt-icon">🥗</span><span class="opt-text">Le plat du jour — bon et pas cher</span></div>
+      <div class="option" data-marque="apple"><span class="opt-icon">🍽️</span><span class="opt-text">Un restaurant tendance avec une belle présentation</span></div>
+      <div class="option" data-marque="hermes"><span class="opt-icon">🥂</span><span class="opt-text">Un restaurant étoilé — l'expérience avant tout</span></div>
+      <div class="option" data-marque="primark"><span class="opt-icon">🍕</span><span class="opt-text">Ce qui est populaire et instagrammable</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="3">
+    <div class="q-num">Question 4 sur 8</div>
+    <div class="q-text">Votre rapport aux nouvelles technologies :</div>
+    <div class="options">
+      <div class="option" data-marque="lidl"><span class="opt-icon">📱</span><span class="opt-text">Je garde mon téléphone jusqu'à ce qu'il tombe en panne</span></div>
+      <div class="option" data-marque="apple"><span class="opt-icon">💻</span><span class="opt-text">J'investis dans du bon matériel qui dure — c'est rentable</span></div>
+      <div class="option" data-marque="hermes"><span class="opt-icon">⌚</span><span class="opt-text">J'ai les derniers gadgets premium — c'est un style de vie</span></div>
+      <div class="option" data-marque="primark"><span class="opt-icon">🤳</span><span class="opt-text">Je suis les tendances tech sans dépenser une fortune</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="4">
+    <div class="q-num">Question 5 sur 8</div>
+    <div class="q-text">Pour vos vacances vous préférez...</div>
+    <div class="options">
+      <div class="option" data-marque="lidl"><span class="opt-icon">🏕️</span><span class="opt-text">Camping ou gîte en France — dépaysement garanti sans se ruiner</span></div>
+      <div class="option" data-marque="apple"><span class="opt-icon">🏨</span><span class="opt-text">Un hôtel design bien situé — l'expérience compte</span></div>
+      <div class="option" data-marque="hermes"><span class="opt-icon">🛥️</span><span class="opt-text">Suite dans un palace ou villa privée — rien de trop beau</span></div>
+      <div class="option" data-marque="primark"><span class="opt-icon">✈️</span><span class="opt-text">Partir souvent et loin grâce aux bons plans vol</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="5">
+    <div class="q-num">Question 6 sur 8</div>
+    <div class="q-text">Face à une dépense imprévue de 500 €...</div>
+    <div class="options">
+      <div class="option" data-marque="lidl"><span class="opt-icon">🛡️</span><span class="opt-text">Je pioche dans mon fonds d'urgence — prévu pour ça</span></div>
+      <div class="option" data-marque="apple"><span class="opt-icon">💳</span><span class="opt-text">Je paye et je rééquilibre mon budget le mois suivant</span></div>
+      <div class="option" data-marque="hermes"><span class="opt-icon">🤷</span><span class="opt-text">500€ ? C'est une petite somme pour moi</span></div>
+      <div class="option" data-marque="primark"><span class="opt-icon">😰</span><span class="opt-text">Je me débrouille — crédit ou aide d'un proche</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="6">
+    <div class="q-num">Question 7 sur 8</div>
+    <div class="q-text">Votre façon d'offrir des cadeaux :</div>
+    <div class="options">
+      <div class="option" data-marque="lidl"><span class="opt-icon">🎁</span><span class="opt-text">Des cadeaux pratiques et utiles — pas besoin de dépenser plus</span></div>
+      <div class="option" data-marque="apple"><span class="opt-icon">🎀</span><span class="opt-text">Des cadeaux soigneusement choisis avec une belle présentation</span></div>
+      <div class="option" data-marque="hermes"><span class="opt-icon">💝</span><span class="opt-text">Des cadeaux luxueux qui marquent les esprits</span></div>
+      <div class="option" data-marque="primark"><span class="opt-icon">🎉</span><span class="opt-text">Des cadeaux fun et tendance sans se ruiner</span></div>
+    </div>
+    <button class="btn-next">Question suivante →</button>
+  </div>
+
+  <div class="question-card" data-q="7">
+    <div class="q-num">Question 8 sur 8</div>
+    <div class="q-text">Votre valeur principale dans la vie :</div>
+    <div class="options">
+      <div class="option" data-marque="lidl"><span class="opt-icon">💡</span><span class="opt-text">L'efficacité — faire plus avec moins</span></div>
+      <div class="option" data-marque="apple"><span class="opt-icon">🎯</span><span class="opt-text">L'excellence — tout ce que je fais doit être bien fait</span></div>
+      <div class="option" data-marque="hermes"><span class="opt-icon">👑</span><span class="opt-text">Le prestige — être reconnu pour ce que j'ai accompli</span></div>
+      <div class="option" data-marque="primark"><span class="opt-icon">🌈</span><span class="opt-text">La liberté — vivre ma vie sans contraintes</span></div>
+    </div>
+    <button class="btn-next" id="btn-result">Découvrir ma marque →</button>
+  </div>
+
+  <!-- Résultats -->
+  <div class="result-card" id="result-lidl">
+    <span class="result-emoji">🏷️</span>
+    <div class="result-type" style="color:#0050aa">Lidl</div>
+    <div class="result-subtitle">Efficace, malin et fier de l'être</div>
+    <div class="traits">
+      <span class="trait" style="background:#e8f0fe;color:#0050aa">Efficace</span>
+      <span class="trait" style="background:#e8f0fe;color:#0050aa">Rationnel</span>
+      <span class="trait" style="background:#e8f0fe;color:#0050aa">Malin</span>
+      <span class="trait" style="background:#e8f0fe;color:#0050aa">Sans chichis</span>
+    </div>
+    <div class="result-desc">Comme Lidl, vous êtes efficace, pratique et vous assumez totalement ! Vous ne payez pas pour une marque mais pour la qualité réelle. Vous comparez, optimisez et n'avez pas peur de dire que vous faites attention à votre budget. Et comme Lidl, vous surprenez souvent par votre qualité.</div>
+    <div class="result-tips" style="background:#e8f0fe">
+      <h3 style="color:#0050aa">🏷️ Vos super-pouvoirs :</h3>
+      <ul style="color:#003380">
+        <li>✅ Continuez à comparer les prix — chaque euro économisé s'accumule</li>
+        <li>📈 Investissez vos économies en ETF — vous serez riche avant tout le monde</li>
+        <li>🎯 Votre approche rationnelle est un atout rare — valorisez-la</li>
+        <li>🦁 Inspirez-vous d'Apple pour investir dans la qualité quand ça vaut vraiment le coup</li>
+      </ul>
+    </div>
+    <div class="share-text">"Je suis Lidl financièrement 🏷️ — efficace et malin ! Et vous ? Testez sur economya.fr"</div>
+    <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
+  </div>
+
+  <div class="result-card" id="result-apple">
+    <span class="result-emoji">🍎</span>
+    <div class="result-type" style="color:#1d1d1f">Apple</div>
+    <div class="result-subtitle">Qualité, design et sens de l'essentiel</div>
+    <div class="traits">
+      <span class="trait" style="background:#f5f5f7;color:#1d1d1f">Exigeant</span>
+      <span class="trait" style="background:#f5f5f7;color:#1d1d1f">Élégant</span>
+      <span class="trait" style="background:#f5f5f7;color:#1d1d1f">Stratège</span>
+      <span class="trait" style="background:#f5f5f7;color:#1d1d1f">Équilibré</span>
+    </div>
+    <div class="result-desc">Comme Apple, vous êtes exigeant sur la qualité et vous avez du goût. Vous dépensez intelligemment — pas le moins cher, pas le plus cher, mais le meilleur rapport valeur/expérience. Vous êtes organisé, vous avez une vision et vous n'achetez pas n'importe quoi.</div>
+    <div class="result-tips" style="background:#f5f5f7">
+      <h3 style="color:#1d1d1f">🍎 Pour aller encore plus loin :</h3>
+      <ul style="color:#1d1d1f">
+        <li>✅ Votre sens de la qualité est un atout — continuez à bien choisir</li>
+        <li>📊 Ouvrez un PEA pour investir avec la même exigence</li>
+        <li>🎯 Appliquez votre standard Apple à vos placements financiers</li>
+        <li>💰 Votre équilibre dépenses/épargne est enviable — optimisez juste un peu plus</li>
+      </ul>
+    </div>
+    <div class="share-text">"Je suis Apple financièrement 🍎 — qualité et élégance ! Et vous ? Testez sur economya.fr"</div>
+    <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
+  </div>
+
+  <div class="result-card" id="result-hermes">
+    <span class="result-emoji">🎩</span>
+    <div class="result-type" style="color:#c8a96e">Hermès</div>
+    <div class="result-subtitle">Le luxe discret et l'excellence absolue</div>
+    <div class="traits">
+      <span class="trait" style="background:#fef9f0;color:#8b6914">Raffiné</span>
+      <span class="trait" style="background:#fef9f0;color:#8b6914">Ambitieux</span>
+      <span class="trait" style="background:#fef9f0;color:#8b6914">Exclusif</span>
+      <span class="trait" style="background:#fef9f0;color:#8b6914">Exigeant</span>
+    </div>
+    <div class="result-desc">Comme Hermès, vous n'acceptez que le meilleur et vous le montrez. Vous investissez dans des choses qui durent, qui prennent de la valeur et qui vous distinguent. Votre défi : s'assurer que votre patrimoine est aussi solide que votre style de vie.</div>
+    <div class="result-tips" style="background:#fef9f0">
+      <h3 style="color:#8b6914">🎩 Conseils pour Hermès :</h3>
+      <ul style="color:#78350f">
+        <li>💼 Diversifiez votre patrimoine — immobilier, ETF, assurance-vie</li>
+        <li>📊 Consultez un conseiller en gestion de patrimoine</li>
+        <li>🛡️ Assurez-vous d'avoir 12 mois de dépenses en épargne liquide</li>
+        <li>⚖️ Équilibrez votre style de vie avec vos investissements long terme</li>
+      </ul>
+    </div>
+    <div class="share-text">"Je suis Hermès financièrement 🎩 — luxe et excellence ! Et vous ? Testez sur economya.fr"</div>
+    <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
+  </div>
+
+  <div class="result-card" id="result-primark">
+    <span class="result-emoji">🛍️</span>
+    <div class="result-type" style="color:#e63946">Primark</div>
+    <div class="result-subtitle">Tendance, spontané et toujours dans l'air du temps</div>
+    <div class="traits">
+      <span class="trait" style="background:#fff0f0;color:#e63946">Tendance</span>
+      <span class="trait" style="background:#fff0f0;color:#e63946">Spontané</span>
+      <span class="trait" style="background:#fff0f0;color:#e63946">Social</span>
+      <span class="trait" style="background:#fef9c3;color:#854d0e">Impulsif</span>
+    </div>
+    <div class="result-desc">Comme Primark, vous êtes dans l'air du temps, social et vous savez vous amuser sans vous ruiner — enfin presque ! Vous aimez les nouvelles choses et les tendances. Votre défi : transformer votre talent pour trouver les bons plans en vraie stratégie financière.</div>
+    <div class="result-tips" style="background:#fff0f0">
+      <h3 style="color:#e63946">🛍️ Conseils pour Primark :</h3>
+      <ul style="color:#7f1d1d">
+        <li>✂️ Auditez vos abonnements — vous en avez sûrement trop</li>
+        <li>⏰ Règle des 24h avant tout achat impulsif</li>
+        <li>💰 Fixez-vous un budget "tendances" mensuel strict</li>
+        <li>📈 Commencez à épargner 50€/mois — dans 10 ans vous serez surpris</li>
+      </ul>
+    </div>
+    <div class="share-text">"Je suis Primark financièrement 🛍️ — tendance et spontané ! Et vous ? Testez sur economya.fr"</div>
+    <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
+  </div>
+
+  <div class="cta" id="cta-block" style="display:none">
+    <h3>📬 Des conseils adaptés à votre marque chaque semaine</h3>
+    <p>Recevez nos meilleures stratégies selon votre profil financier.</p>
+    <div class="cta-form">
+      <input type="email" placeholder="votre@email.fr">
+      <button>Je m'abonne</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Quiz indicatif à titre éducatif et ludique.</span>
+</footer>
+
+<script>
+const questions = document.querySelectorAll('.question-card');
+const totalQ = questions.length;
+let currentQ = 0;
+let scores = { lidl: 0, apple: 0, hermes: 0, primark: 0 };
+let selectedMarque = null;
+
+function updateProgress() {
+  const pct = (currentQ / totalQ) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = `Question ${currentQ + 1} sur ${totalQ}`;
+}
+
+questions.forEach((card, idx) => {
+  const options = card.querySelectorAll('.option');
+  const btn = card.querySelector('.btn-next');
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      options.forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      selectedMarque = opt.dataset.marque;
+      btn.style.display = 'block';
+    });
+  });
+  btn.addEventListener('click', () => {
+    if(!selectedMarque) return;
+    scores[selectedMarque]++;
+    card.classList.remove('active');
+    selectedMarque = null;
+    if(idx < totalQ - 1) {
+      currentQ++;
+      questions[currentQ].classList.add('active');
+      updateProgress();
+    } else {
+      showResult();
+    }
+  });
+});
+
+function showResult() {
+  document.getElementById('progress').style.width = '100%';
+  document.getElementById('progress-text').textContent = 'Résultat !';
+  const winner = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+  document.getElementById(`result-${winner}`).classList.add('active');
+  document.getElementById('cta-block').style.display = 'block';
+  document.getElementById(`result-${winner}`).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function retry() {
+  scores = { lidl: 0, apple: 0, hermes: 0, primark: 0 };
+  currentQ = 0; selectedMarque = null;
+  questions.forEach(card => {
+    card.classList.remove('active');
+    card.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    card.querySelector('.btn-next').style.display = 'none';
+  });
+  document.querySelectorAll('.result-card').forEach(r => r.classList.remove('active'));
+  document.getElementById('cta-block').style.display = 'none';
+  questions[0].classList.add('active');
+  updateProgress();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+updateProgress();
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+</body>
+</html>
