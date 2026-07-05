@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Mur des Bravos — Economya.fr</title>
+<meta name="description" content="Ton mur personnel de petites victoires financières, à collectionner au fil du temps. Un jeu Economya.fr">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap');
+  :root{
+    --bg-top:#0E2A24; --bg-bottom:#04120E;
+    --gold:#FFC94B; --good:#3DDC84;
+    --ink:#F0FFF8; --ink-dim:#8FC7B0;
+    --panel:rgba(255,255,255,.06); --panel-line:rgba(255,255,255,.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    background:radial-gradient(circle at 50% -10%, var(--bg-top) 0%, var(--bg-bottom) 65%);
+    color:var(--ink); font-family:'Inter',system-ui,sans-serif;
+    -webkit-tap-highlight-color:transparent; user-select:none; min-height:100vh;
+  }
+  .wrap{width:100%; max-width:460px; margin:0 auto; min-height:100vh; position:relative; padding-bottom:24px;}
+  .screen{ min-height:100vh; display:none; flex-direction:column; align-items:center; padding:26px 20px; text-align:center; }
+  .screen.active{ display:flex; animation:fadeIn .35s ease; }
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:14px;}
+  .eyebrow::before{content:'🎉';}
+  h1.title{font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:800; letter-spacing:-.02em; line-height:1.15; margin-bottom:14px;}
+  h1.title span{color:var(--gold);}
+  p.lede{color:var(--ink-dim); font-size:14px; line-height:1.55; margin-bottom:16px; max-width:340px;}
+  .note{ font-size:11.5px; color:var(--ink-dim); background:var(--panel); border:1px solid var(--panel-line); border-radius:10px; padding:9px 14px; margin-bottom:20px; max-width:340px; line-height:1.4; }
+  .btn{border:none; border-radius:14px; padding:16px 34px; font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; cursor:pointer; transition:transform .12s ease;}
+  .btn:active{transform:scale(.96);}
+  .btn-primary{background:var(--gold); color:#2A1900; box-shadow:0 10px 26px rgba(255,201,75,.28);}
+  .brand-footer{margin-top:16px; font-size:12px; color:var(--ink-dim);}
+  .brand-footer a{color:var(--gold); text-decoration:none; font-weight:700;}
+
+  #hud{ padding-top:18px; }
+  .hud-title{ font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:20px; margin-bottom:4px; }
+  .hud-sub{ font-size:12px; color:var(--ink-dim); margin-bottom:16px; }
+
+  .chip-row{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:12px; }
+  .chip{ background:var(--panel); border:1.5px solid var(--panel-line); border-radius:99px; padding:9px 14px; font-size:12.5px; font-weight:600; cursor:pointer; }
+  .chip:active{ transform:scale(.95); }
+  .chip.selected{ background:rgba(255,201,75,.18); border-color:var(--gold); color:var(--gold); }
+
+  .custom-input{ width:100%; max-width:340px; border-radius:12px; border:1.5px solid var(--panel-line); background:var(--panel); color:var(--ink); padding:12px 14px; font-family:'Inter',sans-serif; font-size:13.5px; margin-bottom:14px; }
+  .btn-add{ width:100%; max-width:340px; border:none; border-radius:14px; padding:14px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14.5px; background:var(--gold); color:#04241a; cursor:pointer; margin-bottom:22px; }
+  .btn-add:disabled{ opacity:.4; cursor:not-allowed; }
+
+  .wall{ width:100%; max-width:400px; display:flex; flex-direction:column; gap:10px; }
+  .wall-empty{ font-size:13px; color:var(--ink-dim); padding:30px 0; }
+  .wall-card{ background:var(--panel); border:1.5px solid var(--panel-line); border-radius:14px; padding:14px; text-align:left; display:flex; align-items:flex-start; gap:12px; animation:cardPop .3s ease; }
+  @keyframes cardPop{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  .wall-emoji{ font-size:24px; }
+  .wall-text{ flex:1; font-size:13.5px; font-weight:600; }
+  .wall-date{ font-size:11px; color:var(--ink-dim); margin-top:2px; }
+  .wall-heart{ font-size:18px; cursor:pointer; user-select:none; }
+  .wall-heart.hearted{ animation:heartPop .3s ease; }
+  @keyframes heartPop{ 0%{transform:scale(1);} 50%{transform:scale(1.4);} 100%{transform:scale(1);} }
+
+  .share-row{ margin-top:22px; }
+  .btn-ghost{background:transparent; border:1.5px solid var(--panel-line); color:var(--ink); padding:13px 30px; font-size:14px; border-radius:14px; font-family:'Space Grotesk',sans-serif; font-weight:700; cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+
+  <div class="screen active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Mon mur</div>
+    <h1 class="title">Le Mur <span>des Bravos</span></h1>
+    <p class="lede">Note tes petites victoires financières du jour et regarde ton mur se remplir au fil du temps. Que des bonnes nouvelles, jamais de jugement.</p>
+    <div class="note">📍 Ce mur est personnel : il est enregistré uniquement sur cet appareil, il n'est pas partagé publiquement avec d'autres visiteurs.</div>
+    <button class="btn btn-primary" onclick="showApp()">Voir mon mur</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <div class="screen" id="screen-app">
+    <div id="hud">
+      <div class="hud-title">🎉 Mon Mur des Bravos</div>
+      <div class="hud-sub" id="hudSub">0 bravo pour l'instant</div>
+    </div>
+
+    <div class="chip-row" id="chipRow"></div>
+    <input class="custom-input" id="customInput" placeholder="Ou écris ton propre bravo...">
+    <button class="btn-add" id="btnAdd" onclick="addBravo()" disabled>🎉 Ajouter mon bravo</button>
+
+    <div class="wall" id="wall"></div>
+
+    <div class="share-row">
+      <button class="btn-ghost" onclick="shareResult()">Partager mon dernier bravo</button>
+    </div>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+</div>
+
+<script>
+const PRESETS = [
+  { emoji:'🎉', text:"Résilié un abonnement oublié" },
+  { emoji:'💪', text:"Dit non à un achat impulsif" },
+  { emoji:'🏷️', text:"Trouvé un bon plan avant d'acheter" },
+  { emoji:'🐷', text:"Mis un peu d'argent de côté" },
+  { emoji:'📋', text:"Fait le point sur mon budget" },
+  { emoji:'🧾', text:"Payé une facture sans stress" },
+];
+
+let selectedPreset = null;
+let bravos = [];
+
+try{ bravos = JSON.parse(localStorage.getItem('murDesBravos')||'[]'); }catch(e){ bravos = []; }
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function showApp(){
+  showScreen('screen-app');
+  renderChips();
+  renderWall();
+}
+
+function renderChips(){
+  const row = document.getElementById('chipRow');
+  row.innerHTML = '';
+  PRESETS.forEach((p,i)=>{
+    const chip = document.createElement('div');
+    chip.className = 'chip'+(selectedPreset===i?' selected':'');
+    chip.textContent = p.emoji+' '+p.text;
+    chip.addEventListener('click', ()=>{
+      selectedPreset = (selectedPreset===i) ? null : i;
+      document.getElementById('customInput').value = '';
+      renderChips();
+      updateAddButton();
+    });
+    row.appendChild(chip);
+  });
+}
+
+document.addEventListener('input', e=>{
+  if(e.target.id === 'customInput'){
+    if(e.target.value.trim().length > 0) selectedPreset = null;
+    renderChips();
+    updateAddButton();
+  }
+});
+
+function updateAddButton(){
+  const customVal = document.getElementById('customInput').value.trim();
+  document.getElementById('btnAdd').disabled = selectedPreset===null && customVal.length===0;
+}
+
+function addBravo(){
+  let emoji = '🎉', text = '';
+  const customVal = document.getElementById('customInput').value.trim();
+  if(selectedPreset !== null){
+    emoji = PRESETS[selectedPreset].emoji;
+    text = PRESETS[selectedPreset].text;
+  } else if(customVal.length > 0){
+    text = customVal;
+  } else {
+    return;
+  }
+
+  const entry = { emoji, text, date: new Date().toLocaleDateString('fr-FR'), hearted:false };
+  bravos.unshift(entry);
+  try{ localStorage.setItem('murDesBravos', JSON.stringify(bravos)); }catch(e){}
+
+  selectedPreset = null;
+  document.getElementById('customInput').value = '';
+  renderChips();
+  updateAddButton();
+  renderWall();
+}
+
+function toggleHeart(idx){
+  bravos[idx].hearted = !bravos[idx].hearted;
+  try{ localStorage.setItem('murDesBravos', JSON.stringify(bravos)); }catch(e){}
+  renderWall();
+}
+
+function renderWall(){
+  document.getElementById('hudSub').textContent = bravos.length+' bravo'+(bravos.length>1?'s':'')+' pour l\'instant';
+  const wall = document.getElementById('wall');
+  if(bravos.length === 0){
+    wall.innerHTML = '<div class="wall-empty">Ton mur est encore vide — ajoute ton premier bravo ! 🎉</div>';
+    return;
+  }
+  wall.innerHTML = bravos.map((b,i)=>`
+    <div class="wall-card">
+      <div class="wall-emoji">${b.emoji}</div>
+      <div style="flex:1;">
+        <div class="wall-text">${b.text}</div>
+        <div class="wall-date">${b.date}</div>
+      </div>
+      <div class="wall-heart ${b.hearted?'hearted':''}" onclick="toggleHeart(${i})">${b.hearted?'❤️':'🤍'}</div>
+    </div>`).join('');
+}
+
+function shareResult(){
+  if(bravos.length === 0){
+    alert('Ajoute d\'abord un bravo à ton mur !');
+    return;
+  }
+  const latest = bravos[0];
+  const text = `Mon dernier bravo sur Le Mur des Bravos : ${latest.emoji} ${latest.text} (Economya.fr) 🎉 Toi aussi, note tes petites victoires :`;
+  const url = 'https://economya.fr';
+  if(navigator.share){ navigator.share({title:'Le Mur des Bravos', text, url}).catch(()=>{}); }
+  else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
+}
+
+updateAddButton();
+</script>
+</body>
+</html>

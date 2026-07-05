@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Île aux Œufs — Economya.fr</title>
+<meta name="description" content="Répartissez vos œufs entre plusieurs îles avant la tempête. Simulation pédagogique Economya.fr.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap');
+  :root{
+    --bg-top:#0E2438; --bg-bottom:#04101C;
+    --good:#3DDC84; --bad:#FF4D6D; --gold:#4BC9FF;
+    --ink:#F0F8FF; --ink-dim:#8FA9C7;
+    --panel:rgba(255,255,255,.06); --panel-line:rgba(255,255,255,.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%; overflow:hidden;}
+  body{
+    background:radial-gradient(circle at 50% -10%, var(--bg-top) 0%, var(--bg-bottom) 65%);
+    color:var(--ink); font-family:'Inter',system-ui,sans-serif;
+    -webkit-tap-highlight-color:transparent; user-select:none; position:relative;
+  }
+  .wrap{width:100%; height:100%; max-width:460px; margin:0 auto; position:relative; display:flex; flex-direction:column;}
+  .overlay{
+    position:absolute; inset:0; z-index:10; display:none; flex-direction:column;
+    align-items:center; justify-content:center; padding:26px;
+    background:linear-gradient(180deg, rgba(4,16,28,.5), rgba(4,16,28,.96) 40%); text-align:center;
+  }
+  .overlay.active{display:flex; animation:fadeIn .35s ease;}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:14px;}
+  .eyebrow::before{content:'🥚';}
+  h1.title{font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:800; letter-spacing:-.02em; line-height:1.1; margin-bottom:14px;}
+  h1.title span{color:var(--gold);}
+  p.lede{color:var(--ink-dim); font-size:14px; line-height:1.55; margin-bottom:16px; max-width:340px;}
+  .disclaimer{font-size:11px; color:var(--ink-dim); background:var(--panel); border:1px solid var(--panel-line); border-radius:10px; padding:9px 14px; margin-bottom:20px; max-width:340px; line-height:1.4;}
+  .btn{border:none; border-radius:14px; padding:16px 34px; font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; cursor:pointer; transition:transform .12s ease;}
+  .btn:active{transform:scale(.96);}
+  .btn-primary{background:var(--gold); color:#052033; box-shadow:0 10px 26px rgba(75,201,255,.28);}
+  .btn-ghost{background:transparent; border:1.5px solid var(--panel-line); color:var(--ink); margin-top:12px; padding:13px 30px; font-size:14px;}
+  .brand-footer{margin-top:16px; font-size:12px; color:var(--ink-dim);}
+  .brand-footer a{color:var(--gold); text-decoration:none; font-weight:700;}
+  #hud{display:flex; flex-direction:column; gap:6px; padding:14px 18px; position:relative; z-index:2;}
+  .hud-row{display:flex; align-items:center; justify-content:space-between; font-size:13px;}
+  .hud-row b{font-family:'Space Grotesk',sans-serif; font-size:16px;}
+  .islands{flex:1; display:grid; grid-template-columns:repeat(2,1fr); gap:14px; padding:8px 16px; position:relative; z-index:2;}
+  .island{
+    background:linear-gradient(180deg, rgba(75,201,255,.1), rgba(75,201,255,.02));
+    border:1.5px solid var(--panel-line); border-radius:18px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; padding:10px; position:relative; overflow:hidden;
+  }
+  .island.wiped{ background:linear-gradient(180deg, rgba(255,77,109,.25), rgba(255,77,109,.05)); border-color:rgba(255,77,109,.5); }
+  .island-eggs{font-size:22px; letter-spacing:2px; min-height:30px; text-align:center;}
+  .island-count{font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:15px; margin-top:4px;}
+  .island-btns{display:flex; gap:6px; margin-top:8px;}
+  .isl-btn{border:none; border-radius:10px; width:32px; height:32px; font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:16px; cursor:pointer; background:var(--panel); border:1px solid var(--panel-line); color:var(--ink);}
+  .isl-btn:active{transform:scale(.92);}
+  .isl-btn:disabled{opacity:.35; cursor:not-allowed;}
+  .storm-banner{
+    position:absolute; inset:0; z-index:8; display:none; align-items:center; justify-content:center;
+    background:rgba(4,16,28,.85); font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:22px; text-align:center;
+  }
+  .storm-banner.show{display:flex; animation:fadeIn .3s ease;}
+  .action-row{padding:14px 16px 18px; position:relative; z-index:2;}
+  .btn-lock{width:100%; border:none; border-radius:14px; padding:15px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; background:var(--gold); color:#052033; cursor:pointer;}
+  .btn-lock:disabled{opacity:.5; cursor:not-allowed;}
+  .go-score{font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:48px; color:var(--gold); line-height:1; margin:6px 0 4px;}
+  .go-label{font-size:13px; color:var(--ink-dim); margin-bottom:6px;}
+  .go-compare{font-size:13px; color:var(--ink-dim); margin-bottom:20px; max-width:320px; line-height:1.5;}
+  .go-compare b{color:var(--ink);}
+  .go-best{font-size:13px; color:var(--ink-dim); margin-bottom:16px;}
+  .go-best b{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div id="hud" style="display:none;">
+    <div class="hud-row"><span>Tempête <b id="hudStorm">1</b>/5</span><span>Œufs restants : <b id="hudEggs">12</b>/12</span></div>
+  </div>
+  <div class="islands" id="islands"></div>
+  <div class="action-row" id="actionRow" style="display:none;">
+    <button class="btn-lock" id="btnLock" onclick="lockAllocation()">🌊 Valider et affronter la tempête</button>
+  </div>
+  <div class="storm-banner" id="stormBanner">🌊 Tempête !</div>
+
+  <div class="overlay active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Simulation</div>
+    <h1 class="title">L'Île aux <span>Œufs</span></h1>
+    <p class="lede">Répartissez vos 12 œufs entre 4 îles avant chaque tempête. À chaque tempête, une île au hasard perd tous ses œufs. 5 tempêtes au total : combien en récupérerez-vous à la fin ?</p>
+    <div class="disclaimer">⚠️ Simulation pédagogique fictive. Ne constitue en aucun cas un conseil en investissement.</div>
+    <button class="btn btn-primary" onclick="startGame()">Jouer</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <div class="overlay" id="screen-over">
+    <div class="eyebrow">Toutes les tempêtes passées</div>
+    <div class="go-score" id="goScore">0</div>
+    <div class="go-label">œufs sauvés sur 12</div>
+    <div class="go-compare" id="goCompare"></div>
+    <div class="go-best">Record : <b id="goBest">0</b>/12</div>
+    <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+    <button class="btn btn-ghost" onclick="shareResult()">Partager mon résultat</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+</div>
+
+<script>
+const TOTAL_EGGS = 12;
+const ISLAND_COUNT = 4;
+const TOTAL_STORMS = 5;
+
+let islands = [];
+let stormsPassed = 0, running = false;
+let best = 0;
+
+try{ best = parseInt(localStorage.getItem('ileAuxOeufsBest')||'0',10); }catch(e){}
+
+function remainingEggs(){ return islands.reduce((s,i)=>s+i.eggs,0); }
+function allocatedEggs(){ return islands.reduce((s,i)=>s+i.eggs,0); }
+
+function buildIslands(){
+  const el = document.getElementById('islands');
+  el.innerHTML = '';
+  islands = [];
+  for(let i=0;i<ISLAND_COUNT;i++){
+    islands.push({ eggs:0, wiped:false });
+    const div = document.createElement('div');
+    div.className = 'island';
+    div.id = 'island'+i;
+    div.innerHTML = `
+      <div class="island-eggs" id="islandEggs${i}"></div>
+      <div class="island-count" id="islandCount${i}">0 œuf</div>
+      <div class="island-btns">
+        <button class="isl-btn" onclick="removeEgg(${i})">−</button>
+        <button class="isl-btn" onclick="addEgg(${i})">+</button>
+      </div>`;
+    el.appendChild(div);
+  }
+}
+
+function renderIslands(){
+  islands.forEach((isl,i)=>{
+    const eggsEl = document.getElementById('islandEggs'+i);
+    const countEl = document.getElementById('islandCount'+i);
+    const div = document.getElementById('island'+i);
+    if(!eggsEl) return;
+    eggsEl.textContent = '🥚'.repeat(isl.eggs);
+    countEl.textContent = isl.eggs+' œuf'+(isl.eggs>1?'s':'');
+    div.classList.toggle('wiped', isl.wiped);
+  });
+  const total = remainingEggs();
+  const el = document.getElementById('btnLock');
+  if(el) el.disabled = total !== TOTAL_EGGS;
+}
+
+function budgetPool(){ return TOTAL_EGGS - allocatedEggs(); }
+
+function updateHud(){
+  document.getElementById('hudStorm').textContent = stormsPassed+1;
+  document.getElementById('hudEggs').textContent = remainingEggs()+'/'+TOTAL_EGGS;
+}
+
+function addEgg(i){
+  if(!running) return;
+  if(allocatedEggs() >= TOTAL_EGGS) return;
+  islands[i].eggs++;
+  renderIslands(); updateHud();
+}
+function removeEgg(i){
+  if(!running) return;
+  if(islands[i].eggs <= 0) return;
+  islands[i].eggs--;
+  renderIslands(); updateHud();
+}
+
+function startGame(){
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-over').classList.remove('active');
+  document.getElementById('hud').style.display='flex';
+  document.getElementById('actionRow').style.display='block';
+  buildIslands();
+  stormsPassed = 0; running = true;
+  updateHud(); renderIslands();
+}
+
+function lockAllocation(){
+  if(!running) return;
+  const total = allocatedEggs();
+  if(total !== TOTAL_EGGS) {
+    alert('Répartissez bien vos '+TOTAL_EGGS+' œufs avant de valider (il en reste '+(TOTAL_EGGS-total)+' à placer).');
+    return;
+  }
+  const banner = document.getElementById('stormBanner');
+  banner.classList.add('show');
+  setTimeout(()=>{
+    const victim = Math.floor(Math.random()*ISLAND_COUNT);
+    islands[victim].eggs = 0;
+    islands[victim].wiped = true;
+    renderIslands(); updateHud();
+    banner.classList.remove('show');
+    stormsPassed++;
+    setTimeout(()=>{
+      islands.forEach(isl=>isl.wiped=false);
+      renderIslands();
+      if(stormsPassed >= TOTAL_STORMS){ endGame(); }
+    }, 500);
+  }, 1200);
+}
+
+function endGame(){
+  running = false;
+  document.getElementById('hud').style.display='none';
+  document.getElementById('actionRow').style.display='none';
+
+  const saved = remainingEggs();
+  if(saved > best){ best = saved; try{ localStorage.setItem('ileAuxOeufsBest', String(best)); }catch(e){} }
+
+  document.getElementById('goScore').textContent = saved+'/'+TOTAL_EGGS;
+  const worstCase = "0";
+  document.getElementById('goCompare').innerHTML =
+    `Si vous aviez tout misé sur une seule île, une tempête sur cette île vous aurait fait perdre <b>tous vos œufs d'un coup</b>. En répartissant, vous ne perdez jamais plus d'un quart à chaque tempête.`;
+  document.getElementById('goBest').textContent = best+'/'+TOTAL_EGGS;
+  document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-over').classList.add('active');
+}
+
+function shareResult(){
+  const text = `J'ai sauvé ${remainingEggs()}/${TOTAL_EGGS} œufs après 5 tempêtes sur L'Île aux Œufs (Economya.fr) 🥚 Sauras-tu mieux répartir que moi ?`;
+  const url = 'https://economya.fr';
+  if(navigator.share){ navigator.share({title:"L'Île aux Œufs", text, url}).catch(()=>{}); }
+  else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
+}
+</script>
+</body>
+</html>

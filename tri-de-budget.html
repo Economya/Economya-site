@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tri de Budget — Economya.fr</title>
+<meta name="description" content="Triez les dépenses et revenus dans les bonnes colonnes avant que la pile déborde. Economya.fr">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+  :root{
+    --bg:#0E1B2E; --gold:#FFD54F;
+    --col1:#3DDC84; --col2:#4FC3F7; --col3:#FFA726; --col4:#CE93D8;
+    --bad:#FF5252; --ink:#F0F5FA; --ink-dim:#8FA8BC;
+    --panel:rgba(255,255,255,.06); --panel-line:rgba(255,255,255,.14);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; overflow:hidden; }
+  body{
+    background: radial-gradient(circle at 50% -10%, #132030 0%, var(--bg) 65%);
+    color:var(--ink); font-family:'Inter',system-ui,sans-serif;
+    -webkit-tap-highlight-color:transparent; user-select:none;
+    display:flex; align-items:center; justify-content:center; padding:14px;
+  }
+  .app{ width:100%; max-width:420px; }
+  .screen{ display:none; }
+  .screen.active{ display:block; animation:fadeIn .35s ease; }
+  @keyframes fadeIn{ from{opacity:0;}to{opacity:1;} }
+  .eyebrow{ display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px; }
+  .eyebrow::before{ content:'📂'; }
+  h1.title{ font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:14px; }
+  h1.title span{ color:var(--gold); }
+  p.lede{ color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px; }
+  .cols-preview{ display:flex;gap:6px;margin-bottom:22px; }
+  .col-badge{ flex:1;border-radius:10px;padding:10px 4px;text-align:center;font-size:11px;font-weight:700;line-height:1.3; }
+  .btn{ border:none;border-radius:14px;padding:16px 20px;font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;cursor:pointer;width:100%;transition:transform .12s ease; }
+  .btn:active{ transform:scale(.97); }
+  .btn-primary{ background:var(--gold);color:#3A2900;box-shadow:0 10px 26px rgba(255,213,79,.25); }
+  .btn-ghost{ background:transparent;border:1.5px solid var(--panel-line);color:var(--ink);margin-top:10px; }
+  .brand-footer{ text-align:center;margin-top:18px;font-size:12px;color:var(--ink-dim); }
+  .brand-footer a{ color:var(--gold);text-decoration:none;font-weight:700; }
+  .go-score{ font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:52px;color:var(--gold);text-align:center;margin:8px 0 4px; }
+  .go-label{ text-align:center;font-size:13px;color:var(--ink-dim);margin-bottom:20px; }
+
+  #screen-game{ }
+  .hud{ display:flex;justify-content:space-between;align-items:center;margin-bottom:10px; }
+  .hud-score{ font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px; }
+  .hud-lives{ font-size:20px;letter-spacing:3px; }
+
+  /* Zone de chute */
+  .fall-zone{ position:relative;height:110px;margin-bottom:12px;overflow:hidden; }
+  .falling-card{
+    position:absolute; left:50%; transform:translateX(-50%);
+    background:var(--panel); border:2px solid var(--panel-line);
+    border-radius:14px; padding:10px 18px; text-align:center;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px;
+    white-space:nowrap; cursor:grab; touch-action:none;
+    box-shadow:0 8px 20px rgba(0,0,0,.3);
+    transition:top .05s linear;
+  }
+  .falling-card .emoji{ font-size:24px; display:block; margin-bottom:4px; }
+
+  /* Colonnes cibles */
+  .columns{ display:flex; gap:6px; height:200px; }
+  .col{
+    flex:1; border-radius:14px; border:2px solid;
+    display:flex; flex-direction:column; align-items:center;
+    justify-content:flex-end; padding:8px 4px;
+    position:relative; overflow:hidden;
+    transition:border-color .15s ease;
+  }
+  .col.highlight{ filter:brightness(1.3); }
+  .col .col-label{ font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-top:6px; }
+  .col .col-icon{ font-size:20px;margin-top:4px; }
+  .col .pile{ display:flex;flex-direction:column-reverse;gap:3px;width:100%;align-items:center; }
+  .pile-item{ width:28px;height:14px;border-radius:4px; }
+
+  .timer-bar-wrap{ height:6px;background:var(--panel);border-radius:99px;margin-bottom:8px;overflow:hidden; }
+  .timer-bar{ height:100%;background:var(--gold);border-radius:99px;transition:width .1s linear; }
+
+  .btn-row{ display:flex;gap:8px;margin-top:10px; }
+  .sort-btn{ flex:1;border:none;border-radius:12px;padding:14px 4px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;cursor:pointer;border:2px solid; }
+  .sort-btn:active{ transform:scale(.94); }
+
+  .feedback{ position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;opacity:0;pointer-events:none;z-index:20;text-shadow:0 2px 8px rgba(0,0,0,.5); }
+  .feedback.show{ animation:fbPop .5s ease forwards; }
+  @keyframes fbPop{ 0%{opacity:0;transform:translate(-50%,-60%) scale(.8);}30%{opacity:1;transform:translate(-50%,-50%) scale(1.1);}80%{opacity:1;}100%{opacity:0;transform:translate(-50%,-40%);} }
+</style>
+</head>
+<body>
+<div class="feedback" id="feedback"></div>
+<div class="app">
+
+  <div class="screen active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Le tri</div>
+    <h1 class="title">Tri de <span>Budget</span></h1>
+    <p class="lede">Des revenus et dépenses tombent. Triez-les dans la bonne colonne avant que le temps soit écoulé. Chaque erreur vous coûte une vie.</p>
+    <div class="cols-preview">
+      <div class="col-badge" style="background:rgba(61,220,132,.2);color:#3DDC84;border:1px solid rgba(61,220,132,.4)">💰<br>Revenus</div>
+      <div class="col-badge" style="background:rgba(79,195,247,.2);color:#4FC3F7;border:1px solid rgba(79,195,247,.4)">🏦<br>Épargne</div>
+      <div class="col-badge" style="background:rgba(255,167,38,.2);color:#FFA726;border:1px solid rgba(255,167,38,.4)">🏠<br>Fixe</div>
+      <div class="col-badge" style="background:rgba(206,147,216,.2);color:#CE93D8;border:1px solid rgba(206,147,216,.4)">🎉<br>Plaisir</div>
+    </div>
+    <button class="btn btn-primary" onclick="startGame()">Commencer le tri</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <div class="screen" id="screen-over">
+    <div class="eyebrow">Pile saturée</div>
+    <div class="go-score" id="goScore">0</div>
+    <div class="go-label" id="goLabel">items triés</div>
+    <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+    <button class="btn btn-ghost" onclick="shareResult()">Partager</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <div id="screen-game" style="display:none;">
+    <div class="hud">
+      <div class="hud-score">🗂️ <span id="hudScore">0</span></div>
+      <div class="hud-lives" id="hudLives">❤️❤️❤️</div>
+    </div>
+    <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar"></div></div>
+
+    <div class="fall-zone" id="fallZone"></div>
+
+    <div class="columns" id="columns">
+      <div class="col" id="col-0" style="border-color:#3DDC84;color:#3DDC84;">
+        <div class="pile" id="pile-0"></div>
+        <div class="col-icon">💰</div>
+        <div class="col-label">Revenus</div>
+      </div>
+      <div class="col" id="col-1" style="border-color:#4FC3F7;color:#4FC3F7;">
+        <div class="pile" id="pile-1"></div>
+        <div class="col-icon">🏦</div>
+        <div class="col-label">Épargne</div>
+      </div>
+      <div class="col" id="col-2" style="border-color:#FFA726;color:#FFA726;">
+        <div class="pile" id="pile-2"></div>
+        <div class="col-icon">🏠</div>
+        <div class="col-label">Fixe</div>
+      </div>
+      <div class="col" id="col-3" style="border-color:#CE93D8;color:#CE93D8;">
+        <div class="pile" id="pile-3"></div>
+        <div class="col-icon">🎉</div>
+        <div class="col-label">Plaisir</div>
+      </div>
+    </div>
+
+    <div class="btn-row" id="btnRow">
+      <button class="sort-btn" style="background:rgba(61,220,132,.15);color:#3DDC84;border-color:#3DDC84;" onclick="sort(0)">💰<br>Revenus</button>
+      <button class="sort-btn" style="background:rgba(79,195,247,.15);color:#4FC3F7;border-color:#4FC3F7;" onclick="sort(1)">🏦<br>Épargne</button>
+      <button class="sort-btn" style="background:rgba(255,167,38,.15);color:#FFA726;border-color:#FFA726;" onclick="sort(2)">🏠<br>Fixe</button>
+      <button class="sort-btn" style="background:rgba(206,147,216,.15);color:#CE93D8;border-color:#CE93D8;" onclick="sort(3)">🎉<br>Plaisir</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const ITEMS = [
+  { emoji:'💼', label:'Salaire', cat:0 },
+  { emoji:'🎁', label:'Prime', cat:0 },
+  { emoji:'💵', label:'Freelance', cat:0 },
+  { emoji:'📈', label:'Dividendes', cat:0 },
+  { emoji:'🏦', label:'Livret A', cat:1 },
+  { emoji:'🪙', label:'PEA', cat:1 },
+  { emoji:'💎', label:'Assurance-vie', cat:1 },
+  { emoji:'📊', label:'ETF', cat:1 },
+  { emoji:'🏠', label:'Loyer', cat:2 },
+  { emoji:'⚡', label:'Électricité', cat:2 },
+  { emoji:'📱', label:'Forfait mobile', cat:2 },
+  { emoji:'🚗', label:'Assurance auto', cat:2 },
+  { emoji:'🍕', label:'Resto', cat:3 },
+  { emoji:'🎬', label:'Cinéma', cat:3 },
+  { emoji:'👟', label:'Shopping', cat:3 },
+  { emoji:'✈️', label:'Vacances', cat:3 },
+];
+
+const COL_COLORS = ['#3DDC84','#4FC3F7','#FFA726','#CE93D8'];
+
+let score=0, lives=3, running=false, currentItem=null, timeLeft=100, best=0;
+let timerInterval=null, spawnInterval=null;
+
+try{ best = parseInt(localStorage.getItem('triBudgetBest')||'0',10); }catch(e){}
+
+function showFeedback(text, color){
+  const el = document.getElementById('feedback');
+  el.textContent = text; el.style.color = color;
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+}
+
+function showScreen(id){
+  ['screen-intro','screen-over'].forEach(s=>{
+    document.getElementById(s).classList.remove('active');
+  });
+  document.getElementById('screen-game').style.display = (id==='screen-game') ? 'block' : 'none';
+  if(id!=='screen-game') document.getElementById(id).classList.add('active');
+}
+
+function startGame(){
+  score=0; lives=3; running=true; timeLeft=100;
+  document.getElementById('hudScore').textContent='0';
+  document.getElementById('hudLives').textContent='❤️❤️❤️';
+  document.getElementById('timerBar').style.width='100%';
+  [0,1,2,3].forEach(i=>document.getElementById('pile-'+i).innerHTML='');
+  showScreen('screen-game');
+  spawnNext();
+  clearInterval(timerInterval);
+  timerInterval = setInterval(()=>{
+    if(!running) return;
+    timeLeft -= 1;
+    document.getElementById('timerBar').style.width = timeLeft+'%';
+    if(timeLeft<=0){ missItem(); }
+  }, 80);
+}
+
+function spawnNext(){
+  if(!running) return;
+  timeLeft = 100;
+  currentItem = ITEMS[Math.floor(Math.random()*ITEMS.length)];
+  const zone = document.getElementById('fallZone');
+  zone.innerHTML = '';
+  const card = document.createElement('div');
+  card.className = 'falling-card';
+  card.style.borderColor = COL_COLORS[currentItem.cat];
+  card.innerHTML = `<span class="emoji">${currentItem.emoji}</span>${currentItem.label}`;
+  zone.appendChild(card);
+}
+
+function sort(colIdx){
+  if(!running || !currentItem) return;
+  if(colIdx === currentItem.cat){
+    score++;
+    document.getElementById('hudScore').textContent = score;
+    addToPile(colIdx, currentItem.cat);
+    showFeedback('✅ +1', COL_COLORS[colIdx]);
+  } else {
+    lives--;
+    document.getElementById('hudLives').textContent = '❤️'.repeat(Math.max(0,lives));
+    showFeedback('❌ Raté !', '#FF5252');
+    if(lives<=0){ endGame(); return; }
+  }
+  spawnNext();
+}
+
+function missItem(){
+  if(!running) return;
+  lives--;
+  document.getElementById('hudLives').textContent = '❤️'.repeat(Math.max(0,lives));
+  showFeedback('⏱️ Trop lent !', '#FFA726');
+  if(lives<=0){ endGame(); return; }
+  spawnNext();
+}
+
+function addToPile(colIdx, cat){
+  const pile = document.getElementById('pile-'+colIdx);
+  const dot = document.createElement('div');
+  dot.className = 'pile-item';
+  dot.style.background = COL_COLORS[cat];
+  pile.appendChild(dot);
+  if(pile.children.length > 10){
+    lives--;
+    document.getElementById('hudLives').textContent = '❤️'.repeat(Math.max(0,lives));
+    pile.removeChild(pile.firstChild);
+    if(lives<=0){ endGame(); return; }
+  }
+}
+
+function endGame(){
+  running = false;
+  clearInterval(timerInterval);
+  document.getElementById('fallZone').innerHTML = '';
+  if(score > best){ best=score; try{ localStorage.setItem('triBudgetBest', String(best)); }catch(e){} }
+  document.getElementById('goScore').textContent = score;
+  document.getElementById('goLabel').textContent = 'items triés — record : ' + best;
+  showScreen('screen-over');
+}
+
+function shareResult(){
+  const text = `J'ai trié ${score} items sur Tri de Budget (Economya.fr) 📂 À toi de faire mieux :`;
+  const url = 'https://economya.fr';
+  if(navigator.share){ navigator.share({title:'Tri de Budget', text, url}).catch(()=>{}); }
+  else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
+}
+</script>
+</body>
+</html>

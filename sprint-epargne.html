@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint de l'Épargne — Economya.fr</title>
+<meta name="description" content="Sautez par-dessus les dettes, collectionnez les pièces, enchaînez les combos. Le runner le plus addictif d'Economya.fr">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+  :root{
+    --sky-top:#4FC3F7; --sky-bottom:#B3E5FC;
+    --ground:#8D6E42; --ground-top:#4CAF50;
+    --gold:#FFD54F; --coin-shadow:#F9A825;
+    --danger:#E53935; --ink:#1A1A2E; --white:#FFFFFF;
+    --panel:rgba(255,255,255,.92);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; overflow:hidden; }
+  body{
+    background: var(--sky-bottom);
+    color: var(--ink); font-family:'Inter', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent; user-select:none; position:relative;
+  }
+  .wrap{ width:100%; height:100%; max-width:460px; margin:0 auto; position:relative; }
+  .overlay{ position:absolute; inset:0; z-index:10; display:none; flex-direction:column; align-items:center; justify-content:center; padding:26px; background: linear-gradient(180deg, rgba(79,195,247,.75), rgba(30,60,90,.92) 55%); text-align:center; }
+  .overlay.active{ display:flex; animation: fadeIn .35s ease; }
+  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:#FFD54F; font-weight:800; margin-bottom:14px; text-shadow:0 2px 4px rgba(0,0,0,.3); }
+  .eyebrow::before{ content:'🪙'; }
+  h1.title{ font-family:'Space Grotesk', sans-serif; font-size:38px; font-weight:900; letter-spacing:-0.02em; line-height:1.05; margin-bottom:14px; color:white; text-shadow:0 3px 0 rgba(0,0,0,.25); }
+  h1.title span{ color:#FFD54F; }
+  p.lede{ color:rgba(255,255,255,.9); font-size:14.5px; line-height:1.55; margin-bottom:22px; max-width:340px; text-shadow:0 1px 3px rgba(0,0,0,.3); }
+  .legend{ display:flex; gap:10px; margin-bottom:26px; flex-wrap:wrap; justify-content:center; }
+  .legend-item{ display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.3); border-radius:99px; padding:8px 14px; font-size:12.5px; font-weight:700; color:white; }
+  .btn{ border:none; border-radius:16px; padding:18px 40px; font-family:'Space Grotesk', sans-serif; font-size:18px; font-weight:800; cursor:pointer; transition: transform .1s ease; }
+  .btn:active{ transform: scale(.94) translateY(2px); }
+  .btn-primary{ background:#FFD54F; color:#5D3A00; box-shadow:0 6px 0 #C99400, 0 10px 20px rgba(0,0,0,.3); }
+  .btn-ghost{ background:rgba(255,255,255,.15); border:2px solid rgba(255,255,255,.4); color:white; margin-top:14px; padding:14px 30px; font-size:14px; }
+  .brand-footer{ margin-top:20px; font-size:12px; color:rgba(255,255,255,.75); }
+  .brand-footer a{ color:#FFD54F; text-decoration:none; font-weight:700; }
+  .go-score{ font-family:'Space Grotesk', sans-serif; font-weight:900; font-size:60px; color:#FFD54F; line-height:1; margin: 6px 0 4px; text-shadow:0 3px 0 rgba(0,0,0,.25); }
+  .go-label{ font-size:13px; color:rgba(255,255,255,.85); margin-bottom:6px; }
+  .go-best{ font-size:13px; color:rgba(255,255,255,.75); margin-bottom:20px; }
+  .go-best b{ color:white; }
+
+  #hud{ position:absolute; top:0; left:0; right:0; z-index:5; display:flex; justify-content:space-between; align-items:flex-start; padding:14px 16px; pointer-events:none; }
+  .hud-coins{ font-family:'Space Grotesk', sans-serif; font-weight:900; font-size:22px; color:white; text-shadow:0 2px 4px rgba(0,0,0,.4); background:rgba(0,0,0,.2); padding:6px 14px; border-radius:99px; display:flex; align-items:center; gap:6px; }
+  .hud-lives{ font-size:20px; text-shadow:0 2px 4px rgba(0,0,0,.4); }
+  .combo-banner{ position:absolute; top:60px; left:50%; transform:translateX(-50%); font-family:'Space Grotesk', sans-serif; font-weight:900; font-size:20px; color:#FFD54F; opacity:0; z-index:6; pointer-events:none; text-shadow:0 3px 6px rgba(0,0,0,.5); }
+  .combo-banner.show{ animation: comboPop .7s cubic-bezier(.34,1.56,.64,1) forwards; }
+  @keyframes comboPop{ 0%{opacity:0; transform:translateX(-50%) translateY(10px) scale(.7);} 25%{opacity:1; transform:translateX(-50%) translateY(0) scale(1.15);} 75%{opacity:1; transform:translateX(-50%) scale(1);} 100%{opacity:0; transform:translateX(-50%) translateY(-16px) scale(1);} }
+
+  canvas{ display:block; width:100%; height:100%; touch-action:none; }
+  .shake{ animation: shakeAnim .3s ease; }
+  @keyframes shakeAnim{ 0%,100%{transform:translateX(0);} 20%{transform:translateX(-8px) translateY(3px);} 40%{transform:translateX(7px) translateY(-3px);} 60%{transform:translateX(-5px);} 80%{transform:translateX(4px);} }
+
+  .tap-hint{ position:absolute; bottom:24px; left:0; right:0; text-align:center; font-size:13px; color:rgba(255,255,255,.85); z-index:5; pointer-events:none; font-weight:600; text-shadow:0 2px 4px rgba(0,0,0,.4); }
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <canvas id="game"></canvas>
+  <div id="hud" style="display:none;">
+    <div class="hud-coins">🪙 <span id="hudCoins">0</span></div>
+    <div class="hud-lives" id="hudLives">❤️❤️❤️</div>
+  </div>
+  <div class="combo-banner" id="comboBanner"></div>
+  <div class="tap-hint" id="tapHint" style="display:none;">TAPEZ POUR SAUTER</div>
+
+  <div class="overlay active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Le sprint</div>
+    <h1 class="title">Sprint de <span>l'Épargne</span></h1>
+    <p class="lede">Sautez par-dessus les dettes, collectionnez un maximum de pièces, enchaînez les combos. Un seul bouton, un max de sensations.</p>
+    <div class="legend">
+      <div class="legend-item">👆 Tapez pour sauter</div>
+      <div class="legend-item">🪙 Collectionnez</div>
+    </div>
+    <button class="btn btn-primary" onclick="startGame()">C'est parti !</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <div class="overlay" id="screen-over">
+    <div class="eyebrow">Course terminée</div>
+    <div class="go-score" id="goScore">0</div>
+    <div class="go-label">pièces collectées</div>
+    <div class="go-best">Record : <b id="goBest">0</b></div>
+    <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+    <button class="btn btn-ghost" onclick="shareResult()">Partager mon score</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+const wrap = document.getElementById('wrap');
+let W,H,DPR;
+function resize(){
+  DPR = Math.min(window.devicePixelRatio||1, 2);
+  W = wrap.clientWidth; H = wrap.clientHeight;
+  canvas.width = W*DPR; canvas.height = H*DPR;
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+window.addEventListener('resize', resize);
+
+const GROUND_RATIO = 0.75;
+const DEBT_ICONS = ['🧾','📉','💸','⚠️'];
+
+let player, obstacles, coins, particles, clouds;
+let running = false, speed = 4.2, distance = 0, coinCount = 0, lives = 3, combo = 0, best = 0;
+let spawnTimer = 0, coinSpawnTimer = 0;
+let screenShake = 0;
+let rafStarted = false;
+let jumpBufferedAt = -100;
+
+try{ best = parseInt(localStorage.getItem('sprintEpargneBest')||'0',10); }catch(e){}
+
+function groundY(){ return H * GROUND_RATIO; }
+function showScreen(id){
+  document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function initClouds(){
+  clouds = [];
+  for(let i=0;i<5;i++){
+    clouds.push({ x: Math.random()*W, y: 30+Math.random()*H*0.3, s: 0.6+Math.random()*0.8, speed: 0.3+Math.random()*0.3 });
+  }
+}
+
+function startGame(){
+  resize();
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-over').classList.remove('active');
+  document.getElementById('hud').style.display='flex';
+  document.getElementById('tapHint').style.display='block';
+
+  player = { x: 70, y: groundY()-30, vy:0, w:26, h:34, onGround:true, squash:1 };
+  obstacles = []; coins = []; particles = [];
+  initClouds();
+  running = true; speed = 4.2; distance = 0; coinCount = 0; lives = 3; combo = 0;
+  spawnTimer = 0; coinSpawnTimer = 30;
+  updateHud();
+  if(!rafStarted){ rafStarted = true; requestAnimationFrame(loop); }
+}
+
+function updateHud(){
+  document.getElementById('hudCoins').textContent = coinCount;
+  document.getElementById('hudLives').textContent = '❤️'.repeat(Math.max(0,lives));
+}
+function showCombo(text){
+  const el = document.getElementById('comboBanner');
+  el.textContent = text;
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+}
+
+const GRAVITY = 0.85;
+const JUMP_V = -14;
+
+function jump(){
+  if(!running) return;
+  if(player.onGround){
+    player.vy = JUMP_V;
+    player.onGround = false;
+    player.squash = 1.3;
+    spawnJumpDust();
+  }
+}
+function spawnJumpDust(){
+  for(let i=0;i<6;i++){
+    particles.push({ x: player.x, y: groundY(), vx:(Math.random()-0.5)*3, vy:-Math.random()*2, life:1, color:'rgba(200,180,140,0.8)', size:4+Math.random()*3 });
+  }
+}
+function spawnCoinBurst(x,y){
+  for(let i=0;i<10;i++){
+    const ang = (Math.PI*2/10)*i;
+    particles.push({ x, y, vx:Math.cos(ang)*3, vy:Math.sin(ang)*3, life:1, color:'#FFD54F', size:3+Math.random()*3 });
+  }
+}
+function spawnHitBurst(x,y){
+  for(let i=0;i<12;i++){
+    const ang = Math.random()*Math.PI*2;
+    particles.push({ x, y, vx:Math.cos(ang)*4, vy:Math.sin(ang)*4-2, life:1, color:'#E53935', size:4+Math.random()*4 });
+  }
+}
+
+canvas.addEventListener('pointerdown', jump);
+window.addEventListener('keydown', e=>{ if(e.code==='Space') jump(); });
+
+function endGame(){
+  running = false;
+  document.getElementById('hud').style.display='none';
+  document.getElementById('tapHint').style.display='none';
+  if(coinCount > best){ best = coinCount; try{ localStorage.setItem('sprintEpargneBest', String(best)); }catch(e){} }
+  document.getElementById('goScore').textContent = coinCount;
+  document.getElementById('goBest').textContent = best;
+  showScreen('screen-over');
+}
+
+function loop(){
+  ctx.clearRect(0,0,W,H);
+
+  // ciel degrade
+  const sky = ctx.createLinearGradient(0,0,0,groundY());
+  sky.addColorStop(0, '#4FC3F7'); sky.addColorStop(1, '#B3E5FC');
+  ctx.fillStyle = sky; ctx.fillRect(0,0,W,groundY());
+
+  // nuages
+  clouds.forEach(c=>{
+    if(running) c.x -= c.speed;
+    if(c.x < -60) c.x = W + 60;
+    ctx.save();
+    ctx.globalAlpha = 0.85;
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
+    ctx.ellipse(c.x, c.y, 24*c.s, 12*c.s, 0, 0, Math.PI*2);
+    ctx.ellipse(c.x+16*c.s, c.y+4*c.s, 16*c.s, 10*c.s, 0, 0, Math.PI*2);
+    ctx.ellipse(c.x-16*c.s, c.y+4*c.s, 16*c.s, 10*c.s, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.restore();
+  });
+
+  // sol
+  ctx.fillStyle = '#4CAF50';
+  ctx.fillRect(0, groundY(), W, 10);
+  ctx.fillStyle = '#795548';
+  ctx.fillRect(0, groundY()+10, W, H-groundY()-10);
+
+  if(running){
+    distance += speed;
+    if(speed < 9) speed += 0.0025;
+
+    // physique joueur
+    player.vy += GRAVITY;
+    player.y += player.vy;
+    if(player.y >= groundY()-player.h){
+      if(!player.onGround){ player.squash = 0.7; }
+      player.y = groundY()-player.h;
+      player.vy = 0;
+      player.onGround = true;
+    }
+    player.squash += (1-player.squash)*0.25;
+
+    // spawn obstacles
+    spawnTimer -= 1;
+    if(spawnTimer <= 0){
+      obstacles.push({ x: W+30, y: groundY()-26, w:26, h:26, icon: DEBT_ICONS[Math.floor(Math.random()*DEBT_ICONS.length)], passed:false });
+      spawnTimer = 70 + Math.random()*50 - speed*3;
+      if(spawnTimer < 35) spawnTimer = 35;
+    }
+
+    // spawn pieces
+    coinSpawnTimer -= 1;
+    if(coinSpawnTimer <= 0){
+      const h = Math.random() < 0.5 ? groundY()-30 : groundY()-70;
+      coins.push({ x: W+30, y:h, r:11, collected:false, spin:0 });
+      coinSpawnTimer = 45 + Math.random()*30;
+    }
+
+    // deplacer obstacles
+    for(let i=obstacles.length-1;i>=0;i--){
+      const o = obstacles[i];
+      o.x -= speed;
+      const hit = player.x+player.w*0.3 < o.x+o.w && player.x+player.w*0.7 > o.x &&
+                  player.y+player.h*0.3 < o.y+o.h && player.y+player.h > o.y;
+      if(hit){
+        lives--;
+        combo = 0;
+        screenShake = 10;
+        spawnHitBurst(o.x, o.y);
+        obstacles.splice(i,1);
+        updateHud();
+        if(lives<=0){ endGame(); return; }
+        continue;
+      }
+      if(!o.passed && o.x + o.w < player.x){
+        o.passed = true;
+      }
+      if(o.x < -40) obstacles.splice(i,1);
+    }
+
+    // deplacer pieces
+    for(let i=coins.length-1;i>=0;i--){
+      const c = coins[i];
+      c.x -= speed; c.spin += 0.2;
+      const d = Math.hypot(player.x+player.w/2-c.x, player.y+player.h/2-c.y);
+      if(d < c.r + 16){
+        coinCount++;
+        combo++;
+        spawnCoinBurst(c.x, c.y);
+        if(combo>0 && combo%5===0) showCombo('🔥 Combo x'+combo);
+        coins.splice(i,1);
+        updateHud();
+        continue;
+      }
+      if(c.x < -20) coins.splice(i,1);
+    }
+
+    // particules
+    for(let i=particles.length-1;i>=0;i--){
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy; p.vy += 0.15; p.life -= 0.04;
+      if(p.life<=0) particles.splice(i,1);
+    }
+
+    if(screenShake > 0) screenShake -= 1;
+  }
+
+  // dessiner obstacles
+  obstacles.forEach(o=>{
+    ctx.font = '26px serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(o.icon, o.x+o.w/2, o.y+o.h/2);
+  });
+
+  // dessiner pieces
+  coins.forEach(c=>{
+    const scaleX = Math.abs(Math.cos(c.spin));
+    ctx.save();
+    ctx.translate(c.x, c.y);
+    ctx.scale(scaleX, 1);
+    ctx.fillStyle = '#FFD54F';
+    ctx.strokeStyle = '#F9A825'; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(0,0,c.r,0,Math.PI*2); ctx.fill(); ctx.stroke();
+    ctx.restore();
+  });
+
+  // dessiner particules
+  particles.forEach(p=>{
+    ctx.save();
+    ctx.globalAlpha = Math.max(p.life,0);
+    ctx.fillStyle = p.color;
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
+  });
+
+  // dessiner joueur (squash & stretch)
+  ctx.save();
+  const px = player.x+player.w/2, py = player.y+player.h;
+  ctx.translate(px, py);
+  ctx.scale(1/player.squash, player.squash);
+  ctx.fillStyle = '#2E7D32';
+  ctx.beginPath();
+  ctx.roundRect(-player.w/2, -player.h, player.w, player.h, 8);
+  ctx.fill();
+  ctx.font = '20px serif';
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText('🪙', 0, -player.h*0.55);
+  ctx.restore();
+
+  requestAnimationFrame(loop);
+}
+
+function shareResult(){
+  const text = `J'ai collecté ${coinCount} pièces sur Sprint de l'Épargne (Economya.fr) 🪙 À toi de battre mon score :`;
+  const url = 'https://economya.fr';
+  if(navigator.share){ navigator.share({title:"Sprint de l'Épargne", text, url}).catch(()=>{}); }
+  else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
+}
+
+resize();
+</script>
+</body>
+</html>

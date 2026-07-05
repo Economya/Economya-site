@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Marché Vivant — Economya.fr</title>
+<meta name="description" content="Réallouez votre portefeuille fictif à chaque tour et suivez un marché qui évolue. Simulation pédagogique Economya.fr.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap');
+  :root{
+    --bg-top:#0E1A2A; --bg-bottom:#04080E;
+    --good:#3DDC84; --bad:#FF4D6D; --gold:#4BC9FF;
+    --ink:#F0F8FF; --ink-dim:#8FA3C7;
+    --panel:rgba(255,255,255,.06); --panel-line:rgba(255,255,255,.12);
+    --c1:#4BC9FF; --c2:#3DDC84; --c3:#FFC94B; --c4:#FF4D6D;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%;}
+  body{
+    background:radial-gradient(circle at 50% -10%, var(--bg-top) 0%, var(--bg-bottom) 65%);
+    color:var(--ink); font-family:'Inter',system-ui,sans-serif;
+    -webkit-tap-highlight-color:transparent; user-select:none; min-height:100vh;
+  }
+  .wrap{width:100%; max-width:460px; margin:0 auto; min-height:100vh; position:relative; padding-bottom:24px;}
+  .overlay{
+    position:absolute; inset:0; z-index:10; display:none; flex-direction:column;
+    align-items:center; justify-content:center; padding:26px; min-height:100vh;
+    background:linear-gradient(180deg, rgba(4,8,14,.5), rgba(4,8,14,.97) 40%); text-align:center;
+  }
+  .overlay.active{display:flex; animation:fadeIn .35s ease;}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  .eyebrow{display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:14px;}
+  .eyebrow::before{content:'📈';}
+  h1.title{font-family:'Space Grotesk',sans-serif; font-size:27px; font-weight:800; letter-spacing:-.02em; line-height:1.1; margin-bottom:14px;}
+  h1.title span{color:var(--gold);}
+  p.lede{color:var(--ink-dim); font-size:14px; line-height:1.55; margin-bottom:16px; max-width:340px;}
+  .disclaimer{font-size:11px; color:var(--ink-dim); background:var(--panel); border:1px solid var(--panel-line); border-radius:10px; padding:9px 14px; margin-bottom:20px; max-width:340px; line-height:1.4;}
+  .btn{border:none; border-radius:14px; padding:16px 34px; font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; cursor:pointer; transition:transform .12s ease;}
+  .btn:active{transform:scale(.96);}
+  .btn-primary{background:var(--gold); color:#052033; box-shadow:0 10px 26px rgba(75,201,255,.28);}
+  .btn-ghost{background:transparent; border:1.5px solid var(--panel-line); color:var(--ink); margin-top:12px; padding:13px 30px; font-size:14px;}
+  .brand-footer{margin-top:16px; font-size:12px; color:var(--ink-dim);}
+  .brand-footer a{color:var(--gold); text-decoration:none; font-weight:700;}
+
+  #hud{ padding:16px 18px 8px; }
+  .hud-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; }
+  .hud-value{ font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:24px; }
+  .hud-turn{ font-size:13px; color:var(--ink-dim); font-weight:700; }
+  .progress-track{height:7px; border-radius:99px; background:rgba(255,255,255,.12); overflow:hidden; margin-top:6px;}
+  .progress-fill{height:100%; background:linear-gradient(90deg,var(--gold),#8fe0ff); border-radius:99px; width:0%;}
+
+  .result-banner{ margin:0 16px 10px; background:var(--panel); border:1px solid var(--panel-line); border-radius:12px; padding:10px 14px; font-size:12.5px; display:none; }
+  .result-banner.show{ display:block; }
+  .result-row{ display:flex; justify-content:space-between; margin-bottom:3px; }
+  .result-row .pct.pos{ color:var(--good); font-weight:700; }
+  .result-row .pct.neg{ color:var(--bad); font-weight:700; }
+
+  .assets{ padding:0 16px; display:flex; flex-direction:column; gap:10px; }
+  .asset{ background:var(--panel); border:1.5px solid var(--panel-line); border-radius:14px; padding:12px 14px; }
+  .asset-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+  .asset-name{ font-weight:700; font-size:13.5px; display:flex; align-items:center; gap:6px; }
+  .asset-dot{ width:10px; height:10px; border-radius:50%; }
+  .asset-parts{ font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:14px; }
+  .asset-bar-track{ height:10px; border-radius:99px; background:rgba(255,255,255,.1); overflow:hidden; margin-bottom:8px; }
+  .asset-bar-fill{ height:100%; border-radius:99px; }
+  .asset-ctrl{ display:flex; align-items:center; justify-content:center; gap:14px; }
+  .part-btn{ width:34px; height:34px; border-radius:10px; border:1px solid var(--panel-line); background:rgba(255,255,255,.05); color:var(--ink); font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:16px; cursor:pointer; }
+  .part-btn:active{ transform:scale(.92); }
+  .part-btn:disabled{ opacity:.3; cursor:not-allowed; }
+
+  .action-row{ padding:14px 16px 18px; }
+  .btn-validate{ width:100%; border:none; border-radius:14px; padding:15px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; background:var(--gold); color:#052033; cursor:pointer; }
+  .btn-validate:disabled{ opacity:.4; cursor:not-allowed; }
+  .parts-left{ text-align:center; font-size:12px; color:var(--ink-dim); margin-bottom:8px; }
+
+  .go-score{font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:44px; color:var(--gold); line-height:1; margin:6px 0 4px;}
+  .go-label{font-size:13px; color:var(--ink-dim); margin-bottom:6px;}
+  .go-compare{font-size:13px; color:var(--ink-dim); margin-bottom:20px; max-width:320px; line-height:1.5;}
+  .go-compare b{color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <div id="hud" style="display:none;">
+    <div class="hud-row"><span class="hud-turn">Tour <b id="hudTurn">1</b>/8</span><span class="hud-value" id="hudValue">1000 pts</span></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+  <div class="result-banner" id="resultBanner"></div>
+  <div class="assets" id="assets"></div>
+  <div class="action-row">
+    <div class="parts-left" id="partsLeft">10 parts à placer</div>
+    <button class="btn-validate" id="btnValidate" onclick="validateTurn()" disabled>Valider ce tour</button>
+  </div>
+
+  <div class="overlay active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Simulation</div>
+    <h1 class="title">Le Marché <span>Vivant</span></h1>
+    <p class="lede">Répartissez vos 10 parts entre 4 classes d'actifs fictives à chaque tour. Le marché évolue selon sa propre tendance — à vous de la suivre ou de vous en protéger, tour après tour, sur 8 tours.</p>
+    <div class="disclaimer">⚠️ Simulation pédagogique fictive, actifs génériques imaginaires. Ne constitue en aucun cas un conseil en investissement.</div>
+    <button class="btn btn-primary" onclick="startGame()">Jouer</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <div class="overlay" id="screen-over">
+    <div class="eyebrow">Cycle terminé</div>
+    <div class="go-score" id="goScore">0</div>
+    <div class="go-label">valeur finale du portefeuille</div>
+    <div class="go-compare" id="goCompare"></div>
+    <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+    <button class="btn btn-ghost" onclick="shareResult()">Partager mon résultat</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+</div>
+
+<script>
+const ASSETS = [
+  { key:'liquidites', name:'💧 Liquidités', color:'var(--c1)' },
+  { key:'obligations', name:'📄 Obligations', color:'var(--c2)' },
+  { key:'actions', name:'📊 Actions', color:'var(--c3)' },
+  { key:'volatils', name:'🎢 Actifs volatils', color:'var(--c4)' },
+];
+const TOTAL_PARTS = 10;
+const TOTAL_TURNS = 8;
+const START_VALUE = 1000;
+
+let parts = {};
+let portfolioValue = START_VALUE;
+let npcValue = START_VALUE; // profil prudent fixe
+const NPC_ALLOCATION = { liquidites:5, obligations:3, actions:2, volatils:0 };
+let trend = 0;
+let turn = 1;
+let running = false;
+
+function resetParts(){ parts = { liquidites:3, obligations:3, actions:3, volatils:1 }; }
+
+function partsUsed(){ return Object.values(parts).reduce((a,b)=>a+b,0); }
+
+function computeReturns(){
+  return {
+    liquidites: 0.3 + Math.random()*0.3,
+    obligations: 0.5 + trend*1.5 + (Math.random()-0.5)*2,
+    actions: 1 + trend*6 + (Math.random()-0.5)*6,
+    volatils: 1.5 + trend*12 + (Math.random()-0.5)*14
+  };
+}
+
+function renderAssets(returns){
+  const el = document.getElementById('assets');
+  el.innerHTML = '';
+  ASSETS.forEach(a=>{
+    const pct = (parts[a.key]/TOTAL_PARTS*100).toFixed(0);
+    const div = document.createElement('div');
+    div.className = 'asset';
+    div.innerHTML = `
+      <div class="asset-top">
+        <div class="asset-name"><span class="asset-dot" style="background:${a.color}"></span>${a.name}</div>
+        <div class="asset-parts">${parts[a.key]}/10</div>
+      </div>
+      <div class="asset-bar-track"><div class="asset-bar-fill" style="width:${pct}%; background:${a.color}"></div></div>
+      <div class="asset-ctrl">
+        <button class="part-btn" id="minus-${a.key}">−</button>
+        <span style="font-size:12px; color:var(--ink-dim);">${pct}% du portefeuille</span>
+        <button class="part-btn" id="plus-${a.key}">+</button>
+      </div>`;
+    el.appendChild(div);
+  });
+  ASSETS.forEach(a=>{
+    document.getElementById('minus-'+a.key).addEventListener('click', ()=>adjustPart(a.key,-1));
+    document.getElementById('plus-'+a.key).addEventListener('click', ()=>adjustPart(a.key,1));
+  });
+  updatePartsUI();
+}
+
+function adjustPart(key, delta){
+  if(!running) return;
+  if(delta>0 && partsUsed() >= TOTAL_PARTS) return;
+  if(delta<0 && parts[key] <= 0) return;
+  parts[key] += delta;
+  renderAssets();
+}
+
+function updatePartsUI(){
+  const used = partsUsed();
+  document.getElementById('partsLeft').textContent = (TOTAL_PARTS-used)+' parts restantes à placer';
+  document.getElementById('btnValidate').disabled = used !== TOTAL_PARTS;
+  ASSETS.forEach(a=>{
+    const plusBtn = document.getElementById('plus-'+a.key);
+    const minusBtn = document.getElementById('minus-'+a.key);
+    if(plusBtn) plusBtn.disabled = used >= TOTAL_PARTS;
+    if(minusBtn) minusBtn.disabled = parts[a.key] <= 0;
+  });
+}
+
+function updateHud(){
+  document.getElementById('hudTurn').textContent = turn;
+  document.getElementById('hudValue').textContent = Math.round(portfolioValue)+' pts';
+  document.getElementById('progressFill').style.width = ((turn-1)/TOTAL_TURNS*100)+'%';
+}
+
+function startGame(){
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-over').classList.remove('active');
+  document.getElementById('hud').style.display='block';
+  document.getElementById('resultBanner').classList.remove('show');
+  resetParts();
+  portfolioValue = START_VALUE; npcValue = START_VALUE; trend = 0; turn = 1;
+  running = true;
+  updateHud();
+  renderAssets();
+}
+
+function npcWeighted(returns){
+  const total = Object.values(NPC_ALLOCATION).reduce((a,b)=>a+b,0);
+  let r = 0;
+  Object.keys(NPC_ALLOCATION).forEach(k=>{ r += (NPC_ALLOCATION[k]/total) * returns[k]; });
+  return r;
+}
+
+function validateTurn(){
+  if(!running || partsUsed() !== TOTAL_PARTS) return;
+  const returns = computeReturns();
+
+  let weighted = 0;
+  ASSETS.forEach(a=>{ weighted += (parts[a.key]/TOTAL_PARTS) * returns[a.key]; });
+
+  portfolioValue *= (1 + weighted/100);
+  npcValue *= (1 + npcWeighted(returns)/100);
+
+  const banner = document.getElementById('resultBanner');
+  banner.innerHTML = ASSETS.map(a=>{
+    const v = returns[a.key];
+    return `<div class="result-row"><span>${a.name}</span><span class="pct ${v>=0?'pos':'neg'}">${v>=0?'+':''}${v.toFixed(1)}%</span></div>`;
+  }).join('');
+  banner.classList.add('show');
+
+  trend = Math.max(-1, Math.min(1, trend + (Math.random()-0.5)*0.6));
+  turn++;
+
+  if(turn > TOTAL_TURNS){
+    endGame();
+    return;
+  }
+  resetParts();
+  updateHud();
+  renderAssets();
+}
+
+function endGame(){
+  running = false;
+  document.getElementById('hud').style.display='none';
+  document.getElementById('resultBanner').classList.remove('show');
+  document.getElementById('assets').innerHTML = '';
+  document.querySelector('.action-row').style.display = 'none';
+
+  const finalValue = Math.round(portfolioValue);
+  const npcFinal = Math.round(npcValue);
+
+  document.getElementById('goScore').textContent = finalValue+' pts';
+  const compareEl = document.getElementById('goCompare');
+  if(finalValue >= npcFinal){
+    compareEl.innerHTML = `Un profil prudent qui n'a jamais bougé de sa répartition fixe aurait terminé à <b>${npcFinal} pts</b>. Votre gestion active a fait au moins aussi bien !`;
+  } else {
+    compareEl.innerHTML = `Un profil prudent qui n'a jamais bougé de sa répartition fixe aurait terminé à <b>${npcFinal} pts</b> — soit ${npcFinal-finalValue} pts de plus que votre gestion active sur ce cycle.`;
+  }
+  document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-over').classList.add('active');
+}
+
+function shareResult(){
+  const text = `J'ai terminé Le Marché Vivant avec ${Math.round(portfolioValue)} pts après 8 tours (Economya.fr) 📈 Sauras-tu mieux naviguer le marché ?`;
+  const url = 'https://economya.fr';
+  if(navigator.share){ navigator.share({title:'Le Marché Vivant', text, url}).catch(()=>{}); }
+  else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
+}
+</script>
+</body>
+</html>

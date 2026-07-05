@@ -89,10 +89,11 @@
   <div class="overlay active" id="screen-intro">
     <div class="eyebrow">Economya.fr · Attrape</div>
     <h1 class="title">Attrape tes <span>Économies</span></h1>
-    <p class="lede">Fais glisser ton panier pour attraper les bons plans et esquiver les pièges à dépenses. Ça accélère vite !</p>
+    <p class="lede">Fais glisser ton panier pour attraper les bons plans et esquiver les pièges à dépenses. Les objets zigzaguent, le panier rétrécit avec le score, et un ⭐ jackpot rare passe parfois très vite !</p>
     <div class="legend">
       <div class="legend-item"><span class="dot good"></span>À attraper</div>
       <div class="legend-item"><span class="dot bad"></span>À esquiver</div>
+      <div class="legend-item"><span class="dot" style="background:var(--gold)"></span>⭐ Jackpot rare</div>
     </div>
     <button class="btn btn-primary" onclick="startGame()">Jouer</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -129,12 +130,13 @@ const GOOD = [
 const BAD = [
   {emoji:'📉'}, {emoji:'🧾'}, {emoji:'💸'}, {emoji:'📢'}, {emoji:'⚠️'},
 ];
+const JACKPOT = {emoji:'⭐', pts:40};
 
 let basket = { x:0, w:70, h:14 };
 let items = [];
 let score = 0, lives = 3, combo = 0, best = 0;
 let running = false;
-let spawnTimer = 0, spawnInterval = 900, fallSpeed = 2.2, elapsed = 0;
+let spawnTimer = 0, spawnInterval = 850, fallSpeed = 2.4, elapsed = 0;
 let rafStarted = false;
 
 try{ best = parseInt(localStorage.getItem('attrapeEconomiesBest')||'0',10); }catch(e){}
@@ -149,9 +151,9 @@ function startGame(){
   document.getElementById('screen-over').classList.remove('active');
   document.getElementById('hud').style.display='flex';
   resize();
-  basket.x = W/2;
+  basket.x = W/2; basket.w = 70;
   items = []; score = 0; lives = 3; combo = 0;
-  spawnTimer = 0; spawnInterval = 900; fallSpeed = 2.2; elapsed = 0;
+  spawnTimer = 0; spawnInterval = 850; fallSpeed = 2.4; elapsed = 0;
   running = true;
   updateHud();
   if(!rafStarted){ rafStarted = true; requestAnimationFrame(loop); }
@@ -168,17 +170,23 @@ function showCombo(text){
 }
 
 function spawnItem(){
-  const isGood = Math.random() < 0.62;
-  const pool = isGood ? GOOD : BAD;
+  const isJackpot = Math.random() < 0.05;
+  const isGood = isJackpot ? true : Math.random() < 0.6;
+  const pool = isJackpot ? [JACKPOT] : (isGood ? GOOD : BAD);
   const def = pool[Math.floor(Math.random()*pool.length)];
+  const baseX = 30 + Math.random()*(W-60);
   items.push({
-    x: 30 + Math.random()*(W-60),
+    baseX, x: baseX,
     y: -20,
-    r: 18,
+    r: isJackpot ? 20 : 18,
     good: isGood,
+    jackpot: isJackpot,
     emoji: def.emoji,
     pts: def.pts || 0,
-    speed: fallSpeed + Math.random()*0.6
+    speed: (isJackpot ? fallSpeed*1.25 : fallSpeed) + Math.random()*0.6,
+    driftAmp: 14 + Math.random()*(isJackpot ? 34 : 20),
+    driftFreq: 0.018 + Math.random()*0.02,
+    phase: Math.random()*Math.PI*2
   });
 }
 
@@ -215,13 +223,19 @@ function loop(ts){
     if(spawnTimer > spawnInterval/16){
       spawnTimer = 0;
       spawnItem();
-      if(spawnInterval > 380) spawnInterval -= 6;
-      if(fallSpeed < 6) fallSpeed += 0.015;
+      const burstChance = Math.min(0.35, 0.06 + score/1000);
+      if(Math.random() < burstChance) spawnItem();
+      if(spawnInterval > 300) spawnInterval -= 9;
+      if(fallSpeed < 7.5) fallSpeed += 0.025;
     }
+
+    // le panier rétrécit progressivement avec le score (plus dur de viser)
+    basket.w = Math.max(44, 70 - Math.floor(score/130)*3);
 
     for(let i=items.length-1;i>=0;i--){
       const it = items[i];
       it.y += it.speed;
+      it.x = Math.max(it.r, Math.min(W-it.r, it.baseX + Math.sin(it.y*it.driftFreq + it.phase)*it.driftAmp));
 
       const basketTop = H - 60;
       const hitX = Math.abs(it.x - basket.x) < basket.w/2 + it.r*0.5;
@@ -232,12 +246,13 @@ function loop(ts){
           combo++;
           const bonus = it.pts + Math.floor(combo/3)*2;
           score += bonus;
-          if(combo>=3 && combo%3===0) showCombo('🔥 Combo x'+combo);
+          if(it.jackpot) showCombo('⭐ Jackpot +'+bonus);
+          else if(combo>=3 && combo%3===0) showCombo('🔥 Combo x'+combo);
         } else {
           combo = 0;
           lives--;
           updateHud();
-          if(lives<=0){ endGame(); return; }
+          if(lives<=0){ endGame(); break; }
         }
         updateHud();
         items.splice(i,1);
@@ -254,9 +269,38 @@ function loop(ts){
 
   // dessiner items
   items.forEach(it=>{
+    const glowColor = it.jackpot ? '255,201,75' : (it.good ? '61,220,132' : '255,77,109');
+
+    // halo coloré derrière l'objet (vert = bonus, rouge = malus)
+    ctx.save();
+    const glow = ctx.createRadialGradient(it.x, it.y, 2, it.x, it.y, it.r+10);
+    glow.addColorStop(0, `rgba(${glowColor},0.35)`);
+    glow.addColorStop(1, `rgba(${glowColor},0)`);
+    ctx.fillStyle = glow;
+    ctx.beginPath(); ctx.arc(it.x, it.y, it.r+10, 0, Math.PI*2); ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(it.x, it.y, it.r+2, 0, Math.PI*2);
+    ctx.lineWidth = 2.5;
+    ctx.strokeStyle = `rgba(${glowColor},0.85)`;
+    ctx.stroke();
+    ctx.restore();
+
     ctx.font = '32px serif';
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillText(it.emoji, it.x, it.y);
+
+    // pastille +/- en coin, toujours lisible même si l'emoji prête à confusion
+    ctx.save();
+    const badgeX = it.x + it.r*0.72, badgeY = it.y - it.r*0.72;
+    ctx.beginPath(); ctx.arc(badgeX, badgeY, 9, 0, Math.PI*2);
+    ctx.fillStyle = it.good ? '#3DDC84' : '#FF4D6D';
+    ctx.fill();
+    ctx.font = 'bold 12px Inter, sans-serif';
+    ctx.fillStyle = '#0A0614';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(it.good ? '+' : '−', badgeX, badgeY+1);
+    ctx.restore();
   });
 
   // panier

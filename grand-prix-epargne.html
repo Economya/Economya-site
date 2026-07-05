@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grand Prix de l'Épargne — Economya.fr</title>
+<meta name="description" content="Slalomez entre les pièges à dépenses, ramassez les bonus, et terminez le Grand Prix de l'Épargne. Contre qui finirez-vous ? Un jeu Economya.fr">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;900&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --bg-top:#2A0E12;
+    --bg-bottom:#0A0508;
+    --good:#3DDC84;
+    --bad:#FF4D6D;
+    --gold:#FFC94B;
+    --track:#1c1c22;
+    --track-line:#e8e4d8;
+    --ink:#F5F0FF;
+    --ink-dim:#B79FA9;
+    --panel:rgba(255,255,255,.06);
+    --panel-line:rgba(255,255,255,.12);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; overflow:hidden; }
+  body{
+    background: radial-gradient(circle at 50% -10%, var(--bg-top) 0%, var(--bg-bottom) 65%);
+    color: var(--ink);
+    font-family:'Inter', system-ui, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    user-select:none;
+    position:relative;
+  }
+  .wrap{ width:100%; height:100%; max-width:460px; margin:0 auto; position:relative; }
+
+  .overlay{
+    position:absolute; inset:0; z-index:10;
+    display:none; flex-direction:column; align-items:center; justify-content:center;
+    padding:26px; background: linear-gradient(180deg, rgba(10,5,8,.5), rgba(10,5,8,.95) 40%);
+    text-align:center; overflow-y:auto;
+  }
+  .overlay.active{ display:flex; animation: fadeIn .35s ease; }
+  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:14px; }
+  .eyebrow::before{ content:'🏁'; }
+
+  h1.title{ font-family:'Space Grotesk', sans-serif; font-size:34px; font-weight:800; letter-spacing:-0.02em; line-height:1.08; margin-bottom:14px; }
+  h1.title span{ color:var(--gold); }
+  p.lede{ color:var(--ink-dim); font-size:14.5px; line-height:1.55; margin-bottom:22px; max-width:340px; }
+
+  .legend{ display:flex; gap:10px; margin-bottom:22px; flex-wrap:wrap; justify-content:center; }
+  .legend-item{ display:flex; align-items:center; gap:7px; background:var(--panel); border:1px solid var(--panel-line); border-radius:99px; padding:8px 14px; font-size:12.5px; font-weight:600; }
+  .dot{ width:10px; height:10px; border-radius:50%; }
+  .dot.good{ background:var(--good); }
+  .dot.bad{ background:var(--bad); }
+
+  .controls-hint{ display:flex; gap:14px; margin-bottom:24px; color:var(--ink-dim); font-size:12.5px; align-items:center; }
+  .key{ background:var(--panel); border:1px solid var(--panel-line); border-radius:8px; padding:5px 10px; font-family:'Space Grotesk',sans-serif; font-weight:700; }
+
+  .btn{ border:none; border-radius:14px; padding:16px 34px; font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:700; cursor:pointer; transition: transform .12s ease, filter .12s ease; }
+  .btn:active{ transform: scale(.96); }
+  .btn-primary{ background:var(--gold); color:#2A1900; box-shadow:0 10px 26px rgba(255,201,75,.28); }
+  .btn-ghost{ background:transparent; border:1.5px solid var(--panel-line); color:var(--ink); margin-top:12px; padding:13px 30px; font-size:14px; }
+
+  .brand-footer{ margin-top:18px; font-size:12px; color:var(--ink-dim); }
+  .brand-footer a{ color:var(--gold); text-decoration:none; font-weight:700; }
+
+  #hud{ position:absolute; top:0; left:0; right:0; z-index:5; display:flex; flex-direction:column; gap:8px; padding:14px 16px; pointer-events:none; }
+  .hud-row{ display:flex; align-items:center; justify-content:space-between; }
+  .hud-score{ font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:24px; text-shadow: 0 2px 10px rgba(0,0,0,.4); }
+  .hud-lives{ font-size:18px; letter-spacing:3px; }
+  .progress-track{ height:8px; border-radius:99px; background:rgba(255,255,255,.12); overflow:hidden; flex:1; }
+  .progress-fill{ height:100%; width:0%; background:linear-gradient(90deg,var(--gold),#ffe08a); border-radius:99px; transition:width .1s linear; }
+  .progress-flag{ font-size:14px; }
+
+  .combo-toast{ position:absolute; top:78px; left:50%; transform:translateX(-50%); font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:15px; color:var(--gold); opacity:0; z-index:6; pointer-events:none; text-shadow:0 2px 8px rgba(0,0,0,.5); }
+  .combo-toast.show{ animation: comboPop .6s ease forwards; }
+  @keyframes comboPop{ 0%{opacity:0; transform:translateX(-50%) translateY(6px) scale(.9);} 20%{opacity:1; transform:translateX(-50%) translateY(0) scale(1.05);} 75%{opacity:1;} 100%{opacity:0; transform:translateX(-50%) translateY(-10px);} }
+
+  /* Podium */
+  .podium-medal{ font-size:64px; line-height:1; margin-bottom:6px; }
+  .podium-rank{ font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:28px; margin-bottom:4px; }
+  .podium-rank span{ color:var(--gold); }
+  .podium-score{ font-size:14px; color:var(--ink-dim); margin-bottom:18px; }
+  .podium-score b{ color:var(--ink); font-family:'Space Grotesk',sans-serif; font-size:17px; }
+
+  .rivals{ width:100%; max-width:320px; margin-bottom:20px; text-align:left; }
+  .rival-row{ display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:10px; margin-bottom:6px; background:var(--panel); border:1px solid var(--panel-line); font-size:13px; }
+  .rival-row.me{ background:rgba(255,201,75,.14); border-color:rgba(255,201,75,.45); font-weight:700; }
+  .rival-pos{ font-family:'Space Grotesk',sans-serif; font-weight:800; width:22px; color:var(--ink-dim); }
+  .rival-row.me .rival-pos{ color:var(--gold); }
+  .rival-name{ flex:1; }
+  .rival-score{ color:var(--ink-dim); font-variant-numeric:tabular-nums; }
+
+  canvas{ display:block; width:100%; height:100%; touch-action:none; }
+
+  .checker-strip{
+    position:absolute; left:0; right:0; height:8px; z-index:4;
+    background: repeating-linear-gradient(45deg, #e8e4d8 0 10px, #17151a 10px 20px);
+    opacity:.9;
+  }
+  .checker-strip.top{ top:0; }
+  .checker-strip.bottom{ bottom:0; }
+
+  .podium-blocks{ display:flex; align-items:flex-end; gap:10px; margin-bottom:18px; height:96px; }
+  .podium-block{ width:64px; border-radius:8px 8px 0 0; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding-top:8px; font-family:'Space Grotesk',sans-serif; font-weight:800; position:relative; }
+  .podium-block .pb-medal{ font-size:22px; margin-bottom:2px; }
+  .podium-block .pb-name{ font-size:9.5px; font-weight:600; color:rgba(10,6,10,.75); text-align:center; line-height:1.2; padding:0 4px; max-width:60px; }
+  .podium-block.gold{ height:96px; background:linear-gradient(180deg,#ffe08a,var(--gold)); order:2; }
+  .podium-block.silver{ height:74px; background:linear-gradient(180deg,#e6e6ea,#b9bcc4); order:1; }
+  .podium-block.bronze{ height:58px; background:linear-gradient(180deg,#d9a06b,#b8783f); order:3; }
+  .podium-block.me{ box-shadow:0 0 0 3px var(--ink), 0 8px 20px rgba(255,201,75,.4); }
+</style>
+</head>
+<body>
+
+<div class="wrap" id="wrap">
+  <canvas id="game"></canvas>
+  <div class="checker-strip top"></div>
+  <div class="checker-strip bottom"></div>
+
+  <div id="hud" style="display:none;">
+    <div class="hud-row">
+      <div class="hud-score" id="hudScore">0</div>
+      <div class="hud-lives" id="hudLives">❤️❤️❤️</div>
+    </div>
+    <div class="hud-row" style="gap:8px;">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-flag">🏁</div>
+    </div>
+  </div>
+  <div class="combo-toast" id="comboToast"></div>
+
+  <div class="overlay active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Grand Prix</div>
+    <h1 class="title">Grand Prix de <span>l'Épargne</span></h1>
+    <p class="lede">Slalomez entre les pièges à dépenses, ramassez les bonus et les ⭐ étoiles bouclier, franchissez les barrages sur la bonne voie, et filez vers la ligne d'arrivée. À la fin, on vous dit contre qui vous avez couru.</p>
+    <div class="legend">
+      <div class="legend-item"><span class="dot good"></span>À ramasser</div>
+      <div class="legend-item"><span class="dot bad"></span>À éviter</div>
+      <div class="legend-item">🚧 1 voie sûre</div>
+    </div>
+    <div class="controls-hint">
+      <span><span class="key">←</span> <span class="key">→</span> ou glissez</span>
+    </div>
+    <button class="btn btn-primary" onclick="startGame()">Prendre le départ</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <div class="overlay" id="screen-over">
+    <div class="eyebrow" id="goEyebrow">Course terminée</div>
+    <div class="podium-medal" id="goMedal">🏁</div>
+    <div class="podium-rank">Tu termines <span id="goRank">1er</span></div>
+    <div class="podium-score"><b id="goScore">0</b> points d'économies</div>
+    <div class="podium-blocks" id="goPodiumBlocks"></div>
+    <div class="rivals" id="goRivals"></div>
+    <button class="btn btn-primary" onclick="startGame()">Redémarrer la course</button>
+    <button class="btn btn-ghost" onclick="shareResult()">Partager mon classement</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('game');
+const ctx = canvas.getContext('2d');
+const wrap = document.getElementById('wrap');
+let W,H,DPR;
+function resize(){
+  DPR = Math.min(window.devicePixelRatio||1, 2);
+  W = wrap.clientWidth; H = wrap.clientHeight;
+  canvas.width = W*DPR; canvas.height = H*DPR;
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+window.addEventListener('resize', resize);
+
+// --- Contenu du jeu ---
+const GOOD = [
+  {emoji:'🪙', pts:10}, {emoji:'💰', pts:15}, {emoji:'🎯', pts:20}, {emoji:'📈', pts:25},
+];
+const BAD = [
+  {emoji:'🧾'}, {emoji:'💸'}, {emoji:'📢'}, {emoji:'⚠️'},
+];
+const STAR = {emoji:'⭐', pts:5};
+
+// Adversaires fictifs du Grand Prix, triés du plus petit score au plus grand
+const RIVALS = [
+  { name:"Le café à emporter tous les matins", score: 380 },
+  { name:"L'abonnement streaming qu'on n'utilise plus", score: 640 },
+  { name:"La livraison à toute heure", score: 950 },
+  { name:"Les soldes qu'on regrette", score: 1300 },
+  { name:"Le crédit conso sur un coup de tête", score: 1700 },
+];
+
+const RACE_DURATION = 42000; // ms
+const LANES = 3;
+
+let laneIdx = 1;
+let kartX = 0, kartTargetX = 0;
+let items = [];
+let barriers = [];
+let score = 0, lives = 3, combo = 0, best = 0;
+let running = false;
+let invuln = 0, shield = 0;
+let spawnTimer = 0, spawnInterval = 780, fallSpeed = 2.4, raceStart = 0, raceElapsed = 0;
+let barrierTimer = 0;
+let rafStarted = false;
+let laneDashOffset = 0;
+let speedLines = [];
+let kartTrail = [];
+let shake = 0;
+
+try{ best = parseInt(localStorage.getItem('grandPrixEpargneBest')||'0',10); }catch(e){}
+
+function laneCenter(i){ return (W/LANES)*i + (W/LANES)/2; }
+
+function startGame(){
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-over').classList.remove('active');
+  document.getElementById('hud').style.display='flex';
+  resize();
+  laneIdx = 1; kartX = laneCenter(1); kartTargetX = kartX;
+  items = []; barriers = []; score = 0; lives = 3; combo = 0; invuln = 0; shield = 0;
+  speedLines = []; kartTrail = []; shake = 0; barrierTimer = 0;
+  spawnTimer = 0; spawnInterval = 780; fallSpeed = 2.4;
+  raceStart = performance.now(); raceElapsed = 0;
+  running = true;
+  updateHud();
+  if(!rafStarted){ rafStarted = true; requestAnimationFrame(loop); }
+}
+
+function updateHud(){
+  document.getElementById('hudScore').textContent = score;
+  document.getElementById('hudLives').textContent = (shield>0?'⭐ ':'') + '❤️'.repeat(Math.max(0,lives));
+  const pct = Math.min(100, (raceElapsed/RACE_DURATION)*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+}
+function showCombo(text){
+  const el = document.getElementById('comboToast');
+  el.textContent = text;
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+}
+
+function moveLane(dir){
+  if(!running) return;
+  laneIdx = Math.max(0, Math.min(LANES-1, laneIdx+dir));
+  kartTargetX = laneCenter(laneIdx);
+}
+window.addEventListener('keydown', e=>{
+  if(e.key==='ArrowLeft') moveLane(-1);
+  if(e.key==='ArrowRight') moveLane(1);
+});
+let touchStartX = null;
+canvas.addEventListener('touchstart', e=>{ touchStartX = e.touches[0].clientX; });
+canvas.addEventListener('touchend', e=>{
+  if(touchStartX===null) return;
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if(Math.abs(dx) > 30) moveLane(dx>0?1:-1);
+  touchStartX = null;
+});
+canvas.addEventListener('pointerdown', e=>{
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  moveLane(x < W/2 ? -1 : 1);
+});
+
+function spawnItem(){
+  const isStar = Math.random() < 0.05;
+  const isGood = isStar ? true : Math.random() < 0.58;
+  const pool = isStar ? [STAR] : (isGood ? GOOD : BAD);
+  const def = pool[Math.floor(Math.random()*pool.length)];
+  const lane = Math.floor(Math.random()*LANES);
+  items.push({
+    lane, x: laneCenter(lane), y:-20, r:18,
+    good:isGood, star:isStar, emoji:def.emoji, pts:def.pts||0,
+    speed: fallSpeed + Math.random()*0.5
+  });
+}
+
+function spawnBarrier(){
+  const safeLane = Math.floor(Math.random()*LANES);
+  barriers.push({ safeLane, y:-46, h:28, speed: fallSpeed*0.8, passed:false });
+}
+
+function computeRank(){
+  const combined = RIVALS.map(r=>({name:r.name, score:r.score, me:false}));
+  combined.push({name:"Toi", score, me:true});
+  combined.sort((a,b)=> b.score - a.score);
+  return combined;
+}
+
+function rankSuffix(n){
+  return n===1 ? "1er" : n+"e";
+}
+
+function endGame(){
+  running = false;
+  document.getElementById('hud').style.display='none';
+  if(score > best){ best = score; try{ localStorage.setItem('grandPrixEpargneBest', String(best)); }catch(e){} }
+
+  const standings = computeRank();
+  const myIndex = standings.findIndex(s=>s.me);
+  const rank = myIndex+1;
+  const medals = ['🥇','🥈','🥉'];
+
+  document.getElementById('goMedal').textContent = medals[myIndex] || '🏅';
+  document.getElementById('goRank').textContent = rankSuffix(rank);
+  document.getElementById('goScore').textContent = score;
+  document.getElementById('goEyebrow').textContent = lives<=0 ? "Sorti de piste" : "Course terminée";
+
+  const rivalsEl = document.getElementById('goRivals');
+  rivalsEl.innerHTML = standings.map((s,i)=>`
+    <div class="rival-row ${s.me?'me':''}">
+      <div class="rival-pos">${i+1}</div>
+      <div class="rival-name">${s.name}</div>
+      <div class="rival-score">${s.score} pts</div>
+    </div>`).join('');
+
+  const top3 = standings.slice(0,3);
+  const classes = ['gold','silver','bronze'];
+  const medalsTop = ['🥇','🥈','🥉'];
+  const blocksEl = document.getElementById('goPodiumBlocks');
+  blocksEl.innerHTML = top3.map((s,i)=>`
+    <div class="podium-block ${classes[i]} ${s.me?'me':''}">
+      <div class="pb-medal">${medalsTop[i]}</div>
+      <div class="pb-name">${s.me ? 'Toi' : s.name}</div>
+    </div>`).join('');
+
+  window._lastStandings = standings;
+  window._lastRank = rank;
+  window._lastMyIndex = myIndex;
+
+  document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-over').classList.add('active');
+}
+
+function loop(ts){
+  if(shake>0) shake--;
+  const shX = shake>0 ? (Math.random()-0.5)*shake*1.1 : 0;
+  const shY = shake>0 ? (Math.random()-0.5)*shake*1.1 : 0;
+
+  ctx.clearRect(0,0,W,H);
+  ctx.save();
+  ctx.translate(shX, shY);
+
+  // piste (asphalte + lignes de voies défilantes)
+  ctx.fillStyle = '#1c1c22';
+  ctx.fillRect(0,0,W,H);
+  ctx.save();
+  ctx.strokeStyle = 'rgba(232,228,216,0.18)';
+  ctx.lineWidth = 3;
+  ctx.setLineDash([22,18]);
+  if(running) laneDashOffset = (laneDashOffset + (fallSpeed*0.9)) % 40;
+  ctx.lineDashOffset = -laneDashOffset;
+  for(let i=1;i<LANES;i++){
+    const x = (W/LANES)*i;
+    ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke();
+  }
+  ctx.restore();
+
+  // lignes de vitesse (renforcent la sensation d'accélération)
+  if(running){
+    const spawnChance = Math.min(0.9, 0.15 + fallSpeed*0.08);
+    if(Math.random() < spawnChance){
+      speedLines.push({
+        x: Math.random()*W,
+        y: -30,
+        len: 20 + Math.random()*30,
+        speed: (fallSpeed*2.6) + Math.random()*2,
+        gold: Math.random() < 0.35
+      });
+    }
+  }
+  for(let i=speedLines.length-1;i>=0;i--){
+    const sl = speedLines[i];
+    if(running) sl.y += sl.speed;
+    const alpha = Math.min(0.35, fallSpeed/14);
+    ctx.strokeStyle = sl.gold ? `rgba(255,201,75,${alpha})` : `rgba(255,255,255,${alpha*0.7})`;
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(sl.x, sl.y); ctx.lineTo(sl.x, sl.y+sl.len); ctx.stroke();
+    if(sl.y - sl.len > H) speedLines.splice(i,1);
+  }
+
+  raceLoop: if(running){
+    raceElapsed = performance.now() - raceStart;
+    if(raceElapsed >= RACE_DURATION){ endGame(); break raceLoop; }
+
+    if(invuln>0) invuln--;
+
+    // rapprocher le kart de sa voie cible
+    kartX += (kartTargetX - kartX) * 0.28;
+
+    spawnTimer++;
+    if(spawnTimer > spawnInterval/16){
+      spawnTimer = 0;
+      spawnItem();
+      if(spawnInterval > 340) spawnInterval -= 5;
+      if(fallSpeed < 7) fallSpeed += 0.02;
+    }
+
+    for(let i=items.length-1;i>=0;i--){
+      const it = items[i];
+      it.y += it.speed;
+
+      const kartTop = H - 70;
+      const hitX = it.lane === laneIdx;
+      const hitY = it.y + it.r > kartTop && it.y < kartTop + 40;
+
+      if(hitY && hitX){
+        if(it.star){
+          shield = 240;
+          score += it.pts;
+          showCombo('⭐ Bouclier actif !');
+        } else if(it.good){
+          combo++;
+          const bonus = it.pts + Math.floor(combo/3)*3;
+          score += bonus;
+          if(combo>=3 && combo%3===0) showCombo('🔥 Combo x'+combo);
+        } else if(invuln<=0 && shield<=0){
+          combo = 0;
+          lives--;
+          invuln = 45;
+          shake = 12;
+          updateHud();
+          if(lives<=0){ endGame(); break raceLoop; }
+        }
+        updateHud();
+        items.splice(i,1);
+        continue;
+      }
+      if(it.y > H + 30){
+        if(it.good){ combo = 0; }
+        items.splice(i,1);
+        continue;
+      }
+    }
+
+    // décrémenter le bouclier
+    if(shield>0) shield--;
+
+    // barrages : 2 voies bloquées, 1 voie sûre à anticiper
+    barrierTimer++;
+    if(raceElapsed > 6000 && barrierTimer > 260){
+      barrierTimer = 0;
+      spawnBarrier();
+    }
+    for(let i=barriers.length-1;i>=0;i--){
+      const b = barriers[i];
+      b.y += b.speed;
+      const kartTop = H - 70;
+      const hitYb = b.y + b.h > kartTop && b.y < kartTop + 40;
+      if(hitYb && !b.passed){
+        b.passed = true;
+        if(laneIdx !== b.safeLane && invuln<=0 && shield<=0){
+          combo = 0;
+          lives--;
+          invuln = 45;
+          shake = 14;
+          updateHud();
+          if(lives<=0){ endGame(); break raceLoop; }
+        }
+      }
+      if(b.y > H + 40) barriers.splice(i,1);
+    }
+    updateHud();
+  }
+
+  // barrages (2 voies bloquées, la 3e reste ouverte)
+  barriers.forEach(b=>{
+    for(let lane=0; lane<LANES; lane++){
+      if(lane===b.safeLane) continue;
+      const bx0 = (W/LANES)*lane + 4;
+      const bw = (W/LANES) - 8;
+      ctx.fillStyle = 'rgba(255,77,109,0.88)';
+      ctx.fillRect(bx0, b.y, bw, b.h);
+      ctx.strokeStyle = 'rgba(255,255,255,0.6)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(bx0, b.y, bw, b.h);
+      ctx.font = '16px serif';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('🚧', bx0+bw/2, b.y+b.h/2);
+    }
+  });
+
+  // objets
+  items.forEach(it=>{
+    const glowColor = it.star ? '255,201,75' : (it.good ? '61,220,132' : '255,77,109');
+    ctx.save();
+    const glow = ctx.createRadialGradient(it.x, it.y, 2, it.x, it.y, it.r+10);
+    glow.addColorStop(0, `rgba(${glowColor},0.35)`);
+    glow.addColorStop(1, `rgba(${glowColor},0)`);
+    ctx.fillStyle = glow;
+    ctx.beginPath(); ctx.arc(it.x, it.y, it.r+10, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(it.x, it.y, it.r+2, 0, Math.PI*2);
+    ctx.lineWidth = 2.5; ctx.strokeStyle = `rgba(${glowColor},0.85)`; ctx.stroke();
+    ctx.restore();
+
+    ctx.font = '30px serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(it.emoji, it.x, it.y);
+
+    ctx.save();
+    const bx = it.x + it.r*0.72, by = it.y - it.r*0.72;
+    ctx.beginPath(); ctx.arc(bx, by, 9, 0, Math.PI*2);
+    ctx.fillStyle = it.good ? '#3DDC84' : '#FF4D6D'; ctx.fill();
+    ctx.font = 'bold 12px Inter, sans-serif';
+    ctx.fillStyle = '#0A0614'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(it.good ? '+' : '−', bx, by+1);
+    ctx.restore();
+  });
+
+  // traînée du kart (sensation de vitesse et de dérapage entre les voies)
+  if(running){
+    kartTrail.push({x:kartX, y:H-70});
+    if(kartTrail.length > 7) kartTrail.shift();
+  }
+  kartTrail.forEach((t,i)=>{
+    const a = (i/kartTrail.length) * 0.22;
+    ctx.fillStyle = `rgba(255,201,75,${a})`;
+    ctx.beginPath(); ctx.ellipse(t.x, t.y+18, 22-(i*1.5), 7, 0, 0, Math.PI*2); ctx.fill();
+  });
+
+  // anneau de bouclier
+  if(shield>0){
+    ctx.save();
+    ctx.translate(kartX, H-70);
+    ctx.beginPath(); ctx.arc(0,0,30,0,Math.PI*2);
+    ctx.strokeStyle = `rgba(255,201,75,${0.45+0.35*Math.sin((ts||0)/90)})`;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  // kart
+  ctx.save();
+  const kartY = H-70;
+  const blink = invuln>0 && Math.floor(invuln/6)%2===0;
+  ctx.globalAlpha = blink ? 0.4 : 1;
+  ctx.translate(kartX, kartY);
+  ctx.fillStyle = 'rgba(255,201,75,.18)';
+  ctx.beginPath(); ctx.ellipse(0,18,26,8,0,0,Math.PI*2); ctx.fill();
+  ctx.font = '34px serif';
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText('🏎️', 0, 0);
+  ctx.restore();
+
+  ctx.restore();
+  requestAnimationFrame(loop);
+}
+
+function shareResult(){
+  const standings = window._lastStandings || computeRank();
+  const rank = window._lastRank || 1;
+  const myIndex = window._lastMyIndex ?? 0;
+  const behind = standings[myIndex+1];
+  const behindText = behind ? `, juste devant "${behind.name}"` : '';
+  const text = `Je termine ${rankSuffix(rank)} du Grand Prix de l'Épargne avec ${score} points${behindText} 🏁 À toi de faire mieux :`;
+  const url = 'https://economya.fr';
+  if(navigator.share){ navigator.share({title:"Grand Prix de l'Épargne", text, url}).catch(()=>{}); }
+  else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Classement copié ! 🎉')); }
+}
+
+resize();
+</script>
+</body>
+</html>
