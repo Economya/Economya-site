@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef Économe — Economya.fr</title>
+<meta name="description" content="Des ingrédients défilent sur le tapis. Choisissez les bons pour composer un repas équilibré ET pas cher. 30 secondes. Economya.fr">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+  :root{
+    --bg:#1A1208; --panel:#241A0C; --panel2:#2E2010;
+    --line:#3D2E18; --gold:#FFD54F; --green:#66BB6A; --red:#EF5350;
+    --orange:#FFA726; --ink:#F5ECD8; --ink-dim:#B8A882;
+    --belt:#2C2218; --belt-line:#3D3020;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; overflow:hidden; }
+  body{
+    background: radial-gradient(circle at 50% -10%, #2A1C0A 0%, var(--bg) 65%);
+    color:var(--ink); font-family:'Inter',system-ui,sans-serif;
+    -webkit-tap-highlight-color:transparent; user-select:none;
+    display:flex; align-items:center; justify-content:center; padding:14px;
+  }
+  .app{ width:100%; max-width:420px; }
+  .screen{ display:none; }
+  .screen.active{ display:block; animation:fadeIn .35s ease; }
+  @keyframes fadeIn{ from{opacity:0;}to{opacity:1;} }
+
+  .eyebrow{ display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px; }
+  .eyebrow::before{ content:'👨‍🍳'; }
+  h1.title{ font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:14px; }
+  h1.title span{ color:var(--gold); }
+  p.lede{ color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:18px; }
+
+  .rules{ background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin-bottom:20px; }
+  .rule-row{ display:flex;align-items:center;gap:10px;padding:7px 0;font-size:13px;color:var(--ink-dim); }
+  .rule-row b{ color:var(--ink); }
+  .rule-row .tag{ font-size:18px;width:26px;text-align:center;flex-shrink:0; }
+
+  .btn{ border:none;border-radius:14px;padding:16px 20px;font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;cursor:pointer;width:100%;transition:transform .12s ease; }
+  .btn:active{ transform:scale(.97); }
+  .btn-primary{ background:var(--gold);color:#3A2900;box-shadow:0 10px 26px rgba(255,213,79,.25); }
+  .btn-ghost{ background:transparent;border:1.5px solid var(--line);color:var(--ink);margin-top:10px; }
+  .brand-footer{ text-align:center;margin-top:18px;font-size:12px;color:var(--ink-dim); }
+  .brand-footer a{ color:var(--gold);text-decoration:none;font-weight:700; }
+
+  /* ÉCRAN JEU */
+  #screen-game{ }
+  .game-hud{ display:flex;justify-content:space-between;align-items:center;margin-bottom:10px; }
+  .timer-pill{ font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:20px;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:6px 16px; }
+  .timer-pill.urgent{ color:var(--red);border-color:rgba(239,83,80,.4); }
+  .recipe-name{ font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--gold); }
+
+  /* Objectif recette */
+  .recipe-box{ background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:10px; }
+  .recipe-title{ font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-dim);margin-bottom:8px; }
+  .recipe-targets{ display:flex;gap:6px;flex-wrap:wrap; }
+  .target{ display:flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:5px 9px;font-size:12.5px;font-weight:600; }
+  .target.found{ border-color:rgba(102,187,106,.6);background:rgba(102,187,106,.12);color:var(--green); }
+  .target .t-emoji{ font-size:16px; }
+
+  /* Jauges */
+  .gauges{ display:flex;gap:8px;margin-bottom:10px; }
+  .gauge{ flex:1; }
+  .gauge-label{ font-size:10px;color:var(--ink-dim);margin-bottom:3px;display:flex;justify-content:space-between; }
+  .gauge-bar{ height:8px;background:var(--panel);border-radius:99px;overflow:hidden; }
+  .gauge-fill{ height:100%;border-radius:99px;transition:width .3s ease,background .3s ease; }
+
+  /* Tapis roulant */
+  .belt-wrap{ background:var(--belt);border:2px solid var(--belt-line);border-radius:16px;padding:12px;margin-bottom:10px;position:relative;overflow:hidden;height:110px; }
+  .belt-items{ display:flex;align-items:center;gap:10px;position:absolute;top:50%;transform:translateY(-50%);white-space:nowrap;transition:none; }
+  .belt-item{
+    display:inline-flex;flex-direction:column;align-items:center;gap:3px;
+    background:var(--panel2);border:2px solid var(--line);border-radius:12px;
+    padding:8px 10px;cursor:pointer;min-width:64px;
+    transition:transform .1s ease,border-color .1s ease;
+    flex-shrink:0;
+  }
+  .belt-item:active{ transform:scale(.92); }
+  .belt-item.selected{ border-color:rgba(255,213,79,.7);background:rgba(255,213,79,.1); }
+  .belt-item .b-emoji{ font-size:24px; }
+  .belt-item .b-name{ font-size:9.5px;font-weight:600;color:var(--ink-dim);text-align:center;line-height:1.2; }
+  .belt-item .b-price{ font-size:9px;color:var(--orange); }
+  .belt-item .b-nutri{ font-size:9px;color:var(--green); }
+
+  /* Panier sélection */
+  .basket{ background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 14px;min-height:52px;margin-bottom:10px; }
+  .basket-title{ font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-dim);margin-bottom:6px; }
+  .basket-items{ display:flex;gap:6px;flex-wrap:wrap; }
+  .basket-tag{ display:flex;align-items:center;gap:4px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:4px 8px;font-size:12px;cursor:pointer; }
+  .basket-tag:active{ opacity:.7; }
+
+  .validate-btn{ width:100%;border:none;border-radius:12px;padding:14px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;background:var(--gold);color:#3A2900;cursor:pointer;transition:transform .1s ease; }
+  .validate-btn:active{ transform:scale(.97); }
+  .validate-btn:disabled{ opacity:.4;cursor:not-allowed; }
+
+  /* Feedback toast */
+  .toast{ position:fixed;top:30%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;opacity:0;pointer-events:none;z-index:30;text-shadow:0 2px 8px rgba(0,0,0,.5);text-align:center;line-height:1.3; }
+  .toast.show{ animation:toastPop .7s ease forwards; }
+  @keyframes toastPop{ 0%{opacity:0;transform:translate(-50%,-60%) scale(.8);}25%{opacity:1;transform:translate(-50%,-50%) scale(1.05);}80%{opacity:1;}100%{opacity:0;transform:translate(-50%,-40%);} }
+
+  /* RÉSULTAT */
+  .result-score{ font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:52px;color:var(--gold);text-align:center;margin:8px 0 4px; }
+  .result-label{ text-align:center;font-size:13px;color:var(--ink-dim);margin-bottom:16px; }
+  .result-details{ background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:20px; }
+  .result-row{ display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px; }
+  .result-row:last-child{ border-bottom:none; }
+  .result-lesson{ background:rgba(255,213,79,.08);border:1px solid rgba(255,213,79,.3);border-radius:12px;padding:14px;font-size:13px;line-height:1.5;color:var(--ink-dim);text-align:center;margin-bottom:18px; }
+  .result-lesson b{ color:var(--gold); }
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="app">
+
+  <!-- INTRO -->
+  <div class="screen active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · La cuisine</div>
+    <h1 class="title">Chef <span>Économe</span></h1>
+    <p class="lede">Des ingrédients défilent sur le tapis roulant. Composez le repas demandé en choisissant les ingrédients les moins chers — sans sacrifier la nutrition !</p>
+    <div class="rules">
+      <div class="rule-row"><div class="tag">🎯</div><div>Une <b>recette cible</b> s'affiche avec les ingrédients à trouver</div></div>
+      <div class="rule-row"><div class="tag">👆</div><div>Tapez les bons ingrédients sur le <b>tapis roulant</b></div></div>
+      <div class="rule-row"><div class="tag">⚖️</div><div>Trouvez l'équilibre : <b>pas trop cher, assez nutritif</b></div></div>
+      <div class="rule-row"><div class="tag">⏱️</div><div><b>30 secondes</b> par recette</div></div>
+    </div>
+    <button class="btn btn-primary" onclick="startGame()">Aux fourneaux !</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+  <!-- JEU -->
+  <div id="screen-game" style="display:none;">
+    <div class="game-hud">
+      <div class="timer-pill" id="timer">30s</div>
+      <div class="recipe-name" id="recipeName">Recette 1/3</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;" id="scoreDisplay">0 pts</div>
+    </div>
+
+    <div class="recipe-box">
+      <div class="recipe-title" id="recipeTitle">Composez : </div>
+      <div class="recipe-targets" id="recipeTargets"></div>
+    </div>
+
+    <div class="gauges">
+      <div class="gauge">
+        <div class="gauge-label"><span>💰 Budget</span><span id="budgetVal">0 €</span></div>
+        <div class="gauge-bar"><div class="gauge-fill" id="budgetFill" style="width:0%;background:var(--green)"></div></div>
+      </div>
+      <div class="gauge">
+        <div class="gauge-label"><span>🥗 Nutrition</span><span id="nutriVal">0%</span></div>
+        <div class="gauge-bar"><div class="gauge-fill" id="nutriFill" style="width:0%;background:var(--green)"></div></div>
+      </div>
+    </div>
+
+    <div class="belt-wrap">
+      <div class="belt-items" id="beltItems"></div>
+    </div>
+
+    <div class="basket">
+      <div class="basket-title">Votre panier (tapez pour retirer)</div>
+      <div class="basket-items" id="basketItems"></div>
+    </div>
+
+    <button class="validate-btn" id="validateBtn" onclick="validateRecipe()" disabled>Valider la recette</button>
+  </div>
+
+  <!-- RÉSULTAT -->
+  <div class="screen" id="screen-result">
+    <div class="eyebrow">Résultat</div>
+    <div class="result-score" id="resultScore">0</div>
+    <div class="result-label" id="resultLabel">points sur 300</div>
+    <div class="result-details" id="resultDetails"></div>
+    <div class="result-lesson" id="resultLesson"></div>
+    <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+    <button class="btn btn-ghost" onclick="shareResult()">Partager mon score</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// CHEF ÉCONOME — tapis roulant, 3 recettes, 30s chacune
+// ============================================================
+
+// Ingrédients disponibles
+// price: coût en €, nutri: score nutritionnel 0-100, cat: catégorie
+const INGREDIENTS = [
+  { id:'oeufs',    emoji:'🥚', name:'Œufs (x4)',     price:1.2, nutri:85, cat:'proteines' },
+  { id:'lentilles',emoji:'🫘', name:'Lentilles',     price:0.9, nutri:90, cat:'proteines' },
+  { id:'poulet',   emoji:'🍗', name:'Poulet',        price:3.8, nutri:88, cat:'proteines' },
+  { id:'thon',     emoji:'🐟', name:'Thon en boîte', price:1.5, nutri:82, cat:'proteines' },
+  { id:'tofu',     emoji:'🧊', name:'Tofu',          price:2.1, nutri:78, cat:'proteines' },
+  { id:'pates',    emoji:'🍝', name:'Pâtes',         price:0.7, nutri:60, cat:'glucides' },
+  { id:'riz',      emoji:'🍚', name:'Riz',           price:0.8, nutri:55, cat:'glucides' },
+  { id:'pain',     emoji:'🍞', name:'Pain',          price:1.1, nutri:52, cat:'glucides' },
+  { id:'pommes_terre',emoji:'🥔',name:'Pommes de terre',price:0.6,nutri:58,cat:'glucides'},
+  { id:'tomates',  emoji:'🍅', name:'Tomates',       price:1.4, nutri:72, cat:'legumes' },
+  { id:'carottes', emoji:'🥕', name:'Carottes',      price:0.5, nutri:80, cat:'legumes' },
+  { id:'brocoli',  emoji:'🥦', name:'Brocoli',       price:1.2, nutri:92, cat:'legumes' },
+  { id:'epinards', emoji:'🥬', name:'Épinards',      price:1.0, nutri:88, cat:'legumes' },
+  { id:'oignons',  emoji:'🧅', name:'Oignons',       price:0.4, nutri:60, cat:'legumes' },
+  { id:'fromage',  emoji:'🧀', name:'Fromage',       price:2.8, nutri:65, cat:'laitiers' },
+  { id:'yaourt',   emoji:'🥛', name:'Yaourt nature', price:0.5, nutri:72, cat:'laitiers' },
+  { id:'olive',    emoji:'🫙', name:'Huile d\'olive',price:1.8, nutri:40, cat:'matieres_grasses' },
+  { id:'beurre',   emoji:'🧈', name:'Beurre',        price:1.2, nutri:30, cat:'matieres_grasses' },
+  // ingrédients chers/peu nutritifs (pièges)
+  { id:'chips',    emoji:'🥔', name:'Chips',         price:2.4, nutri:15, cat:'autre' },
+  { id:'sodas',    emoji:'🥤', name:'Sodas',         price:1.8, nutri:5,  cat:'autre' },
+  { id:'confiture',emoji:'🍓', name:'Confiture',     price:2.2, nutri:12, cat:'autre' },
+  { id:'cake',     emoji:'🍰', name:'Part de cake',  price:3.2, nutri:10, cat:'autre' },
+];
+
+// 3 recettes avec ingrédients cibles
+const RECIPES = [
+  {
+    name: 'Pâtes aux légumes 🍝',
+    budget: 4.0,
+    targets: ['pates', 'tomates', 'oignons', 'olive'],
+    lesson: 'Un plat de pâtes maison coûte en moyenne <b>1,80€/personne</b> vs 4,50€ au restaurant. Sur un an, cuisiner 3 fois par semaine économise <b>+400€</b>.'
+  },
+  {
+    name: 'Bowl protéiné 🥗',
+    budget: 3.5,
+    targets: ['lentilles', 'carottes', 'epinards', 'oignons'],
+    lesson: 'Les lentilles apportent autant de protéines que la viande pour <b>3x moins cher</b>. Remplacer la viande 2 fois/semaine = <b>600€ d\'économies par an</b>.'
+  },
+  {
+    name: 'Omelette complète 🥚',
+    budget: 3.0,
+    targets: ['oeufs', 'tomates', 'epinards', 'fromage'],
+    lesson: 'L\'œuf est l\'un des aliments les plus nutritifs au meilleur rapport qualité/prix : <b>0,20€ par unité</b> pour 6g de protéines. Un repas complet à moins de 1,50€.'
+  }
+];
+
+let score = 0, round = 0, running = false;
+let timeLeft = 30, timerInterval = null;
+let basket = []; // {id, emoji, name, price, nutri}
+let beltOffset = 0, beltAnim = null;
+let currentRecipe = null, beltIngredients = [];
+let roundScores = [];
+let best = 0;
+
+try{ best = parseInt(localStorage.getItem('chefEconomeBest')||'0',10); }catch(e){}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-game').style.display = (id==='screen-game') ? 'block' : 'none';
+  if(id!=='screen-game') document.getElementById(id).classList.add('active');
+}
+
+function showToast(text, color){
+  const el = document.getElementById('toast');
+  el.innerHTML = text; el.style.color = color;
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+}
+
+function shuffleArr(arr){
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function startGame(){
+  score=0; round=0; running=true; roundScores=[];
+  showScreen('screen-game');
+  loadRound();
+}
+
+function loadRound(){
+  if(round >= RECIPES.length){ return endGame(); }
+  currentRecipe = RECIPES[round];
+  basket = []; beltOffset = 0;
+  document.getElementById('recipeName').textContent = `Recette ${round+1}/${RECIPES.length}`;
+  document.getElementById('scoreDisplay').textContent = score + ' pts';
+
+  // Afficher la recette cible
+  document.getElementById('recipeTitle').textContent = 'Composez : ' + currentRecipe.name;
+  const targets = document.getElementById('recipeTargets');
+  targets.innerHTML = '';
+  currentRecipe.targets.forEach(tid=>{
+    const ing = INGREDIENTS.find(i=>i.id===tid);
+    const div = document.createElement('div');
+    div.className = 'target';
+    div.id = 'target-'+tid;
+    div.innerHTML = `<span class="t-emoji">${ing.emoji}</span><span>${ing.name}</span>`;
+    targets.appendChild(div);
+  });
+
+  // Construire le tapis : mélange avec les cibles + leurres
+  const targets_ings = currentRecipe.targets.map(tid=>INGREDIENTS.find(i=>i.id===tid));
+  const decoys = shuffleArr(INGREDIENTS.filter(i=>!currentRecipe.targets.includes(i.id))).slice(0,8);
+  beltIngredients = shuffleArr([...targets_ings, ...decoys, ...targets_ings.slice(0,2)]); // doublon pour plus de chance
+  renderBelt();
+  renderBasket();
+  updateGauges();
+  document.getElementById('validateBtn').disabled = true;
+  document.getElementById('timer').classList.remove('urgent');
+
+  timeLeft = 30;
+  clearInterval(timerInterval);
+  timerInterval = setInterval(()=>{
+    timeLeft--;
+    document.getElementById('timer').textContent = timeLeft + 's';
+    if(timeLeft<=8) document.getElementById('timer').classList.add('urgent');
+    if(timeLeft<=0){ clearInterval(timerInterval); autoValidate(); }
+  }, 1000);
+
+  startBeltAnimation();
+}
+
+function renderBelt(){
+  const beltEl = document.getElementById('beltItems');
+  beltEl.innerHTML='';
+  // dupliquer pour l'animation infinie
+  const all = [...beltIngredients, ...beltIngredients];
+  all.forEach(ing=>{
+    const div = document.createElement('div');
+    div.className = 'belt-item';
+    div.id = 'belt-'+ing.id+'-'+Math.random().toString(36).slice(2,6);
+    div.innerHTML = `
+      <span class="b-emoji">${ing.emoji}</span>
+      <span class="b-name">${ing.name}</span>
+      <span class="b-price">💰 ${ing.price.toFixed(2)}€</span>
+      <span class="b-nutri">🥗 ${ing.nutri}%</span>
+    `;
+    div.onclick = ()=>tapIngredient(ing);
+    beltEl.appendChild(div);
+  });
+}
+
+let beltPos = 0;
+function startBeltAnimation(){
+  if(beltAnim) cancelAnimationFrame(beltAnim);
+  function animate(){
+    if(!running) return;
+    beltPos -= 1.2;
+    const beltEl = document.getElementById('beltItems');
+    if(!beltEl) return;
+    const totalW = beltEl.scrollWidth / 2;
+    if(Math.abs(beltPos) >= totalW) beltPos = 0;
+    beltEl.style.transform = `translateX(${beltPos}px)`;
+    beltAnim = requestAnimationFrame(animate);
+  }
+  animate();
+}
+
+function tapIngredient(ing){
+  if(!running) return;
+  if(basket.find(b=>b.id===ing.id)){
+    showToast('Déjà dans le panier !', '#FFA726');
+    return;
+  }
+  basket.push(ing);
+  renderBasket();
+  updateGauges();
+  checkFoundTargets();
+}
+
+function removeFromBasket(id){
+  basket = basket.filter(b=>b.id!==id);
+  renderBasket();
+  updateGauges();
+  checkFoundTargets();
+}
+
+function renderBasket(){
+  const el = document.getElementById('basketItems');
+  el.innerHTML='';
+  basket.forEach(ing=>{
+    const div=document.createElement('div');
+    div.className='basket-tag';
+    div.innerHTML=`${ing.emoji} <span>${ing.name}</span> ✕`;
+    div.onclick=()=>removeFromBasket(ing.id);
+    el.appendChild(div);
+  });
+}
+
+function updateGauges(){
+  const totalPrice = basket.reduce((s,i)=>s+i.price, 0);
+  const avgNutri = basket.length ? basket.reduce((s,i)=>s+i.nutri,0)/basket.length : 0;
+  const maxBudget = currentRecipe ? currentRecipe.budget : 4;
+  const budgetPct = Math.min(100, (totalPrice/maxBudget)*100);
+  const budgetFill = document.getElementById('budgetFill');
+  budgetFill.style.width = budgetPct+'%';
+  budgetFill.style.background = budgetPct>100 ? 'var(--red)' : budgetPct>80 ? 'var(--orange)' : 'var(--green)';
+  document.getElementById('budgetVal').textContent = totalPrice.toFixed(2)+'€';
+
+  const nutriFill = document.getElementById('nutriFill');
+  nutriFill.style.width = avgNutri+'%';
+  nutriFill.style.background = avgNutri<50 ? 'var(--red)' : avgNutri<70 ? 'var(--orange)' : 'var(--green)';
+  document.getElementById('nutriVal').textContent = Math.round(avgNutri)+'%';
+
+  document.getElementById('validateBtn').disabled = basket.length===0;
+}
+
+function checkFoundTargets(){
+  if(!currentRecipe) return;
+  currentRecipe.targets.forEach(tid=>{
+    const el=document.getElementById('target-'+tid);
+    if(el){ el.classList.toggle('found', !!basket.find(b=>b.id===tid)); }
+  });
+}
+
+function validateRecipe(){
+  clearInterval(timerInterval);
+  if(beltAnim) cancelAnimationFrame(beltAnim);
+  running=false;
+
+  const recipe = currentRecipe;
+  const totalPrice = basket.reduce((s,i)=>s+i.price,0);
+  const avgNutri = basket.length ? basket.reduce((s,i)=>s+i.nutri,0)/basket.length : 0;
+  const foundTargets = recipe.targets.filter(tid=>basket.find(b=>b.id===tid)).length;
+
+  let roundScore = 0;
+  // points pour chaque cible trouvée
+  roundScore += foundTargets * 20;
+  // bonus budget respecté
+  if(totalPrice <= recipe.budget) roundScore += 20;
+  // bonus nutrition
+  if(avgNutri >= 70) roundScore += 15;
+  // malus si dépassement budget important
+  if(totalPrice > recipe.budget * 1.3) roundScore = Math.max(0, roundScore-15);
+
+  score += roundScore;
+  roundScores.push({ recipe: recipe.name, roundScore, foundTargets, totalPrice, avgNutri });
+
+  let msg='';
+  if(foundTargets===recipe.targets.length){ msg='🎯 Recette parfaite !'; }
+  else if(foundTargets>=recipe.targets.length/2){ msg='👍 Pas mal !'; }
+  else{ msg='😅 Incomplet...'; }
+  showToast(msg + '\n+' + roundScore + ' pts', roundScore>40?'#66BB6A':'#FFA726');
+
+  setTimeout(()=>{
+    round++;
+    running=true;
+    beltPos=0;
+    loadRound();
+  }, 1400);
+}
+
+function autoValidate(){
+  // temps écoulé, on valide ce qu'il y a
+  validateRecipe();
+}
+
+function endGame(){
+  running=false;
+  if(beltAnim) cancelAnimationFrame(beltAnim);
+
+  if(score>best){ best=score; try{ localStorage.setItem('chefEconomeBest',String(best)); }catch(e){} }
+  document.getElementById('resultScore').textContent = score;
+  document.getElementById('resultLabel').textContent = `points sur ${RECIPES.length*75} — record : ${best}`;
+
+  const details = document.getElementById('resultDetails');
+  details.innerHTML='';
+  roundScores.forEach(r=>{
+    const row=document.createElement('div');
+    row.className='result-row';
+    row.innerHTML=`<span>${r.recipe}</span><span style="color:var(--gold);font-weight:700">${r.roundScore} pts</span>`;
+    details.appendChild(row);
+  });
+
+  // leçon de la recette la moins bien réussie
+  const worstRound = roundScores.reduce((a,b)=>a.roundScore<b.roundScore?a:b, roundScores[0]);
+  const worstRecipe = RECIPES.find(r=>r.name===worstRound.recipe);
+  document.getElementById('resultLesson').innerHTML = worstRecipe ? worstRecipe.lesson : '';
+
+  showScreen('screen-result');
+}
+
+function shareResult(){
+  const text = `J'ai fait ${score} points sur Chef Économe (Economya.fr) 👨‍🍳 Saurais-tu composer un repas équilibré et pas cher ?`;
+  const url='https://economya.fr';
+  if(navigator.share){ navigator.share({title:'Chef Économe',text,url}).catch(()=>{}); }
+  else{ navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
+}
+</script>
+</body>
+</html>
