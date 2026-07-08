@@ -104,25 +104,6 @@ footer strong{color:white}
   <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
 
 <!-- Menu hamburger mobile -->
-<script>function toggleMenu(){const m=document.getElementById("mobileMenu");m.classList.toggle("open");}</script><button class="hamburger" style="z-index: 9999; position: relative;" onclick="toggleMenu()" aria-label="Menu">
-  <span></span><span></span><span></span>
-</button>
-<div class="mobile-menu" id="mobileMenu">
-  <button class="close-btn" onclick="toggleMenu()">✕</button>
-  <a href="index.html">🏠 Accueil</a>
-  <a href="jeux.html">🎮 Jeux</a>
-  <a href="outils-gratuits.html">🛠️ Outils gratuits</a>
-  <a href="comparateurs.html">🔍 Comparateurs</a>
-  <a href="a-propos.html">ℹ️ À propos</a>
-  <a href="recherche.html">🔎 Rechercher</a>
-  <a href="#nl" class="nav-cta" onclick="toggleMenu()">📬 Newsletter</a>
-</div>
-<script>
-function toggleMenu(){
-  const m = document.getElementById("mobileMenu");
-  m.classList.toggle("open");
-}
-</script>
 </nav>
 <div class="hero">
   <h1>À propos d'<em>Economya</em></h1>
@@ -208,5 +189,5 @@ function toggleMenu(){
   <strong>Economya.fr</strong> · Le média des finances & économies du quotidien · Fait avec ❤️ en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact : contact@economya.fr</span>
 </footer>
-</body>
+<script>function toggleMenu(){const m=document.getElementById("mobileMenu");m.classList.toggle("open");}</script></body>
 </html>
