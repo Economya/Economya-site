@@ -96,14 +96,14 @@ footer strong{color:white}
   <meta name="twitter:title" content="À propos">
   <meta name="twitter:description" content="Découvrez l'histoire d'Economya.fr, le média digital dédié aux économies du quotidien et à la gestion de budget en France.">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-</head>
+<style>.mobile-menu{display:none !important; position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; z-index:9999;}.mobile-menu.open{display:flex !important; flex-direction:column;}</style></head>
 <body>
 <nav>
   <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
   <a class="nav-back" href="index.html">← Accueil</a>
   <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
 
-<button class="hamburger" onclick="toggleMenu()" aria-label="Menu" style="z-index: 9999; position: relative;"><span style="pointer-events: none;"></span><span style="pointer-events: none;"></span><span style="pointer-events: none;"></span></button><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="index.html">🏠 Accueil</a><a href="jeux.html">🎮 Jeux</a><a href="outils-gratuits.html">🛠️ Outils gratuits</a><a href="comparateurs.html">🔍 Comparateurs</a><a href="a-propos.html">ℹ️ À propos</a><a href="recherche.html">🔎 Rechercher</a><a href="#nl" class="nav-cta" onclick="toggleMenu()">📬 Newsletter</a></div>
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu" style="z-index: 10000; position: relative; cursor: pointer;"><span style="pointer-events: none;"></span><span style="pointer-events: none;"></span><span style="pointer-events: none;"></span></button><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="index.html">🏠 Accueil</a><a href="jeux.html">🎮 Jeux</a><a href="outils-gratuits.html">🛠️ Outils gratuits</a><a href="comparateurs.html">🔍 Comparateurs</a><a href="a-propos.html">ℹ️ À propos</a><a href="recherche.html">🔎 Rechercher</a><a href="#nl" class="nav-cta" onclick="toggleMenu()">📬 Newsletter</a></div>
 </nav>
 <div class="hero">
   <h1>À propos d'<em>Economya</em></h1>
