@@ -104,7 +104,7 @@ footer strong{color:white}
   <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
 
 <!-- Menu hamburger mobile -->
-<button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+<script>function toggleMenu(){const m=document.getElementById("mobileMenu");m.classList.toggle("open");}</script><button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
   <span></span><span></span><span></span>
 </button>
 <div class="mobile-menu" id="mobileMenu">
@@ -119,13 +119,11 @@ footer strong{color:white}
 </div>
 <script>
 function toggleMenu(){
-  var m = document.getElementById('mobileMenu');
-  m.classList.toggle('open');
-  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+  const m = document.getElementById("mobileMenu");
+  m.classList.toggle("open");
 }
 </script>
-<script>function toggleMenu(){const m=document.getElementById("mobileMenu");m.classList.toggle("open");}</script></nav>
-
+</nav>
 <div class="hero">
   <h1>À propos d'<em>Economya</em></h1>
   <p>Le média digital qui vous aide à vivre bien en dépensant moins.</p>
