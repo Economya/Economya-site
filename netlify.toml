@@ -12,3 +12,6 @@
   to = "https://economya.fr/:splat"
   status = 301
   force = true
+
+[build]
+  publish = "."
