@@ -198,7 +198,7 @@ function joyStart(e){
 function joyMove(e){
   if(!joyActive) return;
   const p = pointerPos(e);
-  joyDX = p.x - joyStartX; joyDY = p.y - joyStartY;
+  joyDX = p.x - joyStartX; joyDY = p.y - joyStartY; joyStartX = p.x; joyStartY = p.y;
   const maxD = 60;
   const d = Math.hypot(joyDX,joyDY);
   if(d > maxD){ joyDX = joyDX/d*maxD; joyDY = joyDY/d*maxD; }
