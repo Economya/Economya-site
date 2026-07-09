@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coach Économe — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --bg:#0A1A10;--panel:#112018;--panel2:#182E20;
+  --line:#1E3A28;--gold:#FFD54F;--green:#34D399;--red:#F87171;--blue:#60A5FA;
+  --ink:#EDFFF4;--ink-dim:#5A8A6A;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow-y:auto;}
+body{
+  background:radial-gradient(ellipse at 50% 0%,#182E20 0%,var(--bg) 60%);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;user-select:none;
+  display:flex;align-items:flex-start;justify-content:center;padding:14px;min-height:100vh;
+}
+.app{width:100%;max-width:420px;padding-bottom:20px;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.eyebrow::before{content:'🏃';}
+h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;}
+h1.title span{color:var(--gold);}
+p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
+.btn{border:none;border-radius:14px;padding:14px 20px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:transform .1s ease;margin-bottom:8px;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--gold);color:#2A1900;}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);}
+.brand-footer{text-align:center;margin-top:16px;font-size:11px;color:var(--ink-dim);}
+.brand-footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+/* HUD */
+.hud{display:flex;gap:8px;margin-bottom:12px;}
+.hud-box{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;}
+.hud-val{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;}
+.hud-lab{font-size:10px;color:var(--ink-dim);margin-top:2px;}
+
+/* Barre de progression saison */
+.season-bar{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px;}
+.season-label{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-dim);margin-bottom:6px;}
+.season-track{height:8px;background:rgba(255,255,255,.05);border-radius:99px;overflow:hidden;display:flex;gap:2px;}
+.season-seg{flex:1;border-radius:3px;background:rgba(255,255,255,.05);transition:background .4s ease;}
+.season-seg.done{background:var(--green);}
+.season-seg.current{background:var(--gold);}
+
+/* Perf bars */
+.perf-bars{display:flex;gap:8px;margin-bottom:12px;}
+.perf-bar{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 8px;}
+.pb-label{font-size:10px;color:var(--ink-dim);margin-bottom:5px;text-align:center;}
+.pb-track{height:80px;background:rgba(255,255,255,.04);border-radius:8px;display:flex;align-items:flex-end;padding:3px;}
+.pb-fill{width:100%;border-radius:6px;transition:height .5s ease;min-height:4px;}
+.pb-val{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:13px;text-align:center;margin-top:4px;}
+
+/* Événement de la semaine */
+.week-card{background:var(--panel2);border:2px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px;}
+.wc-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.wc-emoji{font-size:30px;}
+.wc-info{}
+.wc-week{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-dim);}
+.wc-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;}
+.wc-desc{font-size:12.5px;color:var(--ink-dim);line-height:1.4;margin-bottom:10px;}
+
+/* Options */
+.options{display:flex;flex-direction:column;gap:8px;}
+.option{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;transition:border-color .15s ease;}
+.option:active{transform:scale(.98);}
+.option:hover{border-color:rgba(255,213,79,.4);}
+.opt-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.opt-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;}
+.opt-cost{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;color:var(--gold);}
+.opt-desc{font-size:11.5px;color:var(--ink-dim);}
+.opt-stats{display:flex;gap:8px;margin-top:6px;}
+.opt-stat{font-size:10px;background:rgba(255,255,255,.05);border-radius:6px;padding:2px 7px;}
+
+/* Résultat de choix */
+.choice-result{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px;}
+.cr-good{border-color:rgba(52,211,153,.4);}
+.cr-bad{border-color:rgba(248,113,113,.4);}
+.cr-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;margin-bottom:5px;}
+.cr-text{font-size:12.5px;color:var(--ink-dim);line-height:1.4;}
+
+/* Toast */
+.toast{position:fixed;top:15%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;opacity:0;pointer-events:none;z-index:30;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 18px;}
+.toast.show{animation:tp .6s ease forwards;}
+@keyframes tp{0%{opacity:0;transform:translate(-50%,-60%) scale(.85);}25%{opacity:1;transform:translate(-50%,-50%) scale(1.05);}80%{opacity:1;}100%{opacity:0;transform:translate(-50%,-40%);}}
+
+/* Fin */
+.end-icon{font-size:52px;text-align:center;margin:10px 0;}
+.end-title{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:24px;text-align:center;margin-bottom:6px;}
+.end-sub{text-align:center;font-size:13px;color:var(--ink-dim);margin-bottom:16px;}
+.end-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px;}
+.es{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;}
+.es .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;color:var(--gold);}
+.es .l{font-size:9px;color:var(--ink-dim);margin-top:2px;}
+.lesson{background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.2);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;margin-bottom:14px;}
+.lesson b{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="app">
+
+<div class="screen active" id="screen-intro">
+  <div class="eyebrow">Economya.fr · Le sport</div>
+  <h1 class="title">Coach <span>Économe</span></h1>
+  <p class="lede">Gérez le budget d'un sportif amateur sur une saison complète. Équipements, compétitions, coaching : chaque euro dépensé doit maximiser votre performance. Budget limité, objectifs élevés.</p>
+  <button class="btn btn-primary" onclick="startGame()">Démarrer la saison</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+
+<div id="screen-game" style="display:none;">
+  <div class="hud">
+    <div class="hud-box"><div class="hud-val" id="hudBudget">500€</div><div class="hud-lab">Budget restant</div></div>
+    <div class="hud-box"><div class="hud-val" id="hudWeek">S1/12</div><div class="hud-lab">Semaine</div></div>
+    <div class="hud-box"><div class="hud-val" id="hudScore">0</div><div class="hud-lab">Score perf</div></div>
+  </div>
+
+  <div class="season-bar">
+    <div class="season-label"><span>Début de saison</span><span>Finale 🏆</span></div>
+    <div class="season-track" id="seasonTrack"></div>
+  </div>
+
+  <div class="perf-bars">
+    <div class="perf-bar">
+      <div class="pb-label">💪 Condition</div>
+      <div class="pb-track"><div class="pb-fill" id="pbCondition" style="height:20%;background:var(--green)"></div></div>
+      <div class="pb-val" id="pvCondition">20%</div>
+    </div>
+    <div class="perf-bar">
+      <div class="pb-label">🧠 Technique</div>
+      <div class="pb-track"><div class="pb-fill" id="pbTechnique" style="height:20%;background:var(--blue)"></div></div>
+      <div class="pb-val" id="pvTechnique">20%</div>
+    </div>
+    <div class="perf-bar">
+      <div class="pb-label">🎯 Mental</div>
+      <div class="pb-track"><div class="pb-fill" id="pbMental" style="height:20%;background:var(--gold)"></div></div>
+      <div class="pb-val" id="pvMental">20%</div>
+    </div>
+  </div>
+
+  <div class="week-card" id="weekCard">
+    <div class="wc-header">
+      <div class="wc-emoji" id="wcEmoji">🏃</div>
+      <div class="wc-info">
+        <div class="wc-week" id="wcWeek">Semaine 1</div>
+        <div class="wc-title" id="wcTitle">Chargement...</div>
+      </div>
+    </div>
+    <div class="wc-desc" id="wcDesc"></div>
+    <div class="options" id="optionsList"></div>
+  </div>
+
+  <div id="resultBox" style="display:none;"></div>
+  <button class="btn btn-ghost" id="nextBtn" onclick="nextWeek()" style="display:none;">Semaine suivante →</button>
+</div>
+
+<div class="screen" id="screen-end">
+  <div class="end-icon" id="endIcon">🏆</div>
+  <div class="end-title" id="endTitle">Saison terminée !</div>
+  <div class="end-sub" id="endSub">Résultats de votre saison</div>
+  <div class="end-grid">
+    <div class="es"><div class="v" id="endPerf">0%</div><div class="l">Performance</div></div>
+    <div class="es"><div class="v" id="endBudget">0€</div><div class="l">Économisé</div></div>
+    <div class="es"><div class="v" id="endRoi">0</div><div class="l">Efficacité</div></div>
+  </div>
+  <div class="lesson" id="endLesson"></div>
+  <button class="btn btn-primary" onclick="startGame()">Nouvelle saison</button>
+  <button class="btn btn-ghost" onclick="share()">Partager</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+</div>
+
+<script>
+const WEEKS=[
+  {emoji:'👟',title:'Chaussures de running',desc:'Vos vieilles baskets fatiguent. Investissez maintenant ou risquez une blessure.',
+   options:[
+     {name:'Chaussures entrée de gamme',cost:45,condition:+5,technique:0,mental:-2,desc:'Fonctionnelles mais pas idéales pour l\'entraînement intensif.'},
+     {name:'Chaussures milieu de gamme',cost:90,condition:+10,technique:+3,mental:+3,desc:'Le meilleur rapport qualité/prix selon les experts.'},
+     {name:'Chaussures premium pro',cost:180,condition:+8,technique:+5,mental:+8,desc:'Très bonnes mais la différence avec le mid-range est minime.'},
+     {name:'Continuer avec les vieilles',cost:0,condition:-5,technique:0,mental:-5,desc:'Risque de blessure. Économie à court terme, coût potentiel élevé.'},
+   ]},
+  {emoji:'🏋️',title:'Séances de coaching',desc:'Un coach personnel ou des vidéos YouTube ? La technique fait tout dans ce sport.',
+   options:[
+     {name:'Coach personnel (4 séances)',cost:200,condition:+5,technique:+20,mental:+10,desc:'Efficace mais cher. Réservé aux vrais points bloquants.'},
+     {name:'Cours collectifs (1 mois)',cost:60,condition:+8,technique:+12,mental:+8,desc:'Excellent rapport qualité/prix. Bonus : motivation de groupe.'},
+     {name:'YouTube + apps gratuites',cost:0,condition:+3,technique:+6,mental:+2,desc:'Suffisant pour débuter. Les bases sont bien couvertes.'},
+     {name:'Livre technique',cost:18,condition:0,technique:+10,mental:+5,desc:'Investissement discret mais durable. La technique reste.'},
+   ]},
+  {emoji:'🥗',title:'Nutrition sportive',desc:'Récupération et performance passent par l\'alimentation. Que choisissez-vous ?',
+   options:[
+     {name:'Compléments premium (whey, BCAA...)',cost:120,condition:+12,technique:0,mental:+5,desc:'Efficaces mais souvent superflus si l\'alimentation est équilibrée.'},
+     {name:'Alimentation équilibrée maison',cost:40,condition:+10,technique:0,mental:+3,desc:'Aussi efficace que les compléments pour un sportif amateur. Moins cher.'},
+     {name:'Rien de spécial',cost:0,condition:+2,technique:0,mental:-3,desc:'La récupération sera moins bonne. Attention aux blessures.'},
+     {name:'Consultation diététicienne',cost:65,condition:+15,technique:0,mental:+8,desc:'Remboursé partiellement par la mutuelle. Plan personnalisé.'},
+   ]},
+  {emoji:'🏅',title:'Première compétition locale',desc:'Une compétition régionale approche. Participez-vous ?',
+   options:[
+     {name:'Inscription + hébergement sur place',cost:85,condition:+5,technique:+5,mental:+20,desc:'Expérience complète. La compétition développe le mental comme rien d\'autre.'},
+     {name:'Inscription seule (trajet A/R)',cost:35,condition:+3,technique:+5,mental:+15,desc:'Bon compromis. Un peu fatiguant mais faisable.'},
+     {name:'Ne pas participer encore',cost:0,condition:0,technique:0,mental:-5,desc:'On rate l\'expérience compétition. Difficile de progresser sans mesurer.'},
+   ]},
+  {emoji:'📱',title:'Application de tracking',desc:'Montre connectée ou app gratuite pour suivre vos progrès ?',
+   options:[
+     {name:'Montre GPS haut de gamme',cost:280,condition:+5,technique:+8,mental:+10,desc:'Excellent outil, mais très cher pour un amateur.'},
+     {name:'App gratuite (Strava, Nike Run)',cost:0,condition:+3,technique:+5,mental:+5,desc:'Couvre 90% des besoins d\'un amateur. Recommandé.'},
+     {name:'Montre entrée de gamme',cost:60,condition:+4,technique:+6,mental:+7,desc:'Le bon compromis pour avoir les données essentielles.'},
+   ]},
+  {emoji:'🧘',title:'Récupération & bien-être',desc:'Mi-saison : votre corps a besoin de récupérer pour aller plus loin.',
+   options:[
+     {name:'Spa & massage (2 séances)',cost:90,condition:+15,technique:0,mental:+12,desc:'Luxueux mais efficace. Bon si le budget le permet.'},
+     {name:'Bain de glace + stretching maison',cost:5,condition:+10,technique:0,mental:+6,desc:'Presque aussi efficace. La récupération active fonctionne bien.'},
+     {name:'Repos complet 1 semaine',cost:0,condition:+8,technique:0,mental:+10,desc:'Parfois le meilleur investissement. Le corps se répare.'},
+     {name:'Continuer sans récupération',cost:0,condition:-10,technique:0,mental:-8,desc:'Risque de blessure ou de burn-out sportif. À éviter.'},
+   ]},
+  {emoji:'🎽',title:'Nouvelle tenue compétition',desc:'Votre tenue actuelle est usée. Une nouvelle peut booster la confiance.',
+   options:[
+     {name:'Tenue pro (marque premium)',cost:150,condition:+2,technique:0,mental:+15,desc:'Le mental joue beaucoup. Mais c\'est cher pour un effet relatif.'},
+     {name:'Tenue milieu de gamme',cost:55,condition:+2,technique:0,mental:+8,desc:'Suffisant. La performance ne dépend pas de la marque.'},
+     {name:'Tenue déstock / seconde main',cost:15,condition:+1,technique:0,mental:+4,desc:'Malin ! Vinted et Decathlon outlet font des miracles.'},
+     {name:'Garder l\'ancienne',cost:0,condition:0,technique:0,mental:-3,desc:'Ça fait le job, mais le moral en prend un coup.'},
+   ]},
+  {emoji:'🏆',title:'Stage intensif pré-finale',desc:'Un stage de 3 jours avant la grande compétition. Le pic de forme ?',
+   options:[
+     {name:'Stage all-inclusive',cost:350,condition:+20,technique:+15,mental:+15,desc:'Maximum d\'efficacité mais très coûteux.'},
+     {name:'Week-end entraînement avec club',cost:80,condition:+15,technique:+10,mental:+12,desc:'Très bon rapport qualité/prix. Le collectif booste le mental.'},
+     {name:'Entraînement solo intensifié',cost:0,condition:+10,technique:+5,mental:+5,desc:'Efficace si bien structuré. Lisez des plans d\'entraînement sérieux.'},
+   ]},
+];
+
+let budget,condition,technique,mental,week,totalSpent;
+const INITIAL_BUDGET=500;
+const TOTAL_WEEKS=8;
+
+function showToast(t,c){const el=document.getElementById('toast');el.textContent=t;el.style.color=c;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-game').style.display=(id==='screen-game')?'block':'none';if(id!=='screen-game')document.getElementById(id).classList.add('active');}
+
+function startGame(){
+  budget=INITIAL_BUDGET;condition=20;technique=20;mental=20;week=0;totalSpent=0;
+  showScreen('screen-game');
+  renderSeason();
+  loadWeek();
+  updateHUD();
+}
+
+function clamp(v,min=0,max=100){return Math.max(min,Math.min(max,v));}
+
+function updateHUD(){
+  document.getElementById('hudBudget').textContent=budget+'€';
+  document.getElementById('hudBudget').style.color=budget<100?'var(--red)':budget<200?'var(--gold)':'var(--ink)';
+  document.getElementById('hudWeek').textContent='S'+(week+1)+'/'+TOTAL_WEEKS;
+  const score=Math.round((condition+technique+mental)/3);
+  document.getElementById('hudScore').textContent=score+'%';
+  const fills=['Condition','Technique','Mental'];
+  const vals=[condition,technique,mental];
+  const colors=['var(--green)','var(--blue)','var(--gold)'];
+  fills.forEach((f,i)=>{
+    document.getElementById('pb'+f).style.height=vals[i]+'%';
+    document.getElementById('pv'+f).textContent=vals[i]+'%';
+  });
+}
+
+function renderSeason(){
+  const track=document.getElementById('seasonTrack');
+  track.innerHTML='';
+  for(let i=0;i<TOTAL_WEEKS;i++){
+    const seg=document.createElement('div');
+    seg.className='season-seg'+(i<week?' done':i===week?' current':'');
+    track.appendChild(seg);
+  }
+}
+
+function loadWeek(){
+  if(week>=TOTAL_WEEKS){return endGame();}
+  const w=WEEKS[week];
+  document.getElementById('wcEmoji').textContent=w.emoji;
+  document.getElementById('wcWeek').textContent='Semaine '+(week+1)+' / '+TOTAL_WEEKS;
+  document.getElementById('wcTitle').textContent=w.title;
+  document.getElementById('wcDesc').textContent=w.desc;
+  document.getElementById('resultBox').style.display='none';
+  document.getElementById('nextBtn').style.display='none';
+
+  const opts=document.getElementById('optionsList');
+  opts.innerHTML='';
+  w.options.forEach((opt,i)=>{
+    const div=document.createElement('div');
+    div.className='option';
+    const affordable=budget>=opt.cost;
+    if(!affordable)div.style.opacity='.4';
+    div.innerHTML=`
+      <div class="opt-header">
+        <div class="opt-name">${opt.name}</div>
+        <div class="opt-cost">${opt.cost>0?opt.cost+'€':'Gratuit'}</div>
+      </div>
+      <div class="opt-desc">${opt.desc}</div>
+      <div class="opt-stats">
+        ${opt.condition!==0?`<span class="opt-stat" style="color:${opt.condition>0?'var(--green)':'var(--red)'}">${opt.condition>0?'+':''}${opt.condition} 💪</span>`:''}
+        ${opt.technique!==0?`<span class="opt-stat" style="color:${opt.technique>0?'var(--blue)':'var(--red)'}">${opt.technique>0?'+':''}${opt.technique} 🧠</span>`:''}
+        ${opt.mental!==0?`<span class="opt-stat" style="color:${opt.mental>0?'var(--gold)':'var(--red)'}">${opt.mental>0?'+':''}${opt.mental} 🎯</span>`:''}
+      </div>
+    `;
+    if(affordable) div.onclick=()=>chooseOption(opt);
+    opts.appendChild(div);
+  });
+}
+
+function chooseOption(opt){
+  budget-=opt.cost;
+  totalSpent+=opt.cost;
+  condition=clamp(condition+opt.condition);
+  technique=clamp(technique+opt.technique);
+  mental=clamp(mental+opt.mental);
+  updateHUD();
+  renderSeason();
+
+  const isGood=(opt.condition+opt.technique+opt.mental)>5;
+  const resultBox=document.getElementById('resultBox');
+  resultBox.innerHTML=`
+    <div class="choice-result ${isGood?'cr-good':'cr-bad'}">
+      <div class="cr-title">${isGood?'✅ Bon choix !':'⚠️ Choix risqué'}</div>
+      <div class="cr-text">${opt.desc}</div>
+    </div>`;
+  resultBox.style.display='block';
+  document.getElementById('weekCard').querySelector('.options').innerHTML='';
+  document.getElementById('nextBtn').style.display='block';
+
+  if(budget<0){budget=0;showToast('Budget épuisé ! 😰','var(--red)');}
+}
+
+function nextWeek(){
+  week++;
+  loadWeek();
+  updateHUD();
+  renderSeason();
+}
+
+function endGame(){
+  const perf=Math.round((condition+technique+mental)/3);
+  const roi=totalSpent>0?Math.round(perf/totalSpent*100):100;
+  const icon=perf>=70?'🏆':perf>=50?'🥈':'🥉';
+  const title=perf>=70?'Champion économe !':perf>=50?'Bonne saison !':'Saison correcte';
+  const lesson=perf>=70?
+    `<b>Bravo !</b> Vous avez maximisé votre performance sans exploser le budget. La clé : investir dans la <b>technique</b> (coaching, livre) plutôt que dans le matériel coûteux. Le cerveau est le muscle le plus important.`:
+    `<b>À retenir :</b> En sport comme en finance, le meilleur rapport qualité/prix bat souvent le premium. Une paire de chaussures à 90€ est aussi efficace qu'une à 200€ pour 95% des sportifs amateurs.`;
+  document.getElementById('endIcon').textContent=icon;
+  document.getElementById('endTitle').textContent=title;
+  document.getElementById('endSub').textContent=`Performance finale : ${perf}% — ${totalSpent}€ dépensés`;
+  document.getElementById('endPerf').textContent=perf+'%';
+  document.getElementById('endBudget').textContent=(INITIAL_BUDGET-totalSpent)+'€';
+  document.getElementById('endRoi').textContent=roi;
+  document.getElementById('endLesson').innerHTML=lesson;
+  showScreen('screen-end');
+}
+
+function share(){
+  const perf=Math.round((condition+technique+mental)/3);
+  const text=`J'ai atteint ${perf}% de performance en dépensant seulement ${totalSpent}€ sur Coach Économe (Economya.fr) 🏃 À toi de battre mon efficacité !`;
+  if(navigator.share)navigator.share({title:'Coach Économe',text,url:'https://economya.fr'}).catch(()=>{});
+  else navigator.clipboard.writeText(text+' https://economya.fr').then(()=>alert('Copié !'));
+}
+</script>
+</body>
+</html>
