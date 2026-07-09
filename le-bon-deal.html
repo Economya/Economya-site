@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Bon Deal — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --bg:#080C14;--panel:#0F1824;--panel2:#162030;
+  --line:#1E2D40;--gold:#FFD54F;--green:#34D399;--red:#F87171;--blue:#60A5FA;
+  --ink:#EEF5FF;--ink-dim:#5A7A9A;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:radial-gradient(ellipse at 50% 0%,#162030 0%,var(--bg) 60%);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;user-select:none;
+  display:flex;align-items:center;justify-content:center;padding:14px;
+}
+.app{width:100%;max-width:420px;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.eyebrow::before{content:'⚖️';}
+h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:900;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;}
+h1.title span{color:var(--gold);}
+p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
+.levels{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px;}
+.level-btn{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .15s ease;}
+.level-btn.selected{border-color:var(--gold);background:rgba(255,213,79,.08);}
+.level-btn:active{transform:scale(.96);}
+.lb-emoji{font-size:24px;margin-bottom:6px;}
+.lb-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;margin-bottom:3px;}
+.lb-desc{font-size:10px;color:var(--ink-dim);}
+.btn{border:none;border-radius:14px;padding:14px 20px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:transform .1s ease;margin-bottom:8px;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--gold);color:#2A1900;}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);}
+.brand-footer{text-align:center;margin-top:16px;font-size:11px;color:var(--ink-dim);}
+.brand-footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+/* HUD */
+.hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.hud-score{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;}
+.hud-progress{display:flex;align-items:center;gap:8px;}
+.hud-q{font-size:12px;color:var(--ink-dim);}
+.timer-bar-w{height:5px;background:rgba(255,255,255,.06);border-radius:99px;margin-bottom:14px;overflow:hidden;}
+.timer-bar{height:100%;border-radius:99px;transition:width .1s linear;}
+
+/* Contexte */
+.context-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:12px;font-size:13px;color:var(--ink-dim);line-height:1.5;}
+.context-box b{color:var(--ink);}
+
+/* Cartes offre */
+.offers{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+.offer-card{
+  background:var(--panel2);border:2px solid var(--line);border-radius:18px;
+  padding:16px;cursor:pointer;transition:all .15s ease;
+  position:relative;overflow:hidden;
+}
+.offer-card:active{transform:scale(.98);}
+.offer-card:hover{border-color:rgba(255,213,79,.4);}
+.offer-card.correct{border-color:var(--green);background:rgba(52,211,153,.08);pointer-events:none;}
+.offer-card.wrong{border-color:var(--red);background:rgba(248,113,113,.08);pointer-events:none;}
+.offer-card.neutral{opacity:.5;pointer-events:none;}
+.offer-letter{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;}
+.offer-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;margin-bottom:8px;}
+.offer-specs{display:flex;flex-direction:column;gap:4px;}
+.spec-row{display:flex;justify-content:space-between;align-items:center;font-size:12px;}
+.spec-label{color:var(--ink-dim);}
+.spec-val{font-weight:600;color:var(--ink);}
+.spec-val.highlight{color:var(--gold);}
+.price-reveal{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:20px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);display:none;}
+.price-reveal.show{display:block;}
+
+/* Explication */
+.explain{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;display:none;}
+.explain.show{display:block;}
+.explain b{color:var(--ink);}
+
+/* Streak */
+.streak-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,213,79,.12);border:1px solid rgba(255,213,79,.3);border-radius:99px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--gold);margin-left:8px;}
+
+/* Toast */
+.toast{position:fixed;top:18%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:18px;opacity:0;pointer-events:none;z-index:30;text-shadow:0 2px 8px rgba(0,0,0,.5);}
+.toast.show{animation:tp .6s ease forwards;}
+@keyframes tp{0%{opacity:0;transform:translate(-50%,-60%) scale(.8);}20%{opacity:1;transform:translate(-50%,-50%) scale(1.1);}80%{opacity:1;}100%{opacity:0;transform:translate(-50%,-40%);}}
+
+/* Résultat */
+.result-score{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:56px;color:var(--gold);text-align:center;margin:10px 0 4px;}
+.result-label{text-align:center;font-size:13px;color:var(--ink-dim);margin-bottom:16px;}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.rg{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;}
+.rg .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;color:var(--gold);}
+.rg .l{font-size:10px;color:var(--ink-dim);margin-top:3px;}
+.lesson{background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.2);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;margin-bottom:14px;}
+.lesson b{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="app">
+
+<!-- INTRO -->
+<div class="screen active" id="screen-intro">
+  <div class="eyebrow">Economya.fr · Le comparateur</div>
+  <h1 class="title">Le Bon <span>Deal</span></h1>
+  <p class="lede">Deux offres s'affichent <b>sans les prix</b>. Devinez laquelle est la moins chère. Caractéristiques, quantités, durées… Le piège est souvent où vous ne l'attendez pas.</p>
+  <div class="levels">
+    <div class="level-btn selected" id="lvl-easy" onclick="selectLevel('easy')">
+      <div class="lb-emoji">😊</div>
+      <div class="lb-name">Facile</div>
+      <div class="lb-desc">20s / question</div>
+    </div>
+    <div class="level-btn" id="lvl-medium" onclick="selectLevel('medium')">
+      <div class="lb-emoji">🧠</div>
+      <div class="lb-name">Moyen</div>
+      <div class="lb-desc">12s / question</div>
+    </div>
+    <div class="level-btn" id="lvl-hard" onclick="selectLevel('hard')">
+      <div class="lb-emoji">🔥</div>
+      <div class="lb-name">Expert</div>
+      <div class="lb-desc">7s / question</div>
+    </div>
+  </div>
+  <button class="btn btn-primary" onclick="startGame()">⚖️ Trouver le meilleur deal</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+
+<!-- JEU -->
+<div class="screen" id="screen-game">
+  <div class="hud">
+    <div>
+      <span class="hud-score">🎯 <span id="scoreNum">0</span></span>
+      <span class="streak-badge" id="streakBadge" style="display:none">🔥 x<span id="streakNum">0</span></span>
+    </div>
+    <div class="hud-progress">
+      <span class="hud-q" id="qNum">1/20</span>
+    </div>
+  </div>
+  <div class="timer-bar-w"><div class="timer-bar" id="timerBar" style="background:var(--blue)"></div></div>
+  <div class="context-box" id="contextBox"></div>
+  <div class="offers" id="offersArea"></div>
+  <div class="explain" id="explainBox"></div>
+  <button class="btn btn-ghost" id="nextBtn" onclick="nextQuestion()" style="display:none;">Question suivante →</button>
+</div>
+
+<!-- RÉSULTAT -->
+<div class="screen" id="screen-result">
+  <div style="text-align:center;font-size:44px;margin:10px 0;" id="endIcon">🏆</div>
+  <div style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:22px;text-align:center;margin-bottom:6px;" id="endTitle">Résultats</div>
+  <div class="result-score" id="endScore">0</div>
+  <div class="result-label" id="endLabel">points sur 20 questions</div>
+  <div class="result-grid">
+    <div class="rg"><div class="v" id="endCorrect">0/20</div><div class="l">Bons deals</div></div>
+    <div class="rg"><div class="v" id="endStreak">x0</div><div class="l">Meilleur streak</div></div>
+  </div>
+  <div class="lesson" id="endLesson"></div>
+  <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+  <button class="btn btn-ghost" onclick="share()">Partager</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// 60 questions — SANS prix affichés, seulement caractéristiques
+// correct: 0 = offre A moins chère, 1 = offre B moins chère
+// ═══════════════════════════════════════════════
+const QUESTIONS = [
+  // ALIMENTAIRE
+  {context:'Vous achetez du lait demi-écrémé.',
+   a:{name:'Marque A',specs:[['Volume','1L'],['Conditionnement','Brique individuelle'],['Origine','France'],['Bio','Non']]},
+   b:{name:'Marque B',specs:[['Volume','6 × 1L (pack)'],['Conditionnement','Lot familial'],['Origine','France'],['Bio','Non']]},
+   correct:1,aPrice:'1.15€',bPrice:'4.80€ (0.80€/L)',
+   explain:'Le pack de 6 coûte 0,80€/L contre 1,15€ à l\'unité. Acheter en lot réduit souvent le prix unitaire de 30%.'},
+
+  {context:'Vous cherchez du café en grains de qualité.',
+   a:{name:'Café A',specs:[['Poids','250g'],['Origine','Éthiopie'],['Torréfaction','Artisanale'],['Note Arabica','100%']]},
+   b:{name:'Café B',specs:[['Poids','1kg'],['Origine','Brésil mélange'],['Torréfaction','Industrielle'],['Note Arabica','80%']]},
+   correct:1,aPrice:'12.90€ (51.6€/kg)',bPrice:'18.50€ (18.5€/kg)',
+   explain:'Le café artisanal éthiopien est 2,8× plus cher au kilo. La qualité a un prix. Mais en quotidien, l\'économique suffit.'},
+
+  {context:'Vous comparez deux yaourts nature.',
+   a:{name:'Yaourt A',specs:[['Quantité','4 × 125g'],['Marque','Marque nationale'],['Matières grasses','3.5%'],['Sucres ajoutés','Non']]},
+   b:{name:'Yaourt B',specs:[['Quantité','8 × 125g'],['Marque','Marque distributeur'],['Matières grasses','3.2%'],['Sucres ajoutés','Non']]},
+   correct:1,aPrice:'1.89€ (3.78€/kg)',bPrice:'2.49€ (2.49€/kg)',
+   explain:'La MDD à 2,49€ pour 8 pots revient à 2,49€/kg contre 3,78€/kg pour la marque nationale. -34% pour quasiment la même chose.'},
+
+  {context:'Achat de pâtes sèches pour la semaine.',
+   a:{name:'Pâtes A',specs:[['Poids','500g'],['Type','Spaghetti bio'],['Marque','Marque bio premium'],['Cuisson','9 minutes']]},
+   b:{name:'Pâtes B',specs:[['Poids','1kg'],['Type','Spaghetti classiques'],['Marque','Marque discounteur'],['Cuisson','10 minutes']]},
+   correct:1,aPrice:'2.90€ (5.80€/kg)',bPrice:'0.85€ (0.85€/kg)',
+   explain:'Les pâtes discount à 0,85€/kg vs bio premium à 5,80€/kg. Pour les pâtes sèches, la différence nutritive est minime.'},
+
+  {context:'Vous achetez du saumon pour 4 personnes.',
+   a:{name:'Saumon A',specs:[['Poids','4 pavés × 120g'],['Type','Atlantique frais'],['Conditionnement','Sous vide'],['Origine','Norvège']]},
+   b:{name:'Saumon B',specs:[['Poids','600g filet entier'],['Type','Atlantique frais'],['Conditionnement','Barquette'],['Origine','Norvège']]},
+   correct:1,aPrice:'11.90€ (24.8€/kg)',bPrice:'12.50€ (20.8€/kg)',
+   explain:'Le filet entier revient à 20,8€/kg contre 24,8€/kg pour les pavés prédécoupés. La commodité se paie 19%.'},
+
+  // ABONNEMENTS & SERVICES
+  {context:'Forfait mobile pour votre usage quotidien.',
+   a:{name:'Forfait A',specs:[['Data','100 Go 4G'],['Appels/SMS','Illimités'],['Réseau','Opérateur historique'],['Engagement','Sans engagement']]},
+   b:{name:'Forfait B',specs:[['Data','100 Go 5G'],['Appels/SMS','Illimités'],['Réseau','MVNO (même réseau)'],['Engagement','Sans engagement']]},
+   correct:1,aPrice:'24.99€/mois',bPrice:'8.99€/mois',
+   explain:'Les MVNO utilisent les mêmes antennes que les opérateurs historiques pour 3× moins cher. Économie : 192€/an.'},
+
+  {context:'Vous cherchez un abonnement streaming vidéo.',
+   a:{name:'Offre A',specs:[['Écrans simultan.','4'],['Qualité','4K HDR'],['Téléchargements','Oui'],['Profils','6']]},
+   b:{name:'Offre B',specs:[['Écrans simultan.','2'],['Qualité','Full HD'],['Téléchargements','Oui'],['Profils','5']]},
+   correct:1,aPrice:'17.99€/mois',bPrice:'13.99€/mois',
+   explain:'Si vous ne regardez qu\'en Full HD et seul(e), l\'offre premium ne vaut pas 4€ de plus par mois, soit 48€/an.'},
+
+  {context:'Assurance habitation pour un T2 en ville.',
+   a:{name:'Assurance A',specs:[['Capital garanti','80 000€'],['Vol/Vandalisme','Oui'],['Dommages électriques','Oui'],['Franchise','150€']]},
+   b:{name:'Assurance B',specs:[['Capital garanti','60 000€'],['Vol/Vandalisme','Oui'],['Dommages électriques','Oui'],['Franchise','300€']]},
+   correct:1,aPrice:'18€/mois',bPrice:'9.50€/mois',
+   explain:'La différence de franchise (150€ vs 300€) ne justifie pas 8,50€/mois de plus soit 102€/an. Sauf sinistre fréquent.'},
+
+  {context:'Salle de sport pour s\'entraîner 3× par semaine.',
+   a:{name:'Salle A',specs:[['Type','Salle de quartier municipale'],['Équipements','Basiques'],['Cours collectifs','Oui'],['Horaires','7h-22h']]},
+   b:{name:'Salle B',specs:[['Type','Chaîne nationale low-cost'],['Équipements','Complets'],['Cours collectifs','En option'],['Horaires','24h/24']]},
+   correct:0,aPrice:'12€/mois',bPrice:'20€/mois',
+   explain:'La salle municipale est 40% moins chère. Équipements basiques suffisants pour 90% des pratiquants réguliers.'},
+
+  {context:'Mutuelle santé pour un jeune actif sans enfants.',
+   a:{name:'Mutuelle A',specs:[['Hospitalisation','200%'],['Dentaire','150%'],['Optique','100€/an'],['Médecine douce','Non']]},
+   b:{name:'Mutuelle B',specs:[['Hospitalisation','300%'],['Dentaire','200%'],['Optique','250€/an'],['Médecine douce','Oui']]},
+   correct:0,aPrice:'32€/mois',bPrice:'75€/mois',
+   explain:'Pour un jeune sans problème de santé, la mutuelle basique suffit largement. Économie : 516€/an.'},
+
+  // ÉLECTROMÉNAGER & TECH
+  {context:'Lave-linge pour un usage familial.',
+   a:{name:'Lave-linge A',specs:[['Capacité','8 kg'],['Classe énergie','A'],['Essorage','1200 tr/min'],['Garantie','2 ans']]},
+   b:{name:'Lave-linge B',specs:[['Capacité','10 kg'],['Classe énergie','B'],['Essorage','1000 tr/min'],['Garantie','5 ans']]},
+   correct:0,aPrice:'349€',bPrice:'499€',
+   explain:'Le modèle A est moins cher ET plus économe en énergie (classe A vs B). La garantie plus longue du B ne compense pas 150€ d\'écart.'},
+
+  {context:'Casque audio sans fil pour le bureau.',
+   a:{name:'Casque A',specs:[['Autonomie','30h'],['Réduction bruit','Active'],['Connectivité','Bluetooth 5.0'],['Micro','Oui']]},
+   b:{name:'Casque B',specs:[['Autonomie','40h'],['Réduction bruit','Active'],['Connectivité','Bluetooth 5.2'],['Micro','Oui']]},
+   correct:0,aPrice:'79€',bPrice:'149€',
+   explain:'La différence Bluetooth 5.0 vs 5.2 est imperceptible au quotidien. 10h d\'autonomie supplémentaire ne vaut pas 70€ de plus.'},
+
+  {context:'Smartphone reconditionné vs neuf.',
+   a:{name:'Téléphone A',specs:[['État','Neuf sous blister'],['Stockage','128 Go'],['RAM','6 Go'],['Garantie','2 ans constructeur']]},
+   b:{name:'Téléphone B',specs:[['État','Reconditionné Grade A'],['Stockage','128 Go'],['RAM','6 Go'],['Garantie','12 mois reconditionneurs']]},
+   correct:1,aPrice:'799€',bPrice:'380€',
+   explain:'Le reconditionné Grade A est comme neuf visuellement pour -52%. La garantie reconditionneur est légalement valide en France.'},
+
+  {context:'Chargeur USB-C pour votre ordinateur portable.',
+   a:{name:'Chargeur A',specs:[['Puissance','65W'],['Ports','1 USB-C'],['Certification','UL certifié'],['Marque','Marque reconnue']]},
+   b:{name:'Chargeur B',specs:[['Puissance','65W'],['Ports','2 USB-C + 1 USB-A'],['Certification','CE'],['Marque','Marque inconnue']]},
+   correct:1,aPrice:'45€',bPrice:'18€',
+   explain:'Ici le moins cher est risqué pour vos appareils. Mais si la certification CE est valide, le prix est 2,5× moins cher pour la même puissance.'},
+
+  {context:'Aspirateur robot pour un appartement de 60m².',
+   a:{name:'Robot A',specs:[['Puissance aspiration','2500 Pa'],['Autonomie','120 min'],['Carte maison','Oui'],['App mobile','Oui']]},
+   b:{name:'Robot B',specs:[['Puissance aspiration','2000 Pa'],['Autonomie','90 min'],['Carte maison','Non'],['App mobile','Non']]},
+   correct:1,aPrice:'349€',bPrice:'149€',
+   explain:'Pour 60m², 90min d\'autonomie est suffisant. La cartographie est pratique mais pas indispensable. 200€ de différence.'},
+
+  // TRANSPORT
+  {context:'Billet Paris-Lyon en train.',
+   a:{name:'Billet A',specs:[['Classe','2ème'],['Flexibilité','Échangeable/remboursable'],['Réservation','J-1'],['Confort','Standard']]},
+   b:{name:'Billet B',specs:[['Classe','2ème'],['Flexibilité','Non échangeable'],['Réservation','J-60'],['Confort','Standard']]},
+   correct:1,aPrice:'89€',bPrice:'19€',
+   explain:'En réservant 2 mois à l\'avance, le même trajet en 2ème classe coûte 70€ de moins. La flexibilité se paye très cher.'},
+
+  {context:'Location de voiture pour un week-end.',
+   a:{name:'Loueur A',specs:[['Catégorie','Citadine'],['Km inclus','Illimités'],['Assurance','Basique incluse'],['Lieu','Aéroport']]},
+   b:{name:'Loueur B',specs:[['Catégorie','Citadine'],['Km inclus','Illimités'],['Assurance','Basique incluse'],['Lieu','Centre-ville']]},
+   correct:1,aPrice:'89€/week-end',bPrice:'54€/week-end',
+   explain:'Les agences en aéroport facturent une surtaxe de 15-30% vs centre-ville. Prendre les transports jusqu\'en ville est souvent rentable.'},
+
+  {context:'Abonnement mensuel pour vos transports quotidiens.',
+   a:{name:'Option A',specs:[['Type','Abonnement Navigo mensuel'],['Zone','1-5 (Île-de-France)'],['Modes','Tous'],['Validité','1 mois']]},
+   b:{name:'Option B',specs:[['Type','10 tickets t+'],['Zone','Zone 1-2'],['Modes','Métro/Bus/Tram'],['Validité','Non limité']]},
+   correct:0,aPrice:'86.40€',bPrice:'17.35€ (mais limité à 10 trajets)',
+   explain:'Si vous faites plus de 50 trajets/mois, le Navigo est moins cher. En dessous, les tickets à l\'unité gagnent.'},
+
+  {context:'Assurance auto pour une citadine récente.',
+   a:{name:'Assurance A',specs:[['Formule','Tous risques'],['Franchise','500€'],['Assistance','0 km'],['Protection','Complète']]},
+   b:{name:'Assurance B',specs:[['Formule','Tiers étendu'],['Franchise','300€'],['Assistance','0 km'],['Protection','Vol + bris de glace']]},
+   correct:1,aPrice:'95€/mois',bPrice:'38€/mois',
+   explain:'Pour une voiture de plus de 3 ans dont la valeur baisse, le tiers étendu peut suffire. Économie : 684€/an.'},
+
+  {context:'Carte carburant professionnelle.',
+   a:{name:'Carte A',specs:[['Réseau','Toutes stations'],['Remise','2% sur carburant'],['Frais de gestion','Inclus'],['Plafond','Illimité']]},
+   b:{name:'Carte B',specs:[['Réseau','Stations partenaires'],['Remise','5% sur carburant'],['Frais de gestion','12€/mois'],['Plafond','2000€/mois']]},
+   correct:0,aPrice:'0€ de frais fixes + -2%',bPrice:'12€/mois + -5%',
+   explain:'Avec moins de 400€/mois de carburant, la carte A est plus avantageuse. Les frais fixes de 12€ ne sont compensés qu\'à gros volume.'},
+
+  // IMMOBILIER & TRAVAUX
+  {context:'Peinture pour repeindre votre salon (20m²).',
+   a:{name:'Peinture A',specs:[['Volume','5L'],['Rendement','10m²/L'],['Couches','2 nécessaires'],['Finition','Mat lavable']]},
+   b:{name:'Peinture B',specs:[['Volume','10L'],['Rendement','12m²/L'],['Couches','1 suffisante'],['Finition','Velours']]},
+   correct:0,aPrice:'28€ (besoin 2 pots = 56€)',bPrice:'65€ (1 pot suffit)',
+   explain:'La peinture B coûte 65€ pour 1 couche vs 56€ pour 2 pots. Moins de travail + moins cher. Le rendement change tout.'},
+
+  {context:'Devis plombier pour changer un robinet.',
+   a:{name:'Plombier A',specs:[['Délai','Urgence (24h)'],['Déplacement','Inclus'],['Devis','Gratuit'],['Garantie','1 an pièces']]},
+   b:{name:'Plombier B',specs:[['Délai','1 semaine'],['Déplacement','Inclus'],['Devis','Gratuit'],['Garantie','2 ans pièces']]},
+   correct:1,aPrice:'280€',bPrice:'120€',
+   explain:'L\'urgence multiplie le prix par 2,3. Si ce n\'est pas une vraie urgence, attendre 1 semaine économise 160€.'},
+
+  {context:'Canapé pour votre salon, neuf ou occasion.',
+   a:{name:'Canapé A',specs:[['État','Neuf'],['Revêtement','Tissu microfibre'],['Places','3 places'],['Livraison','Incluse']]},
+   b:{name:'Canapé B',specs:[['État','Occasion (2 ans)'],['Revêtement','Cuir véritable'],['Places','3 places'],['Livraison','À organiser']]},
+   correct:1,aPrice:'599€',bPrice:'180€',
+   explain:'Le canapé cuir d\'occasion à 2 ans est à 70% moins cher. Le cuir dure 15-20 ans. L\'occasion intelligente bat souvent le neuf.'},
+
+  {context:'Ampoules LED pour remplacer toute une maison.',
+   a:{name:'Ampoule A',specs:[['Puissance','8W (=60W)',],['Durée de vie','15 000h'],['Lot','Boîte de 3'],['Température','2700K chaud']]},
+   b:{name:'Ampoule B',specs:[['Puissance','9W (=60W)'],['Durée de vie','25 000h'],['Lot','Boîte de 6'],['Température','2700K chaud']]},
+   correct:0,aPrice:'8.90€/boîte (2.97€/ampoule)',bPrice:'14.90€/boîte (2.48€/ampoule)',
+   explain:'L\'ampoule B est 16% moins chère à l\'unité ET dure 67% plus longtemps. Mais le lot de 6 coûte plus cher au total si vous n\'en avez besoin que de 3.'},
+
+  {context:'Fenêtres double vitrage pour une rénovation.',
+   a:{name:'Fenêtre A',specs:[['Vitrage','Double 4/16/4'],['Uw','1.3 W/m²K'],['Matériau','PVC blanc'],['Garantie','10 ans']]},
+   b:{name:'Fenêtre B',specs:[['Vitrage','Triple 4/16/4/16/4'],['Uw','0.7 W/m²K'],['Matériau','PVC blanc'],['Garantie','10 ans']]},
+   correct:0,aPrice:'450€/fenêtre',bPrice:'720€/fenêtre',
+   explain:'Le triple vitrage économise davantage sur les factures mais le retour sur investissement prend 18 ans. Le double vitrage est souvent plus rentable.'},
+
+  // BANQUE & FINANCE
+  {context:'Compte courant pour votre usage quotidien.',
+   a:{name:'Banque A',specs:[['Type','Banque traditionnelle'],['Tenue de compte','Incluse'],['Carte bancaire','Visa Classic'],['Agence','Près de chez vous']]},
+   b:{name:'Banque B',specs:[['Type','Banque en ligne'],['Tenue de compte','Gratuite'],['Carte bancaire','Visa Premier'],['Agence','100% digital']]},
+   correct:1,aPrice:'15€/mois (180€/an)',bPrice:'0€/mois + carte gratuite',
+   explain:'La banque en ligne offre une carte Visa Premier gratuite vs Classic payante. Économie de 180€/an minimum pour les mêmes services.'},
+
+  {context:'Placement de votre épargne de précaution.',
+   a:{name:'Placement A',specs:[['Produit','Livret A'],['Taux','1.5%'],['Plafond','22 950€'],['Disponibilité','Immédiate']]},
+   b:{name:'Placement B',specs:[['Produit','LEP (Livret Épargne Populaire)'],['Taux','2.5%'],['Plafond','10 000€'],['Disponibilité','Immédiate']]},
+   correct:0,aPrice:'Disponible pour tous',bPrice:'Soumis à conditions de revenus',
+   explain:'Le LEP rapporte 67% de plus que le Livret A. Accessible si votre revenu fiscal est < 21 393€. Sous-utilisé par 40% des Français éligibles.'},
+
+  {context:'Crédit à la consommation pour financer un achat de 3000€.',
+   a:{name:'Crédit A',specs:[['TAEG','5.9%'],['Durée','24 mois'],['Mensualité','estimée'],['Assurance','En option']]},
+   b:{name:'Crédit B',specs:[['TAEG','19.5%'],['Durée','24 mois'],['Mensualité','estimée'],['Assurance','Incluse']]},
+   correct:0,aPrice:'Coût total : 3 182€',bPrice:'Coût total : 3 615€',
+   explain:'Le crédit revolving à 19.5% coûte 433€ de plus que le crédit personnel. Le TAEG est la seule donnée qui compte.'},
+
+  {context:'Assurance vie pour épargner sur 10 ans.',
+   a:{name:'Contrat A',specs:[['Frais d\'entrée','0%'],['Frais de gestion','0.5%/an'],['Fonds euros','Accès'],['Unités de compte','300+ fonds']]},
+   b:{name:'Contrat B',specs:[['Frais d\'entrée','3%'],['Frais de gestion','0.8%/an'],['Fonds euros','Accès'],['Unités de compte','150 fonds']]},
+   correct:0,aPrice:'0% entrée + 0.5%/an',bPrice:'3% entrée + 0.8%/an',
+   explain:'Sur 10 000€ pendant 10 ans, les frais B coûtent ~1600€ de plus. Les contrats en ligne sans frais d\'entrée sont systématiquement meilleurs.'},
+
+  {context:'Transfert d\'argent international (1000€ vers l\'étranger).',
+   a:{name:'Solution A',specs:[['Service','Banque traditionnelle'],['Frais fixes','15€'],['Taux de change','Taux bancaire'],['Délai','2-3 jours']]},
+   b:{name:'Solution B',specs:[['Service','Fintech spécialisée'],['Frais fixes','3.90€'],['Taux de change','Taux mid-market'],['Délai','Quelques heures']]},
+   correct:1,aPrice:'~30€ tout compris',bPrice:'~8€ tout compris',
+   explain:'Les fintechs de transfert international coûtent 70-80% moins cher que les banques traditionnelles pour les virements internationaux.'},
+
+  // ALIMENTATION AVANCÉ
+  {context:'Huile d\'olive pour la cuisine quotidienne.',
+   a:{name:'Huile A',specs:[['Volume','75cl'],['Type','Vierge extra AOP'],['Acidité','< 0.3%'],['Origine','Grèce']]},
+   b:{name:'Huile B',specs:[['Volume','5L bidon'],['Type','Vierge extra'],['Acidité','< 0.8%'],['Origine','Espagne mélange']]},
+   correct:1,aPrice:'11.90€ (15.9€/L)',bPrice:'28.90€ (5.8€/L)',
+   explain:'Le bidon de 5L revient à 5,8€/L contre 15,9€/L pour la bouteille AOP. Pour la cuisine quotidienne, l\'AOP est un luxe inutile.'},
+
+  {context:'Protein powder pour sportif régulier.',
+   a:{name:'Whey A',specs:[['Poids','1kg'],['Protéines','78g/100g'],['Marque','Marque sportive premium'],['Saveur','Chocolat']]},
+   b:{name:'Whey B',specs:[['Poids','2kg'],['Protéines','74g/100g'],['Marque','Marque discount'],['Saveur','Chocolat']]},
+   correct:1,aPrice:'39.90€ (39.9€/kg)',bPrice:'39.50€ (19.75€/kg)',
+   explain:'Le vrac coûte 2× moins cher au kilo pour une différence de 4g de protéines/100g. En nutrition, le marketing pèse lourd.'},
+
+  {context:'Eau minérale pour toute la famille.',
+   a:{name:'Eau A',specs:[['Contenance','6 × 1.5L'],['Type','Eau minérale naturelle'],['Origine','Source des Alpes'],['Minéralisation','Faible']]},
+   b:{name:'Eau B',specs:[['Contenance','12 × 1.5L'],['Type','Eau de source'],['Origine','Nationale'],['Minéralisation','Faible']]},
+   correct:1,aPrice:'3.20€ (0.35€/L)',bPrice:'3.90€ (0.22€/L)',
+   explain:'Le lot de 12 revient à 0,22€/L contre 0,35€/L. Eau minérale vs eau de source : différence réglementaire, pas sanitaire.'},
+
+  // SANTÉ & BIEN-ÊTRE
+  {context:'Médicament contre les maux de tête.',
+   a:{name:'Médicament A',specs:[['Principe actif','Paracétamol 500mg'],['Boîte','16 comprimés'],['Marque','Doliprane (marque)'],['Remboursement','Oui']]},
+   b:{name:'Médicament B',specs:[['Principe actif','Paracétamol 500mg'],['Boîte','16 comprimés'],['Marque','Générique pharmacie'],['Remboursement','Oui']]},
+   correct:1,aPrice:'2.15€',bPrice:'0.99€',
+   explain:'Même molécule (paracétamol), même dosage, même remboursement. Le générique coûte 54% moins cher pour un effet identique.'},
+
+  {context:'Crème solaire pour les vacances.',
+   a:{name:'Crème A',specs:[['SPF','50+'],['Contenance','50ml'],['Marque','Dermatologue recommandée'],['Filtre','Minéral + chimique']]},
+   b:{name:'Crème B',specs:[['SPF','50+'],['Contenance','200ml'],['Marque','Marque distributeur pharmacie'],['Filtre','Chimique']]},
+   correct:1,aPrice:'22€ (440€/L)',bPrice:'12.50€ (62.5€/L)',
+   explain:'La crème MDD pharmacie à 62,5€/L vs premium à 440€/L. Si les filtres UV sont certifiés, la protection est identique.'},
+
+  {context:'Lunettes de vue avec correction.',
+   a:{name:'Option A',specs:[['Type','Opticien en boutique'],['Verres','Antireflets + durcissement'],['Monture','Titane légère'],['Délai','1 semaine']]},
+   b:{name:'Option B',specs:[['Type','Opticien en ligne'],['Verres','Antireflets + durcissement'],['Monture','Acétate'],['Délai','2 semaines']]},
+   correct:1,aPrice:'350€',bPrice:'89€',
+   explain:'Les opticiens en ligne proposent des verres de même qualité pour 3-4× moins cher. L\'essayage virtuel compense l\'absence en boutique.'},
+
+  // MAISON & QUOTIDIEN
+  {context:'Lessive liquide pour 40 lavages.',
+   a:{name:'Lessive A',specs:[['Doses','40 lavages'],['Format','Bidon 3L'],['Efficacité','30°C à 90°C'],['Marque','Grande marque TV']]},
+   b:{name:'Lessive B',specs:[['Doses','40 lavages'],['Format','Dosettes compactes'],['Efficacité','30°C à 60°C'],['Marque','Marque eco-discount']]},
+   correct:1,aPrice:'14.90€ (0.37€/lavage)',bPrice:'6.90€ (0.17€/lavage)',
+   explain:'Pour le linge courant à 40°C, la lessive discount est aussi efficace pour moitié prix. Économie annuelle sur 200 lavages : 40€.'},
+
+  {context:'Papier toilette pour la maison.',
+   a:{name:'PQ A',specs:[['Rouleaux','12 rouleaux'],['Épaisseur','3 épaisseurs'],['Feuilles','200 par rouleau'],['Marque','Marque nationale']]},
+   b:{name:'PQ B',specs:[['Rouleaux','32 rouleaux'],['Épaisseur','2 épaisseurs'],['Feuilles','250 par rouleau'],['Marque','Marque distributeur']]},
+   correct:1,aPrice:'9.90€ (0.82€/rouleau)',bPrice:'10.50€ (0.33€/rouleau)',
+   explain:'Le B coûte 60% moins cher par rouleau ET offre plus de feuilles. Le packaging "lot" est toujours gagnant sur ce type de produit.'},
+
+  {context:'Savon liquide pour les mains (recharge).',
+   a:{name:'Savon A',specs:[['Volume','300ml'],['Format','Flacon pompe'],['Antibactérien','Non'],['Parfum','Amande douce']]},
+   b:{name:'Savon B',specs:[['Volume','5L'],['Format','Jerrycan recharge'],['Antibactérien','Non'],['Parfum','Neutre']]},
+   correct:1,aPrice:'3.50€ (11.7€/L)',bPrice:'8.90€ (1.78€/L)',
+   explain:'La recharge en gros revient à 1,78€/L vs 11,7€/L en pompe unitaire. 6,5× moins cher. Le contenant se paie très cher.'},
+
+  // ALIMENTATION QUOTIDIENNE
+  {context:'Pain de mie pour le petit-déjeuner.',
+   a:{name:'Pain A',specs:[['Poids','500g'],['Tranches','20 tranches'],['Conserv.','5 jours'],['Marque','Boulangerie artisanale']]},
+   b:{name:'Pain B',specs:[['Poids','750g'],['Tranches','30 tranches'],['Conserv.','12 jours'],['Marque','Marque industrielle']]},
+   correct:1,aPrice:'3.80€ (0.19€/tranche)',bPrice:'1.35€ (0.045€/tranche)',
+   explain:'Le pain industriel coûte 4× moins cher par tranche. Si vous mangez 2 tartines/jour, économie de 50€/an juste sur le pain de mie.'},
+
+  {context:'Fromage râpé pour cuisiner.',
+   a:{name:'Fromage A',specs:[['Poids','200g'],['Type','Emmental râpé'],['Conditionnement','Sachet refermable'],['Marque','Marque laitière nationale']]},
+   b:{name:'Fromage B',specs:[['Poids','1kg'],['Type','Emmental râpé'],['Conditionnement','Sac hermétique'],['Marque','Marque distributeur']]},
+   correct:1,aPrice:'2.90€ (14.5€/kg)',bPrice:'8.50€ (8.5€/kg)',
+   explain:'Le kilo coûte 41% moins cher. Le fromage râpé se congèle facilement. Achat en gros + congélateur = économie sans contrainte.'},
+
+  // ÉNERGIE
+  {context:'Contrat électricité pour un appartement.',
+   a:{name:'Offre A',specs:[['Fournisseur','EDF Tarif Réglementé'],['Puissance','6 kVA'],['Option','Base'],['Prix','Indexé sur le marché']]},
+   b:{name:'Offre B',specs:[['Fournisseur','Fournisseur alternatif'],['Puissance','6 kVA'],['Option','Heures creuses'],['Prix','Fixe 12 mois']]},
+   correct:0,aPrice:'Variable selon marchés',bPrice:'Prix fixe mais parfois +5%',
+   explain:'Selon votre profil de consommation (sèche-linge, lave-linge le soir), les heures creuses peuvent économiser 15%. Mais le tarif réglementé reste une valeur sûre.'},
+
+  {context:'Ampoule connectée pour votre salon.',
+   a:{name:'Ampoule A',specs:[['Marque','Grande marque connectée'],['Compatibilité','Alexa + Google'],['Couleurs','16 millions'],['Application','Propre']]},
+   b:{name:'Ampoule B',specs:[['Marque','Marque discount connectée'],['Compatibilité','Alexa + Google'],['Couleurs','16 millions'],['Application','Compatible']]},
+   correct:1,aPrice:'49€ le pack de 2',bPrice:'15€ le pack de 2',
+   explain:'Les ampoules connectées discount utilisent le même protocole. Pour un usage basique (allumer/éteindre à la voix), l\'écart de prix n\'est pas justifié.'},
+
+  // LOISIRS
+  {context:'Livre broché bestseller du moment.',
+   a:{name:'Livre A',specs:[['Format','Broché neuf'],['Livraison','2-3 jours'],['Source','Libraire en ligne'],['Condition','Neuf sous cellophane']]},
+   b:{name:'Livre B',specs:[['Format','Broché occasion'],['Livraison','3-5 jours'],['Source','Place de marché'],['Condition','Très bon état']]},
+   correct:1,aPrice:'19.90€',bPrice:'4.50€ + 2.99€ port = 7.49€',
+   explain:'Le livre occasion "très bon état" est identique visuellement. -62% de prix. Avant tout achat neuf, vérifiez l\'occasion.'},
+
+  {context:'Abonnement musique en streaming.',
+   a:{name:'Offre A',specs:[['Comptes','1 compte individuel'],['Qualité','320kbps'],['Téléchargements','Oui'],['Engagement','Mensuel']]},
+   b:{name:'Offre B',specs:[['Comptes','6 comptes famille'],['Qualité','320kbps'],['Téléchargements','Oui'],['Engagement','Mensuel']]},
+   correct:0,aPrice:'10.99€/mois si seul',bPrice:'17.99€/mois (2.99€/pers pour 6)',
+   explain:'L\'offre famille partagée entre 6 personnes coûte 2,99€/personne vs 10,99€ seul. Organisez un groupe famille pour diviser la facture par 4.'},
+
+  {context:'Jeu vidéo sorti il y a 6 mois.',
+   a:{name:'Jeu A',specs:[['Format','Boîte physique neuf'],['Plateforme','Console dernière génération'],['DLC inclus','Non'],['Revendable','Oui']]},
+   b:{name:'Jeu B',specs:[['Format','Version numérique'],['Plateforme','Console dernière génération'],['DLC inclus','Pack de base'],['Revendable','Non']]},
+   correct:0,aPrice:'29.99€ (soldes)',bPrice:'39.99€ (prix numérique)',
+   explain:'Les jeux physiques en soldes sont souvent moins chers que les versions numériques. Et revéndables. Le numérique n\'offre que la commodité.'},
+
+  // PLUS DIFFICILES
+  {context:'Café capsules pour machine expresso.',
+   a:{name:'Capsule A',specs:[['Quantité','10 capsules'],['Intensité','7/12'],['Marque','Compatible universelle'],['Machine','Type Nespresso']]},
+   b:{name:'Capsule B',specs:[['Quantité','50 capsules'],['Intensité','7/12'],['Marque','Grande marque officielle'],['Machine','Type Nespresso']]},
+   correct:0,aPrice:'2.90€ (0.29€/capsule)',bPrice:'29€ (0.58€/capsule)',
+   explain:'Les capsules compatibles coûtent 50% moins cher. La qualité est similaire pour les usages quotidiens. Économie : 87€/an pour 300 capsules.'},
+
+  {context:'Imprimante pour un usage domestique.',
+   a:{name:'Imprimante A',specs:[['Type','Laser noir/blanc'],['Coût/page','1,5 centime'],['Prix achat','Plus élevé'],['Vitesse','25 pages/min']]},
+   b:{name:'Imprimante B',specs:[['Type','Jet d\'encre couleur'],['Coût/page','8 centimes'],['Prix achat','Bas'],['Vitesse','10 pages/min']]},
+   correct:0,aPrice:'129€ (puis 1.5ct/page)',bPrice:'49€ (puis 8ct/page)',
+   explain:'Dès 1 200 pages imprimées, la laser devient plus économique. Pour 200 pages/mois, le seuil est atteint en 6 mois. Long terme : laser gagne.'},
+
+  {context:'Matelas pour votre chambre principale.',
+   a:{name:'Matelas A',specs:[['Technologie','Ressorts ensachés'],['Épaisseur','25cm'],['Fermeté','Medium'],['Garantie','10 ans']]},
+   b:{name:'Matelas B',specs:[['Technologie','Mousse mémoire de forme'],['Épaisseur','20cm'],['Fermeté','Medium-ferme'],['Garantie','5 ans']]},
+   correct:1,aPrice:'590€',bPrice:'290€',
+   explain:'Un matelas mousse de qualité à 290€ avec 5 ans de garantie peut être aussi confortable. Les tests indépendants ne valident pas la corrélation prix/confort.'},
+
+  {context:'Complémentaire santé dentaire renforcée.',
+   a:{name:'Mutuelle A',specs:[['Couronne céramique','300% SS'],['Implant','Non pris en charge'],['Orthodontie adulte','150€/an'],['Premium','Élevé']]},
+   b:{name:'Mutuelle B',specs:[['Couronne céramique','200% SS'],['Implant','500€/implant'],['Orthodontie adulte','Non'],['Premium','Moyen']]},
+   correct:0,aPrice:'Dépend de votre usage dentaire',bPrice:'Dépend de votre usage dentaire',
+   explain:'Cette question n\'a pas de bonne réponse universelle. Tout dépend de votre état dentaire. Évaluez vos besoins réels avant de choisir.'},
+
+  {context:'Box internet fibre optique.',
+   a:{name:'Box A',specs:[['Débit','1 Gb/s'],['TV','250 chaînes'],['Tel fixe','Illimité'],['Engagement','12 mois']]},
+   b:{name:'Box B',specs:[['Débit','2 Gb/s'],['TV','Non inclus'],['Tel fixe','Non inclus'],['Engagement','Sans engagement']]},
+   correct:1,aPrice:'39.99€/mois',bPrice:'19.99€/mois',
+   explain:'Si vous n\'utilisez pas la TV par internet ni le fixe (50% des foyers), payer 20€ de moins pour le double de débit est rationallement meilleur.'},
+];
+
+const LESSONS = [
+  'Le <b>prix au kilo ou au litre</b> est la seule unité qui compte. Tout le reste (packaging, taille, format) est du marketing.',
+  'En France, les génériques médicaments sont <b>identiques</b> aux médicaments de marque. Même molécule, même effet, prix réduit de 30-50%.',
+  'L\'<b>achat en gros</b> réduit le prix unitaire de 20-40% en moyenne. Attention aux produits périssables.',
+  'Les banques en ligne facturent <b>0€ de frais de tenue de compte</b> contre 100-200€/an pour les banques traditionnelles.',
+  'La <b>réservation anticipée</b> (train, avion, hôtel) peut réduire le prix de 50-70% vs la réservation de dernière minute.',
+];
+
+let level = 'easy', levelTime = 20;
+let qIdx = 0, score = 0, correct = 0, streak = 0, bestStreak = 0;
+let questions = [], answered = false;
+let timerInt = null, timeLeft = 0;
+
+function selectLevel(l) {
+  level = l;
+  document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('selected'));
+  document.getElementById('lvl-' + l).classList.add('selected');
+  levelTime = l === 'easy' ? 20 : l === 'medium' ? 12 : 7;
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showToast(t, c) {
+  const el = document.getElementById('toast');
+  el.textContent = t; el.style.color = c;
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+}
+
+function startGame() {
+  questions = [...QUESTIONS].sort(() => Math.random() - .5).slice(0, 20);
+  qIdx = 0; score = 0; correct = 0; streak = 0; bestStreak = 0;
+  showScreen('screen-game');
+  loadQuestion();
+}
+
+function loadQuestion() {
+  if (qIdx >= questions.length) return endGame();
+  answered = false;
+  const q = questions[qIdx];
+  document.getElementById('qNum').textContent = (qIdx + 1) + '/' + questions.length;
+  document.getElementById('nextBtn').style.display = 'none';
+  document.getElementById('explainBox').classList.remove('show');
+
+  // Contexte
+  document.getElementById('contextBox').innerHTML = q.context;
+
+  // Offres
+  const area = document.getElementById('offersArea');
+  area.innerHTML = ['a', 'b'].map((key, i) => {
+    const o = q[key];
+    const specs = o.specs.map(([l, v]) => `<div class="spec-row"><span class="spec-label">${l}</span><span class="spec-val">${v}</span></div>`).join('');
+    return `<div class="offer-card" id="offer-${key}" onclick="chooseOffer(${i})">
+      <div class="offer-letter">Offre ${key.toUpperCase()}</div>
+      <div class="offer-name">${o.name}</div>
+      <div class="offer-specs">${specs}</div>
+      <div class="price-reveal" id="price-${key}"></div>
+    </div>`;
+  }).join('');
+
+  // Timer
+  timeLeft = levelTime;
+  clearInterval(timerInt);
+  document.getElementById('timerBar').style.width = '100%';
+  document.getElementById('timerBar').style.background = 'var(--blue)';
+  timerInt = setInterval(() => {
+    timeLeft -= 0.1;
+    const pct = (timeLeft / levelTime) * 100;
+    const bar = document.getElementById('timerBar');
+    bar.style.width = pct + '%';
+    bar.style.background = pct < 30 ? 'var(--red)' : pct < 60 ? 'var(--gold)' : 'var(--blue)';
+    if (timeLeft <= 0) { clearInterval(timerInt); chooseOffer(-1); }
+  }, 100);
+}
+
+function chooseOffer(chosenIdx) {
+  if (answered) return;
+  answered = true;
+  clearInterval(timerInt);
+  const q = questions[qIdx];
+  const isCorrect = chosenIdx === q.correct;
+
+  // Révéler les prix
+  ['a', 'b'].forEach((key, i) => {
+    const priceEl = document.getElementById('price-' + key);
+    if (priceEl) {
+      priceEl.textContent = i === q.correct ? '✅ Moins cher : ' + q[key === 'a' ? 'aPrice' : 'bPrice'] : '❌ Plus cher : ' + q[key === 'a' ? 'aPrice' : 'bPrice'];
+      priceEl.style.color = i === q.correct ? 'var(--green)' : 'var(--red)';
+      priceEl.classList.add('show');
+    }
+    const card = document.getElementById('offer-' + key);
+    if (card) {
+      if (i === q.correct) card.classList.add('correct');
+      else if (i === chosenIdx) card.classList.add('wrong');
+      else card.classList.add('neutral');
+    }
+  });
+
+  if (isCorrect) {
+    correct++;
+    streak++;
+    bestStreak = Math.max(bestStreak, streak);
+    const bonus = streak >= 3 ? 20 : streak >= 2 ? 15 : 10;
+    score += bonus;
+    showToast(streak >= 3 ? '🔥 STREAK x' + streak + ' +' + bonus : '✅ +' + bonus, 'var(--green)');
+  } else if (chosenIdx === -1) {
+    streak = 0;
+    showToast('⏱️ Temps écoulé !', 'var(--red)');
+  } else {
+    streak = 0;
+    showToast('❌ Raté !', 'var(--red)');
+  }
+
+  // Streak badge
+  const sb = document.getElementById('streakBadge');
+  if (streak >= 2) { sb.style.display = 'inline-flex'; document.getElementById('streakNum').textContent = streak; }
+  else sb.style.display = 'none';
+  document.getElementById('scoreNum').textContent = score;
+
+  // Explication
+  const exp = document.getElementById('explainBox');
+  exp.innerHTML = '<b>' + (isCorrect ? '✅ Bien vu !' : '💡 À savoir :') + '</b> ' + q.explain;
+  exp.classList.add('show');
+  document.getElementById('nextBtn').style.display = 'block';
+  qIdx++;
+}
+
+function nextQuestion() { loadQuestion(); }
+
+function endGame() {
+  const pct = Math.round((correct / questions.length) * 100);
+  const icon = pct >= 80 ? '🏆' : pct >= 60 ? '🎯' : '📚';
+  const title = pct >= 80 ? 'Expert des deals !' : pct >= 60 ? 'Bon œil !' : 'À affûter...';
+  document.getElementById('endIcon').textContent = icon;
+  document.getElementById('endTitle').textContent = title;
+  document.getElementById('endScore').textContent = score;
+  document.getElementById('endLabel').textContent = `points — ${correct}/${questions.length} bons deals`;
+  document.getElementById('endCorrect').textContent = correct + '/' + questions.length;
+  document.getElementById('endStreak').textContent = 'x' + bestStreak;
+  document.getElementById('endLesson').innerHTML = '💡 ' + LESSONS[Math.floor(Math.random() * LESSONS.length)];
+  showScreen('screen-result');
+}
+
+function share() {
+  const text = `J'ai trouvé ${correct}/${questions.length} bons deals sur Le Bon Deal (Economya.fr) ⚖️ Saurais-tu voir le moins cher sans les prix ?`;
+  if (navigator.share) navigator.share({ title: 'Le Bon Deal', text, url: 'https://economya.fr' }).catch(() => {});
+  else navigator.clipboard.writeText(text + ' https://economya.fr').then(() => alert('Copié !'));
+}
+</script>
+</body>
+</html>

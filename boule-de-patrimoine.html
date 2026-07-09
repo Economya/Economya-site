@@ -2,336 +2,397 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Boule de Patrimoine — Economya.fr</title>
-<meta name="description" content="Faites grossir votre boule de patrimoine en absorbant pièces et objets. 60 secondes pour devenir le plus riche possible. Economya.fr">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
-  :root{
-    --bg-top:#2B1B4A; --bg-bottom:#150B28;
-    --gold:#FFD54F; --ball:#4FC3F7; --ink:#F2F0FA; --ink-dim:#B0A8CC;
-    --panel:rgba(255,255,255,.06); --panel-line:rgba(255,255,255,.14);
-  }
-  *{ box-sizing:border-box; margin:0; padding:0; }
-  html,body{ height:100%; overflow:hidden; }
-  body{
-    background: radial-gradient(circle at 50% -10%, var(--bg-top) 0%, var(--bg-bottom) 65%);
-    color: var(--ink); font-family:'Inter', system-ui, sans-serif;
-    -webkit-tap-highlight-color: transparent; user-select:none; position:relative;
-  }
-  .wrap{ width:100%; height:100%; max-width:460px; margin:0 auto; position:relative; }
-  .overlay{ position:absolute; inset:0; z-index:10; display:none; flex-direction:column; align-items:center; justify-content:center; padding:26px; background: linear-gradient(180deg, rgba(21,11,40,.5), rgba(21,11,40,.95) 40%); text-align:center; }
-  .overlay.active{ display:flex; animation: fadeIn .35s ease; }
-  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
-  .eyebrow{ display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:14px; }
-  .eyebrow::before{ content:'🌀'; }
-  h1.title{ font-family:'Space Grotesk', sans-serif; font-size:32px; font-weight:800; letter-spacing:-0.02em; line-height:1.1; margin-bottom:14px; }
-  h1.title span{ color:var(--gold); }
-  p.lede{ color:var(--ink-dim); font-size:14.5px; line-height:1.55; margin-bottom:22px; max-width:340px; }
-  .legend{ display:flex; gap:10px; margin-bottom:26px; flex-wrap:wrap; justify-content:center; }
-  .legend-item{ display:flex; align-items:center; gap:7px; background:var(--panel); border:1px solid var(--panel-line); border-radius:99px; padding:8px 14px; font-size:12.5px; font-weight:600; }
-  .btn{ border:none; border-radius:14px; padding:16px 34px; font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:700; cursor:pointer; transition: transform .12s ease; }
-  .btn:active{ transform: scale(.96); }
-  .btn-primary{ background:var(--gold); color:#3A2900; box-shadow:0 10px 26px rgba(255,213,79,.28); }
-  .btn-ghost{ background:transparent; border:1.5px solid var(--panel-line); color:var(--ink); margin-top:12px; padding:13px 30px; font-size:14px; }
-  .brand-footer{ margin-top:20px; font-size:12px; color:var(--ink-dim); }
-  .brand-footer a{ color:var(--gold); text-decoration:none; font-weight:700; }
-  .go-score{ font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:52px; color:var(--gold); line-height:1; margin: 6px 0 4px; }
-  .go-label{ font-size:13px; color:var(--ink-dim); margin-bottom:6px; }
-  .go-best{ font-size:13px; color:var(--ink-dim); margin-bottom:20px; }
-  .go-best b{ color:var(--ink); }
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --bg-top:#2B1B4A;--bg-bottom:#150B28;
+  --gold:#FFD54F;--green:#4CAF50;--red:#F44336;--blue:#4FC3F7;
+  --ink:#F2F0FA;--ink-dim:#B0A8CC;
+  --panel:rgba(255,255,255,.06);--line:rgba(255,255,255,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;touch-action:none;}
+body{
+  background:radial-gradient(circle at 50% -10%,var(--bg-top) 0%,var(--bg-bottom) 65%);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;user-select:none;position:relative;
+}
+.wrap{width:100%;height:100%;max-width:480px;margin:0 auto;position:relative;}
 
-  #hud{ position:absolute; top:0; left:0; right:0; z-index:5; display:flex; justify-content:space-between; align-items:center; padding:14px 16px; pointer-events:none; }
-  .hud-size{ font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:20px; background:rgba(0,0,0,.3); padding:6px 14px; border-radius:99px; }
-  .hud-timer{ font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:20px; background:rgba(0,0,0,.3); padding:6px 14px; border-radius:99px; }
-  .hud-timer.urgent{ color:#FF6B6B; }
+/* Overlays */
+.overlay{position:absolute;inset:0;z-index:10;display:none;flex-direction:column;align-items:center;justify-content:center;padding:26px;background:linear-gradient(180deg,rgba(21,11,40,.5),rgba(21,11,40,.95) 40%);text-align:center;}
+.overlay.active{display:flex;animation:fadeIn .35s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:14px;}
+.eyebrow::before{content:'🌀';}
+h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:14px;}
+h1.title span{color:var(--gold);}
+p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;max-width:320px;}
+.legend{display:flex;gap:8px;margin-bottom:22px;flex-wrap:wrap;justify-content:center;}
+.legend-item{display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:7px 12px;font-size:12px;font-weight:600;}
+.btn{border:none;border-radius:14px;padding:16px 34px;font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:transform .12s ease;}
+.btn:active{transform:scale(.96);}
+.btn-primary{background:var(--gold);color:#3A2900;box-shadow:0 10px 26px rgba(255,213,79,.28);}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);margin-top:12px;padding:13px 30px;font-size:14px;}
+.brand-footer{margin-top:20px;font-size:12px;color:var(--ink-dim);}
+.brand-footer a{color:var(--gold);text-decoration:none;font-weight:700;}
+.go-score{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:52px;color:var(--gold);line-height:1;margin:6px 0 4px;}
+.go-label{font-size:13px;color:var(--ink-dim);margin-bottom:6px;}
+.go-best{font-size:13px;color:var(--ink-dim);margin-bottom:20px;}
+.go-best b{color:var(--ink);}
 
-  .rank-toast{ position:absolute; top:64px; left:50%; transform:translateX(-50%); font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:16px; color:var(--gold); opacity:0; z-index:6; pointer-events:none; text-shadow:0 2px 6px rgba(0,0,0,.5); }
-  .rank-toast.show{ animation: rankPop .9s ease forwards; }
-  @keyframes rankPop{ 0%{opacity:0; transform:translateX(-50%) translateY(8px) scale(.85);} 20%{opacity:1; transform:translateX(-50%) translateY(0) scale(1.1);} 75%{opacity:1;} 100%{opacity:0; transform:translateX(-50%) translateY(-12px);} }
+/* HUD */
+#hud{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;pointer-events:none;}
+.hud-score{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:20px;background:rgba(0,0,0,.4);padding:6px 14px;border-radius:99px;}
+.hud-timer{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:20px;background:rgba(0,0,0,.4);padding:6px 14px;border-radius:99px;}
+.hud-timer.urgent{color:#FF6B6B;}
 
-  canvas{ display:block; width:100%; height:100%; touch-action:none; }
-  .joy-hint{ position:absolute; bottom:20px; left:0; right:0; text-align:center; font-size:12.5px; color:var(--ink-dim); z-index:5; pointer-events:none; }
+/* Canvas */
+canvas{display:block;width:100%;height:100%;}
+
+/* Joystick */
+#joystick-zone{
+  position:absolute;bottom:0;left:0;right:0;height:220px;z-index:6;
+  display:flex;align-items:center;justify-content:center;
+}
+#joystick-base{
+  width:110px;height:110px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);
+  position:relative;display:flex;align-items:center;justify-content:center;
+}
+#joystick-knob{
+  width:48px;height:48px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.9),rgba(255,213,79,.8));
+  box-shadow:0 4px 12px rgba(0,0,0,.4);
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  transition:transform .05s ease;
+}
+
+/* Toast */
+.toast{position:absolute;top:70px;left:50%;transform:translateX(-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;color:var(--gold);opacity:0;z-index:7;pointer-events:none;text-shadow:0 2px 6px rgba(0,0,0,.5);}
+.toast.show{animation:toastPop .7s ease forwards;}
+@keyframes toastPop{0%{opacity:0;transform:translateX(-50%) translateY(-10px) scale(.8);}20%{opacity:1;transform:translateX(-50%) scale(1.05);}80%{opacity:1;}100%{opacity:0;transform:translateX(-50%) translateY(-20px);}}
 </style>
 </head>
 <body>
 <div class="wrap" id="wrap">
-  <canvas id="game"></canvas>
+  <canvas id="gameCanvas"></canvas>
+
   <div id="hud" style="display:none;">
-    <div class="hud-size" id="hudSize">⭐ 0 €</div>
-    <div class="hud-timer" id="hudTimer">60s</div>
+    <div class="hud-score">💰 <span id="scoreDisplay">0</span></div>
+    <div class="hud-timer" id="timerDisplay">60s</div>
   </div>
-  <div class="rank-toast" id="rankToast"></div>
-  <div class="joy-hint" id="joyHint" style="display:none;">Glissez pour diriger votre boule</div>
 
-  <div class="overlay active" id="screen-intro">
-    <div class="eyebrow">Economya.fr · La boule</div>
-    <h1 class="title">Boule de <span>Patrimoine</span></h1>
-    <p class="lede">Roulez votre boule pour absorber pièces et petites dépenses. Plus elle grossit, plus elle peut avaler de gros objets. 60 secondes pour bâtir le plus gros patrimoine.</p>
-    <div class="legend">
-      <div class="legend-item">👆 Glissez pour diriger</div>
-      <div class="legend-item">📈 Grossissez pour tout avaler</div>
+  <div id="joystick-zone" style="display:none;">
+    <div id="joystick-base">
+      <div id="joystick-knob"></div>
     </div>
-    <button class="btn btn-primary" onclick="startGame()">Faire rouler la boule</button>
-    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
   </div>
 
+  <div class="toast" id="toast"></div>
+
+  <!-- INTRO -->
+  <div class="overlay active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Style Katamari</div>
+    <h1 class="title">Boule de <span>Patrimoine</span></h1>
+    <p class="lede">Guidez votre boule avec le joystick. Absorbez les économies et placements, évitez les dettes. Plus vous grandissez, plus vous pouvez absorber !</p>
+    <div class="legend">
+      <div class="legend-item">💰 Épargne <span style="color:var(--green)">+points</span></div>
+      <div class="legend-item">📈 Placement <span style="color:var(--gold)">+gros points</span></div>
+      <div class="legend-item">💸 Dette <span style="color:var(--red)">-points</span></div>
+    </div>
+    <button class="btn btn-primary" onclick="startGame()">🌀 Rouler !</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+  </div>
+
+  <!-- GAME OVER -->
   <div class="overlay" id="screen-over">
-    <div class="eyebrow">Temps écoulé</div>
-    <div class="go-score" id="goScore">0 €</div>
-    <div class="go-label">valeur de votre patrimoine final</div>
-    <div class="go-best">Record : <b id="goBest">0 €</b></div>
-    <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
-    <button class="btn btn-ghost" onclick="shareResult()">Partager mon score</button>
-    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+    <div class="eyebrow">Résultat</div>
+    <div class="go-score" id="goScore">0</div>
+    <div class="go-label">points de patrimoine</div>
+    <div class="go-best">Record : <b id="goBest">0</b></div>
+    <button class="btn btn-primary" onclick="startGame()">🔄 Rejouer</button>
+    <button class="btn btn-ghost" onclick="shareResult()">📤 Partager</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
   </div>
 </div>
 
 <script>
-const canvas = document.getElementById('game');
+const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const wrap = document.getElementById('wrap');
-let W,H,DPR;
-function resize(){
-  DPR = Math.min(window.devicePixelRatio||1, 2);
-  W = wrap.clientWidth; H = wrap.clientHeight;
-  canvas.width = W*DPR; canvas.height = H*DPR;
-  ctx.setTransform(DPR,0,0,DPR,0,0);
+
+let W, H, DPR;
+function resize() {
+  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  W = wrap.clientWidth;
+  H = wrap.clientHeight;
+  canvas.width = W * DPR;
+  canvas.height = H * DPR;
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 }
 window.addEventListener('resize', resize);
+resize();
 
-const ARENA_W = 1600, ARENA_H = 1600;
+// ── État ──────────────────────────────────────────
+let ball, items, score, best, timeLeft, running, joystickDir;
+let rafId = null, timerInt = null;
 
-const OBJECT_TYPES = [
-  { icon:'🪙', value:1,   size:8  },
-  { icon:'🍬', value:2,   size:10 },
-  { icon:'☕', value:5,   size:14 },
-  { icon:'📖', value:12,  size:18 },
-  { icon:'👟', value:35,  size:24 },
-  { icon:'🎧', value:60,  size:28 },
-  { icon:'🚲', value:150, size:38 },
-  { icon:'📺', value:300, size:46 },
-  { icon:'🛋️', value:600, size:58 },
-  { icon:'🚗', value:2000,size:80 },
-  { icon:'🏠', value:8000,size:110 },
+try { best = parseInt(localStorage.getItem('bouleBest') || '0', 10); } catch(e) { best = 0; }
+
+const ITEM_TYPES = [
+  { emoji: '💰', label: 'Épargne',     value: 10,  color: '#4CAF50', size: 20, bad: false },
+  { emoji: '🪙', label: 'Pièce',       value: 5,   color: '#FFD54F', size: 16, bad: false },
+  { emoji: '📈', label: 'ETF',         value: 30,  color: '#42A5F5', size: 24, bad: false },
+  { emoji: '🏦', label: 'Livret A',    value: 15,  color: '#66BB6A', size: 20, bad: false },
+  { emoji: '💎', label: 'Placement',   value: 50,  color: '#AB47BC', size: 28, bad: false },
+  { emoji: '💸', label: 'Dépense',     value: -8,  color: '#EF5350', size: 18, bad: true  },
+  { emoji: '💳', label: 'Crédit conso',value: -20, color: '#F44336', size: 22, bad: true  },
+  { emoji: '🧾', label: 'Facture',     value: -12, color: '#FF7043', size: 20, bad: true  },
 ];
 
-let ball = { x:0, y:0, r:16, value:0 };
-let objects = [];
-let running = false;
-let timeLeft = 60;
-let best = 0;
-let joyActive = false, joyDX=0, joyDY=0, joyStartX=0, joyStartY=0;
-let rafStarted = false;
-let timerInterval = null;
-let particles = [];
+// ── Joystick ──────────────────────────────────────
+const jBase = document.getElementById('joystick-base');
+const jKnob = document.getElementById('joystick-knob');
+let joystickActive = false;
+let joystickStartX = 0, joystickStartY = 0;
+let jdx = 0, jdy = 0;
+const JMAX = 38;
 
-try{ best = parseInt(localStorage.getItem('bouleDePatrimoineBest')||'0',10); }catch(e){}
-
-function showScreen(id){
-  document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function joyStart(e) {
+  e.preventDefault();
+  joystickActive = true;
+  const t = e.touches ? e.touches[0] : e;
+  const rect = jBase.getBoundingClientRect();
+  joystickStartX = rect.left + rect.width / 2;
+  joystickStartY = rect.top + rect.height / 2;
+}
+function joyMove(e) {
+  if (!joystickActive) return;
+  e.preventDefault();
+  const t = e.touches ? e.touches[0] : e;
+  let dx = t.clientX - joystickStartX;
+  let dy = t.clientY - joystickStartY;
+  const dist = Math.sqrt(dx*dx + dy*dy);
+  if (dist > JMAX) { dx = dx/dist*JMAX; dy = dy/dist*JMAX; }
+  jdx = dx; jdy = dy;
+  jKnob.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+}
+function joyEnd(e) {
+  joystickActive = false;
+  jdx = 0; jdy = 0;
+  jKnob.style.transform = 'translate(-50%, -50%)';
 }
 
-function fmt(n){
-  if(n >= 1000) return (n/1000).toFixed(1).replace('.',',') + 'k €';
-  return Math.round(n) + ' €';
+jBase.addEventListener('touchstart', joyStart, {passive: false});
+jBase.addEventListener('touchmove',  joyMove,  {passive: false});
+jBase.addEventListener('touchend',   joyEnd,   {passive: false});
+jBase.addEventListener('mousedown',  joyStart);
+window.addEventListener('mousemove', joyMove);
+window.addEventListener('mouseup',   joyEnd);
+
+// Clavier
+const keys = {};
+window.addEventListener('keydown', e => { keys[e.key] = true; });
+window.addEventListener('keyup',   e => { keys[e.key] = false; });
+
+// ── Spawn items ───────────────────────────────────
+function spawnItem() {
+  const type = ITEM_TYPES[Math.floor(Math.random() * ITEM_TYPES.length)];
+  const margin = 40;
+  return {
+    ...type,
+    x: margin + Math.random() * (W - margin * 2),
+    y: margin + Math.random() * (H - 300),  // pas dans la zone joystick
+    id: Math.random()
+  };
 }
 
-function spawnObjects(count){
-  for(let i=0;i<count;i++){
-    const typeIdx = Math.min(OBJECT_TYPES.length-1, Math.floor(Math.random()*Math.random()*OBJECT_TYPES.length));
-    const t = OBJECT_TYPES[typeIdx];
-    objects.push({
-      x: Math.random()*ARENA_W,
-      y: Math.random()*ARENA_H,
-      icon: t.icon, value:t.value, size:t.size
-    });
-  }
+function spawnItems(count) {
+  const arr = [];
+  for (let i = 0; i < count; i++) arr.push(spawnItem());
+  return arr;
 }
 
-function startGame(){
-  resize();
+// ── Start ─────────────────────────────────────────
+function startGame() {
   document.getElementById('screen-intro').classList.remove('active');
   document.getElementById('screen-over').classList.remove('active');
-  document.getElementById('hud').style.display='flex';
-  document.getElementById('joyHint').style.display='block';
+  document.getElementById('hud').style.display = 'flex';
+  document.getElementById('joystick-zone').style.display = 'flex';
 
-  ball = { x: ARENA_W/2, y: ARENA_H/2, r:16, value:0 };
-  objects = []; particles = [];
-  spawnObjects(140);
-  running = true; timeLeft = 60;
-  updateHud();
+  score = 0;
+  timeLeft = 60;
+  running = true;
+  jdx = 0; jdy = 0;
 
-  clearInterval(timerInterval);
-  timerInterval = setInterval(()=>{
-    timeLeft -= 1;
-    const el = document.getElementById('hudTimer');
-    el.textContent = timeLeft + 's';
-    if(timeLeft<=10) el.classList.add('urgent');
-    if(timeLeft<=0){ endGame(); }
-  }, 1000);
+  ball = { x: W / 2, y: H / 2 - 80, r: 22, vx: 0, vy: 0 };
+  items = spawnItems(18);
 
-  if(!rafStarted){ rafStarted = true; requestAnimationFrame(loop); }
+  clearInterval(timerInt);
+  timerInt = setInterval(() => {
+    if (!running) return;
+    timeLeft -= 0.1;
+    const t = Math.ceil(Math.max(0, timeLeft));
+    const el = document.getElementById('timerDisplay');
+    el.textContent = t + 's';
+    el.classList.toggle('urgent', t <= 10);
+    if (timeLeft <= 0) { running = false; clearInterval(timerInt); endGame(); }
+  }, 100);
+
+  cancelAnimationFrame(rafId);
+  rafId = requestAnimationFrame(loop);
 }
 
-function updateHud(){
-  document.getElementById('hudSize').textContent = '⭐ ' + fmt(ball.value);
-}
-function showRank(text){
-  const el = document.getElementById('rankToast');
-  el.textContent = text;
-  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
-}
+// ── Loop ──────────────────────────────────────────
+let lastTime = 0;
+function loop(now) {
+  if (!running) return;
+  const dt = Math.min((now - lastTime) / 16, 3);
+  lastTime = now;
 
-function pointerPos(e){
-  const rect = canvas.getBoundingClientRect();
-  const cx = e.touches ? e.touches[0].clientX : e.clientX;
-  const cy = e.touches ? e.touches[0].clientY : e.clientY;
-  return { x: cx-rect.left, y: cy-rect.top };
-}
-function joyStart(e){
-  if(!running) return;
-  const p = pointerPos(e);
-  joyActive = true; joyStartX = p.x; joyStartY = p.y; joyDX=0; joyDY=0;
-}
-function joyMove(e){
-  if(!joyActive) return;
-  const p = pointerPos(e);
-  joyDX = p.x - joyStartX; joyDY = p.y - joyStartY;
-  const maxD = 60;
-  const d = Math.hypot(joyDX,joyDY);
-  if(d > maxD){ joyDX = joyDX/d*maxD; joyDY = joyDY/d*maxD; }
-}
-function joyEnd(){ joyActive = false; joyDX=0; joyDY=0; }
+  // Direction depuis joystick ou clavier
+  let dx = jdx / JMAX;
+  let dy = jdy / JMAX;
+  if (keys['ArrowLeft'] || keys['a'])  dx = -1;
+  if (keys['ArrowRight'] || keys['d']) dx = 1;
+  if (keys['ArrowUp'] || keys['w'])    dy = -1;
+  if (keys['ArrowDown'] || keys['s'])  dy = 1;
 
-canvas.addEventListener('pointerdown', joyStart);
-canvas.addEventListener('pointermove', joyMove);
-canvas.addEventListener('pointerup', joyEnd);
-canvas.addEventListener('pointercancel', joyEnd);
-canvas.addEventListener('touchstart', e=>{ joyStart(e); e.preventDefault(); }, {passive:false});
-canvas.addEventListener('touchmove', e=>{ joyMove(e); e.preventDefault(); }, {passive:false});
-canvas.addEventListener('touchend', joyEnd);
+  const speed = 4.5;
+  ball.vx += dx * speed * dt * 0.3;
+  ball.vy += dy * speed * dt * 0.3;
+  ball.vx *= 0.82;
+  ball.vy *= 0.82;
 
-function spawnAbsorbBurst(x,y,color){
-  for(let i=0;i<8;i++){
-    const ang = Math.random()*Math.PI*2;
-    particles.push({ x,y, vx:Math.cos(ang)*2.5, vy:Math.sin(ang)*2.5, life:1, color });
-  }
-}
+  ball.x += ball.vx * dt;
+  ball.y += ball.vy * dt;
 
-const RANKS = [50,200,800,3000,10000];
-const RANK_LABELS = ['💼 Épargnant débutant','📈 Investisseur régulier','🏠 Propriétaire','💎 Patrimoine solide','👑 Fortune établie'];
-let rankReached = -1;
+  // Limites terrain (éviter la zone joystick en bas)
+  const bottomLimit = H - 230;
+  ball.x = Math.max(ball.r, Math.min(W - ball.r, ball.x));
+  ball.y = Math.max(ball.r, Math.min(bottomLimit - ball.r, ball.y));
 
-function endGame(){
-  running = false;
-  clearInterval(timerInterval);
-  document.getElementById('hud').style.display='none';
-  document.getElementById('joyHint').style.display='none';
-  if(ball.value > best){ best = ball.value; try{ localStorage.setItem('bouleDePatrimoineBest', String(Math.round(best))); }catch(e){} }
-  document.getElementById('goScore').textContent = fmt(ball.value);
-  document.getElementById('goBest').textContent = fmt(best);
-  showScreen('screen-over');
-}
-
-function loop(){
-  ctx.clearRect(0,0,W,H);
-  const bg = ctx.createLinearGradient(0,0,0,H);
-  bg.addColorStop(0,'rgba(255,255,255,.02)'); bg.addColorStop(1,'rgba(0,0,0,.06)');
-  ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
-
-  if(running){
-    const speed = 3.2;
-    if(joyActive){
-      const d = Math.hypot(joyDX,joyDY) || 1;
-      ball.x += (joyDX/d) * speed * Math.min(1, d/20);
-      ball.y += (joyDY/d) * speed * Math.min(1, d/20);
-    }
-    ball.x = Math.max(ball.r, Math.min(ARENA_W-ball.r, ball.x));
-    ball.y = Math.max(ball.r, Math.min(ARENA_H-ball.r, ball.y));
-
-    for(let i=objects.length-1;i>=0;i--){
-      const o = objects[i];
-      const d = Math.hypot(ball.x-o.x, ball.y-o.y);
-      if(d < ball.r + o.size*0.5){
-        if(ball.r >= o.size*0.9){
-          ball.value += o.value;
-          ball.r += Math.sqrt(o.size) * 0.35;
-          spawnAbsorbBurst(o.x-ball.x+W/2, o.y-ball.y+H/2, '#FFD54F');
-          objects.splice(i,1);
-          updateHud();
-
-          for(let ri=0; ri<RANKS.length; ri++){
-            if(ball.value >= RANKS[ri] && rankReached < ri){
-              rankReached = ri;
-              showRank(RANK_LABELS[ri]);
-            }
-          }
-        }
+  // Collisions
+  for (let i = items.length - 1; i >= 0; i--) {
+    const item = items[i];
+    const dist = Math.hypot(ball.x - item.x, ball.y - item.y);
+    const absorbDist = ball.r + item.size * 0.5;
+    if (dist < absorbDist) {
+      score = Math.max(0, score + item.value);
+      if (!item.bad) {
+        ball.r = Math.min(60, ball.r + 0.5);
+        showToast('+' + item.value + ' 💰', 'var(--gold)');
+      } else {
+        ball.r = Math.max(14, ball.r - 0.5);
+        showToast(item.value + ' 💸', '#EF5350');
       }
-    }
-
-    if(objects.length < 60) spawnObjects(20);
-
-    for(let i=particles.length-1;i>=0;i--){
-      const p = particles[i];
-      p.x += p.vx; p.y += p.vy; p.life -= 0.04;
-      if(p.life<=0) particles.splice(i,1);
+      document.getElementById('scoreDisplay').textContent = score;
+      items.splice(i, 1);
+      // Respawn
+      setTimeout(() => { if (running) items.push(spawnItem()); }, 800);
     }
   }
 
-  ctx.save();
-  ctx.translate(W/2 - ball.x, H/2 - ball.y);
+  draw();
+  rafId = requestAnimationFrame(loop);
+}
 
+// ── Draw ──────────────────────────────────────────
+function draw() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Fond
+  const grad = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, Math.max(W, H));
+  grad.addColorStop(0, '#2B1B4A');
+  grad.addColorStop(1, '#150B28');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, H);
+
+  // Grille subtile
   ctx.strokeStyle = 'rgba(255,255,255,.04)';
   ctx.lineWidth = 1;
-  const gridSize = 80;
-  for(let gx = 0; gx <= ARENA_W; gx += gridSize){
-    ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,ARENA_H); ctx.stroke();
-  }
-  for(let gy = 0; gy <= ARENA_H; gy += gridSize){
-    ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(ARENA_W,gy); ctx.stroke();
-  }
+  for (let x = 0; x < W; x += 40) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H - 220); ctx.stroke(); }
+  for (let y = 0; y < H - 220; y += 40) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
 
-  ctx.strokeStyle = 'rgba(255,213,79,.3)'; ctx.lineWidth = 4;
-  ctx.strokeRect(0,0,ARENA_W,ARENA_H);
-
-  objects.forEach(o=>{
-    ctx.font = (o.size) + 'px serif';
-    ctx.textAlign='center'; ctx.textBaseline='middle';
-    ctx.globalAlpha = ball.r >= o.size*0.9 ? 1 : 0.55;
-    ctx.fillText(o.icon, o.x, o.y);
-    ctx.globalAlpha = 1;
-  });
-
-  ctx.save();
-  ctx.translate(ball.x, ball.y);
-  const grad = ctx.createRadialGradient(-ball.r*0.3,-ball.r*0.3,ball.r*0.2, 0,0,ball.r);
-  grad.addColorStop(0,'#81D4FA'); grad.addColorStop(1,'#0288D1');
-  ctx.fillStyle = grad;
-  ctx.beginPath(); ctx.arc(0,0,ball.r,0,Math.PI*2); ctx.fill();
-  ctx.strokeStyle = 'rgba(255,255,255,.5)'; ctx.lineWidth=2; ctx.stroke();
-  ctx.restore();
-
-  ctx.restore();
-
-  particles.forEach(p=>{
+  // Items
+  items.forEach(item => {
     ctx.save();
-    ctx.globalAlpha = Math.max(p.life,0);
-    ctx.fillStyle = p.color;
-    ctx.beginPath(); ctx.arc(p.x,p.y,3,0,Math.PI*2); ctx.fill();
+    // Halo
+    ctx.shadowColor = item.color;
+    ctx.shadowBlur = 12;
+    ctx.font = `${item.size * 2}px serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(item.emoji, item.x, item.y);
+
+    // Label petit
+    ctx.shadowBlur = 0;
+    ctx.font = 'bold 9px Inter, sans-serif';
+    ctx.fillStyle = 'rgba(255,255,255,.6)';
+    ctx.fillText(item.value > 0 ? '+' + item.value : item.value, item.x, item.y + item.size + 4);
     ctx.restore();
   });
 
-  requestAnimationFrame(loop);
+  // Boule
+  ctx.save();
+  const ballGrad = ctx.createRadialGradient(ball.x - ball.r * 0.3, ball.y - ball.r * 0.3, 0, ball.x, ball.y, ball.r);
+  ballGrad.addColorStop(0, '#90E0FF');
+  ballGrad.addColorStop(0.5, '#4FC3F7');
+  ballGrad.addColorStop(1, '#0288D1');
+  ctx.shadowColor = '#4FC3F7';
+  ctx.shadowBlur = 20;
+  ctx.beginPath();
+  ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+  ctx.fillStyle = ballGrad;
+  ctx.fill();
+  // Reflet
+  ctx.shadowBlur = 0;
+  ctx.beginPath();
+  ctx.arc(ball.x - ball.r * 0.3, ball.y - ball.r * 0.3, ball.r * 0.3, 0, Math.PI * 2);
+  ctx.fillStyle = 'rgba(255,255,255,.4)';
+  ctx.fill();
+  // Taille
+  ctx.font = `bold ${Math.max(10, ball.r * 0.7)}px Space Grotesk, sans-serif`;
+  ctx.fillStyle = 'rgba(255,255,255,.9)';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(Math.round(ball.r), ball.x, ball.y);
+  ctx.restore();
 }
 
-function shareResult(){
-  const text = `J'ai bâti un patrimoine de ${fmt(ball.value)} en 60 secondes sur Boule de Patrimoine (Economya.fr) 🌀 À toi de faire rouler ta boule :`;
-  const url = 'https://economya.fr';
-  if(navigator.share){ navigator.share({title:'Boule de Patrimoine', text, url}).catch(()=>{}); }
-  else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
+// ── Toast ─────────────────────────────────────────
+let toastTimeout;
+function showToast(txt, color) {
+  const el = document.getElementById('toast');
+  el.textContent = txt;
+  el.style.color = color || 'var(--gold)';
+  el.classList.remove('show');
+  void el.offsetWidth;
+  el.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => el.classList.remove('show'), 700);
+}
+
+// ── End ───────────────────────────────────────────
+function endGame() {
+  cancelAnimationFrame(rafId);
+  document.getElementById('hud').style.display = 'none';
+  document.getElementById('joystick-zone').style.display = 'none';
+  if (score > best) { best = score; try { localStorage.setItem('bouleBest', String(best)); } catch(e) {} }
+  document.getElementById('goScore').textContent = score;
+  document.getElementById('goBest').textContent = best;
+  document.getElementById('screen-over').classList.add('active');
+}
+
+function shareResult() {
+  const text = `J'ai accumulé ${score} points de patrimoine sur Boule de Patrimoine (Economya.fr) 🌀 À toi !`;
+  if (navigator.share) navigator.share({ title: 'Boule de Patrimoine', text, url: 'https://economya.fr' }).catch(() => {});
+  else navigator.clipboard.writeText(text + ' https://economya.fr').then(() => alert('Copié !'));
 }
 
 resize();
