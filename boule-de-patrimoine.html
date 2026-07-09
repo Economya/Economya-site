@@ -186,20 +186,9 @@ function showRank(text){
 
 function pointerPos(e){
   const rect = canvas.getBoundingClientRect();
-  const scaleX = ARENA_W / rect.width;
-  const scaleY = ARENA_H / rect.height;
-  let cx, cy;
-  if(e.touches && e.touches.length > 0){
-    cx = e.touches[0].clientX;
-    cy = e.touches[0].clientY;
-  } else if(e.changedTouches && e.changedTouches.length > 0){
-    cx = e.changedTouches[0].clientX;
-    cy = e.changedTouches[0].clientY;
-  } else {
-    cx = e.clientX;
-    cy = e.clientY;
-  }
-  return { x: (cx - rect.left) * scaleX, y: (cy - rect.top) * scaleY };
+  const cx = e.touches ? e.touches[0].clientX : e.clientX;
+  const cy = e.touches ? e.touches[0].clientY : e.clientY;
+  return { x: cx-rect.left, y: cy-rect.top };
 }
 function joyStart(e){
   if(!running) return;
@@ -209,25 +198,20 @@ function joyStart(e){
 function joyMove(e){
   if(!joyActive) return;
   const p = pointerPos(e);
-  joyDX = p.x - joyStartX;
-  joyDY = p.y - joyStartY;
-  joyStartX = p.x;
-  joyStartY = p.y;
+  joyDX = p.x - joyStartX; joyDY = p.y - joyStartY;
+  const maxD = 60;
+  const d = Math.hypot(joyDX,joyDY);
+  if(d > maxD){ joyDX = joyDX/d*maxD; joyDY = joyDY/d*maxD; }
 }
 function joyEnd(){ joyActive = false; joyDX=0; joyDY=0; }
 
-// Touch uniquement sur mobile, pointer sur desktop
-const isMobile = ('ontouchstart' in window);
-if(isMobile){
-  canvas.addEventListener('touchstart', e=>{ e.preventDefault(); joyStart(e); }, {passive:false});
-  canvas.addEventListener('touchmove',  e=>{ e.preventDefault(); joyMove(e);  }, {passive:false});
-  canvas.addEventListener('touchend',   e=>{ joyEnd(); }, {passive:false});
-} else {
-  canvas.addEventListener('pointerdown', joyStart);
-  canvas.addEventListener('pointermove', joyMove);
-  canvas.addEventListener('pointerup',   joyEnd);
-  canvas.addEventListener('pointercancel', joyEnd);
-}
+canvas.addEventListener('pointerdown', joyStart);
+canvas.addEventListener('pointermove', joyMove);
+canvas.addEventListener('pointerup', joyEnd);
+canvas.addEventListener('pointercancel', joyEnd);
+canvas.addEventListener('touchstart', e=>{ joyStart(e); e.preventDefault(); }, {passive:false});
+canvas.addEventListener('touchmove', e=>{ joyMove(e); e.preventDefault(); }, {passive:false});
+canvas.addEventListener('touchend', joyEnd);
 
 function spawnAbsorbBurst(x,y,color){
   for(let i=0;i<8;i++){
@@ -260,10 +244,9 @@ function loop(){
   if(running){
     const speed = 3.2;
     if(joyActive){
-      ball.x += joyDX;
-      ball.y += joyDY;
-      joyDX = 0;
-      joyDY = 0;
+      const d = Math.hypot(joyDX,joyDY) || 1;
+      ball.x += (joyDX/d) * speed * Math.min(1, d/20);
+      ball.y += (joyDY/d) * speed * Math.min(1, d/20);
     }
     ball.x = Math.max(ball.r, Math.min(ARENA_W-ball.r, ball.x));
     ball.y = Math.max(ball.r, Math.min(ARENA_H-ball.r, ball.y));
