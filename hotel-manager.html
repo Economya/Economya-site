@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hôtel Manager — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --bg:#0A0E1A;--panel:#10162A;--panel2:#162035;
+  --line:#1E2E45;--gold:#FFD54F;--green:#34D399;--red:#F87171;--blue:#60A5FA;--purple:#A78BFA;
+  --ink:#EEF5FF;--ink-dim:#5A7A9A;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow-y:auto;}
+body{
+  background:radial-gradient(ellipse at 50% 0%,#162035 0%,var(--bg) 60%);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;user-select:none;
+  display:flex;align-items:flex-start;justify-content:center;padding:14px;min-height:100vh;
+}
+.app{width:100%;max-width:420px;padding-bottom:20px;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.eyebrow::before{content:'🏨';}
+h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;}
+h1.title span{color:var(--gold);}
+p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
+.btn{border:none;border-radius:14px;padding:14px 20px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:transform .1s ease;margin-bottom:8px;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--gold);color:#2A1900;}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);}
+.brand-footer{text-align:center;margin-top:16px;font-size:11px;color:var(--ink-dim);}
+.brand-footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+/* Dashboard hôtel */
+.hotel-dashboard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.hotel-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;}
+.hotel-stars{color:var(--gold);font-size:14px;}
+.hotel-cash{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:20px;color:var(--green);}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.kpi{background:var(--panel2);border-radius:10px;padding:8px;text-align:center;}
+.kpi .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;}
+.kpi .l{font-size:9px;color:var(--ink-dim);margin-top:2px;}
+.taux-bar{height:5px;background:rgba(255,255,255,.05);border-radius:99px;margin-top:8px;overflow:hidden;}
+.taux-fill{height:100%;border-radius:99px;transition:width .4s ease;}
+
+/* Saison */
+.season-strip{display:flex;gap:4px;margin-bottom:12px;}
+.season-dot{flex:1;height:8px;border-radius:99px;background:var(--panel);border:1px solid var(--line);transition:background .3s ease;}
+.season-dot.done{background:var(--green);}
+.season-dot.current{background:var(--gold);}
+
+/* Décision du jour */
+.decision-card{background:var(--panel2);border:2px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px;}
+.dc-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.dc-emoji{font-size:28px;}
+.dc-info{}
+.dc-period{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-dim);}
+.dc-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;}
+.dc-context{font-size:12.5px;color:var(--ink-dim);line-height:1.4;margin-bottom:10px;}
+.decision-opts{display:flex;flex-direction:column;gap:7px;}
+.dopt{background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;transition:border-color .15s ease;}
+.dopt:active{transform:scale(.98);}
+.dopt:hover{border-color:rgba(255,213,79,.4);}
+.dopt-text{font-size:13px;font-weight:600;flex:1;}
+.dopt-impact{font-size:11px;font-weight:700;text-align:right;white-space:nowrap;}
+
+/* Toast */
+.toast{position:fixed;top:18%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;opacity:0;pointer-events:none;z-index:30;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 18px;}
+.toast.show{animation:tp .6s ease forwards;}
+@keyframes tp{0%{opacity:0;}15%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
+
+/* Fin */
+.end-rev{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:48px;color:var(--gold);text-align:center;margin:8px 0 4px;}
+.end-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px;}
+.es{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;}
+.es .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;color:var(--gold);}
+.es .l{font-size:9px;color:var(--ink-dim);margin-top:2px;}
+.lesson{background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.2);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;margin-bottom:14px;}
+.lesson b{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="app">
+
+<div class="screen active" id="screen-intro">
+  <div class="eyebrow">Economya.fr · L'hôtellerie</div>
+  <h1 class="title">Hôtel <span>Manager</span></h1>
+  <p class="lede">Vous gérez un hôtel 3★ avec 30 chambres. Gérez les tarifs, le personnel, les travaux et les imprévus sur 12 périodes. Maximisez votre chiffre d'affaires et votre taux de satisfaction.</p>
+  <button class="btn btn-primary" onclick="startGame()">Ouvrir l'hôtel</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+
+<div id="screen-game" style="display:none;">
+  <div class="hotel-dashboard">
+    <div class="dash-header">
+      <div><div class="hotel-name">Hôtel Les Économies</div><div class="hotel-stars">⭐⭐⭐</div></div>
+      <div class="hotel-cash" id="cashDisplay">+0€</div>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="v" id="kpiOccup">0%</div><div class="l">Taux d'occup.</div><div class="taux-bar"><div class="taux-fill" id="kpiOccupBar" style="width:0%;background:var(--blue)"></div></div></div>
+      <div class="kpi"><div class="v" id="kpiSat">0/5</div><div class="l">Satisfaction</div><div class="taux-bar"><div class="taux-fill" id="kpiSatBar" style="width:0%;background:var(--gold)"></div></div></div>
+      <div class="kpi"><div class="v" id="kpiTarif">0€</div><div class="l">Tarif nuit</div><div class="taux-bar"><div class="taux-fill" id="kpiTarifBar" style="width:0%;background:var(--green)"></div></div></div>
+    </div>
+  </div>
+
+  <div class="season-strip" id="seasonStrip"></div>
+
+  <div class="decision-card" id="decisionCard">
+    <div class="dc-header">
+      <div class="dc-emoji" id="dcEmoji">🏨</div>
+      <div class="dc-info">
+        <div class="dc-period" id="dcPeriod">Période 1/12</div>
+        <div class="dc-title" id="dcTitle">Chargement...</div>
+      </div>
+    </div>
+    <div class="dc-context" id="dcContext"></div>
+    <div class="decision-opts" id="decisionOpts"></div>
+  </div>
+</div>
+
+<div class="screen" id="screen-end">
+  <div style="text-align:center;font-size:48px;margin:10px 0;" id="endIcon">🏆</div>
+  <div style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;text-align:center;margin-bottom:6px;" id="endTitle">Saison terminée !</div>
+  <div class="end-rev" id="endRev">0€</div>
+  <div style="text-align:center;font-size:13px;color:var(--ink-dim);margin-bottom:16px;">chiffre d'affaires annuel</div>
+  <div class="end-grid">
+    <div class="es"><div class="v" id="endOccup">0%</div><div class="l">Taux d'occup. moy.</div></div>
+    <div class="es"><div class="v" id="endSat">0/5</div><div class="l">Satisfaction finale</div></div>
+    <div class="es"><div class="v" id="endTarif">0€</div><div class="l">Tarif moyen nuit</div></div>
+  </div>
+  <div class="lesson" id="endLesson"></div>
+  <button class="btn btn-primary" onclick="startGame()">Nouvelle saison</button>
+  <button class="btn btn-ghost" onclick="share()">Partager</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+</div>
+
+<script>
+const DECISIONS=[
+  {emoji:'💰',title:'Stratégie tarifaire',context:'Basse saison. Comment fixez-vous vos prix ?',
+   options:[
+     {text:'Prix premium 150€/nuit',impact:'Occup. -20%, CA +15%',dOccup:-20,dSat:0,dTarif:+40,dCA:+15},
+     {text:'Prix marché 110€/nuit',impact:'Occup. stable, CA stable',dOccup:+5,dSat:+5,dTarif:0,dCA:+8},
+     {text:'Prix discount 70€/nuit',impact:'Occup. +30%, CA +10%',dOccup:+30,dSat:-5,dTarif:-40,dCA:+5},
+   ]},
+  {emoji:'👤',title:'Recrutement réception',context:'Votre réceptionniste phare vient de partir. Que faites-vous ?',
+   options:[
+     {text:'Recruter rapidement (CDI standard)',impact:'Sat. +10, coût -2000€/mois',dOccup:+5,dSat:+10,dTarif:0,dCA:-5},
+     {text:'Intérim en attendant',impact:'Sat. -5, coût -1200€/mois',dOccup:-5,dSat:-5,dTarif:0,dCA:-2},
+     {text:'Surcharger l\'équipe actuelle',impact:'Sat. -15, gratuit',dOccup:-10,dSat:-15,dTarif:0,dCA:0},
+   ]},
+  {emoji:'🔧',title:'Rénovation salle de bain',context:'3 chambres ont des problèmes de plomberie. Les avis Booking se dégradent.',
+   options:[
+     {text:'Rénovation complète maintenant (8000€)',impact:'Sat. +20, fermeture 2 semaines',dOccup:-15,dSat:+20,dTarif:+10,dCA:-8},
+     {text:'Réparation minimum (1500€)',impact:'Sat. +5, pas de fermeture',dOccup:0,dSat:+5,dTarif:0,dCA:-3},
+     {text:'Ignorer et attendre',impact:'Sat. -15, risque aggravation',dOccup:-5,dSat:-15,dTarif:-10,dCA:-5},
+   ]},
+  {emoji:'🌐',title:'Référencement Booking.com',context:'Un consultant propose d\'optimiser votre profil Booking (commission 15%). Alternativement, site direct.',
+   options:[
+     {text:'Tout via Booking.com',impact:'Occup. +25%, marge -15%',dOccup:+25,dSat:+5,dTarif:0,dCA:+5},
+     {text:'Mix Booking 60% + direct 40%',impact:'Occup. +10%, marge optimale',dOccup:+10,dSat:+8,dTarif:0,dCA:+12},
+     {text:'100% réservations directes',impact:'Occup. -10%, marge +15%',dOccup:-10,dSat:+3,dTarif:+5,dCA:+8},
+   ]},
+  {emoji:'🍳',title:'Petit-déjeuner',context:'Inclure ou non le petit-déjeuner dans le tarif ?',
+   options:[
+     {text:'Petit-déjeuner inclus (+15€/chambre)',impact:'Sat. +15, Occup. +10%',dOccup:+10,dSat:+15,dTarif:+15,dCA:+10},
+     {text:'Petit-déjeuner en option',impact:'Sat. +5, flexible',dOccup:+5,dSat:+5,dTarif:+5,dCA:+5},
+     {text:'Pas de petit-déjeuner',impact:'Sat. -5, aucun coût extra',dOccup:-5,dSat:-5,dTarif:0,dCA:0},
+   ]},
+  {emoji:'⭐',title:'Programme fidélité',context:'Lancer un programme fidélité pour encourager les retours ?',
+   options:[
+     {text:'Programme avec remise 10% dès 2 séjours',impact:'Sat. +10, fidélisation +20%',dOccup:+15,dSat:+10,dTarif:-5,dCA:+8},
+     {text:'Carte de bienvenue personnalisée',impact:'Sat. +15, coût minimal',dOccup:+5,dSat:+15,dTarif:0,dCA:+5},
+     {text:'Aucun programme, prix seul',impact:'Neutre court terme',dOccup:0,dSat:0,dTarif:0,dCA:0},
+   ]},
+  {emoji:'🌞',title:'Haute saison — tarifs',context:'Été arrivé. Vous pouvez monter vos prix. Quelle stratégie ?',
+   options:[
+     {text:'Tarif dynamique (prix selon dispo)',impact:'CA +25%, tech payante',dOccup:+5,dSat:-5,dTarif:+35,dCA:+25},
+     {text:'Tarif fixe haute saison (+50€)',impact:'Lisible, CA +15%',dOccup:+10,dSat:+5,dTarif:+50,dCA:+15},
+     {text:'Garder les mêmes prix',impact:'Taux plein, CA stable',dOccup:+20,dSat:+10,dTarif:0,dCA:+10},
+   ]},
+  {emoji:'💬',title:'Réponse aux avis négatifs',context:'Un avis 1★ viral sur Google : "chambre bruyante, service nul". 50 vues par jour.',
+   options:[
+     {text:'Répondre publiquement + geste commercial',impact:'Sat. +10, image +15',dOccup:+10,dSat:+10,dTarif:0,dCA:+5},
+     {text:'Répondre poliment sans geste',impact:'Sat. +5, image +5',dOccup:+5,dSat:+5,dTarif:0,dCA:+2},
+     {text:'Ignorer l\'avis',impact:'Sat. -10, image -20',dOccup:-15,dSat:-10,dTarif:-5,dCA:-10},
+   ]},
+  {emoji:'🔋',title:'Rénovation énergétique',context:'Panneaux solaires proposés : 15 000€, économies 2 500€/an.',
+   options:[
+     {text:'Installation complète',impact:'Coût -15k€, éco +2500€/an',dOccup:+5,dSat:+10,dTarif:0,dCA:-8},
+     {text:'Demander des devis alternatifs',impact:'Décision future, neutre',dOccup:0,dSat:+5,dTarif:0,dCA:0},
+     {text:'Reporter à l\'année prochaine',impact:'Statu quo',dOccup:0,dSat:0,dTarif:0,dCA:0},
+   ]},
+  {emoji:'🎭',title:'Événement local',context:'Festival de musique ce week-end. Hôtels concurrents affichent complet.',
+   options:[
+     {text:'Tripler les prix (tarif événement)',impact:'CA +40%, risque réputation',dOccup:+5,dSat:-10,dTarif:+100,dCA:+40},
+     {text:'Augmenter modérément (+40€)',impact:'CA +20%, image préservée',dOccup:+15,dSat:+5,dTarif:+40,dCA:+20},
+     {text:'Garder prix normaux',impact:'Taux plein, loyal',dOccup:+20,dSat:+15,dTarif:0,dCA:+15},
+   ]},
+  {emoji:'🧹',title:'Service de ménage',context:'Réduire la fréquence du ménage pour baisser les coûts (-15% charges) ?',
+   options:[
+     {text:'Ménage tous les 3 jours sur demande',impact:'Coût -20%, Sat. -15',dOccup:-10,dSat:-15,dTarif:-5,dCA:-5},
+     {text:'Ménage quotidien maintenu',impact:'Sat. stable, coût normal',dOccup:+5,dSat:+10,dTarif:+5,dCA:+5},
+     {text:'Ménage express avec checklist qualité',impact:'Sat. +5, coût -5%',dOccup:+5,dSat:+5,dTarif:0,dCA:+3},
+   ]},
+  {emoji:'🎄',title:'Offre de fin d\'année',context:'Basse saison. Créer un package spécial fêtes ?',
+   options:[
+     {text:'Package "Noël à l\'hôtel" (repas + chambre)',impact:'Occup. +30%, marge OK',dOccup:+30,dSat:+20,dTarif:+60,dCA:+25},
+     {text:'Réduction -20% pour remplir',impact:'Occup. +20%, CA stable',dOccup:+20,dSat:+5,dTarif:-20,dCA:+5},
+     {text:'Rien de spécial, économiser',impact:'Basse saison subie',dOccup:-10,dSat:0,dTarif:0,dCA:-5},
+   ]},
+];
+
+let cash=0,occup=60,sat=3.5,tarif=110,period=0,totalCA=0;
+const ROOMS=30,BASE_TARIF=110;
+
+function showToast(t,c){const el=document.getElementById('toast');el.textContent=t;el.style.color=c;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-game').style.display=(id==='screen-game')?'block':'none';if(id!=='screen-game')document.getElementById(id).classList.add('active');}
+function clamp(v,mn,mx){return Math.max(mn,Math.min(mx,v));}
+function fmt(n){return n.toLocaleString('fr-FR')+'€';}
+
+function startGame(){
+  cash=0;occup=60;sat=3.5;tarif=BASE_TARIF;period=0;totalCA=0;
+  showScreen('screen-game');
+  renderDashboard();
+  renderSeason();
+  loadDecision();
+}
+
+function renderDashboard(){
+  document.getElementById('cashDisplay').textContent='+'+fmt(Math.round(totalCA));
+  document.getElementById('kpiOccup').textContent=Math.round(occup)+'%';
+  document.getElementById('kpiOccupBar').style.width=occup+'%';
+  document.getElementById('kpiSat').textContent=sat.toFixed(1)+'/5';
+  document.getElementById('kpiSatBar').style.width=(sat/5*100)+'%';
+  document.getElementById('kpiTarif').textContent=Math.round(tarif)+'€';
+  document.getElementById('kpiTarifBar').style.width=Math.min(100,(tarif/200*100))+'%';
+}
+
+function renderSeason(){
+  const el=document.getElementById('seasonStrip');el.innerHTML='';
+  for(let i=0;i<DECISIONS.length;i++){
+    const dot=document.createElement('div');
+    dot.className='season-dot'+(i<period?' done':i===period?' current':'');
+    el.appendChild(dot);
+  }
+}
+
+function loadDecision(){
+  if(period>=DECISIONS.length)return endGame();
+  const d=DECISIONS[period];
+  document.getElementById('dcEmoji').textContent=d.emoji;
+  document.getElementById('dcPeriod').textContent='Période '+(period+1)+'/'+DECISIONS.length;
+  document.getElementById('dcTitle').textContent=d.title;
+  document.getElementById('dcContext').textContent=d.context;
+  const opts=document.getElementById('decisionOpts');opts.innerHTML='';
+  d.options.forEach(opt=>{
+    const div=document.createElement('div');div.className='dopt';
+    const col=opt.dCA>0?'var(--green)':opt.dCA<0?'var(--red)':'var(--ink-dim)';
+    div.innerHTML=`<span class="dopt-text">${opt.text}</span><span class="dopt-impact" style="color:${col}">${opt.impact}</span>`;
+    div.onclick=()=>chooseDecision(opt);
+    opts.appendChild(div);
+  });
+}
+
+function chooseDecision(opt){
+  occup=clamp(occup+opt.dOccup,10,100);
+  sat=clamp(sat+opt.dSat*0.1,0,5);
+  tarif=clamp(tarif+opt.dTarif,50,300);
+  const periodCA=Math.round(ROOMS*(occup/100)*tarif*30*(opt.dCA+100)/100/10);
+  totalCA+=periodCA;
+  showToast((periodCA>=0?'+':'')+fmt(periodCA)+' ce mois',periodCA>=0?'var(--green)':'var(--red)');
+  period++;
+  renderDashboard();
+  renderSeason();
+  setTimeout(loadDecision,600);
+}
+
+function endGame(){
+  const icon=totalCA>150000?'🏆':totalCA>80000?'⭐':'🙂';
+  const title=totalCA>150000?'Hôtelier expert !':totalCA>80000?'Bonne saison !':'Saison correcte';
+  const lesson=sat>=4?'<b>Excellence !</b> Votre taux de satisfaction élevé génère des réservations directes et réduit la dépendance aux OTA (Booking, Expedia) qui prennent 15-20% de commission.':
+    '<b>Clé de l\'hôtellerie :</b> la satisfaction client est l\'actif le plus précieux. Une note Booking de 8+ peut faire la différence entre 60% et 90% de taux d\'occupation.';
+  document.getElementById('endIcon').textContent=icon;
+  document.getElementById('endTitle').textContent=title;
+  document.getElementById('endRev').textContent=fmt(Math.round(totalCA));
+  document.getElementById('endOccup').textContent=Math.round(occup)+'%';
+  document.getElementById('endSat').textContent=sat.toFixed(1)+'/5';
+  document.getElementById('endTarif').textContent=Math.round(tarif)+'€';
+  document.getElementById('endLesson').innerHTML=lesson;
+  showScreen('screen-end');
+}
+
+function share(){
+  const text=`J'ai généré ${fmt(Math.round(totalCA))} de CA sur Hôtel Manager (Economya.fr) 🏨 À toi de gérer !`;
+  if(navigator.share)navigator.share({title:'Hôtel Manager',text,url:'https://economya.fr'}).catch(()=>{});
+  else navigator.clipboard.writeText(text+' https://economya.fr').then(()=>alert('Copié !'));
+}
+</script>
+</body>
+</html>

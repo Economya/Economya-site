@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance Runner 3D — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --bg:#080C14;--gold:#FFD54F;--green:#34D399;--red:#F87171;
+  --ink:#EEF5FF;--ink-dim:#5A7A9A;--panel:rgba(255,255,255,.06);--line:rgba(255,255,255,.1);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;user-select:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.wrap{width:100%;height:100%;max-width:460px;position:relative;margin:0 auto;}
+.overlay{position:absolute;inset:0;z-index:10;display:none;flex-direction:column;align-items:center;justify-content:center;padding:26px;background:rgba(8,12,20,.85);text-align:center;}
+.overlay.active{display:flex;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.eyebrow::before{content:'🏃';}
+h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;}
+h1.title span{color:var(--gold);}
+p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;max-width:340px;}
+.legend{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;justify-content:center;}
+.leg{display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:7px 12px;font-size:12px;font-weight:600;}
+.btn{border:none;border-radius:14px;padding:15px 34px;font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:transform .12s ease;}
+.btn:active{transform:scale(.96);}
+.btn-primary{background:var(--gold);color:#2A1900;box-shadow:0 10px 26px rgba(255,213,79,.28);}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);margin-top:12px;padding:13px 30px;font-size:14px;}
+.brand-footer{margin-top:20px;font-size:12px;color:var(--ink-dim);}
+.brand-footer a{color:var(--gold);text-decoration:none;font-weight:700;}
+.go-score{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:60px;color:var(--gold);line-height:1;margin:6px 0 4px;}
+.go-label{font-size:13px;color:var(--ink-dim);margin-bottom:6px;}
+.go-best{font-size:13px;color:var(--ink-dim);margin-bottom:20px;}
+.go-best b{color:var(--ink);}
+
+#hud{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;pointer-events:none;}
+.hud-score{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:24px;text-shadow:0 2px 8px rgba(0,0,0,.5);}
+.hud-lives{font-size:20px;letter-spacing:3px;}
+.combo-label{position:absolute;top:60px;left:50%;transform:translateX(-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;color:var(--gold);opacity:0;pointer-events:none;text-shadow:0 2px 6px rgba(0,0,0,.5);}
+.combo-label.show{animation:comboPop .6s ease forwards;}
+@keyframes comboPop{0%{opacity:0;transform:translateX(-50%) scale(.8);}20%{opacity:1;transform:translateX(-50%) scale(1.1);}80%{opacity:1;}100%{opacity:0;transform:translateX(-50%) translateY(-14px);}}
+
+/* Contrôles tactiles */
+.ctrl-left,.ctrl-right{position:absolute;bottom:0;z-index:5;width:50%;height:35%;opacity:0;cursor:pointer;}
+.ctrl-left{left:0;}
+.ctrl-right{right:0;}
+
+canvas{display:block;width:100%;height:100%;}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+  <canvas id="game"></canvas>
+  <div id="hud" style="display:none;">
+    <div class="hud-score">🪙 <span id="hudScore">0</span></div>
+    <div class="hud-lives" id="hudLives">❤️❤️❤️</div>
+  </div>
+  <div class="combo-label" id="comboLabel"></div>
+  <div class="ctrl-left" onclick="moveLeft()"></div>
+  <div class="ctrl-right" onclick="moveRight()"></div>
+
+  <div class="overlay active" id="screen-intro">
+    <div class="eyebrow">Economya.fr · Le runner</div>
+    <h1 class="title">Finance <span>Runner 3D</span></h1>
+    <p class="lede">Courez sur un chemin isométrique. Collectez les économies dorées, évitez les dettes qui barrent le chemin. Tapez gauche/droite pour changer de lane.</p>
+    <div class="legend">
+      <div class="leg">⬅️ Tap gauche = lane gauche</div>
+      <div class="leg">➡️ Tap droit = lane droite</div>
+    </div>
+    <button class="btn btn-primary" onclick="startGame()">Courir !</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+  </div>
+
+  <div class="overlay" id="screen-over">
+    <div class="eyebrow">Partie terminée</div>
+    <div class="go-score" id="goScore">0</div>
+    <div class="go-label">pièces collectées</div>
+    <div class="go-best">Record : <b id="goBest">0</b></div>
+    <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+    <button class="btn btn-ghost" onclick="shareResult()">Partager</button>
+    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+  </div>
+</div>
+
+<script>
+const canvas=document.getElementById('game');
+const ctx=canvas.getContext('2d');
+const wrap=document.getElementById('wrap');
+let W,H,DPR;
+function resize(){
+  DPR=Math.min(window.devicePixelRatio||1,2);
+  W=wrap.clientWidth;H=wrap.clientHeight;
+  canvas.width=W*DPR;canvas.height=H*DPR;
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+}
+window.addEventListener('resize',resize);
+
+// Isometric config
+const LANES=3;
+const TILE_W=80,TILE_H=40;
+const ISO_X=(W)=>W;
+const ISO_Y=(W,D)=>H*0.35+D*TILE_H*0.5-W*TILE_H*0.5;
+
+let playerLane=1,playerY=0;
+let tiles=[],coins=[],obstacles=[],particles=[];
+let score=0,lives=3,combo=0,best=0,running=false;
+let speed=2.5,scroll=0,spawnTimer=0;
+let rafStarted=false;
+
+try{best=parseInt(localStorage.getItem('financeRunner3DBest')||'0',10);}catch(e){}
+
+const DEBT_ICONS=['🧾','📉','💸','⚠️'];
+const COIN_ICONS=['🪙','💰','💵'];
+
+function showScreen(id){
+  document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showCombo(t){
+  const el=document.getElementById('comboLabel');
+  el.textContent=t;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');
+}
+
+function startGame(){
+  resize();
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-over').classList.remove('active');
+  document.getElementById('hud').style.display='flex';
+  playerLane=1;playerY=0;tiles=[];coins=[];obstacles=[];particles=[];
+  score=0;lives=3;combo=0;speed=2.5;scroll=0;spawnTimer=0;running=true;
+  updateHud();
+  // Générer les premières tuiles
+  for(let d=0;d<20;d++) spawnRow(d*TILE_H);
+  if(!rafStarted){rafStarted=true;requestAnimationFrame(loop);}
+}
+
+function updateHud(){
+  document.getElementById('hudScore').textContent=score;
+  document.getElementById('hudLives').textContent='❤️'.repeat(Math.max(0,lives));
+}
+
+function spawnRow(y){
+  for(let l=0;l<LANES;l++) tiles.push({lane:l,y,type:'floor'});
+  // Spawner pièce ou obstacle
+  if(y<-200) return;
+  if(Math.random()<0.4){
+    const lane=Math.floor(Math.random()*LANES);
+    if(Math.random()<0.6) coins.push({lane,y:y-10,icon:COIN_ICONS[Math.floor(Math.random()*COIN_ICONS.length)],collected:false});
+    else obstacles.push({lane,y:y-10,icon:DEBT_ICONS[Math.floor(Math.random()*DEBT_ICONS.length)],hit:false});
+  }
+}
+
+function laneToX(lane){
+  const cx=W/2;
+  const offsets=[-TILE_W*0.6,0,TILE_W*0.6];
+  return cx+offsets[lane];
+}
+
+function moveLeft(){if(!running)return;playerLane=Math.max(0,playerLane-1);}
+function moveRight(){if(!running)return;playerLane=Math.min(LANES-1,playerLane+1);}
+
+// Swipe
+let touchStartX=0;
+canvas.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;});
+canvas.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-touchStartX;
+  if(Math.abs(dx)>30){if(dx<0)moveLeft();else moveRight();}
+});
+window.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft')moveLeft();
+  if(e.key==='ArrowRight')moveRight();
+});
+
+function spawnParticle(x,y,color){
+  for(let i=0;i<6;i++){
+    const ang=Math.random()*Math.PI*2;
+    particles.push({x,y,vx:Math.cos(ang)*2.5,vy:Math.sin(ang)*2.5-2,life:1,color});
+  }
+}
+
+function loop(){
+  ctx.clearRect(0,0,W,H);
+
+  // Fond dégradé
+  const bg=ctx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#0D1520');bg.addColorStop(1,'#080C14');
+  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+
+  if(running){
+    scroll+=speed;
+    if(speed<7)speed+=0.003;
+    spawnTimer+=speed;
+    if(spawnTimer>TILE_H){
+      spawnTimer=0;
+      spawnRow(-TILE_H*2);
+    }
+    tiles.forEach(t=>t.y+=speed);
+    coins.forEach(c=>c.y+=speed);
+    obstacles.forEach(o=>o.y+=speed);
+
+    // Nettoyage
+    tiles=tiles.filter(t=>t.y<H+80);
+    coins=coins.filter(c=>c.y<H+80);
+    obstacles=obstacles.filter(o=>o.y<H+80);
+
+    // Collision coins
+    const px=laneToX(playerLane),py=H*0.6;
+    for(let i=coins.length-1;i>=0;i--){
+      const c=coins[i];
+      if(c.collected)continue;
+      const cx=laneToX(c.lane),cy=c.y;
+      if(Math.abs(cx-px)<50&&Math.abs(cy-py)<40){
+        c.collected=true;score++;combo++;
+        spawnParticle(cx,cy,'#FFD54F');
+        if(combo>0&&combo%5===0)showCombo('🔥 x'+combo);
+        updateHud();
+      }
+    }
+    // Collision obstacles
+    for(let i=obstacles.length-1;i>=0;i--){
+      const o=obstacles[i];
+      if(o.hit)continue;
+      const ox=laneToX(o.lane),oy=o.y;
+      if(Math.abs(ox-px)<45&&Math.abs(oy-py)<35){
+        o.hit=true;lives--;combo=0;
+        spawnParticle(ox,oy,'#F87171');
+        updateHud();
+        if(lives<=0){running=false;endGame();}
+      }
+    }
+    particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.15;p.life-=0.04;});
+    particles=particles.filter(p=>p.life>0);
+  }
+
+  // Dessiner tuiles (pseudo-isometric)
+  const sorted=[...tiles].sort((a,b)=>a.y-b.y);
+  sorted.forEach(t=>{
+    const x=laneToX(t.lane),y=t.y;
+    if(y<-60||y>H+60)return;
+    const topColor='#1A2840',sideColor='#0E1A2A',lineColor='#203050';
+    const hw=TILE_W*0.45,hh=TILE_H*0.4;
+    // Top
+    ctx.beginPath();
+    ctx.moveTo(x,y-hh);ctx.lineTo(x+hw,y);ctx.lineTo(x,y+hh);ctx.lineTo(x-hw,y);
+    ctx.closePath();ctx.fillStyle=topColor;ctx.fill();
+    ctx.strokeStyle=lineColor;ctx.lineWidth=1;ctx.stroke();
+    // Left side
+    const depth=12;
+    ctx.beginPath();
+    ctx.moveTo(x-hw,y);ctx.lineTo(x-hw,y+depth);ctx.lineTo(x,y+hh+depth);ctx.lineTo(x,y+hh);
+    ctx.closePath();ctx.fillStyle=sideColor;ctx.fill();
+    // Right side
+    ctx.beginPath();
+    ctx.moveTo(x+hw,y);ctx.lineTo(x+hw,y+depth);ctx.lineTo(x,y+hh+depth);ctx.lineTo(x,y+hh);
+    ctx.closePath();ctx.fillStyle='#0B1520';ctx.fill();
+  });
+
+  // Pièces (fond VERT clair)
+  coins.filter(c=>!c.collected).forEach(c=>{
+    if(c.y<-20||c.y>H+20)return;
+    const cx=laneToX(c.lane), cy=c.y-TILE_H*0.6;
+    ctx.save();
+    ctx.beginPath();ctx.roundRect(cx-22,cy-22,44,44,10);
+    ctx.fillStyle='rgba(52,211,153,.35)';ctx.fill();
+    ctx.strokeStyle='rgba(52,211,153,.9)';ctx.lineWidth=2;ctx.stroke();
+    ctx.font='22px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(c.icon,cx,cy);
+    ctx.font='bold 8px Inter,sans-serif';ctx.fillStyle='#34D399';
+    ctx.fillText('BONUS',cx,cy+16);
+    ctx.restore();
+  });
+
+  // Obstacles (fond ROUGE clair)
+  obstacles.filter(o=>!o.hit).forEach(o=>{
+    if(o.y<-20||o.y>H+20)return;
+    const ox=laneToX(o.lane), oy=o.y-TILE_H*0.6;
+    ctx.save();
+    ctx.beginPath();ctx.roundRect(ox-22,oy-22,44,44,10);
+    ctx.fillStyle='rgba(248,113,113,.35)';ctx.fill();
+    ctx.strokeStyle='rgba(248,113,113,.9)';ctx.lineWidth=2;ctx.stroke();
+    ctx.font='22px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(o.icon,ox,oy);
+    ctx.font='bold 8px Inter,sans-serif';ctx.fillStyle='#F87171';
+    ctx.fillText('DETTE',ox,oy+16);
+    ctx.restore();
+  });
+
+  // Joueur
+  const px=laneToX(playerLane),py=H*0.6;
+  ctx.font='28px serif';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillText('🏃',px,py-TILE_H*0.5);
+
+  // Particules
+  particles.forEach(p=>{
+    ctx.save();ctx.globalAlpha=Math.max(p.life,0);
+    ctx.fillStyle=p.color;
+    ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+  });
+
+  requestAnimationFrame(loop);
+}
+
+function endGame(){
+  document.getElementById('hud').style.display='none';
+  if(score>best){best=score;try{localStorage.setItem('financeRunner3DBest',String(best));}catch(e){}}
+  document.getElementById('goScore').textContent=score;
+  document.getElementById('goBest').textContent=best;
+  showScreen('screen-over');
+}
+
+function shareResult(){
+  const text=`J'ai collecté ${score} économies sur Finance Runner 3D (Economya.fr) 🏃 À toi de battre mon score !`;
+  const url='https://economya.fr';
+  if(navigator.share)navigator.share({title:'Finance Runner 3D',text,url}).catch(()=>{});
+  else navigator.clipboard.writeText(text+' '+url).then(()=>alert('Copié !'));
+}
+
+resize();
+</script>
+</body>
+</html>

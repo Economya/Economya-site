@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marathon Budgétaire — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --bg:#060E08;--panel:#0D1A10;--panel2:#142018;
+  --line:#1C3020;--gold:#FFD54F;--green:#34D399;--red:#F87171;--blue:#60A5FA;--orange:#FB923C;
+  --ink:#EDFFF4;--ink-dim:#4A7A5A;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow-y:auto;}
+body{
+  background:radial-gradient(ellipse at 50% 0%,#142018 0%,var(--bg) 60%);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;user-select:none;
+  display:flex;align-items:flex-start;justify-content:center;padding:14px;min-height:100vh;
+}
+.app{width:100%;max-width:420px;padding-bottom:24px;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* INTRO */
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:16px;background:rgba(255,213,79,.1);border:1px solid rgba(255,213,79,.3);border-radius:99px;padding:6px 14px;}
+h1.title{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:14px;}
+h1.title span{color:var(--gold);}
+p.lede{color:var(--ink-dim);font-size:14px;line-height:1.6;margin-bottom:22px;}
+.intro-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px;}
+.istat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:center;}
+.istat .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;color:var(--gold);}
+.istat .l{font-size:9px;color:var(--ink-dim);margin-top:3px;text-transform:uppercase;letter-spacing:.04em;}
+.btn{border:none;border-radius:14px;padding:15px 20px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:transform .1s ease;margin-bottom:8px;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--gold);color:#2A1900;box-shadow:0 8px 24px rgba(255,213,79,.25);}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);}
+.brand-footer{text-align:center;margin-top:16px;font-size:11px;color:var(--ink-dim);}
+.brand-footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+/* COURSE HUD */
+.race-hud{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:12px;}
+.race-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;}
+.race-km-big{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:28px;line-height:1;}
+.race-km-sub{font-size:10px;color:var(--ink-dim);margin-top:2px;}
+.race-budget-pill{background:rgba(255,213,79,.12);border:1px solid rgba(255,213,79,.4);border-radius:99px;padding:5px 14px;font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:14px;color:var(--gold);}
+.race-track-wrap{margin-bottom:12px;}
+.race-track-label{display:flex;justify-content:space-between;font-size:9px;color:var(--ink-dim);margin-bottom:4px;text-transform:uppercase;letter-spacing:.04em;}
+.race-track{height:10px;background:rgba(255,255,255,.05);border-radius:99px;overflow:hidden;position:relative;}
+.race-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold));border-radius:99px;transition:width .6s cubic-bezier(.34,1.56,.64,1);}
+.race-marker{position:absolute;top:50%;transform:translate(-50%,-50%);font-size:12px;pointer-events:none;}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.kpi{background:var(--panel2);border-radius:10px;padding:8px 6px;text-align:center;}
+.kpi .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:13px;}
+.kpi .l{font-size:8px;color:var(--ink-dim);margin-top:2px;text-transform:uppercase;}
+.kpi-bar{height:3px;background:rgba(255,255,255,.05);border-radius:99px;margin-top:5px;overflow:hidden;}
+.kpi-fill{height:100%;border-radius:99px;transition:width .4s ease;}
+
+/* Progression saison */
+.phase-row{display:flex;gap:4px;margin-bottom:12px;}
+.phase-dot{flex:1;height:6px;border-radius:99px;background:var(--panel);border:1px solid var(--line);transition:background .3s ease;}
+.phase-dot.done{background:var(--green);}
+.phase-dot.active{background:var(--gold);}
+
+/* Carte décision */
+.decision-card{border-radius:20px;padding:20px;margin-bottom:12px;position:relative;overflow:hidden;}
+.decision-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -30%,rgba(255,255,255,.04),transparent 70%);pointer-events:none;}
+.dc-phase-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;font-weight:700;border-radius:99px;padding:4px 10px;margin-bottom:10px;}
+.dc-km{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:22px;margin-bottom:6px;}
+.dc-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px;}
+.dc-context{font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;}
+
+/* Options */
+.options-list{display:flex;flex-direction:column;gap:8px;margin-top:12px;}
+.option{background:rgba(255,255,255,.06);border:2px solid rgba(255,255,255,.1);border-radius:14px;padding:12px 14px;cursor:pointer;transition:border-color .15s,background .15s;}
+.option:active{transform:scale(.98);}
+.option:hover{border-color:rgba(255,213,79,.5);background:rgba(255,213,79,.06);}
+.opt-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;margin-bottom:4px;}
+.opt-desc{font-size:11px;color:rgba(255,255,255,.55);line-height:1.3;}
+.opt-tags{display:flex;gap:5px;margin-top:6px;flex-wrap:wrap;}
+.opt-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px;}
+
+/* Résultat */
+.result-reveal{border-radius:14px;padding:14px;margin-bottom:10px;display:none;}
+.result-reveal.show{display:block;animation:fadeIn .3s ease;}
+.rr-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;margin-bottom:5px;}
+.rr-text{font-size:12.5px;line-height:1.5;opacity:.85;}
+
+/* Toast */
+.toast{position:fixed;top:18%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;opacity:0;pointer-events:none;z-index:30;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);border-radius:14px;padding:12px 22px;border:1px solid rgba(255,255,255,.15);}
+.toast.show{animation:tp .7s ease forwards;}
+@keyframes tp{0%{opacity:0;transform:translate(-50%,-60%) scale(.85);}20%{opacity:1;transform:translate(-50%,-50%) scale(1.05);}80%{opacity:1;}100%{opacity:0;transform:translate(-50%,-40%);}}
+
+/* FIN */
+.end-hero{text-align:center;padding:20px 0 10px;}
+.end-medal{font-size:64px;}
+.end-time{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:52px;color:var(--gold);margin:6px 0 4px;}
+.end-sub{font-size:13px;color:var(--ink-dim);margin-bottom:20px;}
+.end-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px;}
+.ek{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;}
+.ek .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:20px;color:var(--gold);}
+.ek .l{font-size:10px;color:var(--ink-dim);margin-top:3px;}
+.lesson{background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.25);border-radius:14px;padding:16px;font-size:13px;color:var(--ink-dim);line-height:1.55;margin-bottom:18px;}
+.lesson b{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="app">
+
+<!-- INTRO -->
+<div class="screen active" id="screen-intro">
+  <div class="hero-badge">🏅 Economya.fr · Sport & Finance</div>
+  <h1 class="title">Marathon<br><span>Budgétaire</span></h1>
+  <p class="lede">42 kilomètres de décisions financières. Équipement, nutrition, récupération, imprévus météo… chaque euro compte autant que chaque foulée. Finissez la course sans exploser votre budget de 250€.</p>
+  <div class="intro-stats">
+    <div class="istat"><div class="v">42 km</div><div class="l">Distance</div></div>
+    <div class="istat"><div class="v">250€</div><div class="l">Budget</div></div>
+    <div class="istat"><div class="v">12</div><div class="l">Décisions</div></div>
+  </div>
+  <button class="btn btn-primary" onclick="startGame()">🏁 Prendre le départ</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+</div>
+
+<!-- JEU -->
+<div id="screen-game" style="display:none;">
+  <div class="race-hud">
+    <div class="race-top">
+      <div>
+        <div class="race-km-big">🏃 <span id="kmDisplay">0</span> km</div>
+        <div class="race-km-sub">/ 42 km · Marathon</div>
+      </div>
+      <div class="race-budget-pill">💰 <span id="budgetDisplay">250</span>€</div>
+    </div>
+    <div class="race-track-wrap">
+      <div class="race-track-label"><span>Départ</span><span>Km 21</span><span>Arrivée 🏁</span></div>
+      <div class="race-track">
+        <div class="race-fill" id="raceFill" style="width:0%"></div>
+      </div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="v" id="kpiEnergie">100</div>
+        <div class="l">Énergie</div>
+        <div class="kpi-bar"><div class="kpi-fill" id="kpiFillEnergie" style="width:100%;background:var(--green)"></div></div>
+      </div>
+      <div class="kpi">
+        <div class="v" id="kpiVitesse">10.0</div>
+        <div class="l">km/h</div>
+        <div class="kpi-bar"><div class="kpi-fill" id="kpiFillVitesse" style="width:70%;background:var(--blue)"></div></div>
+      </div>
+      <div class="kpi">
+        <div class="v" id="kpiForce">100</div>
+        <div class="l">Condition</div>
+        <div class="kpi-bar"><div class="kpi-fill" id="kpiFillForce" style="width:100%;background:var(--orange)"></div></div>
+      </div>
+      <div class="kpi">
+        <div class="v" id="kpiMoral">100</div>
+        <div class="l">Mental</div>
+        <div class="kpi-bar"><div class="kpi-fill" id="kpiFillMoral" style="width:100%;background:var(--gold)"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-row" id="phaseRow"></div>
+  <div id="decisionArea"></div>
+  <div class="result-reveal" id="resultReveal">
+    <div class="rr-title" id="rrTitle"></div>
+    <div class="rr-text" id="rrText"></div>
+  </div>
+  <button class="btn btn-ghost" id="nextBtn" onclick="nextPhase()" style="display:none;">Continuer la course →</button>
+</div>
+
+<!-- FIN -->
+<div class="screen" id="screen-end">
+  <div class="end-hero">
+    <div class="end-medal" id="endMedal">🥇</div>
+    <div class="end-time" id="endTime">4h30</div>
+    <div class="end-sub" id="endSub">Temps officiel — Marathon terminé</div>
+  </div>
+  <div class="end-kpis">
+    <div class="ek"><div class="v" id="endBudget">0€</div><div class="l">Budget restant</div></div>
+    <div class="ek"><div class="v" id="endPerf">0%</div><div class="l">Performance globale</div></div>
+    <div class="ek"><div class="v" id="endEnergie">0%</div><div class="l">Énergie à l'arrivée</div></div>
+    <div class="ek"><div class="v" id="endDepense">0€</div><div class="l">Total dépensé</div></div>
+  </div>
+  <div class="lesson" id="endLesson"></div>
+  <button class="btn btn-primary" onclick="startGame()">🔄 Relancer le chrono</button>
+  <button class="btn btn-ghost" onclick="share()">📤 Partager mon temps</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+</div>
+
+<script>
+// ============================================================
+// MARATHON BUDGÉTAIRE — 12 phases, 42km, 250€ budget
+// ============================================================
+
+const PHASES = [
+  {
+    km:0, emoji:'👟', phase:'Avant-course', color:'#1A4A2A',
+    badge:'⚙️ Préparation', badgeColor:'rgba(96,165,250,.2)', badgeText:'var(--blue)',
+    title:'L\'équipement du départ',
+    context:'Veille du marathon. Votre équipement va conditionner tout le reste. Les chaussures représentent l\'investissement le plus critique d\'un marathon.',
+    options:[
+      {name:'Chaussures carbone pro (Nike Vaporfly)',desc:'Retour d\'énergie +4%, amorti maximal. Durent 300km.',cost:250,dE:+8,dV:+1.5,dF:+8,dM:+10,
+       tags:[{l:'-250€',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'+Vitesse',c:'rgba(52,211,153,.3)',t:'#34D399'}]},
+      {name:'Chaussures running milieu de gamme',desc:'Meilleur rapport qualité/prix. Recommandé pour 90% des marathoniens.',cost:90,dE:+4,dV:+0.8,dF:+4,dM:+6,
+       tags:[{l:'-90€',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'Optimal',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Chaussures de trail (ce que vous avez)',desc:'Elles feront le travail mais risque de fatigue accrue après km 30.',cost:0,dE:-6,dV:-0.5,dF:-8,dM:-5,
+       tags:[{l:'Gratuit',c:'rgba(52,211,153,.3)',t:'#34D399'},{l:'Risque blessure',c:'rgba(248,113,113,.3)',t:'#F87171'}]},
+    ]
+  },
+  {
+    km:5, emoji:'🌡️', phase:'Météo surprise', color:'#3A1A08',
+    badge:'⛅ Météo', badgeColor:'rgba(251,146,60,.2)', badgeText:'var(--orange)',
+    title:'Canicule inattendue',
+    context:'À 5km, le thermomètre affiche déjà 28°C. Pas ce qui était prévu. La chaleur va épuiser votre énergie plus vite. Que faites-vous ?',
+    options:[
+      {name:'Ralentir immédiatement de 1km/h',desc:'Décision sage. Préserver l\'énergie vaut plus que le temps perdu maintenant.',cost:0,dE:+10,dV:-1,dF:+5,dM:-5,
+       tags:[{l:'Tactique',c:'rgba(96,165,250,.3)',t:'var(--blue)'},{l:'+Énergie',c:'rgba(52,211,153,.3)',t:'#34D399'}]},
+      {name:'Acheter une veste fraîcheur (bénévole)',desc:'30€ mais efficacité thermique réelle. Technique validée par les pros.',cost:30,dE:+15,dV:0,dF:+10,dM:+8,
+       tags:[{l:'-30€',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'Pro',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Continuer à l\'allure prévue',desc:'Vous résistez à la chaleur... pour l\'instant. Mais le compte à rebours a commencé.',cost:0,dE:-15,dV:0,dF:-10,dM:-8,
+       tags:[{l:'Risqué',c:'rgba(248,113,113,.3)',t:'#F87171'}]},
+    ]
+  },
+  {
+    km:10, emoji:'🍌', phase:'1er ravitaillement', color:'#0A2A1A',
+    badge:'🔋 Nutrition', badgeColor:'rgba(52,211,153,.2)', badgeText:'#34D399',
+    title:'Km 10 — Ravitaillement',
+    context:'Premier point de ravitaillement. Votre glycémie commence à baisser. Les bénévoles proposent eau, oranges et bananes. Des stands privés vendent des gels premium.',
+    options:[
+      {name:'Gel énergétique premium + eau',desc:'Absorption rapide, formule scientifique. 1 gel toutes les 40min est optimal.',cost:15,dE:+22,dV:+0.3,dF:+5,dM:+8,
+       tags:[{l:'-15€',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'Optimal',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Banane + eau (ravitaillement gratuit)',desc:'Glucose naturel, bien absorbé. Suffisant si vous êtes entraîné.',cost:0,dE:+15,dV:0,dF:+3,dM:+5,
+       tags:[{l:'Gratuit',c:'rgba(52,211,153,.3)',t:'#34D399'},{l:'Efficace',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Rien — gérer la faim',desc:'Mauvaise stratégie. Le mur du marathon arrive vite sans carburant.',cost:0,dE:-18,dV:-0.5,dF:-8,dM:-10,
+       tags:[{l:'Risqué',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'Gratuit',c:'rgba(52,211,153,.3)',t:'#34D399'}]},
+    ]
+  },
+  {
+    km:14, emoji:'🦵', phase:'Crampe', color:'#2A1A08',
+    badge:'🚨 Imprévu', badgeColor:'rgba(248,113,113,.2)', badgeText:'#F87171',
+    title:'Crampe au mollet gauche',
+    context:'Douleur soudaine au mollet gauche à km 14. Classique sur marathon. Décision rapide : s\'arrêter risque de bloquer le muscle, continuer risque d\'aggraver.',
+    options:[
+      {name:'S\'arrêter, masse et étirement 3min',desc:'3 minutes perdues mais muscle relâché. Stratégie des pros sur longue distance.',cost:0,dE:-3,dV:-0.8,dF:+20,dM:+5,
+       tags:[{l:'Sage',c:'rgba(96,165,250,.3)',t:'var(--blue)'},{l:'+Condition',c:'rgba(52,211,153,.3)',t:'#34D399'}]},
+      {name:'Spray antidouleur (stand médical)',desc:'20€ mais 2 minutes seulement d\'arrêt. Efficace sur les crampes légères.',cost:20,dE:0,dV:-0.2,dF:+15,dM:+10,
+       tags:[{l:'-20€',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'Rapide',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Pousser à travers la douleur',desc:'Certains tiennent, d\'autres s\'effondrent. Pile ou face sur votre résistance.',cost:0,dE:-8,dV:+0.2,dF:-25,dM:-15,
+       tags:[{l:'Très risqué',c:'rgba(248,113,113,.3)',t:'#F87171'}]},
+    ]
+  },
+  {
+    km:17, emoji:'📱', phase:'Distraction', color:'#0A1A2A',
+    badge:'📲 Mental', badgeColor:'rgba(96,165,250,.2)', badgeText:'var(--blue)',
+    title:'Notification de travail',
+    context:'Km 17 — votre téléphone vibre. Mail urgent du bureau. Votre chef demande un rapport pour "maintenant". Vous avez mis 3 mois à préparer ce marathon.',
+    options:[
+      {name:'Éteindre le téléphone, runner libre',desc:'Votre santé mentale d\'abord. Le rapport peut attendre 4 heures.',cost:0,dE:+5,dV:+0.3,dF:0,dM:+20,
+       tags:[{l:'Bon pour le mental',c:'rgba(255,213,79,.3)',t:'#FFD54F'},{l:'Priorités',c:'rgba(52,211,153,.3)',t:'#34D399'}]},
+      {name:'Répondre brièvement en courant',desc:'Tentative multitâche dangereuse. Chute potentielle, concentration brisée.',cost:0,dE:-5,dV:-1.2,dF:-5,dM:-15,
+       tags:[{l:'Mauvaise idée',c:'rgba(248,113,113,.3)',t:'#F87171'}]},
+      {name:'S\'arrêter 5min pour gérer ça',desc:'Professionnalisme reconnu mais marathon sacrifié. Choix personnel.',cost:0,dE:0,dV:-1,dF:+5,dM:-10,
+       tags:[{l:'Compromis',c:'rgba(251,146,60,.3)',t:'var(--orange)'}]},
+    ]
+  },
+  {
+    km:21, emoji:'🏃', phase:'Semi-marathon', color:'#1A0A2A',
+    badge:'🎯 Mi-parcours', badgeColor:'rgba(167,139,250,.2)', badgeText:'#C084FC',
+    title:'Km 21 — La moitié !',
+    context:'Semi-marathon atteint. C\'est officiellement la moitié. Votre corps a un avis sur la suite. Stratégie négative split (accélérer en 2e moitié) ou sécuriser ?',
+    options:[
+      {name:'Accélérer de 0.5km/h (negative split)',desc:'Stratégie des champions. Si vous avez bien géré l\'énergie, c\'est gagnant.',cost:5,dE:-10,dV:+0.5,dF:-5,dM:+15,
+       tags:[{l:'-5€ (gel)',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'Stratégie pro',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Maintenir l\'allure exactement',desc:'Régularité = performance. 90% des records du monde sont en negative split léger.',cost:0,dE:-5,dV:0,dF:0,dM:+10,
+       tags:[{l:'Solide',c:'rgba(52,211,153,.3)',t:'#34D399'}]},
+      {name:'Ralentir pour économiser pour la fin',desc:'Prudent mais vous perdez du temps maintenant.',cost:0,dE:+10,dV:-0.8,dF:+5,dM:-5,
+       tags:[{l:'Sécurisé',c:'rgba(96,165,250,.3)',t:'var(--blue)'}]},
+    ]
+  },
+  {
+    km:25, emoji:'🍕', phase:'2e ravitaillement', color:'#0A2A1A',
+    badge:'🔋 Nutrition', badgeColor:'rgba(52,211,153,.2)', badgeText:'#34D399',
+    title:'Ravitaillement km 25',
+    context:'Un autre coureur propose de partager son stock de gels (il en a trop). Ou vous pouvez acheter le pack premium au stand officiel.',
+    options:[
+      {name:'Accepter les gels du coureur',desc:'Gratuit, efficace, solidarité sportive. Vérifiez juste que ce ne sont pas des gels caféine si vous n\'y êtes pas habitué.',cost:0,dE:+20,dV:+0.2,dF:+5,dM:+12,
+       tags:[{l:'Gratuit',c:'rgba(52,211,153,.3)',t:'#34D399'},{l:'Solidarité',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Pack nutrition complet (2 gels + boisson)',desc:'20€ mais vous gérez votre ravitaillement de façon autonome jusqu\'à l\'arrivée.',cost:20,dE:+25,dV:+0.3,dF:+8,dM:+8,
+       tags:[{l:'-20€',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'Complet',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Eau et fruits seulement (gratuit)',desc:'Suffisant mais l\'énergie sera limite sur les 17 derniers km.',cost:0,dE:+12,dV:0,dF:+2,dM:+3,
+       tags:[{l:'Gratuit',c:'rgba(52,211,153,.3)',t:'#34D399'},{l:'Limite',c:'rgba(251,146,60,.3)',t:'var(--orange)'}]},
+    ]
+  },
+  {
+    km:28, emoji:'😰', phase:'Le mur', color:'#2A0A0A',
+    badge:'⚠️ Crise', badgeColor:'rgba(248,113,113,.2)', badgeText:'#F87171',
+    title:'Le mur du marathon',
+    context:'Km 28 — le fameux "mur". Les réserves de glycogène s\'épuisent. Vos jambes semblent remplies de plomb. C\'est là que se gagnent ou perdent les marathons.',
+    options:[
+      {name:'Gel + cola + eau (la combo magique)',desc:'Le sucre rapide du cola + glucose du gel est la stratégie de 90% des élites à ce stade.',cost:5,dE:+30,dV:+0.5,dF:+10,dM:+20,
+       tags:[{l:'-5€',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'Coup de fouet',c:'rgba(52,211,153,.3)',t:'#34D399'}]},
+      {name:'Marcher 2 minutes, manger une banane',desc:'Perdez 2min, récupérez 10min d\'énergie. Calcul souvent gagnant.',cost:0,dE:+20,dV:-1.5,dF:+8,dM:+10,
+       tags:[{l:'Stratégique',c:'rgba(96,165,250,.3)',t:'var(--blue)'},{l:'Gratuit',c:'rgba(52,211,153,.3)',t:'#34D399'}]},
+      {name:'Pousser mentalement, ignorer le corps',desc:'Risque réel d\'hypoglycémie et d\'arrêt forcé. Le corps n\'est pas négociable.',cost:0,dE:-25,dV:0,dF:-20,dM:-20,
+       tags:[{l:'Très risqué',c:'rgba(248,113,113,.3)',t:'#F87171'}]},
+    ]
+  },
+  {
+    km:32, emoji:'🧘', phase:'Mental', color:'#0A1A3A',
+    badge:'🧠 Mental', badgeColor:'rgba(96,165,250,.2)', badgeText:'var(--blue)',
+    title:'La technique de visualisation',
+    context:'Km 32 — un coach bénévole sur le bord crie "Visualisez votre arrivée !". Un podcast de motivation payant est disponible en téléchargement rapide. Votre stratégie ?',
+    options:[
+      {name:'Écouter le podcast de motivation (8€)',desc:'La musique et la voix guidée améliorent mesuralement la performance sur les 10 derniers km.',cost:8,dE:+5,dV:+0.4,dF:+5,dM:+25,
+       tags:[{l:'-8€',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'+Mental',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Visualisation mentale autonome',desc:'Gratuit et tout aussi efficace si pratiqué. Pensez à votre ligne d\'arrivée.',cost:0,dE:+5,dV:+0.2,dF:+5,dM:+18,
+       tags:[{l:'Gratuit',c:'rgba(52,211,153,.3)',t:'#34D399'},{l:'Efficace',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Ignorer, se concentrer sur les foulées',desc:'Technique de pleine conscience. Certains experts la recommandent sur la douleur.',cost:0,dE:+2,dV:+0.1,dF:+2,dM:+8,
+       tags:[{l:'Minimaliste',c:'rgba(96,165,250,.3)',t:'var(--blue)'}]},
+    ]
+  },
+  {
+    km:35, emoji:'🩹', phase:'Urgence médicale', color:'#2A1A08',
+    badge:'🚨 Urgence', badgeColor:'rgba(248,113,113,.2)', badgeText:'#F87171',
+    title:'Un coureur tombe devant vous',
+    context:'Km 35 — un coureur s\'effondre juste devant vous. Il est conscient mais ne peut plus courir. Vous avez votre téléphone. S\'arrêter coûte votre temps de course.',
+    options:[
+      {name:'S\'arrêter, appeler les secours, rester',desc:'La seule réponse humaine. Votre chrono n\'a aucune valeur face à une vie.',cost:0,dE:-5,dV:-2,dF:0,dM:+30,
+       tags:[{l:'Humanité',c:'rgba(52,211,153,.3)',t:'#34D399'},{l:'Bonne décision',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Alerter les secours en courant',desc:'Vous prévenez rapidement tout en continuant. Compromis acceptable.',cost:0,dE:-2,dV:-0.5,dF:0,dM:+15,
+       tags:[{l:'Compromis',c:'rgba(251,146,60,.3)',t:'var(--orange)'}]},
+      {name:'D\'autres s\'en occupent, continuer',desc:'Peut-être. Mais si personne ne s\'arrête ? Cette décision vous pèsera.',cost:0,dE:0,dV:0,dF:0,dM:-20,
+       tags:[{l:'Moral -',c:'rgba(248,113,113,.3)',t:'#F87171'}]},
+    ]
+  },
+  {
+    km:39, emoji:'💪', phase:'Dernier effort', color:'#1A2A08',
+    badge:'⚡ Final', badgeColor:'rgba(52,211,153,.2)', badgeText:'#34D399',
+    title:'Les 3 derniers kilomètres',
+    context:'Km 39 — plus que 3km. Un dernier stand propose de l\'eau + sels minéraux. Un autre offre un massage des jambes express (15€, 3 minutes). Stratégie finale ?',
+    options:[
+      {name:'Massage express + sels minéraux',desc:'Investissement final. À ce stade, 3 minutes de massage valent 10 minutes de temps gagné.',cost:15,dE:+15,dV:+0.5,dF:+20,dM:+15,
+       tags:[{l:'-15€',c:'rgba(248,113,113,.3)',t:'#F87171'},{l:'Finisher fort',c:'rgba(52,211,153,.3)',t:'#34D399'}]},
+      {name:'Eau et sels minéraux (gratuit)',desc:'L\'essentiel sans le superflu. Suffisant pour finir debout.',cost:0,dE:+10,dV:+0.2,dF:+10,dM:+10,
+       tags:[{l:'Gratuit',c:'rgba(52,211,153,.3)',t:'#34D399'},{l:'Suffisant',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Rien — tout donner maintenant',desc:'Si l\'énergie est là, pourquoi pas. Mais le risque de crampe est maximal.',cost:0,dE:-10,dV:+0.8,dF:-15,dM:+5,
+       tags:[{l:'All-in',c:'rgba(251,146,60,.3)',t:'var(--orange)'}]},
+    ]
+  },
+  {
+    km:42, emoji:'🏁', phase:'Arrivée !', color:'#1A3A10',
+    badge:'🏆 Arrivée', badgeColor:'rgba(255,213,79,.2)', badgeText:'var(--gold)',
+    title:'La ligne d\'arrivée en vue !',
+    context:'42 km ! La foule vous voit. La ligne est à 100 mètres. C\'est le moment que vous attendez depuis des mois. Comment franchissez-vous cette ligne ?',
+    options:[
+      {name:'Sprint final — tout ce qu\'il reste !',desc:'La photo d\'arrivée sera parfaite. Votre temps sera votre meilleur souvenir.',cost:0,dE:-20,dV:+3,dF:-15,dM:+30,
+       tags:[{l:'Spectaculaire',c:'rgba(255,213,79,.3)',t:'#FFD54F'}]},
+      {name:'Allure constante, tête haute',desc:'Maîtrisé et élégant. Vous finissez comme vous avez couru.',cost:0,dE:-8,dV:0,dF:-5,dM:+20,
+       tags:[{l:'Classe',c:'rgba(52,211,153,.3)',t:'#34D399'}]},
+      {name:'Marche triomphale, savourer chaque mètre',desc:'Certains marathoniens marchent les 100 derniers mètres pour durer le moment. Légitime.',cost:0,dE:-2,dV:-2,dF:0,dM:+25,
+       tags:[{l:'Poétique',c:'rgba(96,165,250,.3)',t:'var(--blue)'}]},
+    ]
+  },
+];
+
+let budget=250, energie=100, vitesse=10, force=100, moral=100;
+let phase=0, totalDepense=0;
+
+function clamp(v,mn=0,mx=100){return Math.max(mn,Math.min(mx,v));}
+function showToast(t,c){const el=document.getElementById('toast');el.textContent=t;el.style.color=c;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-game').style.display=(id==='screen-game')?'block':'none';if(id!=='screen-game')document.getElementById(id).classList.add('active');}
+
+function startGame(){
+  budget=250;energie=100;vitesse=10;force=100;moral=100;phase=0;totalDepense=0;
+  showScreen('screen-game');
+  renderPhaseRow();
+  loadPhase();
+  updateHUD();
+}
+
+function updateHUD(){
+  const p=PHASES[Math.min(phase,PHASES.length-1)];
+  document.getElementById('kmDisplay').textContent=p.km;
+  document.getElementById('budgetDisplay').textContent=budget;
+  document.getElementById('raceFill').style.width=(p.km/42*100)+'%';
+  const stats=[
+    {id:'Energie',val:energie,min:0,max:100,col:'#34D399'},
+    {id:'Vitesse',val:vitesse,min:5,max:15,col:'#60A5FA'},
+    {id:'Force',val:force,min:0,max:100,col:'#FB923C'},
+    {id:'Moral',val:moral,min:0,max:100,col:'#FFD54F'},
+  ];
+  stats.forEach(s=>{
+    const normDisplay = s.id==='Vitesse' ? vitesse.toFixed(1) : Math.round(s.id==='Energie'?energie:s.id==='Force'?force:moral);
+    document.getElementById('kpi'+s.id).textContent=normDisplay;
+    const pct=s.id==='Vitesse'?(s.val-s.min)/(s.max-s.min)*100:(s.val/100)*100;
+    const fill=document.getElementById('kpiFill'+s.id);
+    fill.style.width=Math.max(4,Math.min(100,pct))+'%';
+    fill.style.background=pct<30?'#F87171':pct<60?'#FB923C':s.col;
+  });
+}
+
+function renderPhaseRow(){
+  const el=document.getElementById('phaseRow');el.innerHTML='';
+  PHASES.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='phase-dot'+(i<phase?' done':i===phase?' active':'');
+    el.appendChild(d);
+  });
+}
+
+function loadPhase(){
+  if(phase>=PHASES.length)return endGame();
+  const p=PHASES[phase];
+  document.getElementById('resultReveal').classList.remove('show');
+  document.getElementById('nextBtn').style.display='none';
+  const area=document.getElementById('decisionArea');
+  area.innerHTML=`
+    <div class="decision-card" style="background:${p.color};border:2px solid ${p.color}88;">
+      <div class="dc-phase-badge" style="background:${p.badgeColor};color:${p.badgeText};">${p.badge}</div>
+      <div class="dc-km">${p.emoji} Km ${p.km}</div>
+      <div class="dc-title">${p.title}</div>
+      <div class="dc-context">${p.context}</div>
+      <div class="options-list">${p.options.map((opt,i)=>`
+        <div class="option" onclick="chooseOption(${i})">
+          <div class="opt-name">${opt.name}</div>
+          <div class="opt-desc">${opt.desc}</div>
+          <div class="opt-tags">${opt.tags.map(t=>`<span class="opt-tag" style="background:${t.c};color:${t.t};">${t.l}</span>`).join('')}</div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+function chooseOption(idx){
+  const p=PHASES[phase];
+  const opt=p.options[idx];
+  budget-=opt.cost;
+  totalDepense+=opt.cost;
+  energie=clamp(energie+opt.dE);
+  vitesse=Math.max(6,vitesse+opt.dV);
+  force=clamp(force+opt.dF);
+  moral=clamp(moral+opt.dM);
+  updateHUD();
+  renderPhaseRow();
+
+  const isGood=(opt.dE+opt.dF+opt.dM)>5;
+  const rr=document.getElementById('resultReveal');
+  const bgColor=isGood?'rgba(52,211,153,.08)':'rgba(248,113,113,.08)';
+  const borderColor=isGood?'rgba(52,211,153,.3)':'rgba(248,113,113,.3)';
+  rr.style.background=bgColor;rr.style.border=`1px solid ${borderColor}`;rr.style.borderRadius='14px';rr.style.padding='14px';rr.style.marginBottom='10px';
+  document.getElementById('rrTitle').textContent=isGood?'✅ Bonne décision !':'⚠️ Décision risquée';
+  document.getElementById('rrText').textContent=opt.desc;
+  rr.classList.add('show');
+  document.getElementById('decisionArea').innerHTML='';
+  document.getElementById('nextBtn').style.display='block';
+
+  const msg=opt.cost>0?`-${opt.cost}€ dépensé`:opt.dE>0?`+${opt.dE}% énergie`:'Choix enregistré';
+  showToast(msg, opt.cost>0?'#F87171':'#34D399');
+  if(phase>=PHASES.length-1) document.getElementById('nextBtn').textContent='🏅 Voir mon résultat !';
+}
+
+function nextPhase(){
+  phase++;
+  renderPhaseRow();
+  if(phase>=PHASES.length){endGame();}
+  else{loadPhase();updateHUD();}
+}
+
+function endGame(){
+  const perf=Math.round((energie+force+moral)/3);
+  const baseMin=270; // 4h30 base
+  const bonus=Math.round((perf-50)*0.6+(vitesse-10)*8);
+  const finalMin=Math.max(180,baseMin-bonus);
+  const h=Math.floor(finalMin/60),m=finalMin%60;
+  const timeStr=`${h}h${m.toString().padStart(2,'0')}`;
+  let medal='🥉',title='Finisher courageux';
+  if(finalMin<200&&perf>70){medal='🥇';title='Champion économe !';}
+  else if(finalMin<240&&perf>50){medal='🥈';title='Belle performance !';}
+  const lesson=totalDepense<80?
+    `<b>Trop économe !</b> En sport comme en finance, certains investissements ne sont pas des dépenses — ce sont des économies. Des bonnes chaussures à 90€ évitent une blessure à 500€ de kiné.`:
+    totalDepense>200?
+    `<b>Bien équipé !</b> Vous savez investir là où ça compte. La règle vaut partout : dépenser moins sur le superflu, plus sur ce qui fait vraiment la différence.`:
+    `<b>Équilibre parfait !</b> Vous avez optimisé chaque euro. La règle financière du sportif : investissez dans <b>les chaussures et la nutrition</b>, économisez sur l'équipement accessoire.`;
+  document.getElementById('endMedal').textContent=medal;
+  document.getElementById('endTime').textContent=timeStr;
+  document.getElementById('endSub').textContent=`${title} · ${totalDepense}€ dépensés sur 250€`;
+  document.getElementById('endBudget').textContent=budget+'€';
+  document.getElementById('endPerf').textContent=perf+'%';
+  document.getElementById('endEnergie').textContent=Math.round(energie)+'%';
+  document.getElementById('endDepense').textContent=totalDepense+'€';
+  document.getElementById('endLesson').innerHTML=lesson;
+  showScreen('screen-end');
+}
+
+function share(){
+  const p=Math.round((energie+force+moral)/3);
+  const text=`J'ai couru le Marathon Budgétaire avec ${p}% de performance sur Economya.fr 🏅 À toi de trouver le bon équilibre !`;
+  if(navigator.share)navigator.share({title:'Marathon Budgétaire',text,url:'https://economya.fr'}).catch(()=>{});
+  else navigator.clipboard.writeText(text+' https://economya.fr').then(()=>alert('Copié !'));
+}
+</script>
+</body>
+</html>

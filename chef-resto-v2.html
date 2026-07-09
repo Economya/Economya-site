@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chef Resto — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --bg:#120A06;--panel:#1E0E08;--panel2:#281408;
+  --line:#3C1E10;--gold:#FFD54F;--green:#34D399;--red:#F87171;--orange:#FB923C;
+  --ink:#FFF5EE;--ink-dim:#8A6050;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:radial-gradient(ellipse at 50% 0%,#281408 0%,var(--bg) 60%);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;user-select:none;
+  display:flex;align-items:center;justify-content:center;padding:14px;
+}
+.app{width:100%;max-width:420px;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.eyebrow::before{content:'🍽️';}
+h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;}
+h1.title span{color:var(--gold);}
+p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
+.btn{border:none;border-radius:14px;padding:14px 20px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:transform .1s ease;margin-bottom:8px;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--gold);color:#2A1900;}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);}
+.brand-footer{text-align:center;margin-top:16px;font-size:11px;color:var(--ink-dim);}
+.brand-footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+.hud{display:flex;gap:8px;margin-bottom:10px;}
+.hud-box{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center;}
+.hud-val{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;}
+.hud-lab{font-size:9px;color:var(--ink-dim);margin-top:2px;}
+.timer-bar{height:6px;background:rgba(255,255,255,.05);border-radius:99px;margin-bottom:12px;overflow:hidden;}
+.timer-fill{height:100%;background:var(--orange);border-radius:99px;transition:width .1s linear;}
+
+/* Tables 4x2 */
+.tables-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px;}
+.table-cell{
+  aspect-ratio:1;background:var(--panel);border:2px solid var(--line);border-radius:10px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .15s ease;position:relative;
+}
+.table-cell.empty{opacity:.4;cursor:default;}
+.table-cell.waiting{border-color:rgba(251,146,60,.7);background:rgba(251,146,60,.1);animation:tableWait .9s ease infinite alternate;}
+@keyframes tableWait{from{border-color:rgba(251,146,60,.4);}to{border-color:rgba(251,146,60,1);}}
+.table-cell.serving{border-color:rgba(255,213,79,.6);background:rgba(255,213,79,.08);}
+.table-cell.paying{border-color:rgba(52,211,153,.7);background:rgba(52,211,153,.1);}
+.table-cell.done{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);cursor:default;}
+.table-cell.selected-active{border-color:var(--gold);box-shadow:0 0 0 2px rgba(255,213,79,.4);}
+.tc-emoji{font-size:20px;}
+.tc-label{font-size:9px;color:var(--ink-dim);margin-top:2px;}
+.tc-amount{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:10px;color:var(--gold);}
+.tc-dot{position:absolute;top:3px;right:3px;width:7px;height:7px;background:var(--red);border-radius:50%;animation:blink .5s ease infinite alternate;}
+@keyframes blink{from{opacity:1;}to{opacity:.2;}}
+
+/* Panneau commande */
+.order-panel{background:var(--panel2);border:2px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px;display:none;}
+.op-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.op-table{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;}
+.op-close{border:none;background:rgba(255,255,255,.08);border-radius:8px;padding:4px 10px;cursor:pointer;color:var(--ink-dim);font-size:12px;}
+.menu-item{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;padding:9px 12px;cursor:pointer;transition:background .12s ease;margin-bottom:6px;}
+.menu-item:active{transform:scale(.98);}
+.menu-item:hover{background:rgba(255,213,79,.07);}
+.mi-left{}
+.mi-name{font-size:13px;font-weight:600;}
+.mi-price{font-size:11px;color:var(--ink-dim);margin-top:2px;}
+.mi-margin{font-size:11px;font-weight:700;}
+.mi-margin.good{color:var(--green);}
+.mi-margin.mid{color:var(--orange);}
+.mi-margin.low{color:var(--red);}
+
+.toast{position:fixed;top:18%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;opacity:0;pointer-events:none;z-index:30;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 18px;}
+.toast.show{animation:tp .5s ease forwards;}
+@keyframes tp{0%{opacity:0;}15%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
+
+.end-ca{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:48px;color:var(--gold);text-align:center;margin:8px 0 4px;}
+.end-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.es{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;}
+.es .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;color:var(--gold);}
+.es .l{font-size:10px;color:var(--ink-dim);margin-top:2px;}
+.lesson{background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.2);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;margin-bottom:14px;}
+.lesson b{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="app">
+
+<div class="screen active" id="screen-intro">
+  <div class="eyebrow">Economya.fr · La restauration</div>
+  <h1 class="title">Chef <span>Resto</span></h1>
+  <p class="lede">Service du soir. 8 tables, 3 minutes chrono. Les clients arrivent, attendent, commandent. Tapez une table qui attend pour la servir, choisissez les plats à forte marge, encaissez quand ils paient.</p>
+  <button class="btn btn-primary" onclick="startGame()">🍽️ Ouvrir le service</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+
+<div id="screen-game" style="display:none;">
+  <div class="hud">
+    <div class="hud-box"><div class="hud-val" id="hudCA">0€</div><div class="hud-lab">CA service</div></div>
+    <div class="hud-box"><div class="hud-val" id="hudServis">0</div><div class="hud-lab">Tables</div></div>
+    <div class="hud-box"><div class="hud-val" id="hudFugues">0</div><div class="hud-lab">Partis</div></div>
+    <div class="hud-box"><div class="hud-val" id="hudTimer">3:00</div><div class="hud-lab">Temps</div></div>
+  </div>
+  <div class="timer-bar"><div class="timer-fill" id="timerFill" style="width:100%"></div></div>
+  <div class="tables-grid" id="tablesGrid"></div>
+  <div class="order-panel" id="orderPanel">
+    <div class="op-header">
+      <div class="op-table" id="opTableLabel">Table —</div>
+      <button class="op-close" onclick="closeOrder()">✕ Fermer</button>
+    </div>
+    <div id="menuList"></div>
+  </div>
+  <div style="text-align:center;font-size:11px;color:var(--ink-dim);">🟠 En attente · 🟡 En service · 🟢 Prêt à payer</div>
+</div>
+
+<div class="screen" id="screen-end">
+  <div style="text-align:center;font-size:48px;margin:10px 0;" id="endIcon">🍽️</div>
+  <div style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;text-align:center;margin-bottom:6px;" id="endTitle">Service terminé !</div>
+  <div class="end-ca" id="endCA">0€</div>
+  <div style="text-align:center;font-size:13px;color:var(--ink-dim);margin-bottom:16px;">chiffre d'affaires du service</div>
+  <div class="end-grid">
+    <div class="es"><div class="v" id="endTables">0</div><div class="l">Tables servies</div></div>
+    <div class="es"><div class="v" id="endFugues">0</div><div class="l">Clients partis</div></div>
+  </div>
+  <div class="lesson" id="endLesson"></div>
+  <button class="btn btn-primary" onclick="startGame()">🔄 Nouveau service</button>
+  <button class="btn btn-ghost" onclick="share()">📤 Partager</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+</div>
+
+<script>
+const MENU = [
+  {emoji:'🥗',name:'Salade César',price:14,cpa:3.5,margin:'low',marginPct:25},
+  {emoji:'🍝',name:'Pâtes carbonara',price:16,cpa:7,margin:'mid',marginPct:44},
+  {emoji:'🥩',name:'Entrecôte frites',price:28,cpa:10,margin:'good',marginPct:64},
+  {emoji:'🐟',name:'Dos de saumon',price:24,cpa:8,margin:'good',marginPct:67},
+  {emoji:'🍕',name:'Pizza truffe',price:22,cpa:6,margin:'good',marginPct:73},
+  {emoji:'🍷',name:'Bouteille vin',price:35,cpa:7,margin:'good',marginPct:80},
+  {emoji:'🍮',name:'Dessert du jour',price:9,cpa:4,margin:'mid',marginPct:56},
+  {emoji:'🧀',name:'Plateau fromages',price:12,cpa:5,margin:'mid',marginPct:58},
+];
+
+const N_TABLES = 8;
+const SERVICE_DURATION = 180; // secondes
+
+// État des tables : null = vide, { state, clients, wait, urgent }
+let tables = [];
+let ca = 0, tablesServed = 0, fugues = 0;
+let activeTableId = null; // table actuellement ouverte dans le panneau
+let serviceTimeLeft = SERVICE_DURATION;
+let running = false;
+let mainInterval = null, spawnInterval = null;
+
+// ─── Utilitaires ────────────────────────────────────────────
+function showToast(txt, color) {
+  const el = document.getElementById('toast');
+  el.textContent = txt;
+  el.style.color = color;
+  el.classList.remove('show');
+  void el.offsetWidth;
+  el.classList.add('show');
+}
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-game').style.display = (id === 'screen-game') ? 'block' : 'none';
+  if (id !== 'screen-game') document.getElementById(id).classList.add('active');
+}
+
+// ─── Initialisation ─────────────────────────────────────────
+function startGame() {
+  tables = Array.from({length: N_TABLES}, (_, i) => ({
+    id: i, state: 'empty', clients: 0, wait: 0, urgent: false, ca: 0
+  }));
+  ca = 0; tablesServed = 0; fugues = 0;
+  activeTableId = null;
+  serviceTimeLeft = SERVICE_DURATION;
+  running = true;
+
+  showScreen('screen-game');
+  document.getElementById('orderPanel').style.display = 'none';
+  renderTables();
+  updateHUD();
+
+  // Arriver quelques tables au départ
+  [0, 2, 5].forEach(i => {
+    tables[i].state = 'waiting';
+    tables[i].clients = Math.floor(Math.random() * 3) + 1;
+    tables[i].wait = Math.random() * 4;
+  });
+  renderTables();
+
+  clearInterval(mainInterval);
+  mainInterval = setInterval(tick, 200);
+
+  clearInterval(spawnInterval);
+  spawnInterval = setInterval(() => {
+    if (!running) return;
+    const empty = tables.filter(t => t.state === 'empty');
+    if (empty.length > 0) {
+      const t = empty[Math.floor(Math.random() * empty.length)];
+      t.state = 'waiting';
+      t.clients = Math.floor(Math.random() * 3) + 1;
+      t.wait = 0;
+      t.urgent = false;
+      renderTables();
+    }
+  }, 5000);
+}
+
+function tick() {
+  serviceTimeLeft -= 0.2;
+
+  // Timer UI
+  const m = Math.floor(Math.max(0, serviceTimeLeft) / 60);
+  const s = Math.floor(Math.max(0, serviceTimeLeft) % 60);
+  document.getElementById('hudTimer').textContent = `${m}:${s.toString().padStart(2,'0')}`;
+  document.getElementById('timerFill').style.width = (serviceTimeLeft / SERVICE_DURATION * 100) + '%';
+
+  // Vieillissement des attentes
+  tables.forEach(t => {
+    if (t.state === 'waiting') {
+      t.wait += 0.2;
+      if (t.wait > 18 && !t.urgent) { t.urgent = true; }
+      if (t.wait > 35) {
+        // Client part
+        if (activeTableId === t.id) closeOrder();
+        t.state = 'empty'; t.urgent = false; t.wait = 0;
+        fugues++;
+        showToast('😤 Table ' + (t.id + 1) + ' est partie !', 'var(--red)');
+        renderTables();
+        updateHUD();
+      }
+    }
+  });
+
+  if (serviceTimeLeft <= 0) {
+    endGame();
+  }
+}
+
+// ─── Interactions tables ─────────────────────────────────────
+function onTableClick(tableId) {
+  if (!running) return;
+  const t = tables[tableId];
+
+  if (t.state === 'waiting') {
+    // Ouvrir le panneau de commande pour cette table
+    openOrder(tableId);
+  } else if (t.state === 'paying') {
+    // Encaisser
+    cashOut(tableId);
+  } else if (t.state === 'serving') {
+    // Déjà en service - ré-ouvrir le menu si c'est la même table ou une autre
+    openOrder(tableId);
+  }
+  // empty / done : rien
+}
+
+function openOrder(tableId) {
+  const t = tables[tableId];
+  t.state = 'serving';
+  t.urgent = false;
+  activeTableId = tableId;
+  renderTables();
+
+  document.getElementById('opTableLabel').textContent = 'Table ' + (tableId + 1) + ' — ' + t.clients + ' couvert' + (t.clients > 1 ? 's' : '');
+
+  const menuEl = document.getElementById('menuList');
+  menuEl.innerHTML = '';
+  // Proposer des plats adaptés (filtre léger)
+  const items = MENU.slice(0, 6);
+  items.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'menu-item';
+    div.innerHTML = `
+      <div class="mi-left">
+        <div class="mi-name">${item.emoji} ${item.name} · ${item.price}€/pers</div>
+        <div class="mi-price">Coût matière : ${item.cpa}€ · Total : ${item.price * t.clients}€</div>
+      </div>
+      <div class="mi-margin ${item.margin}">+${item.marginPct}%</div>`;
+    div.onclick = () => orderItem(tableId, item);
+    menuEl.appendChild(div);
+  });
+
+  document.getElementById('orderPanel').style.display = 'block';
+}
+
+function closeOrder() {
+  document.getElementById('orderPanel').style.display = 'none';
+  // Si la table était en "serving" sans commande passée, on la remet en "waiting"
+  if (activeTableId !== null) {
+    const t = tables[activeTableId];
+    if (t && t.state === 'serving' && t.ca === 0) {
+      t.state = 'waiting';
+      renderTables();
+    }
+  }
+  activeTableId = null;
+}
+
+function orderItem(tableId, item) {
+  const t = tables[tableId];
+  if (!t || t.state !== 'serving') return;
+  const total = item.price * t.clients;
+  ca += total;
+  t.ca += total;
+  t.state = 'paying';
+  activeTableId = null;
+  document.getElementById('orderPanel').style.display = 'none';
+  showToast('+' + total + '€ ' + item.emoji, 'var(--green)');
+  renderTables();
+  updateHUD();
+}
+
+function cashOut(tableId) {
+  const t = tables[tableId];
+  if (!t || t.state !== 'paying') return;
+  tablesServed++;
+  t.state = 'empty';
+  t.ca = 0; t.wait = 0; t.urgent = false;
+  showToast('✅ Encaissé ! Table ' + (tableId + 1), 'var(--gold)');
+  renderTables();
+  updateHUD();
+}
+
+// ─── Rendu ─────────────────────────────────────────────────
+function renderTables() {
+  const el = document.getElementById('tablesGrid');
+  el.innerHTML = '';
+  const icons = { empty:'🪑', waiting:'👥', serving:'📋', paying:'💳', done:'✓' };
+  tables.forEach(t => {
+    const div = document.createElement('div');
+    div.className = 'table-cell ' + t.state + (activeTableId === t.id ? ' selected-active' : '');
+    div.innerHTML = `
+      <div class="tc-emoji">${icons[t.state] || '🪑'}</div>
+      <div class="tc-label">T${t.id + 1}</div>
+      ${t.clients ? `<div class="tc-amount">${t.clients}cv</div>` : ''}
+      ${t.urgent ? '<div class="tc-dot"></div>' : ''}`;
+    if (t.state === 'waiting' || t.state === 'serving' || t.state === 'paying') {
+      div.onclick = () => onTableClick(t.id);
+    }
+    el.appendChild(div);
+  });
+}
+
+function updateHUD() {
+  document.getElementById('hudCA').textContent = ca + '€';
+  document.getElementById('hudServis').textContent = tablesServed;
+  document.getElementById('hudFugues').textContent = fugues;
+}
+
+// ─── Fin de partie ─────────────────────────────────────────
+function endGame() {
+  running = false;
+  clearInterval(mainInterval);
+  clearInterval(spawnInterval);
+  document.getElementById('orderPanel').style.display = 'none';
+
+  const icon = ca > 500 ? '🏆' : ca > 300 ? '⭐' : '🙂';
+  const title = ca > 500 ? 'Chef légendaire !' : ca > 300 ? 'Bon service !' : 'Service correct';
+  const lesson = `<b>L'astuce du restaurateur :</b> la marge d'un plat est plus importante que son prix. Une pizza truffe à 22€ avec <b>73% de marge</b> rapporte autant qu'un plat à 35€ avec 40% de marge. Connaître ses food costs change tout au résultat net.`;
+
+  document.getElementById('endIcon').textContent = icon;
+  document.getElementById('endTitle').textContent = title;
+  document.getElementById('endCA').textContent = ca + '€';
+  document.getElementById('endTables').textContent = tablesServed;
+  document.getElementById('endFugues').textContent = fugues;
+  document.getElementById('endLesson').innerHTML = lesson;
+  showScreen('screen-end');
+}
+
+function share() {
+  const text = `J'ai encaissé ${ca}€ en un service sur Chef Resto (Economya.fr) 🍽️ À toi de gérer la salle !`;
+  if (navigator.share) navigator.share({title:'Chef Resto', text, url:'https://economya.fr'}).catch(()=>{});
+  else navigator.clipboard.writeText(text + ' https://economya.fr').then(() => alert('Copié !'));
+}
+</script>
+</body>
+</html>

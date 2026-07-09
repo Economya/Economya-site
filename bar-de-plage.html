@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bar de Plage — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --bg:#001A2E;--panel:#002540;--panel2:#003050;
+  --line:#004068;--gold:#FFD54F;--green:#34D399;--red:#F87171;--cyan:#22D3EE;--orange:#FB923C;
+  --ink:#F0FAFF;--ink-dim:#5A9AB8;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow-y:auto;}
+body{
+  background:radial-gradient(ellipse at 50% 0%,#003050 0%,var(--bg) 60%);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;user-select:none;
+  display:flex;align-items:flex-start;justify-content:center;padding:14px;min-height:100vh;
+}
+.app{width:100%;max-width:420px;padding-bottom:20px;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.eyebrow::before{content:'🏖️';}
+h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;}
+h1.title span{color:var(--gold);}
+p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
+.btn{border:none;border-radius:14px;padding:14px 20px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:transform .1s ease;margin-bottom:8px;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--gold);color:#2A1900;}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);}
+.brand-footer{text-align:center;margin-top:16px;font-size:11px;color:var(--ink-dim);}
+.brand-footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+/* Dashboard */
+.beach-dash{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;}
+.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.dash-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:14px;}
+.dash-meteo{font-size:20px;}
+.dash-ca{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;color:var(--cyan);}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}
+.kpi{background:var(--panel2);border-radius:8px;padding:7px;text-align:center;}
+.kpi .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:13px;}
+.kpi .l{font-size:9px;color:var(--ink-dim);margin-top:2px;}
+
+/* Saison */
+.saison-strip{display:flex;gap:3px;margin-bottom:12px;}
+.ss{flex:1;height:6px;border-radius:99px;background:var(--panel);border:1px solid var(--line);}
+.ss.done{background:var(--cyan);}
+.ss.current{background:var(--gold);}
+
+/* Journée */
+.jour-card{background:var(--panel2);border:2px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px;}
+.jc-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.jc-emoji{font-size:28px;}
+.jc-info{}
+.jc-jour{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-dim);}
+.jc-titre{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;}
+.jc-situation{font-size:12.5px;color:var(--ink-dim);line-height:1.4;margin-bottom:10px;}
+.opts{display:flex;flex-direction:column;gap:7px;}
+.opt{background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px;transition:border-color .15s ease;}
+.opt:active{transform:scale(.98);}
+.opt:hover{border-color:rgba(34,211,238,.4);}
+.opt-label{font-size:13px;font-weight:600;}
+.opt-val{font-size:11px;font-weight:700;white-space:nowrap;}
+
+.res-box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;display:none;}
+.res-box.show{display:block;}
+.res-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;margin-bottom:4px;}
+.res-text{font-size:12px;color:var(--ink-dim);line-height:1.4;}
+
+.toast{position:fixed;top:18%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;opacity:0;pointer-events:none;z-index:30;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 18px;}
+.toast.show{animation:tp .6s ease forwards;}
+@keyframes tp{0%{opacity:0;}15%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
+
+.end-ca{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:48px;color:var(--gold);text-align:center;margin:8px 0 4px;}
+.end-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px;}
+.es{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;}
+.es .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;color:var(--gold);}
+.es .l{font-size:9px;color:var(--ink-dim);margin-top:2px;}
+.lesson{background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.2);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;margin-bottom:14px;}
+.lesson b{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="app">
+
+<div class="screen active" id="screen-intro">
+  <div class="eyebrow">Economya.fr · Le bar de plage</div>
+  <h1 class="title">Bar de <span>Plage</span></h1>
+  <p class="lede">Vous gérez un bar de plage sur la Côte d'Azur pendant la saison estivale. 10 journées de décisions : cocktails, stock, personnel, météo capricieuse. Maximisez votre CA avant la rentrée !</p>
+  <button class="btn btn-primary" onclick="startGame()">Ouvrir le parasol 🌴</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+
+<div id="screen-game" style="display:none;">
+  <div class="beach-dash">
+    <div class="dash-top">
+      <div><div class="dash-name">🌴 Bar Chez Économies</div><div style="font-size:11px;color:var(--ink-dim);">Plage de Juan-les-Pins</div></div>
+      <div style="text-align:right"><div style="font-size:9px;color:var(--ink-dim);">CA total</div><div class="dash-ca" id="caDisplay">0€</div></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="v" id="kpiStock">100%</div><div class="l">Stock</div></div>
+      <div class="kpi"><div class="v" id="kpiPerso">1</div><div class="l">Serveurs</div></div>
+      <div class="kpi"><div class="v" id="kpiPrix">8€</div><div class="l">Prix mojito</div></div>
+      <div class="kpi"><div class="v" id="kpiSat">⭐⭐⭐⭐⭐</div><div class="l">Avis</div></div>
+    </div>
+  </div>
+  <div class="saison-strip" id="saisonStrip"></div>
+  <div class="jour-card" id="jourCard">
+    <div class="jc-top">
+      <div class="jc-emoji" id="jcEmoji">🌅</div>
+      <div class="jc-info">
+        <div class="jc-jour" id="jcJour">Jour 1/10</div>
+        <div class="jc-titre" id="jcTitre">Chargement...</div>
+      </div>
+    </div>
+    <div class="jc-situation" id="jcSituation"></div>
+    <div class="opts" id="optsList"></div>
+  </div>
+  <div class="res-box" id="resBox">
+    <div class="res-title" id="resTitle"></div>
+    <div class="res-text" id="resText"></div>
+  </div>
+  <button class="btn btn-ghost" id="nextBtn" onclick="nextJour()" style="display:none;">Jour suivant →</button>
+</div>
+
+<div class="screen" id="screen-end">
+  <div style="text-align:center;font-size:52px;margin:10px 0;" id="endIcon">🏖️</div>
+  <div style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;text-align:center;margin-bottom:6px;" id="endTitle">Saison terminée !</div>
+  <div class="end-ca" id="endCA">0€</div>
+  <div style="text-align:center;font-size:13px;color:var(--ink-dim);margin-bottom:16px;">CA de la saison</div>
+  <div class="end-grid">
+    <div class="es"><div class="v" id="endPerso">1</div><div class="l">Serveurs finaux</div></div>
+    <div class="es"><div class="v" id="endPrix">0€</div><div class="l">Prix mojito</div></div>
+    <div class="es"><div class="v" id="endSat">5/5</div><div class="l">Satisfaction</div></div>
+  </div>
+  <div class="lesson" id="endLesson"></div>
+  <button class="btn btn-primary" onclick="startGame()">Nouvelle saison</button>
+  <button class="btn btn-ghost" onclick="share()">Partager</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+</div>
+
+<script>
+const JOURS=[
+  {emoji:'☀️',titre:'Ouverture de la saison',meteo:'☀️ Grand soleil 32°C',situation:'Premier jour, plage bondée. Fixer le bon prix dès le début est crucial.',
+   opts:[
+     {label:'Prix bas pour attirer (mojito 6€)',val:'Marge faible mais volume fort',dCA:+800,dStock:-20,dPrix:-2,dSat:+0.2,dPerso:0,result:'La plage est remplie ! Vous servez 130 mojitos mais la marge est minuscule.'},
+     {label:'Prix marché (mojito 8€)',val:'Équilibre volume/marge',dCA:+1200,dStock:-15,dPrix:0,dSat:0,dPerso:0,result:'100 mojitos à bonne marge. Début de saison solide.'},
+     {label:'Prix premium (mojito 12€)',val:'Marge forte, volume modéré',dCA:+1000,dStock:-8,dPrix:+4,dSat:-0.3,dPerso:0,result:'60 mojitos mais marge x1.5. Quelques clients font la grimace.'},
+   ]},
+  {emoji:'⛈️',titre:'Orage surprise',meteo:'⛈️ Orage l\'après-midi',situation:'La météo a trahi. La plage se vide à 14h. Que faites-vous de votre stock ?',
+   opts:[
+     {label:'Fermer plus tôt, économiser',val:'Évite le gaspillage',dCA:+300,dStock:+5,dPrix:0,dSat:-0.2,dPerso:0,result:'Sage. Vous limitez la casse et préservez votre stock pour demain.'},
+     {label:'Happy hour pour garder les clients',val:'-30% prix, remplir le bar',dCA:+500,dStock:-10,dPrix:0,dSat:+0.3,dPerso:0,result:'Bonne idée ! L\'ambiance bar couvert crée une clientèle fidèle.'},
+     {label:'Livraison cocktails aux parasols',val:'Service à domicile, marge +',dCA:+700,dStock:-12,dPrix:+2,dSat:+0.5,dPerso:0,result:'Innovation gagnante. Les clients adorent le service sous la pluie !'},
+   ]},
+  {emoji:'👥',titre:'Renfort du week-end',meteo:'☀️ Météo parfaite',situation:'Week-end de juillet, afflux de clients. Votre seul serveur est débordé.',
+   opts:[
+     {label:'Recruter un extra (100€/j)',val:'Service fluide, marge -',dCA:+1800,dStock:-25,dPrix:0,dSat:+0.5,dPerso:+1,result:'Excellent investissement. 150 clients servis, file d\'attente zéro.'},
+     {label:'Gérer seul avec votre serveur',val:'Économique mais lent',dCA:+1000,dStock:-15,dPrix:0,dSat:-0.5,dPerso:0,result:'Vous tenez mais les avis Google mentionnent "service lent". Attention.'},
+     {label:'Limiter les commandes (carte réduite)',val:'Simple à gérer, rapide',dCA:+1200,dStock:-12,dPrix:0,dSat:-0.2,dPerso:0,result:'Carte simplifiée = service rapide. Compromis acceptable.'},
+   ]},
+  {emoji:'🍋',titre:'Rupture de stock citron',meteo:'☀️ 35°C',situation:'Votre fournisseur a livré 50% de la commande. Pas assez de citrons pour les mojitos.',
+   opts:[
+     {label:'Commander en urgence (prix x2)',val:'Coût élevé mais service normal',dCA:+1400,dStock:-18,dPrix:0,dSat:+0.2,dPerso:0,result:'Vous absorbez le surcoût mais conservez votre offre complète.'},
+     {label:'Créer un cocktail sans citron',val:'Innovation, marge forte',dCA:+1100,dStock:-10,dPrix:+1,dSat:+0.3,dPerso:0,result:'Le "Sunset Rosé" improvise et devient la vedette du jour !'},
+     {label:'Supprimer le mojito temporairement',val:'Réduire la carte',dCA:+700,dStock:-8,dPrix:0,dSat:-0.4,dPerso:0,result:'Déception des clients. Le mojito est votre bestseller.'},
+   ]},
+  {emoji:'📱',titre:'Influenceur à la plage',meteo:'☀️ Parfait',situation:'Un instagrammer 200k abonnés commande et filme votre bar. Il vous demande un accord sponsoring.',
+   opts:[
+     {label:'Offrir 10 consommations gratuites',val:'Visibilité organique',dCA:+800,dStock:-5,dPrix:0,dSat:+0.5,dPerso:0,result:'Sa story atteint 80k personnes. Les DM pour réserver explosent.'},
+     {label:'Payer 300€ pour un post dédié',val:'Investissement marketing',dCA:+600,dStock:-3,dPrix:0,dSat:+0.8,dPerso:0,result:'Post officiel = +500 abonnés sur votre page. Réservations en ligne +40%.'},
+     {label:'Refuser, garder votre image',val:'Indépendance préservée',dCA:+1000,dStock:-12,dPrix:0,dSat:0,dPerso:0,result:'Jour normal. L\'influenceur ne reviendra pas mais vous gardez votre identité.'},
+   ]},
+  {emoji:'🎵',titre:'Soirée DJ',meteo:'🌙 Soirée douce',situation:'Un DJ local propose de jouer le soir pour 200€. Vous n\'avez pas de licence de bar de nuit.',
+   opts:[
+     {label:'Accepter sans licence (risque)',val:'CA potentiel x3, risque amende',dCA:+2500,dStock:-30,dPrix:+3,dSat:+1,dPerso:0,result:'Soirée épique ! Mais un contrôle à 23h vous coûte 500€ d\'amende.'},
+     {label:'DJ jusqu\'à 22h (limite légale)',val:'Soirée légale, ambiance sympa',dCA:+1600,dStock:-20,dPrix:+2,dSat:+0.8,dPerso:0,result:'Soirée festive dans les clous. Excellente fréquentation, zéro souci légal.'},
+     {label:'Refuser le DJ',val:'Journée normale',dCA:+900,dStock:-12,dPrix:0,dSat:0,dPerso:0,result:'Journée normale. Vous sécurisez sans risque légal.'},
+   ]},
+  {emoji:'🌊',titre:'Alerte méduses',meteo:'🌊 Mer agitée + méduses',situation:'La plage est déconseillée à la baignade. Fréquentation en chute libre.',
+   opts:[
+     {label:'Promo "Méduse Day" -30%',val:'Attirer malgré tout',dCA:+600,dStock:-8,dPrix:-3,dSat:+0.3,dPerso:0,result:'Votre humour attire les curieux. Belle journée malgré les méduses !'},
+     {label:'Fermer et reposer l\'équipe',val:'Zéro CA mais 0 coût',dCA:0,dStock:+8,dPrix:0,dSat:+0.2,dPerso:0,result:'Jour off bienvenu. Votre équipe repart fraîche pour les prochains jours.'},
+     {label:'Pivoter : brunchs et jeux de plage',val:'Clientèle différente',dCA:+800,dStock:-10,dPrix:0,dSat:+0.5,dPerso:0,result:'Excellent pivot ! Les familles avec enfants adorent l\'offre brunch.'},
+   ]},
+  {emoji:'🏄',titre:'Compétition de surf',meteo:'🌊 Vagues parfaites',situation:'Tournoi régional de surf attire 500 spectateurs. Opportunité massive.',
+   opts:[
+     {label:'Stand sponsoring (logo sur podium)',val:'500€ sponsor, visibilité max',dCA:+2200,dStock:-35,dPrix:0,dSat:+0.5,dPerso:+1,result:'Votre logo vu par 500 personnes + médias locaux. Jackpot !'},
+     {label:'Ouvrir tôt et servir les surfeurs',val:'Volume matinal',dCA:+1800,dStock:-25,dPrix:+1,dSat:+0.4,dPerso:0,result:'Les surfeurs sont fidèles. Vous créez une clientèle hors saison.'},
+     {label:'Prix normaux, profiter du flux',val:'Gestion normale',dCA:+1500,dStock:-20,dPrix:0,dSat:+0.2,dPerso:0,result:'Bonne journée grâce à l\'afflux naturel.'},
+   ]},
+  {emoji:'🍹',titre:'Nouveau cocktail signature',meteo:'☀️ 34°C',situation:'Un barman propose d\'ajouter un cocktail signature au menu. Coût de développement : 200€.',
+   opts:[
+     {label:'Lancer "Le Couchant Azuréen" (18€)',val:'Premium, marge 75%',dCA:+1600,dStock:-15,dPrix:0,dSat:+0.5,dPerso:0,result:'Succès immédiat ! Le cocktail signature devient viral sur Instagram.'},
+     {label:'Améliorer le mojito existant',val:'Différenciation par qualité',dCA:+1300,dStock:-14,dPrix:+2,dSat:+0.3,dPerso:0,result:'Votre mojito devient "le meilleur de Juan" selon TripAdvisor.'},
+     {label:'Rester sur la carte actuelle',val:'Zéro investissement',dCA:+1000,dStock:-13,dPrix:0,dSat:0,dPerso:0,result:'Journée classique. Rien de nouveau, mais rien de perdu.'},
+   ]},
+  {emoji:'🌅',titre:'Dernier jour de saison',meteo:'☀️ Coucher de soleil magique',situation:'Dernier jour ! Comment finir en beauté et fidéliser pour la saison prochaine ?',
+   opts:[
+     {label:'Grande fiesta de clôture',val:'Image forte, CA fort',dCA:+2500,dStock:-40,dPrix:+2,dSat:+1,dPerso:0,result:'Soirée mémorable ! Vos clients repartiront avec des photos et reviendront l\'an prochain.'},
+     {label:'Cartes de fidélité pour l\'an prochain',val:'Investissement long terme',dCA:+1200,dStock:-15,dPrix:0,dSat:+0.8,dPerso:0,result:'40% de vos clients prennent la carte. Vous avez une base fidèle pour la prochaine saison.'},
+     {label:'Liquider le stock à prix cassé',val:'Zéro stock = zéro perte',dCA:+1800,dStock:-50,dPrix:-3,dSat:+0.2,dPerso:0,result:'Stock épuisé et CA correct. Pratique mais sans magie.'},
+   ]},
+];
+
+let ca=0,stock=100,perso=1,prix=8,sat=4,jour=0;
+
+function showToast(t,c){const el=document.getElementById('toast');el.textContent=t;el.style.color=c;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-game').style.display=(id==='screen-game')?'block':'none';if(id!=='screen-game')document.getElementById(id).classList.add('active');}
+function clamp(v,mn,mx){return Math.max(mn,Math.min(mx,v));}
+function fmt(n){return n.toLocaleString('fr-FR')+'€';}
+
+function startGame(){
+  ca=0;stock=100;perso=1;prix=8;sat=4;jour=0;
+  showScreen('screen-game');
+  renderDash();renderStrip();loadJour();
+}
+
+function renderDash(){
+  document.getElementById('caDisplay').textContent=fmt(ca);
+  document.getElementById('kpiStock').textContent=Math.max(0,Math.round(stock))+'%';
+  document.getElementById('kpiPerso').textContent=perso;
+  document.getElementById('kpiPrix').textContent=prix+'€';
+  document.getElementById('kpiSat').textContent='⭐'.repeat(Math.round(sat));
+}
+
+function renderStrip(){
+  const el=document.getElementById('saisonStrip');el.innerHTML='';
+  for(let i=0;i<JOURS.length;i++){
+    const d=document.createElement('div');
+    d.className='ss'+(i<jour?' done':i===jour?' current':'');
+    el.appendChild(d);
+  }
+}
+
+function loadJour(){
+  if(jour>=JOURS.length)return endGame();
+  const j=JOURS[jour];
+  document.getElementById('jcEmoji').textContent=j.emoji;
+  document.getElementById('jcJour').textContent='Jour '+(jour+1)+'/'+JOURS.length+' — '+j.meteo;
+  document.getElementById('jcTitre').textContent=j.titre;
+  document.getElementById('jcSituation').textContent=j.situation;
+  document.getElementById('resBox').classList.remove('show');
+  document.getElementById('nextBtn').style.display='none';
+  const opts=document.getElementById('optsList');opts.innerHTML='';
+  j.opts.forEach(opt=>{
+    const div=document.createElement('div');div.className='opt';
+    const col=opt.dCA>1200?'var(--green)':opt.dCA>800?'var(--gold)':'var(--orange)';
+    div.innerHTML=`<span class="opt-label">${opt.label}</span><span class="opt-val" style="color:${col}">${opt.val}</span>`;
+    div.onclick=()=>choose(opt);
+    opts.appendChild(div);
+  });
+}
+
+function choose(opt){
+  ca+=opt.dCA;
+  stock=clamp(stock+opt.dStock,0,100);
+  perso=Math.max(1,perso+opt.dPerso);
+  prix=Math.max(5,prix+opt.dPrix);
+  sat=clamp(sat+opt.dSat,0,5);
+  renderDash();
+  showToast('+'+fmt(opt.dCA),'var(--green)');
+  document.getElementById('resTitle').textContent=opt.dCA>1400?'🌴 Excellente journée !':opt.dCA>800?'👍 Bonne journée':'😐 Journée moyenne';
+  document.getElementById('resText').textContent=opt.result;
+  document.getElementById('resBox').classList.add('show');
+  document.getElementById('optsList').innerHTML='';
+  document.getElementById('nextBtn').style.display='block';
+}
+
+function nextJour(){jour++;renderStrip();loadJour();}
+
+function endGame(){
+  const icon=ca>15000?'🏆':ca>10000?'🌴':ca>6000?'🍹':'😅';
+  const title=ca>15000?'Bar légendaire !':ca>10000?'Belle saison !':ca>6000?'Saison correcte':'Saison difficile';
+  const lesson=sat>=4.5?'<b>Excellence !</b> Votre satisfaction client garantit le bouche-à-oreille. En restauration-bar, une note Google de 4.5+ double la fréquentation sans un euro de pub.':
+    '<b>Clé du bar de plage :</b> les cocktails signatures à forte marge (75-80%) et le recrutement d\'un extra le week-end sont les deux leviers qui font la différence entre une saison rentable et une saison moyenne.';
+  document.getElementById('endIcon').textContent=icon;
+  document.getElementById('endTitle').textContent=title;
+  document.getElementById('endCA').textContent=fmt(ca);
+  document.getElementById('endPerso').textContent=perso;
+  document.getElementById('endPrix').textContent=prix+'€';
+  document.getElementById('endSat').textContent=sat.toFixed(1)+'/5';
+  document.getElementById('endLesson').innerHTML=lesson;
+  showScreen('screen-end');
+}
+
+function share(){
+  const text=`J'ai généré ${fmt(ca)} en une saison sur Bar de Plage (Economya.fr) 🌴 À toi de gérer le parasol !`;
+  if(navigator.share)navigator.share({title:'Bar de Plage',text,url:'https://economya.fr'}).catch(()=>{});
+  else navigator.clipboard.writeText(text+' https://economya.fr').then(()=>alert('Copié !'));
+}
+</script>
+</body>
+</html>

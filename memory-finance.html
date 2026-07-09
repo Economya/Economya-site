@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Finance — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --bg:#0C1220;--panel:#111A2E;--panel2:#182438;
+  --line:#1E2E48;--gold:#FFD54F;--green:#34D399;--red:#F87171;--blue:#60A5FA;
+  --ink:#EEF5FF;--ink-dim:#5A7A9A;--card-back:#1A2840;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:radial-gradient(ellipse at 50% 0%,#182438 0%,var(--bg) 60%);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;user-select:none;
+  display:flex;align-items:center;justify-content:center;padding:14px;
+}
+.app{width:100%;max-width:400px;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.eyebrow::before{content:'🃏';}
+h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;}
+h1.title span{color:var(--gold);}
+p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
+.btn{border:none;border-radius:14px;padding:14px 20px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:transform .1s ease;margin-bottom:8px;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--gold);color:#2A1900;}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);}
+.brand-footer{text-align:center;margin-top:16px;font-size:11px;color:var(--ink-dim);}
+.brand-footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+.hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.hud-pairs{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:20px;}
+.hud-timer{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:20px;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:5px 14px;}
+.hud-timer.urgent{color:var(--red);border-color:rgba(248,113,113,.4);}
+.progress-bar-w{height:4px;background:rgba(255,255,255,.05);border-radius:99px;margin-bottom:12px;overflow:hidden;}
+.progress-bar{height:100%;background:var(--gold);border-radius:99px;transition:width .3s ease;}
+
+/* Grille memory */
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.mem-card{
+  aspect-ratio:3/4;border-radius:12px;cursor:pointer;
+  position:relative;transform-style:preserve-3d;
+  transition:transform .4s ease;
+}
+.mem-card.flipped{transform:rotateY(180deg);}
+.mem-card.matched{transform:rotateY(180deg);}
+.card-face{
+  position:absolute;inset:0;border-radius:12px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  backface-visibility:hidden;padding:6px;text-align:center;
+}
+.card-back-face{
+  background:var(--card-back);border:2px solid var(--line);
+  font-size:20px;
+}
+.card-front-face{
+  transform:rotateY(180deg);
+  border:2px solid var(--line);
+  font-size:11px;line-height:1.3;font-weight:600;
+}
+.card-front-face.concept{background:rgba(96,165,250,.12);border-color:rgba(96,165,250,.4);color:var(--blue);}
+.card-front-face.value{background:rgba(52,211,153,.12);border-color:rgba(52,211,153,.4);color:var(--green);}
+.mem-card.matched .card-front-face{border-color:var(--gold);background:rgba(255,213,79,.1);}
+.mem-card.wrong-anim{animation:wrongShake .4s ease;}
+@keyframes wrongShake{0%,100%{transform:rotateY(180deg);}25%{transform:rotateY(180deg) translateX(-5px);}75%{transform:rotateY(180deg) translateX(5px);}}
+
+/* Toast */
+.toast{position:fixed;top:20%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;opacity:0;pointer-events:none;z-index:30;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 18px;}
+.toast.show{animation:tp .7s ease forwards;}
+@keyframes tp{0%{opacity:0;}10%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
+
+/* Résultat */
+.end-time{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:52px;color:var(--gold);text-align:center;margin:8px 0 4px;}
+.end-label{text-align:center;font-size:13px;color:var(--ink-dim);margin-bottom:14px;}
+.end-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.es{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;}
+.es .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;color:var(--gold);}
+.es .l{font-size:10px;color:var(--ink-dim);margin-top:2px;}
+.lesson{background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.2);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;margin-bottom:14px;}
+.lesson b{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="app">
+
+<div class="screen active" id="screen-intro">
+  <div class="eyebrow">Economya.fr · Le memory</div>
+  <h1 class="title">Memory <span>Finance</span></h1>
+  <p class="lede">Retournez les cartes pour trouver les paires : un concept financier + sa définition ou son taux. Le plus rapide gagne. 8 paires à trouver.</p>
+  <button class="btn btn-primary" onclick="startGame()">Retourner les cartes</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+
+<div id="screen-game" style="display:none;">
+  <div class="hud">
+    <div class="hud-pairs">🃏 <span id="pairsFound">0</span>/8</div>
+    <div class="hud-timer" id="timerDisplay">0s</div>
+  </div>
+  <div class="progress-bar-w"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+  <div class="memory-grid" id="memoryGrid"></div>
+</div>
+
+<div class="screen" id="screen-end">
+  <div style="text-align:center;font-size:48px;margin:10px 0;" id="endIcon">🏆</div>
+  <div style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;text-align:center;margin-bottom:6px;" id="endTitle">Toutes les paires !</div>
+  <div class="end-time" id="endTime">0s</div>
+  <div class="end-label" id="endLabel">pour trouver toutes les paires</div>
+  <div class="end-grid">
+    <div class="es"><div class="v" id="endAttempts">0</div><div class="l">Tentatives</div></div>
+    <div class="es"><div class="v" id="endErrors">0</div><div class="l">Erreurs</div></div>
+  </div>
+  <div class="lesson" id="endLesson"></div>
+  <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+  <button class="btn btn-ghost" onclick="share()">Partager</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+</div>
+
+<script>
+const PAIRS=[
+  {concept:'📈 PEA',value:'Exonéré d\'impôt après 5 ans'},
+  {concept:'🏦 Livret A',value:'Taux : 1,5 % en 2026'},
+  {concept:'💰 SMIC net',value:'≈ 1 450 € / mois'},
+  {concept:'🏠 Taux d\'endettement',value:'Maximum 33%'},
+  {concept:'🛡️ FGDR',value:'Garantit 100 000 €'},
+  {concept:'📊 Flat tax',value:'31,4 % sur revenus capital'},
+  {concept:'🎓 ACRE',value:'Exonération création d\'entreprise'},
+  {concept:'💎 LEP',value:'Taux : 2,5 % en 2026'},
+];
+
+let cards=[],flipped=[],matched=0,attempts=0,errors=0;
+let startTime=0,timerInt=null,canFlip=true;
+
+function showToast(t,c){const el=document.getElementById('toast');el.textContent=t;if(c)el.style.color=c;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-game').style.display=(id==='screen-game')?'block':'none';if(id!=='screen-game')document.getElementById(id).classList.add('active');}
+
+function startGame(){
+  flipped=[];matched=0;attempts=0;errors=0;canFlip=true;
+  // Créer les paires mélangées
+  cards=[];
+  PAIRS.forEach((p,i)=>{
+    cards.push({id:i*2,pairId:i,type:'concept',text:p.concept,isFlipped:false,isMatched:false});
+    cards.push({id:i*2+1,pairId:i,type:'value',text:p.value,isFlipped:false,isMatched:false});
+  });
+  cards.sort(()=>Math.random()-.5);
+  showScreen('screen-game');
+  renderGrid();
+  startTime=Date.now();
+  clearInterval(timerInt);
+  timerInt=setInterval(()=>{
+    const t=Math.floor((Date.now()-startTime)/1000);
+    document.getElementById('timerDisplay').textContent=t+'s';
+    if(t>60)document.getElementById('timerDisplay').classList.add('urgent');
+  },200);
+}
+
+function renderGrid(){
+  const el=document.getElementById('memoryGrid');el.innerHTML='';
+  cards.forEach((card,i)=>{
+    const div=document.createElement('div');
+    div.className='mem-card'+(card.isFlipped||card.isMatched?' flipped':'')+(card.isMatched?' matched':'');
+    div.dataset.idx=i;
+    div.innerHTML=`
+      <div class="card-face card-back-face">💳</div>
+      <div class="card-face card-front-face ${card.type}">${card.text}</div>
+    `;
+    div.onclick=()=>flipCard(i);
+    el.appendChild(div);
+  });
+  document.getElementById('pairsFound').textContent=matched;
+  document.getElementById('progressBar').style.width=(matched/PAIRS.length*100)+'%';
+}
+
+function flipCard(i){
+  const card=cards[i];
+  if(!canFlip||card.isFlipped||card.isMatched)return;
+  card.isFlipped=true;
+  flipped.push(i);
+  renderGrid();
+  if(flipped.length===2){
+    attempts++;
+    canFlip=false;
+    const [a,b]=flipped;
+    const cardA=cards[a],cardB=cards[b];
+    if(cardA.pairId===cardB.pairId&&cardA.type!==cardB.type){
+      // Match !
+      setTimeout(()=>{
+        cardA.isMatched=true;cardB.isMatched=true;
+        matched++;
+        flipped=[];canFlip=true;
+        renderGrid();
+        showToast('✅ Paire trouvée !','var(--green)');
+        if(matched===PAIRS.length) endGame();
+      },600);
+    } else {
+      errors++;
+      setTimeout(()=>{
+        cardA.isFlipped=false;cardB.isFlipped=false;
+        flipped=[];canFlip=true;
+        renderGrid();
+      },900);
+    }
+  }
+}
+
+function endGame(){
+  clearInterval(timerInt);
+  const t=Math.floor((Date.now()-startTime)/1000);
+  const icon=t<30?'🏆':t<60?'⭐':'😊';
+  const title=t<30?'Mémoire de génie !':t<60?'Très bonne mémoire !':'Memory complété !';
+  const lesson=errors<3?'<b>Mémoire exceptionnelle !</b> Vous avez retenu les concepts financiers clés du premier coup. Ces réflexes sont précieux dans la vraie vie.':
+    '<b>À retenir :</b> Livret A (1,5%), LEP (2,5%), PEA (exonéré après 5 ans), taux d\'endettement (33% max) — ce sont les 4 chiffres que tout Français devrait connaître.';
+  document.getElementById('endIcon').textContent=icon;
+  document.getElementById('endTitle').textContent=title;
+  document.getElementById('endTime').textContent=t+'s';
+  document.getElementById('endLabel').textContent=`pour ${PAIRS.length} paires — Record à battre : 25s`;
+  document.getElementById('endAttempts').textContent=attempts;
+  document.getElementById('endErrors').textContent=errors;
+  document.getElementById('endLesson').innerHTML=lesson;
+  showScreen('screen-end');
+}
+
+function share(){
+  const t=Math.floor((Date.now()-startTime)/1000);
+  const text=`J'ai trouvé toutes les paires financières en ${t}s sur Memory Finance (Economya.fr) 🃏 Bats mon temps !`;
+  if(navigator.share)navigator.share({title:'Memory Finance',text,url:'https://economya.fr'}).catch(()=>{});
+  else navigator.clipboard.writeText(text+' https://economya.fr').then(()=>alert('Copié !'));
+}
+</script>
+</body>
+</html>

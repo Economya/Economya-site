@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domaine Viticole — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root{
+  --bg:#0E0810;--panel:#180E18;--panel2:#221428;
+  --line:#321E38;--gold:#FFD54F;--wine:#C2185B;--green:#34D399;--red:#F87171;--purple:#C084FC;
+  --ink:#FFF0F8;--ink-dim:#8A6A8A;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow-y:auto;}
+body{
+  background:radial-gradient(ellipse at 50% 0%,#221428 0%,var(--bg) 60%);
+  color:var(--ink);font-family:'Inter',system-ui,sans-serif;
+  -webkit-tap-highlight-color:transparent;user-select:none;
+  display:flex;align-items:flex-start;justify-content:center;padding:14px;min-height:100vh;
+}
+.app{width:100%;max-width:420px;padding-bottom:20px;}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeIn .3s ease;}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
+.eyebrow::before{content:'🍇';}
+h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;}
+h1.title span{color:var(--gold);}
+p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
+.btn{border:none;border-radius:14px;padding:14px 20px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:transform .1s ease;margin-bottom:8px;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--gold);color:#2A1900;}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);}
+.brand-footer{text-align:center;margin-top:16px;font-size:11px;color:var(--ink-dim);}
+.brand-footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+
+/* Tableau domaine */
+.domaine-board{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;}
+.domaine-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.domaine-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;}
+.cave-val{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;color:var(--wine);}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}
+.kpi{background:var(--panel2);border-radius:8px;padding:7px;text-align:center;}
+.kpi .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:13px;}
+.kpi .l{font-size:9px;color:var(--ink-dim);margin-top:2px;}
+
+/* Vendanges */
+.vendange-strip{display:flex;gap:3px;margin-bottom:12px;}
+.vd{flex:1;height:6px;border-radius:99px;background:var(--panel);border:1px solid var(--line);transition:background .3s ease;}
+.vd.done{background:var(--wine);}
+.vd.current{background:var(--gold);}
+
+/* Décision annuelle */
+.annee-card{background:var(--panel2);border:2px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px;}
+.ac-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.ac-emoji{font-size:28px;}
+.ac-info{}
+.ac-annee{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-dim);}
+.ac-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;}
+.ac-meteo{font-size:12px;color:var(--purple);margin-bottom:8px;}
+.ac-context{font-size:12.5px;color:var(--ink-dim);line-height:1.4;margin-bottom:10px;}
+.options{display:flex;flex-direction:column;gap:7px;}
+.opt{background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;transition:border-color .15s ease;}
+.opt:active{transform:scale(.98);}
+.opt:hover{border-color:rgba(194,24,91,.4);}
+.opt-main{flex:1;}
+.opt-name{font-size:13px;font-weight:600;margin-bottom:3px;}
+.opt-detail{font-size:11px;color:var(--ink-dim);}
+.opt-impact{font-size:11px;font-weight:700;text-align:right;white-space:nowrap;}
+
+.result-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:none;}
+.result-card.show{display:block;}
+.rc-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;margin-bottom:4px;}
+.rc-text{font-size:12px;color:var(--ink-dim);line-height:1.4;}
+
+.toast{position:fixed;top:18%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;opacity:0;pointer-events:none;z-index:30;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 18px;}
+.toast.show{animation:tp .6s ease forwards;}
+@keyframes tp{0%{opacity:0;}15%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
+
+.end-val{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:48px;color:var(--gold);text-align:center;margin:8px 0 4px;}
+.end-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px;}
+.es{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;}
+.es .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;color:var(--gold);}
+.es .l{font-size:9px;color:var(--ink-dim);margin-top:2px;}
+.lesson{background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.2);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;margin-bottom:14px;}
+.lesson b{color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="toast" id="toast"></div>
+<div class="app">
+
+<div class="screen active" id="screen-intro">
+  <div class="eyebrow">Economya.fr · La viticulture</div>
+  <h1 class="title">Domaine <span>Viticole</span></h1>
+  <p class="lede">Héritez d'un domaine viticole familial dans le Bordelais. Gérez la vigne, les vendanges, l'élevage en cave et la commercialisation sur 8 millésimes. Chaque année, le climat décide en partie de votre sort.</p>
+  <button class="btn btn-primary" onclick="startGame()">Hériter du domaine</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+
+<div id="screen-game" style="display:none;">
+  <div class="domaine-board">
+    <div class="domaine-header">
+      <div><div class="domaine-name">🏰 Château Les Économies</div><div style="font-size:11px;color:var(--ink-dim);">Appellation Bordeaux AOC · 15 ha</div></div>
+      <div><div style="font-size:9px;color:var(--ink-dim);">Trésorerie</div><div class="cave-val" id="tresoVal">50k€</div></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="v" id="kpiQual">⭐⭐⭐</div><div class="l">Qualité</div></div>
+      <div class="kpi"><div class="v" id="kpiStock">0 btl</div><div class="l">Cave</div></div>
+      <div class="kpi"><div class="v" id="kpiPrix">0€</div><div class="l">Prix/btl</div></div>
+      <div class="kpi"><div class="v" id="kpiRep">0%</div><div class="l">Réputation</div></div>
+    </div>
+  </div>
+
+  <div class="vendange-strip" id="vendangeStrip"></div>
+
+  <div class="annee-card" id="anneeCard">
+    <div class="ac-header">
+      <div class="ac-emoji" id="acEmoji">🍇</div>
+      <div class="ac-info">
+        <div class="ac-annee" id="acAnnee">Millésime 1/8</div>
+        <div class="ac-title" id="acTitle">Chargement...</div>
+      </div>
+    </div>
+    <div class="ac-meteo" id="acMeteo"></div>
+    <div class="ac-context" id="acContext"></div>
+    <div class="options" id="optionsList"></div>
+  </div>
+
+  <div class="result-card" id="resultCard">
+    <div class="rc-title" id="rcTitle"></div>
+    <div class="rc-text" id="rcText"></div>
+  </div>
+  <button class="btn btn-ghost" id="nextBtn" onclick="nextMillesime()" style="display:none;">Millésime suivant →</button>
+</div>
+
+<div class="screen" id="screen-end">
+  <div style="text-align:center;font-size:52px;margin:10px 0;" id="endIcon">🍷</div>
+  <div style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;text-align:center;margin-bottom:6px;" id="endTitle">8 millésimes !</div>
+  <div class="end-val" id="endVal">0€</div>
+  <div style="text-align:center;font-size:13px;color:var(--ink-dim);margin-bottom:16px;">valeur du domaine + trésorerie</div>
+  <div class="end-grid">
+    <div class="es"><div class="v" id="endQual">0/5</div><div class="l">Qualité finale</div></div>
+    <div class="es"><div class="v" id="endPrix">0€</div><div class="l">Prix bouteille</div></div>
+    <div class="es"><div class="v" id="endRep">0%</div><div class="l">Réputation</div></div>
+  </div>
+  <div class="lesson" id="endLesson"></div>
+  <button class="btn btn-primary" onclick="startGame()">Nouveau domaine</button>
+  <button class="btn btn-ghost" onclick="share()">Partager</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+</div>
+
+<script>
+const METEOS=['☀️ Été exceptionnel — conditions idéales','🌧️ Printemps pluvieux — risque mildiou','⛈️ Grêle en juillet — perte partielle','🌡️ Canicule en août — concentration naturelle','🍂 Automne parfait — vendanges tardives idéales','❄️ Gel de printemps — récolte réduite'];
+const MILLESIMES=[
+  {emoji:'🌱',title:'Structurer la vigne',meteo:0,context:'Votre première année. La vigne héritée est ancienne (40 ans) mais peu entretenue. Comment abordez-vous la saison ?',
+   options:[
+     {name:'Reconversion bio complète',detail:'Certification 3 ans, -30% récolte',dTreso:-15000,dQual:+1,dStock:3000,dPrix:+5,dRep:+15,result:'Pari sur l\'avenir. Le bio prend 3 ans mais multiplie la valeur par 2.'},
+     {name:'Viticulture raisonnée',detail:'Réduction traitements, équilibre',dTreso:-5000,dQual:+0.5,dStock:5000,dPrix:+2,dRep:+5,result:'Bon compromis qualité/quantité. Votre approche est reconnue.'},
+     {name:'Viticulture conventionnelle',detail:'Rendement max, coût minimal',dTreso:-2000,dQual:0,dStock:8000,dPrix:0,dRep:0,result:'Volume correcte mais prix bas et peu de différenciation.'},
+   ]},
+  {emoji:'🍇',title:'Choix des vendanges',meteo:1,context:'Millésime difficile avec pluies. Faut-il vendanger tôt (avant les maladies) ou attendre la maturité optimale ?',
+   options:[
+     {name:'Vendanges précoces',detail:'Sécurisé mais acidité élevée',dTreso:-8000,dQual:-0.5,dStock:4000,dPrix:-3,dRep:-5,result:'Vous sécurisez la récolte mais le vin sera acide. Millésime délicat.'},
+     {name:'Attendre et risquer',detail:'Maturité optimale si pas de pourriture',dTreso:-3000,dQual:+1,dStock:3000,dPrix:+8,dRep:+10,result:'Pari réussi ! Le temps s\'est amélioré. Millésime surprise de l\'année.'},
+     {name:'Tri sélectif rigoureux',detail:'Coûteux mais qualité préservée',dTreso:-12000,dQual:+0.5,dStock:2500,dPrix:+5,dRep:+8,result:'Excellent choix qualitatif. Moins de volume mais excellente réputation.'},
+   ]},
+  {emoji:'🛢️',title:'Élevage en cave',meteo:2,context:'Quel élevage pour votre vin ? Barriques neuves ou alternatives moins chères ?',
+   options:[
+     {name:'Barriques neuves 225L (80€/barrique)',detail:'60 barriques nécessaires — 4800€',dTreso:-15000,dQual:+1,dStock:0,dPrix:+10,dRep:+15,result:'Élevage classique Bordelais. La barrique neuve apporte tannins et complexité.'},
+     {name:'Barriques d\'occasion',detail:'2ème usage — moitié prix',dTreso:-7000,dQual:+0.3,dStock:0,dPrix:+4,dRep:+5,result:'Économique et raisonnable. Moins d\'apport boisé mais le vin s\'exprime mieux.'},
+     {name:'Cuves inox (terroir pur)',detail:'Vin sans bois, style moderne',dTreso:-4000,dQual:+0.5,dStock:0,dPrix:+6,dRep:+8,result:'Tendance des vins de terroir. Certains clients préfèrent ce style épuré.'},
+   ]},
+  {emoji:'📦',title:'Stratégie de vente',meteo:4,context:'Comment commercialiser votre millésime ? Négociants, cavistes, direct ou exportation ?',
+   options:[
+     {name:'Tout en négoce (vente rapide)',detail:'Prix bas mais trésorerie immédiate',dTreso:+40000,dQual:0,dStock:-5000,dPrix:-8,dRep:-5,result:'Rapide et facile mais vous bradez votre production. Les négociants fixent le prix.'},
+     {name:'Mix cavistes + direct (40/60)',detail:'Marge meilleure, développement',dTreso:+30000,dQual:0,dStock:-4000,dPrix:+5,dRep:+10,result:'Bonne stratégie. Vous développez votre réseau et vos marges.'},
+     {name:'Mailing liste clients directs',detail:'Marge max, distribution lente',dTreso:+20000,dQual:0,dStock:-2000,dPrix:+15,dRep:+20,result:'Marge excellente et fidélisation forte. La patience paie sur la durée.'},
+   ]},
+  {emoji:'🏆',title:'Concours viticole',meteo:0,context:'Le guide Parker visite votre domaine. Préparez-vous pour maximiser la note ?',
+   options:[
+     {name:'Présenter votre meilleur millésime',detail:'Risque mais opportunité',dTreso:-2000,dQual:0,dStock:0,dPrix:+20,dRep:+25,result:'Parker vous attribue 92/100 ! Les commandes explosent.'},
+     {name:'Refuser la visite',detail:'Préserver la discrétion',dTreso:0,dQual:0,dStock:0,dPrix:0,dRep:-5,result:'Vous ratez une opportunité rare. Les grands guides font la réputation.'},
+     {name:'Organiser une dégustation',detail:'Coût logistique mais excellent ROI',dTreso:-5000,dQual:0,dStock:-200,dPrix:+15,dRep:+20,result:'Très bonne note et article dans La Revue du Vin. Excellent retour sur invest.'},
+   ]},
+  {emoji:'🌍',title:'Exportation',meteo:3,context:'Un importateur chinois veut 5000 bouteilles. Marché potentiel énorme mais risqué.',
+   options:[
+     {name:'Exporter 5000 bouteilles',detail:'Marge x3 mais risque impayé',dTreso:+60000,dQual:0,dStock:-5000,dPrix:+8,dRep:+20,result:'Succès ! Le marché asiatique adore votre terroir. La réputation internationale se construit.'},
+     {name:'Exporter 2000 bouteilles test',detail:'Prudent, confirmer avant de s\'engager',dTreso:+25000,dQual:0,dStock:-2000,dPrix:+5,dRep:+10,result:'Sage. Vous testez le marché avant de vous engager massivement.'},
+     {name:'Refuser — rester local',detail:'Sécuriser les acquis',dTreso:0,dQual:0,dStock:0,dPrix:0,dRep:+5,result:'Vous préservez votre identité locale mais ratez une opportunité de croissance.'},
+   ]},
+  {emoji:'🔬',title:'Investir en R&D',meteo:5,context:'Drone de surveillance de la vigne et capteurs météo — 20 000€. Rentable ?',
+   options:[
+     {name:'Investir dans le digital',detail:'ROI 3 ans, qualité +, coûts -',dTreso:-20000,dQual:+1,dStock:+1000,dPrix:+10,dRep:+15,result:'Innovation récompensée. -25% de traitements et +15% de qualité. L\'avenir du vin.'},
+     {name:'Embaucher un œnologue conseil',detail:'2000€/an, expertise humaine',dTreso:-4000,dQual:+0.5,dStock:+500,dPrix:+5,dRep:+8,result:'L\'expertise humaine reste irremplaçable. Votre qualité s\'améliore régulièrement.'},
+     {name:'Garder les méthodes ancestrales',detail:'Zéro coût, authenticité',dTreso:0,dQual:+0.2,dStock:0,dPrix:+3,dRep:+5,result:'Authenticité valorisée par une clientèle de niche. Votre terroir parle de lui-même.'},
+   ]},
+  {emoji:'🤝',title:'Transmission ou développement',meteo:0,context:'8ème millésime. Un voisin propose de racheter le domaine ou de s\'associer.',
+   options:[
+     {name:'Vendre le domaine',detail:'Liquidité immédiate maximale',dTreso:+200000,dQual:0,dStock:0,dPrix:0,dRep:0,result:'Vous réalisez votre patrimoine. Belle plus-value sur 8 ans de travail.'},
+     {name:'S\'associer 50/50',detail:'Croissance partagée',dTreso:+50000,dQual:+0.5,dStock:+2000,dPrix:+10,dRep:+15,result:'L\'union fait la force. Le domaine double de taille et d\'influence.'},
+     {name:'Continuer seul',detail:'Indépendance préservée',dTreso:+10000,dQual:+0.3,dStock:+1000,dPrix:+5,dRep:+10,result:'Vous restez maître à bord. L\'aventure continue à votre rythme.'},
+   ]},
+];
+
+let treso=50000,qualite=2,stock=0,prix=8,reputation=20,millesime=0;
+
+function showToast(t,c){const el=document.getElementById('toast');el.textContent=t;el.style.color=c;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-game').style.display=(id==='screen-game')?'block':'none';if(id!=='screen-game')document.getElementById(id).classList.add('active');}
+function clamp(v,mn,mx){return Math.max(mn,Math.min(mx,v));}
+function fmtK(n){return n>=1000?Math.round(n/1000)+'k€':n+'€';}
+
+function startGame(){
+  treso=50000;qualite=2;stock=0;prix=8;reputation=20;millesime=0;
+  showScreen('screen-game');
+  renderBoard();renderStrip();loadMillesime();
+}
+
+function renderBoard(){
+  document.getElementById('tresoVal').textContent=fmtK(treso);
+  document.getElementById('kpiQual').textContent='⭐'.repeat(Math.round(qualite));
+  document.getElementById('kpiStock').textContent=(stock/1000).toFixed(1)+'k';
+  document.getElementById('kpiPrix').textContent=prix+'€';
+  document.getElementById('kpiRep').textContent=reputation+'%';
+}
+
+function renderStrip(){
+  const el=document.getElementById('vendangeStrip');el.innerHTML='';
+  for(let i=0;i<MILLESIMES.length;i++){
+    const d=document.createElement('div');
+    d.className='vd'+(i<millesime?' done':i===millesime?' current':'');
+    el.appendChild(d);
+  }
+}
+
+function loadMillesime(){
+  if(millesime>=MILLESIMES.length)return endGame();
+  const m=MILLESIMES[millesime];
+  document.getElementById('acEmoji').textContent=m.emoji;
+  document.getElementById('acAnnee').textContent='Millésime '+(millesime+1)+'/'+MILLESIMES.length+' — '+(2015+millesime);
+  document.getElementById('acTitle').textContent=m.title;
+  document.getElementById('acMeteo').textContent=METEOS[m.meteo];
+  document.getElementById('acContext').textContent=m.context;
+  document.getElementById('resultCard').classList.remove('show');
+  document.getElementById('nextBtn').style.display='none';
+  const opts=document.getElementById('optionsList');opts.innerHTML='';
+  m.options.forEach(opt=>{
+    const div=document.createElement('div');div.className='opt';
+    const col=opt.dTreso>0?'var(--green)':opt.dTreso<0?'var(--red)':'var(--ink-dim)';
+    div.innerHTML=`<div class="opt-main"><div class="opt-name">${opt.name}</div><div class="opt-detail">${opt.detail}</div></div><div class="opt-impact" style="color:${col}">${opt.dTreso>0?'+':''}{${opt.dTreso>0?fmtK(opt.dTreso):fmtK(Math.abs(opt.dTreso))}}</div>`;
+    div.onclick=()=>chooseOption(opt);
+    opts.appendChild(div);
+  });
+}
+
+function chooseOption(opt){
+  treso+=opt.dTreso;
+  qualite=clamp(qualite+opt.dQual,0,5);
+  stock=Math.max(0,stock+opt.dStock);
+  prix=Math.max(5,prix+opt.dPrix);
+  reputation=clamp(reputation+opt.dRep,0,100);
+  renderBoard();
+  const isGood=opt.dQual>=0&&opt.dRep>=0;
+  document.getElementById('rcTitle').textContent=isGood?'🍷 Bon choix de vigneron !':'⚠️ Choix risqué';
+  document.getElementById('rcText').textContent=opt.result;
+  document.getElementById('resultCard').classList.add('show');
+  document.getElementById('optionsList').innerHTML='';
+  document.getElementById('nextBtn').style.display='block';
+  showToast((opt.dTreso>=0?'+':'')+fmtK(opt.dTreso),opt.dTreso>=0?'var(--green)':'var(--red)');
+}
+
+function nextMillesime(){millesime++;renderStrip();loadMillesime();}
+
+function endGame(){
+  const domainValue=qualite*reputation*500+stock*prix+treso;
+  const icon=domainValue>200000?'🏆':domainValue>100000?'🍷':'🥂';
+  const title=domainValue>200000?'Grand cru du patrimoine !':domainValue>100000?'Beau domaine !':'Domaine en construction';
+  const lesson=reputation>60?'<b>Réputation = valeur !</b> En viticulture comme en finance, la réputation est l\'actif le plus précieux. Un domaine noté 90+ Parker vaut 10x un domaine inconnu pour la même qualité physique.':
+    '<b>Leçon viticole :</b> La vente directe et le bio sont les deux leviers qui multiplient la marge. La grande distribution et les négociants laissent 15-30% au producteur. La vente directe : 80-90%.';
+  document.getElementById('endIcon').textContent=icon;
+  document.getElementById('endTitle').textContent=title;
+  document.getElementById('endVal').textContent=Math.round(domainValue/1000)+'k€';
+  document.getElementById('endQual').textContent=qualite.toFixed(1)+'/5';
+  document.getElementById('endPrix').textContent=prix+'€';
+  document.getElementById('endRep').textContent=reputation+'%';
+  document.getElementById('endLesson').innerHTML=lesson;
+  showScreen('screen-end');
+}
+
+function share(){
+  const text=`Mon domaine viticole vaut maintenant sur Economya.fr 🍇 8 millésimes de décisions ! À toi de jouer.`;
+  if(navigator.share)navigator.share({title:'Domaine Viticole',text,url:'https://economya.fr'}).catch(()=>{});
+  else navigator.clipboard.writeText(text+' https://economya.fr').then(()=>alert('Copié !'));
+}
+</script>
+</body>
+</html>
