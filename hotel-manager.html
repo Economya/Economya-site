@@ -5,139 +5,199 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hôtel Manager — Economya.fr</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&family=Inter:wght@400;500;600&display=swap');
 :root{
-  --bg:#0A0E1A;--panel:#10162A;--panel2:#162035;
-  --line:#1E2E45;--gold:#FFD54F;--green:#34D399;--red:#F87171;--blue:#60A5FA;--purple:#A78BFA;
-  --ink:#EEF5FF;--ink-dim:#5A7A9A;
+  --bg:#080C18;--card:#0F1628;--card2:#162038;
+  --border:rgba(255,255,255,.08);--gold:#FFD54F;--green:#30D158;--red:#FF453A;--blue:#0A84FF;--purple:#BF5AF2;
+  --ink:#F5F5F7;--muted:rgba(255,255,255,.45);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{height:100%;overflow-y:auto;}
-body{
-  background:radial-gradient(ellipse at 50% 0%,#162035 0%,var(--bg) 60%);
-  color:var(--ink);font-family:'Inter',system-ui,sans-serif;
-  -webkit-tap-highlight-color:transparent;user-select:none;
-  display:flex;align-items:flex-start;justify-content:center;padding:14px;min-height:100vh;
-}
-.app{width:100%;max-width:420px;padding-bottom:20px;}
+html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-tap-highlight-color:transparent;user-select:none;}
+body{display:flex;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;}
+.app{width:100%;max-width:420px;padding-bottom:32px;}
 .screen{display:none;}
-.screen.active{display:block;animation:fadeIn .3s ease;}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
-.eyebrow::before{content:'🏨';}
-h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;}
-h1.title span{color:var(--gold);}
-p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
-.btn{border:none;border-radius:14px;padding:14px 20px;font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;transition:transform .1s ease;margin-bottom:8px;}
-.btn:active{transform:scale(.97);}
-.btn-primary{background:var(--gold);color:#2A1900;}
-.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink);}
-.brand-footer{text-align:center;margin-top:16px;font-size:11px;color:var(--ink-dim);}
-.brand-footer a{color:var(--gold);text-decoration:none;font-weight:600;}
+.screen.active{display:block;animation:fadeUp .35s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
-/* Dashboard hôtel */
-.hotel-dashboard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px;}
-.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
-.hotel-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;}
-.hotel-stars{color:var(--gold);font-size:14px;}
-.hotel-cash{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:20px;color:var(--green);}
-.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
-.kpi{background:var(--panel2);border-radius:10px;padding:8px;text-align:center;}
-.kpi .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;}
-.kpi .l{font-size:9px;color:var(--ink-dim);margin-top:2px;}
-.taux-bar{height:5px;background:rgba(255,255,255,.05);border-radius:99px;margin-top:8px;overflow:hidden;}
-.taux-fill{height:100%;border-radius:99px;transition:width .4s ease;}
+/* INTRO */
+.hotel-hero{
+  background:linear-gradient(180deg,#1A2540 0%,#0F1628 100%);
+  border:1px solid var(--border);border-radius:24px;
+  padding:28px 20px 20px;text-align:center;margin-bottom:16px;
+  position:relative;overflow:hidden;
+}
+.hotel-hero::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(255,213,79,.15),transparent 70%);pointer-events:none;}
+.hotel-illus{font-size:64px;display:block;margin-bottom:8px;filter:drop-shadow(0 8px 16px rgba(0,0,0,.4));}
+.hotel-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,213,79,.12);border:1px solid rgba(255,213,79,.3);border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.05em;margin-bottom:14px;}
+.hotel-title{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:900;letter-spacing:-.03em;margin-bottom:8px;}
+.hotel-title span{color:var(--gold);}
+.hotel-sub{font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:0;}
+.intro-pills{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;}
+.pill{background:var(--card);border:1px solid var(--border);border-radius:99px;padding:7px 14px;font-size:12px;font-weight:600;}
+.pill span{color:var(--gold);}
+.btn-start{background:var(--gold);color:#1A0A00;border:none;border-radius:16px;padding:17px;font-size:17px;font-weight:800;cursor:pointer;width:100%;font-family:'Space Grotesk',sans-serif;letter-spacing:-.01em;transition:opacity .15s;}
+.btn-start:active{opacity:.8;}
+.brand{text-align:center;margin-top:14px;font-size:12px;color:var(--muted);}
+.brand a{color:var(--gold);text-decoration:none;font-weight:600;}
 
-/* Saison */
-.season-strip{display:flex;gap:4px;margin-bottom:12px;}
-.season-dot{flex:1;height:8px;border-radius:99px;background:var(--panel);border:1px solid var(--line);transition:background .3s ease;}
-.season-dot.done{background:var(--green);}
-.season-dot.current{background:var(--gold);}
+/* HUD HÔTEL */
+.hud-hotel{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:16px;margin-bottom:12px;}
+.hud-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.hud-name{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;}
+.hud-stars{color:var(--gold);font-size:13px;}
+.hud-ca{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:22px;color:var(--green);}
+.hud-ca-lbl{font-size:10px;color:var(--muted);}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.stat-block{background:var(--card2);border-radius:14px;padding:10px 8px;text-align:center;}
+.stat-icon{font-size:20px;margin-bottom:4px;}
+.stat-val{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:16px;}
+.stat-lbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:2px;}
+.stat-bar{height:3px;background:rgba(255,255,255,.06);border-radius:99px;margin-top:6px;overflow:hidden;}
+.stat-fill{height:100%;border-radius:99px;transition:width .5s cubic-bezier(.34,1.56,.64,1);}
 
-/* Décision du jour */
-.decision-card{background:var(--panel2);border:2px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px;}
-.dc-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-.dc-emoji{font-size:28px;}
-.dc-info{}
-.dc-period{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-dim);}
-.dc-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;}
-.dc-context{font-size:12.5px;color:var(--ink-dim);line-height:1.4;margin-bottom:10px;}
-.decision-opts{display:flex;flex-direction:column;gap:7px;}
-.dopt{background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;transition:border-color .15s ease;}
-.dopt:active{transform:scale(.98);}
-.dopt:hover{border-color:rgba(255,213,79,.4);}
-.dopt-text{font-size:13px;font-weight:600;flex:1;}
-.dopt-impact{font-size:11px;font-weight:700;text-align:right;white-space:nowrap;}
+/* Progress périodes */
+.periods-row{display:flex;gap:4px;margin-bottom:14px;}
+.pd{flex:1;height:5px;border-radius:99px;background:rgba(255,255,255,.06);border:1px solid var(--border);transition:background .3s;}
+.pd.done{background:var(--green);}
+.pd.active{background:var(--gold);}
+
+/* Carte décision */
+.decision-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:18px;margin-bottom:12px;}
+.dc-head{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.dc-emoji{font-size:36px;width:52px;height:52px;background:rgba(255,255,255,.06);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dc-period{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.dc-title{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:17px;letter-spacing:-.02em;}
+.dc-context{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px;}
+.opts{display:flex;flex-direction:column;gap:9px;}
+.opt{background:var(--card2);border:1.5px solid var(--border);border-radius:14px;padding:13px 14px;cursor:pointer;transition:all .15s;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.opt:active{transform:scale(.98);}
+.opt:hover{border-color:rgba(255,213,79,.4);background:rgba(255,213,79,.05);}
+.opt-text{font-size:13px;font-weight:600;line-height:1.3;}
+.opt-impact{font-size:11px;font-weight:700;white-space:nowrap;padding:4px 8px;border-radius:8px;background:rgba(255,255,255,.06);}
+.opt-impact.pos{color:var(--green);background:rgba(48,209,88,.1);}
+.opt-impact.neg{color:var(--red);background:rgba(255,69,58,.1);}
+.opt-impact.neu{color:var(--muted);}
+
+/* Résultat */
+.result-box{background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;display:none;}
+.result-box.show{display:block;animation:fadeUp .3s ease;}
+.result-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;margin-bottom:5px;}
+.result-text{font-size:12.5px;color:var(--muted);line-height:1.5;}
+.btn-next{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--ink);border-radius:14px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;width:100%;font-family:'Inter',sans-serif;display:none;transition:background .15s;}
+.btn-next:hover{background:rgba(255,255,255,.1);}
 
 /* Toast */
-.toast{position:fixed;top:18%;left:50%;transform:translate(-50%,-50%);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;opacity:0;pointer-events:none;z-index:30;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px 18px;}
-.toast.show{animation:tp .6s ease forwards;}
-@keyframes tp{0%{opacity:0;}15%{opacity:1;}80%{opacity:1;}100%{opacity:0;}}
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:15px;color:var(--gold);opacity:0;pointer-events:none;z-index:99;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:10px 20px;white-space:nowrap;}
+.toast.show{animation:toastAnim .7s ease forwards;}
+@keyframes toastAnim{0%{opacity:0;transform:translateX(-50%) translateY(-8px);}15%{opacity:1;transform:translateX(-50%) translateY(0);}80%{opacity:1;}100%{opacity:0;}}
 
-/* Fin */
-.end-rev{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:48px;color:var(--gold);text-align:center;margin:8px 0 4px;}
-.end-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px;}
-.es{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center;}
-.es .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;color:var(--gold);}
-.es .l{font-size:9px;color:var(--ink-dim);margin-top:2px;}
-.lesson{background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.2);border-radius:12px;padding:14px;font-size:12.5px;color:var(--ink-dim);line-height:1.5;margin-bottom:14px;}
+/* FIN */
+.end-hero{text-align:center;padding:28px 0 16px;}
+.end-icon{font-size:64px;display:block;margin-bottom:10px;}
+.end-title{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:26px;letter-spacing:-.03em;margin-bottom:4px;}
+.end-score{font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:48px;color:var(--gold);line-height:1;}
+.end-lbl{font-size:13px;color:var(--muted);margin-bottom:20px;}
+.end-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
+.eg{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 8px;text-align:center;}
+.eg .v{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:18px;color:var(--gold);}
+.eg .l{font-size:10px;color:var(--muted);margin-top:3px;}
+.lesson{background:rgba(255,213,79,.07);border:1px solid rgba(255,213,79,.2);border-radius:14px;padding:15px;font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:16px;}
 .lesson b{color:var(--gold);}
+.btn-replay{background:var(--gold);color:#1A0A00;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;cursor:pointer;width:100%;margin-bottom:8px;font-family:'Space Grotesk',sans-serif;}
+.btn-share{background:var(--card);border:1px solid var(--border);color:var(--ink);border-radius:14px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;width:100%;font-family:'Inter',sans-serif;}
 </style>
 </head>
 <body>
 <div class="toast" id="toast"></div>
 <div class="app">
 
+<!-- INTRO -->
 <div class="screen active" id="screen-intro">
-  <div class="eyebrow">Economya.fr · L'hôtellerie</div>
-  <h1 class="title">Hôtel <span>Manager</span></h1>
-  <p class="lede">Vous gérez un hôtel 3★ avec 30 chambres. Gérez les tarifs, le personnel, les travaux et les imprévus sur 12 périodes. Maximisez votre chiffre d'affaires et votre taux de satisfaction.</p>
-  <button class="btn btn-primary" onclick="startGame()">Ouvrir l'hôtel</button>
-  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+  <div class="hotel-hero">
+    <span class="hotel-illus">🏨</span>
+    <div class="hotel-tag">🛎️ Economya.fr · Simulation</div>
+    <div class="hotel-title">Hôtel <span>Manager</span></div>
+    <p class="hotel-sub">Vous reprenez un hôtel 3★ en difficulté. 12 décisions stratégiques pour le transformer en établissement rentable et bien noté.</p>
+  </div>
+  <div class="intro-pills">
+    <div class="pill">🏨 <span>30</span> chambres</div>
+    <div class="pill">📅 <span>12</span> périodes</div>
+    <div class="pill">⭐ Objectif <span>4.5★</span></div>
+  </div>
+  <button class="btn-start" onclick="startGame()">🛎️ Prendre la direction</button>
+  <div class="brand">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
 </div>
 
-<div id="screen-game" style="display:none;">
-  <div class="hotel-dashboard">
-    <div class="dash-header">
-      <div><div class="hotel-name">Hôtel Les Économies</div><div class="hotel-stars">⭐⭐⭐</div></div>
-      <div class="hotel-cash" id="cashDisplay">+0€</div>
-    </div>
-    <div class="kpi-grid">
-      <div class="kpi"><div class="v" id="kpiOccup">0%</div><div class="l">Taux d'occup.</div><div class="taux-bar"><div class="taux-fill" id="kpiOccupBar" style="width:0%;background:var(--blue)"></div></div></div>
-      <div class="kpi"><div class="v" id="kpiSat">0/5</div><div class="l">Satisfaction</div><div class="taux-bar"><div class="taux-fill" id="kpiSatBar" style="width:0%;background:var(--gold)"></div></div></div>
-      <div class="kpi"><div class="v" id="kpiTarif">0€</div><div class="l">Tarif nuit</div><div class="taux-bar"><div class="taux-fill" id="kpiTarifBar" style="width:0%;background:var(--green)"></div></div></div>
-    </div>
-  </div>
-
-  <div class="season-strip" id="seasonStrip"></div>
-
-  <div class="decision-card" id="decisionCard">
-    <div class="dc-header">
-      <div class="dc-emoji" id="dcEmoji">🏨</div>
-      <div class="dc-info">
-        <div class="dc-period" id="dcPeriod">Période 1/12</div>
-        <div class="dc-title" id="dcTitle">Chargement...</div>
+<!-- JEU -->
+<div class="screen" id="screen-game">
+  <div class="hud-hotel">
+    <div class="hud-top">
+      <div>
+        <div class="hud-name">🏨 Hôtel Les Économies</div>
+        <div class="hud-stars" id="hudStars">⭐⭐⭐</div>
+      </div>
+      <div style="text-align:right">
+        <div class="hud-ca-lbl">CA cumulé</div>
+        <div class="hud-ca" id="hudCA">+0%</div>
       </div>
     </div>
-    <div class="dc-context" id="dcContext"></div>
-    <div class="decision-opts" id="decisionOpts"></div>
+    <div class="stats-row">
+      <div class="stat-block">
+        <div class="stat-icon">🛏️</div>
+        <div class="stat-val" id="statOccup">60%</div>
+        <div class="stat-lbl">Occupation</div>
+        <div class="stat-bar"><div class="stat-fill" id="fillOccup" style="background:var(--blue);width:60%"></div></div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-icon">😊</div>
+        <div class="stat-val" id="statSat">70%</div>
+        <div class="stat-lbl">Satisfaction</div>
+        <div class="stat-bar"><div class="stat-fill" id="fillSat" style="background:var(--green);width:70%"></div></div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-icon">💶</div>
+        <div class="stat-val" id="statTarif">110€</div>
+        <div class="stat-lbl">Tarif/nuit</div>
+        <div class="stat-bar"><div class="stat-fill" id="fillTarif" style="background:var(--gold);width:55%"></div></div>
+      </div>
+    </div>
   </div>
+  <div class="periods-row" id="periodsRow"></div>
+  <div class="decision-card" id="decisionCard">
+    <div class="dc-head">
+      <div class="dc-emoji" id="dcEmoji">💰</div>
+      <div>
+        <div class="dc-period" id="dcPeriod">Période 1/12</div>
+        <div class="dc-title" id="dcTitle">—</div>
+      </div>
+    </div>
+    <div class="dc-context" id="dcContext">—</div>
+    <div class="opts" id="optsList"></div>
+  </div>
+  <div class="result-box" id="resultBox">
+    <div class="result-title" id="resultTitle"></div>
+    <div class="result-text" id="resultText"></div>
+  </div>
+  <button class="btn-next" id="btnNext" onclick="nextPeriod()">Période suivante →</button>
 </div>
 
+<!-- FIN -->
 <div class="screen" id="screen-end">
-  <div style="text-align:center;font-size:48px;margin:10px 0;" id="endIcon">🏆</div>
-  <div style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:22px;text-align:center;margin-bottom:6px;" id="endTitle">Saison terminée !</div>
-  <div class="end-rev" id="endRev">0€</div>
-  <div style="text-align:center;font-size:13px;color:var(--ink-dim);margin-bottom:16px;">chiffre d'affaires annuel</div>
+  <div class="end-hero">
+    <span class="end-icon" id="endIcon">🏆</span>
+    <div class="end-title" id="endTitle">Saison terminée !</div>
+    <div class="end-score" id="endScore">+0%</div>
+    <div class="end-lbl">performance CA sur la saison</div>
+  </div>
   <div class="end-grid">
-    <div class="es"><div class="v" id="endOccup">0%</div><div class="l">Taux d'occup. moy.</div></div>
-    <div class="es"><div class="v" id="endSat">0/5</div><div class="l">Satisfaction finale</div></div>
-    <div class="es"><div class="v" id="endTarif">0€</div><div class="l">Tarif moyen nuit</div></div>
+    <div class="eg"><div class="v" id="endOccup">0%</div><div class="l">Occupation</div></div>
+    <div class="eg"><div class="v" id="endSat">0%</div><div class="l">Satisfaction</div></div>
+    <div class="eg"><div class="v" id="endTarif">0€</div><div class="l">Tarif/nuit</div></div>
   </div>
   <div class="lesson" id="endLesson"></div>
-  <button class="btn btn-primary" onclick="startGame()">Nouvelle saison</button>
-  <button class="btn btn-ghost" onclick="share()">Partager</button>
-  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+  <button class="btn-replay" onclick="startGame()">🔄 Nouvelle saison</button>
+  <button class="btn-share" onclick="share()">📤 Partager</button>
+  <div class="brand" style="margin-top:14px">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
 </div>
 </div>
 
@@ -145,111 +205,122 @@ p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
 const DECISIONS=[
   {emoji:'💰',title:'Stratégie tarifaire',context:'Basse saison. Comment fixez-vous vos prix ?',
    options:[
-     {text:'Prix premium 150€/nuit',impact:'Occup. -20%, CA +15%',dOccup:-20,dSat:0,dTarif:+40,dCA:+15},
-     {text:'Prix marché 110€/nuit',impact:'Occup. stable, CA stable',dOccup:+5,dSat:+5,dTarif:0,dCA:+8},
-     {text:'Prix discount 70€/nuit',impact:'Occup. +30%, CA +10%',dOccup:+30,dSat:-5,dTarif:-40,dCA:+5},
+     {text:'Prix premium 150€/nuit',impact:'+CA',cls:'pos',dOccup:-20,dSat:0,dTarif:+40,dCA:+15,result:'Moins de clients mais marge forte. Votre RevPAR s\'améliore.'},
+     {text:'Prix marché 110€/nuit',impact:'Équilibré',cls:'neu',dOccup:+5,dSat:+5,dTarif:0,dCA:+8,result:'Stratégie sage. Vous conservez votre clientèle habituelle.'},
+     {text:'Prix discount 70€/nuit',impact:'+Volume',cls:'pos',dOccup:+30,dSat:-5,dTarif:-40,dCA:+5,result:'Hôtel plein mais marges rognées. Risque de dévaloriser l\'image.'},
    ]},
   {emoji:'👤',title:'Recrutement réception',context:'Votre réceptionniste phare vient de partir. Que faites-vous ?',
    options:[
-     {text:'Recruter rapidement (CDI standard)',impact:'Sat. +10, coût -2000€/mois',dOccup:+5,dSat:+10,dTarif:0,dCA:-5},
-     {text:'Intérim en attendant',impact:'Sat. -5, coût -1200€/mois',dOccup:-5,dSat:-5,dTarif:0,dCA:-2},
-     {text:'Surcharger l\'équipe actuelle',impact:'Sat. -15, gratuit',dOccup:-10,dSat:-15,dTarif:0,dCA:0},
+     {text:'Recruter rapidement (CDI)',impact:'+Sat',cls:'pos',dOccup:+5,dSat:+10,dTarif:0,dCA:-5,result:'Bon choix. L\'accueil est le premier contact client.'},
+     {text:'Intérim en attendant',impact:'Risqué',cls:'neg',dOccup:-5,dSat:-5,dTarif:0,dCA:-2,result:'Solution de transition. La qualité d\'accueil en pâtit.'},
+     {text:'Surcharger l\'équipe actuelle',impact:'-Moral',cls:'neg',dOccup:-10,dSat:-15,dTarif:0,dCA:0,result:'Mauvaise idée. L\'équipe s\'épuise et les clients le ressentent.'},
    ]},
   {emoji:'🔧',title:'Rénovation salle de bain',context:'3 chambres ont des problèmes de plomberie. Les avis Booking se dégradent.',
    options:[
-     {text:'Rénovation complète maintenant (8000€)',impact:'Sat. +20, fermeture 2 semaines',dOccup:-15,dSat:+20,dTarif:+10,dCA:-8},
-     {text:'Réparation minimum (1500€)',impact:'Sat. +5, pas de fermeture',dOccup:0,dSat:+5,dTarif:0,dCA:-3},
-     {text:'Ignorer et attendre',impact:'Sat. -15, risque aggravation',dOccup:-5,dSat:-15,dTarif:-10,dCA:-5},
+     {text:'Rénovation complète (8 000€)',impact:'+Image',cls:'pos',dOccup:-15,dSat:+20,dTarif:+10,dCA:-8,result:'Investissement rentable. Vos notes remontent sur Booking.'},
+     {text:'Réparation minimum (1 500€)',impact:'Correct',cls:'neu',dOccup:0,dSat:+5,dTarif:0,dCA:-3,result:'Stoppage d\'urgence. Les avis s\'améliorent légèrement.'},
+     {text:'Ignorer et attendre',impact:'-Notes',cls:'neg',dOccup:-5,dSat:-15,dTarif:-10,dCA:-5,result:'Erreur. Les avis négatifs s\'accumulent et font fuir les clients.'},
    ]},
-  {emoji:'🌐',title:'Référencement Booking.com',context:'Un consultant propose d\'optimiser votre profil Booking (commission 15%). Alternativement, site direct.',
+  {emoji:'🌐',title:'Booking.com vs direct',context:'Un consultant propose d\'optimiser votre profil Booking (commission 15%).',
    options:[
-     {text:'Tout via Booking.com',impact:'Occup. +25%, marge -15%',dOccup:+25,dSat:+5,dTarif:0,dCA:+5},
-     {text:'Mix Booking 60% + direct 40%',impact:'Occup. +10%, marge optimale',dOccup:+10,dSat:+8,dTarif:0,dCA:+12},
-     {text:'100% réservations directes',impact:'Occup. -10%, marge +15%',dOccup:-10,dSat:+3,dTarif:+5,dCA:+8},
+     {text:'100% via Booking.com',impact:'+Visibilité',cls:'pos',dOccup:+25,dSat:+5,dTarif:0,dCA:+5,result:'Hôtel complet mais commission de 15% sur chaque nuit.'},
+     {text:'Mix Booking 60% + direct 40%',impact:'Optimal',cls:'pos',dOccup:+10,dSat:+8,dTarif:0,dCA:+12,result:'La meilleure stratégie. Visibilité + marges préservées.'},
+     {text:'100% réservations directes',impact:'+Marge',cls:'neu',dOccup:-10,dSat:+3,dTarif:+5,dCA:+8,result:'Marges maximales mais difficulté à remplir sans plateforme.'},
    ]},
   {emoji:'🍳',title:'Petit-déjeuner',context:'Inclure ou non le petit-déjeuner dans le tarif ?',
    options:[
-     {text:'Petit-déjeuner inclus (+15€/chambre)',impact:'Sat. +15, Occup. +10%',dOccup:+10,dSat:+15,dTarif:+15,dCA:+10},
-     {text:'Petit-déjeuner en option',impact:'Sat. +5, flexible',dOccup:+5,dSat:+5,dTarif:+5,dCA:+5},
-     {text:'Pas de petit-déjeuner',impact:'Sat. -5, aucun coût extra',dOccup:-5,dSat:-5,dTarif:0,dCA:0},
+     {text:'Inclus (+15€/chambre)',impact:'+Sat',cls:'pos',dOccup:+10,dSat:+15,dTarif:+15,dCA:+10,result:'Les clients adorent. Le petit-déjeuner inclus booste les avis.'},
+     {text:'En option à la carte',impact:'Flexible',cls:'neu',dOccup:+5,dSat:+5,dTarif:+5,dCA:+5,result:'Bonne flexibilité. Certains clients apprécient le choix.'},
+     {text:'Pas de petit-déjeuner',impact:'Neutre',cls:'neu',dOccup:-5,dSat:-5,dTarif:0,dCA:0,result:'Simplicité opérationnelle mais manque perçu par les clients.'},
    ]},
-  {emoji:'⭐',title:'Programme fidélité',context:'Lancer un programme fidélité pour encourager les retours ?',
+  {emoji:'⭐',title:'Programme fidélité',context:'Lancer un programme pour encourager les retours clients ?',
    options:[
-     {text:'Programme avec remise 10% dès 2 séjours',impact:'Sat. +10, fidélisation +20%',dOccup:+15,dSat:+10,dTarif:-5,dCA:+8},
-     {text:'Carte de bienvenue personnalisée',impact:'Sat. +15, coût minimal',dOccup:+5,dSat:+15,dTarif:0,dCA:+5},
-     {text:'Aucun programme, prix seul',impact:'Neutre court terme',dOccup:0,dSat:0,dTarif:0,dCA:0},
+     {text:'Remise 10% dès le 2e séjour',impact:'+Fidélité',cls:'pos',dOccup:+15,dSat:+10,dTarif:-5,dCA:+8,result:'Excellent. Un client fidèle coûte 5× moins cher à acquérir.'},
+     {text:'Carte de bienvenue personnalisée',impact:'+Image',cls:'pos',dOccup:+5,dSat:+15,dTarif:0,dCA:+5,result:'Simple et efficace. Le geste humain fait toute la différence.'},
+     {text:'Aucun programme',impact:'Neutre',cls:'neu',dOccup:0,dSat:0,dTarif:0,dCA:0,result:'Vous laissez partir des clients qui auraient pu revenir.'},
    ]},
-  {emoji:'🌞',title:'Haute saison — tarifs',context:'Été arrivé. Vous pouvez monter vos prix. Quelle stratégie ?',
+  {emoji:'🌞',title:'Haute saison — tarifs',context:'Été arrivé ! Vous pouvez monter vos prix. Quelle stratégie ?',
    options:[
-     {text:'Tarif dynamique (prix selon dispo)',impact:'CA +25%, tech payante',dOccup:+5,dSat:-5,dTarif:+35,dCA:+25},
-     {text:'Tarif fixe haute saison (+50€)',impact:'Lisible, CA +15%',dOccup:+10,dSat:+5,dTarif:+50,dCA:+15},
-     {text:'Garder les mêmes prix',impact:'Taux plein, CA stable',dOccup:+20,dSat:+10,dTarif:0,dCA:+10},
+     {text:'Tarif dynamique (selon dispo)',impact:'+CA max',cls:'pos',dOccup:+5,dSat:-5,dTarif:+35,dCA:+25,result:'Technique des hôtels de chaîne. Revenus maximisés.'},
+     {text:'Tarif fixe haute saison (+50€)',impact:'Lisible',cls:'pos',dOccup:+10,dSat:+5,dTarif:+50,dCA:+15,result:'Simple et transparent. Les clients apprécient la clarté.'},
+     {text:'Garder les mêmes prix',impact:'+Volume',cls:'neu',dOccup:+20,dSat:+10,dTarif:0,dCA:+10,result:'Vous remplissez vite mais laissez de l\'argent sur la table.'},
    ]},
-  {emoji:'💬',title:'Réponse aux avis négatifs',context:'Un avis 1★ viral sur Google : "chambre bruyante, service nul". 50 vues par jour.',
+  {emoji:'💬',title:'Avis négatif viral',context:'Un avis 1★ : "chambre bruyante, service nul". 50 vues/jour.',
    options:[
-     {text:'Répondre publiquement + geste commercial',impact:'Sat. +10, image +15',dOccup:+10,dSat:+10,dTarif:0,dCA:+5},
-     {text:'Répondre poliment sans geste',impact:'Sat. +5, image +5',dOccup:+5,dSat:+5,dTarif:0,dCA:+2},
-     {text:'Ignorer l\'avis',impact:'Sat. -10, image -20',dOccup:-15,dSat:-10,dTarif:-5,dCA:-10},
+     {text:'Répondre + geste commercial',impact:'+Image',cls:'pos',dOccup:+10,dSat:+10,dTarif:0,dCA:+5,result:'La bonne réponse. Les lecteurs voient votre professionnalisme.'},
+     {text:'Répondre poliment sans geste',impact:'Correct',cls:'neu',dOccup:+5,dSat:+5,dTarif:0,dCA:+2,result:'Suffisant. Montrez que vous prenez les retours au sérieux.'},
+     {text:'Ignorer l\'avis',impact:'-Réputation',cls:'neg',dOccup:-15,dSat:-10,dTarif:-5,dCA:-10,result:'Erreur fatale. L\'absence de réponse est perçue comme du mépris.'},
    ]},
-  {emoji:'🔋',title:'Rénovation énergétique',context:'Panneaux solaires proposés : 15 000€, économies 2 500€/an.',
+  {emoji:'🔋',title:'Rénovation énergétique',context:'Panneaux solaires : 15 000€ investissement, 2 500€/an d\'économies.',
    options:[
-     {text:'Installation complète',impact:'Coût -15k€, éco +2500€/an',dOccup:+5,dSat:+10,dTarif:0,dCA:-8},
-     {text:'Demander des devis alternatifs',impact:'Décision future, neutre',dOccup:0,dSat:+5,dTarif:0,dCA:0},
-     {text:'Reporter à l\'année prochaine',impact:'Statu quo',dOccup:0,dSat:0,dTarif:0,dCA:0},
+     {text:'Installation complète',impact:'+Vert',cls:'pos',dOccup:+5,dSat:+10,dTarif:0,dCA:-8,result:'Rentabilisé en 6 ans. Et les clients eco-sensibles adorent.'},
+     {text:'Demander d\'autres devis',impact:'Prudent',cls:'neu',dOccup:0,dSat:+5,dTarif:0,dCA:0,result:'Sage. Comparer les offres peut faire économiser 20-30%.'},
+     {text:'Reporter à l\'année prochaine',impact:'Neutre',cls:'neu',dOccup:0,dSat:0,dTarif:0,dCA:0,result:'Statu quo. Chaque année de retard = 2 500€ perdus.'},
    ]},
-  {emoji:'🎭',title:'Événement local',context:'Festival de musique ce week-end. Hôtels concurrents affichent complet.',
+  {emoji:'🎭',title:'Festival local ce week-end',context:'Vos concurrents affichent complet. Comment réagissez-vous ?',
    options:[
-     {text:'Tripler les prix (tarif événement)',impact:'CA +40%, risque réputation',dOccup:+5,dSat:-10,dTarif:+100,dCA:+40},
-     {text:'Augmenter modérément (+40€)',impact:'CA +20%, image préservée',dOccup:+15,dSat:+5,dTarif:+40,dCA:+20},
-     {text:'Garder prix normaux',impact:'Taux plein, loyal',dOccup:+20,dSat:+15,dTarif:0,dCA:+15},
+     {text:'Tripler les prix (tarif événement)',impact:'+CA court',cls:'neg',dOccup:+5,dSat:-10,dTarif:+100,dCA:+40,result:'Rentable mais risqué. Les clients se souviennent des prix abusifs.'},
+     {text:'Augmenter modérément (+40€)',impact:'Optimal',cls:'pos',dOccup:+15,dSat:+5,dTarif:+40,dCA:+20,result:'La bonne approche. Profiter sans décevoir.'},
+     {text:'Garder les prix normaux',impact:'+Loyal',cls:'pos',dOccup:+20,dSat:+15,dTarif:0,dCA:+15,result:'Image irréprochable. Ces clients reviendront et vous recommanderont.'},
    ]},
-  {emoji:'🧹',title:'Service de ménage',context:'Réduire la fréquence du ménage pour baisser les coûts (-15% charges) ?',
+  {emoji:'🧹',title:'Service de ménage',context:'Réduire la fréquence du ménage pour baisser les coûts de 15% ?',
    options:[
-     {text:'Ménage tous les 3 jours sur demande',impact:'Coût -20%, Sat. -15',dOccup:-10,dSat:-15,dTarif:-5,dCA:-5},
-     {text:'Ménage quotidien maintenu',impact:'Sat. stable, coût normal',dOccup:+5,dSat:+10,dTarif:+5,dCA:+5},
-     {text:'Ménage express avec checklist qualité',impact:'Sat. +5, coût -5%',dOccup:+5,dSat:+5,dTarif:0,dCA:+3},
+     {text:'Ménage tous les 3 jours sur demande',impact:'-Coût',cls:'neg',dOccup:-10,dSat:-15,dTarif:-5,dCA:-5,result:'Économie immédiate mais les avis sur la propreté s\'effondrent.'},
+     {text:'Ménage quotidien maintenu',impact:'+Qualité',cls:'pos',dOccup:+5,dSat:+10,dTarif:+5,dCA:+5,result:'La propreté reste la première attente des clients d\'hôtel.'},
+     {text:'Ménage express avec checklist',impact:'Efficace',cls:'pos',dOccup:+5,dSat:+5,dTarif:0,dCA:+3,result:'Bonne idée. Efficacité sans sacrifice de la qualité perçue.'},
    ]},
-  {emoji:'🎄',title:'Offre de fin d\'année',context:'Basse saison. Créer un package spécial fêtes ?',
+  {emoji:'🎄',title:'Package fêtes de fin d\'année',context:'Basse saison. Créer une offre spéciale pour remplir l\'hôtel ?',
    options:[
-     {text:'Package "Noël à l\'hôtel" (repas + chambre)',impact:'Occup. +30%, marge OK',dOccup:+30,dSat:+20,dTarif:+60,dCA:+25},
-     {text:'Réduction -20% pour remplir',impact:'Occup. +20%, CA stable',dOccup:+20,dSat:+5,dTarif:-20,dCA:+5},
-     {text:'Rien de spécial, économiser',impact:'Basse saison subie',dOccup:-10,dSat:0,dTarif:0,dCA:-5},
+     {text:'Package Noël (repas + chambre)',impact:'+Festif',cls:'pos',dOccup:+30,dSat:+20,dTarif:+60,dCA:+25,result:'Excellent ! L\'hôtel se remplit et l\'ambiance booste les avis.'},
+     {text:'Réduction -20% pour remplir',impact:'+Volume',cls:'neu',dOccup:+20,dSat:+5,dTarif:-20,dCA:+5,result:'Hôtel plein mais sans la magie. Correct mais pas mémorable.'},
+     {text:'Rien de spécial, économiser',impact:'Risqué',cls:'neg',dOccup:-10,dSat:0,dTarif:0,dCA:-5,result:'Basse saison subie. Vos concurrents captent vos clients.'},
    ]},
 ];
 
-let cash=0,occup=60,sat=3.5,tarif=110,period=0,totalCA=0;
-const ROOMS=30,BASE_TARIF=110;
+const LESSONS = [
+  'Le <b>RevPAR</b> (Revenu par chambre disponible) est l\'indicateur clé de l\'hôtellerie. Taux d\'occupation × tarif moyen. Optimiser les deux simultanément est l\'art du revenue management.',
+  'En hôtellerie, <b>une note Booking sous 8/10</b> divise le taux de conversion par 2. Répondre à chaque avis (positif ou négatif) augmente la note moyenne de 0,3 points en 3 mois.',
+  'La <b>règle des 80/20 s\'applique à l\'hôtellerie</b> : 20% de vos clients fidèles génèrent 80% de vos revenus. Un programme fidélité simple peut doubler le taux de retour.',
+];
 
-function showToast(t,c){const el=document.getElementById('toast');el.textContent=t;el.style.color=c;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');}
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-game').style.display=(id==='screen-game')?'block':'none';if(id!=='screen-game')document.getElementById(id).classList.add('active');}
-function clamp(v,mn,mx){return Math.max(mn,Math.min(mx,v));}
-function fmt(n){return n.toLocaleString('fr-FR')+'€';}
+let occup=60, sat=70, tarif=110, ca=0, period=0;
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+function showToast(t){
+  const el=document.getElementById('toast');
+  el.textContent=t;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');
+}
+function clamp(v,mn=0,mx=100){return Math.max(mn,Math.min(mx,v));}
 
 function startGame(){
-  cash=0;occup=60;sat=3.5;tarif=BASE_TARIF;period=0;totalCA=0;
+  occup=60;sat=70;tarif=110;ca=0;period=0;
   showScreen('screen-game');
-  renderDashboard();
-  renderSeason();
-  loadDecision();
+  renderHUD();renderPeriods();loadDecision();
 }
 
-function renderDashboard(){
-  document.getElementById('cashDisplay').textContent='+'+fmt(Math.round(totalCA));
-  document.getElementById('kpiOccup').textContent=Math.round(occup)+'%';
-  document.getElementById('kpiOccupBar').style.width=occup+'%';
-  document.getElementById('kpiSat').textContent=sat.toFixed(1)+'/5';
-  document.getElementById('kpiSatBar').style.width=(sat/5*100)+'%';
-  document.getElementById('kpiTarif').textContent=Math.round(tarif)+'€';
-  document.getElementById('kpiTarifBar').style.width=Math.min(100,(tarif/200*100))+'%';
+function renderHUD(){
+  document.getElementById('statOccup').textContent=Math.round(occup)+'%';
+  document.getElementById('statSat').textContent=Math.round(sat)+'%';
+  document.getElementById('statTarif').textContent=tarif+'€';
+  document.getElementById('fillOccup').style.width=clamp(occup)+'%';
+  document.getElementById('fillSat').style.width=clamp(sat)+'%';
+  document.getElementById('fillTarif').style.width=clamp((tarif-60)/2)+'%';
+  document.getElementById('hudCA').textContent=(ca>=0?'+':'')+ca+'%';
+  document.getElementById('hudCA').style.color=ca>=0?'var(--green)':'var(--red)';
+  const stars=sat>=90?'⭐⭐⭐⭐⭐':sat>=75?'⭐⭐⭐⭐':sat>=60?'⭐⭐⭐':sat>=40?'⭐⭐':'⭐';
+  document.getElementById('hudStars').textContent=stars;
 }
 
-function renderSeason(){
-  const el=document.getElementById('seasonStrip');el.innerHTML='';
-  for(let i=0;i<DECISIONS.length;i++){
-    const dot=document.createElement('div');
-    dot.className='season-dot'+(i<period?' done':i===period?' current':'');
-    el.appendChild(dot);
-  }
+function renderPeriods(){
+  const el=document.getElementById('periodsRow');el.innerHTML='';
+  DECISIONS.forEach((_,i)=>{
+    const d=document.createElement('div');
+    d.className='pd'+(i<period?' done':i===period?' active':'');
+    el.appendChild(d);
+  });
 }
 
 function loadDecision(){
@@ -259,48 +330,56 @@ function loadDecision(){
   document.getElementById('dcPeriod').textContent='Période '+(period+1)+'/'+DECISIONS.length;
   document.getElementById('dcTitle').textContent=d.title;
   document.getElementById('dcContext').textContent=d.context;
-  const opts=document.getElementById('decisionOpts');opts.innerHTML='';
+  document.getElementById('resultBox').classList.remove('show');
+  document.getElementById('btnNext').style.display='none';
+  const opts=document.getElementById('optsList');opts.innerHTML='';
   d.options.forEach(opt=>{
-    const div=document.createElement('div');div.className='dopt';
-    const col=opt.dCA>0?'var(--green)':opt.dCA<0?'var(--red)':'var(--ink-dim)';
-    div.innerHTML=`<span class="dopt-text">${opt.text}</span><span class="dopt-impact" style="color:${col}">${opt.impact}</span>`;
-    div.onclick=()=>chooseDecision(opt);
+    const div=document.createElement('div');div.className='opt';
+    div.innerHTML=`<span class="opt-text">${opt.text}</span><span class="opt-impact ${opt.cls}">${opt.impact}</span>`;
+    div.onclick=()=>choose(opt);
     opts.appendChild(div);
   });
 }
 
-function chooseDecision(opt){
-  occup=clamp(occup+opt.dOccup,10,100);
-  sat=clamp(sat+opt.dSat*0.1,0,5);
-  tarif=clamp(tarif+opt.dTarif,50,300);
-  const periodCA=Math.round(ROOMS*(occup/100)*tarif*30*(opt.dCA+100)/100/10);
-  totalCA+=periodCA;
-  showToast((periodCA>=0?'+':'')+fmt(periodCA)+' ce mois',periodCA>=0?'var(--green)':'var(--red)');
+function choose(opt){
+  occup=clamp(occup+opt.dOccup,0,100);
+  sat=clamp(sat+opt.dSat,0,100);
+  tarif=Math.max(60,tarif+opt.dTarif);
+  ca+=opt.dCA;
+  renderHUD();
+  const isGood=opt.dCA>=5||opt.dSat>=10;
+  document.getElementById('resultTitle').textContent=isGood?'✅ Bonne décision !':'⚠️ Décision risquée';
+  document.getElementById('resultText').textContent=opt.result;
+  document.getElementById('resultBox').classList.add('show');
+  document.getElementById('optsList').innerHTML='';
+  document.getElementById('btnNext').style.display='block';
+  showToast(opt.dCA>=0?`+${opt.dCA}% CA 📈`:`${opt.dCA}% CA 📉`);
   period++;
-  renderDashboard();
-  renderSeason();
-  setTimeout(loadDecision,600);
+}
+
+function nextPeriod(){
+  renderPeriods();
+  if(period>=DECISIONS.length)endGame();
+  else loadDecision();
 }
 
 function endGame(){
-  const icon=totalCA>150000?'🏆':totalCA>80000?'⭐':'🙂';
-  const title=totalCA>150000?'Hôtelier expert !':totalCA>80000?'Bonne saison !':'Saison correcte';
-  const lesson=sat>=4?'<b>Excellence !</b> Votre taux de satisfaction élevé génère des réservations directes et réduit la dépendance aux OTA (Booking, Expedia) qui prennent 15-20% de commission.':
-    '<b>Clé de l\'hôtellerie :</b> la satisfaction client est l\'actif le plus précieux. Une note Booking de 8+ peut faire la différence entre 60% et 90% de taux d\'occupation.';
+  const icon=ca>=60?'🏆':ca>=30?'⭐':ca>=0?'🙂':'😰';
+  const title=ca>=60?'Hôtel légendaire !':ca>=30?'Belle saison !':ca>=0?'Saison correcte':'Saison difficile';
   document.getElementById('endIcon').textContent=icon;
   document.getElementById('endTitle').textContent=title;
-  document.getElementById('endRev').textContent=fmt(Math.round(totalCA));
+  document.getElementById('endScore').textContent=(ca>=0?'+':'')+ca+'%';
   document.getElementById('endOccup').textContent=Math.round(occup)+'%';
-  document.getElementById('endSat').textContent=sat.toFixed(1)+'/5';
-  document.getElementById('endTarif').textContent=Math.round(tarif)+'€';
-  document.getElementById('endLesson').innerHTML=lesson;
+  document.getElementById('endSat').textContent=Math.round(sat)+'%';
+  document.getElementById('endTarif').textContent=tarif+'€';
+  document.getElementById('endLesson').innerHTML='💡 '+LESSONS[Math.floor(Math.random()*LESSONS.length)];
   showScreen('screen-end');
 }
 
 function share(){
-  const text=`J'ai généré ${fmt(Math.round(totalCA))} de CA sur Hôtel Manager (Economya.fr) 🏨 À toi de gérer !`;
-  if(navigator.share)navigator.share({title:'Hôtel Manager',text,url:'https://economya.fr'}).catch(()=>{});
-  else navigator.clipboard.writeText(text+' https://economya.fr').then(()=>alert('Copié !'));
+  const t=`J'ai géré l'Hôtel Les Économies avec +${ca}% de CA et ${Math.round(sat)}% de satisfaction sur Economya.fr 🏨`;
+  if(navigator.share)navigator.share({title:'Hôtel Manager',text:t,url:'https://economya.fr'}).catch(()=>{});
+  else navigator.clipboard.writeText(t+' https://economya.fr').then(()=>alert('Copié !'));
 }
 </script>
 </body>
