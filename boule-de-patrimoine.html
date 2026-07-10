@@ -54,7 +54,19 @@
   @keyframes rankPop{ 0%{opacity:0; transform:translateX(-50%) translateY(8px) scale(.85);} 20%{opacity:1; transform:translateX(-50%) translateY(0) scale(1.1);} 75%{opacity:1;} 100%{opacity:0; transform:translateX(-50%) translateY(-12px);} }
 
   canvas{ display:block; width:100%; height:100%; touch-action:none; }
-  .joy-hint{ position:absolute; bottom:20px; left:0; right:0; text-align:center; font-size:12.5px; color:var(--ink-dim); z-index:5; pointer-events:none; }
+  .joy-hint{ position:absolute; top:14px; left:0; right:0; text-align:center; font-size:12.5px; color:var(--ink-dim); z-index:5; pointer-events:none; }
+
+  /* Joystick virtuel fixe : même comportement souris/tactile, isolé du canvas */
+  .joystick-base{
+    position:absolute; bottom:26px; left:26px; width:132px; height:132px; border-radius:50%;
+    background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.18);
+    z-index:8; touch-action:none; -webkit-tap-highlight-color:transparent;
+  }
+  .joystick-knob{
+    position:absolute; top:50%; left:50%; width:56px; height:56px; margin:-28px 0 0 -28px;
+    border-radius:50%; background:rgba(255,213,79,.4); border:2px solid rgba(255,213,79,.7);
+    box-shadow:0 4px 14px rgba(0,0,0,.3); pointer-events:none;
+  }
 </style>
 </head>
 <body>
@@ -66,7 +78,10 @@
   </div>
   <div class="rank-toast" id="rankToast"></div>
   <div class="absorb-toast" id="absorbToast"></div>
-  <div class="joy-hint" id="joyHint" style="display:none;">Glissez pour diriger votre boule</div>
+  <div class="joy-hint" id="joyHint" style="display:none;">Utilisez le joystick pour diriger votre boule</div>
+  <div class="joystick-base" id="joystickBase" style="display:none;">
+    <div class="joystick-knob" id="joystickKnob"></div>
+  </div>
 
   <div class="overlay active" id="screen-intro">
     <div class="eyebrow">Economya.fr · La boule</div>
@@ -103,11 +118,6 @@ function resize(){
   ctx.setTransform(DPR,0,0,DPR,0,0);
 }
 window.addEventListener('resize', resize);
-// Sécurité mobile : la visualViewport (barre d'adresse Safari qui se
-// rétracte, clavier virtuel, etc.) change parfois la taille réelle sans
-// déclencher 'resize' sur window de façon fiable.
-if(window.visualViewport){ window.visualViewport.addEventListener('resize', resize); }
-window.addEventListener('orientationchange', ()=>setTimeout(resize,300));
 
 const ARENA_W = 1600, ARENA_H = 1600;
 
@@ -165,6 +175,8 @@ function startGame(){
   document.getElementById('screen-over').classList.remove('active');
   document.getElementById('hud').style.display='flex';
   document.getElementById('joyHint').style.display='block';
+  joystickBase.style.display='block';
+  resetJoyKnob();
 
   ball = { x: ARENA_W/2, y: ARENA_H/2, r:16, value:0 };
   objects = []; particles = [];
@@ -182,9 +194,6 @@ function startGame(){
   }, 1000);
 
   if(!rafStarted){ rafStarted = true; requestAnimationFrame(loop); }
-  // Re-mesure après que l'overlay ait disparu et que la mise en page se soit stabilisée
-  requestAnimationFrame(resize);
-  setTimeout(resize, 150);
 }
 
 function updateHud(){
@@ -202,44 +211,64 @@ function showAbsorb(text, screenY){
   el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
 }
 
-// Position du pointeur en coordonnées écran (CSS px), identique souris/tactile.
-function pointerPos(e){
-  const rect = canvas.getBoundingClientRect();
-  const src = (e.touches && e.touches[0]) || (e.changedTouches && e.changedTouches[0]) || e;
-  return { x: src.clientX - rect.left, y: src.clientY - rect.top };
+// ── Joystick virtuel fixe ────────────────────────────────────────────
+// Remplace le "glisser n'importe où sur le canvas" (fragile sur mobile,
+// plusieurs tentatives de correction infructueuses) par un joystick DOM
+// dédié, toujours visible, avec EXACTEMENT le même code pour souris et
+// tactile. joyDX/joyDY restent des décalages en pixels écran (pas besoin
+// de les convertir vers l'espace arène) : c'est la logique de loop() qui
+// s'en sert déjà correctement telle quelle.
+const joystickBase = document.getElementById('joystickBase');
+const joystickKnob = document.getElementById('joystickKnob');
+const JOY_MAXD = 40;
+
+function joyCenter(){
+  const r = joystickBase.getBoundingClientRect();
+  return { x: r.left + r.width/2, y: r.top + r.height/2 };
+}
+function setJoyFromClient(clientX, clientY){
+  const c = joyCenter();
+  let dx = clientX - c.x, dy = clientY - c.y;
+  const d = Math.hypot(dx,dy);
+  if(d > JOY_MAXD){ dx = dx/d*JOY_MAXD; dy = dy/d*JOY_MAXD; }
+  joyDX = dx; joyDY = dy;
+  joystickKnob.style.transform = `translate(${dx}px, ${dy}px)`;
+}
+function resetJoyKnob(){
+  joyDX = 0; joyDY = 0;
+  joystickKnob.style.transform = 'translate(0,0)';
 }
 function joyStart(e){
   if(!running) return;
-  const p = pointerPos(e);
-  joyActive = true; joyStartX = p.x; joyStartY = p.y; joyDX=0; joyDY=0;
+  joyActive = true;
+  const t = e.touches ? e.touches[0] : e;
+  setJoyFromClient(t.clientX, t.clientY);
+  e.preventDefault();
 }
 function joyMove(e){
   if(!joyActive) return;
-  const p = pointerPos(e);
-  joyDX = p.x - joyStartX; joyDY = p.y - joyStartY;
-  const maxD = 60;
-  const d = Math.hypot(joyDX,joyDY);
-  if(d > maxD){ joyDX = joyDX/d*maxD; joyDY = joyDY/d*maxD; }
+  const t = e.touches ? e.touches[0] : e;
+  setJoyFromClient(t.clientX, t.clientY);
+  e.preventDefault();
 }
-function joyEnd(){ joyActive = false; joyDX=0; joyDY=0; }
+function joyEnd(e){
+  joyActive = false;
+  resetJoyKnob();
+  if(e && e.preventDefault) e.preventDefault();
+}
 
-// Un seul jeu d'écouteurs, JAMAIS les deux à la fois : sur beaucoup de
-// mobiles, un doigt déclenche À LA FOIS les Pointer Events ET les Touch
-// Events. Avoir les deux en même temps (comme avant) crée deux calculs de
-// joystick concurrents avec des échelles de coordonnées différentes → le
-// contrôle devient incohérent/cassé. Ici : tactile → Touch Events
-// uniquement (le plus robuste sur mobile) ; sinon → Pointer Events (souris).
+// Un seul jeu d'écouteurs actif à la fois (jamais tactile + pointer en même
+// temps : c'était la cause du bug précédent, deux calculs concurrents).
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 if(isTouchDevice){
-  canvas.addEventListener('touchstart', e=>{ joyStart(e); e.preventDefault(); }, {passive:false});
-  canvas.addEventListener('touchmove',  e=>{ joyMove(e);  e.preventDefault(); }, {passive:false});
-  canvas.addEventListener('touchend',   e=>{ joyEnd(); e.preventDefault(); }, {passive:false});
-  canvas.addEventListener('touchcancel',e=>{ joyEnd(); e.preventDefault(); }, {passive:false});
+  joystickBase.addEventListener('touchstart', joyStart, {passive:false});
+  joystickBase.addEventListener('touchmove',  joyMove,  {passive:false});
+  joystickBase.addEventListener('touchend',   joyEnd,   {passive:false});
+  joystickBase.addEventListener('touchcancel',joyEnd,   {passive:false});
 } else {
-  canvas.addEventListener('pointerdown', joyStart);
-  canvas.addEventListener('pointermove', joyMove);
-  canvas.addEventListener('pointerup', joyEnd);
-  canvas.addEventListener('pointercancel', joyEnd);
+  joystickBase.addEventListener('pointerdown', joyStart);
+  window.addEventListener('pointermove', joyMove);
+  window.addEventListener('pointerup', joyEnd);
 }
 
 function spawnAbsorbBurst(x,y,color){
@@ -258,6 +287,8 @@ function endGame(){
   clearInterval(timerInterval);
   document.getElementById('hud').style.display='none';
   document.getElementById('joyHint').style.display='none';
+  joystickBase.style.display='none';
+  joyEnd();
   if(ball.value > best){ best = ball.value; try{ localStorage.setItem('bouleDePatrimoineBest', String(Math.round(best))); }catch(e){} }
   document.getElementById('goScore').textContent = fmt(ball.value);
   document.getElementById('goBest').textContent = fmt(best);
