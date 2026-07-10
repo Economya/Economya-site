@@ -63,9 +63,6 @@
     border-radius:50%; background:rgba(255,213,79,.4); border:2px solid rgba(255,213,79,.7);
     box-shadow:0 4px 14px rgba(0,0,0,.3); pointer-events:none;
   }
-
-  /* Diagnostic temporaire — à retirer une fois le bug identifié */
-  #debugBar{ position:absolute; bottom:2px; left:2px; right:2px; z-index:9; font-family:monospace; font-size:10px; color:#0f0; background:rgba(0,0,0,.55); padding:3px 6px; border-radius:6px; pointer-events:none; display:none; text-align:left; line-height:1.4; }
 </style>
 </head>
 <body>
@@ -81,7 +78,6 @@
 <div class="joystick-base" id="joystickBase">
   <div class="joystick-knob" id="joystickKnob"></div>
 </div>
-<div id="debugBar"></div>
 
 <div class="overlay active" id="screen-intro">
   <div class="eyebrow">Economya.fr · La boule</div>
@@ -124,18 +120,23 @@ window.addEventListener('orientationchange', ()=>setTimeout(resize,300));
 const ARENA_W = 1600, ARENA_H = 1600;
 
 const OBJECT_TYPES = [
-  { icon:'🪙', value:1,   size:8  },
-  { icon:'🍬', value:2,   size:10 },
-  { icon:'☕', value:5,   size:14 },
-  { icon:'📖', value:12,  size:18 },
-  { icon:'👟', value:35,  size:24 },
-  { icon:'🎧', value:60,  size:28 },
-  { icon:'🚲', value:150, size:38 },
-  { icon:'📺', value:300, size:46 },
-  { icon:'🛋️', value:600, size:58 },
-  { icon:'🚗', value:2000,size:80 },
-  { icon:'🏠', value:8000,size:110 },
+  { icon:'🪙', value:1,   size:8,  weight:100 },
+  { icon:'🍬', value:2,   size:10, weight:70  },
+  { icon:'☕', value:5,   size:14, weight:50  },
+  { icon:'📖', value:12,  size:18, weight:34  },
+  { icon:'👟', value:35,  size:24, weight:22  },
+  { icon:'🎧', value:60,  size:28, weight:15  },
+  { icon:'🚲', value:150, size:38, weight:10  },
+  { icon:'📺', value:300, size:46, weight:7   },
+  { icon:'🛋️', value:600, size:58, weight:5   },
+  { icon:'🚗', value:2000,size:80, weight:4   },
+  { icon:'🏠', value:8000,size:110,weight:3   },
 ];
+const TOTAL_WEIGHT = OBJECT_TYPES.reduce((s,t)=>s+t.weight,0);
+// Quotas minimums garantis en permanence sur la carte, pour que les objets
+// rares (maison, voiture...) restent toujours visibles quelque part au lieu
+// de dépendre uniquement du tirage aléatoire pondéré.
+const MIN_COUNTS = { '📺':2, '🛋️':2, '🚗':1, '🏠':1 };
 
 let ball = { x:0, y:0, r:16, value:0 };
 let objects = [];
@@ -146,12 +147,6 @@ let joyActive = false, joyDX=0, joyDY=0;
 let rafStarted = false;
 let timerInterval = null;
 let particles = [];
-let lastError = '';
-
-// Affiche toute erreur JS à l'écran (diagnostic mobile)
-window.addEventListener('error', function(e){
-  lastError = (e.message||'erreur') + ' @' + (e.lineno||'?');
-});
 
 try{ best = parseInt(localStorage.getItem('bouleDePatrimoineBest')||'0',10); }catch(e){}
 
@@ -165,16 +160,34 @@ function fmt(n){
   return Math.round(n) + ' €';
 }
 
+function pickWeightedType(){
+  let r = Math.random()*TOTAL_WEIGHT;
+  for(const t of OBJECT_TYPES){
+    if(r < t.weight) return t;
+    r -= t.weight;
+  }
+  return OBJECT_TYPES[0];
+}
 function spawnObjects(count){
   for(let i=0;i<count;i++){
-    const typeIdx = Math.min(OBJECT_TYPES.length-1, Math.floor(Math.random()*Math.random()*OBJECT_TYPES.length));
-    const t = OBJECT_TYPES[typeIdx];
+    const t = pickWeightedType();
     objects.push({
       x: Math.random()*ARENA_W,
       y: Math.random()*ARENA_H,
       icon: t.icon, value:t.value, size:t.size
     });
   }
+}
+function ensureMinimumTiers(){
+  Object.keys(MIN_COUNTS).forEach(icon=>{
+    const t = OBJECT_TYPES.find(o=>o.icon===icon);
+    if(!t) return;
+    let have = 0;
+    for(const o of objects){ if(o.icon===icon) have++; }
+    for(let i=have; i<MIN_COUNTS[icon]; i++){
+      objects.push({ x: Math.random()*ARENA_W, y: Math.random()*ARENA_H, icon:t.icon, value:t.value, size:t.size });
+    }
+  });
 }
 
 // ── Joystick virtuel fixe ────────────────────────────────────────────
@@ -236,12 +249,12 @@ function startGame(){
   document.getElementById('hud').style.display='flex';
   document.getElementById('joyHint').style.display='block';
   joystickBase.style.display='block';
-  document.getElementById('debugBar').style.display='block';
   resetJoyKnob();
 
   ball = { x: ARENA_W/2, y: ARENA_H/2, r:16, value:0 };
   objects = []; particles = [];
   spawnObjects(140);
+  ensureMinimumTiers();
   running = true; timeLeft = 60;
   updateHud();
 
@@ -291,7 +304,6 @@ function endGame(){
   document.getElementById('hud').style.display='none';
   document.getElementById('joyHint').style.display='none';
   joystickBase.style.display='none';
-  document.getElementById('debugBar').style.display='none';
   joyEnd();
   if(ball.value > best){ best = ball.value; try{ localStorage.setItem('bouleDePatrimoineBest', String(Math.round(best))); }catch(e){} }
   document.getElementById('goScore').textContent = fmt(ball.value);
@@ -337,7 +349,7 @@ function loop(){
       }
     }
 
-    if(objects.length < 60) spawnObjects(20);
+    if(objects.length < 60){ spawnObjects(20); ensureMinimumTiers(); }
 
     for(let i=particles.length-1;i>=0;i--){
       const p = particles[i];
@@ -362,6 +374,11 @@ function loop(){
   ctx.strokeStyle = 'rgba(255,213,79,.3)'; ctx.lineWidth = 4;
   ctx.strokeRect(0,0,ARENA_W,ARENA_H);
 
+  // FIX : on force un fillStyle opaque avant de dessiner les emojis-objets.
+  // Sans ça, ils héritaient du fillStyle du dégradé de fond (quasi
+  // transparent, alpha 2-6%) laissé par le fillRect plus haut — invisible
+  // sur mobile Safari alors que desktop ignore fillStyle pour les emojis.
+  ctx.fillStyle = '#ffffff';
   ctx.textAlign='center'; ctx.textBaseline='middle';
   objects.forEach(o=>{
     ctx.font = (o.size) + 'px serif';
@@ -388,12 +405,6 @@ function loop(){
     ctx.beginPath(); ctx.arc(p.x,p.y,3,0,Math.PI*2); ctx.fill();
     ctx.restore();
   });
-
-  // Diagnostic temporaire — à retirer une fois le bug identifié
-  const dbg = document.getElementById('debugBar');
-  if(dbg.style.display !== 'none'){
-    dbg.textContent = `obj:${objects.length} run:${running} ball:${Math.round(ball.x)},${Math.round(ball.y)} joy:${joyActive}(${Math.round(joyDX)},${Math.round(joyDY)}) W:${W}x${H} DPR:${DPR} err:${lastError||'-'}`;
-  }
 
   requestAnimationFrame(loop);
 }
