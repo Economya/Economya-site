@@ -211,7 +211,8 @@ function joyMove(e){
   if(!joyActive) return;
   const p = pointerPos(e);
   joyDX = p.x - joyStartX; joyDY = p.y - joyStartY;
-  const maxD = 60;
+  // Clamp adaptatif selon la taille de l'arène
+  const maxD = ARENA_W * 0.08;
   const d = Math.hypot(joyDX,joyDY);
   if(d > maxD){ joyDX = joyDX/d*maxD; joyDY = joyDY/d*maxD; }
 }
