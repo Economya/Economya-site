@@ -47,6 +47,9 @@
   .hud-timer.urgent{ color:#FF6B6B; }
 
   .rank-toast{ position:absolute; top:64px; left:50%; transform:translateX(-50%); font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:16px; color:var(--gold); opacity:0; z-index:6; pointer-events:none; text-shadow:0 2px 6px rgba(0,0,0,.5); }
+  .absorb-toast{ position:absolute; left:50%; transform:translateX(-50%); font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:18px; color:#4CAF50; opacity:0; z-index:7; pointer-events:none; text-shadow:0 2px 8px rgba(0,0,0,.6); }
+  .absorb-toast.show{ animation: absorbPop .6s ease forwards; }
+  @keyframes absorbPop{ 0%{opacity:0;transform:translateX(-50%) translateY(0) scale(.7);} 20%{opacity:1;transform:translateX(-50%) translateY(-10px) scale(1.15);} 80%{opacity:1;} 100%{opacity:0;transform:translateX(-50%) translateY(-30px) scale(.9);} }
   .rank-toast.show{ animation: rankPop .9s ease forwards; }
   @keyframes rankPop{ 0%{opacity:0; transform:translateX(-50%) translateY(8px) scale(.85);} 20%{opacity:1; transform:translateX(-50%) translateY(0) scale(1.1);} 75%{opacity:1;} 100%{opacity:0; transform:translateX(-50%) translateY(-12px);} }
 
@@ -62,6 +65,7 @@
     <div class="hud-timer" id="hudTimer">60s</div>
   </div>
   <div class="rank-toast" id="rankToast"></div>
+  <div class="absorb-toast" id="absorbToast"></div>
   <div class="joy-hint" id="joyHint" style="display:none;">Glissez pour diriger votre boule</div>
 
   <div class="overlay active" id="screen-intro">
@@ -183,6 +187,12 @@ function showRank(text){
   el.textContent = text;
   el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
 }
+function showAbsorb(text, y){
+  const el = document.getElementById('absorbToast');
+  el.textContent = text;
+  el.style.top = Math.max(80, Math.min(H*0.6, y)) + 'px';
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+}
 
 function pointerPos(e){
   const rect = canvas.getBoundingClientRect();
@@ -244,7 +254,7 @@ function loop(){
   ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
 
   if(running){
-    const speed = 3.2;
+    const speed = 6.0;
     if(joyActive){
       const d = Math.hypot(joyDX,joyDY) || 1;
       ball.x += (joyDX/d) * speed * Math.min(1, d/20);
@@ -261,6 +271,7 @@ function loop(){
           ball.value += o.value;
           ball.r += Math.sqrt(o.size) * 0.35;
           spawnAbsorbBurst(o.x-ball.x+W/2, o.y-ball.y+H/2, '#FFD54F');
+          showAbsorb('+' + fmt(o.value), (o.y / ARENA_H) * H);
           objects.splice(i,1);
           updateHud();
 
