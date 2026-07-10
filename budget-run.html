@@ -84,7 +84,7 @@ const JUMP_FORCE = -14;
 const INITIAL_SPEED = 5;
 const PLAYER_W = 32, PLAYER_H = 40;
 
-let score, best, running, raf, speed, distance;
+let score, best, running, raf, speed, distance, elapsed;
 let player, coins, obstacles, particles, clouds;
 let keys = {};
 let jumping = false;
@@ -128,6 +128,7 @@ function startGame() {
 
   score = 0;
   distance = 0;
+  elapsed = 0;
   speed = INITIAL_SPEED;
   running = true;
 
@@ -232,7 +233,13 @@ function loop(now) {
 
 function update(dt) {
   distance += speed * dt;
-  speed = INITIAL_SPEED + distance * 0.002; // accélération progressive
+  elapsed += dt;
+  // Accélération basée sur le TEMPS écoulé (pas sur la distance, qui dépend
+  // elle-même de la vitesse : ça créait une boucle de rétroaction où plus on
+  // va vite, plus la distance grimpe vite, plus la vitesse grimpe encore
+  // plus vite → accélération exponentielle incontrôlable après quelques
+  // secondes). Ici la vitesse augmente de façon linéaire et est plafonnée.
+  speed = Math.min(INITIAL_SPEED + elapsed * 0.0028, INITIAL_SPEED * 2.4);
 
   // Joueur
   player.vy += GRAVITY * dt;
