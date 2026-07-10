@@ -259,8 +259,11 @@ function loop(){
     const speed = 4.5;
     if(joyActive){
       const d = Math.hypot(joyDX,joyDY) || 1;
-      ball.x += (joyDX/d) * speed * Math.min(1, d/20);
-      ball.y += (joyDY/d) * speed * Math.min(1, d/20);
+      const maxD = ARENA_W * 0.08;
+      const intensity = Math.min(1, d / maxD);
+      ball.x += (joyDX/d) * speed * intensity;
+      ball.y += (joyDY/d) * speed * intensity;
+      joyDX = 0; joyDY = 0;
     }
     ball.x = Math.max(ball.r, Math.min(ARENA_W-ball.r, ball.x));
     ball.y = Math.max(ball.r, Math.min(ARENA_H-ball.r, ball.y));
