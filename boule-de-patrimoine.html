@@ -186,9 +186,11 @@ function showRank(text){
 
 function pointerPos(e){
   const rect = canvas.getBoundingClientRect();
+  const scaleX = ARENA_W / rect.width;
+  const scaleY = ARENA_H / rect.height;
   const cx = e.touches ? e.touches[0].clientX : e.clientX;
   const cy = e.touches ? e.touches[0].clientY : e.clientY;
-  return { x: cx-rect.left, y: cy-rect.top };
+  return { x: (cx-rect.left)*scaleX, y: (cy-rect.top)*scaleY };
 }
 function joyStart(e){
   if(!running) return;
