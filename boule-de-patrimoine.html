@@ -196,14 +196,15 @@ function showAbsorb(text, screenY){
 
 function pointerPos(e){
   const rect = canvas.getBoundingClientRect();
-  const cx = e.touches ? e.touches[0].clientX : e.clientX;
-  const cy = e.touches ? e.touches[0].clientY : e.clientY;
-  const x = cx - rect.left;
-  const y = cy - rect.top;
-  // Scale uniquement pour mobile (arène 1600x1600 vs écran plus petit)
-  const scaleX = ARENA_W / rect.width;
-  const scaleY = ARENA_H / rect.height;
-  return { x: x * scaleX, y: y * scaleY };
+  if(e.touches){
+    // Mobile : scale les coordonnées touch vers l'espace arène
+    const cx = e.touches[0].clientX - rect.left;
+    const cy = e.touches[0].clientY - rect.top;
+    return { x: cx * (ARENA_W / rect.width), y: cy * (ARENA_H / rect.height) };
+  } else {
+    // Ordi : souris déjà dans l'espace canvas, pas de scale
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }
 }
 function joyStart(e){
   if(!running) return;
