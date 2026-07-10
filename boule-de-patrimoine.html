@@ -194,26 +194,24 @@ function showAbsorb(text, y){
   el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
 }
 
-function pointerPos(e){
-  const rect = canvas.getBoundingClientRect();
-  const scaleX = ARENA_W / rect.width;
-  const scaleY = ARENA_H / rect.height;
-  const cx = e.touches ? e.touches[0].clientX : e.clientX;
-  const cy = e.touches ? e.touches[0].clientY : e.clientY;
-  return { x: (cx-rect.left)*scaleX, y: (cy-rect.top)*scaleY };
+function getClientPos(e){
+  if(e.touches && e.touches.length > 0) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  return { x: e.clientX, y: e.clientY };
 }
 function joyStart(e){
   if(!running) return;
-  const p = pointerPos(e);
+  const p = getClientPos(e);
   joyActive = true; joyStartX = p.x; joyStartY = p.y; joyDX=0; joyDY=0;
 }
 function joyMove(e){
   if(!joyActive) return;
-  const p = pointerPos(e);
-  joyDX = p.x - joyStartX; joyDY = p.y - joyStartY;
+  const p = getClientPos(e);
+  // Delta en pixels ÉCRAN (identique ordi et mobile)
+  joyDX = p.x - joyStartX;
+  joyDY = p.y - joyStartY;
   joyStartX = p.x; joyStartY = p.y;
-  // Clamp adaptatif selon la taille de l'arène
-  const maxD = ARENA_W * 0.08;
+  // Clamp en pixels écran
+  const maxD = 60;
   const d = Math.hypot(joyDX,joyDY);
   if(d > maxD){ joyDX = joyDX/d*maxD; joyDY = joyDY/d*maxD; }
 }
@@ -259,10 +257,14 @@ function loop(){
     const speed = 4.5;
     if(joyActive){
       const d = Math.hypot(joyDX,joyDY) || 1;
-      const maxD = ARENA_W * 0.08;
+      const maxD = 60; // pixels écran
       const intensity = Math.min(1, d / maxD);
-      ball.x += (joyDX/d) * speed * intensity;
-      ball.y += (joyDY/d) * speed * intensity;
+      // Convertir le déplacement écran en arène
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = ARENA_W / rect.width;
+      const scaleY = ARENA_H / rect.height;
+      ball.x += (joyDX/d) * speed * intensity * scaleX * 10;
+      ball.y += (joyDY/d) * speed * intensity * scaleY * 10;
       joyDX = 0; joyDY = 0;
     }
     ball.x = Math.max(ball.r, Math.min(ARENA_W-ball.r, ball.x));
