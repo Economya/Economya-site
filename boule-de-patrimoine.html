@@ -53,7 +53,6 @@
   canvas{ display:block; width:100%; height:100%; touch-action:none; }
   .joy-hint{ position:absolute; top:14px; left:0; right:0; text-align:center; font-size:12.5px; color:var(--ink-dim); z-index:5; pointer-events:none; }
 
-  /* Joystick virtuel fixe, toujours visible : même code souris/tactile */
   .joystick-base{
     position:absolute; bottom:26px; left:26px; width:132px; height:132px; border-radius:50%;
     background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.18);
@@ -64,6 +63,9 @@
     border-radius:50%; background:rgba(255,213,79,.4); border:2px solid rgba(255,213,79,.7);
     box-shadow:0 4px 14px rgba(0,0,0,.3); pointer-events:none;
   }
+
+  /* Diagnostic temporaire — à retirer une fois le bug identifié */
+  #debugBar{ position:absolute; bottom:2px; left:2px; right:2px; z-index:9; font-family:monospace; font-size:10px; color:#0f0; background:rgba(0,0,0,.55); padding:3px 6px; border-radius:6px; pointer-events:none; display:none; text-align:left; line-height:1.4; }
 </style>
 </head>
 <body>
@@ -79,6 +81,7 @@
 <div class="joystick-base" id="joystickBase">
   <div class="joystick-knob" id="joystickKnob"></div>
 </div>
+<div id="debugBar"></div>
 
 <div class="overlay active" id="screen-intro">
   <div class="eyebrow">Economya.fr · La boule</div>
@@ -143,6 +146,12 @@ let joyActive = false, joyDX=0, joyDY=0;
 let rafStarted = false;
 let timerInterval = null;
 let particles = [];
+let lastError = '';
+
+// Affiche toute erreur JS à l'écran (diagnostic mobile)
+window.addEventListener('error', function(e){
+  lastError = (e.message||'erreur') + ' @' + (e.lineno||'?');
+});
 
 try{ best = parseInt(localStorage.getItem('bouleDePatrimoineBest')||'0',10); }catch(e){}
 
@@ -169,10 +178,6 @@ function spawnObjects(count){
 }
 
 // ── Joystick virtuel fixe ────────────────────────────────────────────
-// Un joystick DOM dédié (pas un drag depuis n'importe où sur le canvas),
-// toujours visible, avec EXACTEMENT le même code pour souris et tactile.
-// joyDX/joyDY sont des décalages en pixels écran, utilisés tels quels par
-// loop() — pas de conversion vers l'espace arène (source de bugs avant).
 const joystickBase = document.getElementById('joystickBase');
 const joystickKnob = document.getElementById('joystickKnob');
 const JOY_MAXD = 40;
@@ -212,9 +217,6 @@ function joyEnd(e){
   if(e && e.preventDefault) e.preventDefault();
 }
 
-// Un seul jeu d'écouteurs actif à la fois : jamais tactile + pointer/souris
-// en même temps (c'était la cause des bugs précédents : deux calculs de
-// joystick concurrents avec des échelles de coordonnées différentes).
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 if(isTouchDevice){
   joystickBase.addEventListener('touchstart', joyStart, {passive:false});
@@ -234,6 +236,7 @@ function startGame(){
   document.getElementById('hud').style.display='flex';
   document.getElementById('joyHint').style.display='block';
   joystickBase.style.display='block';
+  document.getElementById('debugBar').style.display='block';
   resetJoyKnob();
 
   ball = { x: ARENA_W/2, y: ARENA_H/2, r:16, value:0 };
@@ -288,6 +291,7 @@ function endGame(){
   document.getElementById('hud').style.display='none';
   document.getElementById('joyHint').style.display='none';
   joystickBase.style.display='none';
+  document.getElementById('debugBar').style.display='none';
   joyEnd();
   if(ball.value > best){ best = ball.value; try{ localStorage.setItem('bouleDePatrimoineBest', String(Math.round(best))); }catch(e){} }
   document.getElementById('goScore').textContent = fmt(ball.value);
@@ -358,9 +362,9 @@ function loop(){
   ctx.strokeStyle = 'rgba(255,213,79,.3)'; ctx.lineWidth = 4;
   ctx.strokeRect(0,0,ARENA_W,ARENA_H);
 
+  ctx.textAlign='center'; ctx.textBaseline='middle';
   objects.forEach(o=>{
     ctx.font = (o.size) + 'px serif';
-    ctx.textAlign='center'; ctx.textBaseline='middle';
     ctx.globalAlpha = ball.r >= o.size*0.9 ? 1 : 0.55;
     ctx.fillText(o.icon, o.x, o.y);
     ctx.globalAlpha = 1;
@@ -384,6 +388,12 @@ function loop(){
     ctx.beginPath(); ctx.arc(p.x,p.y,3,0,Math.PI*2); ctx.fill();
     ctx.restore();
   });
+
+  // Diagnostic temporaire — à retirer une fois le bug identifié
+  const dbg = document.getElementById('debugBar');
+  if(dbg.style.display !== 'none'){
+    dbg.textContent = `obj:${objects.length} run:${running} ball:${Math.round(ball.x)},${Math.round(ball.y)} joy:${joyActive}(${Math.round(joyDX)},${Math.round(joyDY)}) W:${W}x${H} DPR:${DPR} err:${lastError||'-'}`;
+  }
 
   requestAnimationFrame(loop);
 }
