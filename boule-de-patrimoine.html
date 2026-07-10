@@ -254,7 +254,7 @@ function loop(){
   ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
 
   if(running){
-    const speed = 6.0;
+    const speed = 4.5;
     if(joyActive){
       const d = Math.hypot(joyDX,joyDY) || 1;
       ball.x += (joyDX/d) * speed * Math.min(1, d/20);
