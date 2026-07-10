@@ -194,17 +194,15 @@ function showAbsorb(text, screenY){
   el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
 }
 
+// Position du pointeur en coordonnées écran (CSS px), identique souris/tactile.
+// Les Pointer Events unifient déjà souris + tactile + stylet : pas besoin d'un
+// traitement séparé pour le touch (c'était la source du bug mobile : les
+// event listeners touchstart/touchmove ET pointerdown/pointermove se
+// déclenchaient TOUS LES DEUX pour un même doigt, avec des échelles de
+// coordonnées différentes, ce qui rendait le joystick incohérent).
 function pointerPos(e){
   const rect = canvas.getBoundingClientRect();
-  if(e.touches){
-    // Mobile : scale les coordonnées touch vers l'espace arène
-    const cx = e.touches[0].clientX - rect.left;
-    const cy = e.touches[0].clientY - rect.top;
-    return { x: cx * (ARENA_W / rect.width), y: cy * (ARENA_H / rect.height) };
-  } else {
-    // Ordi : souris déjà dans l'espace canvas, pas de scale
-    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
-  }
+  return { x: e.clientX - rect.left, y: e.clientY - rect.top };
 }
 function joyStart(e){
   if(!running) return;
@@ -215,20 +213,17 @@ function joyMove(e){
   if(!joyActive) return;
   const p = pointerPos(e);
   joyDX = p.x - joyStartX; joyDY = p.y - joyStartY;
-  // maxD adapté : plus grand sur mobile car coords scalées x4
-  const maxD = e.touches ? 60 * (ARENA_W / canvas.getBoundingClientRect().width) : 60;
+  const maxD = 60;
   const d = Math.hypot(joyDX,joyDY);
   if(d > maxD){ joyDX = joyDX/d*maxD; joyDY = joyDY/d*maxD; }
 }
 function joyEnd(){ joyActive = false; joyDX=0; joyDY=0; }
 
-canvas.addEventListener('pointerdown', joyStart);
-canvas.addEventListener('pointermove', joyMove);
+canvas.addEventListener('pointerdown', e=>{ joyStart(e); e.preventDefault(); });
+canvas.addEventListener('pointermove', e=>{ joyMove(e); e.preventDefault(); });
 canvas.addEventListener('pointerup', joyEnd);
 canvas.addEventListener('pointercancel', joyEnd);
-canvas.addEventListener('touchstart', e=>{ joyStart(e); e.preventDefault(); }, {passive:false});
-canvas.addEventListener('touchmove', e=>{ joyMove(e); e.preventDefault(); }, {passive:false});
-canvas.addEventListener('touchend', joyEnd);
+canvas.addEventListener('pointerleave', joyEnd);
 
 function spawnAbsorbBurst(x,y,color){
   for(let i=0;i<8;i++){
