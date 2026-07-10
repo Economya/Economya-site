@@ -4,156 +4,213 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Le Bon Deal — Economya.fr</title>
-<meta name="description" content="Comparez 2 offres et choisissez la moins chère en moins de 10 secondes ! Le jeu de finance du quotidien par Economya.fr">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Comparez 2 offres et choisissez la moins chère en moins de 10 secondes ! 80 questions variées par Economya.fr">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gd:#085041;--a:#EF9F27;--bg:#FAFAF8;--t:#2C2C2A;--m:#5F5E5A;--w:#fff;--b:rgba(0,0,0,0.08)}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
-nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
-.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
-.logo span{color:var(--a)}
-.nav-back{text-decoration:none;color:var(--m);font-size:.82rem}
-.hero{background:linear-gradient(135deg,#1a0533,#7c2d92,#a855f7);color:white;padding:2.5rem 2rem;text-align:center}
-.hero-badge{display:inline-block;background:rgba(255,255,255,.15);color:white;padding:.3rem .9rem;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,6vw,3rem);font-weight:900;margin-bottom:.4rem}
-.hero h1 em{color:var(--a);font-style:normal}
-.hero p{color:rgba(255,255,255,.75);font-size:.95rem}
-.stats-bar{display:flex;justify-content:center;gap:2rem;padding:1rem;background:var(--w);border-bottom:1px solid var(--b);flex-wrap:wrap}
-.stat-item{text-align:center}
-.stat-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--g);display:block}
-.stat-lbl{font-size:.7rem;color:var(--m);text-transform:uppercase;letter-spacing:.05em}
-.container{max-width:700px;margin:0 auto;padding:2rem 1.5rem}
-.timer-wrap{text-align:center;margin-bottom:1rem}
-.timer-bar{height:10px;background:var(--b);border-radius:50px;overflow:hidden;margin-bottom:.4rem}
-.timer-fill{height:100%;background:linear-gradient(90deg,var(--g),var(--a));border-radius:50px;transition:width .1s linear}
-.timer-text{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gd)}
-.timer-text.urgent{color:#ef4444;animation:pulse .5s infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
-.question-badge{display:inline-block;background:rgba(124,45,146,.1);color:#7c2d92;padding:.3rem .8rem;border-radius:50px;font-size:.75rem;font-weight:700;margin-bottom:.8rem}
-.question-text{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--gd);margin-bottom:1.5rem;line-height:1.4;text-align:center}
-.deals{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
-.deal-card{background:var(--w);border:2px solid var(--b);border-radius:16px;padding:1.5rem;text-align:center;cursor:pointer;transition:all .2s;position:relative}
-.deal-card:hover{border-color:var(--g);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
-.deal-card.selected-correct{border-color:var(--g);background:#E1F5EE}
-.deal-card.selected-wrong{border-color:#ef4444;background:#fef2f2}
-.deal-card.reveal-correct{border-color:var(--g);background:#E1F5EE}
-.deal-icon{font-size:2.5rem;margin-bottom:.6rem;display:block}
-.deal-name{font-weight:700;font-size:.95rem;color:var(--t);margin-bottom:.3rem}
-.deal-detail{font-size:.8rem;color:var(--m);margin-bottom:.8rem;line-height:1.4}
-.deal-price{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--gd)}
-.deal-price-sub{font-size:.75rem;color:var(--m)}
-.deal-badge{position:absolute;top:-8px;right:-8px;background:var(--a);color:white;font-size:.65rem;font-weight:700;padding:.2rem .5rem;border-radius:50px}
-.vs{display:flex;align-items:center;justify-content:center}
-.vs span{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--m)}
-.feedback{border-radius:16px;padding:1.2rem 1.5rem;margin-bottom:1rem;display:none}
-.feedback.correct{background:#E1F5EE;border:1px solid var(--g)}
-.feedback.wrong{background:#fef2f2;border:1px solid #ef4444}
-.feedback h3{font-weight:700;margin-bottom:.3rem;font-size:.95rem}
-.feedback p{font-size:.85rem;color:var(--m);line-height:1.5}
-.feedback .economy{font-weight:700;color:var(--g)}
-.score-display{background:var(--w);border-radius:16px;border:1px solid var(--b);padding:1.2rem;display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
-.score-item{text-align:center}
-.score-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--g)}
-.score-lbl{font-size:.7rem;color:var(--m);text-transform:uppercase}
-.results{background:linear-gradient(135deg,var(--gd),#0F6E56);border-radius:16px;padding:2rem;text-align:center;color:white;display:none}
-.results h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;margin-bottom:.5rem}
-.results p{color:rgba(255,255,255,.75);margin-bottom:1.2rem}
-.results-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin:1.2rem 0}
-.res-item{background:rgba(255,255,255,.1);border-radius:12px;padding:1rem}
-.res-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--a);display:block}
-.res-lbl{font-size:.72rem;color:rgba(255,255,255,.6)}
-.btn{padding:.7rem 1.8rem;border-radius:50px;font-weight:700;font-size:.9rem;cursor:pointer;font-family:inherit;border:none}
-.btn-primary{background:linear-gradient(135deg,var(--gd),var(--g));color:white;width:100%}
-.btn-secondary{background:rgba(255,255,255,.15);color:white}
-@media(max-width:480px){.deals{grid-template-columns:1fr}.vs{display:none}}
+  :root{
+    --bg:#0A0A0F;--card:#13131A;--card2:#1A1A24;
+    --border:rgba(255,255,255,.08);--t:#F5F5F7;--m:rgba(255,255,255,.45);
+    --gd:#FFD54F;--green:#30D158;--red:#FF453A;--blue:#0A84FF;--purple:#BF5AF2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{height:100%;background:var(--bg);color:var(--t);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;-webkit-tap-highlight-color:transparent;user-select:none;overflow:hidden;}
+  .wrap{max-width:420px;margin:0 auto;height:100%;display:flex;flex-direction:column;padding:20px 16px;}
 
-/* Menu hamburger mobile */
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
-.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
-.mobile-menu.open{display:flex}
-.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
-.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
-.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
-@media(max-width:768px){
-  .hamburger{display:flex}
-  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
-  nav li{display:none!important}
-}
+  /* INTRO */
+  #intro-screen{display:flex;flex-direction:column;justify-content:center;height:100%;}
+  .intro-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,213,79,.12);border:1px solid rgba(255,213,79,.25);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--gd);letter-spacing:.03em;margin-bottom:20px;width:fit-content;}
+  .intro-title{font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:12px;}
+  .intro-title span{color:var(--gd);}
+  .intro-sub{font-size:16px;color:var(--m);line-height:1.55;margin-bottom:32px;}
+  .intro-pills{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap;}
+  .pill{background:var(--card);border:1px solid var(--border);border-radius:99px;padding:8px 16px;font-size:13px;font-weight:600;}
+  .pill span{color:var(--gd);}
+  .btn-start{background:var(--gd);color:#1A0A00;border:none;border-radius:16px;padding:18px;font-size:17px;font-weight:700;cursor:pointer;width:100%;letter-spacing:-.01em;transition:opacity .15s;}
+  .btn-start:active{opacity:.8;}
+  .brand{text-align:center;margin-top:16px;font-size:12px;color:var(--m);}
+  .brand a{color:var(--gd);text-decoration:none;font-weight:600;}
+
+  /* GAME */
+  #game-screen{display:none;flex-direction:column;height:100%;gap:0;}
+  
+  .game-top{margin-bottom:16px;}
+  .game-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+  .game-score{font-size:13px;font-weight:600;color:var(--m);}
+  .game-score b{color:var(--gd);font-size:16px;}
+  .game-qnum{font-size:13px;font-weight:600;color:var(--m);}
+  .timer-track{height:3px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;}
+  .timer-fill{height:100%;border-radius:99px;transition:width .1s linear,background .3s;}
+  
+  .cat-label{font-size:12px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;display:block;}
+  .question-text{font-size:20px;font-weight:700;line-height:1.3;letter-spacing:-.02em;margin-bottom:20px;}
+
+  /* Offres empilées */
+  .offers{display:flex;flex-direction:column;gap:10px;flex:1;}
+  .offer-card{
+    background:var(--card);
+    border:1.5px solid var(--border);
+    border-radius:20px;
+    padding:18px;
+    cursor:pointer;
+    transition:all .18s cubic-bezier(.34,1.56,.64,1);
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex:1;
+    position:relative;
+    overflow:hidden;
+  }
+  .offer-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(255,255,255,.03),transparent 70%);pointer-events:none;}
+  .offer-card:active{transform:scale(.97);}
+  .offer-card:hover{border-color:rgba(255,213,79,.3);background:var(--card2);}
+  .offer-card.correct{border-color:var(--green);background:rgba(48,209,88,.08);}
+  .offer-card.wrong{border-color:var(--red);background:rgba(255,69,58,.06);}
+  .offer-card.neutral{opacity:.4;pointer-events:none;}
+  
+  .offer-emoji{font-size:36px;flex-shrink:0;width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border-radius:14px;}
+  .offer-body{flex:1;min-width:0;}
+  .offer-letter{font-size:11px;font-weight:700;color:var(--m);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;}
+  .offer-name{font-size:17px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .offer-detail{font-size:13px;color:var(--m);line-height:1.4;}
+  .offer-arrow{color:rgba(255,255,255,.2);font-size:18px;flex-shrink:0;}
+  .offer-card.correct .offer-arrow{color:var(--green);}
+  .offer-card.wrong .offer-arrow{color:var(--red);}
+  
+  /* Séparateur VS */
+  .vs-sep{text-align:center;font-size:12px;font-weight:800;color:var(--m);letter-spacing:.1em;flex-shrink:0;padding:2px 0;}
+
+  /* Feedback */
+  .feedback-box{
+    background:var(--card2);border:1px solid var(--border);border-radius:18px;
+    padding:16px 18px;margin-top:12px;display:none;
+    animation:slideUp .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  .feedback-box.show{display:block;}
+  @keyframes slideUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .fb-economy{font-size:15px;font-weight:700;margin-bottom:6px;}
+  .fb-economy.win{color:var(--green);}
+  .fb-economy.loss{color:var(--red);}
+  .fb-explain{font-size:13px;color:var(--m);line-height:1.5;}
+  
+  .next-btn{
+    background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--t);
+    border-radius:14px;padding:14px;font-size:15px;font-weight:600;
+    cursor:pointer;width:100%;margin-top:10px;display:none;
+    font-family:inherit;letter-spacing:-.01em;transition:background .15s;
+  }
+  .next-btn:hover{background:rgba(255,255,255,.1);}
+
+  /* Toast streak */
+  .streak-toast{
+    position:fixed;top:24px;left:50%;transform:translate(-50%,-50%);
+    background:linear-gradient(135deg,#FF9F0A,var(--gd));color:#1A0A00;
+    padding:10px 20px;border-radius:99px;font-size:14px;font-weight:800;
+    opacity:0;pointer-events:none;z-index:99;
+  }
+  .streak-toast.show{animation:streakPop .8s ease forwards;}
+  @keyframes streakPop{
+    0%{opacity:0;transform:translate(-50%,-60%) scale(.7);}
+    20%{opacity:1;transform:translate(-50%,-50%) scale(1.05);}
+    80%{opacity:1;}
+    100%{opacity:0;transform:translate(-50%,-40%);}
+  }
+
+  /* RÉSULTATS */
+  #results-screen{display:none;flex-direction:column;justify-content:center;height:100%;gap:0;}
+  .res-top{text-align:center;margin-bottom:28px;}
+  .res-emoji{font-size:56px;display:block;margin-bottom:8px;}
+  .res-score{font-size:52px;font-weight:800;letter-spacing:-.04em;color:var(--gd);line-height:1;}
+  .res-label{font-size:15px;color:var(--m);margin-top:6px;}
+  .res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px;}
+  .res-stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px 10px;text-align:center;}
+  .res-stat .v{font-size:22px;font-weight:800;color:var(--gd);}
+  .res-stat .l{font-size:11px;color:var(--m);margin-top:4px;}
+  .res-lesson{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;font-size:13px;color:var(--m);line-height:1.6;margin-bottom:20px;}
+  .res-lesson b{color:var(--t);}
+  .btn-replay{background:var(--gd);color:#1A0A00;border:none;border-radius:16px;padding:16px;font-size:17px;font-weight:700;cursor:pointer;width:100%;margin-bottom:10px;font-family:inherit;}
+  .btn-share{background:var(--card);border:1px solid var(--border);color:var(--t);border-radius:16px;padding:14px;font-size:15px;font-weight:600;cursor:pointer;width:100%;font-family:inherit;}
 </style>
-<link rel="canonical" href="https://economya.fr/le-bon-deal" />
 </head>
 <body>
-<nav>
-  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
-  <a class="nav-back" href="jeux.html">← Jeux</a>
+<div class="wrap">
 
-<!-- Menu hamburger mobile -->
+<!-- INTRO -->
+<div id="intro-screen">
+  <div class="intro-tag">⚖️ Jeu Finance</div>
+  <div class="intro-title">Le Bon<br><span>Deal</span></div>
+  <p class="intro-sub">Deux offres s'affichent. Tapez la moins chère avant la fin du chrono. Saurez-vous voir le bon deal ?</p>
+  <div class="intro-pills">
+    <div class="pill">🎯 <span>79</span> questions</div>
+    <div class="pill">⏱️ <span>10s</span> / question</div>
+    <div class="pill">🎲 Aléatoire</div>
+  </div>
+  <button class="btn-start" onclick="startGame()">Trouver le Bon Deal</button>
+  <div class="brand">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
 
-<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
-<div class="hero">
-  <div class="hero-badge">🎮 Jeu Exclusif</div>
-  <h1>Le <em>Bon Deal</em></h1>
-  <p>Choisissez l'offre la moins chère en moins de 10 secondes !</p>
-</div>
-<div class="stats-bar">
-  <div class="stat-item"><span class="stat-val" id="stat-score">0</span><span class="stat-lbl">Score</span></div>
-  <div class="stat-item"><span class="stat-val" id="stat-streak">0🔥</span><span class="stat-lbl">Série</span></div>
-  <div class="stat-item"><span class="stat-val" id="stat-best">0</span><span class="stat-lbl">Meilleur</span></div>
-  <div class="stat-item"><span class="stat-val" id="stat-economy">0€</span><span class="stat-lbl">Économisé</span></div>
-</div>
-<div class="container">
-  <div id="game-area">
-    <div class="timer-wrap">
-      <div class="timer-bar"><div class="timer-fill" id="timer-fill" style="width:100%"></div></div>
-      <div class="timer-text" id="timer-text">10</div>
+<!-- JEU -->
+<div id="game-screen">
+  <div class="game-top">
+    <div class="game-meta">
+      <div class="game-score">Économies <b id="scoreVal">0€</b></div>
+      <div class="game-qnum" id="qNum">1 / 10</div>
     </div>
-    <div style="text-align:center">
-      <div class="question-badge" id="q-badge">Question 1/10</div>
-      <div class="question-text" id="q-text">Chargement...</div>
-    </div>
-    <div class="deals" id="deals-container">
-      <div class="deal-card" id="deal-a" onclick="selectDeal('a')">
-        <span class="deal-icon" id="deal-a-icon">💡</span>
-        <div class="deal-name" id="deal-a-name">—</div>
-        <div class="deal-detail" id="deal-a-detail">—</div>
-        <div class="deal-price" id="deal-a-price">—</div>
-        <div class="deal-price-sub" id="deal-a-sub">—</div>
+    <div class="timer-track"><div class="timer-fill" id="timerBar" style="width:100%;background:var(--blue)"></div></div>
+  </div>
+  <span class="cat-label" id="qCat">📱 Téléphonie</span>
+  <div class="question-text" id="qText">Quelle option est la moins chère ?</div>
+  <div class="offers">
+    <div class="offer-card" id="deal-a" onclick="choose('a')">
+      <div class="offer-emoji" id="deal-a-icon">💡</div>
+      <div class="offer-body">
+        <div class="offer-letter">Offre A</div>
+        <div class="offer-name" id="deal-a-name">—</div>
+        <div class="offer-detail" id="deal-a-detail">—</div>
       </div>
-      <div class="vs"><span>VS</span></div>
-      <div class="deal-card" id="deal-b" onclick="selectDeal('b')">
-        <span class="deal-icon" id="deal-b-icon">💡</span>
-        <div class="deal-name" id="deal-b-name">—</div>
-        <div class="deal-detail" id="deal-b-detail">—</div>
-        <div class="deal-price" id="deal-b-price">—</div>
-        <div class="deal-price-sub" id="deal-b-sub">—</div>
+      <div class="offer-arrow" id="arr-a">›</div>
+    </div>
+    <div class="vs-sep">VS</div>
+    <div class="offer-card" id="deal-b" onclick="choose('b')">
+      <div class="offer-emoji" id="deal-b-icon">💡</div>
+      <div class="offer-body">
+        <div class="offer-letter">Offre B</div>
+        <div class="offer-name" id="deal-b-name">—</div>
+        <div class="offer-detail" id="deal-b-detail">—</div>
       </div>
-    </div>
-    <div class="feedback" id="feedback">
-      <h3 id="fb-title"></h3>
-      <p id="fb-text"></p>
-    </div>
-    <div class="score-display">
-      <div class="score-item"><span class="score-val" id="disp-score">0</span><span class="score-lbl">Points</span></div>
-      <div class="score-item"><span class="score-val" id="disp-q">1/10</span><span class="score-lbl">Question</span></div>
-      <div class="score-item"><span class="score-val" id="disp-streak">0🔥</span><span class="score-lbl">Série</span></div>
+      <div class="offer-arrow" id="arr-b">›</div>
     </div>
   </div>
-  <div class="results" id="results">
-    <div style="font-size:3rem;margin-bottom:.5rem" id="res-emoji">🏆</div>
-    <h2 id="res-title">Résultat</h2>
-    <p id="res-subtitle">—</p>
-    <div class="results-grid">
-      <div class="res-item"><span class="res-val" id="res-score">0</span><span class="res-lbl">Score</span></div>
-      <div class="res-item"><span class="res-val" id="res-correct">0/10</span><span class="res-lbl">Bonnes réponses</span></div>
-      <div class="res-item"><span class="res-val" id="res-economy">0€</span><span class="res-lbl">Économies potentielles</span></div>
-    </div>
-    <button class="btn btn-secondary" onclick="restartGame()" style="margin-top:.5rem">🔄 Rejouer</button>
+  <div class="feedback-box" id="feedback">
+    <div class="fb-economy" id="fbEconomy"></div>
+    <div class="fb-explain" id="fbExplain"></div>
   </div>
+  <button class="next-btn" id="nextBtn" onclick="nextQ()">Suivant →</button>
 </div>
+
+<!-- RÉSULTATS -->
+<div id="results-screen">
+  <div class="res-top">
+    <span class="res-emoji" id="resEmoji">🏆</span>
+    <div class="res-score" id="resScore">0€</div>
+    <div class="res-label">économies repérées</div>
+  </div>
+  <div class="res-grid">
+    <div class="res-stat"><div class="v" id="rs1">0/10</div><div class="l">Bons deals</div></div>
+    <div class="res-stat"><div class="v" id="rs2">0s</div><div class="l">Tps moyen</div></div>
+    <div class="res-stat"><div class="v" id="rs3">×0</div><div class="l">Streak</div></div>
+  </div>
+  <div class="res-lesson" id="resLesson"></div>
+  <button class="btn-replay" onclick="startGame()">Rejouer</button>
+  <button class="btn-share" onclick="shareResult()">📤 Partager</button>
+  <div class="brand" style="margin-top:14px;text-align:center"><a href="https://economya.fr" target="_blank">Economya.fr</a></div>
+</div>
+
+<div class="streak-toast" id="streakToast">🔥 Streak ×3 !</div>
+</div>
+
 <script>
-const ALL_QUESTIONS = [
+const QUESTIONS = [
   {cat:'📱 Téléphonie',q:'Quel forfait mobile est le moins cher pour 50 Go ?',a:{icon:'📱',name:'Orange',detail:'50 Go • Appels illimités • 4G+',price:'19,99€',sub:'/mois',val:1999},b:{icon:'📱',name:'Prixtel',detail:'50 Go • Appels illimités • 5G',price:'6,99€',sub:'/mois',val:699,badge:'✅ Moins cher'},correct:'b',economy:156,explication:'Prixtel propose le même service 13€/mois moins cher. Économie annuelle : 156€ !'},
   {cat:'🏦 Banque',q:'Quelle banque est la moins chère pour un compte courant ?',a:{icon:'🏛️',name:'Crédit Agricole',detail:'Compte courant • Carte Visa • Agences',price:'7,50€',sub:'/mois',val:750},b:{icon:'💚',name:'Boursobank',detail:'Compte courant • Carte Visa • 0 frais',price:'0€',sub:'/mois',val:0,badge:'✅ Gratuit'},correct:'b',economy:90,explication:'Boursobank est 100% gratuite. Économie vs banque traditionnelle : 90€/an !'},
   {cat:'🛒 Courses',q:'Où est-il moins cher de faire ses courses ?',a:{icon:'🟡',name:'Lidl',detail:'Panier 50 articles identiques',price:'87€',sub:'le panier',val:87,badge:'✅ Moins cher'},b:{icon:'🔵',name:'Carrefour',detail:'Panier 50 articles identiques',price:'112€',sub:'le panier',val:112},correct:'a',economy:300,explication:'Lidl est 22% moins cher. Économie mensuelle : 25€, soit 300€/an !'},
@@ -178,7 +235,6 @@ const ALL_QUESTIONS = [
   {cat:'🚿 Hygiène',q:'Quel gel douche est le moins cher au litre ?',a:{icon:'🚿',name:'Dove Original 250ml',detail:'Gel douche • Grande marque',price:'3,50€',sub:'250ml',val:350},b:{icon:'🚿',name:'Marque distributeur 1L',detail:'Gel douche • Même composition',price:'1,20€',sub:'1 litre',val:120,badge:'✅ 7x moins cher/L'},correct:'b',economy:46,explication:'La marque distributeur coûte 7 fois moins cher au litre. 46€/an économisés !'},
   {cat:'🔌 Électricité',q:'Quel fournisseur d\'électricité est le moins cher ?',a:{icon:'🔌',name:'EDF tarif réglementé',detail:'Contrat standard • Option base',price:'180€',sub:'/mois estimé',val:18000},b:{icon:'⚡',name:'TotalEnergies / Engie',detail:'Offre marché • Même puissance',price:'155€',sub:'/mois estimé',val:15500,badge:'✅ Moins cher'},correct:'b',economy:300,explication:'Changer de fournisseur économise en moyenne 25€/mois. 300€/an sans changer de prise !'},
   {cat:'📰 Presse',q:'Quelle option pour lire la presse est la moins chère ?',a:{icon:'📰',name:'Le Monde numérique',detail:'Abonnement mensuel • Accès illimité',price:'19,99€',sub:'/mois',val:1999},b:{icon:'🏛️',name:'Bibliothèque / PressReader',detail:'Accès illimité • Avec carte bibliothèque',price:'0€',sub:'gratuit',val:0,badge:'✅ Gratuit'},correct:'b',economy:240,explication:'PressReader via la bibliothèque donne accès à des milliers de journaux gratuitement !'},
-  {cat:'🧊 Électroménager',q:'Quel réfrigérateur consomme moins ?',a:{icon:'🧊',name:'Frigo classe A+',detail:'300L • Ancienne norme énergie',price:'399€',sub:'+ 120€/an élec.',val:39900},b:{icon:'🧊',name:'Frigo classe A+++',detail:'300L • Nouvelle norme énergie',price:'449€',sub:'+ 40€/an élec.',val:44900,badge:'✅ -80€/an élec.'},correct:'b',economy:800,explication:'Le A+++ coûte 50€ de plus mais économise 80€/an en électricité. Rentabilisé en 8 mois !'},
   {cat:'🏠 Assurance habitation',q:'Quelle assurance habitation est la moins chère ?',a:{icon:'🏠',name:'AXA habitation',detail:'T2 • Paris • Garanties standard',price:'35€',sub:'/mois',val:3500},b:{icon:'🏠',name:'Luko / Lovys',detail:'T2 • Paris • Mêmes garanties',price:'9€',sub:'/mois',val:900,badge:'✅ -74%'},correct:'b',economy:312,explication:'Les néo-assurances proposent les mêmes garanties 4x moins cher. 312€/an économisés !'},
   {cat:'🚙 Carburant',q:'Où faire le plein moins cher ?',a:{icon:'⛽',name:'Station autoroute',detail:'Sans plomb 95 • Prix autoroutier',price:'2,15€',sub:'/litre',val:215},b:{icon:'⛽',name:'Supermarché Leclerc',detail:'Sans plomb 95 • Prix discounter',price:'1,72€',sub:'/litre',val:172,badge:'✅ -20%'},correct:'b',economy:215,explication:'Leclerc est 20% moins cher que les stations autoroute. Sur 500L/an : 215€ économisés !'},
   {cat:'📦 Livraison',q:'Quelle option de livraison est la moins chère ?',a:{icon:'📦',name:'Livraison à domicile',detail:'Colis 2kg • 48h • Colissimo',price:'8,50€',sub:'le colis',val:850},b:{icon:'📦',name:'Point relais',detail:'Colis 2kg • 48h • Mondial Relay',price:'3,20€',sub:'le colis',val:320,badge:'✅ -62%'},correct:'b',economy:53,explication:'Le point relais est 3x moins cher que la livraison à domicile. Sur 10 colis/an : 53€ !'},
@@ -195,262 +251,164 @@ const ALL_QUESTIONS = [
   {cat:'🚲 Mobilité',q:'Quel véhicule est le moins cher pour 10km par jour ?',a:{icon:'🚗',name:'Voiture thermique',detail:'10km/jour • Carburant + entretien',price:'0,35€',sub:'/km soit 1 277€/an',val:35},b:{icon:'🚲',name:'Vélo à assistance électrique',detail:'10km/jour • Électricité + entretien',price:'0,03€',sub:'/km soit 109€/an',val:3,badge:'✅ 12x moins cher'},correct:'b',economy:1168,explication:'Le VAE coûte 12x moins cher par km que la voiture. Économie annuelle : 1 168€ !'},
   {cat:'☀️ Énergie solaire',q:'Quelle option est la moins chère pour se chauffer ?',a:{icon:'🔥',name:'Radiateur électrique',detail:'Chauffage 20m² • Hiver',price:'120€',sub:'/mois hiver',val:12000},b:{icon:'♨️',name:'Pompe à chaleur',detail:'Chauffage 20m² • Même surface',price:'40€',sub:'/mois hiver',val:4000,badge:'✅ -67%'},correct:'b',economy:960,explication:'La PAC est 3x plus efficace qu\'un radiateur électrique. 960€/an économisés en chauffage !'},
   {cat:'🍫 Alimentation',q:'Où acheter du chocolat moins cher ?',a:{icon:'🍫',name:'Lindt Excellence 100g',detail:'Chocolat noir 70% • Grande marque',price:'3,50€',sub:'100g',val:350},b:{icon:'🍫',name:'Marque distributeur Lidl',detail:'Chocolat noir 70% • Même cacao',price:'0,89€',sub:'100g',val:89,badge:'✅ 4x moins cher'},correct:'b',economy:97,explication:'Les tests à l\'aveugle montrent que le chocolat Lidl est souvent préféré au Lindt. 97€/an !'},
+{cat:'🍷 Vin',q:'Quelle option est la moins chère pour un apéro réussi ?',a:{icon:'🍾',name:'Champagne Moët & Chandon',detail:'75cl • Grande marque • Célébration',price:'45€',sub:'la bouteille',val:4500},b:{icon:'🥂',name:'Crémant d\'Alsace AOP',detail:'75cl • Même effervescence • Qualité équivalente',price:'9€',sub:'la bouteille',val:900,badge:'✅ -80%'},correct:'b',economy:144,explication:'Des tests à l\'aveugle confirment que la plupart des gens ne distinguent pas le Crémant du Champagne. 80% moins cher !'},
+  {cat:'🧃 Jus de fruits',q:'Quelle option jus d\'orange est la moins chère ?',a:{icon:'🧃',name:'Tropicana 1L',detail:'Jus pressé sans concentré',price:'3,20€',sub:'le litre',val:320},b:{icon:'🍊',name:'Oranges pressées maison',detail:'6 oranges • 5 minutes',price:'1,20€',sub:'le litre',val:120,badge:'✅ -62%'},correct:'b',economy:73,explication:'Presser ses oranges coûte 60% moins cher ET sans additifs. 200 verres/an = 73€ économisés.'},
+  {cat:'🥩 Viande',q:'Quelle viande est la moins chère pour un plat mijoté savoureux ?',a:{icon:'🥩',name:'Filet de bœuf',detail:'500g • Pièce noble • Grillades',price:'24€',sub:'500g',val:2400},b:{icon:'🍖',name:'Joue de bœuf',detail:'500g • Morceau à mijoter',price:'8€',sub:'500g',val:800,badge:'✅ -67%'},correct:'b',economy:192,explication:'La joue de bœuf est 3× moins chère et bien plus savoureuse en mijoté. Les morceaux "nobles" ne sont pas meilleurs, juste plus chers.'},
+  {cat:'🐟 Poisson',q:'Quel thon en boîte est le moins cher ?',a:{icon:'🐟',name:'Saupiquet thon à l\'huile d\'olive',detail:'160g • Grande marque connue',price:'2,80€',sub:'160g',val:280},b:{icon:'🐟',name:'Thon MDD Leclerc',detail:'160g • Marque distributeur',price:'0,89€',sub:'160g',val:89,badge:'✅ -68%'},correct:'b',economy:46,explication:'Même espèce, mêmes normes, même qualité. La différence : 1,91€ par boîte = 46€/an si vous mangez du thon 1×/semaine.'},
+  {cat:'🥜 Fruits secs',q:'Où acheter des amandes moins chères ?',a:{icon:'🥜',name:'Amandes Vahiné 125g sachet',detail:'Snacking • Grande surface',price:'3,90€',sub:'125g',val:390},b:{icon:'🥜',name:'Amandes en vrac 1kg',detail:'Rayon vrac ou épicerie',price:'12€',sub:'1kg',val:1200,badge:'✅ -61%/100g'},correct:'b',economy:62,explication:'Le vrac revient à 1,20€/100g vs 3,12€ en sachet. -61% pour le même produit.'},
+  {cat:'🍫 Chocolat',q:'Quel chocolat noir 70% est le moins cher ?',a:{icon:'🍫',name:'Lindt Excellence 70% 100g',detail:'Grande marque • Premium',price:'2,80€',sub:'100g',val:280},b:{icon:'🍫',name:'Chocolat noir Lidl 70% 200g',detail:'Même cacao • Tests à l\'aveugle ok',price:'1,19€',sub:'200g',val:119,badge:'✅ 4,7x moins cher/kg'},correct:'b',economy:97,explication:'Tests à l\'aveugle : le chocolat Lidl est souvent préféré au Lindt. 4,7× moins cher au kilo.'},
+  {cat:'🧽 Nettoyage',q:'Quel produit pour nettoyer les vitres est le moins cher ?',a:{icon:'🧽',name:'Windex spray vitres 500ml',detail:'Grande marque • Spécial vitres',price:'4,20€',sub:'500ml',val:420},b:{icon:'💧',name:'Eau + vinaigre blanc 50/50',detail:'Fait maison • Résultat identique',price:'0,10€',sub:'500ml',val:10,badge:'✅ 42× moins cher'},correct:'b',economy:41,explication:'Le mélange eau/vinaigre laisse les vitres aussi propres pour 42× moins cher.'},
+  {cat:'🚿 Consommation',q:'Qu\'est-ce qui consomme le plus d\'eau et d\'énergie ?',a:{icon:'🛁',name:'Bain complet 200L',detail:'Eau chaude • 30 minutes',price:'0,90€',sub:'par bain',val:90},b:{icon:'🚿',name:'Douche économique 5 min',detail:'Pommeau 6L/min',price:'0,15€',sub:'par douche',val:15,badge:'✅ 6× moins cher'},correct:'a',economy:274,explication:'Un bain consomme 6× plus d\'eau et d\'énergie qu\'une douche courte. Sur 1 bain/semaine : 274€/an de différence.'},
+  {cat:'🏃 Sport gratuit',q:'Quelle option cardio est la moins chère ?',a:{icon:'🏃',name:'Abonnement salle avec tapis',detail:'Accès illimité • Tapis de course',price:'35€',sub:'/mois',val:3500},b:{icon:'🌳',name:'Running en plein air',detail:'Parc • App gratuite • Air frais',price:'0€',sub:'/mois',val:0,badge:'✅ Gratuit'},correct:'b',economy:420,explication:'Courir dehors est gratuit et scientifiquement meilleur. 420€/an économisés.'},
+  {cat:'🎵 Streaming musique',q:'Quelle option est la moins chère pour écouter de la musique ?',a:{icon:'🎵',name:'Spotify Premium individuel',detail:'Sans pub • Téléchargements illimités',price:'10,99€',sub:'/mois',val:1099},b:{icon:'📻',name:'Spotify Free + radio en ligne',detail:'Avec pubs • Gratuit',price:'0€',sub:'/mois',val:0,badge:'✅ Gratuit'},correct:'b',economy:132,explication:'Pour écouter en fond sonore, la version gratuite suffit. France Inter, France Musique disponibles gratuitement.'},
+  {cat:'🖨️ Impression',q:'Où imprimer des documents moins cher ?',a:{icon:'🖨️',name:'Imprimante jet d\'encre maison',detail:'10 pages couleur • Cartouches',price:'0,50€',sub:'par page couleur',val:50},b:{icon:'🖨️',name:'Bureau Vallée / Leclerc',detail:'Impression pro • Couleur',price:'0,15€',sub:'par page couleur',val:15,badge:'✅ -70%'},correct:'b',economy:42,explication:'L\'encre jet d\'encre est l\'un des liquides les plus chers au monde. Pour l\'impression occasionnelle, le magasin est 3× moins cher.'},
+  {cat:'🏠 Déménagement',q:'Quelle option déménagement est la moins chère ?',a:{icon:'🚛',name:'Déménageurs professionnels T2',detail:'Même ville • Tout compris',price:'1 200€',sub:'le déménagement',val:120000},b:{icon:'🚐',name:'Location camion + amis',detail:'1 jour • Carburant • Pizza offerte',price:'200€',sub:'le déménagement',val:20000,badge:'✅ -83%'},correct:'b',economy:1000,explication:'La location de camion + amis coûte 6× moins cher. Pizza et bières : 50€. Total 200€ vs 1 200€.'},
+  {cat:'🍕 Pizza',q:'Quelle pizza est la moins chère par portion ?',a:{icon:'🍕',name:'Pizza livrée 30cm',detail:'6 parts • Livrée à domicile',price:'16,99€',sub:'6 parts',val:1699},b:{icon:'🍕',name:'Pizza surgelée qualité',detail:'30cm • 6 parts • Four maison',price:'3,50€',sub:'6 parts',val:350,badge:'✅ -79%'},correct:'b',economy:202,explication:'La pizza surgelée revient à 0,58€/part vs 2,83€ livrée. Sur 2 pizzas/mois : 202€/an économisés.'},
+  {cat:'💻 Logiciels',q:'Quelle suite bureautique est la moins chère ?',a:{icon:'💻',name:'Microsoft 365 Personnel',detail:'Word, Excel, PowerPoint • 1 an',price:'69€',sub:'/an',val:6900},b:{icon:'💻',name:'LibreOffice',detail:'Writer, Calc, Impress • Compatible',price:'0€',sub:'gratuit',val:0,badge:'✅ Gratuit'},correct:'b',economy:69,explication:'LibreOffice ouvre tous les formats Office et fait 95% des mêmes choses. 69€/an économisés.'},
+  {cat:'🌡️ Chauffage',q:'Quel chauffage d\'appoint est le moins cher à l\'usage ?',a:{icon:'🌡️',name:'Radiateur soufflant 2000W',detail:'Chaleur rapide • Électrique',price:'0,28€',sub:'/heure',val:28},b:{icon:'🪵',name:'Bouillotte à eau chaude',detail:'Sans électricité • 4h de chaleur',price:'0,02€',sub:'/utilisation',val:2,badge:'✅ 14× moins cher'},correct:'b',economy:104,explication:'La bouillotte à 0,02€ vs radiateur à 0,28€/h. Pour réchauffer les pieds le soir : 104€/an économisés.'},
+  {cat:'📺 TV',q:'Quelle taille de TV offre le meilleur rapport taille/prix ?',a:{icon:'📺',name:'Samsung 55 pouces QLED',detail:'4K • Smart TV • Grande marque',price:'799€',sub:'55 pouces',val:79900},b:{icon:'📺',name:'TCL 65 pouces QLED',detail:'4K • Smart TV • Marque chinoise',price:'599€',sub:'65 pouces',val:59900,badge:'✅ Plus grande ET moins chère'},correct:'b',economy:200,explication:'TCL propose souvent une 65" moins chère qu\'une Samsung 55". Plus grande pour moins cher.'},
+  {cat:'🧴 Shampoing',q:'Quel shampoing est le moins cher au litre ?',a:{icon:'🧴',name:'Head & Shoulders 400ml',detail:'Anti-pelliculaire • Grande marque',price:'6,50€',sub:'400ml',val:650},b:{icon:'🧴',name:'Shampoing MDD 1L',detail:'Même composition de base',price:'1,80€',sub:'1L',val:180,badge:'✅ -88%/litre'},correct:'b',economy:55,explication:'16,25€/L pour Head & Shoulders vs 1,80€/L pour le MDD. -88% au litre pour une composition de base identique.'},
+  {cat:'🥗 Salade',q:'Quelle salade est la moins chère ?',a:{icon:'🥗',name:'Sachet salade prête à l\'emploi',detail:'150g • Lavée • Prête',price:'2,20€',sub:'150g',val:220},b:{icon:'🥬',name:'Laitue entière',detail:'~300g • À laver 2 minutes',price:'0,79€',sub:'',val:79,badge:'✅ -64%'},correct:'b',economy:72,explication:'La laitue entière coûte 3× moins cher et dure plus longtemps. Le sachet se paie cher pour 2 min de lavage économisées.'},
+  {cat:'🚗 Lavage voiture',q:'Quelle option lavage voiture est la moins chère ?',a:{icon:'🚗',name:'Station lavage automatique',detail:'Programme standard',price:'8€',sub:'par lavage',val:800},b:{icon:'🪣',name:'Lavage maison au seau',detail:'Éponge + produit',price:'0,30€',sub:'par lavage',val:30,badge:'✅ -96%'},correct:'b',economy:186,explication:'Laver sa voiture maison coûte 0,30€ vs 8€ en station. Sur 24 lavages/an : 186€ économisés.'},
+  {cat:'🎂 Gâteau',q:'Quelle option gâteau anniversaire est la moins chère ?',a:{icon:'🎂',name:'Gâteau boulangerie artisanale',detail:'8 personnes • Fait maison artisan',price:'45€',sub:'pour 8',val:4500},b:{icon:'🍰',name:'Gâteau fait maison',detail:'8 personnes • Ingrédients simples',price:'8€',sub:'pour 8',val:800,badge:'✅ -82%'},correct:'b',economy:37,explication:'Un fondant au chocolat maison coûte 8€ pour 8 personnes vs 45€ en boulangerie.'},
+  {cat:'🏋️ Protéines',q:'Quel aliment est le moins cher par gramme de protéine ?',a:{icon:'🏋️',name:'Blanc de poulet 200g',detail:'31g protéines',price:'3,50€',sub:'200g',val:350},b:{icon:'🥚',name:'4 œufs calibre M',detail:'28g protéines',price:'1,20€',sub:'4 œufs',val:120,badge:'✅ -66%'},correct:'b',economy:46,explication:'L\'œuf = protéine la moins chère et la mieux assimilée. 0,04€/g vs 0,11€/g pour le poulet.'},
+  {cat:'🌿 Herbes aromatiques',q:'Comment avoir du basilic frais moins cher ?',a:{icon:'🌿',name:'Basilic frais en pot supermarché',detail:'Pot 30g • Dure 2 semaines',price:'2,50€',sub:'le pot',val:250},b:{icon:'🌱',name:'Graines de basilic à faire pousser',detail:'Sachet • 50+ plants toute l\'année',price:'1,50€',sub:'le sachet',val:150,badge:'✅ Illimité'},correct:'b',economy:48,explication:'Un sachet de graines donne 50+ plants pour 1,50€ vs 2,50€ tous les 15 jours.'},
+  {cat:'📦 Colis',q:'Comment envoyer un colis de 2kg le moins cher ?',a:{icon:'📮',name:'Colissimo La Poste',detail:'2kg • France • Suivi',price:'8,50€',sub:'le colis',val:850},b:{icon:'📦',name:'Mondial Relay point relais',detail:'2kg • France • Suivi',price:'3,49€',sub:'le colis',val:349,badge:'✅ -59%'},correct:'b',economy:50,explication:'Mondial Relay est systématiquement moins cher. Sur 10 envois/an : 50€ économisés.'},
+  {cat:'🎓 Langues',q:'Quelle option pour apprendre l\'anglais est la moins chère ?',a:{icon:'🎓',name:'Cours particuliers d\'anglais',detail:'20h • Professeur natif',price:'800€',sub:'le pack',val:80000},b:{icon:'📱',name:'Duolingo + séries en VO',detail:'Gratuit • Immersion quotidienne',price:'0€',sub:'gratuit',val:0,badge:'✅ Gratuit'},correct:'b',economy:800,explication:'Duolingo + Netflix en VO = méthode utilisée par des millions de polyglotes pour 0€.'},
+  {cat:'👓 Lunettes de lecture',q:'Où acheter des lunettes de lecture moins chères ?',a:{icon:'👓',name:'Opticien traditionnel',detail:'Lunettes de lecture +2',price:'89€',sub:'',val:8900},b:{icon:'👓',name:'Pharmacie ou grande surface',detail:'Même correction • Sans ordonnance',price:'12€',sub:'',val:1200,badge:'✅ -87%'},correct:'b',economy:77,explication:'Pour des lunettes de lecture sans correction spécifique, celles de pharmacie suffisent parfaitement.'},
+  {cat:'🚴 Vélo',q:'Quel vélo est le meilleur rapport prix/utilité en ville ?',a:{icon:'🚴',name:'Vélo électrique neuf haut de gamme',detail:'Moteur Bosch • 500Wh • Garanti 2 ans',price:'2 999€',sub:'',val:299900},b:{icon:'🚲',name:'Vélo mécanique occasion révisé',detail:'7 vitesses • Révisé • 6 mois garantie',price:'180€',sub:'',val:18000,badge:'✅ -94%'},correct:'b',economy:2819,explication:'Pour <15km/jour sans dénivelé, un vélo mécanique suffit. Le VAE se justifie pour les longues distances.'},
+  {cat:'📦 Cloud',q:'Quel stockage cloud offre le plus d\'espace pour ce prix ?',a:{icon:'📦',name:'iCloud+ 1To Apple',detail:'1 To • Partage famille',price:'9,99€',sub:'/mois',val:999},b:{icon:'📦',name:'Google One 2To',detail:'2 To • Partage famille',price:'9,99€',sub:'/mois',val:999,badge:'✅ 2× plus d\'espace'},correct:'b',economy:0,explication:'Même prix mais Google One offre 2To contre 1To chez Apple. Le double pour le même tarif.'},
+  {cat:'🍺 Bière',q:'Quelle bière est la moins chère par verre ?',a:{icon:'🍺',name:'Bière pression au bar',detail:'25cl • Bar de quartier',price:'3,50€',sub:'25cl',val:350},b:{icon:'🍺',name:'Pack bières supermarché',detail:'6 × 33cl • Même bière',price:'5,90€',sub:'6 × 33cl',val:590,badge:'✅ -73%'},correct:'b',economy:286,explication:'La bière du supermarché revient à 0,30€/25cl vs 3,50€ au bar. -87%. Sur 2 bières/semaine : 286€/an.'},
+  {cat:'🧊 Électroménager',q:'Quel réfrigérateur économise le plus sur la durée ?',a:{icon:'🧊',name:'Frigo classe A+ pas cher',detail:'300L • Ancienne norme énergie',price:'399€',sub:'+ 120€/an élec.',val:39900},b:{icon:'🧊',name:'Frigo classe D récent',detail:'300L • Nouvelle norme • Efficace',price:'449€',sub:'+ 40€/an élec.',val:44900,badge:'✅ -80€/an sur l\'électricité'},correct:'b',economy:800,explication:'Le frigo plus cher économise 80€/an en électricité. Rentabilisé en moins d\'1 an !'},
+  {cat:'🎮 Jeux vidéo',q:'Quel abonnement gaming est le moins cher pour jouer beaucoup ?',a:{icon:'🎮',name:'Jeux PS5 achetés neufs',detail:'3 jeux/an • Prix plein',price:'240€',sub:'/an',val:24000},b:{icon:'🎮',name:'PlayStation Plus Extra',detail:'Catalogue de centaines de jeux',price:'99€',sub:'/an',val:9900,badge:'✅ -59%'},correct:'b',economy:141,explication:'PS Plus Extra donne accès à des centaines de jeux pour moins que 2 jeux achetés. Rentable dès 2 jeux/an.'},
+  {cat:'🥗 Protéines végétales',q:'Quelle protéine végétale est la moins chère ?',a:{icon:'🥗',name:'Steak de soja Bjorg',detail:'200g • Bio • Grande marque',price:'3,20€',sub:'200g',val:320},b:{icon:'🫘',name:'Lentilles sèches',detail:'200g cuit • Même protéines',price:'0,25€',sub:'portion',val:25,badge:'✅ 13× moins cher'},correct:'b',economy:145,explication:'Les lentilles = mêmes protéines que les steaks végétaux pour 13× moins cher. Et meilleur pour la santé.'},
+  {cat:'🎬 Cinéma',q:'Quelle option cinéma est la moins chère pour aller souvent ?',a:{icon:'🎬',name:'Séance plein tarif',detail:'Soir de semaine • Prix normal',price:'13,50€',sub:'par séance',val:1350},b:{icon:'🎬',name:'Abonnement UGC Illimité',detail:'Illimité • Dès 2 séances/mois',price:'23€',sub:'/mois',val:2300,badge:'✅ Dès 2 séances'},correct:'b',economy:216,explication:'UGC Illimité à 23€/mois = rentable dès 2 séances. Sur 3 séances/mois : 216€/an économisés.'},
+  {cat:'🌱 Café',q:'Quel café est le moins cher par tasse ?',a:{icon:'☕',name:'Starbucks grande taille',detail:'Latte • À emporter',price:'5,90€',sub:'par tasse',val:590},b:{icon:'🫘',name:'Café moulu filtre maison',detail:'1 tasse • Cafetière',price:'0,08€',sub:'par tasse',val:8,badge:'✅ 74× moins cher'},correct:'b',economy:814,explication:'0,08€ fait maison vs 5,90€ au café. Sur 5 cafés/semaine : 1 508€/an vs 21€. Différence : 1 487€ !'},
+  {cat:'🚌 Bus longue distance',q:'Quel transport Paris-Bordeaux est le moins cher ?',a:{icon:'✈️',name:'Vol Paris-Bordeaux',detail:'1h15 • Air France',price:'120€',sub:'aller simple',val:12000},b:{icon:'🚌',name:'Bus Flixbus',detail:'4h • Confort correct',price:'15€',sub:'aller simple',val:1500,badge:'✅ -88%'},correct:'b',economy:420,explication:'Le bus coûte 8× moins cher. Sur 3 voyages A/R Bordeaux/an : 630€ économisés.'},
+  {cat:'💇 Coiffure',q:'Quelle coupe est la moins chère ?',a:{icon:'💇',name:'Salon de coiffure centre-ville',detail:'Coupe femme • Brushing inclus',price:'55€',sub:'la coupe',val:5500},b:{icon:'✂️',name:'École de coiffure agréée',detail:'Élèves supervisés • Même résultat',price:'15€',sub:'la coupe',val:1500,badge:'✅ -73%'},correct:'b',economy:480,explication:'Les écoles de coiffure donnent des coupes de qualité supervisées par des professeurs. 480€/an économisés sur 6 coupes.'},
+  {cat:'🧴 Gel douche',q:'Quel gel douche est le moins cher au litre ?',a:{icon:'🧴',name:'Dove Men+Care 250ml',detail:'Soin hydratant • Grande marque',price:'3,20€',sub:'250ml',val:320},b:{icon:'🧴',name:'Gel douche MDD 1L',detail:'Même composition de base',price:'1,50€',sub:'1L',val:150,badge:'✅ -88%/litre'},correct:'b',economy:55,explication:'12,80€/L pour Dove vs 1,50€/L pour la MDD. Pour un usage quotidien, la composition de base est identique.'},
+  {cat:'💊 Vitamine C',q:'Quelle source de vitamine C est la moins chère ?',a:{icon:'💊',name:'Vitamine C 1000mg effervescente',detail:'30 comprimés • Pharmacie',price:'12€',sub:'30 jours',val:1200},b:{icon:'🥝',name:'2 kiwis par jour',detail:'Vitamine C naturelle • 150% AJR',price:'1,20€',sub:'par jour',val:120,badge:'✅ -90%'},correct:'b',economy:130,explication:'2 kiwis couvrent 150% des besoins en vitamine C pour 1,20€/mois vs 12€ en comprimés.'},
+  {cat:'🏥 Médecin',q:'Quelle consultation médicale est la moins chère pour un bobo bénin ?',a:{icon:'🏥',name:'Médecin de ville sans rendez-vous',detail:'Consultation urgente • Dépassement',price:'55€',sub:'la consultation',val:5500},b:{icon:'💻',name:'Téléconsultation Doctolib',detail:'Médecin agréé • 15 min • Remboursé',price:'25€',sub:'remboursé SS',val:2500,badge:'✅ -54%'},correct:'b',economy:90,explication:'La téléconsultation est remboursée par la Sécu comme une consultation classique. 30€ économisés sur le dépassement.'},
+  {cat:'🎯 Placement',q:'Quel placement est le moins chargé en frais ?',a:{icon:'🎯',name:'Assurance vie banque réseau',detail:'2% frais entrée + 1%/an gestion',price:'Frais élevés',sub:'/an',val:300},b:{icon:'🎯',name:'PEA en ligne Boursobank',detail:'0% frais entrée + 0,5%/an gestion',price:'Frais réduits',sub:'/an',val:50,badge:'✅ 4× moins de frais'},correct:'b',economy:2500,explication:'Sur 50 000€ sur 20 ans, la différence de frais représente plus de 2 500€. Même performance, frais divisés par 4.'},
 ];
 
-let currentQ = 0, score = 0, streak = 0, bestScore = 0, totalEconomy = 0;
-let correctAnswers = 0, timerInterval, timeLeft = 10;
-let answered = false;
-let shuffled = [];
+const LESSONS = [
+  '💡 Le <b>prix au kilo ou au litre</b> est la seule unité qui compte vraiment. Tout le reste (packaging, taille, format) est du marketing.',
+  '💡 En France, les <b>génériques médicaments</b> sont identiques aux médicaments de marque. Même molécule, même effet, -50% de prix.',
+  '💡 L\'<b>achat en gros</b> réduit le prix unitaire de 20-40%. Attention aux produits périssables.',
+  '💡 Les banques en ligne offrent les <b>mêmes services que les banques traditionnelles</b> pour 0€/mois vs 150-200€/an.',
+  '💡 La <b>réservation anticipée</b> (train, avion, hôtel) peut diviser le prix par 3-5 vs la réservation de dernière minute.',
+];
 
-function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
+let questions=[], currentQ=0, score=0, correct=0, streak=0, bestStreak=0;
+let timerInterval=null, timeLeft=10, totalTime=0, answered=false;
 
-function startGame() {
-  shuffled = shuffle(ALL_QUESTIONS).slice(0, 10);
-  currentQ = 0; score = 0; streak = 0; correctAnswers = 0; totalEconomy = 0;
-  document.getElementById('game-area').style.display = 'block';
-  document.getElementById('results').style.display = 'none';
-  loadQuestion();
+function shuffle(arr){return arr.sort(()=>Math.random()-.5)}
+
+function startGame(){
+  questions = shuffle([...QUESTIONS]).slice(0,10);
+  currentQ=0; score=0; correct=0; streak=0; bestStreak=0; totalTime=0;
+  document.getElementById('intro-screen').style.display='none';
+  document.getElementById('results-screen').style.display='none';
+  document.getElementById('game-screen').style.display='flex';
+  loadQ();
 }
 
-function loadQuestion() {
-  answered = false;
-  timeLeft = 10;
-  const q = shuffled[currentQ];
-  document.getElementById('q-badge').textContent = `Question ${currentQ + 1}/10`;
-  document.getElementById('q-text').textContent = q.q;
-  ['a','b'].forEach(side => {
-    const d = q[side];
-    const card = document.getElementById('deal-' + side);
-    card.className = 'deal-card';
-    document.getElementById('deal-' + side + '-icon').textContent = d.icon;
-    document.getElementById('deal-' + side + '-name').textContent = d.name;
-    document.getElementById('deal-' + side + '-detail').textContent = d.detail;
-    document.getElementById('deal-' + side + '-price').textContent = d.price;
-    document.getElementById('deal-' + side + '-sub').textContent = d.sub;
-    const old = card.querySelector('.deal-badge');
-    if(old) old.remove();
-    if(d.badge) {
-      const badge = document.createElement('div');
-      badge.className = 'deal-badge';
-      badge.textContent = d.badge;
-      card.appendChild(badge);
+function loadQ(){
+  if(currentQ>=questions.length){return showResults();}
+  answered=false;
+  const q=questions[currentQ];
+  document.getElementById('qNum').textContent=(currentQ+1)+'/'+questions.length;
+  document.getElementById('qCat').textContent=q.cat;
+  document.getElementById('qText').textContent=q.q;
+  ['a','b'].forEach(side=>{
+    const d=q[side];
+    document.getElementById('deal-'+side).className='deal';
+    document.getElementById('deal-'+side+'-icon').textContent=d.icon;
+    document.getElementById('deal-'+side+'-name').textContent=d.name;
+    document.getElementById('deal-'+side+'-detail').textContent=d.detail;
+    // Retirer ancien badge
+    const old=document.getElementById('deal-'+side).querySelector('.deal-badge');
+    if(old)old.remove();
+    if(d.badge){
+      const b=document.createElement('div');
+      b.className='deal-badge';b.textContent=d.badge;
+      document.getElementById('deal-'+side).appendChild(b);
     }
   });
-  document.getElementById('feedback').style.display = 'none';
-  updateScoreDisplay();
+  const fb2=document.getElementById('feedback');fb2.classList.remove('show');fb2.style.display='none';
+  document.getElementById('nextBtn').style.display='none';
   startTimer();
 }
 
-function startTimer() {
+function startTimer(){
+  timeLeft=10;
   clearInterval(timerInterval);
-  timeLeft = 10;
-  updateTimer();
-  timerInterval = setInterval(() => {
-    timeLeft -= 0.1;
-    updateTimer();
-    if(timeLeft <= 0) { clearInterval(timerInterval); if(!answered) timeUp(); }
-  }, 100);
+  document.getElementById('timerBar').style.width='100%';
+  document.getElementById('timerBar').style.background='var(--gd)';
+  timerInterval=setInterval(()=>{
+    timeLeft-=0.1;
+    const pct=Math.max(0,(timeLeft/10)*100);
+    document.getElementById('timerBar').style.width=pct+'%';
+    document.getElementById('timerBar').style.background=pct<30?'var(--r)':pct<60?'#fb923c':'var(--gd)';
+    if(timeLeft<=0){clearInterval(timerInterval);choose(null);}
+  },100);
 }
 
-function updateTimer() {
-  const pct = (timeLeft / 10) * 100;
-  document.getElementById('timer-fill').style.width = pct + '%';
-  document.getElementById('timer-fill').style.background = timeLeft > 5 ? 'linear-gradient(90deg,#1D9E75,#EF9F27)' : timeLeft > 3 ? 'linear-gradient(90deg,#f97316,#ef4444)' : '#ef4444';
-  const el = document.getElementById('timer-text');
-  el.textContent = Math.ceil(timeLeft);
-  el.className = 'timer-text' + (timeLeft <= 3 ? ' urgent' : '');
-}
-
-function timeUp() {
-  answered = true; streak = 0;
-  const q = shuffled[currentQ];
-  showFeedback(false, q);
-  setTimeout(nextQuestion, 2500);
-}
-
-function selectDeal(side) {
-  if(answered) return;
-  answered = true;
+function choose(side){
+  if(answered)return;
+  answered=true;
   clearInterval(timerInterval);
-  const q = shuffled[currentQ];
-  const isCorrect = side === q.correct;
-  document.getElementById('deal-' + side).classList.add(isCorrect ? 'selected-correct' : 'selected-wrong');
-  document.getElementById('deal-' + q.correct).classList.add('reveal-correct');
-  if(isCorrect) {
-    const timeBonus = Math.round(timeLeft * 10);
-    const streakBonus = streak >= 2 ? streak * 20 : 0;
-    score += 100 + timeBonus + streakBonus;
-    streak++; correctAnswers++; totalEconomy += q.economy;
-  } else { streak = 0; }
-  showFeedback(isCorrect, q);
-  updateScoreDisplay();
-  setTimeout(nextQuestion, 2500);
-}
+  const q=questions[currentQ];
+  const isCorrect=side===q.correct;
+  totalTime+=(10-timeLeft);
 
-function showFeedback(correct, q) {
-  const fb = document.getElementById('feedback');
-  fb.className = 'feedback ' + (correct ? 'correct' : 'wrong');
-  document.getElementById('fb-title').textContent = correct ? `✅ Bravo ! +${100 + Math.round(timeLeft * 10)} points${streak > 1 ? ' 🔥 Série x' + streak : ''}` : '❌ Pas tout à fait !';
-  document.getElementById('fb-text').innerHTML = q.explication + (correct ? ` <span class="economy">Économie : ${q.economy}€/an</span>` : '');
-  fb.style.display = 'block';
-}
+  if(isCorrect){
+    score+=q.economy; correct++;
+    streak++; bestStreak=Math.max(bestStreak,streak);
+    document.getElementById('deal-'+side).classList.add('correct');
+    if(streak>=3){
+      const t=document.getElementById('streakToast');
+      t.textContent='🔥 Streak x'+streak+' !';
+      t.classList.remove('show'); void t.offsetWidth; t.classList.add('show');
+    }
+  } else {
+    streak=0;
+    if(side)document.getElementById('deal-'+side).classList.add('wrong');
+    document.getElementById('deal-'+q.correct).classList.add('correct');
+  }
 
-function updateScoreDisplay() {
-  document.getElementById('disp-score').textContent = score;
-  document.getElementById('disp-q').textContent = `${currentQ + 1}/10`;
-  document.getElementById('disp-streak').textContent = streak + (streak >= 3 ? '🔥' : '');
-  document.getElementById('stat-score').textContent = score;
-  document.getElementById('stat-streak').textContent = streak + (streak >= 2 ? '🔥' : '');
-  document.getElementById('stat-economy').textContent = totalEconomy + '€';
-  if(score > bestScore) { bestScore = score; document.getElementById('stat-best').textContent = bestScore; }
-}
-
-function nextQuestion() {
+  document.getElementById('scoreVal').textContent=score.toLocaleString('fr-FR')+'€';
+  const fbEl=document.getElementById('fbEconomy');
+    fbEl.textContent=isCorrect?'✅ +'+q.economy+'€ économisés/an':'❌ Le bon deal : '+q[q.correct].name;
+    fbEl.className='fb-economy '+(isCorrect?'win':'loss');
+  document.getElementById('fbExplain').textContent=q.explication;
+  const fb=document.getElementById('feedback');fb.classList.add('show');fb.style.display='block';
+  document.getElementById('nextBtn').style.display='block';
   currentQ++;
-  if(currentQ >= 10) showResults();
-  else loadQuestion();
 }
 
-function showResults() {
-  document.getElementById('game-area').style.display = 'none';
-  const results = document.getElementById('results');
-  results.style.display = 'block';
-  const pct = Math.round((correctAnswers / 10) * 100);
-  let emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : pct >= 40 ? '🤔' : '📚';
-  let title = pct >= 80 ? 'Expert des bons deals !' : pct >= 60 ? 'Bon chasseur de deals !' : pct >= 40 ? 'En progression !' : 'À améliorer !';
-  document.getElementById('res-emoji').textContent = emoji;
-  document.getElementById('res-title').textContent = title;
-  document.getElementById('res-subtitle').textContent = pct >= 80 ? 'Vous savez exactement où trouver les meilleures offres !' : 'Continuez à lire nos articles pour devenir un expert !';
-  document.getElementById('res-score').textContent = score;
-  document.getElementById('res-correct').textContent = correctAnswers + '/10';
-  document.getElementById('res-economy').textContent = totalEconomy + '€';
+function nextQ(){loadQ();}
+
+function showResults(){
+  document.getElementById('game-screen').style.display='none';
+  const rs=document.getElementById('results-screen');
+  document.getElementById('results-screen').style.display='flex';
+  const pct=Math.round((correct/questions.length)*100);
+  document.getElementById('resEmoji').textContent=pct>=80?'🏆':pct>=60?'🎯':'📚';
+  document.getElementById('resScore').textContent=score.toLocaleString('fr-FR')+'€';
+  //document.getElementById('resultLabel').textContent='économies trouvées sur 10 deals';
+  document.getElementById('rs1').textContent=correct+'/'+questions.length;
+  document.getElementById('rs2').textContent=Math.round(totalTime/questions.length)+'s';
+  document.getElementById('rs3').textContent='x'+bestStreak;
+  document.getElementById('resLesson').innerHTML=LESSONS[Math.floor(Math.random()*LESSONS.length)];
 }
 
-function restartGame() { startGame(); }
-startGame();
+function shareResult(){
+  const txt='J\'ai trouvé '+correct+'/10 bons deals et économisé '+score.toLocaleString('fr-FR')+'€ sur Economya.fr 💰 À toi de battre mon score !';
+  if(navigator.share)navigator.share({title:'Le Bon Deal',text:txt,url:'https://economya.fr'}).catch(()=>{});
+  else navigator.clipboard.writeText(txt+' https://economya.fr').then(()=>alert('Copié !'));
+}
 </script>
-<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
-<div style="max-width:1100px;margin:0 auto;">
-<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
-<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
-<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
-<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
-<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
-<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
-</div>
-</div>
-<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
-<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
-<input type="checkbox" checked disabled style="width:16px;height:16px;">
-Cookies essentiels (toujours actifs — fonctionnement du site)
-</label>
-<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
-<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
-Mesure d'audience (Google Analytics)
-</label>
-<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
-<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
-Publicité personnalisée (Google AdSense)
-</label>
-<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
-</div>
-</div>
-</div>
-<script>
-(function(){
-var K = "economya_cookie_consent_v2";
-var D = 180;
-
-function getC(){
-  try{
-    var r = localStorage.getItem(K);
-    if(!r) return null;
-    var d = JSON.parse(r);
-    var e = new Date(d.timestamp);
-    e.setDate(e.getDate() + D);
-    if(new Date() > e) return null;
-    return d;
-  }catch(e){ return null; }
-}
-
-function setC(analytics, publicite){
-  try{
-    localStorage.setItem(K, JSON.stringify({
-      analytics: analytics,
-      publicite: publicite,
-      timestamp: new Date().toISOString()
-    }));
-  }catch(e){}
-}
-
-function applyConsent(analytics, publicite){
-  if(typeof window.gtag === "function"){
-    window.gtag('consent', 'update', {
-      'analytics_storage': analytics ? 'granted' : 'denied',
-      'ad_storage': publicite ? 'granted' : 'denied',
-      'ad_user_data': publicite ? 'granted' : 'denied',
-      'ad_personalization': publicite ? 'granted' : 'denied'
-    });
-  }
-  if(analytics && typeof window.economyaLoadGA === "function"){
-    window.economyaLoadGA();
-  }
-  if(publicite && typeof window.economyaLoadAds === "function"){
-    window.economyaLoadAds();
-  }
-}
-
-var banner = document.getElementById("economya-cookie-banner");
-var existing = getC();
-
-if(existing){
-  applyConsent(existing.analytics, existing.publicite);
-}else if(banner){
-  banner.style.display = "block";
-}
-
-var btnAccept = document.getElementById("economya-cookie-accept");
-var btnRefuse = document.getElementById("economya-cookie-refuse");
-var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
-var btnValider = document.getElementById("economya-cmp-valider");
-var divCategories = document.getElementById("economya-cmp-categories");
-var divSimple = document.getElementById("economya-cmp-simple");
-var checkAnalytics = document.getElementById("economya-cat-analytics");
-var checkPublicite = document.getElementById("economya-cat-publicite");
-
-if(btnAccept){
-  btnAccept.addEventListener("click", function(){
-    setC(true, true);
-    applyConsent(true, true);
-    banner.style.display = "none";
-  });
-}
-if(btnRefuse){
-  btnRefuse.addEventListener("click", function(){
-    setC(false, false);
-    applyConsent(false, false);
-    banner.style.display = "none";
-  });
-}
-if(btnPersonnaliser){
-  btnPersonnaliser.addEventListener("click", function(){
-    divCategories.style.display = "block";
-    divSimple.style.display = "none";
-  });
-}
-if(btnValider){
-  btnValider.addEventListener("click", function(){
-    var a = checkAnalytics ? checkAnalytics.checked : false;
-    var p = checkPublicite ? checkPublicite.checked : false;
-    setC(a, p);
-    applyConsent(a, p);
-    banner.style.display = "none";
-  });
-}
-})();
-</script>
-<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
-Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
-</div>
 </body>
 </html>
