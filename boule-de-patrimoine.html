@@ -103,6 +103,11 @@ function resize(){
   ctx.setTransform(DPR,0,0,DPR,0,0);
 }
 window.addEventListener('resize', resize);
+// Sécurité mobile : la visualViewport (barre d'adresse Safari qui se
+// rétracte, clavier virtuel, etc.) change parfois la taille réelle sans
+// déclencher 'resize' sur window de façon fiable.
+if(window.visualViewport){ window.visualViewport.addEventListener('resize', resize); }
+window.addEventListener('orientationchange', ()=>setTimeout(resize,300));
 
 const ARENA_W = 1600, ARENA_H = 1600;
 
@@ -177,6 +182,9 @@ function startGame(){
   }, 1000);
 
   if(!rafStarted){ rafStarted = true; requestAnimationFrame(loop); }
+  // Re-mesure après que l'overlay ait disparu et que la mise en page se soit stabilisée
+  requestAnimationFrame(resize);
+  setTimeout(resize, 150);
 }
 
 function updateHud(){
@@ -195,14 +203,10 @@ function showAbsorb(text, screenY){
 }
 
 // Position du pointeur en coordonnées écran (CSS px), identique souris/tactile.
-// Les Pointer Events unifient déjà souris + tactile + stylet : pas besoin d'un
-// traitement séparé pour le touch (c'était la source du bug mobile : les
-// event listeners touchstart/touchmove ET pointerdown/pointermove se
-// déclenchaient TOUS LES DEUX pour un même doigt, avec des échelles de
-// coordonnées différentes, ce qui rendait le joystick incohérent).
 function pointerPos(e){
   const rect = canvas.getBoundingClientRect();
-  return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  const src = (e.touches && e.touches[0]) || (e.changedTouches && e.changedTouches[0]) || e;
+  return { x: src.clientX - rect.left, y: src.clientY - rect.top };
 }
 function joyStart(e){
   if(!running) return;
@@ -219,11 +223,24 @@ function joyMove(e){
 }
 function joyEnd(){ joyActive = false; joyDX=0; joyDY=0; }
 
-canvas.addEventListener('pointerdown', e=>{ joyStart(e); e.preventDefault(); });
-canvas.addEventListener('pointermove', e=>{ joyMove(e); e.preventDefault(); });
-canvas.addEventListener('pointerup', joyEnd);
-canvas.addEventListener('pointercancel', joyEnd);
-canvas.addEventListener('pointerleave', joyEnd);
+// Un seul jeu d'écouteurs, JAMAIS les deux à la fois : sur beaucoup de
+// mobiles, un doigt déclenche À LA FOIS les Pointer Events ET les Touch
+// Events. Avoir les deux en même temps (comme avant) crée deux calculs de
+// joystick concurrents avec des échelles de coordonnées différentes → le
+// contrôle devient incohérent/cassé. Ici : tactile → Touch Events
+// uniquement (le plus robuste sur mobile) ; sinon → Pointer Events (souris).
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+if(isTouchDevice){
+  canvas.addEventListener('touchstart', e=>{ joyStart(e); e.preventDefault(); }, {passive:false});
+  canvas.addEventListener('touchmove',  e=>{ joyMove(e);  e.preventDefault(); }, {passive:false});
+  canvas.addEventListener('touchend',   e=>{ joyEnd(); e.preventDefault(); }, {passive:false});
+  canvas.addEventListener('touchcancel',e=>{ joyEnd(); e.preventDefault(); }, {passive:false});
+} else {
+  canvas.addEventListener('pointerdown', joyStart);
+  canvas.addEventListener('pointermove', joyMove);
+  canvas.addEventListener('pointerup', joyEnd);
+  canvas.addEventListener('pointercancel', joyEnd);
+}
 
 function spawnAbsorbBurst(x,y,color){
   for(let i=0;i<8;i++){
