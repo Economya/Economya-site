@@ -188,7 +188,12 @@ function pointerPos(e){
   const rect = canvas.getBoundingClientRect();
   const cx = e.touches ? e.touches[0].clientX : e.clientX;
   const cy = e.touches ? e.touches[0].clientY : e.clientY;
-  return { x: cx-rect.left, y: cy-rect.top };
+  const x = cx - rect.left;
+  const y = cy - rect.top;
+  // Scale uniquement pour mobile (arène 1600x1600 vs écran plus petit)
+  const scaleX = ARENA_W / rect.width;
+  const scaleY = ARENA_H / rect.height;
+  return { x: x * scaleX, y: y * scaleY };
 }
 function joyStart(e){
   if(!running) return;
