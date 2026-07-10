@@ -2,23 +2,20 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Boule de Patrimoine — Economya.fr</title>
 <meta name="description" content="Faites grossir votre boule de patrimoine en absorbant pièces et objets. 60 secondes pour devenir le plus riche possible. Economya.fr">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
-  :root{
-    --bg-top:#2B1B4A; --bg-bottom:#150B28;
-    --gold:#FFD54F; --ball:#4FC3F7; --ink:#F2F0FA; --ink-dim:#B0A8CC;
-    --panel:rgba(255,255,255,.06); --panel-line:rgba(255,255,255,.14);
-  }
   *{ box-sizing:border-box; margin:0; padding:0; }
   html,body{ height:100%; overflow:hidden; }
   body{
-    background: radial-gradient(circle at 50% -10%, var(--bg-top) 0%, var(--bg-bottom) 65%);
-    color: var(--ink); font-family:'Inter', system-ui, sans-serif;
+    background: radial-gradient(circle at 50% -10%, #2B1B4A 0%, #150B28 65%);
+    color:#F2F0FA; font-family:'Inter', system-ui, sans-serif;
     -webkit-tap-highlight-color: transparent; user-select:none; position:relative;
+    touch-action:none;
   }
+  :root{ --gold:#FFD54F; --ink-dim:#B0A8CC; --panel:rgba(255,255,255,.06); --panel-line:rgba(255,255,255,.14); }
   .wrap{ width:100%; height:100%; max-width:460px; margin:0 auto; position:relative; }
   .overlay{ position:absolute; inset:0; z-index:10; display:none; flex-direction:column; align-items:center; justify-content:center; padding:26px; background: linear-gradient(180deg, rgba(21,11,40,.5), rgba(21,11,40,.95) 40%); text-align:center; }
   .overlay.active{ display:flex; animation: fadeIn .35s ease; }
@@ -33,13 +30,13 @@
   .btn{ border:none; border-radius:14px; padding:16px 34px; font-family:'Space Grotesk', sans-serif; font-size:16px; font-weight:700; cursor:pointer; transition: transform .12s ease; }
   .btn:active{ transform: scale(.96); }
   .btn-primary{ background:var(--gold); color:#3A2900; box-shadow:0 10px 26px rgba(255,213,79,.28); }
-  .btn-ghost{ background:transparent; border:1.5px solid var(--panel-line); color:var(--ink); margin-top:12px; padding:13px 30px; font-size:14px; }
+  .btn-ghost{ background:transparent; border:1.5px solid var(--panel-line); color:#F2F0FA; margin-top:12px; padding:13px 30px; font-size:14px; }
   .brand-footer{ margin-top:20px; font-size:12px; color:var(--ink-dim); }
   .brand-footer a{ color:var(--gold); text-decoration:none; font-weight:700; }
   .go-score{ font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:52px; color:var(--gold); line-height:1; margin: 6px 0 4px; }
   .go-label{ font-size:13px; color:var(--ink-dim); margin-bottom:6px; }
   .go-best{ font-size:13px; color:var(--ink-dim); margin-bottom:20px; }
-  .go-best b{ color:var(--ink); }
+  .go-best b{ color:#F2F0FA; }
 
   #hud{ position:absolute; top:0; left:0; right:0; z-index:5; display:flex; justify-content:space-between; align-items:center; padding:14px 16px; pointer-events:none; }
   .hud-size{ font-family:'Space Grotesk', sans-serif; font-weight:800; font-size:20px; background:rgba(0,0,0,.3); padding:6px 14px; border-radius:99px; }
@@ -56,11 +53,11 @@
   canvas{ display:block; width:100%; height:100%; touch-action:none; }
   .joy-hint{ position:absolute; top:14px; left:0; right:0; text-align:center; font-size:12.5px; color:var(--ink-dim); z-index:5; pointer-events:none; }
 
-  /* Joystick virtuel fixe : même comportement souris/tactile, isolé du canvas */
+  /* Joystick virtuel fixe, toujours visible : même code souris/tactile */
   .joystick-base{
     position:absolute; bottom:26px; left:26px; width:132px; height:132px; border-radius:50%;
     background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.18);
-    z-index:8; touch-action:none; -webkit-tap-highlight-color:transparent;
+    z-index:8; touch-action:none; -webkit-tap-highlight-color:transparent; display:none;
   }
   .joystick-knob{
     position:absolute; top:50%; left:50%; width:56px; height:56px; margin:-28px 0 0 -28px;
@@ -71,39 +68,39 @@
 </head>
 <body>
 <div class="wrap" id="wrap">
-  <canvas id="game"></canvas>
-  <div id="hud" style="display:none;">
-    <div class="hud-size" id="hudSize">⭐ 0 €</div>
-    <div class="hud-timer" id="hudTimer">60s</div>
-  </div>
-  <div class="rank-toast" id="rankToast"></div>
-  <div class="absorb-toast" id="absorbToast"></div>
-  <div class="joy-hint" id="joyHint" style="display:none;">Utilisez le joystick pour diriger votre boule</div>
-  <div class="joystick-base" id="joystickBase" style="display:none;">
-    <div class="joystick-knob" id="joystickKnob"></div>
-  </div>
+<canvas id="game"></canvas>
+<div id="hud" style="display:none;">
+  <div class="hud-size" id="hudSize">⭐ 0 €</div>
+  <div class="hud-timer" id="hudTimer">60s</div>
+</div>
+<div class="rank-toast" id="rankToast"></div>
+<div class="absorb-toast" id="absorbToast"></div>
+<div class="joy-hint" id="joyHint" style="display:none;">Glissez le joystick pour diriger votre boule</div>
+<div class="joystick-base" id="joystickBase">
+  <div class="joystick-knob" id="joystickKnob"></div>
+</div>
 
-  <div class="overlay active" id="screen-intro">
-    <div class="eyebrow">Economya.fr · La boule</div>
-    <h1 class="title">Boule de <span>Patrimoine</span></h1>
-    <p class="lede">Roulez votre boule pour absorber pièces et petites dépenses. Plus elle grossit, plus elle peut avaler de gros objets. 60 secondes pour bâtir le plus gros patrimoine.</p>
-    <div class="legend">
-      <div class="legend-item">👆 Glissez pour diriger</div>
-      <div class="legend-item">📈 Grossissez pour tout avaler</div>
-    </div>
-    <button class="btn btn-primary" onclick="startGame()">Faire rouler la boule</button>
-    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+<div class="overlay active" id="screen-intro">
+  <div class="eyebrow">Economya.fr · La boule</div>
+  <h1 class="title">Boule de <span>Patrimoine</span></h1>
+  <p class="lede">Roulez votre boule pour absorber pièces et petites dépenses. Plus elle grossit, plus elle peut avaler de gros objets. 60 secondes pour bâtir le plus gros patrimoine.</p>
+  <div class="legend">
+    <div class="legend-item">👆 Glissez le joystick</div>
+    <div class="legend-item">📈 Grossissez pour tout avaler</div>
   </div>
+  <button class="btn btn-primary" onclick="startGame()">Faire rouler la boule</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+</div>
 
-  <div class="overlay" id="screen-over">
-    <div class="eyebrow">Temps écoulé</div>
-    <div class="go-score" id="goScore">0 €</div>
-    <div class="go-label">valeur de votre patrimoine final</div>
-    <div class="go-best">Record : <b id="goBest">0 €</b></div>
-    <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
-    <button class="btn btn-ghost" onclick="shareResult()">Partager mon score</button>
-    <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
-  </div>
+<div class="overlay" id="screen-over">
+  <div class="eyebrow">Temps écoulé</div>
+  <div class="go-score" id="goScore">0 €</div>
+  <div class="go-label">valeur de votre patrimoine final</div>
+  <div class="go-best">Record : <b id="goBest">0 €</b></div>
+  <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+  <button class="btn btn-ghost" onclick="shareResult()">Partager mon score</button>
+  <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
+</div>
 </div>
 
 <script>
@@ -118,6 +115,8 @@ function resize(){
   ctx.setTransform(DPR,0,0,DPR,0,0);
 }
 window.addEventListener('resize', resize);
+if(window.visualViewport){ window.visualViewport.addEventListener('resize', resize); }
+window.addEventListener('orientationchange', ()=>setTimeout(resize,300));
 
 const ARENA_W = 1600, ARENA_H = 1600;
 
@@ -140,7 +139,7 @@ let objects = [];
 let running = false;
 let timeLeft = 60;
 let best = 0;
-let joyActive = false, joyDX=0, joyDY=0, joyStartX=0, joyStartY=0;
+let joyActive = false, joyDX=0, joyDY=0;
 let rafStarted = false;
 let timerInterval = null;
 let particles = [];
@@ -169,55 +168,11 @@ function spawnObjects(count){
   }
 }
 
-function startGame(){
-  resize();
-  document.getElementById('screen-intro').classList.remove('active');
-  document.getElementById('screen-over').classList.remove('active');
-  document.getElementById('hud').style.display='flex';
-  document.getElementById('joyHint').style.display='block';
-  joystickBase.style.display='block';
-  resetJoyKnob();
-
-  ball = { x: ARENA_W/2, y: ARENA_H/2, r:16, value:0 };
-  objects = []; particles = [];
-  spawnObjects(140);
-  running = true; timeLeft = 60;
-  updateHud();
-
-  clearInterval(timerInterval);
-  timerInterval = setInterval(()=>{
-    timeLeft -= 1;
-    const el = document.getElementById('hudTimer');
-    el.textContent = timeLeft + 's';
-    if(timeLeft<=10) el.classList.add('urgent');
-    if(timeLeft<=0){ endGame(); }
-  }, 1000);
-
-  if(!rafStarted){ rafStarted = true; requestAnimationFrame(loop); }
-}
-
-function updateHud(){
-  document.getElementById('hudSize').textContent = '⭐ ' + fmt(ball.value);
-}
-function showRank(text){
-  const el = document.getElementById('rankToast');
-  el.textContent = text;
-  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
-}
-function showAbsorb(text, screenY){
-  const el = document.getElementById('absorbToast');
-  el.textContent = text;
-  el.style.top = Math.max(80, Math.min(window.innerHeight * 0.65, screenY)) + 'px';
-  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
-}
-
 // ── Joystick virtuel fixe ────────────────────────────────────────────
-// Remplace le "glisser n'importe où sur le canvas" (fragile sur mobile,
-// plusieurs tentatives de correction infructueuses) par un joystick DOM
-// dédié, toujours visible, avec EXACTEMENT le même code pour souris et
-// tactile. joyDX/joyDY restent des décalages en pixels écran (pas besoin
-// de les convertir vers l'espace arène) : c'est la logique de loop() qui
-// s'en sert déjà correctement telle quelle.
+// Un joystick DOM dédié (pas un drag depuis n'importe où sur le canvas),
+// toujours visible, avec EXACTEMENT le même code pour souris et tactile.
+// joyDX/joyDY sont des décalages en pixels écran, utilisés tels quels par
+// loop() — pas de conversion vers l'espace arène (source de bugs avant).
 const joystickBase = document.getElementById('joystickBase');
 const joystickKnob = document.getElementById('joystickKnob');
 const JOY_MAXD = 40;
@@ -257,8 +212,9 @@ function joyEnd(e){
   if(e && e.preventDefault) e.preventDefault();
 }
 
-// Un seul jeu d'écouteurs actif à la fois (jamais tactile + pointer en même
-// temps : c'était la cause du bug précédent, deux calculs concurrents).
+// Un seul jeu d'écouteurs actif à la fois : jamais tactile + pointer/souris
+// en même temps (c'était la cause des bugs précédents : deux calculs de
+// joystick concurrents avec des échelles de coordonnées différentes).
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 if(isTouchDevice){
   joystickBase.addEventListener('touchstart', joyStart, {passive:false});
@@ -269,6 +225,50 @@ if(isTouchDevice){
   joystickBase.addEventListener('pointerdown', joyStart);
   window.addEventListener('pointermove', joyMove);
   window.addEventListener('pointerup', joyEnd);
+}
+
+function startGame(){
+  resize();
+  document.getElementById('screen-intro').classList.remove('active');
+  document.getElementById('screen-over').classList.remove('active');
+  document.getElementById('hud').style.display='flex';
+  document.getElementById('joyHint').style.display='block';
+  joystickBase.style.display='block';
+  resetJoyKnob();
+
+  ball = { x: ARENA_W/2, y: ARENA_H/2, r:16, value:0 };
+  objects = []; particles = [];
+  spawnObjects(140);
+  running = true; timeLeft = 60;
+  updateHud();
+
+  clearInterval(timerInterval);
+  timerInterval = setInterval(()=>{
+    timeLeft -= 1;
+    const el = document.getElementById('hudTimer');
+    el.textContent = timeLeft + 's';
+    if(timeLeft<=10) el.classList.add('urgent');
+    if(timeLeft<=0){ endGame(); }
+  }, 1000);
+
+  if(!rafStarted){ rafStarted = true; requestAnimationFrame(loop); }
+  requestAnimationFrame(resize);
+  setTimeout(resize, 150);
+}
+
+function updateHud(){
+  document.getElementById('hudSize').textContent = '⭐ ' + fmt(ball.value);
+}
+function showRank(text){
+  const el = document.getElementById('rankToast');
+  el.textContent = text;
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
+}
+function showAbsorb(text, screenY){
+  const el = document.getElementById('absorbToast');
+  el.textContent = text;
+  el.style.top = Math.max(80, Math.min(window.innerHeight * 0.65, screenY)) + 'px';
+  el.classList.remove('show'); void el.offsetWidth; el.classList.add('show');
 }
 
 function spawnAbsorbBurst(x,y,color){
