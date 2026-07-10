@@ -215,7 +215,8 @@ function joyMove(e){
   if(!joyActive) return;
   const p = pointerPos(e);
   joyDX = p.x - joyStartX; joyDY = p.y - joyStartY;
-  const maxD = 60;
+  // maxD adapté : plus grand sur mobile car coords scalées x4
+  const maxD = e.touches ? 60 * (ARENA_W / canvas.getBoundingClientRect().width) : 60;
   const d = Math.hypot(joyDX,joyDY);
   if(d > maxD){ joyDX = joyDX/d*maxD; joyDY = joyDY/d*maxD; }
 }
