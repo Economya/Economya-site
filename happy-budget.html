@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Happy Budget — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;background:#0A0E1A;touch-action:none;-webkit-tap-highlight-color:transparent;user-select:none;}
+body{display:flex;align-items:center;justify-content:center;}
+.wrap{position:relative;width:100%;max-width:390px;height:100vh;}
+canvas{display:block;width:100%;height:100%;}
+.ov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;background:rgba(10,14,26,.93);backdrop-filter:blur(8px);}
+.ov.off{display:none;}
+.tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,213,79,.12);border:1px solid rgba(255,213,79,.25);border-radius:99px;padding:5px 14px;font-size:11px;font-weight:700;color:#FFD54F;letter-spacing:.06em;margin-bottom:16px;}
+h1{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:900;letter-spacing:-.03em;color:#F5F5F7;margin-bottom:8px;}
+h1 span{color:#FFD54F;}
+.sub{font-size:14px;color:rgba(255,255,255,.5);line-height:1.55;margin-bottom:24px;max-width:280px;}
+.sbig{font-family:'Space Grotesk',sans-serif;font-size:60px;font-weight:900;color:#FFD54F;line-height:1;margin-bottom:4px;}
+.slbl{font-size:14px;color:rgba(255,255,255,.5);margin-bottom:6px;}
+.blbl{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px;}
+.blbl b{color:#F5F5F7;}
+.btn{background:#FFD54F;color:#1A0A00;border:none;border-radius:16px;padding:17px;font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:800;cursor:pointer;width:100%;max-width:280px;margin-bottom:10px;}
+.btn:active{opacity:.8;}
+.btn2{background:transparent;border:1.5px solid rgba(255,255,255,.15);color:#F5F5F7;border-radius:14px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;width:100%;max-width:280px;}
+.brand{margin-top:16px;font-size:12px;color:rgba(255,255,255,.3);}
+.brand a{color:#FFD54F;text-decoration:none;}
+.ctrl{position:absolute;bottom:0;left:0;right:0;height:120px;display:flex;z-index:9;}
+.cl,.cr{flex:1;}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+<canvas id="c"></canvas>
+<div class="ctrl" id="ctrl" style="display:none">
+  <div class="cl" id="cl"></div>
+  <div class="cr" id="cr"></div>
+</div>
+
+<div class="ov" id="oIntro">
+  <div class="tag">🎮 Economya.fr</div>
+  <h1>Happy<br><span>Budget</span></h1>
+  <p class="sub">Sautez sur les plateformes financières, montez le plus haut possible et accumulez des économies !</p>
+  <button class="btn" onclick="start()">🚀 Jouer !</button>
+  <div class="brand">Un jeu <a href="https://economya.fr">Economya.fr</a></div>
+</div>
+
+<div class="ov off" id="oOver">
+  <div class="tag">Résultat</div>
+  <div class="sbig" id="sScore">0€</div>
+  <div class="slbl">patrimoine accumulé</div>
+  <div class="blbl">Record : <b id="sBest">0€</b></div>
+  <button class="btn" onclick="start()">🔄 Rejouer</button>
+  <button class="btn2" onclick="sh()">📤 Partager</button>
+  <div class="brand">Un jeu <a href="https://economya.fr">Economya.fr</a></div>
+</div>
+</div>
+
+<script>
+const cv = document.getElementById('c');
+const cx = cv.getContext('2d');
+const wp = document.getElementById('wrap');
+
+let W, H, R;
+function rsz() {
+  R = Math.min(window.devicePixelRatio||1,2);
+  W = wp.clientWidth; H = wp.clientHeight;
+  cv.width = W*R; cv.height = H*R;
+  cx.setTransform(R,0,0,R,0,0);
+}
+window.addEventListener('resize', rsz); rsz();
+
+// Plateformes
+const PT = [
+  {c:'#30D158',e:'💰',n:'Livret A', v:50},
+  {c:'#FFD54F',e:'🪙',n:'Épargne',  v:100},
+  {c:'#0A84FF',e:'📈',n:'ETF',      v:250},
+  {c:'#BF5AF2',e:'🏦',n:'PEA',      v:500},
+  {c:'#FF453A',e:'💳',n:'Dette',    v:-200},
+];
+
+// State
+let P, plats, score, best, alive, raf, off, ftxt;
+let lft=false, rgt=false, tilt=0;
+
+try{best=parseInt(localStorage.getItem('hb')||'0');}catch(e){best=0;}
+
+// Contrôles
+window.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='a')lft=true;if(e.key==='ArrowRight'||e.key==='d')rgt=true;});
+window.addEventListener('keyup',  e=>{if(e.key==='ArrowLeft'||e.key==='a')lft=false;if(e.key==='ArrowRight'||e.key==='d')rgt=false;});
+window.addEventListener('deviceorientation',e=>{tilt=Math.max(-1,Math.min(1,(e.gamma||0)/30));});
+document.getElementById('cl').addEventListener('touchstart',e=>{e.preventDefault();lft=true;},{passive:false});
+document.getElementById('cl').addEventListener('touchend',  e=>{e.preventDefault();lft=false;},{passive:false});
+document.getElementById('cr').addEventListener('touchstart',e=>{e.preventDefault();rgt=true;},{passive:false});
+document.getElementById('cr').addEventListener('touchend',  e=>{e.preventDefault();rgt=false;},{passive:false});
+
+// Génération — la difficulté augmente vite avec l'altitude (diff : 0 en bas, 1 dès ~1800)
+function difAt(worldY){ return Math.min(1, Math.max(0,-worldY)/1800); }
+function spdAt(diff){ return 5*(1-diff*0.3); }
+// Temps (en frames ~16ms) pour RETOMBER à la hauteur "gap" après le saut (JV=-15, GRAV=0.45)
+// Le joueur monte au-delà de la plateforme cible puis retombe dessus : on veut l'instant
+// de la 2e intersection (en chute), pas la 1re (en montée), d'où le "+sqrt".
+function fallTime(gap){
+  const JV=15, GRAV=0.45;
+  const disc = Math.max(0, JV*JV - 2*GRAV*gap);
+  return (JV + Math.sqrt(disc))/GRAV;
+}
+// prevCx = centre x de la plateforme précédente, gap = écart vertical avec elle
+function mkPlat(worldY, safe, prevCx, gap) {
+  const diff = difAt(worldY);
+  const wMin = 60 - diff*35;           // 60 → 25 : plateformes bien plus étroites en altitude
+  const wMax = wMin + (65 - diff*40);  // la marge de largeur se resserre aussi
+  const w = wMin + Math.random()*(wMax-wMin);
+
+  let xMin=0, xMax=W-w;
+  if(prevCx!=null && gap!=null){
+    // portée horizontale réellement atteignable pendant le saut, avec marge de sécurité
+    const reach = spdAt(diff) * fallTime(gap) * 0.6;
+    xMin = Math.max(0, prevCx - w/2 - reach);
+    xMax = Math.min(W-w, prevCx - w/2 + reach);
+    if(xMin>xMax){ xMin=0; xMax=W-w; }
+  }
+  const x = xMin + Math.random()*Math.max(0,(xMax-xMin));
+
+  let t;
+  if(safe){
+    t = PT[Math.floor(Math.random()*4)];
+  } else {
+    const badChance = 0.15 + diff*0.35;   // plus de Dette en altitude (15%→50%)
+    t = Math.random()<badChance ? PT[4] : PT[Math.floor(Math.random()*4)];
+  }
+  return {x, y:worldY, w, h:14, t, used:false};
+}
+
+function start() {
+  document.getElementById('oIntro').classList.add('off');
+  document.getElementById('oOver').classList.add('off');
+  document.getElementById('ctrl').style.display='flex';
+
+  score=0; alive=true; off=0; ftxt=[];
+
+  // off = décalage caméra en Y monde (négatif = on monte)
+  // Coordonnées monde : y augmente vers le bas
+
+  // Joueur
+  P = {x:W/2-15, y:0, vx:0, vy:0, w:30, h:36};
+
+  // Plateformes : espacées verticalement (y négatif = plus haut)
+  plats = [];
+  // Plateforme de départ
+  const startPlat = {x:W/2-50, y:50, w:100, h:14, t:PT[0], used:false};
+  plats.push(startPlat);
+  let prevCx = startPlat.x + startPlat.w/2;
+  for(let i=1;i<12;i++) {
+    const p = mkPlat(-i*90, i<6, prevCx, 90);
+    plats.push(p);
+    prevCx = p.x + p.w/2;
+  }
+
+  cancelAnimationFrame(raf);
+  raf = requestAnimationFrame(loop);
+}
+
+let pt=0;
+function loop(t) {
+  if(!alive) return;
+  const dt = Math.min((t-pt)/16, 2.5); pt=t;
+  update(dt);
+  render();
+  raf = requestAnimationFrame(loop);
+}
+
+function update(dt) {
+  const GRAV = 0.45, JV = -15;
+  const SPD = spdAt(difAt(off));   // le contrôle horizontal devient moins précis en altitude
+
+  // Horizontal
+  const dx = (rgt?1:0)-(lft?1:0)+tilt;
+  P.vx = dx*SPD;
+  P.x += P.vx*dt;
+  if(P.x+P.w<0) P.x=W;
+  if(P.x>W) P.x=-P.w;
+
+  // Vertical
+  P.vy += GRAV*dt;
+  P.y  += P.vy*dt;
+
+  // Scroll : si le joueur monte dans la moitié haute de l'écran
+  // off = valeur monde correspondant au bord supérieur de l'écran
+  // screenY du joueur = P.y - off
+  const sy = P.y - off;
+  if(sy < H*0.38) {
+    off = P.y - H*0.38;
+  }
+
+  // Collisions : seulement en chute (vy > 0)
+  if(P.vy > 0) {
+    for(const p of plats) {
+      // Position écran de la plateforme
+      const psy = p.y - off;
+      // Le bas du joueur en coords monde
+      const bot = P.y + P.h;
+      const botPrev = bot - P.vy*dt;
+      if(
+        P.x+P.w > p.x && P.x < p.x+p.w &&
+        bot >= p.y && botPrev <= p.y+p.h+1
+      ){
+        P.y = p.y - P.h;
+        P.vy = JV;
+        if(!p.used){
+          p.used=true;
+          score=Math.max(0,score+p.t.v);
+          ftxt.push({x:p.x+p.w/2, y:p.y-10, txt:(p.t.v>0?'+':'')+p.t.v+'€', c:p.t.v>0?'#30D158':'#FF453A', life:1.5});
+          if(score>best){best=score;try{localStorage.setItem('hb',String(best));}catch(e){}}
+        }
+        break;
+      }
+    }
+  }
+
+  // Générer nouvelles plateformes en haut — écart croissant avec l'altitude (95→210), toujours atteignable
+  let topY = Math.min(...plats.map(p=>p.y));
+  let topPlat = plats.reduce((a,b)=> b.y<a.y?b:a);
+  let prevCx2 = topPlat.x + topPlat.w/2;
+  while(topY > off-50) {
+    const diff = difAt(topY);
+    const gap = 95 + diff*115;
+    topY -= gap;
+    const p = mkPlat(topY, false, prevCx2, gap);
+    plats.push(p);
+    prevCx2 = p.x + p.w/2;
+  }
+  // Nettoyer les plateformes hors écran en bas
+  plats = plats.filter(p => p.y - off < H+80);
+
+  // Textes flottants
+  ftxt.forEach(f=>{f.y-=1.5*dt; f.life-=0.025*dt;});
+  ftxt = ftxt.filter(f=>f.life>0);
+
+  // Game over : chute hors écran
+  if(P.y - off > H+80) { alive=false; endGame(); }
+}
+
+function render() {
+  // Fond
+  const bg=cx.createLinearGradient(0,0,0,H);
+  bg.addColorStop(0,'#050810'); bg.addColorStop(1,'#0F1628');
+  cx.fillStyle=bg; cx.fillRect(0,0,W,H);
+
+  // Étoiles
+  cx.fillStyle='rgba(255,255,255,.2)';
+  for(let i=0;i<40;i++){
+    const sx=(i*137)%W;
+    const sy=((i*251-off*0.04)%H+H)%H;
+    cx.fillRect(sx,sy,1.5,1.5);
+  }
+
+  // Plateformes — style galactique (halo, nébuleuse, particules en orbite)
+  const now = performance.now();
+  plats.forEach(p=>{
+    const sy=p.y-off;
+    if(sy<-30||sy>H+30) return;
+    const cxp=p.x+p.w/2, cyp=sy+p.h/2;
+    const pulse=0.75+0.25*Math.sin(now/400+p.x);
+
+    // Halo lumineux externe (comme une nébuleuse)
+    const halo=cx.createRadialGradient(cxp,cyp,2,cxp,cyp,p.w*0.9);
+    halo.addColorStop(0,p.t.c+'66'); halo.addColorStop(1,p.t.c+'00');
+    cx.fillStyle=halo;
+    cx.beginPath();
+    cx.ellipse(cxp,cyp,p.w*0.85*pulse,p.h*2.4*pulse,0,0,Math.PI*2);
+    cx.fill();
+
+    // Ombre portée
+    cx.fillStyle='rgba(0,0,0,.35)';
+    cx.beginPath();
+    if(cx.roundRect) cx.roundRect(p.x+3,sy+6,p.w,p.h,9); else cx.rect(p.x+3,sy+6,p.w,p.h);
+    cx.fill();
+
+    // Corps dégradé façon galaxie + lueur néon
+    const g=cx.createLinearGradient(p.x,sy,p.x+p.w,sy+p.h);
+    g.addColorStop(0,shade(p.t.c,45)); g.addColorStop(.5,p.t.c); g.addColorStop(1,shade(p.t.c,-35));
+    cx.save();
+    cx.shadowColor=p.t.c; cx.shadowBlur=16*pulse;
+    cx.fillStyle=g;
+    cx.beginPath();
+    if(cx.roundRect) cx.roundRect(p.x,sy,p.w,p.h,9); else cx.rect(p.x,sy,p.w,p.h);
+    cx.fill();
+    cx.restore();
+
+    // Reflet vitré
+    cx.fillStyle='rgba(255,255,255,.35)';
+    cx.beginPath();
+    if(cx.roundRect) cx.roundRect(p.x+5,sy+2,p.w-10,4,3); else cx.rect(p.x+5,sy+2,p.w-10,4);
+    cx.fill();
+
+    // Bordure scintillante
+    cx.strokeStyle='rgba(255,255,255,.45)'; cx.lineWidth=1;
+    cx.beginPath();
+    if(cx.roundRect) cx.roundRect(p.x+.5,sy+.5,p.w-1,p.h-1,9); else cx.rect(p.x+.5,sy+.5,p.w-1,p.h-1);
+    cx.stroke();
+
+    // Particules en orbite (étoiles scintillantes)
+    for(let k=0;k<3;k++){
+      const ang=now/600+k*(Math.PI*2/3)+p.x;
+      const px=cxp+Math.cos(ang)*p.w*0.55;
+      const py=cyp+Math.sin(ang)*p.h*1.4;
+      const tw=0.4+0.6*Math.abs(Math.sin(now/300+k+p.x));
+      cx.fillStyle=`rgba(255,255,255,${tw})`;
+      cx.beginPath(); cx.arc(px,py,1.3,0,Math.PI*2); cx.fill();
+    }
+
+    // Icône + label
+    if(p.w>60){
+      cx.font='10px Arial'; cx.textAlign='center'; cx.textBaseline='middle';
+      cx.fillStyle='rgba(0,0,0,.75)';
+      cx.fillText(p.t.e+' '+p.t.n, cxp, cyp);
+    } else {
+      cx.font='14px Arial'; cx.textAlign='center'; cx.textBaseline='middle';
+      cx.fillText(p.t.e, cxp, cyp);
+    }
+  });
+
+  // Textes flottants
+  ftxt.forEach(f=>{
+    cx.save(); cx.globalAlpha=Math.min(1,f.life);
+    cx.font='bold 14px Space Grotesk,sans-serif';
+    cx.textAlign='center'; cx.fillStyle=f.c;
+    cx.shadowColor=f.c; cx.shadowBlur=8;
+    cx.fillText(f.txt, f.x, f.y-off);
+    cx.restore();
+  });
+
+  // Joueur
+  const py=P.y-off;
+  cx.save(); cx.translate(P.x+P.w/2, py+P.h/2);
+  const bg2=cx.createRadialGradient(-3,-5,3,0,0,P.w);
+  bg2.addColorStop(0,'#FFE066'); bg2.addColorStop(1,'#FF9F0A');
+  cx.fillStyle=bg2; cx.shadowColor='#FFD54F'; cx.shadowBlur=12;
+  cx.beginPath(); cx.ellipse(0,2,P.w/2,P.h/2,0,0,Math.PI*2); cx.fill();
+  cx.shadowBlur=0;
+  cx.fillStyle='#FFF5DC'; cx.beginPath(); cx.ellipse(0,-4,9,10,0,0,Math.PI*2); cx.fill();
+  cx.fillStyle='#1A0A00';
+  cx.beginPath(); cx.ellipse(-3,-6,2,2.5,0,0,Math.PI*2); cx.fill();
+  cx.beginPath(); cx.ellipse(3,-6,2,2.5,0,0,Math.PI*2); cx.fill();
+  cx.strokeStyle='#1A0A00'; cx.lineWidth=1.5;
+  cx.beginPath(); cx.arc(0,-2,4,0.15,Math.PI-0.15); cx.stroke();
+  cx.fillStyle='#1A0A00'; cx.font='bold 13px Arial';
+  cx.textAlign='center'; cx.textBaseline='middle'; cx.fillText('€',0,8);
+  cx.restore();
+
+  // HUD
+  cx.font='bold 20px Space Grotesk,sans-serif';
+  cx.fillStyle='#FFD54F'; cx.textAlign='center';
+  cx.shadowColor='#FFD54F'; cx.shadowBlur=8;
+  cx.fillText('💰 '+score+'€', W/2, 34);
+  cx.shadowBlur=0;
+  cx.font='bold 11px Space Grotesk,sans-serif';
+  cx.fillStyle='rgba(255,255,255,.3)'; cx.textAlign='right';
+  cx.fillText('Record: '+best+'€', W-12, 20);
+
+  // Zones tactiles visibles
+  cx.fillStyle='rgba(255,255,255,.03)';
+  cx.fillRect(0,H-120,W/2,120); cx.fillRect(W/2,H-120,W/2,120);
+  cx.fillStyle='rgba(255,255,255,.1)'; cx.font='20px Arial'; cx.textAlign='center';
+  cx.fillText('◀', W/4, H-50); cx.fillText('▶', W*3/4, H-50);
+}
+
+function shade(hex,pct){
+  const f=parseInt(hex.slice(1),16), t=pct<0?0:255, p=Math.abs(pct)/100;
+  const R=f>>16, G=f>>8&255, B=f&255;
+  return '#'+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+(Math.round((t-B)*p)+B)).toString(16).slice(1);
+}
+
+function endGame() {
+  document.getElementById('ctrl').style.display='none';
+  document.getElementById('sScore').textContent=score+'€';
+  document.getElementById('sBest').textContent=best+'€';
+  document.getElementById('oOver').classList.remove('off');
+}
+
+function sh(){
+  const t=`J'ai accumulé ${score}€ sur Happy Budget (Economya.fr) 💰 Peux-tu faire mieux ?`;
+  if(navigator.share) navigator.share({title:'Happy Budget',text:t,url:'https://economya.fr'}).catch(()=>{});
+  else navigator.clipboard.writeText(t+' https://economya.fr').then(()=>alert('Copié !'));
+}
+</script>
+</body>
+</html>
