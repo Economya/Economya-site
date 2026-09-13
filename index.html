@@ -59,7 +59,29 @@
   .nlperk::before{content:'✓ ';color:var(--g);font-weight:700}
   footer{background:var(--gd);color:rgba(255,255,255,0.6);text-align:center;padding:1.6rem;font-size:.8rem}
   footer strong{color:white}
-  @media(max-width:640px){nav{padding:.8rem 1rem}.nl{display:none}.hero{padding:3.5rem 1.2rem 3rem}section{padding:2.2rem 1rem}}
+  .community-sec{padding:3rem 1.5rem;background:#FAFAFA;border-bottom:1px solid #EFEFEF;}
+.community-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+@media(max-width:700px){.community-inner{grid-template-columns:1fr;}.community-right{display:none;}}
+.community-tag{display:inline-flex;align-items:center;gap:6px;background:#FEF3C7;border:1px solid #FDE68A;border-radius:99px;padding:4px 12px;font-size:11px;font-weight:700;color:#92400E;margin-bottom:12px;}
+.community-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;line-height:1.15;margin-bottom:10px;color:#0A0A0A;}
+.community-title em{color:#1D9E75;font-style:normal;}
+.community-sub{font-size:.9rem;color:#737373;line-height:1.6;margin-bottom:20px;max-width:360px;}
+.community-actions{display:flex;gap:10px;flex-wrap:wrap;}
+.community-btn-primary{background:#0A0A0A;color:#fff;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:700;text-decoration:none;transition:opacity .15s;}
+.community-btn-primary:hover{opacity:.85;}
+.community-btn-ghost{background:#fff;border:1.5px solid #EFEFEF;color:#0A0A0A;border-radius:10px;padding:11px 20px;font-size:14px;font-weight:600;text-decoration:none;}
+.community-right{position:relative;}
+.community-card{background:#fff;border:1px solid #EFEFEF;border-radius:16px;padding:16px;box-shadow:0 4px 20px rgba(0,0,0,.06);}
+.cc-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.cc-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;}
+.cc-name{font-weight:700;font-size:13px;display:flex;align-items:center;gap:6px;}
+.cc-rank{font-size:10px;background:#F3F4F6;color:#6B7280;padding:2px 6px;border-radius:99px;font-weight:700;}
+.cc-cat{font-size:11px;color:#737373;margin-top:2px;}
+.cc-title{font-weight:800;font-size:14px;line-height:1.3;margin-bottom:8px;}
+.cc-pill{display:inline-flex;align-items:center;gap:4px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700;color:#16A34A;margin-bottom:8px;}
+.cc-actions{display:flex;gap:14px;font-size:12px;color:#737373;font-weight:600;}
+.cc-rel{color:#22C55E;font-weight:700;}
+@media(max-width:640px){nav{padding:.8rem 1rem}.nl{display:none}.hero{padding:3.5rem 1.2rem 3rem}section{padding:2.2rem 1rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -200,6 +222,49 @@ function toggleMenu(){
 </div>
 
 
+
+<section class="community-sec">
+  <div class="community-inner">
+    <div class="community-left">
+      <div class="community-tag">🌱 Nouveau</div>
+      <h2 class="community-title">Le réseau social<br>de <em>l'épargne</em></h2>
+      <p class="community-sub">Partagez l'astuce qui vous a fait économiser le plus. La communauté vote, teste, valide. Les meilleures remontent automatiquement.</p>
+      <div class="community-actions">
+        <a href="community.html" class="community-btn-primary">Découvrir Community →</a>
+        <a href="forum-astuces.html" class="community-btn-ghost">Voir les astuces</a>
+      </div>
+    </div>
+    <div class="community-right">
+      <div class="community-card">
+        <div class="cc-header">
+          <div class="cc-avatar" style="background:#F59E0B;color:#1A0A00">M</div>
+          <div>
+            <div class="cc-name">Marie <span class="cc-rank">🌱 Débutant</span></div>
+            <div class="cc-cat">📱 Téléphonie · il y a 5j</div>
+          </div>
+        </div>
+        <div class="cc-title">40€/mois économisés en changeant de forfait mobile</div>
+        <div class="cc-pill">💰 480€/an</div>
+        <div class="cc-actions">
+          <span>❤️ 247</span>
+          <span>✅ 89 testés</span>
+          <span class="cc-rel">100% fiable</span>
+        </div>
+      </div>
+      <div class="community-card" style="transform:rotate(2deg);opacity:.7;margin-top:-20px;pointer-events:none">
+        <div class="cc-header">
+          <div class="cc-avatar" style="background:#3B82F6;color:#fff">P</div>
+          <div>
+            <div class="cc-name">Pierre <span class="cc-rank">🌱 Débutant</span></div>
+            <div class="cc-cat">🚗 Transport · il y a 4j</div>
+          </div>
+        </div>
+        <div class="cc-title">Covoiturage domicile-travail : 1 800€/an</div>
+        <div class="cc-pill">💰 1 800€/an</div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="hsec">
   <div class="stag">Comment ça marche</div>
