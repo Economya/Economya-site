@@ -4,204 +4,228 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>À propos — Economya.fr</title>
-<meta name="description" content="Découvrez l'histoire d'Economya.fr, le média digital dédié aux économies du quotidien et à la gestion de budget en France.">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}body{margin:0;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
-nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
-.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
-.logo span{color:var(--a)}
-.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
-.hero{background:linear-gradient(135deg,#04342C,#0F6E56,#1D9E75);color:white;padding:4rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'€';position:absolute;font-size:22rem;font-family:'Playfair Display',serif;font-weight:900;color:rgba(255,255,255,.04);top:-3rem;left:-2rem;line-height:1}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin-bottom:.8rem}
-.hero h1 em{color:var(--a);font-style:normal}
-.hero p{font-size:1rem;color:rgba(255,255,255,.8);max-width:520px;margin:0 auto}
-.container{max-width:760px;margin:0 auto;padding:3rem 1.5rem}
-.lead{font-size:1.1rem;color:var(--m);font-weight:300;border-left:4px solid var(--g);padding-left:1.4rem;margin-bottom:2.5rem;line-height:1.8}
-h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--gd);margin:2.5rem 0 1rem}
-p{font-size:.95rem;line-height:1.8;margin-bottom:1rem;color:var(--t)}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:2rem 0}
-.stat{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.5rem;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--g);display:block;margin-bottom:.2rem}
-.stat-lbl{font-size:.78rem;color:var(--m)}
-.valeurs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.5rem 0}
-.valeur{background:var(--gl);border-radius:var(--r);padding:1.3rem}
-.valeur-icon{font-size:1.8rem;margin-bottom:.6rem;display:block}
-.valeur h3{font-size:.95rem;font-weight:700;color:var(--gd);margin-bottom:.3rem}
-.valeur p{font-size:.82rem;color:var(--m);margin:0;line-height:1.5}
-.contact-box{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:2rem;margin:2rem 0;text-align:center}
-.contact-box h3{font-family:'Playfair Display',serif;font-size:1.2rem;color:#633806;margin-bottom:.5rem}
-.contact-box p{font-size:.9rem;color:var(--m);margin-bottom:1rem}
-.contact-btn{display:inline-block;background:var(--a);color:white;padding:.7rem 1.8rem;border-radius:50px;font-weight:600;text-decoration:none;font-size:.9rem}
-.newsletter{background:linear-gradient(135deg,var(--gd),#0F6E56);border-radius:var(--r);padding:2rem;text-align:center;color:white;margin-top:2rem}
-.newsletter h2{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:.5rem;color:white}
-.newsletter p{color:rgba(255,255,255,.75);font-size:.9rem;margin-bottom:1.2rem}
-.nl-form{display:flex;gap:.5rem;max-width:380px;margin:0 auto;flex-wrap:wrap;justify-content:center}
-.nl-form input{flex:1;min-width:160px;padding:.7rem 1.1rem;border-radius:50px;border:none;font-size:.88rem;font-family:inherit}
-.nl-form button{background:var(--a);color:white;border:none;padding:.7rem 1.4rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit}
-footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
-footer strong{color:white}
-@media(max-width:640px){.hero{padding:2.5rem 1.2rem}.container{padding:2rem 1rem}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--g:#1D9E75;--gd:#065F46;--a:#EF9F27;--w:#fff;--b:#F0F2F5;--ink:#0A0A0A;--muted:#6B7280;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100%;background:var(--w);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;}
+a{text-decoration:none;color:inherit;}
 
-/* Menu hamburger mobile */
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
-.hamburger span{pointer-events: none;display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem}
-.mobile-menu.open{display:flex}
-.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
-.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
-.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
-@media(max-width:768px){
-  .hamburger{display:flex}
-  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
-  nav li{display:none!important}
-}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid #E5E7EB;position:sticky;top:0;z-index:99;}
+.nav-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--g);}
+.nav-back{font-size:.85rem;color:var(--muted);font-weight:500;}
+.nav-back:hover{color:var(--ink);}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0A0A0A 0%,#1F2937 100%);color:#fff;padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(29,158,117,.3),transparent 60%);pointer-events:none;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,213,79,.12);border:1px solid rgba(255,213,79,.3);border-radius:99px;padding:5px 16px;font-size:12px;font-weight:700;color:#F59E0B;letter-spacing:.06em;margin-bottom:20px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;margin-bottom:16px;}
+.hero h1 em{color:var(--a);font-style:normal;}
+.hero p{font-size:1.05rem;color:rgba(255,255,255,.65);max-width:520px;margin:0 auto 32px;line-height:1.65;}
+.hero-btn{display:inline-flex;align-items:center;gap:8px;background:var(--a);color:#1A0A00;border-radius:12px;padding:13px 26px;font-size:15px;font-weight:700;transition:opacity .15s;}
+.hero-btn:hover{opacity:.9;}
+
+/* MACHINE */
+.machine-sec{background:#0A0A0A;padding:4rem 2rem;}
+.machine-inner{max-width:900px;margin:0 auto;}
+.sec-tag{display:inline-flex;align-items:center;gap:6px;border-radius:99px;padding:4px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;margin-bottom:14px;}
+.sec-tag.green{background:rgba(29,158,117,.15);border:1px solid rgba(29,158,117,.3);color:#34D399;}
+.sec-tag.amber{background:rgba(239,159,39,.15);border:1px solid rgba(239,159,39,.3);color:#F59E0B;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:900;line-height:1.15;margin-bottom:40px;color:#fff;}
+.sec-title em{color:var(--a);font-style:normal;}
+
+/* Flow machine */
+.flow{display:flex;flex-direction:column;gap:0;position:relative;}
+.flow::before{content:'';position:absolute;left:31px;top:40px;bottom:40px;width:2px;background:linear-gradient(to bottom,var(--g),var(--a));border-radius:99px;}
+@media(max-width:640px){.flow::before{left:22px;}}
+.flow-item{display:flex;align-items:flex-start;gap:20px;padding:20px 0;}
+.flow-dot{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;position:relative;z-index:1;}
+.flow-dot.green{background:rgba(29,158,117,.15);border:2px solid var(--g);}
+.flow-dot.amber{background:rgba(239,159,39,.15);border:2px solid var(--a);}
+.flow-dot.blue{background:rgba(59,130,246,.15);border:2px solid #3B82F6;}
+.flow-dot.purple{background:rgba(139,92,246,.15);border:2px solid #8B5CF6;}
+@media(max-width:640px){.flow-dot{width:46px;height:46px;font-size:18px;}}
+.flow-content{flex:1;padding-top:10px;}
+.flow-content h3{font-weight:800;font-size:17px;color:#fff;margin-bottom:6px;}
+.flow-content p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.6;}
+.flow-badge{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;}
+.flow-badge.green{background:rgba(29,158,117,.2);color:#34D399;}
+.flow-badge.amber{background:rgba(239,159,39,.2);color:#F59E0B;}
+.flow-badge.blue{background:rgba(59,130,246,.2);color:#60A5FA;}
+.flow-badge.purple{background:rgba(139,92,246,.2);color:#A78BFA;}
+
+/* STATS */
+.stats-sec{background:#fff;padding:4rem 2rem;border-bottom:1px solid #E5E7EB;}
+.stats-inner{max-width:900px;margin:0 auto;text-align:center;}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;}
+@media(max-width:640px){.stats-grid{grid-template-columns:1fr;}}
+.stat-card{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:20px;padding:28px 20px;}
+.stat-icon{font-size:32px;margin-bottom:12px;}
+.stat-val{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--g);margin-bottom:6px;line-height:1;}
+.stat-lbl{font-size:14px;color:var(--muted);line-height:1.4;}
+
+/* VALEURS */
+.values-sec{background:#F9FAFB;padding:4rem 2rem;border-bottom:1px solid #E5E7EB;}
+.values-inner{max-width:900px;margin:0 auto;}
+.values-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;}
+@media(max-width:640px){.values-grid{grid-template-columns:1fr;}}
+.val-card{background:#fff;border:1px solid #E5E7EB;border-radius:16px;padding:22px;display:flex;gap:14px;align-items:flex-start;}
+.val-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.val-icon.g{background:rgba(29,158,117,.1);}
+.val-icon.a{background:rgba(239,159,39,.1);}
+.val-icon.b{background:rgba(59,130,246,.1);}
+.val-icon.p{background:rgba(139,92,246,.1);}
+.val-content h3{font-weight:800;font-size:15px;margin-bottom:6px;}
+.val-content p{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* CTA */
+.cta-sec{background:linear-gradient(135deg,#064E3B,#1D9E75);padding:4rem 2rem;text-align:center;}
+.cta-inner{max-width:600px;margin:0 auto;}
+.cta-sec h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;color:#fff;margin-bottom:12px;}
+.cta-sec p{color:rgba(255,255,255,.7);font-size:15px;margin-bottom:28px;line-height:1.6;}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--gd);border-radius:12px;padding:14px 28px;font-size:16px;font-weight:800;transition:opacity .15s;}
+.cta-btn:hover{opacity:.9;}
+
+footer{background:#0A0A0A;color:rgba(255,255,255,.5);padding:2rem;text-align:center;font-size:.8rem;}
+footer a{color:rgba(255,255,255,.7);}
+footer strong{color:#fff;}
 </style>
-
-  <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "À propos",
-  "description": "Découvrez l'histoire d'Economya.fr, le média digital dédié aux économies du quotidien et à la gestion de budget en France.",
-  "url": "https://economya.fr/a-propos",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Economya.fr",
-    "url": "https://economya.fr",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://economya.fr/favicon.svg"
-    }
-  },
-  "inLanguage": "fr-FR"
-}
-  </script>
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="À propos">
-  <meta property="og:description" content="Découvrez l'histoire d'Economya.fr, le média digital dédié aux économies du quotidien et à la gestion de budget en France.">
-  <meta property="og:url" content="https://economya.fr/a-propos">
-  <meta property="og:image" content="https://economya.fr/og-image.svg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:locale" content="fr_FR">
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="À propos">
-  <meta name="twitter:description" content="Découvrez l'histoire d'Economya.fr, le média digital dédié aux économies du quotidien et à la gestion de budget en France.">
-  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}body{margin:0;}.mobile-menu{display:none !important; position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; z-index:9999;}.mobile-menu.open{display:flex !important; flex-direction:column;}</style></head>
+</head>
 <body>
+
 <nav>
-  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
-  <a class="nav-back" href="index.html">← Accueil</a>
-  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+  <div class="nav-logo">Economya</div>
+  <a href="index.html" class="nav-back">← Accueil</a>
+</nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <button class="close-btn" onclick="toggleMenu()">✕</button>
-  <a href="index.html">🏠 Accueil</a>
-  <a href="jeux.html">🎮 Jeux</a>
-  <a href="outils-gratuits.html">🛠️ Outils gratuits</a>
-  <a href="comparateurs.html">🔍 Comparateurs</a>
-  <a href="a-propos.html">ℹ️ À propos</a>
-  <a href="recherche.html">🔎 Rechercher</a>
-  <a href="#nl" class="nav-cta" onclick="toggleMenu()">📬 Newsletter</a>
-</div>
-<script>
-function toggleMenu(){
-  const m = document.getElementById("mobileMenu");
-  m.classList.toggle("open");
-}
-</script>
-</nav><div class="hero">
-  <h1>À propos d'<em>Economya</em></h1>
-  <p>Le média digital qui vous aide à vivre bien en dépensant moins.</p>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">🌱 Economya Community</div>
+  <h1>Le réseau social<br>qui vous fait <em>économiser</em></h1>
+  <p>Pas un magazine. Pas un blog. Une communauté où des milliers de Français partagent leurs vraies astuces, les votent, les testent — et vous aident à vivre mieux.</p>
+  <a href="community.html" class="hero-btn">🚀 Rejoindre la communauté</a>
 </div>
 
-<div class="container">
-
-  <p class="lead">Economya est né d'une conviction simple : en France, trop de gens perdent chaque mois des centaines d'euros faute d'information claire et accessible sur la gestion de leur argent au quotidien. Notre mission est d'y remédier.</p>
-
-  <h2>Notre histoire</h2>
-  <p>Economya.fr a été créé en 2026 avec un objectif clair : devenir la référence française des économies du quotidien et de la gestion de budget, accessible à tous. Des informations pratiques, vérifiées et actionnables — pour tout le monde.</p>
-  <p>Nous couvrons tous les aspects de la vie financière des Français à travers des articles de fond, des comparatifs détaillés et des outils interactifs gratuits : simulateurs, calculateurs et comparateurs pour prendre les meilleures décisions.</p>
-  <p>Notre approche est simple : chaque contenu doit répondre à une vraie question, avec des chiffres concrets et des actions immédiates à mettre en place.</p>
-
-  <div class="stats">
-    <div class="stat">
-      <span class="stat-num">30</span>
-      <div class="stat-lbl">Outils interactifs gratuits</div>
-    </div>
-    <div class="stat">
-      <span class="stat-num">347€</span>
-      <div class="stat-lbl">Économisés en moyenne/an</div>
-    </div>
-    <div class="stat">
-      <span class="stat-num">100%</span>
-      <div class="stat-lbl">Gratuit pour les lecteurs</div>
-    </div>
-  </div>
-
-  <h2>Nos valeurs</h2>
-  <div class="valeurs">
-    <div class="valeur">
-      <span class="valeur-icon">🎯</span>
-      <h3>Clarté</h3>
-      <p>Gérer son argent peut être simple. Nous écrivons pour être compris du premier coup.</p>
-    </div>
-    <div class="valeur">
-      <span class="valeur-icon">✅</span>
-      <h3>Fiabilité</h3>
-      <p>Chaque information est vérifiée. Nous citons nos sources et mettons à jour nos contenus régulièrement.</p>
-    </div>
-    <div class="valeur">
-      <span class="valeur-icon">🤝</span>
-      <h3>Indépendance</h3>
-      <p>Nos comparatifs sont objectifs. Nous signalons clairement nos liens partenaires.</p>
-    </div>
-    <div class="valeur">
-      <span class="valeur-icon">🌍</span>
-      <h3>Accessibilité</h3>
-      <p>Nos contenus sont gratuits et le resteront. Bien gérer son argent est un droit, pas un luxe.</p>
+<!-- MACHINE À ÉCONOMISER -->
+<div class="machine-sec">
+  <div class="machine-inner">
+    <div class="sec-tag green">⚙️ Comment ça fonctionne</div>
+    <div class="sec-title">La machine à <em>économies</em><br>qui tourne 24h/24</div>
+    <div class="flow">
+      <div class="flow-item">
+        <div class="flow-dot green">✏️</div>
+        <div class="flow-content">
+          <h3>Quelqu'un partage une astuce</h3>
+          <p>Un membre découvre qu'il économise 40€/mois en changeant de forfait. Il le partage en 30 secondes sur Economya Community.</p>
+          <span class="flow-badge green">⚡ 30 secondes</span>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-dot amber">❤️</div>
+        <div class="flow-content">
+          <h3>La communauté vote et teste</h3>
+          <p>D'autres membres likent, confirment "J'ai testé, ça marche !" ou signalent si c'est faux. Un score de fiabilité se calcule automatiquement.</p>
+          <span class="flow-badge amber">✅ Validé par de vraies personnes</span>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-dot blue">📈</div>
+        <div class="flow-content">
+          <h3>Les meilleures remontent</h3>
+          <p>Les astuces les plus votées et confirmées apparaissent en haut. Sans algorithme opaque. Sans pub déguisée. La qualité gagne.</p>
+          <span class="flow-badge blue">🏆 Classement transparent</span>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-dot purple">💰</div>
+        <div class="flow-content">
+          <h3>Vous économisez vraiment</h3>
+          <p>Vous appliquez l'astuce. Vous économisez. Vous partagez ce que vous avez découvert. La machine tourne, la communauté grandit.</p>
+          <span class="flow-badge purple">♻️ Un cercle vertueux</span>
+        </div>
+      </div>
     </div>
   </div>
-
-  <h2>Ce qu'on couvre</h2>
-  <p>Economya traite tous les sujets qui impactent votre portefeuille au quotidien :</p>
-  <p><strong>Épargne & Investissement</strong> — Livret A, LEP, PEA, assurance-vie, ETF, immobilier locatif, SCPI.</p>
-  <p><strong>Banque & Crédit</strong> — Néobanques, banques en ligne, crédit immobilier, crédit conso, rachat de crédit.</p>
-  <p><strong>Économies du quotidien</strong> — Courses, énergie, téléphonie, assurances, streaming, transport.</p>
-  <p><strong>Revenus complémentaires</strong> — Freelance, side hustle, vente en ligne, revenus passifs.</p>
-  <p><strong>Aides sociales</strong> — APL, RSA, prime d'activité, aides méconnues, droits non réclamés.</p>
-  <p><strong>Immobilier</strong> — Achat, location, PTZ, MaPrimeRénov', investissement locatif.</p>
-
-  <div class="contact-box">
-    <h3>📬 Nous contacter</h3>
-    <p>Une question, un partenariat, une suggestion d'article ? Nous lisons tous les messages.</p>
-    <a href="mailto:contact@economya.fr" class="contact-btn">Écrire à Economya</a>
-  </div>
-
-  <div class="newsletter">
-    <h2>Rejoignez nos lecteurs</h2>
-    <p>Chaque semaine, les meilleures astuces et bons plans pour dépenser moins directement dans votre boîte mail.</p>
-    <div class="nl-form">
-      <input type="email" placeholder="votre@email.fr">
-      <button>Je m'abonne</button>
-    </div>
-  </div>
-
 </div>
 
+<!-- STATS -->
+<div class="stats-sec">
+  <div class="stats-inner">
+    <div class="sec-tag green" style="margin:0 auto 14px;">📊 Economya en chiffres</div>
+    <div class="sec-title" style="color:var(--ink);font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:900;">Ce que la communauté<br>a déjà accompli</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🎮</div>
+        <div class="stat-val">42</div>
+        <div class="stat-lbl">jeux financiers pour apprendre en s'amusant</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🛠️</div>
+        <div class="stat-val">30+</div>
+        <div class="stat-lbl">outils gratuits — simulateurs, calculateurs, comparateurs</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🌱</div>
+        <div class="stat-val">2026</div>
+        <div class="stat-lbl">fondé en France avec une mission simple : vous faire économiser</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VALEURS -->
+<div class="values-sec">
+  <div class="values-inner">
+    <div class="sec-tag amber">💎 Nos valeurs</div>
+    <div class="sec-title" style="color:var(--ink);font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:900;margin-bottom:0;">Ce en quoi on croit</div>
+    <div class="values-grid">
+      <div class="val-card">
+        <div class="val-icon g">🎯</div>
+        <div class="val-content">
+          <h3>La vraie info, pas la pub</h3>
+          <p>Chaque astuce est votée et testée par de vraies personnes. Pas d'article sponsorisé caché. Pas de classement payant.</p>
+        </div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon a">💪</div>
+        <div class="val-content">
+          <h3>L'intelligence collective</h3>
+          <p>Des milliers de Français qui partagent leurs secrets valent mieux qu'une équipe de rédaction. La foule sait.</p>
+        </div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon b">🌍</div>
+        <div class="val-content">
+          <h3>Accessible à tous</h3>
+          <p>Bien gérer son argent est un droit, pas un luxe. Economya est fait pour que chacun puisse vivre mieux, peu importe son niveau de revenus.</p>
+        </div>
+      </div>
+      <div class="val-card">
+        <div class="val-icon p">🤝</div>
+        <div class="val-content">
+          <h3>Indépendance totale</h3>
+          <p>Nos liens partenaires sont clairement signalés. Nos classements ne sont jamais à vendre. Notre seul juge : la communauté.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-sec">
+  <div class="cta-inner">
+    <h2>Quelle astuce vous a fait économiser le plus ?</h2>
+    <p>Partagez-la. Elle pourrait changer le quotidien de milliers de personnes. Et vous aider à monter en rang dans la communauté.</p>
+    <a href="forum-astuces.html" class="cta-btn">✏️ Partager mon astuce</a>
+  </div>
+</div>
 
 <footer>
-  <strong>Economya.fr</strong> · Le média des finances & économies du quotidien · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Mentions légales · Contact : contact@economya.fr</span>
+  <strong>Economya.fr</strong> · Le réseau social de l'épargne · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Politique de confidentialité</a> · <a href="mailto:contact@economya.fr">Contact</a></span>
 </footer>
-<script>function toggleMenu(){const m=document.getElementById("mobileMenu");const h=document.querySelector(".hamburger");m.classList.toggle("open");h.style.display = m.classList.contains("open") ? "none" : "block";}</script></body>
+
+</body>
 </html>
