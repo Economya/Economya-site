@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Economya Community — Le réseau social de l'épargne</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+:root{
+  --bg:#FAFAFA;--white:#fff;--border:#EFEFEF;
+  --ink:#0A0A0A;--muted:#737373;--gold:#F59E0B;
+  --green:#22C55E;--blue:#3B82F6;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;}
+a{text-decoration:none;color:inherit;}
+
+/* NAV */
+.nav{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+.nav-logo{font-weight:900;font-size:18px;letter-spacing:-.03em;display:flex;align-items:center;gap:8px;}
+.nav-logo .eco{color:var(--gold);}
+.nav-logo .com{color:var(--muted);font-weight:500;font-size:14px;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-link{font-size:14px;font-weight:600;color:var(--muted);padding:6px 12px;border-radius:8px;transition:all .15s;}
+.nav-link:hover{background:var(--border);color:var(--ink);}
+.nav-btn{background:var(--ink);color:#fff;border:none;border-radius:10px;padding:8px 18px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;}
+
+/* HERO */
+.hero{padding:80px 24px 60px;text-align:center;max-width:720px;margin:0 auto;}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:#FEF3C7;border:1px solid #FDE68A;border-radius:99px;padding:5px 14px;font-size:12px;font-weight:700;color:#92400E;margin-bottom:24px;}
+.hero h1{font-weight:900;font-size:clamp(36px,6vw,64px);letter-spacing:-.04em;line-height:1.05;margin-bottom:16px;}
+.hero h1 em{color:var(--gold);font-style:normal;}
+.hero p{font-size:18px;color:var(--muted);line-height:1.6;max-width:520px;margin:0 auto 32px;}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px 28px;font-size:16px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s;}
+.btn-primary:active{opacity:.85;}
+.btn-secondary{background:var(--white);color:var(--ink);border:1.5px solid var(--border);border-radius:12px;padding:14px 28px;font-size:16px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;}
+.hero-social{margin-top:20px;font-size:13px;color:var(--muted);}
+.hero-social b{color:var(--ink);}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:0;max-width:600px;margin:0 auto 60px;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:var(--white);}
+.stat{flex:1;text-align:center;padding:20px 12px;border-right:1px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-n{font-weight:900;font-size:26px;letter-spacing:-.02em;}
+.stat-l{font-size:12px;color:var(--muted);margin-top:3px;font-weight:500;}
+
+/* HOW */
+.how{max-width:860px;margin:0 auto 72px;padding:0 24px;}
+.section-tag{font-size:12px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+.section-title{font-weight:900;font-size:clamp(24px,4vw,36px);letter-spacing:-.03em;margin-bottom:40px;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+@media(max-width:640px){.steps{grid-template-columns:1fr;}}
+.step{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:24px;}
+.step-num{width:36px;height:36px;border-radius:50%;background:var(--ink);color:#fff;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.step h3{font-weight:800;font-size:17px;margin-bottom:8px;letter-spacing:-.01em;}
+.step p{font-size:14px;color:var(--muted);line-height:1.55;}
+
+/* PREVIEW */
+.preview{max-width:860px;margin:0 auto 72px;padding:0 24px;}
+.preview-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+@media(max-width:640px){.preview-grid{grid-template-columns:1fr;}}
+.preview-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:20px;}
+.pc-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.pc-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;}
+.pc-name{font-weight:700;font-size:14px;}
+.pc-cat{font-size:11px;color:var(--muted);}
+.pc-title{font-weight:800;font-size:15px;line-height:1.3;margin-bottom:8px;}
+.pc-body{font-size:13px;color:#404040;line-height:1.5;margin-bottom:10px;}
+.pc-pill{display:inline-flex;align-items:center;gap:4px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--green);}
+.pc-actions{display:flex;gap:16px;margin-top:12px;font-size:13px;color:var(--muted);font-weight:600;}
+
+/* FIABILITÉ */
+.reliability{display:flex;align-items:center;gap:6px;margin:8px 0;}
+.rel-track{width:80px;height:4px;background:var(--border);border-radius:99px;overflow:hidden;}
+.rel-fill{height:100%;border-radius:99px;background:var(--green);}
+.rel-label{font-size:11px;font-weight:700;color:var(--green);}
+
+/* CTA */
+.cta-section{background:var(--ink);color:#fff;border-radius:24px;max-width:860px;margin:0 auto 72px;padding:48px 32px;text-align:center;}
+.cta-section h2{font-weight:900;font-size:clamp(24px,4vw,36px);letter-spacing:-.03em;margin-bottom:12px;}
+.cta-section p{color:rgba(255,255,255,.6);font-size:16px;margin-bottom:28px;}
+.cta-section .btn-primary{background:var(--gold);color:#1A0A00;}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-size:13px;color:var(--muted);}
+.footer a{color:var(--ink);font-weight:600;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">
+    <span>Economya <span class="eco">Community</span></span>
+  </div>
+  <div class="nav-right">
+    <a href="https://economya.fr" class="nav-link">← Economya.fr</a>
+    <button class="nav-btn" onclick="window.location='forum-astuces.html'">Rejoindre →</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">🌱 Le réseau social de l'épargne</div>
+  <h1>Partagez l'astuce qui vous a<br>fait <em>économiser le plus</em></h1>
+  <p>Un réseau où chaque conseil est voté, testé et validé par la communauté. Les meilleures astuces remontent, les fausses disparaissent.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="window.location='forum-astuces.html'">✏️ Partager mon astuce</button>
+    <button class="btn-secondary" onclick="window.location='forum-astuces.html'">Découvrir les astuces</button>
+  </div>
+  <div class="hero-social">Soyez parmi les <b>premiers membres</b> de la communauté</div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-n">7</div><div class="stat-l">astuces partagées</div></div>
+  <div class="stat"><div class="stat-n" id="statVotes">994</div><div class="stat-l">votes donnés</div></div>
+  <div class="stat"><div class="stat-n">3 620€</div><div class="stat-l">économies recensées</div></div>
+  <div class="stat"><div class="stat-n">94%</div><div class="stat-l">taux de fiabilité</div></div>
+</div>
+
+<div class="how">
+  <div class="section-tag">Comment ça marche</div>
+  <div class="section-title">Simple comme un réseau social</div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Partagez votre astuce</h3>
+      <p>Racontez comment vous avez économisé — forfait, courses, assurance, voyage. En 30 secondes.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>La communauté vote</h3>
+      <p>Les membres likent, confirment "J'ai testé ça marche" ou signalent si c'est faux. Le score de fiabilité s'affiche.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Les meilleures remontent</h3>
+      <p>Les astuces les plus votées et vérifiées apparaissent en haut. Automatiquement. Sans modération.</p>
+    </div>
+  </div>
+</div>
+
+<div class="preview">
+  <div class="section-tag">Aperçu du réseau</div>
+  <div class="section-title">Ce que partagent les membres</div>
+  <div class="preview-grid">
+    <div class="preview-card">
+      <div class="pc-header">
+        <div class="pc-avatar" style="background:#F59E0B;color:#1A0A00">M</div>
+        <div><div class="pc-name">Marie</div><div class="pc-cat">📱 Téléphonie · il y a 5j</div></div>
+      </div>
+      <div class="pc-title">40€/mois économisés en changeant de forfait mobile</div>
+      <div class="pc-body">Switché de SFR à Free Mobile. Même réseau, même qualité. 480€/an dans la poche.</div>
+      <div class="pc-pill">💰 480€/an</div>
+      <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:100%"></div></div><span class="rel-label">100% fiable</span></div>
+      <div class="pc-actions"><span>❤️ 247</span><span>✅ 89 testés</span></div>
+    </div>
+    <div class="preview-card">
+      <div class="pc-header">
+        <div class="pc-avatar" style="background:#3B82F6;color:#fff">P</div>
+        <div><div class="pc-name">Pierre</div><div class="pc-cat">🚗 Transport · il y a 4j</div></div>
+      </div>
+      <div class="pc-title">Covoiturage domicile-travail via BlaBlaCar Daily</div>
+      <div class="pc-body">3 collègues sur mon trajet, on alterne chaque semaine. 150€/mois économisés sans effort.</div>
+      <div class="pc-pill">💰 1 800€/an</div>
+      <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:100%"></div></div><span class="rel-label">100% fiable</span></div>
+      <div class="pc-actions"><span>❤️ 203</span><span>✅ 56 testés</span></div>
+    </div>
+    <div class="preview-card">
+      <div class="pc-header">
+        <div class="pc-avatar" style="background:#EC4899;color:#fff">J</div>
+        <div><div class="pc-name">Julie</div><div class="pc-cat">✈️ Voyage · il y a 6j</div></div>
+      </div>
+      <div class="pc-title">Réserver vols le mardi matin : jusqu'à -40%</div>
+      <div class="pc-body">Les compagnies mettent à jour les tarifs le lundi soir. Mardi avant 10h = meilleur moment.</div>
+      <div class="pc-pill">💰 400€/an</div>
+      <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:98%"></div></div><span class="rel-label">98% fiable</span></div>
+      <div class="pc-actions"><span>❤️ 167</span><span>✅ 41 testés</span></div>
+    </div>
+    <div class="preview-card">
+      <div class="pc-header">
+        <div class="pc-avatar" style="background:#22C55E;color:#fff">T</div>
+        <div><div class="pc-name">Thomas</div><div class="pc-cat">🛡️ Assurances · il y a 3j</div></div>
+      </div>
+      <div class="pc-title">Renégocier son assurance auto chaque année</div>
+      <div class="pc-body">Avant l'échéance, j'appelle avec un devis concurrent. Ils s'alignent ou je pars.</div>
+      <div class="pc-pill">💰 300€/an</div>
+      <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:96%"></div></div><span class="rel-label">96% fiable</span></div>
+      <div class="pc-actions"><span>❤️ 189</span><span>✅ 67 testés</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="max-width:860px;margin:0 auto;padding:0 24px 72px;">
+  <div class="cta-section">
+    <h2>Quelle astuce vous a fait<br>économiser le plus ?</h2>
+    <p>Partagez-la. Elle pourrait aider des milliers de personnes.</p>
+    <button class="btn-primary" onclick="window.location='forum-astuces.html'">✏️ Partager mon astuce</button>
+  </div>
+</div>
+
+<div class="footer">
+  <b>Economya Community</b> · Un projet <a href="https://economya.fr">Economya.fr</a> · Fait avec ❤️ en France
+</div>
+
+</body>
+</html>
