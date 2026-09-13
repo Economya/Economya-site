@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astuces — Economya.fr</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+:root{
+  --bg:#FAFAFA;--white:#fff;--border:#EFEFEF;
+  --ink:#0A0A0A;--muted:#737373;--gold:#F59E0B;
+  --green:#22C55E;--red:#EF4444;--blue:#3B82F6;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;-webkit-tap-highlight-color:transparent;}
+a{text-decoration:none;color:inherit;}
+button{font-family:'Inter',sans-serif;cursor:pointer;}
+
+/* NAV */
+.nav{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 16px;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
+.nav-logo{font-weight:900;font-size:20px;letter-spacing:-.03em;}
+.nav-logo em{color:var(--gold);font-style:normal;}
+.nav-icons{display:flex;align-items:center;gap:4px;}
+.nav-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;border:none;background:transparent;cursor:pointer;}
+.nav-icon:hover{background:var(--border);}
+.nav-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;cursor:pointer;border:2px solid var(--border);}
+
+/* TABS */
+.tabs{background:var(--white);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:52px;z-index:98;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex-shrink:0;padding:14px 16px;font-size:14px;font-weight:600;color:var(--muted);border:none;background:transparent;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s;}
+.tab.active{color:var(--ink);border-bottom-color:var(--ink);}
+
+/* LAYOUT */
+.wrap{max-width:600px;margin:0 auto;}
+
+/* STORIES (catégories) */
+.stories{display:flex;gap:12px;padding:14px 16px;overflow-x:auto;scrollbar-width:none;background:var(--white);border-bottom:1px solid var(--border);}
+.stories::-webkit-scrollbar{display:none;}
+.story{display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0;cursor:pointer;}
+.story-ring{width:58px;height:58px;border-radius:50%;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);padding:2px;}
+.story-ring.active{background:linear-gradient(45deg,var(--gold),#f59e0b);}
+.story-ring.inactive{background:var(--border);}
+.story-inner{width:100%;height:100%;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid var(--white);}
+.story-label{font-size:10px;font-weight:600;color:var(--muted);text-align:center;max-width:58px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.story.sel .story-label{color:var(--ink);font-weight:700;}
+
+/* POST CARD */
+.post{background:var(--white);border-bottom:1px solid var(--border);padding:14px 16px;}
+.post-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.post-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;}
+.post-meta{flex:1;min-width:0;}
+.post-name{font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px;}
+.post-rank{font-size:10px;padding:2px 7px;border-radius:99px;font-weight:700;}
+.post-time{font-size:12px;color:var(--muted);}
+.post-cat{font-size:11px;color:var(--muted);font-weight:600;margin-top:2px;}
+.post-more{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;background:transparent;color:var(--muted);font-size:18px;}
+
+.post-title{font-weight:800;font-size:16px;line-height:1.35;letter-spacing:-.01em;margin-bottom:8px;}
+.post-body{font-size:14px;color:#404040;line-height:1.55;margin-bottom:12px;}
+
+/* Saving pill */
+.saving-pill{display:inline-flex;align-items:center;gap:5px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:5px 12px;font-size:13px;font-weight:700;color:var(--green);margin-bottom:12px;}
+
+/* Reliability */
+.reliability{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
+.rel-track{flex:1;height:4px;background:var(--border);border-radius:99px;overflow:hidden;max-width:100px;}
+.rel-fill{height:100%;border-radius:99px;}
+.rel-label{font-size:12px;font-weight:700;}
+.rel-warn{font-size:11px;font-weight:600;color:var(--red);}
+
+/* Actions */
+.post-actions{display:flex;align-items:center;gap:0;}
+.action{display:flex;align-items:center;gap:5px;padding:8px 10px;border:none;background:transparent;color:var(--muted);font-size:13px;font-weight:600;border-radius:8px;transition:all .15s;flex:1;justify-content:center;}
+.action:hover{background:var(--bg);}
+.action.liked{color:var(--green);}
+.action.tested-on{color:var(--blue);}
+.action.flagged{color:var(--red);}
+.action-icon{font-size:18px;}
+
+/* FAB */
+.fab{position:fixed;bottom:24px;right:20px;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:50;cursor:pointer;transition:transform .15s;}
+.fab:active{transform:scale(.93);}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(8px);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+.modal-bg.open{display:flex;}
+.sheet{background:var(--white);border-radius:20px 20px 0 0;padding:20px 20px 32px;width:100%;max-width:600px;animation:slideUp .25s ease;}
+@keyframes slideUp{from{transform:translateY(40px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+.sheet-handle{width:36px;height:4px;background:var(--border);border-radius:99px;margin:0 auto 18px;}
+.sheet h3{font-weight:900;font-size:18px;margin-bottom:16px;letter-spacing:-.02em;}
+.field{margin-bottom:12px;}
+.field label{display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;}
+.field input,.field textarea,.field select{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-size:15px;font-family:'Inter',sans-serif;outline:none;background:var(--bg);}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--ink);}
+.field textarea{min-height:80px;resize:none;}
+.sheet-actions{display:flex;gap:10px;margin-top:16px;}
+.btn-pub{flex:1;background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:700;}
+.btn-ann{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:12px;padding:14px 20px;font-size:15px;font-weight:600;}
+
+/* PROFIL SHEET */
+.prof-hero{display:flex;align-items:center;gap:14px;margin-bottom:16px;}
+.prof-av{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;flex-shrink:0;}
+.prof-n{font-weight:900;font-size:18px;margin-bottom:4px;}
+.prof-rank{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:99px;font-size:12px;font-weight:700;}
+.prof-streak{font-size:12px;color:var(--red);font-weight:700;margin-top:4px;}
+.stats-row{display:flex;gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:14px;}
+.stat{flex:1;text-align:center;padding:12px 6px;border-right:1px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-n{font-weight:900;font-size:18px;}
+.stat-l{font-size:10px;color:var(--muted);margin-top:2px;}
+.wallet-card{background:var(--ink);color:#fff;border-radius:14px;padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.wallet-l{font-size:11px;color:rgba(255,255,255,.5);margin-bottom:3px;}
+.wallet-n{font-weight:900;font-size:22px;color:var(--gold);}
+.adn-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;}
+.adn-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:13px;}
+.adn-lbl{width:110px;color:var(--muted);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.adn-track{flex:1;height:6px;background:var(--border);border-radius:99px;overflow:hidden;}
+.adn-fill{height:100%;border-radius:99px;}
+.adn-v{font-size:11px;font-weight:700;color:var(--muted);width:20px;text-align:right;}
+
+/* Empty */
+.empty{text-align:center;padding:48px 20px;color:var(--muted);}
+.empty-icon{font-size:44px;margin-bottom:10px;}
+.empty h3{font-weight:800;font-size:16px;color:var(--ink);margin-bottom:6px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<nav class="nav">
+  <div class="nav-logo">Eco<em>nomya</em></div>
+  <div class="nav-icons">
+    <button class="nav-icon" onclick="setTab('top',this)" title="Explorer">🔍</button>
+    <div class="nav-avatar" id="navAv" onclick="openProf(currentUser||'Moi')">?</div>
+  </div>
+</nav>
+
+<div class="tabs">
+  <button class="tab active" onclick="setTab('top',this)">🔥 Top</button>
+  <button class="tab" onclick="setTab('new',this)">🆕 Nouveau</button>
+  <button class="tab" onclick="setTab('eco',this)">💰 Économies</button>
+  <button class="tab" onclick="setTab('rel',this)">✅ Fiables</button>
+</div>
+
+<div class="stories" id="stories"></div>
+<div id="feed"></div>
+</div>
+
+<button class="fab" onclick="openPost()">✏️</button>
+
+<!-- SHEET POST -->
+<div class="modal-bg" id="shPost">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>💡 Partager une astuce</h3>
+    <div class="field"><label>Titre</label><input id="fTitle" placeholder="Mon astuce pour économiser..." maxlength="100"></div>
+    <div class="field"><label>Description</label><textarea id="fBody" placeholder="Comment ça marche ? Combien ça économise ?..." maxlength="500"></textarea></div>
+    <div class="field"><label>Catégorie</label>
+      <select id="fCat">
+        <option value="📱 Téléphonie">📱 Téléphonie</option>
+        <option value="🛒 Courses & Alimentation">🛒 Courses & Alimentation</option>
+        <option value="⚡ Énergie & Eau">⚡ Énergie & Eau</option>
+        <option value="🏦 Banque & Épargne">🏦 Banque & Épargne</option>
+        <option value="🚗 Transport & Carburant">🚗 Transport & Carburant</option>
+        <option value="✈️ Voyage & Vacances">✈️ Voyage & Vacances</option>
+        <option value="🏠 Logement & Loyer">🏠 Logement & Loyer</option>
+        <option value="🎬 Abonnements & Streaming">🎬 Abonnements & Streaming</option>
+        <option value="🛡️ Assurances">🛡️ Assurances</option>
+        <option value="👕 Mode & Vêtements">👕 Mode & Vêtements</option>
+        <option value="🍽️ Restaurants & Sorties">🍽️ Restaurants & Sorties</option>
+        <option value="💊 Santé & Pharmacie">💊 Santé & Pharmacie</option>
+        <option value="📚 Enfants & Éducation">📚 Enfants & Éducation</option>
+        <option value="🐾 Animaux">🐾 Animaux</option>
+        <option value="🎁 Cadeaux & Fêtes">🎁 Cadeaux & Fêtes</option>
+        <option value="💡 Bricolage & Maison">💡 Bricolage & Maison</option>
+        <option value="🖥️ High-Tech & Informatique">🖥️ High-Tech & Informatique</option>
+        <option value="💡 Autre">💡 Autre</option>
+      </select>
+    </div>
+    <div class="field"><label>Économie estimée (€/an)</label><input id="fSaving" type="number" placeholder="Ex: 300" min="0" max="99999"></div>
+    <div class="field"><label>Votre prénom</label><input id="fAuthor" placeholder="Marie" maxlength="30"></div>
+    <div class="sheet-actions">
+      <button class="btn-ann" onclick="closeAll()">Annuler</button>
+      <button class="btn-pub" onclick="submitPost()">🚀 Publier</button>
+    </div>
+  </div>
+</div>
+
+<!-- SHEET PROFIL -->
+<div class="modal-bg" id="shProf">
+  <div class="sheet" style="max-height:85vh;overflow-y:auto;">
+    <div class="sheet-handle"></div>
+    <div class="prof-hero">
+      <div class="prof-av" id="prAv"></div>
+      <div>
+        <div class="prof-n" id="prName"></div>
+        <div class="prof-rank" id="prRank"></div>
+        <div class="prof-streak" id="prStreak"></div>
+      </div>
+    </div>
+    <div class="wallet-card">
+      <div><div class="wallet-l">💰 Portefeuille communautaire</div><div class="wallet-n" id="prWallet">0€</div></div>
+      <div style="font-size:32px">🏦</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-n" id="prPosts">0</div><div class="stat-l">Astuces</div></div>
+      <div class="stat"><div class="stat-n" id="prVotes">0</div><div class="stat-l">Votes</div></div>
+      <div class="stat"><div class="stat-n" id="prRel">0%</div><div class="stat-l">Fiabilité</div></div>
+    </div>
+    <div class="adn-title">🧬 ADN Financier</div>
+    <div id="prAdn"></div>
+    <div class="sheet-actions" style="margin-top:8px;">
+      <button class="btn-ann" style="flex:1" onclick="closeAll()">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Couleurs & utils ─────────────────────────────────
+const PALETTE=[['#F59E0B','#1A0A00'],['#22C55E','#fff'],['#3B82F6','#fff'],['#8B5CF6','#fff'],['#EC4899','#fff'],['#F97316','#fff'],['#14B8A6','#fff'],['#6366F1','#fff']];
+function pc(name){return PALETTE[name.charCodeAt(0)%PALETTE.length];}
+function ini(name){return (name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
+
+const RANKS=[
+  {min:0, l:'🌱 Débutant',   c:'#6B7280',bg:'#F3F4F6'},
+  {min:3, l:'🔍 Chasseur',   c:'#3B82F6',bg:'#EFF6FF'},
+  {min:8, l:'⚡ Expert',     c:'#8B5CF6',bg:'#F5F3FF'},
+  {min:15,l:'🔥 Maître',     c:'#F97316',bg:'#FFF7ED'},
+  {min:30,l:'👑 Légende',    c:'#B45309',bg:'#FFFBEB'},
+];
+function rank(n){return RANKS.filter(r=>n>=r.min).pop();}
+
+const CATS=[
+  {e:'🌐',l:'Toutes'},
+  {e:'📱',l:'Téléphonie'},
+  {e:'🛒',l:'Courses'},
+  {e:'⚡',l:'Énergie'},
+  {e:'🏦',l:'Banque'},
+  {e:'🚗',l:'Transport'},
+  {e:'✈️',l:'Voyage'},
+  {e:'🏠',l:'Logement'},
+  {e:'🎬',l:'Abos'},
+  {e:'🛡️',l:'Assuranc.'},
+  {e:'👕',l:'Mode'},
+  {e:'🍽️',l:'Restos'},
+  {e:'💊',l:'Santé'},
+  {e:'📚',l:'Enfants'},
+  {e:'🐾',l:'Animaux'},
+  {e:'🎁',l:'Cadeaux'},
+  {e:'💡',l:'Bricolage'},
+  {e:'🖥️',l:'High-Tech'},
+];
+
+// ── Data ─────────────────────────────────────────────
+const SEED=[
+  {id:1,title:"40€/mois économisés en changeant de forfait mobile",body:"Switché de SFR à Free Mobile (9,99€/mois). Même réseau, même qualité. 480€/an dans la poche.",cat:"📱 Téléphonie",saving:480,author:"Marie",votes:247,tested:89,reports:0,ts:Date.now()-86400000*5},
+  {id:2,title:"Renégocier son assurance auto chaque année",body:"Avant l'échéance, j'appelle avec un devis concurrent. Ça marche à chaque fois — ils s'alignent ou je pars.",cat:"🛡️ Assurances",saving:300,author:"Thomas",votes:189,tested:67,reports:0,ts:Date.now()-86400000*3},
+  {id:3,title:"Covoiturage domicile-travail via BlaBlaCar Daily",body:"3 collègues sur mon trajet, on alterne. L'appli calcule tout. 150€/mois économisés sans effort.",cat:"🚗 Transport & Carburant",saving:1800,author:"Pierre",votes:203,tested:56,reports:0,ts:Date.now()-86400000*4},
+  {id:4,title:"Réserver vols le mardi matin : jusqu'à -40%",body:"Les compagnies mettent à jour les tarifs le lundi soir. Mardi avant 10h = meilleur moment pour réserver.",cat:"✈️ Voyage & Vacances",saving:400,author:"Julie",votes:167,tested:41,reports:0,ts:Date.now()-86400000*6},
+  {id:5,title:"Bouilloire > casserole : -80€/an d'électricité",body:"Faire bouillir l'eau en bouilloire consomme 3× moins qu'une plaque. Pour tout : thé, pâtes, etc.",cat:"⚡ Énergie & Eau",saving:80,author:"Luc",votes:134,tested:78,reports:0,ts:Date.now()-86400000*1},
+  {id:6,title:"Livret A + PEL : la combinaison gagnante",body:"Livret A pour l'épargne de précaution (3 mois de salaire), PEL pour le reste. Taux garanti.",cat:"🏦 Banque & Épargne",saving:200,author:"Claire",votes:98,tested:34,reports:0,ts:Date.now()-3600000*8},
+  {id:7,title:"E.Leclerc : bon -10% chaque semaine",body:"Chaque lundi, un bon de -10% arrive sur l'appli, valable le mercredi. Je fais mes grosses courses ce jour-là.",cat:"🛒 Courses & Alimentation",saving:360,author:"Sophie",votes:156,tested:45,reports:1,ts:Date.now()-86400000*2},
+];
+
+let posts=JSON.parse(localStorage.getItem('eco2_posts')||'null')||SEED;
+let voted=JSON.parse(localStorage.getItem('eco2_voted')||'[]');
+let tested=JSON.parse(localStorage.getItem('eco2_tested')||'[]');
+let reported=JSON.parse(localStorage.getItem('eco2_reported')||'[]');
+let currentUser=localStorage.getItem('eco2_user')||null;
+let sortMode='top', filterCat=null, nextId=Math.max(...posts.map(p=>p.id))+1;
+
+function save(){
+  localStorage.setItem('eco2_posts',JSON.stringify(posts));
+  localStorage.setItem('eco2_voted',JSON.stringify(voted));
+  localStorage.setItem('eco2_tested',JSON.stringify(tested));
+  localStorage.setItem('eco2_reported',JSON.stringify(reported));
+  if(currentUser)localStorage.setItem('eco2_user',currentUser);
+}
+
+function rel(p){
+  const pos=p.votes+p.tested*2;
+  const neg=p.reports*3;
+  if(pos===0)return 100;
+  return Math.max(0,Math.min(100,Math.round((pos-neg)/(pos)*100)));
+}
+
+function timeAgo(ts){
+  const d=Date.now()-ts;
+  if(d<3600000)return Math.floor(d/60000)+'min';
+  if(d<86400000)return Math.floor(d/3600000)+'h';
+  return Math.floor(d/86400000)+'j';
+}
+
+function getSorted(){
+  let list=filterCat?posts.filter(p=>p.cat.startsWith(filterCat.slice(0,2))):[...posts];
+  if(sortMode==='top')list.sort((a,b)=>b.votes-a.votes);
+  else if(sortMode==='new')list.sort((a,b)=>b.ts-a.ts);
+  else if(sortMode==='eco')list.sort((a,b)=>b.saving-a.saving);
+  else if(sortMode==='rel')list.sort((a,b)=>rel(b)-rel(a));
+  return list;
+}
+
+// ── Render ────────────────────────────────────────────
+function render(){
+  renderStories();
+  renderFeed();
+  updateNav();
+}
+
+function renderStories(){
+  const st=document.getElementById('stories');
+  st.innerHTML=CATS.map((c,i)=>{
+    const active=i===0&&!filterCat||(filterCat&&filterCat.startsWith(c.e));
+    return `<div class="story ${active?'sel':''}" onclick="setCat(${i===0?'null':"'"+c.e+"'"})">
+      <div class="story-ring ${active?'active':'inactive'}"><div class="story-inner">${c.e}</div></div>
+      <div class="story-label">${c.l}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderFeed(){
+  const list=getSorted();
+  const feed=document.getElementById('feed');
+  if(!list.length){
+    feed.innerHTML=`<div class="empty"><div class="empty-icon">💡</div><h3>Soyez le premier !</h3><p>Partagez votre première astuce économies.</p></div>`;
+    return;
+  }
+  feed.innerHTML=list.map(p=>{
+    const hv=voted.includes(p.id);
+    const ht=tested.includes(p.id);
+    const hr=reported.includes(p.id);
+    const r=rel(p);
+    const rc=r>=80?'#22C55E':r>=60?'#F97316':'#EF4444';
+    const [bg,fg]=pc(p.author||'A');
+    const rk=rank(posts.filter(x=>x.author===p.author).length);
+    return `<div class="post">
+      <div class="post-header">
+        <div class="post-avatar" style="background:${bg};color:${fg}">${ini(p.author)}</div>
+        <div class="post-meta">
+          <div class="post-name">
+            <span onclick="openProf('${p.author||'Anonyme'}')" style="cursor:pointer">${p.author||'Anonyme'}</span>
+            <span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>
+          </div>
+          <div class="post-cat">${p.cat} · il y a ${timeAgo(p.ts)}</div>
+        </div>
+      </div>
+      <div class="post-title">${p.title}</div>
+      <div class="post-body">${p.body}</div>
+      ${p.saving>0?`<div class="saving-pill">💰 ${p.saving.toLocaleString('fr-FR')}€ économisés/an</div>`:''}
+      <div class="reliability">
+        <div class="rel-track"><div class="rel-fill" style="width:${r}%;background:${rc}"></div></div>
+        <span class="rel-label" style="color:${rc}">${r}% fiable</span>
+        ${r<50?'<span class="rel-warn">⚠️ À vérifier</span>':''}
+      </div>
+      <div class="post-actions">
+        <button class="action ${hv?'liked':''}" onclick="doVote(${p.id})">
+          <span class="action-icon">${hv?'❤️':'🤍'}</span> ${p.votes}
+        </button>
+        <button class="action ${ht?'tested-on':''}" onclick="doTest(${p.id})">
+          <span class="action-icon">${ht?'✅':'☑️'}</span> ${p.tested} testés
+        </button>
+        <button class="action ${hr?'flagged':''}" onclick="doReport(${p.id})">
+          <span class="action-icon">🚩</span>${p.reports>0?' '+p.reports:''}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function updateNav(){
+  const el=document.getElementById('navAv');
+  if(currentUser){const [bg,fg]=pc(currentUser);el.style.background=bg;el.style.color=fg;el.textContent=ini(currentUser);}
+  else{el.style.background='#F3F4F6';el.style.color='#737373';el.textContent='?';}
+}
+
+// ── Actions ───────────────────────────────────────────
+function doVote(id){
+  const p=posts.find(x=>x.id===id);if(!p)return;
+  if(voted.includes(id)){p.votes--;voted=voted.filter(x=>x!==id);}
+  else{p.votes++;voted.push(id);}
+  save();renderFeed();
+}
+function doTest(id){
+  const p=posts.find(x=>x.id===id);if(!p)return;
+  if(tested.includes(id)){p.tested--;tested=tested.filter(x=>x!==id);}
+  else{p.tested++;tested.push(id);}
+  save();renderFeed();
+}
+function doReport(id){
+  const p=posts.find(x=>x.id===id);if(!p)return;
+  if(reported.includes(id)){p.reports--;reported=reported.filter(x=>x!==id);}
+  else{if(!confirm('Signaler cette astuce ?'))return;p.reports++;reported.push(id);}
+  save();renderFeed();
+}
+
+function setTab(s,btn){
+  sortMode=s;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  renderFeed();
+}
+function setCat(c){filterCat=c;renderStories();renderFeed();}
+
+// ── Post ──────────────────────────────────────────────
+function openPost(){
+  if(currentUser)document.getElementById('fAuthor').value=currentUser;
+  document.getElementById('shPost').classList.add('open');
+}
+function submitPost(){
+  const title=document.getElementById('fTitle').value.trim();
+  const body=document.getElementById('fBody').value.trim();
+  if(!title||!body){alert('Titre et description obligatoires !');return;}
+  const author=document.getElementById('fAuthor').value.trim()||'Anonyme';
+  const saving=parseInt(document.getElementById('fSaving').value)||0;
+  const cat=document.getElementById('fCat').value;
+  currentUser=author;
+  posts.unshift({id:nextId++,title,body,cat,saving,author,votes:1,tested:0,reports:0,ts:Date.now()});
+  voted.push(nextId-1);
+  save();closeAll();
+  setTab('new',document.querySelectorAll('.tab')[1]);
+  ['fTitle','fBody','fSaving'].forEach(id=>document.getElementById(id).value='');
+}
+
+// ── Profil ────────────────────────────────────────────
+function openProf(name){
+  const up=posts.filter(p=>p.author===name);
+  const tv=up.reduce((s,p)=>s+p.votes,0);
+  const ts2=up.reduce((s,p)=>s+p.saving,0);
+  const ar=up.length?Math.round(up.reduce((s,p)=>s+rel(p),0)/up.length):100;
+  const rk=rank(up.length);
+  const [bg,fg]=pc(name);
+  const streak=Math.min(up.length*3+1,60);
+  const adn={};up.forEach(p=>{adn[p.cat]=(adn[p.cat]||0)+1;});
+  const adnMax=Math.max(...Object.values(adn),1);
+  const adnColors=['#F59E0B','#22C55E','#3B82F6','#8B5CF6','#EC4899','#F97316'];
+
+  document.getElementById('prAv').style.cssText=`background:${bg};color:${fg}`;
+  document.getElementById('prAv').textContent=ini(name);
+  document.getElementById('prName').textContent=name;
+  document.getElementById('prRank').textContent=rk.l;
+  document.getElementById('prRank').style.cssText=`background:${rk.bg};color:${rk.c}`;
+  document.getElementById('prStreak').textContent=`🔥 ${streak} jours de streak`;
+  document.getElementById('prWallet').textContent=ts2.toLocaleString('fr-FR')+'€';
+  document.getElementById('prPosts').textContent=up.length;
+  document.getElementById('prVotes').textContent=tv;
+  document.getElementById('prRel').textContent=ar+'%';
+  document.getElementById('prAdn').innerHTML=Object.entries(adn).length
+    ? Object.entries(adn).map(([cat,n],i)=>`
+        <div class="adn-row">
+          <div class="adn-lbl">${cat}</div>
+          <div class="adn-track"><div class="adn-fill" style="width:${Math.round(n/adnMax*100)}%;background:${adnColors[i%adnColors.length]}"></div></div>
+          <div class="adn-v">${n}</div>
+        </div>`).join('')
+    : '<p style="font-size:13px;color:var(--muted)">Aucune astuce publiée.</p>';
+
+  document.getElementById('shProf').classList.add('open');
+}
+
+function closeAll(){document.querySelectorAll('.modal-bg').forEach(m=>m.classList.remove('open'));}
+document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeAll();}));
+
+render();
+</script>
+</body>
+</html>
