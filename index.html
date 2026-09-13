@@ -96,6 +96,32 @@
   nav .nav-links, nav > a:not(.logo):not([aria-label]), nav > div:not(.mobile-menu){display:none!important}
   nav ul{display:none!important}
 }
+
+  .why-sec{padding:3rem 1.5rem;background:#0A0A0A;border-bottom:1px solid #1F2937;}
+  .why-inner{max-width:900px;margin:0 auto;text-align:center;}
+  .why-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,213,79,.15);border:1px solid rgba(255,213,79,.3);border-radius:99px;padding:4px 12px;font-size:11px;font-weight:700;color:#F59E0B;margin-bottom:12px;}
+  .why-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:900;line-height:1.2;margin-bottom:28px;color:#fff;}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:left;}
+  @media(max-width:700px){.why-grid{grid-template-columns:1fr;}}
+  @media(max-width:900px) and (min-width:700px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+  .why-card{border-radius:20px;padding:22px;color:#fff;position:relative;overflow:hidden;}
+  .why-bg-icon{position:absolute;right:-10px;top:-10px;font-size:80px;opacity:.12;line-height:1;pointer-events:none;}
+  .why-icon{font-size:30px;margin-bottom:10px;position:relative;}
+  .why-card h3{font-weight:800;font-size:14px;margin-bottom:8px;color:#fff;line-height:1.3;position:relative;}
+  .why-card p{font-size:12px;color:rgba(255,255,255,.7);line-height:1.6;margin:0;position:relative;}
+  .howcom-sec{padding:3rem 1.5rem;background:#fff;border-bottom:1px solid #EFEFEF;}
+  .howcom-inner{max-width:900px;margin:0 auto;text-align:center;}
+  .howcom-tag{display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:4px 12px;font-size:11px;font-weight:700;color:#16A34A;margin-bottom:12px;}
+  .howcom-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:900;line-height:1.2;margin-bottom:32px;color:#0A0A0A;}
+  .howcom-steps{display:flex;align-items:flex-start;justify-content:center;gap:0;margin-bottom:28px;}
+  @media(max-width:640px){.howcom-steps{flex-direction:column;align-items:center;}.howcom-arrow{transform:rotate(90deg);margin:4px 0;}}
+  .howcom-step{flex:1;max-width:240px;padding:20px 16px;position:relative;}
+  .howcom-icon{font-size:36px;margin-bottom:10px;}
+  .howcom-num{position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;background:#0A0A0A;color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;}
+  .howcom-step h3{font-weight:800;font-size:15px;margin-bottom:8px;letter-spacing:-.01em;}
+  .howcom-step p{font-size:13px;color:#737373;line-height:1.55;}
+  .howcom-arrow{font-size:22px;color:#EFEFEF;padding:20px 8px;margin-top:28px;flex-shrink:0;}
+  .howcom-cta{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
 </style>
 <!-- Google Analytics -->
 <script>
@@ -262,6 +288,87 @@ function toggleMenu(){
         <div class="cc-title">Covoiturage domicile-travail : 1 800€/an</div>
         <div class="cc-pill">💰 1 800€/an</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="why-sec">
+  <div class="why-inner">
+    <div class="why-tag">💡 Pourquoi nous rejoindre</div>
+    <h2 class="why-title">Ce que la communauté<br>change dans votre vie</h2>
+    <div class="why-grid">
+      <div class="why-card" style="background:linear-gradient(135deg,#064E3B,#065F46)">
+        <div class="why-bg-icon">💰</div>
+        <div class="why-icon">💰</div>
+        <h3>Plus d'argent dans votre poche</h3>
+        <p>Forfaits, courses, assurances, abonnements — chaque astuce libère du budget pour ce qui compte vraiment.</p>
+      </div>
+      <div class="why-card" style="background:linear-gradient(135deg,#1E3A5F,#1D4ED8)">
+        <div class="why-bg-icon">💪</div>
+        <div class="why-icon">💪</div>
+        <h3>Plus de pouvoir d'achat</h3>
+        <p>Pas besoin de gagner plus pour vivre mieux. Gardez plus de ce que vous gagnez déjà.</p>
+      </div>
+      <div class="why-card" style="background:linear-gradient(135deg,#4A1D96,#7C3AED)">
+        <div class="why-bg-icon">✨</div>
+        <div class="why-icon">✨</div>
+        <h3>Une vie plus simple</h3>
+        <p>La communauté a déjà fait le travail. Les bonnes astuces sont là, validées, prêtes à appliquer.</p>
+      </div>
+      <div class="why-card" style="background:linear-gradient(135deg,#78350F,#D97706)">
+        <div class="why-bg-icon">💡</div>
+        <div class="why-icon">💡</div>
+        <h3>Des idées inattendues</h3>
+        <p>Des économies sur des postes que vous n'aviez jamais remis en question. Chaque membre a ses secrets.</p>
+      </div>
+      <div class="why-card" style="background:linear-gradient(135deg,#881337,#E11D48)">
+        <div class="why-bg-icon">🎯</div>
+        <div class="why-icon">🎯</div>
+        <h3>Des bons plans vraiment bons</h3>
+        <p>Pas de pub déguisée. Que des gens qui partagent ce qui a vraiment marché, voté et confirmé.</p>
+      </div>
+      <div class="why-card" style="background:linear-gradient(135deg,#0A0A0A,#374151)">
+        <div class="why-bg-icon">🤝</div>
+        <div class="why-icon">🤝</div>
+        <h3>Donnez, recevez, progressez</h3>
+        <p>Partagez une astuce, aidez des milliers de personnes. Votre impact est réel et visible.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;">
+      <a href="community.html" class="community-btn-primary">Rejoindre la communauté →</a>
+    </div>
+  </div>
+</section>
+
+<section class="howcom-sec">
+  <div class="howcom-inner">
+    <div class="howcom-tag">✨ Comment ça marche</div>
+    <h2 class="howcom-title">Un réseau où la qualité<br>remonte naturellement</h2>
+    <div class="howcom-steps">
+      <div class="howcom-step">
+        <div class="howcom-icon">✏️</div>
+        <div class="howcom-num">1</div>
+        <h3>Partagez votre astuce</h3>
+        <p>En 30 secondes. Racontez comment vous avez économisé — forfait, courses, assurance, voyage...</p>
+      </div>
+      <div class="howcom-arrow">→</div>
+      <div class="howcom-step">
+        <div class="howcom-icon">❤️</div>
+        <div class="howcom-num">2</div>
+        <h3>La communauté vote</h3>
+        <p>Les membres likent et confirment "J'ai testé, ça marche !" Un score de fiabilité s'affiche sur chaque astuce.</p>
+      </div>
+      <div class="howcom-arrow">→</div>
+      <div class="howcom-step">
+        <div class="howcom-icon">🏆</div>
+        <div class="howcom-num">3</div>
+        <h3>Les meilleures remontent</h3>
+        <p>Automatiquement. Sans modération. Les astuces fausses disparaissent, les vraies économies restent.</p>
+      </div>
+    </div>
+    <div class="howcom-cta">
+      <a href="forum-astuces.html" class="community-btn-primary">✏️ Partager mon astuce</a>
+      <a href="community.html" class="community-btn-ghost">En savoir plus</a>
     </div>
   </div>
 </section>
