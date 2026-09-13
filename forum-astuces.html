@@ -79,6 +79,10 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .action-icon{font-size:18px;}
 
 /* FAB */
+.cta-bar{background:linear-gradient(135deg,#FEF3C7,#FFF);border-bottom:1px solid #FDE68A;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.cta-bar-text{font-size:13px;font-weight:600;color:#92400E;flex:1;}
+.cta-bar-btn{background:#F59E0B;color:#1A0A00;border:none;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap;font-family:'Inter',sans-serif;flex-shrink:0;}
+.cta-bar-btn:active{opacity:.85;}
 .fab{position:fixed;bottom:24px;right:20px;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:50;cursor:pointer;transition:transform .15s;}
 .fab:active{transform:scale(.93);}
 
@@ -143,6 +147,10 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   <button class="tab" onclick="setTab('rel',this)">✅ Fiables</button>
 </div>
 
+<div class="cta-bar">
+  <div class="cta-bar-text">💡 Votre astuce peut aider des milliers de personnes</div>
+  <button class="cta-bar-btn" onclick="openPost()">✏️ Partager mon astuce</button>
+</div>
 <div class="stories" id="stories"></div>
 <div id="feed"></div>
 </div>
@@ -155,7 +163,10 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     <div class="sheet-handle"></div>
     <h3>💡 Partager une astuce</h3>
     <div class="field"><label>Titre</label><input id="fTitle" placeholder="Mon astuce pour économiser..." maxlength="100"></div>
-    <div class="field"><label>Description</label><textarea id="fBody" placeholder="Comment ça marche ? Combien ça économise ?..." maxlength="500"></textarea></div>
+    <div class="field">
+  <label>Description <span id="charCount" style="font-weight:500;color:#737373;float:right">0/500</span></label>
+  <textarea id="fBody" placeholder="Comment ça marche ? Combien ça économise ?..." maxlength="500" oninput="updateCount()"></textarea>
+</div>
     <div class="field"><label>Catégorie</label>
       <select id="fCat">
         <option value="📱 Téléphonie">📱 Téléphonie</option>
@@ -406,6 +417,12 @@ function setCat(c){filterCat=c;renderStories();renderFeed();}
 function openPost(){
   if(currentUser)document.getElementById('fAuthor').value=currentUser;
   document.getElementById('shPost').classList.add('open');
+}
+function updateCount(){
+  const len = document.getElementById('fBody').value.length;
+  const el = document.getElementById('charCount');
+  el.textContent = len + '/500';
+  el.style.color = len > 450 ? '#EF4444' : len > 400 ? '#F97316' : '#737373';
 }
 function submitPost(){
   const title=document.getElementById('fTitle').value.trim();
