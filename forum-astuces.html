@@ -446,7 +446,7 @@ function renderFeed(){
         <div class="post-avatar" style="background:${bg};color:${fg}">${ini(p.auteur)}</div>
         <div class="post-meta">
           <div class="post-name">
-            <span style="cursor:pointer">${p.auteur||'Anonyme'}</span>
+            ${p.auteur ? `<a href="/profil/${encodeURIComponent(p.auteur)}" style="cursor:pointer">${p.auteur}</a>` : `<span>Anonyme</span>`}
             <span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>
           </div>
           <div class="post-cat">${p.categorie} · il y a ${timeAgo(p.created_at)}</div>
