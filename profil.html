@@ -23,7 +23,10 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .wrap{max-width:600px;margin:0 auto;padding-bottom:40px;}
 
 .pro-hero{background:var(--white);border-bottom:1px solid var(--border);padding:32px 20px;text-align:center;}
-.pro-av{width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;margin:0 auto 14px;}
+.pro-av{width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;margin:0 auto 14px;overflow:hidden;position:relative;}
+.pro-av img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.pro-av-edit{display:block;margin:0 auto 14px;background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:700;}
+.nav-logout{font-size:.82rem;font-weight:600;color:var(--red);margin-left:14px;}
 .pro-name{font-weight:900;font-size:22px;margin-bottom:6px;}
 .pro-rank{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700;margin-bottom:6px;}
 .pro-since{font-size:12px;color:var(--muted);}
@@ -54,10 +57,14 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <div class="wrap">
 <nav class="nav">
   <div class="nav-logo">Eco<em>nomya</em></div>
-  <a href="forum-astuces.html" class="nav-back">← Astuces</a>
+  <div>
+    <a href="forum-astuces.html" class="nav-back">← Astuces</a>
+    <a href="#" class="nav-logout" id="navLogout" style="display:none" onclick="doLogout(event)">Déconnexion</a>
+  </div>
 </nav>
 
 <div id="content"><div class="loading">Chargement du profil...</div></div>
+<input type="file" id="avatarInput" accept="image/*" style="display:none">
 </div>
 
 <script>
@@ -71,6 +78,57 @@ async function sbFetch(path){
   if(!res.ok) throw new Error(await res.text());
   return res.json();
 }
+
+let mySession = null;
+try { mySession = JSON.parse(localStorage.getItem('eco_session')||'null'); } catch(e){}
+
+function doLogout(e){
+  e.preventDefault();
+  localStorage.removeItem('eco_session');
+  localStorage.removeItem('eco_user');
+  location.href = 'forum-astuces.html';
+}
+
+async function uploadAvatar(file){
+  if(!mySession) return;
+  const btn = document.getElementById('avatarEditBtn');
+  if(btn){ btn.textContent = 'Envoi en cours...'; btn.disabled = true; }
+  try {
+    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g,'') || 'jpg';
+    const path = mySession.user.id + '/avatar.' + ext;
+    const up = await fetch(SUPABASE_URL + '/storage/v1/object/avatars/' + path, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + mySession.access_token,
+        'apikey': SUPABASE_KEY,
+        'Content-Type': file.type || 'image/jpeg',
+        'x-upsert': 'true'
+      },
+      body: file
+    });
+    if(!up.ok) throw new Error(await up.text());
+    const publicUrl = SUPABASE_URL + '/storage/v1/object/public/avatars/' + path + '?t=' + Date.now();
+    const patch = await fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + mySession.user.id, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + mySession.access_token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ avatar_url: publicUrl })
+    });
+    if(!patch.ok) throw new Error(await patch.text());
+    loadProfile();
+  } catch(e){
+    alert("Échec de l'envoi de la photo : " + e.message);
+    if(btn){ btn.textContent = '📷 Changer la photo'; btn.disabled = false; }
+  }
+}
+document.getElementById('avatarInput').addEventListener('change', e=>{
+  const f = e.target.files[0];
+  if(f) uploadAvatar(f);
+});
 
 const PALETTE=[['#F59E0B','#1A0A00'],['#22C55E','#fff'],['#3B82F6','#fff'],['#8B5CF6','#fff'],['#EC4899','#fff'],['#F97316','#fff'],['#14B8A6','#fff'],['#6366F1','#fff']];
 function pc(name){return PALETTE[(name||'?').charCodeAt(0)%PALETTE.length];}
@@ -108,7 +166,7 @@ async function loadProfile(){
     return;
   }
   try {
-    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at');
+    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url');
     const profile = profiles[0];
     if(!profile){
       content.innerHTML = '<div class="empty"><div class="empty-icon">👤</div><h3>Profil introuvable</h3><p>"'+pseudo.replace(/</g,'')+'" n\'existe pas (encore).</p></div>';
@@ -119,6 +177,11 @@ async function loadProfile(){
     const totalTested = posts.reduce((s,p)=>s+(p.tested||0),0);
     const r = rank(posts.length);
     const [bg,fg] = pc(profile.pseudo);
+    const isOwn = mySession && mySession.user && mySession.user.id === profile.id;
+    document.getElementById('navLogout').style.display = isOwn ? 'inline' : 'none';
+    const avatarHtml = profile.avatar_url
+      ? `<img src="${profile.avatar_url}" alt="${profile.pseudo}">`
+      : ini(profile.pseudo);
 
     const postsHtml = posts.length ? posts.map(p=>`
       <div class="post">
@@ -135,7 +198,8 @@ async function loadProfile(){
 
     content.innerHTML = `
       <div class="pro-hero">
-        <div class="pro-av" style="background:${bg};color:${fg}">${ini(profile.pseudo)}</div>
+        <div class="pro-av" style="background:${bg};color:${fg}">${avatarHtml}</div>
+        ${isOwn ? `<button class="pro-av-edit" id="avatarEditBtn" onclick="document.getElementById('avatarInput').click()">📷 Changer la photo</button>` : ''}
         <div class="pro-name">${profile.pseudo}</div>
         <div class="pro-rank" style="background:${r.bg};color:${r.c}">${r.l}</div>
         <div class="pro-since">Membre depuis ${timeAgo(profile.created_at)}</div>

@@ -207,17 +207,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   </div>
 </div>
 
-<div class="modal-bg" id="shMe">
-  <div class="sheet">
-    <div class="sheet-handle"></div>
-    <h3>👋 <span id="meNom"></span></h3>
-    <div class="sheet-actions" style="margin-top:16px;">
-      <a class="btn-ann" style="flex:1;display:flex;align-items:center;justify-content:center;text-decoration:none" id="meProfilLink" href="#">Mon profil</a>
-      <button class="btn-pub" style="background:#EF4444" onclick="logout()">Déconnexion</button>
-    </div>
-  </div>
-</div>
-
 <script>
 // ── Supabase config ───────────────────────────────────
 const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
@@ -320,6 +309,7 @@ function saveSession(data){
   currentUser = (session.user.user_metadata && session.user.user_metadata.pseudo) || session.user.email;
   localStorage.setItem('eco_user', currentUser);
   updateNav();
+  loadAuthorAvatars().then(updateNav);
   fetchMyAlerts().then(renderStories);
 }
 function logout(){
@@ -423,9 +413,7 @@ async function submitReset(){
 }
 function onAvatarClick(){
   if(session){
-    document.getElementById('meNom').textContent = currentUser;
-    document.getElementById('meProfilLink').href = 'profil.html?pseudo=' + encodeURIComponent(currentUser);
-    document.getElementById('shMe').classList.add('open');
+    location.href = '/profil/' + encodeURIComponent(currentUser);
   } else {
     openAuth();
   }
@@ -493,9 +481,22 @@ function getSorted(){
 }
 
 // ── Load depuis Supabase ──────────────────────────────
+let authorAvatars = {};
+async function loadAuthorAvatars(){
+  const names = new Set(posts.map(p=>p.auteur).filter(Boolean));
+  if(currentUser) names.add(currentUser);
+  if(!names.size) return;
+  try {
+    const list = [...names].map(n=>'"' + n.replace(/"/g,'') + '"').join(',');
+    const rows = await sbFetch('profiles?pseudo=in.(' + list + ')&select=pseudo,avatar_url');
+    rows.forEach(r=>{ if(r.avatar_url) authorAvatars[r.pseudo] = r.avatar_url; });
+  } catch(e){ /* pas grave si ça échoue, on garde les initiales */ }
+}
+
 async function loadPosts() {
   try {
     posts = await sbFetch('astuces?order=votes.desc&limit=100');
+    await loadAuthorAvatars();
     render();
   } catch(e) {
     document.getElementById('feed').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><h3>Erreur de chargement</h3><p>'+e.message+'</p></div>';
@@ -547,7 +548,7 @@ function renderFeed(){
     const rk=rank(userPosts);
     return `<div class="post">
       <div class="post-header">
-        <div class="post-avatar" style="background:${bg};color:${fg}">${ini(p.auteur)}</div>
+        <div class="post-avatar" style="background:${bg};color:${fg}">${authorAvatars[p.auteur] ? `<img src="${authorAvatars[p.auteur]}" style="width:100%;height:100%;border-radius:50%;object-fit:cover">` : ini(p.auteur)}</div>
         <div class="post-meta">
           <div class="post-name">
             ${p.auteur ? `<a href="/profil/${encodeURIComponent(p.auteur)}" style="cursor:pointer">${p.auteur}</a>` : `<span>Anonyme</span>`}
@@ -585,7 +586,8 @@ function updateNav(){
     const [bg,fg]=pc(currentUser);
     el.className='nav-avatar';
     el.style.background=bg;el.style.color=fg;el.style.border='2px solid var(--border)';
-    el.textContent=ini(currentUser);
+    const av = authorAvatars[currentUser];
+    el.innerHTML = av ? `<img src="${av}" style="width:100%;height:100%;border-radius:50%;object-fit:cover">` : ini(currentUser);
   } else {
     el.className='nav-login';
     el.removeAttribute('style');
