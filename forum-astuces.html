@@ -33,7 +33,10 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .stories{display:flex;gap:12px;padding:14px 16px;overflow-x:auto;scrollbar-width:none;background:var(--white);border-bottom:1px solid var(--border);}
 .stories::-webkit-scrollbar{display:none;}
 .story{display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0;cursor:pointer;}
-.story-ring{width:58px;height:58px;border-radius:50%;padding:2px;}
+.story-ring{width:58px;height:58px;border-radius:50%;padding:2px;position:relative;}
+.story-bell{position:absolute;top:-3px;right:-3px;width:20px;height:20px;border-radius:50%;background:#fff;border:1.5px solid var(--border);font-size:10px;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;z-index:2;}
+.story-bell.on{border-color:var(--gold);background:#FFFBEB;}
+.story-dot{position:absolute;bottom:0;right:0;width:12px;height:12px;border-radius:50%;background:var(--red);border:2px solid var(--white);z-index:1;}
 .story-ring.active{background:linear-gradient(45deg,var(--gold),#f59e0b);}
 .story-ring.inactive{background:var(--border);}
 .story-inner{width:100%;height:100%;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid var(--white);}
@@ -289,14 +292,17 @@ function saveSession(data){
   currentUser = (session.user.user_metadata && session.user.user_metadata.pseudo) || session.user.email;
   localStorage.setItem('eco_user', currentUser);
   updateNav();
+  fetchMyAlerts().then(renderStories);
 }
 function logout(){
   session = null;
   currentUser = null;
+  myAlerts = [];
   localStorage.removeItem('eco_session');
   localStorage.removeItem('eco_user');
   closeAll();
   updateNav();
+  renderStories();
 }
 async function refreshSessionIfNeeded(){
   if(!session) return;
@@ -348,6 +354,8 @@ function slugify(s){
 CATS.forEach(c=>c.slug=slugify(c.l));
 
 let posts = [], sortMode = 'top', filterCat = null;
+let myAlerts = [];
+let lastSeen = JSON.parse(localStorage.getItem('eco_lastseen')||'{}');
 let voted = JSON.parse(localStorage.getItem('eco_voted')||'[]');
 let tested = JSON.parse(localStorage.getItem('eco_tested')||'[]');
 let reported = JSON.parse(localStorage.getItem('eco_reported')||'[]');
@@ -397,13 +405,21 @@ function render(){
   updateNav();
 }
 
+function catHasNew(c){
+  if(!myAlerts.includes(c.slug)) return false;
+  const seen = lastSeen[c.slug] || 0;
+  return posts.some(p=>p.categorie.startsWith(c.e.slice(0,2)) && new Date(p.created_at).getTime() > seen);
+}
 function renderStories(){
   const st=document.getElementById('stories');
   st.innerHTML=CATS.map((c,i)=>{
     const active=i===0&&!filterCat||(filterCat&&filterCat.startsWith(c.e));
     const href = i===0 ? '/forum-astuces.html' : ('/astuces/'+c.slug);
+    const subscribed = myAlerts.includes(c.slug);
+    const bell = i!==0 ? `<button class="story-bell ${subscribed?'on':''}" title="${subscribed?'Alertes activées':'Recevoir une alerte'}" onclick="event.preventDefault();event.stopPropagation();toggleAlert('${c.slug}')">${subscribed?'🔔':'🔕'}</button>` : '';
+    const dot = i!==0 && catHasNew(c) ? '<span class="story-dot"></span>' : '';
     return `<a class="story ${active?'sel':''}" href="${href}" onclick="event.preventDefault();setCat(${i===0?'null':"'"+c.e+"'"})">
-      <div class="story-ring ${active?'active':'inactive'}"><div class="story-inner">${c.e}</div></div>
+      <div class="story-ring ${active?'active':'inactive'}"><div class="story-inner">${c.e}</div>${dot}${bell}</div>
       <div class="story-label">${c.l}</div>
     </a>`;
   }).join('');
@@ -510,6 +526,28 @@ async function doReport(id){
   } catch(e){console.error(e);}
 }
 
+// ── Alertes par catégorie ───────────────────────────────
+async function fetchMyAlerts(){
+  if(!session){myAlerts=[];return;}
+  try {
+    const rows = await sbFetch('alerts?select=categorie');
+    myAlerts = rows.map(r=>r.categorie);
+  } catch(e){console.error(e);myAlerts=[];}
+}
+async function toggleAlert(slug){
+  if(!session){openAuth();return;}
+  try {
+    if(myAlerts.includes(slug)){
+      await sbFetch(`alerts?user_id=eq.${session.user.id}&categorie=eq.${slug}`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      myAlerts = myAlerts.filter(s=>s!==slug);
+    } else {
+      await sbFetch('alerts', {method:'POST', body:JSON.stringify({user_id:session.user.id, categorie:slug}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      myAlerts.push(slug);
+    }
+    renderStories();
+  } catch(e){console.error(e);}
+}
+
 function setSort(s,btn){
   sortMode=s;
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
@@ -518,8 +556,9 @@ function setSort(s,btn){
 }
 function setCat(c){
   filterCat=c;
-  renderStories();renderFeed();
   const cat = CATS.find(x=>x.e===c);
+  if(cat){ lastSeen[cat.slug]=Date.now(); localStorage.setItem('eco_lastseen',JSON.stringify(lastSeen)); }
+  renderStories();renderFeed();
   const url = cat && cat.slug!=='toutes' ? ('?cat='+cat.slug) : location.pathname;
   history.pushState({cat:c}, '', url);
   document.title = cat && cat.slug!=='toutes' ? (cat.l+' — Astuces Economya Community') : 'Astuces — Economya Community';
@@ -591,7 +630,7 @@ document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>
 
 // ── Init ──────────────────────────────────────────────
 initCatFromUrl();
-refreshSessionIfNeeded();
+refreshSessionIfNeeded().then(fetchMyAlerts).then(()=>{ if(posts.length) renderStories(); });
 updateNav();
 loadPosts();
 </script>
