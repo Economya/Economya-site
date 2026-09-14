@@ -92,8 +92,15 @@ window.addEventListener('keyup',  e=>{if(e.key==='ArrowLeft'||e.key==='a')lft=fa
 window.addEventListener('deviceorientation',e=>{tilt=Math.max(-1,Math.min(1,(e.gamma||0)/30));});
 document.getElementById('cl').addEventListener('touchstart',e=>{e.preventDefault();lft=true;},{passive:false});
 document.getElementById('cl').addEventListener('touchend',  e=>{e.preventDefault();lft=false;},{passive:false});
+document.getElementById('cl').addEventListener('touchcancel',e=>{e.preventDefault();lft=false;},{passive:false});
 document.getElementById('cr').addEventListener('touchstart',e=>{e.preventDefault();rgt=true;},{passive:false});
 document.getElementById('cr').addEventListener('touchend',  e=>{e.preventDefault();rgt=false;},{passive:false});
+document.getElementById('cr').addEventListener('touchcancel',e=>{e.preventDefault();rgt=false;},{passive:false});
+// Filet de securite : si l'appli passe en arriere-plan ou perd le focus
+// en plein appui, on relache les controles pour eviter un personnage
+// "bloque" en mouvement continu et incontrolable.
+window.addEventListener('blur', ()=>{lft=false;rgt=false;tilt=0;});
+document.addEventListener('visibilitychange', ()=>{ if(document.hidden){lft=false;rgt=false;tilt=0;} });
 
 // Génération — la difficulté augmente vite avec l'altitude (diff : 0 en bas, 1 dès ~1800)
 function difAt(worldY){ return Math.min(1, Math.max(0,-worldY)/1800); }
@@ -166,8 +173,14 @@ let pt=0;
 function loop(t) {
   if(!alive) return;
   const dt = Math.min((t-pt)/16, 2.5); pt=t;
-  update(dt);
-  render();
+  try {
+    update(dt);
+    render();
+  } catch(e) {
+    console.error('Happy Budget: erreur dans la boucle de jeu', e);
+    if(alive){ alive=false; endGame(); }
+    return;
+  }
   raf = requestAnimationFrame(loop);
 }
 
