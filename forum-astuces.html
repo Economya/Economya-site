@@ -342,6 +342,10 @@ const CATS=[
   {e:'💊',l:'Santé'},{e:'📚',l:'Enfants'},{e:'🐾',l:'Animaux'},
   {e:'🎁',l:'Cadeaux'},{e:'💡',l:'Bricolage'},{e:'🖥️',l:'High-Tech'},
 ];
+function slugify(s){
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+CATS.forEach(c=>c.slug=slugify(c.l));
 
 let posts = [], sortMode = 'top', filterCat = null;
 let voted = JSON.parse(localStorage.getItem('eco_voted')||'[]');
@@ -397,10 +401,11 @@ function renderStories(){
   const st=document.getElementById('stories');
   st.innerHTML=CATS.map((c,i)=>{
     const active=i===0&&!filterCat||(filterCat&&filterCat.startsWith(c.e));
-    return `<div class="story ${active?'sel':''}" onclick="setCat(${i===0?'null':"'"+c.e+"'"})">
+    const href = i===0 ? '/forum-astuces.html' : ('/astuces/'+c.slug);
+    return `<a class="story ${active?'sel':''}" href="${href}" onclick="event.preventDefault();setCat(${i===0?'null':"'"+c.e+"'"})">
       <div class="story-ring ${active?'active':'inactive'}"><div class="story-inner">${c.e}</div></div>
       <div class="story-label">${c.l}</div>
-    </div>`;
+    </a>`;
   }).join('');
 }
 
@@ -511,7 +516,28 @@ function setSort(s,btn){
   if(btn)btn.classList.add('active');
   renderFeed();
 }
-function setCat(c){filterCat=c;renderStories();renderFeed();}
+function setCat(c){
+  filterCat=c;
+  renderStories();renderFeed();
+  const cat = CATS.find(x=>x.e===c);
+  const url = cat && cat.slug!=='toutes' ? ('?cat='+cat.slug) : location.pathname;
+  history.pushState({cat:c}, '', url);
+  document.title = cat && cat.slug!=='toutes' ? (cat.l+' — Astuces Economya Community') : 'Astuces — Economya Community';
+}
+function initCatFromUrl(){
+  const pathMatch = location.pathname.match(/\/astuces\/([^/]+)/);
+  const slug = (pathMatch && pathMatch[1]) || new URLSearchParams(location.search).get('cat');
+  if(!slug) return;
+  const cat = CATS.find(x=>x.slug===slug);
+  if(cat && cat.slug!=='toutes'){
+    filterCat = cat.e;
+    document.title = cat.l+' — Astuces Economya Community';
+  }
+}
+window.addEventListener('popstate', (e)=>{
+  filterCat = e.state && e.state.cat || null;
+  renderStories();renderFeed();
+});
 
 // ── Post ──────────────────────────────────────────────
 function openPost(){
@@ -564,6 +590,7 @@ function closeAll(){document.querySelectorAll('.modal-bg').forEach(m=>m.classLis
 document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeAll();}));
 
 // ── Init ──────────────────────────────────────────────
+initCatFromUrl();
 refreshSessionIfNeeded();
 updateNav();
 loadPosts();
