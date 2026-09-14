@@ -21,6 +21,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .nav-logo em{color:var(--gold);font-style:normal;}
 .nav-icons{display:flex;align-items:center;gap:4px;}
 .nav-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;cursor:pointer;border:2px solid var(--border);}
+.nav-login{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border:none;border-radius:99px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;}
 
 .tabs{background:var(--white);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:52px;z-index:98;}
 .tabs::-webkit-scrollbar{display:none;}
@@ -97,7 +98,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <nav class="nav">
   <div class="nav-logo">Eco<em>nomya</em></div>
   <div class="nav-icons">
-    <div class="nav-avatar" id="navAv" style="background:#F3F4F6;color:#737373;" onclick="onAvatarClick()">?</div>
+    <div id="navAv" onclick="onAvatarClick()"></div>
   </div>
 </nav>
 
@@ -455,10 +456,15 @@ function renderFeed(){
 
 function updateNav(){
   const el=document.getElementById('navAv');
-  if(currentUser){
-    const [bg,fg]=pc(currentUser);el.style.background=bg;el.style.color=fg;el.textContent=ini(currentUser);
+  if(session && currentUser){
+    const [bg,fg]=pc(currentUser);
+    el.className='nav-avatar';
+    el.style.background=bg;el.style.color=fg;el.style.border='2px solid var(--border)';
+    el.textContent=ini(currentUser);
   } else {
-    el.style.background='#F3F4F6';el.style.color='#737373';el.textContent='?';
+    el.className='nav-login';
+    el.removeAttribute('style');
+    el.innerHTML='👤 Connexion';
   }
 }
 
