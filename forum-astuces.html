@@ -173,11 +173,37 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     </div>
     <div class="field"><label>Email</label><input id="authEmail" type="email" placeholder="vous@email.com"></div>
     <div class="field"><label>Mot de passe</label><input id="authPassword" type="password" placeholder="6 caractères minimum" minlength="6"></div>
+    <p style="text-align:right;font-size:12px;color:var(--muted);margin:-6px 0 4px;cursor:pointer" id="authForgotLink" onclick="openForgot()">Mot de passe oublié ?</p>
     <div class="sheet-actions">
       <button class="btn-ann" onclick="closeAll()">Annuler</button>
       <button class="btn-pub" onclick="submitAuth()" id="authSubmitBtn">Se connecter</button>
     </div>
     <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:16px;cursor:pointer" id="authToggleText" onclick="toggleAuthMode()">Pas encore de compte ? <b>Inscrivez-vous</b></p>
+  </div>
+</div>
+
+<div class="modal-bg" id="shForgot">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>🔑 Mot de passe oublié</h3>
+    <div id="forgotMsg" style="display:none;font-size:13px;font-weight:600;margin-bottom:12px;padding:10px 12px;border-radius:10px;"></div>
+    <div class="field"><label>Email</label><input id="forgotEmail" type="email" placeholder="vous@email.com"></div>
+    <div class="sheet-actions">
+      <button class="btn-ann" onclick="closeAll()">Annuler</button>
+      <button class="btn-pub" onclick="submitForgot()">Envoyer le lien</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="shReset">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>🔒 Nouveau mot de passe</h3>
+    <div id="resetError" style="display:none;font-size:13px;font-weight:600;margin-bottom:12px;padding:10px 12px;border-radius:10px;"></div>
+    <div class="field"><label>Nouveau mot de passe</label><input id="resetPassword" type="password" placeholder="6 caractères minimum" minlength="6"></div>
+    <div class="sheet-actions">
+      <button class="btn-pub" style="flex:1" onclick="submitReset()">Valider</button>
+    </div>
   </div>
 </div>
 
@@ -225,12 +251,14 @@ function openAuth(){
   document.getElementById('authEmail').value = '';
   document.getElementById('authPassword').value = '';
   document.getElementById('authPseudo').value = '';
+  document.getElementById('authForgotLink').style.display = 'block';
   document.getElementById('shAuth').classList.add('open');
 }
 function toggleAuthMode(){
   authMode = authMode === 'login' ? 'signup' : 'login';
   document.getElementById('authTitle').textContent = authMode === 'login' ? '🔐 Connexion' : '✨ Inscription';
   document.getElementById('authPseudoField').style.display = authMode === 'signup' ? 'block' : 'none';
+  document.getElementById('authForgotLink').style.display = authMode === 'login' ? 'block' : 'none';
   document.getElementById('authSubmitBtn').textContent = authMode === 'login' ? 'Se connecter' : "S'inscrire";
   document.getElementById('authToggleText').innerHTML = authMode === 'login'
     ? 'Pas encore de compte ? <b>Inscrivez-vous</b>'
@@ -316,6 +344,82 @@ async function refreshSessionIfNeeded(){
     const data = await res.json();
     if(res.ok) saveSession(data); else logout();
   } catch(e){ /* réseau indispo : on retente au prochain appel */ }
+}
+// ── Mot de passe oublié ─────────────────────────────────
+function openForgot(){
+  closeAll();
+  document.getElementById('forgotMsg').style.display = 'none';
+  document.getElementById('forgotEmail').value = document.getElementById('authEmail').value || '';
+  document.getElementById('shForgot').classList.add('open');
+}
+function showForgotMsg(msg, ok){
+  const el = document.getElementById('forgotMsg');
+  el.textContent = msg;
+  el.style.background = ok ? '#F0FDF4' : '#FEF2F2';
+  el.style.color = ok ? '#16A34A' : '#DC2626';
+  el.style.display = 'block';
+}
+async function submitForgot(){
+  const email = document.getElementById('forgotEmail').value.trim();
+  if(!email){ showForgotMsg('Entrez votre email.'); return; }
+  try {
+    const res = await fetch(SUPABASE_URL + '/auth/v1/recover', {
+      method: 'POST',
+      headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+      body: JSON.stringify({ email, options: { redirect_to: 'https://economya.fr/forum-astuces.html' } })
+    });
+    if(!res.ok){
+      const data = await res.json().catch(()=>({}));
+      throw new Error(data.msg || data.error_description || 'Une erreur est survenue.');
+    }
+    showForgotMsg("Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé.", true);
+  } catch(e){
+    showForgotMsg(e.message);
+  }
+}
+let recoverySession = null;
+function checkRecoveryHash(){
+  if(!location.hash) return;
+  const params = new URLSearchParams(location.hash.slice(1));
+  if(params.get('type') === 'recovery' && params.get('access_token')){
+    recoverySession = { access_token: params.get('access_token'), refresh_token: params.get('refresh_token') };
+    history.replaceState(null, '', location.pathname + location.search);
+    document.getElementById('resetError').style.display = 'none';
+    document.getElementById('resetPassword').value = '';
+    document.getElementById('shReset').classList.add('open');
+  }
+}
+function showResetError(msg){
+  const el = document.getElementById('resetError');
+  el.textContent = msg;
+  el.style.background = '#FEF2F2';
+  el.style.color = '#DC2626';
+  el.style.display = 'block';
+}
+async function submitReset(){
+  const password = document.getElementById('resetPassword').value;
+  if(!password || password.length < 6){ showResetError('6 caractères minimum.'); return; }
+  if(!recoverySession){ showResetError('Lien expiré, refaites une demande.'); return; }
+  try {
+    const res = await fetch(SUPABASE_URL + '/auth/v1/user', {
+      method: 'PUT',
+      headers: {'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + recoverySession.access_token, 'Content-Type': 'application/json'},
+      body: JSON.stringify({ password })
+    });
+    const data = await res.json();
+    if(!res.ok){ throw new Error(data.msg || data.error_description || 'Une erreur est survenue.'); }
+    saveSession({
+      access_token: recoverySession.access_token,
+      refresh_token: recoverySession.refresh_token,
+      expires_in: 3600,
+      user: data
+    });
+    recoverySession = null;
+    closeAll();
+    render();
+  } catch(e){
+    showResetError(e.message);
+  }
 }
 function onAvatarClick(){
   if(session){
@@ -630,6 +734,7 @@ document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>
 
 // ── Init ──────────────────────────────────────────────
 initCatFromUrl();
+checkRecoveryHash();
 refreshSessionIfNeeded().then(fetchMyAlerts).then(()=>{ if(posts.length) renderStories(); });
 updateNav();
 loadPosts();
