@@ -13,5 +13,12 @@
   status = 301
   force = true
 
+# Profils publics : /profil/pseudo -> profil.html (rewrite, pas redirect,
+# pour garder l'URL propre dans la barre d'adresse)
+[[redirects]]
+  from = "/profil/*"
+  to = "/profil.html"
+  status = 200
+
 [build]
   publish = "."
