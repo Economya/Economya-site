@@ -25,7 +25,18 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .pro-hero{background:var(--white);border-bottom:1px solid var(--border);padding:32px 20px;text-align:center;}
 .pro-av{width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;margin:0 auto 14px;overflow:hidden;position:relative;}
 .pro-av img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
-.pro-av-edit{display:block;margin:0 auto 14px;background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:700;}
+.pro-av-actions{display:flex;gap:8px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;}
+.pro-av-edit{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:700;}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:300;padding:24px;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:100%;max-height:100%;border-radius:16px;}
+.avpick-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:flex-end;justify-content:center;z-index:250;}
+.avpick-bg.open{display:flex;}
+.avpick-sheet{background:var(--white);border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:600px;max-height:70vh;overflow-y:auto;}
+.avpick-title{font-weight:900;font-size:16px;margin-bottom:14px;}
+.avpick-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+.avpick-item{aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;border:none;cursor:pointer;}
+.avpick-close{margin-top:14px;width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:12px;font-weight:700;color:var(--muted);}
 .nav-logout{font-size:.82rem;font-weight:600;color:var(--red);margin-left:14px;}
 .pro-name{font-weight:900;font-size:22px;margin-bottom:6px;}
 .pro-rank{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700;margin-bottom:6px;}
@@ -65,6 +76,16 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 
 <div id="content"><div class="loading">Chargement du profil...</div></div>
 <input type="file" id="avatarInput" accept="image/*" style="display:none">
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="">
+</div>
+<div class="avpick-bg" id="avpickBg" onclick="if(event.target===this)closeAvatarPicker()">
+  <div class="avpick-sheet">
+    <div class="avpick-title">Choisir un avatar</div>
+    <div class="avpick-grid" id="avpickGrid"></div>
+    <button class="avpick-close" onclick="closeAvatarPicker()">Fermer</button>
+  </div>
+</div>
 </div>
 
 <script>
@@ -130,6 +151,47 @@ document.getElementById('avatarInput').addEventListener('change', e=>{
   if(f) uploadAvatar(f);
 });
 
+function openLightbox(url){
+  document.getElementById('lightboxImg').src = url;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+const DEFAULT_AVATARS = ['🦊','🐱','🐶','🦁','🐼','🐻','🐨','🐷','🐸','🐵','🦄','🐺','🐹','🐰','🦉','🐧','🐢','🐙','🦋','🐝','🐬','🐳','🦈','🐔','🦅','🦩','🦜','🐍','🦔','🐗','🐴','🦓','🦒','🐘','🦛','🦘','🐪','🦙','🐐','🐑','🐄','🐖','🦌','🐈','🦚','🐿️','🐦','🦢','🐇','🐾'];
+function openAvatarPicker(){
+  const grid = document.getElementById('avpickGrid');
+  grid.innerHTML = DEFAULT_AVATARS.map((e,i)=>{
+    const [bg] = PALETTE[i % PALETTE.length];
+    return `<button class="avpick-item" style="background:${bg}" onclick="chooseEmojiAvatar('${e}')">${e}</button>`;
+  }).join('');
+  document.getElementById('avpickBg').classList.add('open');
+}
+function closeAvatarPicker(){
+  document.getElementById('avpickBg').classList.remove('open');
+}
+async function chooseEmojiAvatar(emoji){
+  if(!mySession) return;
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + mySession.user.id, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + mySession.access_token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ avatar_url: 'emoji:' + emoji })
+    });
+    if(!res.ok) throw new Error(await res.text());
+    closeAvatarPicker();
+    loadProfile();
+  } catch(e){
+    alert('Erreur : ' + e.message);
+  }
+}
+
 const PALETTE=[['#F59E0B','#1A0A00'],['#22C55E','#fff'],['#3B82F6','#fff'],['#8B5CF6','#fff'],['#EC4899','#fff'],['#F97316','#fff'],['#14B8A6','#fff'],['#6366F1','#fff']];
 function pc(name){return PALETTE[(name||'?').charCodeAt(0)%PALETTE.length];}
 function ini(name){return (name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
@@ -179,9 +241,13 @@ async function loadProfile(){
     const [bg,fg] = pc(profile.pseudo);
     const isOwn = mySession && mySession.user && mySession.user.id === profile.id;
     document.getElementById('navLogout').style.display = isOwn ? 'inline' : 'none';
-    const avatarHtml = profile.avatar_url
-      ? `<img src="${profile.avatar_url}" alt="${profile.pseudo}">`
-      : ini(profile.pseudo);
+    const isEmoji = profile.avatar_url && profile.avatar_url.startsWith('emoji:');
+    const isPhoto = profile.avatar_url && !isEmoji;
+    const avatarHtml = isEmoji
+      ? profile.avatar_url.slice(6)
+      : isPhoto
+        ? `<img src="${profile.avatar_url}" alt="${profile.pseudo}">`
+        : ini(profile.pseudo);
 
     const postsHtml = posts.length ? posts.map(p=>`
       <div class="post">
@@ -198,8 +264,11 @@ async function loadProfile(){
 
     content.innerHTML = `
       <div class="pro-hero">
-        <div class="pro-av" style="background:${bg};color:${fg}">${avatarHtml}</div>
-        ${isOwn ? `<button class="pro-av-edit" id="avatarEditBtn" onclick="document.getElementById('avatarInput').click()">📷 Changer la photo</button>` : ''}
+        <div class="pro-av" style="background:${bg};color:${fg}${isPhoto?';cursor:pointer':''}" ${isPhoto?`onclick="openLightbox('${profile.avatar_url}')"`:''}>${avatarHtml}</div>
+        ${isOwn ? `<div class="pro-av-actions">
+          <button class="pro-av-edit" id="avatarEditBtn" onclick="document.getElementById('avatarInput').click()">📷 Photo perso</button>
+          <button class="pro-av-edit" onclick="openAvatarPicker()">🎨 Avatars</button>
+        </div>` : ''}
         <div class="pro-name">${profile.pseudo}</div>
         <div class="pro-rank" style="background:${r.bg};color:${r.c}">${r.l}</div>
         <div class="pro-since">Membre depuis ${timeAgo(profile.created_at)}</div>
