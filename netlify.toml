@@ -20,5 +20,11 @@
   to = "/profil.html"
   status = 200
 
+# Forums par catégorie : /astuces/telephonie -> forum-astuces.html?cat=...
+[[redirects]]
+  from = "/astuces/*"
+  to = "/forum-astuces.html"
+  status = 200
+
 [build]
   publish = "."
