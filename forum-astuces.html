@@ -97,7 +97,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <nav class="nav">
   <div class="nav-logo">Eco<em>nomya</em></div>
   <div class="nav-icons">
-    <div class="nav-avatar" id="navAv" style="background:#F3F4F6;color:#737373;">?</div>
+    <div class="nav-avatar" id="navAv" style="background:#F3F4F6;color:#737373;" onclick="onAvatarClick()">?</div>
   </div>
 </nav>
 
@@ -159,17 +159,47 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   </div>
 </div>
 
+<div class="modal-bg" id="shAuth">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3 id="authTitle">🔐 Connexion</h3>
+    <div id="authError" style="display:none;font-size:13px;font-weight:600;margin-bottom:12px;padding:10px 12px;border-radius:10px;"></div>
+    <div class="field" id="authPseudoField" style="display:none">
+      <label>Pseudo</label><input id="authPseudo" placeholder="Marie" maxlength="30">
+    </div>
+    <div class="field"><label>Email</label><input id="authEmail" type="email" placeholder="vous@email.com"></div>
+    <div class="field"><label>Mot de passe</label><input id="authPassword" type="password" placeholder="6 caractères minimum" minlength="6"></div>
+    <div class="sheet-actions">
+      <button class="btn-ann" onclick="closeAll()">Annuler</button>
+      <button class="btn-pub" onclick="submitAuth()" id="authSubmitBtn">Se connecter</button>
+    </div>
+    <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:16px;cursor:pointer" id="authToggleText" onclick="toggleAuthMode()">Pas encore de compte ? <b>Inscrivez-vous</b></p>
+  </div>
+</div>
+
+<div class="modal-bg" id="shMe">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <h3>👋 <span id="meNom"></span></h3>
+    <div class="sheet-actions" style="margin-top:16px;">
+      <a class="btn-ann" style="flex:1;display:flex;align-items:center;justify-content:center;text-decoration:none" id="meProfilLink" href="#">Mon profil</a>
+      <button class="btn-pub" style="background:#EF4444" onclick="logout()">Déconnexion</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // ── Supabase config ───────────────────────────────────
 const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
 
 async function sbFetch(path, options = {}) {
+  await refreshSessionIfNeeded();
   const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
     ...options,
     headers: {
       'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Authorization': 'Bearer ' + (session ? session.access_token : SUPABASE_KEY),
       'Content-Type': 'application/json',
       'Prefer': options.prefer || 'return=representation',
       ...options.headers
@@ -177,6 +207,117 @@ async function sbFetch(path, options = {}) {
   });
   if (!res.ok) throw new Error(await res.text());
   return res.status === 204 ? null : res.json();
+}
+
+// ── Auth Supabase (email + mot de passe) ───────────────
+let authMode = 'login';
+function openAuth(){
+  authMode = 'login';
+  document.getElementById('authTitle').textContent = '🔐 Connexion';
+  document.getElementById('authPseudoField').style.display = 'none';
+  document.getElementById('authSubmitBtn').textContent = 'Se connecter';
+  document.getElementById('authToggleText').innerHTML = 'Pas encore de compte ? <b>Inscrivez-vous</b>';
+  document.getElementById('authError').style.display = 'none';
+  document.getElementById('authEmail').value = '';
+  document.getElementById('authPassword').value = '';
+  document.getElementById('authPseudo').value = '';
+  document.getElementById('shAuth').classList.add('open');
+}
+function toggleAuthMode(){
+  authMode = authMode === 'login' ? 'signup' : 'login';
+  document.getElementById('authTitle').textContent = authMode === 'login' ? '🔐 Connexion' : '✨ Inscription';
+  document.getElementById('authPseudoField').style.display = authMode === 'signup' ? 'block' : 'none';
+  document.getElementById('authSubmitBtn').textContent = authMode === 'login' ? 'Se connecter' : "S'inscrire";
+  document.getElementById('authToggleText').innerHTML = authMode === 'login'
+    ? 'Pas encore de compte ? <b>Inscrivez-vous</b>'
+    : 'Déjà un compte ? <b>Connectez-vous</b>';
+  document.getElementById('authError').style.display = 'none';
+}
+function showAuthError(msg, ok){
+  const el = document.getElementById('authError');
+  el.textContent = msg;
+  el.style.background = ok ? '#F0FDF4' : '#FEF2F2';
+  el.style.color = ok ? '#16A34A' : '#DC2626';
+  el.style.display = 'block';
+}
+async function submitAuth(){
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
+  const pseudo = document.getElementById('authPseudo').value.trim();
+  if(!email || !password){ showAuthError('Email et mot de passe requis.'); return; }
+  if(authMode === 'signup' && !pseudo){ showAuthError('Choisissez un pseudo.'); return; }
+  try {
+    let res;
+    if(authMode === 'signup'){
+      res = await fetch(SUPABASE_URL + '/auth/v1/signup', {
+        method: 'POST',
+        headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+        body: JSON.stringify({email, password, data: {pseudo}})
+      });
+    } else {
+      res = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+        method: 'POST',
+        headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+        body: JSON.stringify({email, password})
+      });
+    }
+    const data = await res.json();
+    if(!res.ok){
+      const msg = data.msg || data.error_description || data.error || 'Une erreur est survenue.';
+      throw new Error(msg);
+    }
+    if(authMode === 'signup' && !data.access_token){
+      showAuthError('Compte créé ! Vérifiez votre email pour confirmer, puis connectez-vous.', true);
+      return;
+    }
+    saveSession(data);
+    closeAll();
+    render();
+  } catch(e){
+    showAuthError(e.message === 'Invalid login credentials' ? 'Email ou mot de passe incorrect.' : e.message);
+  }
+}
+function saveSession(data){
+  session = {
+    access_token: data.access_token,
+    refresh_token: data.refresh_token,
+    expires_at: Date.now() + (data.expires_in || 3600) * 1000,
+    user: data.user
+  };
+  localStorage.setItem('eco_session', JSON.stringify(session));
+  currentUser = (session.user.user_metadata && session.user.user_metadata.pseudo) || session.user.email;
+  localStorage.setItem('eco_user', currentUser);
+  updateNav();
+}
+function logout(){
+  session = null;
+  currentUser = null;
+  localStorage.removeItem('eco_session');
+  localStorage.removeItem('eco_user');
+  closeAll();
+  updateNav();
+}
+async function refreshSessionIfNeeded(){
+  if(!session) return;
+  if(Date.now() < session.expires_at - 60000) return;
+  try {
+    const res = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+      method: 'POST',
+      headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+      body: JSON.stringify({refresh_token: session.refresh_token})
+    });
+    const data = await res.json();
+    if(res.ok) saveSession(data); else logout();
+  } catch(e){ /* réseau indispo : on retente au prochain appel */ }
+}
+function onAvatarClick(){
+  if(session){
+    document.getElementById('meNom').textContent = currentUser;
+    document.getElementById('meProfilLink').href = 'profil.html?pseudo=' + encodeURIComponent(currentUser);
+    document.getElementById('shMe').classList.add('open');
+  } else {
+    openAuth();
+  }
 }
 
 // ── Couleurs & utils ──────────────────────────────────
@@ -206,6 +347,10 @@ let voted = JSON.parse(localStorage.getItem('eco_voted')||'[]');
 let tested = JSON.parse(localStorage.getItem('eco_tested')||'[]');
 let reported = JSON.parse(localStorage.getItem('eco_reported')||'[]');
 let currentUser = localStorage.getItem('eco_user')||null;
+let session = JSON.parse(localStorage.getItem('eco_session')||'null');
+if(session && session.user){
+  currentUser = session.user.user_metadata && session.user.user_metadata.pseudo || currentUser;
+}
 
 function rel(p){
   const pos=p.votes+p.tested*2;
@@ -310,7 +455,11 @@ function renderFeed(){
 
 function updateNav(){
   const el=document.getElementById('navAv');
-  if(currentUser){const [bg,fg]=pc(currentUser);el.style.background=bg;el.style.color=fg;el.textContent=ini(currentUser);}
+  if(currentUser){
+    const [bg,fg]=pc(currentUser);el.style.background=bg;el.style.color=fg;el.textContent=ini(currentUser);
+  } else {
+    el.style.background='#F3F4F6';el.style.color='#737373';el.textContent='?';
+  }
 }
 
 // ── Actions Supabase ──────────────────────────────────
@@ -360,7 +509,16 @@ function setCat(c){filterCat=c;renderStories();renderFeed();}
 
 // ── Post ──────────────────────────────────────────────
 function openPost(){
-  if(currentUser)document.getElementById('fAuthor').value=currentUser;
+  const fAuthor = document.getElementById('fAuthor');
+  if(session){
+    fAuthor.value = currentUser;
+    fAuthor.readOnly = true;
+    fAuthor.style.background = '#F3F4F6';
+  } else {
+    fAuthor.readOnly = false;
+    fAuthor.style.background = '';
+    if(currentUser) fAuthor.value = currentUser;
+  }
   document.getElementById('shPost').classList.add('open');
 }
 
@@ -375,15 +533,16 @@ async function submitPost(){
   const titre=document.getElementById('fTitle').value.trim();
   const description=document.getElementById('fBody').value.trim();
   if(!titre||!description){alert('Titre et description obligatoires !');return;}
-  const auteur=document.getElementById('fAuthor').value.trim()||'Anonyme';
+  const auteur=(session ? currentUser : document.getElementById('fAuthor').value.trim())||'Anonyme';
   const economie=parseInt(document.getElementById('fSaving').value)||0;
   const categorie=document.getElementById('fCat').value;
-  currentUser=auteur;
-  localStorage.setItem('eco_user',auteur);
+  if(!session){currentUser=auteur;localStorage.setItem('eco_user',auteur);}
   try {
+    const payload = {titre, description, categorie, economie, auteur, votes:1, tested:0, reports:0};
+    if(session) payload.user_id = session.user.id;
     const newPost = await sbFetch('astuces', {
       method:'POST',
-      body:JSON.stringify({titre, description, categorie, economie, auteur, votes:1, tested:0, reports:0})
+      body:JSON.stringify(payload)
     });
     posts.unshift(Array.isArray(newPost)?newPost[0]:newPost);
     voted.push(posts[0].id);
@@ -399,6 +558,8 @@ function closeAll(){document.querySelectorAll('.modal-bg').forEach(m=>m.classLis
 document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeAll();}));
 
 // ── Init ──────────────────────────────────────────────
+refreshSessionIfNeeded();
+updateNav();
 loadPosts();
 </script>
 </body>
