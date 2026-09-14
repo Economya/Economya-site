@@ -14,12 +14,19 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
-.hero{background:linear-gradient(135deg,#04342C,#0F6E56,#1D9E75);color:white;padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'🛠️';position:absolute;font-size:18rem;right:-2rem;top:-3rem;opacity:.05;pointer-events:none}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin-bottom:.8rem}
-.hero h1 em{color:var(--a);font-style:normal}
-.hero p{font-size:1rem;color:rgba(255,255,255,.8);max-width:520px;margin:0 auto 1.5rem}
-.hero-stats{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap}
+.hero{background:#111318;color:white;padding:4.5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(255,255,255,.04),transparent 70%);pointer-events:none;}
+.hero::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);}
+.hero-eyebrow{font-size:11px;font-weight:400;color:rgba(255,255,255,.2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;margin-bottom:.8rem;color:rgba(255,255,255,.9);}
+.hero h1 em{color:#EF9F27;font-style:italic;}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.35);max-width:420px;margin:0 auto 2.5rem;line-height:1.7;}
+.hero-stats{display:flex;justify-content:center;max-width:480px;margin:0 auto 2.5rem;border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;}
+.hero-stats .stat{flex:1;padding:1.2rem 1rem;border-right:1px solid rgba(255,255,255,.08);}
+.hero-stats .stat:last-child{border-right:none;}
+.hero-stats .snum{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:400;color:#fff;margin-bottom:.2rem;}
+.hero-stats .snum.accent{color:#EF9F27;}
+.hero-stats .slbl{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.05em;}
 .stat{text-align:center}
 .stat-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;display:block}
 .stat-lbl{font-size:.72rem;color:rgba(255,255,255,.6)}
@@ -74,10 +81,11 @@ footer strong{color:white}
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 
 <div class="hero">
-  <h1>Outils <em>gratuits</em> pour vos finances</h1>
+  <div class="hero-eyebrow">— Economya · Outils gratuits —</div>
+  <h1>Outils gratuits<br><em>pour vos finances</em></h1>
   <p>Simulateurs, calculateurs, quiz et comparateurs 100% gratuits pour prendre les meilleures décisions.</p>
-  <div class="hero-stats">
-    <div class="stat"><span class="stat-num">30</span><div class="stat-lbl">Outils disponibles</div></div>
+  <div class="hero-stats"><div class="stat"><div class="snum">30</div><div class="slbl">Outils disponibles</div></div><div class="stat"><div class="snum accent">100%</div><div class="slbl">Gratuit</div></div><div class="stat"><div class="snum">0</div><div class="slbl">Inscription requise</div></div></div>
+</div>
     <div class="stat"><span class="stat-num">100%</span><div class="stat-lbl">Gratuit</div></div>
     <div class="stat"><span class="stat-num">0</span><div class="stat-lbl">Inscription requise</div></div>
   </div>
