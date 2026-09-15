@@ -159,7 +159,7 @@ footer strong{color:white}
 </div>
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Simulation indicative basée sur un taux de 3,5% et une revalorisation immobilière de 2%/an.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Simulation indicative basée sur un taux de 3,7% (crédit sur 25 ans) et une revalorisation immobilière de 2%/an.</span>
 </footer>
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
@@ -177,7 +177,7 @@ function calculate() {
 
   // ACHAT
   const emprunt = prix - apport;
-  const tauxMensuel = 0.034 / 12; // Taux indicatif ~3,4% (moyenne marché juin 2026, fluctue mensuellement)
+  const tauxMensuel = 0.037 / 12; // Taux indicatif ~3,7% (moyenne marché crédit 25 ans, septembre 2026, fluctue mensuellement)
   const n = 25 * 12; // durée crédit 25 ans
   const mensualite = emprunt * tauxMensuel / (1 - Math.pow(1 + tauxMensuel, -n));
   const chargesAchat = prix * 0.003; // 0.3% du prix/an (charges + taxe foncière)
