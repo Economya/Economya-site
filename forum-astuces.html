@@ -176,6 +176,9 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     </div>
     <div class="field"><label>Email</label><input id="authEmail" type="email" placeholder="vous@email.com"></div>
     <div class="field"><label>Mot de passe</label><input id="authPassword" type="password" placeholder="6 caractères minimum" minlength="6"></div>
+    <div class="field" id="authBirthField" style="display:none">
+      <label>Date de naissance</label><input id="authBirth" type="date">
+    </div>
     <p style="text-align:right;font-size:12px;color:var(--muted);margin:-6px 0 4px;cursor:pointer" id="authForgotLink" onclick="openForgot()">Mot de passe oublié ?</p>
     <p id="authCguField" style="display:none;font-size:12px;color:var(--muted);margin:4px 0 4px;">
       <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;">
@@ -258,6 +261,7 @@ function toggleAuthMode(){
   document.getElementById('authPseudoField').style.display = authMode === 'signup' ? 'block' : 'none';
   document.getElementById('authForgotLink').style.display = authMode === 'login' ? 'block' : 'none';
   document.getElementById('authCguField').style.display = authMode === 'signup' ? 'block' : 'none';
+  document.getElementById('authBirthField').style.display = authMode === 'signup' ? 'block' : 'none';
   document.getElementById('authSubmitBtn').textContent = authMode === 'login' ? 'Se connecter' : "S'inscrire";
   document.getElementById('authToggleText').innerHTML = authMode === 'login'
     ? 'Pas encore de compte ? <b>Inscrivez-vous</b>'
@@ -277,6 +281,16 @@ async function submitAuth(){
   const pseudo = document.getElementById('authPseudo').value.trim();
   if(!email || !password){ showAuthError('Email et mot de passe requis.'); return; }
   if(authMode === 'signup' && !pseudo){ showAuthError('Choisissez un pseudo.'); return; }
+  if(authMode === 'signup'){
+    const birthVal = document.getElementById('authBirth').value;
+    if(!birthVal){ showAuthError('Indiquez votre date de naissance.'); return; }
+    const birth = new Date(birthVal);
+    const today = new Date();
+    let age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if(m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+    if(age < 15){ showAuthError('Vous devez avoir au moins 15 ans pour créer un compte sur Economya.'); return; }
+  }
   if(authMode === 'signup' && !document.getElementById('authCgu').checked){ showAuthError('Vous devez accepter les CGU pour créer un compte.'); return; }
   try {
     let res;
