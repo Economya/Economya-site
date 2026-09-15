@@ -244,8 +244,8 @@ const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 const FORFAITS = {
   seul:   { base: 638.28, logement: 67.84, enfants: 0 },
   couple: { base: 957.42, logement: 67.84, enfants: 0 },
-  seul1:  { base: 1392.19, logement: 101.77, enfants: 0 },
-  seul2:  { base: 1392.19, logement: 101.77, enfants: 0 }, // ⚠️ A VERIFIER sur caf.fr - montant 1 enfant utilise par defaut, sources divergentes pour 2 enfants
+  seul1:  { base: 1092.84, logement: 101.77, enfants: 0 }, // montant forfaitaire majoré (isolement) parent isolé + 1 enfant, avril 2026
+  seul2:  { base: 1366.05, logement: 101.77, enfants: 0 }, // montant forfaitaire majoré (isolement) parent isolé + 2 enfants, avril 2026
   couple1:{ base: 957.42, logement: 101.77, enfants: 127.66 },
   couple2:{ base: 957.42, logement: 101.77, enfants: 255.31 },
   couple3:{ base: 957.42, logement: 101.77, enfants: 382.97 },
@@ -265,7 +265,7 @@ function calculate() {
   const montantForaitaire = f.base + forfaitLogement + f.enfants;
 
   // Formule prime d'activité (barème officiel CAF au 1er avril 2026)
-  // PA = MF + 59,85% × RP + Bonification individuelle - RG
+  // PA = MF + 61% × RP + Bonification individuelle - RG
   // MF = montant forfaitaire
   // RP = revenus professionnels
   // RG = ressources globales du foyer
@@ -281,7 +281,7 @@ function calculate() {
   }
   const rg = revenus + autres;
   const bonification = bonificationIndividuelle(revenus);
-  const pa = montantForaitaire + 0.5985 * revenus + bonification - rg;
+  const pa = montantForaitaire + 0.61 * revenus + bonification - rg;
   const prime = Math.max(0, Math.round(pa));
 
   const banner = document.getElementById('result-banner');

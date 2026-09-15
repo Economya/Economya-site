@@ -278,8 +278,8 @@ function calculate() {
   document.getElementById('v-revenus').innerHTML = revenus.toLocaleString('fr-FR') + ' <span>€/an</span>';
   document.getElementById('v-deductions').innerHTML = deductions.toLocaleString('fr-FR') + ' <span>€</span>';
 
-  // Abattement forfaitaire 10% (min 495€, max 14171€)
-  const abattement = Math.min(Math.max(revenus * 0.10, 495), 14171);
+  // Abattement forfaitaire 10% (min 509€, max 14555€) — barème 2026
+  const abattement = Math.min(Math.max(revenus * 0.10, 509), 14555);
   const revenuImposable = Math.max(0, revenus - abattement - deductions);
   const revenuParPart = revenuImposable / parts;
 
@@ -287,7 +287,7 @@ function calculate() {
 
   // Décote (si impôt < seuil)
   let impotNet = impotBrut;
-  const seuilDecote = parts === 1 ? 1929 : 3191;
+  const seuilDecote = parts === 1 ? 1982 : 3277;
   if(impotBrut < seuilDecote) {
     const decote = parts === 1 ? 897 - impotBrut * 0.4525 : 1483 - impotBrut * 0.4525;
     impotNet = Math.max(0, impotBrut - Math.max(0, decote));

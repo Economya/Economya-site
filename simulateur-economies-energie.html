@@ -246,7 +246,7 @@ function calculate() {
   // Conseil
   const tip = document.getElementById('tip-text');
   if(totalAnnuel > 2400) {
-    tip.innerHTML = `<strong>💡 Facture élevée :</strong> Votre facture annuelle de ${fmt(totalAnnuel)} est au-dessus de la moyenne française (1 500 €/an). Commencez par changer de fournisseur sur energie-info.fr — c'est la plus grosse économie possible sans effort.`;
+    tip.innerHTML = `<strong>💡 Facture élevée :</strong> Votre facture annuelle de ${fmt(totalAnnuel)} est au-dessus de la moyenne française (environ 1 900 €/an, électricité + gaz). Commencez par changer de fournisseur sur energie-info.fr — c'est la plus grosse économie possible sans effort.`;
   } else {
     tip.innerHTML = `<strong>✅ Bonne maîtrise :</strong> Votre facture de ${fmt(totalAnnuel)}/an est dans la moyenne. Les gestes les plus impactants : baisser le chauffage d'1°C et éteindre les veilles.`;
   }
