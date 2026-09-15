@@ -159,7 +159,7 @@ footer strong{color:white}
     <div class="detail-row"><span class="lbl">Taux d'endettement max (35%)</span><span id="d-max">—</span></div>
     <div class="detail-row"><span class="lbl">Autres crédits en cours</span><span id="d-credits">—</span></div>
     <div class="detail-row"><span class="lbl">Mensualité disponible pour l'immo</span><span id="d-mensualite">—</span></div>
-    <div class="detail-row"><span class="lbl">Montant empruntable (taux 3,5%)</span><span id="d-emprunt">—</span></div>
+    <div class="detail-row"><span class="lbl">Montant empruntable (taux 3,6%)</span><span id="d-emprunt">—</span></div>
     <div class="detail-row"><span class="lbl">Apport personnel</span><span id="d-apport">—</span></div>
     <div class="detail-row"><span class="lbl"><strong>Budget total acquisition</strong></span><span id="d-total">—</span></div>
   </div>
@@ -182,7 +182,7 @@ footer strong{color:white}
 </div>
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Simulation indicative basée sur un taux de 3,5%. Consultez votre banque pour une offre personnalisée.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Simulation indicative basée sur un taux de 3,6%. Consultez votre banque pour une offre personnalisée.</span>
 </footer>
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
@@ -209,7 +209,7 @@ function calculate() {
 
   const mensualiteMax = revenus * 0.35;
   const mensualiteImmo = Math.max(0, mensualiteMax - credits);
-  const tauxMensuel = 0.034 / 12; // Taux indicatif ~3,4% (moyenne marché juin 2026, fluctue mensuellement - vérifiez les taux actuels avant simulation réelle)
+  const tauxMensuel = 0.036 / 12; // Taux indicatif ~3,6% (moyenne marché sur 20 ans, septembre 2026, fluctue mensuellement - vérifiez les taux actuels avant simulation réelle)
   const n = duree * 12;
 
   // Calcul montant empruntable
