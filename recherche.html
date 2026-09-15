@@ -91,6 +91,7 @@ footer strong{color:white}
     <button class="filter-btn" onclick="setFilter('emploi', this)">💼 Emploi</button>
     <button class="filter-btn" onclick="setFilter('budget', this)">📊 Budget</button>
     <button class="filter-btn" onclick="setFilter('aides', this)">🎁 Aides</button>
+    <button class="filter-btn" onclick="setFilter('jeu', this)">🎮 Jeux</button>
   </div>
 
   <div class="results" id="results"></div>
@@ -115,6 +116,59 @@ function escapeHtml(s){
   return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 const CONTENUS = [
+  // --- Jeux et outils ajoutés (audit navigation) ---
+  { titre:'Votre ADN Financier', desc:'5 questions pour révéler votre profil financier unique, vos forces et vos faiblesses.', url:'adn-financier.html', cat:'jeu', icon:'🧬', tags:['profil','personnalité','test','quiz'] },
+  { titre:'Attrape tes Économies', desc:'Attrapez les bons plans, esquivez les pièges à dépenses. Un jeu d\'arcade.', url:'attrape-economies.html', cat:'jeu', icon:'💰', tags:['arcade','jeu','économies'] },
+  { titre:'Ton Aura Financière', desc:'5 questions pour révéler votre couleur et énergie financière.', url:'aura-financiere.html', cat:'jeu', icon:'🔮', tags:['profil','personnalité','test','quiz'] },
+  { titre:'Bar de Plage', desc:'Gérez un bar de plage sur la Côte d\'Azur : stock, personnel, météo. Jeu de gestion.', url:'bar-de-plage.html', cat:'jeu', icon:'🍹', tags:['gestion','jeu','commerce'] },
+  { titre:'Boule de Patrimoine', desc:'Faites grossir votre boule de patrimoine en absorbant pièces et objets. Jeu d\'arcade 60 secondes.', url:'boule-de-patrimoine.html', cat:'jeu', icon:'💎', tags:['arcade','jeu','patrimoine'] },
+  { titre:'Budget Run', desc:'Courez, sautez et collectez des pièces d\'épargne en esquivant les dettes. Jeu d\'arcade.', url:'budget-run.html', cat:'jeu', icon:'🏃', tags:['arcade','jeu','épargne'] },
+  { titre:'Budget Tower', desc:'Empilez votre budget mois après mois sans faire s\'effondrer la tour.', url:'budget-tower.html', cat:'jeu', icon:'🗼', tags:['arcade','jeu','budget'] },
+  { titre:'Calculateur budget vacances', desc:'Calculez le budget réel de vos vacances par poste et combien épargner par mois.', url:'calculateur-budget-vacances.html', cat:'budget', icon:'🏖️', tags:['vacances','budget','voyage','épargne'] },
+  { titre:'Le vrai coût d\'un appartement', desc:'Calculez le coût mensuel réel d\'un appartement en propriété : charges, taxe foncière, assurance.', url:'calculateur-cout-appartement.html', cat:'immobilier', icon:'🏢', tags:['immobilier','charges','taxe foncière','copropriété'] },
+  { titre:'Calculateur pouvoir d\'achat réel', desc:'Comparez votre salaire actuel à votre salaire passé selon l\'inflation réelle INSEE.', url:'calculateur-pouvoir-achat.html', cat:'budget', icon:'📉', tags:['salaire','inflation','pouvoir d\'achat','INSEE'] },
+  { titre:'Calculateur Rendement Locatif', desc:'Calculez le rendement brut, net et net-net de votre investissement locatif avec la fiscalité 2026.', url:'calculateur-rendement-locatif.html', cat:'immobilier', icon:'🏠', tags:['immobilier','location','investissement','fiscalité'] },
+  { titre:'Le Calendrier des Bons Plans', desc:'La meilleure astuce pour économiser chaque mois de l\'année : soldes, impôts, Black Friday, aides.', url:'calendrier-bons-plans.html', cat:'budget', icon:'📅', tags:['calendrier','soldes','bons plans','aides'] },
+  { titre:'Casse tes Dettes', desc:'Cassez les briques de dettes avant que les intérêts ne les fassent repousser.', url:'casse-tes-dettes.html', cat:'jeu', icon:'🧱', tags:['arcade','jeu','dettes'] },
+  { titre:'Chef Économe', desc:'Composez un repas équilibré et pas cher en 30 secondes chrono.', url:'chef-econome.html', cat:'jeu', icon:'👨‍🍳', tags:['arcade','jeu','budget alimentation'] },
+  { titre:'Chef Resto', desc:'Gérez le service du soir de votre restaurant : 8 tables, 3 minutes chrono.', url:'chef-resto-v2.html', cat:'jeu', icon:'🍽️', tags:['gestion','jeu','restaurant'] },
+  { titre:'Coach Économe', desc:'Gérez le budget d\'un sportif amateur sur une saison complète.', url:'coach-econome.html', cat:'jeu', icon:'🏅', tags:['gestion','jeu','budget sport'] },
+  { titre:'Domaine Viticole', desc:'Héritez d\'un domaine bordelais et gérez 8 millésimes.', url:'domaine-viticole.html', cat:'jeu', icon:'🍇', tags:['gestion','jeu','viticulture'] },
+  { titre:'Éclateur de Dettes', desc:'Fragmentez les grosses dettes en mensualités avant qu\'elles ne s\'accumulent.', url:'eclateur-de-dettes.html', cat:'jeu', icon:'💥', tags:['arcade','jeu','dettes'] },
+  { titre:'Finance Runner 3D', desc:'Courez sur un chemin isométrique, collectez les économies dorées et évitez les dettes.', url:'finance-runner-3d-v2.html', cat:'jeu', icon:'🏃‍♂️', tags:['arcade','jeu','3D','épargne'] },
+  { titre:'Finance Wrapped', desc:'Votre bilan financier de l\'année en slides colorées, façon Wrapped.', url:'finance-wrapped.html', cat:'jeu', icon:'🎁', tags:['bilan','profil','partage'] },
+  { titre:'Grand Prix de l\'Épargne', desc:'Slalomez entre les pièges à dépenses et terminez le Grand Prix de l\'Épargne.', url:'grand-prix-epargne.html', cat:'jeu', icon:'🏎️', tags:['arcade','jeu','épargne'] },
+  { titre:'Happy Budget', desc:'Sautez sur les plateformes financières et accumulez des économies. Jeu d\'arcade.', url:'happy-budget.html', cat:'jeu', icon:'😊', tags:['arcade','jeu','budget'] },
+  { titre:'Hôtel Manager', desc:'Reprenez un hôtel 3 étoiles en difficulté et rendez-le rentable en 12 décisions.', url:'hotel-manager.html', cat:'jeu', icon:'🏨', tags:['gestion','jeu','hôtellerie'] },
+  { titre:'L\'Île aux Œufs', desc:'Répartissez vos œufs entre plusieurs îles avant la tempête. Simulation pédagogique sur la diversification.', url:'ile-aux-oeufs.html', cat:'jeu', icon:'🥚', tags:['simulation','jeu','diversification','risque'] },
+  { titre:'Inflation Run', desc:'Esquivez les dépenses inutiles et récupérez des économies. Jeu addictif sur la finance du quotidien.', url:'inflation-run.html', cat:'jeu', icon:'🏃', tags:['arcade','jeu','inflation'] },
+  { titre:'L\'Investisseur Virtuel', desc:'Investissez 10 000€ virtuels sur 10 ans et découvrez si votre stratégie est gagnante.', url:'investisseur-virtuel.html', cat:'jeu', icon:'📈', tags:['investissement','bourse','simulation'] },
+  { titre:'Jackpot Finance', desc:'Tentez votre chance à la machine à sous finance. Chaque combinaison révèle une astuce.', url:'jackpot-finance.html', cat:'jeu', icon:'🎰', tags:['arcade','jeu','astuces'] },
+  { titre:'La Machine à Rêves', desc:'Projetez votre épargne régulière dans le futur et découvrez ce qu\'elle peut représenter.', url:'la-machine-a-reves.html', cat:'jeu', icon:'✨', tags:['épargne','projection','simulation'] },
+  { titre:'La Roue des Scénarios', desc:'Affrontez des cartes-événements financières et adaptez votre stratégie.', url:'la-roue-des-scenarios.html', cat:'jeu', icon:'🎡', tags:['simulation','jeu','scénarios'] },
+  { titre:'Le Bon Deal', desc:'Comparez 2 offres et choisissez la moins chère en moins de 10 secondes. 80 questions.', url:'le-bon-deal.html', cat:'jeu', icon:'🛒', tags:['quiz','jeu','prix','comparaison'] },
+  { titre:'Le Gestionnaire de Crise', desc:'Jonglez en temps réel entre trésorerie, risque et opportunités.', url:'le-gestionnaire-de-crise.html', cat:'jeu', icon:'🚨', tags:['gestion','jeu','trésorerie'] },
+  { titre:'Le Grand Cycle Économique', desc:'Avancez sur 14 années, arbitrez risque et croissance à chaque tour.', url:'le-grand-cycle-economique.html', cat:'jeu', icon:'🔄', tags:['simulation','jeu','cycle économique'] },
+  { titre:'Le Marché Vivant', desc:'Réallouez votre portefeuille fictif à chaque tour et suivez un marché qui évolue.', url:'le-marche-vivant.html', cat:'jeu', icon:'📊', tags:['bourse','portefeuille','simulation'] },
+  { titre:'Le Mur des Bravos', desc:'Votre mur personnel de petites victoires financières à collectionner.', url:'le-mur-des-bravos.html', cat:'jeu', icon:'🏆', tags:['motivation','jeu','victoires'] },
+  { titre:'Le Négociateur', desc:'Négociez le prix d\'une voiture, d\'un loyer, d\'un forfait en temps limité.', url:'le-negociateur.html', cat:'jeu', icon:'🤝', tags:['négociation','jeu','prix'] },
+  { titre:'Le Sosie Célèbre de ton Épargne', desc:'Découvrez quel personnage partage votre style d\'épargne.', url:'le-sosie-celebre-de-ton-epargne.html', cat:'jeu', icon:'🎭', tags:['profil','personnalité','test','quiz'] },
+  { titre:'Le Trophée du Jour', desc:'Un trophée toujours positif, chaque jour, à collectionner et partager.', url:'le-trophee-du-jour.html', cat:'jeu', icon:'🏅', tags:['motivation','jeu','quotidien'] },
+  { titre:'Marathon Budgétaire', desc:'42 kilomètres de décisions financières sans exploser votre budget.', url:'marathon-budgetaire-v2.html', cat:'jeu', icon:'🏃‍♀️', tags:['gestion','jeu','budget'] },
+  { titre:'Memory Finance', desc:'Associez chaque concept financier à sa définition ou son taux. Jeu de mémoire éducatif.', url:'memory-finance.html', cat:'jeu', icon:'🃏', tags:['mémoire','jeu','éducatif'] },
+  { titre:'Où vivre mieux avec votre salaire ?', desc:'Comparez votre pouvoir d\'achat réel entre 13 grandes villes françaises.', url:'ou-vivre-mieux.html', cat:'immobilier', icon:'🗺️', tags:['villes','pouvoir d\'achat','comparaison','loyer'] },
+  { titre:'Pile ou Face Financier', desc:'15 dilemmes financiers, un choix, un fait réel à chaque fois.', url:'pile-ou-face-financier.html', cat:'jeu', icon:'🪙', tags:['quiz','jeu','dilemmes'] },
+  { titre:'Parcours Primo-Accédant', desc:'Simulez votre premier achat immobilier étape par étape : budget, apport, crédit, notaire.', url:'primo-accedant.html', cat:'immobilier', icon:'🔑', tags:['immobilier','achat','primo-accédant','crédit'] },
+  { titre:'Prix Party', desc:'Le défi du prix juste ! Devinez 5 prix du quotidien et partagez votre grille.', url:'prix-party.html', cat:'jeu', icon:'🎯', tags:['quiz','jeu','prix'] },
+  { titre:'Le Radar à Arnaques', desc:'10 messages, 15 secondes chacun. Saurez-vous repérer les arnaques ?', url:'radar-arnaques.html', cat:'jeu', icon:'🚩', tags:['arnaques','sécurité','quiz','phishing'] },
+  { titre:'La Roue des Économies', desc:'Tournez la roue et découvrez une astuce pour économiser de l\'argent.', url:'roue-economies.html', cat:'jeu', icon:'🎡', tags:['astuces','jeu','économies'] },
+  { titre:'Loyer vs Achat', desc:'Louer ou acheter ? Calculez la meilleure option selon votre situation.', url:'simulateur-loyer-achat.html', cat:'immobilier', icon:'⚖️', tags:['immobilier','location','achat','comparaison'] },
+  { titre:'Sprint de l\'Épargne', desc:'Sautez par-dessus les dettes, collectionnez les pièces, enchaînez les combos.', url:'sprint-epargne.html', cat:'jeu', icon:'🏃', tags:['arcade','jeu','épargne'] },
+  { titre:'T\'as combien dans les mains ?', desc:'6 scènes de vie. Devinez le prix total. Sauras-tu estimer comme un pro ?', url:'tas-combien-dans-les-mains.html', cat:'jeu', icon:'🤲', tags:['quiz','jeu','prix','estimation'] },
+  { titre:'Ton Année Bons Plans', desc:'Ton récap ludique de l\'année façon Wrapped, toujours positif.', url:'ton-annee-bons-plans.html', cat:'jeu', icon:'🎊', tags:['bilan','profil','partage'] },
+  { titre:'Ton Totem Financier', desc:'Un portrait chinois fun de ton rapport à l\'épargne.', url:'ton-totem-financier.html', cat:'jeu', icon:'🦉', tags:['profil','personnalité','test','quiz'] },
+  { titre:'Tri de Budget', desc:'Triez les dépenses et revenus dans les bonnes colonnes avant que la pile déborde.', url:'tri-de-budget.html', cat:'jeu', icon:'🗂️', tags:['arcade','jeu','budget'] },
+  { titre:'Vrai ou Faux Finance', desc:'60 affirmations sur l\'argent — Vrai ou Faux en 5 secondes. Testez vos connaissances.', url:'vrai-ou-faux.html', cat:'jeu', icon:'❓', tags:['quiz','jeu','culture financière'] },
   // Outils épargne & budget
   { titre:'Simulateur d\'épargne', desc:'Calculez combien votre épargne va rapporter selon vos versements et votre taux.', url:'simulateur-epargne.html', cat:'outil', icon:'📈', tags:['épargne','placement','intérêts','livret'] },
   { titre:'Budget 50/30/20', desc:'Répartissez votre revenu net en 3 enveloppes : besoins, envies, épargne.', url:'calculateur-budget.html', cat:'budget', icon:'📊', tags:['budget','dépenses','revenus','gestion'] },
