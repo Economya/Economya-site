@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profil — Economya Community</title>
+<meta name="description" content="Consultez le profil d'un membre de la communauté Economya : ses astuces publiées, ses votes et son activité.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 :root{
@@ -69,7 +70,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 </style>
 </head>
 <body>
-
+<h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Profil utilisateur — Economya Community</h1>
 <div class="wrap">
 <nav class="nav">
   <div class="nav-logo">Eco<em>nomya</em></div>
@@ -97,6 +98,11 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <script>
 const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+// ── Échappement HTML (protection XSS) ─────────────────
+function escapeHtml(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
 
 async function sbFetch(path){
   const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
@@ -252,16 +258,16 @@ async function loadProfile(){
     const avatarHtml = isEmoji
       ? profile.avatar_url.slice(6)
       : isPhoto
-        ? `<img src="${profile.avatar_url}" alt="${profile.pseudo}">`
+        ? `<img src="${escapeHtml(profile.avatar_url)}" alt="${escapeHtml(profile.pseudo)}">`
         : ini(profile.pseudo);
 
     const postsHtml = posts.length ? posts.map(p=>`
       <div class="post">
-        <div class="post-title">${p.titre}</div>
-        <div class="post-body">${p.description}</div>
+        <div class="post-title">${escapeHtml(p.titre)}</div>
+        <div class="post-body">${escapeHtml(p.description)}</div>
         ${p.economie ? `<div class="saving-pill">💰 ${p.economie}€ économisés/an</div>` : ''}
         <div class="post-meta">
-          <span class="post-cat">${p.categorie||''}</span>
+          <span class="post-cat">${escapeHtml(p.categorie||'')}</span>
           <span>🤍 ${p.votes||0}</span>
           <span>✅ ${p.tested||0} testés</span>
         </div>
@@ -270,12 +276,12 @@ async function loadProfile(){
 
     content.innerHTML = `
       <div class="pro-hero">
-        <div class="pro-av" style="background:${bg};color:${fg}${isPhoto?';cursor:pointer':''}" ${isPhoto?`onclick="openLightbox('${profile.avatar_url}')"`:''}>${avatarHtml}</div>
+        <div class="pro-av" style="background:${bg};color:${fg}${isPhoto?';cursor:pointer':''}" ${isPhoto?`onclick="openLightbox('${escapeHtml(profile.avatar_url).replace(/'/g,'%27')}')"`:''}>${avatarHtml}</div>
         ${isOwn ? `<div class="pro-av-actions">
           <button class="pro-av-edit" id="avatarEditBtn" onclick="document.getElementById('avatarInput').click()">📷 Photo perso</button>
           <button class="pro-av-edit" onclick="openAvatarPicker()">🎨 Avatars</button>
         </div>` : ''}
-        <div class="pro-name">${profile.pseudo}</div>
+        <div class="pro-name">${escapeHtml(profile.pseudo)}</div>
         <div class="pro-rank" style="background:${r.bg};color:${r.c}">${r.l}</div>
         <div class="pro-since">Membre depuis ${timeAgo(profile.created_at)}</div>
       </div>
