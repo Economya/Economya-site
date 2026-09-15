@@ -111,6 +111,9 @@ footer strong{color:white}
 </footer>
 
 <script>
+function escapeHtml(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 const CONTENUS = [
   // Outils épargne & budget
   { titre:'Simulateur d\'épargne', desc:'Calculez combien votre épargne va rapporter selon vos versements et votre taux.', url:'simulateur-epargne.html', cat:'outil', icon:'📈', tags:['épargne','placement','intérêts','livret'] },
@@ -193,7 +196,7 @@ function doSearch() {
     });
   } else {
     noResults.style.display = 'none';
-    stats.innerHTML = `<strong>${filtered.length} résultat${filtered.length > 1 ? 's' : ''}</strong> pour "${q}"`;
+    stats.innerHTML = `<strong>${filtered.length} résultat${filtered.length > 1 ? 's' : ''}</strong> pour "${escapeHtml(q)}"`;
     results.innerHTML = '';
     filtered.forEach(c => {
       results.innerHTML += `
