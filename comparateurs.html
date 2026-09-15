@@ -35,6 +35,9 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .comp-item{background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:600;padding:.2rem .6rem;border-radius:50px}
 .comp-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--gl);color:var(--gd);font-size:.8rem;font-weight:600;padding:.4rem .9rem;border-radius:50px}
 .comp-card:hover .comp-btn{background:var(--g);color:white}
+.comp-card-soon{opacity:.6;cursor:default;pointer-events:none}
+.comp-btn-soon{background:var(--bg)!important;color:var(--tx2)!important}
+
 .newsletter{background:linear-gradient(135deg,#1a0533,#7c2d92);border-radius:var(--r);padding:2.5rem;text-align:center;color:white;margin-top:1rem}
 .newsletter h2{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.5rem}
 .newsletter p{color:rgba(255,255,255,.75);font-size:.9rem;margin-bottom:1.2rem}
@@ -136,7 +139,7 @@ footer strong{color:white}
       <span class="comp-btn">Comparer →</span>
     </a>
 
-    <a href="article-410.html" class="comp-card">
+    <div class="comp-card comp-card-soon">
       <span class="comp-icon">💳</span>
       <div class="comp-cat">Banques</div>
       <div class="comp-name">Néobanques 2026</div>
@@ -147,10 +150,10 @@ footer strong{color:white}
         <span class="comp-item">Lydia</span>
         <span class="comp-item">Nickel</span>
       </div>
-      <span class="comp-btn">Voir le comparatif →</span>
-    </a>
+      <span class="comp-btn comp-btn-soon">🔜 Bientôt disponible</span>
+    </div>
 
-    <a href="article-187.html" class="comp-card">
+    <div class="comp-card comp-card-soon">
       <span class="comp-icon">🏛️</span>
       <div class="comp-cat">Banques</div>
       <div class="comp-name">Banque en ligne vs traditionnelle</div>
@@ -160,8 +163,8 @@ footer strong{color:white}
         <span class="comp-item">Hello Bank</span>
         <span class="comp-item">Fortuneo</span>
       </div>
-      <span class="comp-btn">Voir le comparatif →</span>
-    </a>
+      <span class="comp-btn comp-btn-soon">🔜 Bientôt disponible</span>
+    </div>
 
   </div>
 
@@ -195,25 +198,12 @@ footer strong{color:white}
       <span class="comp-btn">Calculer →</span>
     </a>
 
-    <a href="article-337.html" class="comp-card">
-      <span class="comp-icon">💰</span>
-      <div class="comp-cat">Épargne</div>
-      <div class="comp-name">Livret A vs LEP vs LDDS</div>
-      <div class="comp-desc">Quel livret choisir en 2026 ? Taux, plafonds, conditions — tout ce qu'il faut savoir.</div>
-      <div class="comp-items">
-        <span class="comp-item">Taux 1,7%</span>
-        <span class="comp-item">Taux 2,5%</span>
-        <span class="comp-item">Plafonds</span>
-      </div>
-      <span class="comp-btn">Voir le comparatif →</span>
-    </a>
-
-  </div>
+</div>
 
   <div class="section-title">📱 Téléphonie & Internet</div>
   <div class="comp-grid">
 
-    <a href="article-249.html" class="comp-card">
+    <div class="comp-card comp-card-soon">
       <span class="comp-icon">📡</span>
       <div class="comp-cat">Mobile</div>
       <div class="comp-name">Forfaits 5G pas cher</div>
@@ -224,10 +214,10 @@ footer strong{color:white}
         <span class="comp-item">SFR</span>
         <span class="comp-item">Orange</span>
       </div>
-      <span class="comp-btn">Voir le comparatif →</span>
-    </a>
+      <span class="comp-btn comp-btn-soon">🔜 Bientôt disponible</span>
+    </div>
 
-    <a href="article-250.html" class="comp-card">
+    <div class="comp-card comp-card-soon">
       <span class="comp-icon">🔒</span>
       <div class="comp-cat">High-tech</div>
       <div class="comp-name">VPN gratuit vs payant</div>
@@ -237,10 +227,10 @@ footer strong{color:white}
         <span class="comp-item">NordVPN</span>
         <span class="comp-item">Gratuit</span>
       </div>
-      <span class="comp-btn">Voir le comparatif →</span>
-    </a>
+      <span class="comp-btn comp-btn-soon">🔜 Bientôt disponible</span>
+    </div>
 
-    <a href="article-141.html" class="comp-card">
+    <div class="comp-card comp-card-soon">
       <span class="comp-icon">💻</span>
       <div class="comp-cat">High-tech</div>
       <div class="comp-name">Logiciels gratuits</div>
@@ -250,8 +240,8 @@ footer strong{color:white}
         <span class="comp-item">GIMP</span>
         <span class="comp-item">DaVinci Resolve</span>
       </div>
-      <span class="comp-btn">Voir le comparatif →</span>
-    </a>
+      <span class="comp-btn comp-btn-soon">🔜 Bientôt disponible</span>
+    </div>
 
   </div>
 
@@ -390,5 +380,6 @@ if(btnValider){
 }
 })();
 </script>
+<div style="text-align:center;padding:18px 16px 26px;font-size:11px;color:#8a8a8a;font-family:Arial,Helvetica,sans-serif;background:transparent;">© 2026 Economya.fr &middot; <a href="mentions-legales.html" style="color:#8a8a8a;text-decoration:underline;">Mentions légales</a> &middot; <a href="politique-confidentialite.html" style="color:#8a8a8a;text-decoration:underline;">Confidentialité</a> &middot; <a href="cgu.html" style="color:#8a8a8a;text-decoration:underline;">CGU</a> &middot; <a href="mailto:contact@economya.fr" style="color:#8a8a8a;text-decoration:underline;">Contact</a></div>
 </body>
 </html>
