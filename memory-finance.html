@@ -127,9 +127,9 @@ p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
 <script>
 const PAIRS=[
   {concept:'📈 PEA',value:'Exonéré d\'impôt après 5 ans'},
-  {concept:'🏦 Livret A',value:'Taux : 1,5 % en 2026'},
-  {concept:'💰 SMIC net',value:'≈ 1 450 € / mois'},
-  {concept:'🏠 Taux d\'endettement',value:'Maximum 33%'},
+  {concept:'🏦 Livret A',value:'Taux : 1,7 % en 2026'},
+  {concept:'💰 SMIC net',value:'≈ 1 478 € / mois'},
+  {concept:'🏠 Taux d\'endettement',value:'Maximum 35%'},
   {concept:'🛡️ FGDR',value:'Garantit 100 000 €'},
   {concept:'📊 Flat tax',value:'31,4 % sur revenus capital'},
   {concept:'🎓 ACRE',value:'Exonération création d\'entreprise'},
@@ -217,7 +217,7 @@ function endGame(){
   const icon=t<30?'🏆':t<60?'⭐':'😊';
   const title=t<30?'Mémoire de génie !':t<60?'Très bonne mémoire !':'Memory complété !';
   const lesson=errors<3?'<b>Mémoire exceptionnelle !</b> Vous avez retenu les concepts financiers clés du premier coup. Ces réflexes sont précieux dans la vraie vie.':
-    '<b>À retenir :</b> Livret A (1,5%), LEP (2,5%), PEA (exonéré après 5 ans), taux d\'endettement (33% max) — ce sont les 4 chiffres que tout Français devrait connaître.';
+    '<b>À retenir :</b> Livret A (1,7%), LEP (2,5%), PEA (exonéré après 5 ans), taux d\'endettement (35% max) — ce sont les 4 chiffres que tout Français devrait connaître.';
   document.getElementById('endIcon').textContent=icon;
   document.getElementById('endTitle').textContent=title;
   document.getElementById('endTime').textContent=t+'s';
