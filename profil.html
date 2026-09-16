@@ -335,7 +335,7 @@ async function loadProfile(){
     const scores = posts.map(rel).filter(s=>s!==null);
     const avgReliability = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : null;
     const relColor = avgReliability===null ? '' : avgReliability>=80?'#22C55E':avgReliability>=60?'#F97316':'#EF4444';
-    const r = rank(posts.length);
+    const r = rank(posts.length, totalVotes);
     const [bg,fg] = pc(profile.pseudo);
     const isOwn = mySession && mySession.user && mySession.user.id === profile.id;
     document.getElementById('navLogout').style.display = isOwn ? 'inline' : 'none';

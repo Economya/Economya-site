@@ -587,8 +587,10 @@ function renderFeed(){
     const r=rel(p);
     const rc=r>=80?'#22C55E':r>=60?'#F97316':'#EF4444';
     const [bg,fg]=pc(p.auteur||'A');
-    const userPosts=posts.filter(x=>x.user_id===p.user_id).length;
-    const rk=rank(userPosts);
+    const authorPosts=posts.filter(x=>x.user_id===p.user_id);
+    const userPosts=authorPosts.length;
+    const userVotes=authorPosts.reduce((s,x)=>s+(x.votes||0),0);
+    const rk=rank(userPosts, userVotes);
     return `<div class="post">
       <div class="post-header">
         <div class="post-avatar" style="background:${bg};color:${fg}">${avatarInner(authorAvatars[p.auteur], p.auteur)}</div>
