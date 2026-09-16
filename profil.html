@@ -44,6 +44,14 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .pro-name{font-weight:900;font-size:22px;margin-bottom:6px;}
 .pro-rank{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700;margin-bottom:6px;}
 .pro-since{font-size:12px;color:var(--muted);}
+.pro-bio{font-size:13px;color:var(--muted);margin:10px auto 0;max-width:400px;line-height:1.45;}
+.pro-hero-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
+.share-btn{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:700;}
+.sec-title-row{display:flex;align-items:center;justify-content:space-between;padding:20px 16px 10px;}
+.sec-title-row .sec-title{padding:0;}
+.sort-tabs{display:flex;gap:6px;}
+.sort-tab{background:var(--white);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;}
+.sort-tab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
 
 .stats-row{display:flex;gap:0;border-top:1px solid var(--border);}
 .stat{flex:1;text-align:center;padding:16px 6px;border-right:1px solid var(--border);}
@@ -234,6 +242,73 @@ function timeAgo(ts){
   return Math.floor(d/31536000000)+' an(s)';
 }
 
+let currentPosts = [];
+let currentProfile = null;
+
+function renderPostsList(posts){
+  return posts.length ? posts.map(p=>`
+      <div class="post">
+        <div class="post-title">${escapeHtml(p.titre)}</div>
+        <div class="post-body">${escapeHtml(p.description)}</div>
+        ${p.economie ? `<div class="saving-pill">💰 ${p.economie}€ économisés/an</div>` : ''}
+        <div class="post-meta">
+          <span class="post-cat">${escapeHtml(p.categorie||'')}</span>
+          <span>🤍 ${p.votes||0}</span>
+          <span>✅ ${p.tested||0} testés</span>
+        </div>
+      </div>
+    `).join('') : '<div class="empty"><div class="empty-icon">📭</div><h3>Aucune astuce publiée</h3></div>';
+}
+
+function setSort(mode){
+  const sorted = currentPosts.slice().sort((a,b) => {
+    if(mode === 'votes') return (b.votes||0) - (a.votes||0);
+    return new Date(b.created_at) - new Date(a.created_at);
+  });
+  const list = document.getElementById('postsList');
+  if(list) list.innerHTML = renderPostsList(sorted);
+  const recentBtn = document.getElementById('sortRecent');
+  const votesBtn = document.getElementById('sortVotes');
+  if(recentBtn && votesBtn){
+    recentBtn.classList.toggle('active', mode === 'recent');
+    votesBtn.classList.toggle('active', mode === 'votes');
+  }
+}
+
+function shareProfile(pseudo){
+  const url = 'https://economya.fr/profil/' + encodeURIComponent(pseudo);
+  const text = 'Voici mon profil sur Economya Community !';
+  if(navigator.share){
+    navigator.share({title:'Economya', text, url}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(url);
+    alert('Lien copié, prêt à partager !');
+  }
+}
+
+async function editBio(){
+  if(!mySession || !currentProfile) return;
+  const newBio = prompt('Une phrase pour vous présenter (120 caractères max) :', currentProfile.bio || '');
+  if(newBio === null) return;
+  const trimmed = newBio.trim().slice(0, 120);
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + mySession.user.id, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + mySession.access_token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ bio: trimmed })
+    });
+    if(!res.ok) throw new Error(await res.text());
+    loadProfile();
+  } catch(e){
+    alert('Erreur : ' + e.message);
+  }
+}
+
 async function loadProfile(){
   const pseudo = getPseudoFromUrl();
   const content = document.getElementById('content');
@@ -242,7 +317,7 @@ async function loadProfile(){
     return;
   }
   try {
-    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url');
+    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio');
     const profile = profiles[0];
     if(!profile){
       content.innerHTML = '<div class="empty"><div class="empty-icon">👤</div><h3>Profil introuvable</h3><p>"'+pseudo.replace(/</g,'')+'" n\'existe pas (encore).</p></div>';
@@ -263,18 +338,8 @@ async function loadProfile(){
         ? `<img src="${escapeHtml(profile.avatar_url)}" alt="${escapeHtml(profile.pseudo)}">`
         : ini(profile.pseudo);
 
-    const postsHtml = posts.length ? posts.map(p=>`
-      <div class="post">
-        <div class="post-title">${escapeHtml(p.titre)}</div>
-        <div class="post-body">${escapeHtml(p.description)}</div>
-        ${p.economie ? `<div class="saving-pill">💰 ${p.economie}€ économisés/an</div>` : ''}
-        <div class="post-meta">
-          <span class="post-cat">${escapeHtml(p.categorie||'')}</span>
-          <span>🤍 ${p.votes||0}</span>
-          <span>✅ ${p.tested||0} testés</span>
-        </div>
-      </div>
-    `).join('') : '<div class="empty"><div class="empty-icon">📭</div><h3>Aucune astuce publiée</h3></div>';
+    currentPosts = posts;
+    currentProfile = profile;
 
     content.innerHTML = `
       <div class="pro-hero">
@@ -286,14 +351,25 @@ async function loadProfile(){
         <div class="pro-name">${escapeHtml(profile.pseudo)}</div>
         <div class="pro-rank" style="background:${r.bg};color:${r.c}">${r.l}</div>
         <div class="pro-since">Membre depuis ${timeAgo(profile.created_at)}</div>
+        ${profile.bio ? `<div class="pro-bio">${escapeHtml(profile.bio)}</div>` : ''}
+        <div class="pro-hero-actions">
+          ${isOwn ? `<button class="share-btn" onclick="editBio()">✏️ ${profile.bio ? 'Modifier' : 'Ajouter'} ma bio</button>` : ''}
+          <button class="share-btn" onclick="shareProfile('${escapeHtml(profile.pseudo).replace(/'/g,'%27')}')">🔗 Partager ce profil</button>
+        </div>
       </div>
       <div class="stats-row">
         <div class="stat"><div class="stat-n">${posts.length}</div><div class="stat-l">Astuces</div></div>
         <div class="stat"><div class="stat-n">${totalVotes}</div><div class="stat-l">Votes reçus</div></div>
-        <div class="stat"><div class="stat-n">${totalTested}</div><div class="stat-l">Fois testées</div></div>
+        <div class="stat"><div class="stat-n">${totalTested}</div><div class="stat-l">Tests</div></div>
       </div>
-      <div class="sec-title">Astuces publiées</div>
-      ${postsHtml}
+      <div class="sec-title-row">
+        <div class="sec-title">Astuces publiées</div>
+        ${posts.length > 1 ? `<div class="sort-tabs">
+          <button class="sort-tab active" id="sortRecent" onclick="setSort('recent')">Récentes</button>
+          <button class="sort-tab" id="sortVotes" onclick="setSort('votes')">Votées</button>
+        </div>` : ''}
+      </div>
+      <div id="postsList">${renderPostsList(posts)}</div>
       ${isOwn ? `<div class="danger-zone">
         <button class="danger-btn" id="deleteAccountBtn" onclick="deleteAccount()">🗑️ Supprimer mon compte</button>
         <p class="danger-note">Cela supprime définitivement votre compte, votre photo, vos astuces et vos votes. Action irréversible.</p>
