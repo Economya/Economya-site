@@ -222,6 +222,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   </div>
 </div>
 
+<script src="rank.js"></script>
 <script>
 // ── Supabase config ───────────────────────────────────
 const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
@@ -344,6 +345,7 @@ function saveSession(data){
   updateNav();
   loadAuthorAvatars().then(updateNav);
   fetchMyAlerts().then(renderStories);
+  loadMyActions().then(renderFeed);
 }
 function logout(){
   session = null;
@@ -461,14 +463,7 @@ function avatarInner(url, name){
   if(url) return `<img src="${url}" alt="Avatar" style="width:100%;height:100%;border-radius:50%;object-fit:cover">`;
   return ini(name);
 }
-const RANKS=[
-  {min:0,l:'🌱 Débutant',c:'#6B7280',bg:'#F3F4F6'},
-  {min:3,l:'🔍 Chasseur',c:'#3B82F6',bg:'#EFF6FF'},
-  {min:8,l:'⚡ Expert',c:'#8B5CF6',bg:'#F5F3FF'},
-  {min:15,l:'🔥 Maître',c:'#F97316',bg:'#FFF7ED'},
-  {min:30,l:'👑 Légende',c:'#B45309',bg:'#FFFBEB'},
-];
-function rank(n){return RANKS.filter(r=>n>=r.min).pop();}
+// RANKS / rank() : voir rank.js (source unique, chargé via <script src="rank.js">)
 
 const CATS=[
   {e:'🌐',l:'Toutes'},{e:'📱',l:'Téléphonie'},{e:'🛒',l:'Courses'},
@@ -486,8 +481,8 @@ CATS.forEach(c=>c.slug=slugify(c.l));
 let posts = [], sortMode = 'top', filterCat = null;
 let myAlerts = [];
 let lastSeen = JSON.parse(localStorage.getItem('eco_lastseen')||'{}');
-let voted = JSON.parse(localStorage.getItem('eco_voted')||'[]');
-let tested = JSON.parse(localStorage.getItem('eco_tested')||'[]');
+let voted = [];
+let tested = [];
 let reported = JSON.parse(localStorage.getItem('eco_reported')||'[]');
 let currentUser = localStorage.getItem('eco_user')||null;
 let session = JSON.parse(localStorage.getItem('eco_session')||'null');
@@ -531,9 +526,19 @@ async function loadAuthorAvatars(){
   } catch(e){ /* pas grave si ça échoue, on garde les initiales */ }
 }
 
+async function loadMyActions(){
+  if(!session || !session.user) return;
+  try {
+    const actions = await sbFetch('astuce_actions?user_id=eq.' + session.user.id + '&select=astuce_id,action');
+    voted = actions.filter(a=>a.action==='vote').map(a=>a.astuce_id);
+    tested = actions.filter(a=>a.action==='test').map(a=>a.astuce_id);
+  } catch(e){ console.error(e); }
+}
+
 async function loadPosts() {
   try {
     posts = await sbFetch('astuces?order=votes.desc&limit=100');
+    await loadMyActions();
     await loadAuthorAvatars();
     render();
   } catch(e) {
@@ -582,7 +587,7 @@ function renderFeed(){
     const r=rel(p);
     const rc=r>=80?'#22C55E':r>=60?'#F97316':'#EF4444';
     const [bg,fg]=pc(p.auteur||'A');
-    const userPosts=posts.filter(x=>x.auteur===p.auteur).length;
+    const userPosts=posts.filter(x=>x.user_id===p.user_id).length;
     const rk=rank(userPosts);
     return `<div class="post">
       <div class="post-header">
@@ -634,25 +639,37 @@ function updateNav(){
 
 // ── Actions Supabase ──────────────────────────────────
 async function doVote(id){
+  if(!session || !session.user){ openAuth(); return; }
   const p=posts.find(x=>x.id===id);if(!p)return;
-  const inc=voted.includes(id)?-1:1;
+  const isVoted = voted.includes(id);
   try {
-    await sbFetch(`astuces?id=eq.${id}`, {method:'PATCH', body:JSON.stringify({votes:p.votes+inc}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-    p.votes+=inc;
-    if(inc>0)voted.push(id); else voted=voted.filter(x=>x!==id);
-    localStorage.setItem('eco_voted',JSON.stringify(voted));
+    if(isVoted){
+      await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${id}&action=eq.vote`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      p.votes = Math.max(0, (p.votes||0) - 1);
+      voted = voted.filter(x=>x!==id);
+    } else {
+      await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:id, action:'vote'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      p.votes = (p.votes||0) + 1;
+      voted.push(id);
+    }
     renderFeed();
   } catch(e){console.error(e);}
 }
 
 async function doTest(id){
+  if(!session || !session.user){ openAuth(); return; }
   const p=posts.find(x=>x.id===id);if(!p)return;
-  const inc=tested.includes(id)?-1:1;
+  const isTested = tested.includes(id);
   try {
-    await sbFetch(`astuces?id=eq.${id}`, {method:'PATCH', body:JSON.stringify({tested:p.tested+inc}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-    p.tested+=inc;
-    if(inc>0)tested.push(id); else tested=tested.filter(x=>x!==id);
-    localStorage.setItem('eco_tested',JSON.stringify(tested));
+    if(isTested){
+      await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${id}&action=eq.test`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      p.tested = Math.max(0, (p.tested||0) - 1);
+      tested = tested.filter(x=>x!==id);
+    } else {
+      await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:id, action:'test'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      p.tested = (p.tested||0) + 1;
+      tested.push(id);
+    }
     renderFeed();
   } catch(e){console.error(e);}
 }

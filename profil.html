@@ -105,6 +105,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 </div>
 </div>
 
+<script src="rank.js"></script>
 <script>
 const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
@@ -217,14 +218,7 @@ async function chooseEmojiAvatar(emoji){
 const PALETTE=[['#F59E0B','#1A0A00'],['#22C55E','#fff'],['#3B82F6','#fff'],['#8B5CF6','#fff'],['#EC4899','#fff'],['#F97316','#fff'],['#14B8A6','#fff'],['#6366F1','#fff']];
 function pc(name){return PALETTE[(name||'?').charCodeAt(0)%PALETTE.length];}
 function ini(name){return (name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
-const RANKS=[
-  {min:0,l:'🌱 Débutant',c:'#6B7280',bg:'#F3F4F6'},
-  {min:3,l:'🔍 Chasseur',c:'#3B82F6',bg:'#EFF6FF'},
-  {min:8,l:'⚡ Expert',c:'#8B5CF6',bg:'#F5F3FF'},
-  {min:15,l:'🔥 Maître',c:'#F97316',bg:'#FFF7ED'},
-  {min:30,l:'👑 Légende',c:'#B45309',bg:'#FFFBEB'},
-];
-function rank(n){return RANKS.filter(r=>n>=r.min).pop();}
+// RANKS / rank() : voir rank.js (source unique, chargé via <script src="rank.js">)
 
 function getPseudoFromUrl(){
   const path = location.pathname;
