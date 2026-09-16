@@ -239,6 +239,13 @@ function timeAgo(ts){
 let currentPosts = [];
 let currentProfile = null;
 
+function rel(p){
+  const pos=(p.votes||0)+(p.tested||0)*2;
+  const neg=(p.reports||0)*3;
+  if(pos===0)return null;
+  return Math.max(0,Math.min(100,Math.round((pos-neg)/pos*100)));
+}
+
 function renderPostsList(posts){
   return posts.length ? posts.map(p=>`
       <div class="post">
@@ -320,6 +327,14 @@ async function loadProfile(){
     const posts = await sbFetch('astuces?user_id=eq.' + profile.id + '&order=created_at.desc');
     const totalVotes = posts.reduce((s,p)=>s+(p.votes||0),0);
     const totalTested = posts.reduce((s,p)=>s+(p.tested||0),0);
+    let votesGiven = 0;
+    try {
+      const given = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.vote&select=id');
+      votesGiven = given.length;
+    } catch(e){ /* colonne/table pas encore accessible en lecture publique */ }
+    const scores = posts.map(rel).filter(s=>s!==null);
+    const avgReliability = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : null;
+    const relColor = avgReliability===null ? '' : avgReliability>=80?'#22C55E':avgReliability>=60?'#F97316':'#EF4444';
     const r = rank(posts.length);
     const [bg,fg] = pc(profile.pseudo);
     const isOwn = mySession && mySession.user && mySession.user.id === profile.id;
@@ -344,6 +359,7 @@ async function loadProfile(){
         </div>` : ''}
         <div class="pro-name">${escapeHtml(profile.pseudo)}</div>
         <div class="pro-rank" style="background:${r.bg};color:${r.c}">${r.l}</div>
+        ${avgReliability!==null ? `<div class="pro-rank" style="background:${relColor}1A;color:${relColor};margin-left:6px">🛡️ Fiabilité ${avgReliability}%</div>` : ''}
         <div class="pro-since">Membre depuis ${timeAgo(profile.created_at)}</div>
         ${profile.bio ? `<div class="pro-bio">${escapeHtml(profile.bio)}</div>` : ''}
         <div class="pro-hero-actions">
@@ -355,6 +371,7 @@ async function loadProfile(){
         <div class="stat"><div class="stat-n">${posts.length}</div><div class="stat-l">Astuces</div></div>
         <div class="stat"><div class="stat-n">${totalVotes}</div><div class="stat-l">Votes reçus</div></div>
         <div class="stat"><div class="stat-n">${totalTested}</div><div class="stat-l">Tests</div></div>
+        <div class="stat"><div class="stat-n">${votesGiven}</div><div class="stat-l">Votes donnés</div></div>
       </div>
       <div class="sec-title-row">
         <div class="sec-title">Astuces publiées</div>
