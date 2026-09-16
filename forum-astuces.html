@@ -161,7 +161,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
       </select>
     </div>
     <div class="field"><label>Économie estimée</label><input id="fSaving" type="number" placeholder="Ex: 300€, 50€/mois..." min="0" max="99999"></div>
-    <div class="field"><label>Votre prénom</label><input id="fAuthor" placeholder="Marie" maxlength="30"></div>
+    <div class="field"><label>Votre prénom</label><input id="fAuthor" placeholder="Marie" maxlength="30" readonly></div>
     <div class="sheet-actions">
       <button class="btn-ann" onclick="closeAll()">Annuler</button>
       <button class="btn-pub" onclick="submitPost()">🚀 Publier</button>
@@ -677,6 +677,7 @@ async function doTest(id){
 }
 
 async function doReport(id){
+  if(!session || !session.user){ openAuth(); return; }
   const p=posts.find(x=>x.id===id);if(!p)return;
   if(reported.includes(id))return;
   if(!confirm('Signaler cette astuce ?'))return;
@@ -742,16 +743,11 @@ window.addEventListener('popstate', (e)=>{
 
 // ── Post ──────────────────────────────────────────────
 function openPost(){
+  if(!session || !session.user){ openAuth(); return; }
   const fAuthor = document.getElementById('fAuthor');
-  if(session){
-    fAuthor.value = currentUser;
-    fAuthor.readOnly = true;
-    fAuthor.style.background = '#F3F4F6';
-  } else {
-    fAuthor.readOnly = false;
-    fAuthor.style.background = '';
-    if(currentUser) fAuthor.value = currentUser;
-  }
+  fAuthor.value = currentUser;
+  fAuthor.readOnly = true;
+  fAuthor.style.background = '#F3F4F6';
   document.getElementById('shPost').classList.add('open');
 }
 
@@ -763,16 +759,15 @@ function updateCount(){
 }
 
 async function submitPost(){
+  if(!session || !session.user){ openAuth(); return; }
   const titre=document.getElementById('fTitle').value.trim();
   const description=document.getElementById('fBody').value.trim();
   if(!titre||!description){alert('Titre et description obligatoires !');return;}
-  const auteur=(session ? currentUser : document.getElementById('fAuthor').value.trim())||'Anonyme';
+  const auteur=currentUser||'Anonyme';
   const economie=parseInt(document.getElementById('fSaving').value)||0;
   const categorie=document.getElementById('fCat').value;
-  if(!session){currentUser=auteur;localStorage.setItem('eco_user',auteur);}
   try {
-    const payload = {titre, description, categorie, economie, auteur, votes:1, tested:0, reports:0};
-    if(session) payload.user_id = session.user.id;
+    const payload = {titre, description, categorie, economie, auteur, votes:1, tested:0, reports:0, user_id: session.user.id};
     const newPost = await sbFetch('astuces', {
       method:'POST',
       body:JSON.stringify(payload)
