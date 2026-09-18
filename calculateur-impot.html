@@ -99,6 +99,55 @@ footer strong{color:white}
 }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Comment fonctionne le barème progressif de l'impôt ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le revenu est découpé en tranches, chacune taxée à son propre taux : 0% jusqu'à 11 600€, 11% de 11 600€ à 29 579€, 30% de 29 579€ à 84 577€, 41% de 84 577€ à 181 917€, et 45% au-delà. Seule la partie du revenu qui dépasse un seuil est taxée au taux supérieur."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qu'est-ce que le quotient familial ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "C'est le nombre de parts fiscales du foyer. Le revenu imposable est divisé par ce nombre de parts avant application du barème, ce qui réduit l'impôt des familles nombreuses."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la différence entre taux marginal et taux moyen ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le taux marginal est le taux de la tranche la plus haute atteinte. Le taux moyen est l'impôt total divisé par le revenu total, toujours inférieur au taux marginal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Le prélèvement à la source correspond-il exactement à mon impôt final ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "C'est un acompte mensuel ajusté chaque année lors de la déclaration selon l'évolution réelle des revenus et déductions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ce calculateur remplace-t-il ma déclaration officielle ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Non, c'est un outil indicatif. Le simulateur officiel sur impots.gouv.fr reste la référence pour un calcul précis."
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
@@ -207,6 +256,30 @@ footer strong{color:white}
   </div>
 
   <div class="tip" id="tip-text">Chargement...</div>
+
+  <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
+    <h2 style="margin-bottom:1rem">❓ Questions fréquentes sur l'impôt sur le revenu</h2>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Comment fonctionne le barème progressif de l'impôt ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Le revenu est découpé en tranches, chacune taxée à son propre taux : 0% jusqu'à 11 600€, 11% de 11 600€ à 29 579€, 30% de 29 579€ à 84 577€, 41% de 84 577€ à 181 917€, et 45% au-delà. Seule la partie du revenu qui dépasse un seuil est taxée au taux supérieur, jamais la totalité.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Qu'est-ce que le quotient familial ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">C'est le nombre de parts fiscales de votre foyer (1 part pour une personne seule, 2 pour un couple, plus des demi-parts par enfant). Le revenu imposable est divisé par ce nombre de parts avant application du barème, ce qui réduit mécaniquement l'impôt des familles nombreuses.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Quelle est la différence entre taux marginal et taux moyen ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Le taux marginal est le taux de la tranche la plus haute atteinte par vos revenus (celui qui s'applique au dernier euro gagné). Le taux moyen est l'impôt total divisé par le revenu total : il est toujours inférieur au taux marginal à cause de la progressivité du barème.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Le prélèvement à la source correspond-il exactement à mon impôt final ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">C'est un acompte mensuel calculé sur vos revenus antérieurs. Chaque année, votre déclaration ajuste le montant réel : vous pouvez avoir un complément à payer ou un remboursement selon l'évolution de vos revenus et déductions.</p>
+    </details>
+    <details>
+      <summary style="font-weight:700;cursor:pointer">Ce calculateur remplace-t-il ma déclaration officielle ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non, c'est un outil indicatif pour estimer rapidement votre impôt. Le simulateur officiel sur impots.gouv.fr reste la référence pour un calcul précis intégrant toutes vos spécificités (crédits d'impôt, niches fiscales, situations particulières).</p>
+    </details>
+  </div>
 
   <div class="cta">
     <h3>📬 Optimisez votre fiscalité chaque année</h3>
