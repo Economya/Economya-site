@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ton Aura Financière — Economya.fr</title>
@@ -67,13 +68,13 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 
 /* SHARE */
 .share-section{background:rgba(255,255,255,.05);border-radius:16px;border:1px solid rgba(255,255,255,.1);padding:1.2rem;margin-bottom:1rem;text-align:center}
-.share-section p{font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.8rem}
+.share-section p{font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:.8rem}
 .share-text{background:rgba(255,255,255,.07);border-radius:10px;padding:.8rem;font-size:.8rem;color:rgba(255,255,255,.7);margin-bottom:.8rem;line-height:1.5;font-style:italic}
 .share-btns{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap}
 .sbtn{padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;font-weight:700;cursor:pointer;border:none;font-family:inherit}
 .sbtn-tw{background:#000;color:white}
 .sbtn-copy{background:rgba(255,255,255,.1);color:white;border:1px solid rgba(255,255,255,.2)}
-.sbtn-restart{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;cursor:pointer;font-family:inherit;width:100%;margin-top:.5rem}
+.sbtn-restart{background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.65);padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;cursor:pointer;font-family:inherit;width:100%;margin-top:.5rem}
 
 footer{background:#050505;color:rgba(255,255,255,.3);text-align:center;padding:1.5rem;font-size:.78rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,.06)}
 footer strong{color:rgba(255,255,255,.6)}
@@ -287,7 +288,7 @@ function showResult() {
 
   result.innerHTML = `
     <div style="background:${aura.gradient};border-radius:24px;padding:2rem;margin-bottom:1rem;text-align:center">
-      <div style="font-size:.72rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1rem">TON AURA FINANCIÈRE</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.12em;margin-bottom:1rem">TON AURA FINANCIÈRE</div>
       
       <div style="position:relative;width:220px;height:220px;margin:0 auto 1.5rem">
         <div style="position:absolute;inset:0;border-radius:50%;background:${c.outer};animation:pulse 2s infinite"></div>
@@ -318,7 +319,7 @@ function showResult() {
     </div>
 
     <div style="background:rgba(255,255,255,.05);border-radius:16px;border:1px solid rgba(255,255,255,.1);padding:1.2rem;text-align:center;margin-bottom:1rem">
-      <p style="font-size:.82rem;color:rgba(255,255,255,.5);margin-bottom:.8rem">📸 Faites une capture d'écran et partagez !</p>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.65);margin-bottom:.8rem">📸 Faites une capture d'écran et partagez !</p>
       <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:.8rem;font-size:.8rem;color:rgba(255,255,255,.7);margin-bottom:.8rem;line-height:1.5;font-style:italic">
         "Mon Aura Financière vient d'être révélée ✨ Je suis ${aura.nom} ${aura.emoji} — Découvrez la vôtre sur economya.fr #AuraFinancière #Economya"
       </div>
@@ -326,7 +327,7 @@ function showResult() {
         <button onclick="shareTwitter('${aura.nom}','${aura.emoji}')" style="background:#000;color:white;border:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">𝕏 Partager</button>
         <button onclick="copyAura('${aura.nom}','${aura.emoji}')" style="background:rgba(255,255,255,.1);color:white;border:1px solid rgba(255,255,255,.2);padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;font-weight:700;cursor:pointer;font-family:inherit">📋 Copier</button>
       </div>
-      <button onclick="restart()" style="background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;cursor:pointer;font-family:inherit;width:100%;margin-top:.5rem">🔄 Refaire le test</button>
+      <button onclick="restart()" style="background:transparent;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.65);padding:.5rem 1.1rem;border-radius:50px;font-size:.78rem;cursor:pointer;font-family:inherit;width:100%;margin-top:.5rem">🔄 Refaire le test</button>
     </div>
   `;
 }
@@ -355,7 +356,7 @@ showQuestion();
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
-<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#F4B550;text-decoration:underline;">En savoir plus</a></p>
 <div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
 <button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
 <button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>

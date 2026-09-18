@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jackpot Finance — Economya.fr</title>
@@ -44,7 +45,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .reel.winner{border-color:var(--a);box-shadow:0 0 20px rgba(239,159,39,.4)}
 @keyframes spinSymbol{0%{transform:translateY(-100%)}100%{transform:translateY(100%)}}}
 .reel-symbol{font-size:3rem;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:.1rem}
-.reel-label{font-size:.55rem;color:rgba(255,255,255,.5);text-align:center;position:absolute;bottom:4px;width:100%}
+.reel-label{font-size:.55rem;color:rgba(255,255,255,.65);text-align:center;position:absolute;bottom:4px;width:100%}
 
 /* WIN LINE */
 .win-line{height:3px;background:linear-gradient(90deg,transparent,var(--a),transparent);margin:.5rem 0;opacity:0;transition:opacity .3s}
@@ -330,7 +331,7 @@ function resetGame() {
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
-<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#EF9F27;text-decoration:underline;">En savoir plus</a></p>
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#F4B550;text-decoration:underline;">En savoir plus</a></p>
 <div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
 <button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
 <button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
