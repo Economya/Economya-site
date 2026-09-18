@@ -166,7 +166,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     <div class="field"><label>Votre prénom</label><input id="fAuthor" placeholder="Marie" maxlength="30" readonly></div>
     <div class="sheet-actions">
       <button class="btn-ann" onclick="closeAll()">Annuler</button>
-      <button class="btn-pub" onclick="submitPost()">🚀 Publier</button>
+      <button class="btn-pub" onclick="submitPost()" id="submitPostBtn">🚀 Publier</button>
     </div>
   </div>
 </div>
@@ -644,10 +644,14 @@ function updateNav(){
 }
 
 // ── Actions Supabase ──────────────────────────────────
+const pendingActions = new Set(); // anti double-clic rapide (vote/test)
 async function doVote(id){
   if(!session || !session.user){ openAuth(); return; }
+  const key = 'vote:'+id;
+  if(pendingActions.has(key)) return;
   const p=posts.find(x=>x.id===id);if(!p)return;
   const isVoted = voted.includes(id);
+  pendingActions.add(key);
   try {
     if(isVoted){
       await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${id}&action=eq.vote`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
@@ -659,13 +663,16 @@ async function doVote(id){
       voted.push(id);
     }
     renderFeed();
-  } catch(e){console.error(e);}
+  } catch(e){console.error(e);} finally { pendingActions.delete(key); }
 }
 
 async function doTest(id){
   if(!session || !session.user){ openAuth(); return; }
+  const key = 'test:'+id;
+  if(pendingActions.has(key)) return;
   const p=posts.find(x=>x.id===id);if(!p)return;
   const isTested = tested.includes(id);
+  pendingActions.add(key);
   try {
     if(isTested){
       await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${id}&action=eq.test`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
@@ -677,7 +684,7 @@ async function doTest(id){
       tested.push(id);
     }
     renderFeed();
-  } catch(e){console.error(e);}
+  } catch(e){console.error(e);} finally { pendingActions.delete(key); }
 }
 
 async function doReport(id){
@@ -762,14 +769,23 @@ function updateCount(){
   el.style.color=len>450?'#EF4444':len>400?'#F97316':'#737373';
 }
 
+let lastPostAt = parseInt(localStorage.getItem('eco_lastpost')||'0');
 async function submitPost(){
   if(!session || !session.user){ openAuth(); return; }
+  const btn = document.getElementById('submitPostBtn');
+  if(btn && btn.disabled) return; // anti double-clic
+  const cooldownLeft = 20000 - (Date.now() - lastPostAt);
+  if(cooldownLeft > 0){
+    alert('Merci de patienter ' + Math.ceil(cooldownLeft/1000) + ' secondes avant de publier une nouvelle astuce.');
+    return;
+  }
   const titre=document.getElementById('fTitle').value.trim();
   const description=document.getElementById('fBody').value.trim();
   if(!titre||!description){alert('Titre et description obligatoires !');return;}
   const auteur=currentUser||'Anonyme';
   const economie=parseInt(document.getElementById('fSaving').value)||0;
   const categorie=document.getElementById('fCat').value;
+  if(btn){ btn.disabled = true; btn.textContent = 'Publication...'; }
   try {
     const payload = {titre, description, categorie, economie, auteur, votes:1, tested:0, reports:0, user_id: session.user.id};
     const newPost = await sbFetch('astuces', {
@@ -779,11 +795,18 @@ async function submitPost(){
     posts.unshift(Array.isArray(newPost)?newPost[0]:newPost);
     voted.push(posts[0].id);
     localStorage.setItem('eco_voted',JSON.stringify(voted));
+    lastPostAt = Date.now();
+    localStorage.setItem('eco_lastpost', String(lastPostAt));
     closeAll();
     setSort('new',document.querySelectorAll('.tab')[1]);
     ['fTitle','fBody','fSaving'].forEach(id=>document.getElementById(id).value='');
     updateNav();
-  } catch(e){alert('Erreur: '+e.message);}
+  } catch(e){
+    const msg = /limite atteinte/i.test(e.message) ? 'Vous avez publié trop d\'astuces récemment. Réessayez un peu plus tard.' : 'Erreur: '+e.message;
+    alert(msg);
+  } finally {
+    if(btn){ btn.disabled = false; btn.textContent = '🚀 Publier'; }
+  }
 }
 
 function closeAll(){document.querySelectorAll('.modal-bg').forEach(m=>m.classList.remove('open'));}
