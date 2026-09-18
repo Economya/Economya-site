@@ -69,8 +69,9 @@ footer strong{color:white}
   <a class="logo" href="/index.html">Econom<span>ya</span>.fr</a>
   <a class="nav-back" href="/forum-astuces.html">← Retour au forum</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div id="navAv" style="cursor:pointer"></div>
 </nav>
-<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html">Forum</a><a href="/jeux.html">Jeux</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/a-propos.html">A propos</a></div>
+<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html">Forum</a><a href="/jeux.html">Jeux</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/a-propos.html">A propos</a><a href="#" id="navAvMobile">👤 Connexion</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
 
 <div class="container">
   <div class="breadcrumb"><a href="/forum-astuces.html">Forum astuces</a> <span id="bcCat"></span></div>
@@ -87,6 +88,7 @@ footer strong{color:white}
 </footer>
 
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
+<script src="account-nav.js"></script>
 
 <div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">

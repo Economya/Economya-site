@@ -208,6 +208,7 @@ window.economyaLoadAds = function() {
     <li><a href="outils-gratuits.html" style="background:var(--g);color:white;padding:.4rem .9rem;border-radius:50px;font-weight:700;text-decoration:none">🛠️ Outils gratuits</a></li>
   </ul>
   <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+<div id="navAv" style="cursor:pointer"></div>
 
 <!-- Menu hamburger mobile -->
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -222,6 +223,8 @@ window.economyaLoadAds = function() {
   <a href="comparateurs.html">🔍 Comparateurs</a>
   <a href="outils-gratuits.html" class="nav-cta" onclick="toggleMenu()">🛠️ Outils gratuits</a>
   <a href="recherche.html">🔎 Rechercher</a>
+  <a href="#" id="navAvMobile">👤 Connexion</a>
+  <a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a>
 </div>
 <script>
 function toggleMenu(){
@@ -230,6 +233,7 @@ function toggleMenu(){
   document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
 }
 </script>
+<script src="account-nav.js"></script>
 </nav>
 
 <div class="hero">

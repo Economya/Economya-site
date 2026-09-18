@@ -99,9 +99,11 @@ a{text-decoration:none;color:inherit;}
   </div>
   <div class="nav-right">
     <a href="https://economya.fr" class="nav-link">← Economya.fr</a>
-    <button class="nav-btn" onclick="window.location='forum-astuces.html'">Rejoindre →</button>
+    <button class="nav-btn" id="joinBtn" onclick="window.location='forum-astuces.html'">Rejoindre →</button>
+    <div id="navAv" style="cursor:pointer"></div>
   </div>
 </nav>
+<script src="account-nav.js" data-hide-when-logged-in="joinBtn"></script>
 
 <div class="hero">
   <div class="hero-tag">🌱 Le réseau social de l'épargne</div>
