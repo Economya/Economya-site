@@ -596,7 +596,7 @@ function renderFeed(){
         <div class="post-avatar" style="background:${bg};color:${fg}">${avatarInner(authorAvatars[p.auteur], p.auteur)}</div>
         <div class="post-meta">
           <div class="post-name">
-            ${p.auteur ? `<a href="/profil/${encodeURIComponent(p.auteur)}" style="cursor:pointer">${escapeHtml(p.auteur)}</a>` : `<span>Anonyme</span>`}
+            ${p.auteur && p.user_id ? `<a href="/profil/${encodeURIComponent(p.auteur)}" style="cursor:pointer">${escapeHtml(p.auteur)}</a>` : `<span>${p.auteur ? escapeHtml(p.auteur) : 'Anonyme'}</span>`}
             <span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>
           </div>
           <div class="post-cat">${escapeHtml(p.categorie)} · il y a ${timeAgo(p.created_at)}</div>
