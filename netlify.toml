@@ -20,6 +20,14 @@
   to = "/profil.html"
   status = 200
 
+# Page individuelle d'une astuce : /astuces/post/42-titre -> astuce.html
+# (DOIT rester avant la règle générique /astuces/* ci-dessous : Netlify
+# prend la première règle qui correspond dans l'ordre du fichier).
+[[redirects]]
+  from = "/astuces/post/*"
+  to = "/astuce.html"
+  status = 200
+
 # Forums par catégorie : /astuces/telephonie -> forum-astuces.html?cat=...
 [[redirects]]
   from = "/astuces/*"

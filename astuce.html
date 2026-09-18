@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title id="pageTitle">Astuce — Economya.fr</title>
+<meta id="metaDesc" name="description" content="Découvrez une astuce pour économiser partagée par la communauté Economya.fr.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.container{max-width:680px;margin:0 auto;padding:2.2rem 1.5rem 3rem}
+.breadcrumb{font-size:.78rem;color:var(--m);margin-bottom:1.2rem}
+.breadcrumb a{color:var(--m)}
+.card{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.6rem 1.7rem;margin-bottom:1.4rem}
+.post-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.post-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0}
+.post-name{font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.post-name a{color:inherit;text-decoration:none}
+.post-rank{font-size:10px;padding:2px 7px;border-radius:99px;font-weight:700}
+.trend-badge{display:inline-flex;align-items:center;gap:4px;background:#FFF7ED;border:1px solid #FED7AA;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700;color:#C2410C}
+.post-cat{font-size:12px;color:var(--m);margin-top:2px}
+h1.post-title{font-family:'Playfair Display',serif;font-weight:800;font-size:1.5rem;line-height:1.3;margin-bottom:12px;color:var(--t)}
+.post-body{font-size:.98rem;line-height:1.7;color:var(--t);white-space:pre-wrap;margin-bottom:14px}
+.saving-pill{display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;color:#166534;margin-bottom:14px}
+.reliability{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.rel-track{flex:1;height:6px;background:#F0F0EE;border-radius:99px;overflow:hidden}
+.rel-fill{height:100%;border-radius:99px}
+.rel-label{font-size:12px;font-weight:700;white-space:nowrap}
+.post-actions{display:flex;gap:10px;border-top:1px solid var(--b);padding-top:14px}
+.action{display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--b);border-radius:99px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--t);cursor:pointer;font-family:inherit}
+.action:hover{background:#F0F0EE}
+.share-cta{background:linear-gradient(135deg,var(--g),#25B788);color:#fff;border:none;border-radius:99px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
+.section-tag{font-size:.78rem;font-weight:700;color:var(--m);text-transform:uppercase;letter-spacing:.04em;margin:1.8rem 0 .8rem}
+.related{display:flex;flex-direction:column;gap:10px}
+.related a{display:block;background:var(--w);border:1px solid var(--b);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--t);font-size:.88rem;font-weight:600}
+.related a:hover{border-color:var(--g)}
+.related .rv{color:var(--m);font-weight:400;font-size:.78rem;margin-top:2px}
+.cta-box{background:var(--gl);border-radius:var(--r);padding:1.2rem 1.5rem;margin-top:1.6rem;font-size:.9rem;color:var(--gd);line-height:1.7;text-align:center}
+.cta-box a{color:var(--gd);font-weight:700}
+.state{text-align:center;padding:3rem 1rem;color:var(--m)}
+footer{background:var(--gd);color:rgba(255,255,255,.65);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:1rem}
+footer strong{color:white}
+@media(max-width:640px){.container{padding:1.6rem 1rem 2.4rem}}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#ffffff;z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;isolation:isolate}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="/forum-astuces.html">← Retour au forum</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html">Forum</a><a href="/jeux.html">Jeux</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/a-propos.html">A propos</a></div>
+
+<div class="container">
+  <div class="breadcrumb"><a href="/forum-astuces.html">Forum astuces</a> <span id="bcCat"></span></div>
+  <div id="content">
+    <div class="state">Chargement de l'astuce…</div>
+    <noscript>Activez JavaScript pour afficher cette astuce, ou consultez l'ensemble des astuces sur la page du forum.</noscript>
+  </div>
+  <div id="relatedWrap"></div>
+</div>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales.html" style="color:rgba(255,255,255,.65)">Mentions légales</a> · <a href="/politique-confidentialite.html" style="color:rgba(255,255,255,.65)">Politique de confidentialité</a> · <a href="/cgu.html" style="color:rgba(255,255,255,.65)">CGU</a> · <a href="/regles-communaute.html" style="color:rgba(255,255,255,.65)">Règles de la communauté</a></span>
+</footer>
+
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
+
+<div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#F4B550;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({analytics:analytics,publicite:publicite,timestamp:new Date().toISOString()}));
+  }catch(e){}
+}
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){ window.economyaLoadGA(); }
+  if(publicite && typeof window.economyaLoadAds === "function"){ window.economyaLoadAds(); }
+}
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+if(existing){ applyConsent(existing.analytics, existing.publicite); }
+else if(banner){ banner.style.display = "block"; }
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+if(btnAccept){ btnAccept.addEventListener("click", function(){ setC(true,true); applyConsent(true,true); banner.style.display="none"; }); }
+if(btnRefuse){ btnRefuse.addEventListener("click", function(){ setC(false,false); applyConsent(false,false); banner.style.display="none"; }); }
+if(btnPersonnaliser){ btnPersonnaliser.addEventListener("click", function(){ divCategories.style.display="block"; divSimple.style.display="none"; }); }
+if(btnValider){ btnValider.addEventListener("click", function(){
+  var a = checkAnalytics ? checkAnalytics.checked : false;
+  var p = checkPublicite ? checkPublicite.checked : false;
+  setC(a,p); applyConsent(a,p); banner.style.display="none";
+}); }
+})();
+</script>
+
+<script src="/rank.js"></script>
+<script>
+const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+
+function escapeHtml(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+async function sbGet(path){
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+  });
+  if(!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+const PALETTE=[['#F59E0B','#1A0A00'],['#22C55E','#fff'],['#3B82F6','#fff'],['#8B5CF6','#fff'],['#EC4899','#fff'],['#F97316','#fff'],['#14B8A6','#fff'],['#6366F1','#fff']];
+function pc(name){return PALETTE[(name||'?').charCodeAt(0)%PALETTE.length];}
+function ini(name){return (name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
+function timeAgo(ts){
+  const d=Date.now()-new Date(ts).getTime();
+  if(d<3600000)return Math.floor(d/60000)+'min';
+  if(d<86400000)return Math.floor(d/3600000)+'h';
+  return Math.floor(d/86400000)+'j';
+}
+function rel(p){
+  const pos=p.votes+p.tested*2;
+  const neg=p.reports*3;
+  if(pos===0)return 100;
+  return Math.max(0,Math.min(100,Math.round((pos-neg)/pos*100)));
+}
+function slugify(s){
+  return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+const TREND_THRESHOLD = 100;
+
+function getIdFromUrl(){
+  const m = location.pathname.match(/\/astuces\/post\/([^/]+)/);
+  const raw = m ? decodeURIComponent(m[1]) : new URLSearchParams(location.search).get('id');
+  if(!raw) return null;
+  const digits = raw.match(/^(\d+)/);
+  return digits ? parseInt(digits[1], 10) : null;
+}
+
+function shareAstuce(p){
+  const text = '"' + p.titre + '" — une astuce de la communauté Economya : ' + location.href;
+  if(navigator.share){
+    navigator.share({text:text, url:location.href}).catch(function(){});
+  } else if(navigator.clipboard){
+    navigator.clipboard.writeText(location.href).then(function(){
+      const btn = document.getElementById('shareBtn');
+      if(btn){ const old = btn.textContent; btn.textContent = '✅ Lien copié !'; setTimeout(function(){ btn.textContent = old; }, 2000); }
+    });
+  } else {
+    window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+  }
+}
+window.shareAstuce = shareAstuce;
+
+async function init(){
+  const id = getIdFromUrl();
+  const content = document.getElementById('content');
+  if(!id){
+    content.innerHTML = '<div class="state">Astuce introuvable. <a href="/forum-astuces.html">Retour au forum →</a></div>';
+    return;
+  }
+  let rows;
+  try {
+    rows = await sbGet('astuces?id=eq.' + id + '&select=*');
+  } catch(e){
+    content.innerHTML = '<div class="state">Impossible de charger cette astuce pour le moment. <a href="/forum-astuces.html">Retour au forum →</a></div>';
+    return;
+  }
+  const p = rows && rows[0];
+  if(!p){
+    content.innerHTML = '<div class="state">Cette astuce n\'existe plus ou a été retirée. <a href="/forum-astuces.html">Voir toutes les astuces →</a></div>';
+    return;
+  }
+
+  const slug = slugify(p.titre);
+  const canonicalUrl = 'https://economya.fr/astuces/post/' + p.id + (slug ? '-' + slug : '');
+  const desc = (p.description || '').slice(0, 155) + ((p.description||'').length > 155 ? '…' : '');
+  const titleText = p.titre + ' — Economya.fr';
+
+  document.title = titleText;
+  document.getElementById('pageTitle').textContent = titleText;
+  document.getElementById('metaDesc').setAttribute('content', desc);
+  const canonicalTag = document.createElement('link');
+  canonicalTag.rel = 'canonical';
+  canonicalTag.href = canonicalUrl;
+  document.head.appendChild(canonicalTag);
+
+  [
+    ['property','og:type','article'],
+    ['property','og:site_name','Economya.fr'],
+    ['property','og:title',p.titre],
+    ['property','og:description',desc],
+    ['property','og:url',canonicalUrl],
+    ['property','og:image','https://economya.fr/og-image.svg'],
+    ['name','twitter:card','summary_large_image'],
+    ['name','twitter:title',p.titre],
+    ['name','twitter:description',desc]
+  ].forEach(function(t){
+    const el = document.createElement('meta');
+    el.setAttribute(t[0], t[1]);
+    el.setAttribute('content', t[2]);
+    document.head.appendChild(el);
+  });
+
+  const ld = document.createElement('script');
+  ld.type = 'application/ld+json';
+  ld.textContent = JSON.stringify({
+    "@context":"https://schema.org",
+    "@type":"DiscussionForumPosting",
+    "headline": p.titre,
+    "text": p.description,
+    "datePublished": p.created_at,
+    "url": canonicalUrl,
+    "author": { "@type":"Person", "name": p.auteur || "Membre Economya" },
+    "interactionStatistic": [
+      {"@type":"InteractionCounter","interactionType":"https://schema.org/LikeAction","userInteractionCount": p.votes||0}
+    ],
+    "publisher": { "@type":"Organization","name":"Economya.fr","url":"https://economya.fr" }
+  });
+  document.head.appendChild(ld);
+
+  document.getElementById('bcCat').textContent = p.categorie ? '/ ' + p.categorie : '';
+
+  const [bg,fg] = pc(p.auteur||'A');
+  const r = rel(p);
+  const rc = r>=80?'#22C55E':r>=60?'#F97316':'#EF4444';
+  let authorPostCount = 1, authorVoteTotal = p.votes||0;
+  if(p.user_id){
+    try {
+      const authorRows = await sbGet('astuces?user_id=eq.' + p.user_id + '&select=votes');
+      if(authorRows && authorRows.length){
+        authorPostCount = authorRows.length;
+        authorVoteTotal = authorRows.reduce((s,x)=>s+(x.votes||0),0);
+      }
+    } catch(e){}
+  }
+  const rk = (typeof rank === 'function') ? rank(authorPostCount, authorVoteTotal) : {bg:'#F3F4F6',c:'#6B7280',l:'🌱 Débutant'};
+
+  content.innerHTML = `<div class="card">
+    <div class="post-header">
+      <div class="post-avatar" style="background:${bg};color:${fg}">${ini(p.auteur)}</div>
+      <div>
+        <div class="post-name">
+          ${p.auteur && p.user_id ? `<a href="/profil/${encodeURIComponent(p.auteur)}">${escapeHtml(p.auteur)}</a>` : `<span>${p.auteur ? escapeHtml(p.auteur) : 'Anonyme'}</span>`}
+          <span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>
+          ${(p.votes||0)>=TREND_THRESHOLD?'<span class="trend-badge">🔥 Tendance</span>':''}
+        </div>
+        <div class="post-cat">${escapeHtml(p.categorie||'')} · il y a ${timeAgo(p.created_at)}</div>
+      </div>
+    </div>
+    <h1 class="post-title">${escapeHtml(p.titre)}</h1>
+    <div class="post-body">${escapeHtml(p.description)}</div>
+    ${p.economie>0?`<div class="saving-pill">💰 ${p.economie.toLocaleString('fr-FR')}€ économisés/an</div>`:''}
+    <div class="reliability">
+      <div class="rel-track"><div class="rel-fill" style="width:${r}%;background:${rc}"></div></div>
+      <span class="rel-label" style="color:${rc}">${r}% fiable</span>
+    </div>
+    <div class="post-actions">
+      <span class="action">🤍 ${p.votes||0} votes</span>
+      <span class="action">☑️ ${p.tested||0} testés</span>
+      <button class="share-cta" id="shareBtn" onclick="shareAstuce(${JSON.stringify(p).replace(/"/g,'&quot;')})">📤 Partager</button>
+    </div>
+  </div>
+  <div class="cta-box">💡 Vous avez une astuce qui marche ? <a href="/forum-astuces.html">Partagez-la avec la communauté →</a></div>`;
+
+  loadRelated(p);
+}
+
+async function loadRelated(p){
+  try {
+    const rows = await sbGet('astuces?categorie=eq.' + encodeURIComponent(p.categorie) + '&id=neq.' + p.id + '&select=id,titre,votes,economie&order=votes.desc&limit=4');
+    if(!rows || rows.length === 0) return;
+    const wrap = document.getElementById('relatedWrap');
+    wrap.innerHTML = '<div class="section-tag">Autres astuces · ' + escapeHtml(p.categorie) + '</div><div class="related">' +
+      rows.map(function(r){
+        const s = slugify(r.titre);
+        return `<a href="/astuces/post/${r.id}${s?'-'+s:''}">${escapeHtml(r.titre)}<div class="rv">🤍 ${r.votes||0} votes${r.economie>0?' · 💰 '+r.economie.toLocaleString('fr-FR')+'€/an':''}</div></a>`;
+      }).join('') + '</div>';
+  } catch(e){}
+}
+
+init();
+</script>
+</body>
+</html>
