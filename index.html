@@ -16,11 +16,14 @@
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
   nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99;flex-wrap:wrap;gap:.4rem}
   .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);cursor:pointer}
-  .logo span{color:var(--a)}
+  .logo span{background:linear-gradient(120deg,#EF9F27 0%,#FFE29A 35%,#EF9F27 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
   .nl{display:flex;gap:.7rem;list-style:none;flex-wrap:wrap}
-  .nl a{text-decoration:none;color:var(--m);font-size:.76rem;font-weight:500;cursor:pointer}
-  .nl a:hover{color:var(--g)}
-  .ncta{background:var(--g);color:white!important;padding:.3rem .8rem;border-radius:50px}
+  .nl a{text-decoration:none;color:var(--t);font-size:.78rem;font-weight:600;letter-spacing:.02em;cursor:pointer;position:relative;transition:color .2s ease}
+  .nl a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,var(--a),#FFE29A,var(--a));transition:width .25s ease}
+  .nl a:hover{color:var(--a)}
+  .nl a:hover::after{width:100%}
+  .ncta{display:inline-block;background:linear-gradient(120deg,#085041 0%,#1D9E75 25%,#3DCB9A 45%,#1D9E75 65%,#085041 100%);background-size:220% 100%;background-position:0% 0%;color:white!important;padding:.4rem .9rem;border-radius:50px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 2px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.15);transition:background-position .6s ease,transform .15s ease}
+  .ncta:hover{background-position:100% 0%;transform:translateY(-1px)}
   .hero{background:linear-gradient(135deg,#04342C,#0F6E56 60%,#1D9E75);color:white;padding:4.5rem 2rem 3.5rem;text-align:center;position:relative;overflow:hidden}
   .hero::before{content:'€';position:absolute;font-size:20rem;font-family:'Playfair Display',serif;font-weight:900;color:rgba(255,255,255,0.04);top:-2rem;left:-1.5rem;line-height:1;pointer-events:none}
   .hbadge{display:inline-block;background:rgba(239,159,39,0.2);color:var(--a);border:1px solid rgba(239,159,39,0.4);padding:.25rem .8rem;border-radius:50px;font-size:.75rem;font-weight:500;text-transform:uppercase;margin-bottom:1rem}
@@ -207,7 +210,7 @@ window.economyaLoadAds = function() {
     <li><a href="a-propos.html">À propos</a></li>
     <li><a href="jeux.html">🎮 Jeux</a></li>
     <li><a href="comparateurs.html">Comparateurs</a></li>
-    <li><a href="outils-gratuits.html" style="background:var(--g);color:white;padding:.4rem .9rem;border-radius:50px;font-weight:700;text-decoration:none">🛠️ Outils gratuits</a></li>
+    <li><a href="outils-gratuits.html" class="ncta">🛠️ Outils gratuits</a></li>
   </ul>
   <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
 <div id="navAv" style="cursor:pointer"></div>
