@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conditions Générales d'Utilisation — Economya.fr</title>
-<meta name="description" content="Conditions Générales d'Utilisation du site Economya.fr — compte utilisateur, contenu publié par les membres, modération.">
+<title>Règles de la communauté — Economya.fr</title>
+<meta name="description" content="Les règles simples de la communauté Economya.fr : soyez honnête, testez avant de valider, entraidez-vous. Le guide court avant de publier votre première astuce.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -16,18 +16,21 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
-.hero{background:linear-gradient(135deg,#1e293b,#334155,#475569);color:white;padding:3rem 2rem;text-align:center}
-.hero h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;margin-bottom:.5rem}
-.hero p{font-size:.9rem;color:rgba(255,255,255,.7)}
-.container{max-width:760px;margin:0 auto;padding:3rem 1.5rem}
-h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);margin:2rem 0 .8rem;border-left:4px solid var(--g);padding-left:.8rem}
-p{font-size:.92rem;line-height:1.8;margin-bottom:.8rem;color:var(--t)}
-ul{margin:.5rem 0 .8rem 1.2rem;font-size:.92rem;line-height:1.8}
-a{color:var(--g)}
-.box{background:var(--gl);border-radius:var(--r);padding:1.2rem 1.5rem;margin:1rem 0;font-size:.9rem;color:var(--gd)}
-footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:3rem}
+.hero{background:linear-gradient(135deg,#065F46,#1D9E75,#34D399);color:white;padding:3.5rem 2rem;text-align:center}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:5px 16px;font-size:12px;font-weight:700;margin-bottom:16px}
+.hero h1{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:900;margin-bottom:.6rem}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.85);max-width:480px;margin:0 auto}
+.container{max-width:740px;margin:0 auto;padding:3rem 1.5rem}
+.intro{font-size:.98rem;line-height:1.8;color:var(--m);margin-bottom:2rem;text-align:center}
+.rule{display:flex;gap:1.1rem;align-items:flex-start;background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.3rem 1.5rem;margin-bottom:1rem}
+.rule-emoji{font-size:1.8rem;flex-shrink:0;line-height:1}
+.rule h2{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gd);margin-bottom:.35rem}
+.rule p{font-size:.9rem;line-height:1.65;color:var(--t)}
+.box{background:var(--gl);border-radius:var(--r);padding:1.2rem 1.5rem;margin:2rem 0;font-size:.9rem;color:var(--gd);line-height:1.7;text-align:center}
+.box a{color:var(--gd);font-weight:700}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:1rem}
 footer strong{color:white}
-@media(max-width:640px){.container{padding:2rem 1rem}}
+@media(max-width:640px){.container{padding:2rem 1rem}.rule{flex-direction:column;gap:.6rem}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -48,9 +51,9 @@ footer strong{color:white}
   {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Conditions Générales d'Utilisation",
-  "description": "Conditions Générales d'Utilisation du site Economya.fr — compte utilisateur, contenu publié par les membres, modération.",
-  "url": "https://economya.fr/cgu",
+  "headline": "Règles de la communauté",
+  "description": "Les règles simples de la communauté Economya.fr : soyez honnête, testez avant de valider, entraidez-vous.",
+  "url": "https://economya.fr/regles-communaute",
   "publisher": {
     "@type": "Organization",
     "name": "Economya.fr",
@@ -67,98 +70,87 @@ footer strong{color:white}
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
-  <meta property="og:title" content="Conditions Générales d'Utilisation">
-  <meta property="og:description" content="Conditions Générales d'Utilisation du site Economya.fr — compte utilisateur, contenu publié par les membres, modération.">
-  <meta property="og:url" content="https://economya.fr/cgu">
+  <meta property="og:title" content="Règles de la communauté">
+  <meta property="og:description" content="Les règles simples de la communauté Economya.fr : soyez honnête, testez avant de valider, entraidez-vous.">
+  <meta property="og:url" content="https://economya.fr/regles-communaute">
   <meta property="og:image" content="https://economya.fr/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="fr_FR">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Conditions Générales d'Utilisation">
-  <meta name="twitter:description" content="Conditions Générales d'Utilisation du site Economya.fr — compte utilisateur, contenu publié par les membres, modération.">
+  <meta name="twitter:title" content="Règles de la communauté">
+  <meta name="twitter:description" content="Les règles simples de la communauté Economya.fr : soyez honnête, testez avant de valider, entraidez-vous.">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
-<link rel="canonical" href="https://economya.fr/cgu" />
+<link rel="canonical" href="https://economya.fr/regles-communaute" />
 </head>
 <body>
 <nav>
   <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
-  <a class="nav-back" href="index.html">← Accueil</a>
+  <a class="nav-back" href="forum-astuces.html">← Retour au forum</a>
   <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
 
 <!-- Menu hamburger mobile -->
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
 <div class="hero">
-  <h1>Conditions Générales d'Utilisation</h1>
-  <p>Dernière mise à jour : septembre 2026</p>
+  <div class="hero-tag">🌱 5 règles, pas 50</div>
+  <h1>Les règles de la communauté</h1>
+  <p>Ce qui fait qu'Economya.fr reste utile : des astuces vraies, testées, et une ambiance sympa.</p>
 </div>
 <div class="container">
 
-  <div class="box">
-    📋 Ces Conditions Générales d'Utilisation (CGU) s'appliquent à toute personne créant un compte ou publiant du contenu sur Economya.fr, notamment sur l'espace communautaire (forum d'astuces). En créant un compte, vous acceptez ces conditions.
+  <p class="intro">Pas de jargon juridique ici — ça, c'est dans nos <a href="cgu.html" style="color:var(--g);font-weight:600">CGU</a>. Juste l'esprit du truc, en 5 points.</p>
+
+  <div class="rule">
+    <div class="rule-emoji">🤝</div>
+    <div>
+      <h2>Soyez sympa</h2>
+      <p>On est là pour s'entraider à économiser, pas pour se juger. Une astuce qui ne vous parle pas ne fonctionne peut-être juste pas pour votre situation — pas besoin d'être désagréable pour le dire.</p>
+    </div>
   </div>
 
-  <h2>1. Objet</h2>
-  <p>Les présentes CGU définissent les règles d'utilisation de l'espace communautaire d'Economya.fr : création de compte, publication d'astuces et de contenus, vote, et gestion du profil. Elles complètent nos <a href="mentions-legales.html">mentions légales</a> et notre <a href="politique-confidentialite.html">politique de confidentialité</a>.</p>
+  <div class="rule">
+    <div class="rule-emoji">✅</div>
+    <div>
+      <h2>Testez avant de valider</h2>
+      <p>Le bouton "testé" n'a de valeur que si vous avez vraiment essayé l'astuce. Une validation de complaisance trompe toute la communauté qui se fie à ce signal.</p>
+    </div>
+  </div>
 
-  <h2>2. Acceptation</h2>
-  <p>La création d'un compte sur Economya.fr implique l'acceptation pleine et entière des présentes CGU. Si vous n'acceptez pas ces conditions, vous ne devez pas créer de compte ni publier de contenu sur le site.</p>
+  <div class="rule">
+    <div class="rule-emoji">💬</div>
+    <div>
+      <h2>Une vraie astuce, avec de vrais détails</h2>
+      <p>"Ça marche, faites-le" n'aide personne. Expliquez ce que vous avez fait concrètement, combien ça vous a fait économiser, et dans quel contexte.</p>
+    </div>
+  </div>
 
-  <h2>3. Création et gestion du compte</h2>
-  <ul>
-    <li>La création d'un compte nécessite une adresse email valide, un pseudonyme et un mot de passe.</li>
-    <li>Vous vous engagez à fournir des informations exactes et à ne pas usurper l'identité d'un tiers.</li>
-    <li>Vous êtes responsable de la confidentialité de votre mot de passe et de toute activité effectuée depuis votre compte.</li>
-    <li>Un seul compte par personne est autorisé.</li>
-    <li>La création d'un compte est réservée aux personnes âgées d'au moins 15 ans (âge de consentement numérique en France) — une date de naissance est demandée à l'inscription pour le vérifier. Les personnes plus jeunes doivent obtenir l'autorisation d'un titulaire de l'autorité parentale.</li>
-  </ul>
+  <div class="rule">
+    <div class="rule-emoji">🚫</div>
+    <div>
+      <h2>Pas de pub déguisée</h2>
+      <p>Un vrai bon plan que vous avez testé, oui. Un lien d'affiliation planqué en astuce, non. La communauté repère vite la différence, et ça casse la confiance pour tout le monde.</p>
+    </div>
+  </div>
 
-  <h2>4. Contenu publié par les utilisateurs</h2>
-  <p>En publiant une astuce, un commentaire, un pseudonyme ou une photo de profil sur Economya.fr, vous vous engagez à ne pas publier de contenu :</p>
-  <ul>
-    <li>illégal, diffamatoire, injurieux, discriminatoire ou incitant à la haine ;</li>
-    <li>constituant du spam, de la publicité non autorisée ou du démarchage commercial ;</li>
-    <li>portant atteinte aux droits d'un tiers (droit d'auteur, droit à l'image, vie privée) ;</li>
-    <li>usurpant l'identité d'une autre personne ou entité ;</li>
-    <li>trompeur, notamment sur la réalité d'un bon plan ou d'une réduction annoncée.</li>
-  </ul>
-  <p>Vous conservez la propriété intellectuelle de vos contenus. En les publiant, vous accordez à Economya.fr une licence non exclusive, gratuite et mondiale pour les héberger, les afficher et les diffuser sur le site, dans le cadre normal du fonctionnement du service.</p>
+  <div class="rule">
+    <div class="rule-emoji">🚩</div>
+    <div>
+      <h2>Signalez, ne réglez pas vos comptes en commentaire</h2>
+      <p>Un contenu qui pose problème ? Un clic sur "signaler" nous suffit pour agir. Pas besoin d'un débat public qui pollue le fil pour tout le monde.</p>
+    </div>
+  </div>
 
-  <h2>5. Modération</h2>
-  <p>Economya.fr se réserve le droit, à sa seule discrétion et sans préavis, de :</p>
-  <ul>
-    <li>modifier, masquer ou supprimer tout contenu ne respectant pas les présentes CGU ;</li>
-    <li>suspendre ou supprimer définitivement un compte en cas de manquement grave ou répété à ces règles.</li>
-  </ul>
-  <p>Vous pouvez signaler un contenu qui vous semble abusif à l'adresse <a href="mailto:contact@economya.fr">contact@economya.fr</a>.</p>
-  <p>Si vous estimez qu'une décision de modération vous concernant (masquage ou suppression d'un contenu, suspension de compte) est injustifiée, vous pouvez la contester en écrivant à <a href="mailto:contact@economya.fr">contact@economya.fr</a> en expliquant votre situation. Nous nous engageons à examiner votre demande et à vous répondre dans un délai raisonnable.</p>
-
-  <h2>6. Suppression de compte</h2>
-  <p>Vous pouvez supprimer votre compte et le contenu associé à tout moment, immédiatement et sans avoir à nous contacter, depuis le bouton "Supprimer mon compte" de votre page de profil. Vous pouvez aussi nous écrire à <a href="mailto:contact@economya.fr">contact@economya.fr</a> si vous préférez. Le détail des délais de conservation figure dans notre <a href="politique-confidentialite.html">politique de confidentialité</a>.</p>
-
-  <h2>7. Disponibilité du service</h2>
-  <p>Economya.fr met tout en œuvre pour assurer un accès continu au service, sans garantie de disponibilité permanente. Le site peut être interrompu temporairement pour maintenance ou en cas de force majeure, sans que la responsabilité d'Economya.fr puisse être engagée.</p>
-
-  <h2>8. Responsabilité</h2>
-  <p>Les astuces et contenus publiés par les membres reflètent l'opinion de leurs auteurs et n'engagent pas Economya.fr. Ils sont fournis à titre informatif et ne constituent pas des conseils financiers personnalisés — voir nos <a href="mentions-legales.html">mentions légales</a>.</p>
-  <p>Economya.fr ne garantit pas l'exactitude, la validité ou la disponibilité des bons plans partagés par les membres et ne saurait être tenu responsable des conséquences de leur utilisation.</p>
-
-  <h2>9. Modification des CGU</h2>
-  <p>Economya.fr peut modifier les présentes CGU à tout moment. La date de dernière mise à jour est indiquée en haut de cette page. En cas de modification substantielle, les utilisateurs disposant d'un compte en seront informés par email ou via un bandeau sur le site.</p>
-
-  <h2>10. Droit applicable</h2>
-  <p>Les présentes CGU sont soumises au droit français. En cas de litige, une solution amiable sera recherchée en priorité ; à défaut, les tribunaux français compétents seront seuls saisis.</p>
-
-  <h2>11. Contact</h2>
-  <p>Pour toute question relative aux présentes CGU : <a href="mailto:contact@economya.fr">contact@economya.fr</a></p>
+  <div class="box">
+    💡 Ces règles évoluent avec la communauté. Une question, une suggestion ? Écrivez-nous à <a href="mailto:contact@economya.fr">contact@economya.fr</a> — et pour le détail juridique complet, direction les <a href="cgu.html">CGU</a>.
+  </div>
 
 </div>
 
 <footer>
   <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html" style="color:rgba(255,255,255,.5)">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:rgba(255,255,255,.5)">Politique de confidentialité</a> · <a href="cgu.html" style="color:rgba(255,255,255,.5)">CGU</a> · <a href="regles-communaute.html" style="color:rgba(255,255,255,.5)">Règles de la communauté</a></span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html" style="color:rgba(255,255,255,.5)">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:rgba(255,255,255,.5)">Politique de confidentialité</a> · <a href="cgu.html" style="color:rgba(255,255,255,.5)">CGU</a></span>
 </footer>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
