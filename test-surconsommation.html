@@ -51,6 +51,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .result-tips ul li{padding:.3rem 0;padding-left:1.4rem;position:relative;line-height:1.5}
 .result-tips ul li::before{position:absolute;left:0}
 .btn-retry{background:transparent;border:2px solid var(--g);color:var(--gd);padding:.7rem 1.8rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.9rem}
+.btn-share{background:linear-gradient(135deg,#c2410c,#ea580c);color:white;border:none;padding:.7rem 1.8rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.9rem;margin-right:.6rem}
 .cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:1.5rem}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
 .cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
@@ -263,6 +264,7 @@ footer strong{color:white}
         <li style="--before:'📦'">Faites l'inventaire de vos abonnements et annulez tout ce que vous n'utilisez pas</li>
       </ul>
     </div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le test</button>
   </div>
 
@@ -279,6 +281,7 @@ footer strong{color:white}
         <li>Appliquez la règle des 30 jours : notez l'envie d'achat et attendez 30 jours</li>
       </ul>
     </div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le test</button>
   </div>
 
@@ -295,6 +298,7 @@ footer strong{color:white}
         <li>Partagez vos astuces avec votre entourage</li>
       </ul>
     </div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le test</button>
   </div>
 
@@ -386,6 +390,25 @@ function showResult() {
   document.getElementById(resultId).classList.add('active');
   document.getElementById('cta-block').style.display = 'block';
   document.getElementById(resultId).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+
+function shareResult(btn){
+  var card = btn.closest('.result-card');
+  var typeEl = card ? card.querySelector('.result-type') : null;
+  var type = typeEl ? typeEl.textContent.trim() : '';
+  var text = 'Je suis "' + type + '" ! Decouvre ton profil sur Economya : ' + location.href;
+  if(navigator.share){
+    navigator.share({text:text, url:location.href}).catch(function(){});
+  } else if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){
+      var old = btn.textContent;
+      btn.textContent = '✅ Copie !';
+      setTimeout(function(){ btn.textContent = old; }, 2000);
+    });
+  } else {
+    window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+  }
 }
 
 function retry() {

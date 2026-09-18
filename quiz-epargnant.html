@@ -49,6 +49,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .result-tips ul li{padding:.3rem 0;padding-left:1.2rem;position:relative}
 .result-tips ul li::before{content:'✅';position:absolute;left:0;font-size:.75rem}
 .btn-retry{background:transparent;border:2px solid var(--g);color:var(--gd);padding:.7rem 1.8rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.9rem;margin-top:.5rem}
+.btn-share{background:linear-gradient(135deg,var(--gd);color:white;border:none;padding:.7rem 1.8rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.9rem;margin-right:.6rem}
 .btn-retry:hover{background:var(--gl)}
 .cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:1.5rem}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
@@ -240,6 +241,7 @@ footer strong{color:white}
         <li>Constituez un fonds d'urgence de 1 000 € en 5 mois</li>
       </ul>
     </div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
   </div>
 
@@ -255,6 +257,7 @@ footer strong{color:white}
         <li>Automatisez vos virements épargne le jour de votre paie</li>
       </ul>
     </div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
   </div>
 
@@ -270,6 +273,7 @@ footer strong{color:white}
         <li>Calculez votre taux d'épargne — visez 20% minimum</li>
       </ul>
     </div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
   </div>
 
@@ -285,6 +289,7 @@ footer strong{color:white}
         <li>Envisagez l'immobilier locatif pour diversifier vos revenus passifs</li>
       </ul>
     </div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
   </div>
 
@@ -383,6 +388,25 @@ function showResult() {
   document.getElementById(resultId).classList.add('active');
   document.getElementById('cta-block').style.display = 'block';
   document.getElementById(resultId).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+
+function shareResult(btn){
+  var card = btn.closest('.result-card');
+  var typeEl = card ? card.querySelector('.result-type') : null;
+  var type = typeEl ? typeEl.textContent.trim() : '';
+  var text = 'Je suis "' + type + '" ! Decouvre ton profil sur Economya : ' + location.href;
+  if(navigator.share){
+    navigator.share({text:text, url:location.href}).catch(function(){});
+  } else if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){
+      var old = btn.textContent;
+      btn.textContent = '✅ Copie !';
+      setTimeout(function(){ btn.textContent = old; }, 2000);
+    });
+  } else {
+    window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+  }
 }
 
 function retry() {

@@ -54,6 +54,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .result-tips ul li::before{position:absolute;left:0}
 .share-text{background:var(--bg);border-radius:12px;padding:1rem;font-size:.85rem;color:var(--m);margin-bottom:1rem;font-style:italic}
 .btn-retry{background:transparent;border:2px solid var(--g);color:var(--gd);padding:.7rem 1.8rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.9rem}
+.btn-share{background:linear-gradient(135deg,#14532d,#15803d);color:white;border:none;padding:.7rem 1.8rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.9rem;margin-right:.6rem}
 .cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center;margin-top:1.5rem}
 .cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
 .cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
@@ -249,6 +250,7 @@ footer strong{color:white}
       </ul>
     </div>
     <div class="share-text">"Je suis une Fourmi épargnante 🐜 — disciplinée et prévoyante ! Et vous, quel est votre animal ? Testez sur economya.fr"</div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
   </div>
 
@@ -273,6 +275,7 @@ footer strong{color:white}
       </ul>
     </div>
     <div class="share-text">"Je suis un Écureuil épargnant 🐿️ — équilibré et malin ! Et vous, quel est votre animal ? Testez sur economya.fr"</div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
   </div>
 
@@ -297,6 +300,7 @@ footer strong{color:white}
       </ul>
     </div>
     <div class="share-text">"Je suis une Cigale 🦗 — je profite de la vie mais je dois apprendre à épargner ! Et vous ? Testez sur economya.fr"</div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
   </div>
 
@@ -321,6 +325,7 @@ footer strong{color:white}
       </ul>
     </div>
     <div class="share-text">"Je suis un Lion investisseur 🦁 — ambitieux et visionnaire ! Et vous, quel est votre animal ? Testez sur economya.fr"</div>
+    <button class="btn-share" onclick="shareResult(this)">📤 Partager mon resultat</button>
     <button class="btn-retry" onclick="retry()">Refaire le quiz</button>
   </div>
 
@@ -407,6 +412,25 @@ function showResult() {
   document.getElementById(`result-${winner}`).classList.add('active');
   document.getElementById('cta-block').style.display = 'block';
   document.getElementById(`result-${winner}`).scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+
+function shareResult(btn){
+  var card = btn.closest('.result-card');
+  var typeEl = card ? card.querySelector('.result-type') : null;
+  var type = typeEl ? typeEl.textContent.trim() : '';
+  var text = 'Je suis "' + type + '" ! Decouvre ton profil sur Economya : ' + location.href;
+  if(navigator.share){
+    navigator.share({text:text, url:location.href}).catch(function(){});
+  } else if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){
+      var old = btn.textContent;
+      btn.textContent = '✅ Copie !';
+      setTimeout(function(){ btn.textContent = old; }, 2000);
+    });
+  } else {
+    window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+  }
 }
 
 function retry() {
