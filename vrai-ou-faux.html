@@ -98,6 +98,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .rg-val{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--g);display:block}
 .rg-lbl{font-size:.7rem;color:var(--m)}
 .btn-restart{background:linear-gradient(135deg,var(--gd),var(--g));color:white;border:none;padding:.8rem 2.5rem;border-radius:50px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.95rem}
+.btn-share{background:linear-gradient(135deg,var(--gd),var(--g));color:white;border:none;padding:.8rem 2rem;border-radius:50px;font-weight:600;cursor:pointer;font-family:inherit;font-size:.9rem;margin-right:.6rem}
 
 /* IDLE */
 .idle{text-align:center;padding:1.5rem 0}
@@ -207,6 +208,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
       <div class="rg-item"><span class="rg-val" id="r-correct">0/10</span><span class="rg-lbl">Bonnes rép.</span></div>
       <div class="rg-item"><span class="rg-val" id="r-streak">0</span><span class="rg-lbl">Meilleure série</span></div>
     </div>
+    <button class="btn-share" onclick="shareResult()">📤 Partager mon score</button>
     <button class="btn-restart" onclick="restartGame()">🔄 Rejouer</button>
   </div>
 </div>
@@ -430,6 +432,22 @@ function showResults() {
   document.getElementById('r-score').textContent = score;
   document.getElementById('r-correct').textContent = correctCount + '/' + difficulty;
   document.getElementById('r-streak').textContent = maxStreak + '🔥';
+}
+
+
+function shareResult(){
+  var score = document.getElementById('r-score') ? document.getElementById('r-score').textContent.trim() : '';
+  var correct = document.getElementById('r-correct') ? document.getElementById('r-correct').textContent.trim() : '';
+  var title = document.getElementById('r-title') ? document.getElementById('r-title').textContent.trim() : '';
+  var text = 'J\'ai fait ' + score + ' points (' + correct + ' bonnes reponses) au quiz Vrai ou Faux d\'Economya ! ' + title;
+  var url = location.href;
+  if(navigator.share){
+    navigator.share({text:text, url:url}).catch(function(){});
+  } else if(navigator.clipboard){
+    navigator.clipboard.writeText(text + ' ' + url).then(function(){ alert('Resultat copie !'); });
+  } else {
+    window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
+  }
 }
 
 function restartGame() {
