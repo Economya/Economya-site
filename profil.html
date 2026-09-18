@@ -86,13 +86,13 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <nav class="nav">
   <div class="nav-logo">Eco<em>nomya</em></div>
   <div>
-    <a href="forum-astuces.html" class="nav-back">← Astuces</a>
+    <a href="/forum-astuces.html" class="nav-back">← Astuces</a>
     <a href="#" class="nav-logout" id="navLogout" style="display:none" onclick="doLogout(event)">Déconnexion</a>
   </div>
 </nav>
 
 <div id="content"><div class="loading">Chargement du profil...</div></div>
-<div class="legal-footer">© 2026 Economya.fr · <a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Confidentialité</a> · <a href="cgu.html">CGU</a> · <a href="mailto:contact@economya.fr">Contact</a></div>
+<div class="legal-footer">© 2026 Economya.fr · <a href="/mentions-legales.html">Mentions légales</a> · <a href="/politique-confidentialite.html">Confidentialité</a> · <a href="/cgu.html">CGU</a> · <a href="mailto:contact@economya.fr">Contact</a></div>
 <input type="file" id="avatarInput" accept="image/*" style="display:none">
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <img id="lightboxImg" src="" alt="">
@@ -131,7 +131,7 @@ function doLogout(e){
   e.preventDefault();
   localStorage.removeItem('eco_session');
   localStorage.removeItem('eco_user');
-  location.href = 'forum-astuces.html';
+  location.href = '/forum-astuces.html';
 }
 
 async function uploadAvatar(file){
@@ -422,7 +422,7 @@ async function deleteAccount(){
     localStorage.removeItem('eco_session');
     localStorage.removeItem('eco_user');
     alert('Votre compte a bien été supprimé.');
-    location.href = 'forum-astuces.html';
+    location.href = '/forum-astuces.html';
   } catch(e){
     alert("Échec de la suppression : " + e.message + ". Vous pouvez aussi nous écrire à contact@economya.fr.");
     if(btn){ btn.textContent = '🗑️ Supprimer mon compte'; btn.disabled = false; }
