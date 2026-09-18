@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <script src="/error-tracker.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta charset="UTF-8">
@@ -193,6 +194,9 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
         <span>J'accepte les <a href="/cgu.html" target="_blank" style="color:var(--ink);text-decoration:underline;">CGU</a> et la <a href="/politique-confidentialite.html" target="_blank" style="color:var(--ink);text-decoration:underline;">politique de confidentialité</a>.</span>
       </label>
     </p>
+    <div id="authTurnstileField" style="display:none;margin:4px 0 4px;">
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAE8I85zclDzWf1JN"></div>
+    </div>
     <div class="sheet-actions">
       <button class="btn-ann" onclick="closeAll()">Annuler</button>
       <button class="btn-pub" onclick="submitAuth()" id="authSubmitBtn">Se connecter</button>
@@ -275,6 +279,7 @@ function toggleAuthMode(){
   document.getElementById('authForgotLink').style.display = authMode === 'login' ? 'block' : 'none';
   document.getElementById('authCguField').style.display = authMode === 'signup' ? 'block' : 'none';
   document.getElementById('authBirthField').style.display = authMode === 'signup' ? 'block' : 'none';
+  document.getElementById('authTurnstileField').style.display = authMode === 'signup' ? 'block' : 'none';
   document.getElementById('authSubmitBtn').textContent = authMode === 'login' ? 'Se connecter' : "S'inscrire";
   document.getElementById('authToggleText').innerHTML = authMode === 'login'
     ? 'Pas encore de compte ? <b>Inscrivez-vous</b>'
@@ -305,13 +310,18 @@ async function submitAuth(){
     if(age < 15){ showAuthError('Vous devez avoir au moins 15 ans pour créer un compte sur Economya.'); return; }
   }
   if(authMode === 'signup' && !document.getElementById('authCgu').checked){ showAuthError('Vous devez accepter les CGU pour créer un compte.'); return; }
+  let captchaToken = null;
+  if(authMode === 'signup'){
+    captchaToken = (typeof turnstile !== 'undefined') ? turnstile.getResponse() : null;
+    if(!captchaToken){ showAuthError('Merci de valider la vérification anti-robot.'); return; }
+  }
   try {
     let res;
     if(authMode === 'signup'){
       res = await fetch(SUPABASE_URL + '/auth/v1/signup', {
         method: 'POST',
         headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
-        body: JSON.stringify({email, password, data: {pseudo}})
+        body: JSON.stringify({email, password, data: {pseudo}, gotrue_meta_security: {captcha_token: captchaToken}})
       });
     } else {
       res = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
@@ -327,6 +337,7 @@ async function submitAuth(){
     }
     if(authMode === 'signup' && !data.access_token){
       showAuthError('Compte créé ! Vérifiez votre email pour confirmer, puis connectez-vous.', true);
+      if(typeof turnstile !== 'undefined'){ turnstile.reset(); }
       return;
     }
     saveSession(data);
@@ -334,6 +345,7 @@ async function submitAuth(){
     render();
   } catch(e){
     showAuthError(e.message === 'Invalid login credentials' ? 'Email ou mot de passe incorrect.' : e.message);
+    if(authMode === 'signup' && typeof turnstile !== 'undefined'){ turnstile.reset(); }
   }
 }
 function saveSession(data){
