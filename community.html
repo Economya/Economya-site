@@ -114,11 +114,36 @@ a{text-decoration:none;color:inherit;}
 </div>
 
 <div class="stats">
-  <div class="stat"><div class="stat-n">7</div><div class="stat-l">astuces partagées</div></div>
+  <div class="stat"><div class="stat-n" id="statAstuces">7</div><div class="stat-l">astuces partagées</div></div>
   <div class="stat"><div class="stat-n" id="statVotes">994</div><div class="stat-l">votes donnés</div></div>
-  <div class="stat"><div class="stat-n">3 620€</div><div class="stat-l">économies recensées</div></div>
-  <div class="stat"><div class="stat-n">94%</div><div class="stat-l">taux de fiabilité</div></div>
+  <div class="stat"><div class="stat-n" id="statEconomie">3 620€</div><div class="stat-l">économies recensées</div></div>
+  <div class="stat"><div class="stat-n" id="statFiabilite">94%</div><div class="stat-l">astuces testées</div></div>
 </div>
+<script>
+(function(){
+  var SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+  fetch(SUPABASE_URL + '/rest/v1/astuces?select=votes,economie,tested', {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+  }).then(function(r){ return r.json(); }).then(function(rows){
+    if(!Array.isArray(rows) || rows.length === 0) return;
+    var count = rows.length;
+    var totalVotes = rows.reduce(function(s,r){ return s + (r.votes||0); }, 0);
+    var totalEco = rows.reduce(function(s,r){ return s + (r.economie||0); }, 0);
+    var testedCount = rows.filter(function(r){ return (r.tested||0) > 0; }).length;
+    var fiabilite = count > 0 ? Math.round((testedCount / count) * 100) : 0;
+
+    var elAstuces = document.getElementById('statAstuces');
+    var elVotes = document.getElementById('statVotes');
+    var elEco = document.getElementById('statEconomie');
+    var elFia = document.getElementById('statFiabilite');
+    if(elAstuces) elAstuces.textContent = count.toLocaleString('fr-FR');
+    if(elVotes) elVotes.textContent = totalVotes.toLocaleString('fr-FR');
+    if(elEco) elEco.textContent = totalEco.toLocaleString('fr-FR') + '€';
+    if(elFia) elFia.textContent = fiabilite + '%';
+  }).catch(function(){ /* garde les chiffres statiques en cas d'erreur reseau */ });
+})();
+</script>
 
 <div class="how">
   <div class="section-tag">Comment ça marche</div>
