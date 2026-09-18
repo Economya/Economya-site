@@ -61,6 +61,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .post-title{font-weight:800;font-size:16px;line-height:1.35;letter-spacing:-.01em;margin-bottom:8px;}
 .post-body{font-size:14px;color:#404040;line-height:1.55;margin-bottom:12px;}
 .saving-pill{display:inline-flex;align-items:center;gap:5px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:5px 12px;font-size:13px;font-weight:700;color:var(--green);margin-bottom:12px;}
+.trend-badge{display:inline-flex;align-items:center;gap:4px;background:#FFF7ED;border:1px solid #FED7AA;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:700;color:#C2410C;margin-left:8px;vertical-align:middle;}
 .reliability{display:flex;align-items:center;gap:8px;margin-bottom:14px;}
 .rel-track{flex:1;height:4px;background:var(--border);border-radius:99px;overflow:hidden;max-width:100px;}
 .rel-fill{height:100%;border-radius:99px;}
@@ -479,6 +480,7 @@ function slugify(s){
 CATS.forEach(c=>c.slug=slugify(c.l));
 
 let posts = [], sortMode = 'top', filterCat = null;
+const TREND_THRESHOLD = 100;
 let myAlerts = [];
 let lastSeen = JSON.parse(localStorage.getItem('eco_lastseen')||'{}');
 let voted = [];
@@ -598,6 +600,7 @@ function renderFeed(){
           <div class="post-name">
             ${p.auteur && p.user_id ? `<a href="/profil/${encodeURIComponent(p.auteur)}" style="cursor:pointer">${escapeHtml(p.auteur)}</a>` : `<span>${p.auteur ? escapeHtml(p.auteur) : 'Anonyme'}</span>`}
             <span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>
+            ${p.votes>=TREND_THRESHOLD?'<span class="trend-badge">\uD83D\uDD25 Tendance</span>':''}
           </div>
           <div class="post-cat">${escapeHtml(p.categorie)} · il y a ${timeAgo(p.created_at)}</div>
         </div>
