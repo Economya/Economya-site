@@ -87,6 +87,55 @@ footer strong{color:white}
 }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Comment fonctionnent les intérêts composés ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Chaque année, les intérêts gagnés s'ajoutent au capital et génèrent eux-mêmes des intérêts l'année suivante. Plus la durée de placement est longue, plus cet effet accélère la croissance de l'épargne."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quel taux d'intérêt utiliser dans ce simulateur ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un livret réglementé rapporte généralement entre 1,5% et 3% par an, une assurance-vie en fonds euros se situe dans une fourchette proche, tandis qu'un placement en actions peut viser davantage sur le long terme avec un risque de perte en capital."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ce simulateur prend-il en compte l'inflation ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Non, il affiche une projection en euros courants sans ajustement de l'inflation. Pour raisonner en pouvoir d'achat réel, il faut soustraire l'inflation moyenne du taux affiché."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vaut-il mieux un gros versement initial ou des versements mensuels réguliers ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Un versement initial profite plus longtemps des intérêts composés, mais des versements mensuels réguliers lissent le risque et sont plus accessibles. Combiner les deux est souvent la meilleure approche."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Livret A, assurance-vie ou bourse : quelle différence pour l'épargne ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le livret A est sans risque et disponible immédiatement mais avec un rendement limité. L'assurance-vie offre plus de choix avec un cadre fiscal avantageux après 8 ans. La bourse vise le rendement le plus élevé sur le long terme au prix d'une volatilité à court terme."
+        }
+      }
+    ]
+  }
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Economya.fr">
@@ -176,6 +225,30 @@ footer strong{color:white}
 
   <div class="tip" id="tip-text">
     <strong>💡 Conseil :</strong> Avec 200 €/mois à 3%, vous doublez votre capital en 20 ans grâce aux intérêts composés.
+  </div>
+
+  <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
+    <h2 style="margin-bottom:1rem">❓ Questions fréquentes sur l'épargne et les intérêts composés</h2>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Comment fonctionnent les intérêts composés ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Chaque année, les intérêts gagnés s'ajoutent au capital et génèrent eux-mêmes des intérêts l'année suivante. C'est cet effet "boule de neige" qui fait que l'épargne accélère avec le temps : plus la durée de placement est longue, plus l'écart avec un simple cumul de versements se creuse.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Quel taux d'intérêt utiliser dans ce simulateur ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Ça dépend du support choisi : un livret réglementé rapporte generalement entre 1,5% et 3% par an, une assurance-vie en fonds euros se situe souvent dans une fourchette proche, tandis qu'un placement en actions (PEA, assurance-vie en unités de compte) peut viser davantage sur le long terme mais avec un risque de perte en capital. Testez plusieurs taux pour voir l'impact sur le résultat.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Ce simulateur prend-il en compte l'inflation ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non, il affiche une projection en euros courants (sans ajustement de l'inflation). Pour raisonner en pouvoir d'achat réel, il faut mentalement soustraire l'inflation moyenne du taux affiché : par exemple un placement à 3% avec une inflation à 2% ne fait progresser votre pouvoir d'achat que d'environ 1% par an.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Vaut-il mieux un gros versement initial ou des versements mensuels réguliers ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Un versement initial profite plus longtemps des intérêts composés, mais des versements mensuels réguliers ont l'avantage de lisser le risque (notamment sur des placements en actions) et sont plus accessibles sans épargne de départ importante. Le mieux reste souvent de combiner les deux si possible.</p>
+    </details>
+    <details>
+      <summary style="font-weight:700;cursor:pointer">Livret A, assurance-vie ou bourse : quelle différence pour l'épargne ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Le livret A est sans risque et disponible immédiatement, mais avec un rendement limité. L'assurance-vie offre plus de choix (fonds euros sécurisés ou unités de compte plus dynamiques) avec un cadre fiscal avantageux après 8 ans. La bourse (PEA, compte-titres) vise le rendement le plus élevé sur le long terme, au prix d'une volatilité à court terme. Le choix dépend de votre horizon et de votre tolérance au risque.</p>
+    </details>
   </div>
 
   <div class="cta">
