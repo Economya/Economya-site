@@ -111,6 +111,54 @@ footer strong{color:white}
   <meta name="twitter:description" content="Simulez vos APL 2026 en quelques secondes. Calculez vos aides au logement selon votre loyer, revenus et situation familiale. Gratuit sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/simulateur-apl" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Qui peut prétendre aux APL ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les APL sont accessibles sous conditions de ressources, quel que soit le statut (étudiant, salarié, demandeur d'emploi), pour un logement conventionné."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi le plafond de loyer dépend-il de la zone géographique ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les loyers plafonds pris en compte varient selon la zone (1, 2 ou 3) car le coût du logement diffère fortement entre grandes agglomérations et zones rurales."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le forfait de charges dépend-il aussi de la zone ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, contrairement au loyer plafond, le forfait de charges dépend uniquement de la composition du foyer, pas de la zone géographique."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cette simulation remplace-t-elle la simulation officielle de la CAF ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, ce simulateur donne une estimation indicative. Seule la simulation officielle sur caf.fr et votre dossier réel déterminent le montant exact."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le montant des APL est-il réévalué automatiquement ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, les APL sont recalculées chaque trimestre sur la base de vos ressources des 12 derniers mois glissants."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <nav>
@@ -196,6 +244,30 @@ footer strong{color:white}
 
   <div class="warn">
     <strong>⚠️ Simulation indicative uniquement</strong> — Le calcul réel des APL est effectué par la CAF selon une formule officielle complexe prenant en compte de nombreux paramètres. Cette simulation donne une estimation approximative. Faites votre simulation officielle sur <strong>caf.fr</strong>.
+  </div>
+
+  <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
+    <h2 style="margin-bottom:1rem">❓ Questions fréquentes sur les APL</h2>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Qui peut prétendre aux APL ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Les APL sont accessibles sous conditions de ressources, quel que soit le statut (étudiant, salarié, demandeur d'emploi), pour un logement conventionné. Le montant dépend de vos ressources, de votre situation familiale, de votre loyer et de la zone géographique du logement.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Pourquoi le plafond de loyer dépend-il de la zone géographique ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Les loyers plafonds pris en compte varient selon la zone (1, 2 ou 3) car le coût du logement diffère fortement entre Paris/grandes agglomérations et zones rurales. Un loyer réel supérieur au plafond de sa zone n'est pas pris en compte au-delà de ce plafond dans le calcul.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Le forfait de charges dépend-il aussi de la zone ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non, contrairement au loyer plafond, le forfait de charges forfaitaire dépend uniquement de la composition du foyer (nombre de personnes), pas de la zone géographique.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Cette simulation remplace-t-elle la simulation officielle de la CAF ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non, ce simulateur donne une estimation indicative pour vous aider à anticiper. Seule la simulation officielle sur caf.fr (ou msa.fr) et votre dossier réel déterminent le montant exact auquel vous avez droit.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Le montant des APL est-il réévalué automatiquement ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Oui, les APL sont recalculées chaque trimestre sur la base de vos ressources des 12 derniers mois glissants, ce qui permet un ajustement plus réactif aux changements de situation qu'un calcul annuel classique.</p>
+    </details>
   </div>
 
   <div class="cta">

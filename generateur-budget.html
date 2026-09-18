@@ -130,6 +130,46 @@ footer strong{color:white}
   <meta name="twitter:description" content="Créez votre budget mensuel personnalisé en 2 minutes. Entrez vos revenus et dépenses, obtenez un plan budgétaire complet. Gratuit sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.svg">
 <link rel="canonical" href="https://economya.fr/generateur-budget" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Pourquoi un budget personnalisé plutôt que la règle 50/30/20 ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "La règle 50/30/20 est un bon repère général, mais elle ignore votre situation réelle. Ce générateur part de vos dépenses réelles pour construire un budget qui vous correspond."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment sont traitées les dépenses annuelles (assurance, impôts) ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les dépenses non mensuelles sont annualisées puis divisées par 12, afin d'être lissées dans votre budget mensuel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Que faire si mon budget est en déficit ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Priorisez d'abord les postes de dépenses variables et non essentiels avant de toucher aux dépenses fixes. Si le déficit persiste, envisagez de renégocier un poste fixe."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "À quelle fréquence dois-je revoir mon budget ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Une révision mensuelle est recommandée les premiers mois, puis un point trimestriel suffit généralement."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <nav>
@@ -214,6 +254,26 @@ footer strong{color:white}
     <div class="card">
       <h2>💡 Conseils personnalisés</h2>
       <div class="conseils-list" id="conseils-list"></div>
+    </div>
+
+    <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
+      <h2 style="margin-bottom:1rem">❓ Questions fréquentes sur ce générateur de budget</h2>
+      <details style="margin-bottom:.9rem">
+        <summary style="font-weight:700;cursor:pointer">Pourquoi un budget personnalisé plutôt que la règle 50/30/20 ?</summary>
+        <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">La règle 50/30/20 (besoins/envies/épargne) est un bon repère général, mais elle ignore votre situation réelle : loyer élevé dans une grande ville, charge de famille, remboursement de crédit. Ce générateur part de vos dépenses réelles pour construire un budget qui vous correspond, plutôt qu'un ratio générique.</p>
+      </details>
+      <details style="margin-bottom:.9rem">
+        <summary style="font-weight:700;cursor:pointer">Comment sont traitées les dépenses annuelles (assurance, impôts) ?</summary>
+        <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Les dépenses non mensuelles sont annualisées puis divisées par 12, afin d'être lissées dans votre budget mensuel plutôt que de créer une mauvaise surprise le mois où elles tombent réellement.</p>
+      </details>
+      <details style="margin-bottom:.9rem">
+        <summary style="font-weight:700;cursor:pointer">Que faire si mon budget est en déficit ?</summary>
+        <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Priorisez d'abord les postes de dépenses variables et non essentiels (loisirs, abonnements, sorties) avant de toucher aux dépenses fixes. Si le déficit persiste malgré ces ajustements, il peut s'agir d'un signal pour renégocier un poste fixe (logement, assurance, crédit).</p>
+      </details>
+      <details style="margin-bottom:.9rem">
+        <summary style="font-weight:700;cursor:pointer">À quelle fréquence dois-je revoir mon budget ?</summary>
+        <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Une révision mensuelle est recommandée les premiers mois, le temps de stabiliser vos habitudes, puis un point trimestriel suffit généralement pour ajuster en cas de changement de situation.</p>
+      </details>
     </div>
 
     <div class="cta">

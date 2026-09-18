@@ -105,6 +105,46 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:1rem}
 footer strong{color:white}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Une augmentation de salaire garantit-elle un gain de pouvoir d'achat ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, si l'augmentation est inférieure à l'inflation sur la même période, votre pouvoir d'achat réel diminue malgré un salaire nominal plus élevé : c'est la différence entre augmentation nominale et augmentation réelle."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment l'inflation est-elle mesurée en France ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'INSEE publie chaque mois un indice des prix à la consommation (IPC) qui mesure l'évolution moyenne des prix d'un panier de biens et services représentatif de la consommation des ménages."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qu'est-ce qu'un « salaire équivalent » en pouvoir d'achat ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "C'est le salaire qu'il faudrait percevoir aujourd'hui pour avoir le même pouvoir d'achat qu'un salaire donné à une date antérieure, compte tenu de l'inflation cumulée sur la période."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le pouvoir d'achat évolue-t-il de la même façon pour tout le monde ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non, il dépend fortement de la structure de consommation de chaque foyer : les ménages consacrant une part plus importante de leur budget à l'énergie ou à l'alimentation ressentent différemment l'inflation selon les périodes."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <nav>
@@ -186,6 +226,26 @@ footer strong{color:white}
 <div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
 Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et l'inflation moyenne nationale, qui peut ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
 </div>
+
+  <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
+    <h2 style="margin-bottom:1rem">❓ Questions fréquentes sur le pouvoir d'achat réel</h2>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Pourquoi une augmentation de salaire ne veut pas toujours dire plus de pouvoir d'achat ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Si votre salaire augmente moins vite que l'inflation, votre pouvoir d'achat baisse malgré l'augmentation nominale : vous gagnez plus d'euros, mais ces euros achètent moins de biens et services qu'avant.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Comment est calculée l'inflation utilisée dans ce simulateur ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Elle se base sur l'indice des prix à la consommation mesuré par l'INSEE, qui suit l'évolution moyenne des prix d'un large panier de biens et services représentatif de la consommation des ménages français.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Qu'est-ce que le "salaire équivalent" affiché dans les résultats ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">C'est le salaire qu'il faudrait avoir aujourd'hui, compte tenu de l'inflation cumulée depuis la période de référence, pour conserver exactement le même pouvoir d'achat qu'à l'époque. Comparer ce chiffre à votre salaire actuel révèle l'évolution réelle de votre niveau de vie.</p>
+    </details>
+    <details>
+      <summary style="font-weight:700;cursor:pointer">L'inflation est-elle la même pour tout le monde ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non, l'indice INSEE est une moyenne nationale. Le ressenti individuel varie selon le mode de consommation de chacun : les ménages qui dépensent une plus grande part de leur budget en énergie ou en alimentation, par exemple, peuvent ressentir une inflation différente de la moyenne.</p>
+    </details>
+  </div>
 
 <footer>
   <strong>Economya.fr</strong> · Finances personnelles, simplement.
