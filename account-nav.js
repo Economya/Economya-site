@@ -79,6 +79,7 @@
         '<div class="eco-navav-menu">' +
         '  <div class="hd">👋 ' + user + '</div>' +
         '  <a href="/profil/' + encodeURIComponent(user) + '">👤 Mon profil</a>' +
+        '  <a href="/regles-communaute.html">📜 Règles de la communauté</a>' +
         '  <button type="button" class="danger">🚪 Déconnexion</button>' +
         '</div>';
       var trigger = el.querySelector('.eco-navav-trigger');
