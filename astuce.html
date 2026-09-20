@@ -85,6 +85,25 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .eco-idea-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;flex-shrink:0;color:#fff;text-decoration:none;background:radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE9B0 0%,#F59E0B 42%,#7C4A03 75%,#3D2401 100%);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 3px 8px rgba(0,0,0,.4);transition:transform .15s ease,box-shadow .15s ease}
 .eco-idea-btn svg{width:17px;height:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
 .eco-idea-btn:hover{transform:scale(1.08);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.35),0 4px 12px rgba(245,158,11,.45)}
+
+.comments-card .section-tag{margin-top:0}
+.comment-form{display:flex;gap:10px;margin-bottom:18px;align-items:flex-start}
+.comment-form textarea{flex:1;resize:vertical;min-height:44px;max-height:160px;border:1px solid var(--b);border-radius:12px;padding:.6rem .8rem;font-family:inherit;font-size:.88rem;outline:none}
+.comment-form textarea:focus{border-color:var(--g)}
+.comment-form button{background:linear-gradient(135deg,var(--g),#25B788);color:#fff;border:none;border-radius:99px;padding:.6rem 1.1rem;font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;align-self:flex-end}
+.comment-form button:disabled{opacity:.6;cursor:default}
+.comment-login-cta{font-size:.86rem;color:var(--m);background:var(--bg);border:1px dashed var(--b);border-radius:12px;padding:.9rem 1rem;margin-bottom:16px;text-align:center}
+.comment-login-cta a{color:var(--gd);font-weight:700}
+.comment{display:flex;gap:10px;padding:12px 0;border-top:1px solid var(--b)}
+.comment:first-child{border-top:none;padding-top:0}
+.comment-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;flex-shrink:0;box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 3px 8px rgba(0,0,0,.4);text-shadow:0 1px 2px rgba(0,0,0,.45)}
+.comment-body{flex:1;min-width:0}
+.comment-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.comment-author{font-weight:700;font-size:.85rem}
+.comment-time{font-size:.75rem;color:var(--m)}
+.comment-text{font-size:.88rem;line-height:1.55;color:var(--t);white-space:pre-wrap;margin-top:2px;word-break:break-word}
+.comment-report{background:none;border:none;color:var(--m);cursor:pointer;font-size:.8rem;flex-shrink:0;align-self:flex-start;padding:4px}
+.comment-report.flagged{color:#DC2626}
 </style>
 </head>
 <body>
@@ -232,6 +251,8 @@ if(btnValider){ btnValider.addEventListener("click", function(){
 <script>
 const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+let currentUser = localStorage.getItem('eco_user')||null;
+let session = JSON.parse(localStorage.getItem('eco_session')||'null');
 
 function escapeHtml(s){
   return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -262,6 +283,145 @@ function slugify(s){
   return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
 }
 const TREND_THRESHOLD = 100;
+
+// ── Commentaires (#51) ─────────────────────────────────
+let currentAstuceId = null;
+let comments = [];
+let myReportedComments = (function(){ try { return JSON.parse(localStorage.getItem('eco_reported_comments')||'[]'); } catch(e){ return []; } })();
+
+async function sbFetch(path, options = {}) {
+  await refreshSessionIfNeeded();
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    ...options,
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + (session ? session.access_token : SUPABASE_KEY),
+      'Content-Type': 'application/json',
+      'Prefer': options.prefer || 'return=representation',
+      ...options.headers
+    }
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.status === 204 ? null : res.json();
+}
+async function refreshSessionIfNeeded(){
+  if(!session) return;
+  if(Date.now() < session.expires_at - 60000) return;
+  try {
+    const res = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+      method: 'POST',
+      headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+      body: JSON.stringify({refresh_token: session.refresh_token})
+    });
+    const data = await res.json();
+    if(res.ok){
+      session = { access_token:data.access_token, refresh_token:data.refresh_token, expires_at: Date.now()+(data.expires_in||3600)*1000, user:data.user };
+      localStorage.setItem('eco_session', JSON.stringify(session));
+    } else {
+      session = null; currentUser = null;
+      localStorage.removeItem('eco_session'); localStorage.removeItem('eco_user');
+    }
+  } catch(e){ /* réseau indispo : on retente au prochain appel */ }
+}
+
+function renderCommentForm(){
+  const wrap = document.getElementById('commentFormWrap');
+  if(!wrap) return;
+  if(session && session.user){
+    wrap.innerHTML = `<div class="comment-form">
+      <textarea id="commentInput" maxlength="500" placeholder="Ajouter un commentaire…"></textarea>
+      <button type="button" id="commentSubmitBtn" onclick="submitComment()">Publier</button>
+    </div>`;
+  } else {
+    wrap.innerHTML = `<div class="comment-login-cta"><a href="/connexion.html?redirect=${encodeURIComponent(location.pathname)}">Connectez-vous</a> pour laisser un commentaire.</div>`;
+  }
+}
+
+async function loadComments(astuceId){
+  try {
+    comments = await sbGet('astuce_comments?astuce_id=eq.' + astuceId + '&order=created_at.asc&select=*');
+  } catch(e){
+    comments = [];
+  }
+  renderComments();
+}
+
+function renderComments(){
+  const countEl = document.getElementById('commentCount');
+  if(countEl) countEl.textContent = comments.length;
+  const list = document.getElementById('commentsList');
+  if(!list) return;
+  if(!comments.length){
+    list.innerHTML = '<p style="color:var(--m);font-size:.88rem;padding:.4rem 0 0">Aucun commentaire pour l\'instant. Soyez le premier à réagir !</p>';
+    return;
+  }
+  list.innerHTML = comments.map(function(c){
+    const cc = pc(c.auteur||'A');
+    const hr = myReportedComments.includes(c.id);
+    return `<div class="comment">
+      <div class="comment-avatar" style="background:${cc[0]};color:${cc[1]}">${ini(c.auteur)}</div>
+      <div class="comment-body">
+        <div class="comment-head"><span class="comment-author">${escapeHtml(c.auteur||'Anonyme')}</span><span class="comment-time">il y a ${timeAgo(c.created_at)}</span></div>
+        <div class="comment-text">${escapeHtml(c.contenu)}</div>
+      </div>
+      <button type="button" class="comment-report ${hr?'flagged':''}" title="Signaler" onclick="reportComment(${c.id})">🚩</button>
+    </div>`;
+  }).join('');
+}
+
+async function submitComment(){
+  if(!session || !session.user){
+    window.location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname);
+    return;
+  }
+  const ta = document.getElementById('commentInput');
+  if(!ta) return;
+  const text = ta.value.trim();
+  if(!text) return;
+  if(text.length > 500){ alert('500 caractères maximum.'); return; }
+  const btn = document.getElementById('commentSubmitBtn');
+  if(btn) btn.disabled = true;
+  try {
+    const auteur = (session.user.user_metadata && session.user.user_metadata.pseudo) || session.user.email;
+    const rows = await sbFetch('astuce_comments', {
+      method: 'POST',
+      body: JSON.stringify({ astuce_id: currentAstuceId, user_id: session.user.id, auteur: auteur, contenu: text })
+    });
+    if(rows && rows[0]) comments.push(rows[0]);
+    ta.value = '';
+    renderComments();
+    sbFetch('astuces?id=eq.' + currentAstuceId, {
+      method: 'PATCH', body: JSON.stringify({ comments: comments.length }),
+      prefer: 'return=minimal', headers: { 'Prefer': 'return=minimal' }
+    }).catch(function(){});
+  } catch(e){
+    alert('Erreur : ' + e.message);
+  } finally {
+    if(btn) btn.disabled = false;
+  }
+}
+
+async function reportComment(id){
+  if(!session || !session.user){
+    window.location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname);
+    return;
+  }
+  if(myReportedComments.includes(id)) return;
+  if(!confirm('Signaler ce commentaire ?')) return;
+  const c = comments.find(function(x){ return x.id === id; });
+  if(!c) return;
+  try {
+    await sbFetch('rpc/report_astuce_comment', {
+      method: 'POST', body: JSON.stringify({ comment_id: id }),
+      prefer: 'return=minimal', headers: { 'Prefer': 'return=minimal' }
+    });
+    c.reports = (c.reports||0) + 1;
+    myReportedComments.push(id);
+    localStorage.setItem('eco_reported_comments', JSON.stringify(myReportedComments));
+    renderComments();
+  } catch(e){ /* pas grave si ça échoue, l'utilisateur peut retenter */ }
+}
+
 
 function getIdFromUrl(){
   const m = location.pathname.match(/\/astuces\/post\/([^/]+)/);
@@ -395,8 +555,16 @@ async function init(){
       <button class="share-cta" id="shareBtn" onclick="shareAstuce(${JSON.stringify(p).replace(/"/g,'&quot;')})">📤 Partager</button>
     </div>
   </div>
+  <div class="card comments-card">
+    <div class="section-tag">💬 Commentaires (<span id="commentCount">0</span>)</div>
+    <div id="commentFormWrap"></div>
+    <div id="commentsList"><p style="color:var(--m);font-size:.88rem">Chargement des commentaires…</p></div>
+  </div>
   <div class="cta-box">💡 Vous avez une astuce qui marche ? <a href="/forum-astuces.html">Partagez-la avec la communauté →</a></div>`;
 
+  currentAstuceId = p.id;
+  renderCommentForm();
+  loadComments(p.id);
   loadRelated(p);
 }
 

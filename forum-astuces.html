@@ -659,6 +659,9 @@ function renderFeed(){
         <button class="action ${ht?'tested-on':''}" onclick="doTest(${p.id})">
           <span class="action-icon">${ht?'✅':'☑️'}</span> ${p.tested} testés
         </button>
+        <a class="action" style="text-decoration:none" href="/astuces/post/${p.id}-${slugify(p.titre)}">
+          <span class="action-icon">💬</span> ${p.comments||0}
+        </a>
         <button class="action ${hr?'flagged':''}" onclick="doReport(${p.id})">
           <span class="action-icon">🚩</span>${p.reports>0?' '+p.reports:''}
         </button>
