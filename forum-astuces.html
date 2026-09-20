@@ -578,7 +578,7 @@ async function loadMyActions(){
 
 async function loadPosts() {
   try {
-    posts = await sbFetch('astuces?order=votes.desc&limit=100');
+    posts = await sbFetch('astuces?hidden=eq.false&order=votes.desc&limit=100');
     await loadMyActions();
     await loadAuthorAvatars();
     render();

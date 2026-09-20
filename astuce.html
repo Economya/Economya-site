@@ -339,7 +339,7 @@ function renderCommentForm(){
 
 async function loadComments(astuceId){
   try {
-    comments = await sbGet('astuce_comments?astuce_id=eq.' + astuceId + '&order=created_at.asc&select=*');
+    comments = await sbGet('astuce_comments?astuce_id=eq.' + astuceId + '&hidden=eq.false&order=created_at.asc&select=*');
   } catch(e){
     comments = [];
   }
@@ -461,7 +461,7 @@ async function init(){
     return;
   }
   const p = rows && rows[0];
-  if(!p){
+  if(!p || p.hidden){
     content.innerHTML = '<div class="state">Cette astuce n\'existe plus ou a été retirée. <a href="/forum-astuces.html">Voir toutes les astuces →</a></div>';
     return;
   }
@@ -570,7 +570,7 @@ async function init(){
 
 async function loadRelated(p){
   try {
-    const rows = await sbGet('astuces?categorie=eq.' + encodeURIComponent(p.categorie) + '&id=neq.' + p.id + '&select=id,titre,votes,economie&order=votes.desc&limit=4');
+    const rows = await sbGet('astuces?categorie=eq.' + encodeURIComponent(p.categorie) + '&id=neq.' + p.id + '&hidden=eq.false&select=id,titre,votes,economie&order=votes.desc&limit=4');
     if(!rows || rows.length === 0) return;
     const wrap = document.getElementById('relatedWrap');
     wrap.innerHTML = '<div class="section-tag">Autres astuces · ' + escapeHtml(p.categorie) + '</div><div class="related">' +
