@@ -11,6 +11,7 @@
 <title>Profil — Economya Community</title>
 <meta name="description" content="Consultez le profil d'un membre de la communauté Economya : ses astuces publiées, ses votes et son activité.">
 <style>
+html{overflow-y:scroll}
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 :root{
   --bg:#FAFAFA;--white:#fff;--border:#EFEFEF;
@@ -29,7 +30,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .wrap{max-width:600px;margin:0 auto;padding-bottom:40px;}
 
 .pro-hero{background:var(--white);border-bottom:1px solid var(--border);padding:32px 20px;text-align:center;}
-.pro-av{width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;margin:0 auto 14px;overflow:hidden;position:relative;box-shadow:inset 0 2px 2px rgba(255,255,255,.5),inset 0 -3px 6px rgba(0,0,0,.35),0 4px 14px rgba(0,0,0,.2);text-shadow:0 1px 3px rgba(0,0,0,.35);}
+.pro-av{width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;margin:0 auto 14px;overflow:hidden;position:relative;box-shadow:inset -5px -5px 8px rgba(0,0,0,.55),inset 3px 3px 6px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 6px 16px rgba(0,0,0,.35);text-shadow:0 2px 4px rgba(0,0,0,.45);}
 .pro-av img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .pro-av-actions{display:flex;gap:8px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;}
 .pro-av-edit{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:700;}
@@ -97,7 +98,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .mobile-menu a{font-size:1.2rem;font-weight:700;color:var(--ink);text-decoration:none}
 .mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--ink)}
 @media(max-width:768px){.hamburger{display:flex}}
-.nav{flex-wrap:wrap;row-gap:.4rem;height:auto;min-height:52px;padding-top:8px;padding-bottom:8px}
+.nav{flex-wrap:wrap;row-gap:.4rem;height:auto;min-height:52px;padding-top:8px;padding-bottom:8px;padding-left:1.8rem;padding-right:1.8rem;column-gap:.7rem}
 </style>
 </head>
 <body>
@@ -237,7 +238,7 @@ async function chooseEmojiAvatar(emoji){
   }
 }
 
-const PALETTE=[['radial-gradient(circle at 30% 25%,#FFE29A 0%,#F59E0B 55%,#7C4A03 100%)','#1A0A00'],['radial-gradient(circle at 30% 25%,#8FF3C0 0%,#22C55E 55%,#0B5A2E 100%)','#fff'],['radial-gradient(circle at 30% 25%,#93C5FD 0%,#3B82F6 55%,#1E3A8A 100%)','#fff'],['radial-gradient(circle at 30% 25%,#D8B4FE 0%,#8B5CF6 55%,#4C1D95 100%)','#fff'],['radial-gradient(circle at 30% 25%,#FBCFE8 0%,#EC4899 55%,#831843 100%)','#fff'],['radial-gradient(circle at 30% 25%,#FED7AA 0%,#F97316 55%,#7C2D12 100%)','#fff'],['radial-gradient(circle at 30% 25%,#99F6E4 0%,#14B8A6 55%,#134E4A 100%)','#fff'],['radial-gradient(circle at 30% 25%,#C7D2FE 0%,#6366F1 55%,#312E81 100%)','#fff']];
+const PALETTE=[['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE9B0 0%,#F59E0B 42%,#7C4A03 75%,#3D2401 100%)','#1A0A00'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#A9F8D0 0%,#22C55E 42%,#0B5A2E 75%,#052B16 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#BFDBFE 0%,#3B82F6 42%,#1E3A8A 75%,#0F1F47 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#E9D5FF 0%,#8B5CF6 42%,#4C1D95 75%,#2A0F52 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FCE7F3 0%,#EC4899 42%,#831843 75%,#440A23 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE4C4 0%,#F97316 42%,#7C2D12 75%,#401708 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#CCFBF1 0%,#14B8A6 42%,#134E4A 75%,#0A2E2B 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#E0E7FF 0%,#6366F1 42%,#312E81 75%,#1A1845 100%)','#fff']];
 function pc(name){return PALETTE[(name||'?').charCodeAt(0)%PALETTE.length];}
 function ini(name){return (name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
 // RANKS / rank() : voir rank.js (source unique, chargé via <script src="rank.js">)

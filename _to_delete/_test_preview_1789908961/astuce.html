@@ -12,7 +12,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-html{overflow-y:scroll}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
@@ -25,7 +24,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .breadcrumb a{color:var(--m)}
 .card{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.6rem 1.7rem;margin-bottom:1.4rem}
 .post-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.post-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0;box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 3px 8px rgba(0,0,0,.4);text-shadow:0 1px 2px rgba(0,0,0,.45);}
+.post-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;flex-shrink:0}
 .post-name{font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .post-name a{color:inherit;text-decoration:none}
 .post-rank{font-size:10px;padding:2px 7px;border-radius:99px;font-weight:700}
@@ -67,8 +66,8 @@ footer strong{color:white}
 }
 
 nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
-.eco-dnav-wrap{display:none;align-items:center;gap:1rem}
-@media(min-width:769px){.eco-dnav-wrap{display:flex}.nav-back{display:none}.nav-link{display:none}}
+.eco-dnav-wrap{display:none;align-items:center;gap:1rem;margin-left:auto}
+@media(min-width:769px){.eco-dnav-wrap{display:flex}}
 .eco-dnav{display:flex;gap:.8rem;list-style:none;align-items:center;flex-wrap:wrap;margin:0;padding:0}
 .eco-dnav a{text-decoration:none;color:#2C2C2A;font-size:.78rem;font-weight:600;letter-spacing:.02em;position:relative;white-space:nowrap}
 .eco-dnav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,#EF9F27,#FFE29A,#EF9F27);transition:width .25s ease}
@@ -87,7 +86,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <nav>
   <a class="logo" href="/index.html">Econom<span>ya</span>.fr</a>
   <a class="nav-back" href="/forum-astuces.html">← Retour au forum</a>
-  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/community.html">🌱 Community</a></li><li><a href="/forum-astuces.html">Forum</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/jeux.html">🎮 Jeux</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="/recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div><button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/forum-astuces.html">Forum</a></li><li><a href="/jeux.html">🎮 Jeux</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="/recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div><button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   <div id="navAv" style="cursor:pointer"></div>
 </nav>
 <div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html">Forum</a><a href="/jeux.html">Jeux</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/a-propos.html">A propos</a><a href="#" id="navAvMobile">👤 Connexion</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
@@ -239,7 +238,7 @@ async function sbGet(path){
   if(!res.ok) throw new Error(await res.text());
   return res.json();
 }
-const PALETTE=[['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE9B0 0%,#F59E0B 42%,#7C4A03 75%,#3D2401 100%)','#1A0A00'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#A9F8D0 0%,#22C55E 42%,#0B5A2E 75%,#052B16 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#BFDBFE 0%,#3B82F6 42%,#1E3A8A 75%,#0F1F47 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#E9D5FF 0%,#8B5CF6 42%,#4C1D95 75%,#2A0F52 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FCE7F3 0%,#EC4899 42%,#831843 75%,#440A23 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE4C4 0%,#F97316 42%,#7C2D12 75%,#401708 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#CCFBF1 0%,#14B8A6 42%,#134E4A 75%,#0A2E2B 100%)','#fff'],['radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#E0E7FF 0%,#6366F1 42%,#312E81 75%,#1A1845 100%)','#fff']];
+const PALETTE=[['#F59E0B','#1A0A00'],['#22C55E','#fff'],['#3B82F6','#fff'],['#8B5CF6','#fff'],['#EC4899','#fff'],['#F97316','#fff'],['#14B8A6','#fff'],['#6366F1','#fff']];
 function pc(name){return PALETTE[(name||'?').charCodeAt(0)%PALETTE.length];}
 function ini(name){return (name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
 function timeAgo(ts){
