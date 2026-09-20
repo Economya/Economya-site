@@ -76,6 +76,22 @@ footer strong{color:white}
   nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
   nav li{display:none!important}
 }
+
+nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
+.eco-dnav-wrap{display:none;align-items:center;gap:1rem;margin-left:auto}
+@media(min-width:769px){.eco-dnav-wrap{display:flex}}
+.eco-dnav{display:flex;gap:.8rem;list-style:none;align-items:center;flex-wrap:wrap;margin:0;padding:0}
+.eco-dnav a{text-decoration:none;color:#2C2C2A;font-size:.78rem;font-weight:600;letter-spacing:.02em;position:relative;white-space:nowrap}
+.eco-dnav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,#EF9F27,#FFE29A,#EF9F27);transition:width .25s ease}
+.eco-dnav a:hover{color:#EF9F27}
+.eco-dnav a:hover::after{width:100%}
+.eco-dnav-cta{display:inline-block!important;background:linear-gradient(120deg,#085041 0%,#1D9E75 25%,#3DCB9A 45%,#1D9E75 65%,#085041 100%);background-size:220% 100%;background-position:0% 0%;color:#fff!important;padding:.4rem .9rem;border-radius:50px;font-weight:700;border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 2px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.15);transition:background-position .6s ease,transform .15s ease}
+.eco-dnav-cta:hover{background-position:100% 0%;transform:translateY(-1px)}
+.eco-dnav-cta::after{display:none}
+.eco-dnav-search{text-decoration:none;color:#2C2C2A;font-size:.8rem;font-weight:600;letter-spacing:.02em;display:inline-flex;align-items:center;gap:.3rem;position:relative;white-space:nowrap}
+.eco-dnav-search::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,#8a8f98,#e2e6ec,#8a8f98);transition:width .25s ease}
+.eco-dnav-search:hover{color:#5b6270}
+.eco-dnav-search:hover::after{width:100%}
 </style>
 
   <script type="application/ld+json">
@@ -163,11 +179,10 @@ footer strong{color:white}
 <nav>
   <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
   <a class="nav-back" href="index.html">← Tous les articles</a>
-  <a href="recherche.html" style="text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500">🔍 Rechercher</a>
+  <!-- Menu hamburger mobile -->
 
-<!-- Menu hamburger mobile -->
-
-<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a></div>
+<div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="index.html">Accueil</a></li><li><a href="forum-astuces.html">Forum</a></li><li><a href="jeux.html">🎮 Jeux</a></li><li><a href="comparateurs.html">Comparateurs</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button><div id="navAv" style="cursor:pointer"></div></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a><a href="#" id="navAvMobile">👤 Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
 <div class="hero">
   <h1>Calculateur <em>Salaire Brut / Net</em> 2026</h1>
   <p>Convertissez instantanément votre salaire brut en net, ou inversement. Cotisations et prélèvement à la source inclus.</p>
@@ -549,5 +564,6 @@ if(btnValider){
 Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
 </div>
 <div style="text-align:center;padding:18px 16px 26px;font-size:11px;color:#8a8a8a;font-family:Arial,Helvetica,sans-serif;background:transparent;">© 2026 Economya.fr &middot; <a href="mentions-legales.html" style="color:#8a8a8a;text-decoration:underline;">Mentions légales</a> &middot; <a href="politique-confidentialite.html" style="color:#8a8a8a;text-decoration:underline;">Confidentialité</a> &middot; <a href="cgu.html" style="color:#8a8a8a;text-decoration:underline;">CGU</a> &middot; <a href="mailto:contact@economya.fr" style="color:#8a8a8a;text-decoration:underline;">Contact</a></div>
+<script src="account-nav.js"></script>
 </body>
 </html>
