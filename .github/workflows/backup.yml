@@ -1,0 +1,43 @@
+name: Sauvegarde hebdomadaire des donnees
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Exporter les tables publiques depuis Supabase
+        env:
+          SUPABASE_URL: https://awelbxqiltokhsoddako.supabase.co
+          SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw
+        run: |
+          set -e
+          mkdir -p backups
+          for table in astuces astuce_comments astuce_actions; do
+            echo "Export de $table..."
+            curl -sS -f "$SUPABASE_URL/rest/v1/$table?select=*" \
+              -H "apikey: $SUPABASE_ANON_KEY" \
+              -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+              -o "backups/$table.json"
+          done
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > backups/derniere-sauvegarde.txt
+
+      - name: Committer si des donnees ont change
+        run: |
+          git config user.name "economya-backup-bot"
+          git config user.email "actions@github.com"
+          git add backups/
+          if git diff --cached --quiet; then
+            echo "Aucun changement depuis la derniere sauvegarde."
+          else
+            git commit -m "Sauvegarde automatique des donnees ($(date -u +%Y-%m-%d))"
+            git push
+          fi
