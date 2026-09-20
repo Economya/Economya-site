@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script src="/error-tracker.js"></script>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forfaits 5G pas cher 2026 : comparateur | Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html{overflow-y:scroll}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08);--rd:#dc2626;--rdl:#FEE2E2}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#7f1d1d,#b91c1c,#ef4444);color:white;padding:3rem 2rem 2.5rem;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;margin-bottom:.6rem}
+.hero h1 em{color:#EF9F27;font-style:normal}
+.hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:560px;margin:0 auto}
+.container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
+.card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:2rem;margin-bottom:1.5rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
+.card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.2rem;color:var(--gd)}
+.slider-wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.slider-wrap label{font-size:.9rem;font-weight:600;color:var(--m);white-space:nowrap}
+.slider-wrap input[type=range]{flex:1;min-width:180px;accent-color:var(--rd)}
+.slider-val{font-family:'Playfair Display',serif;font-weight:900;color:var(--rd);font-size:1.2rem;min-width:70px;text-align:right}
+.forfaits{display:flex;flex-direction:column;gap:.8rem;margin-top:1.4rem}
+.forfait{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem 1.3rem;display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center;transition:box-shadow .2s}
+.forfait:hover{box-shadow:0 4px 16px rgba(220,38,38,.1)}
+.forfait.best{border:2px solid var(--rd);background:var(--rdl)}
+.f-icon{font-size:1.8rem}
+.f-body h3{font-size:.92rem;font-weight:700;margin-bottom:.1rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.f-best-badge{display:none;background:var(--rd);color:#fff;font-size:.62rem;font-weight:700;padding:.12rem .55rem;border-radius:50px}
+.forfait.best .f-best-badge{display:inline-block}
+.f-desc{font-size:.76rem;color:var(--m)}
+.f-data{text-align:center}
+.f-data .data-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--gd);display:block}
+.f-data .data-lbl{font-size:.66rem;color:var(--m)}
+.f-prix{text-align:right}
+.f-prix .prix-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--rd);display:block}
+.f-prix .prix-lbl{font-size:.66rem;color:var(--m)}
+.empty-msg{text-align:center;color:var(--m);font-size:.86rem;padding:1.5rem}
+.tip{background:var(--rdl);border-left:4px solid var(--rd);border-radius:var(--r);padding:1rem 1.4rem;font-size:.9rem;color:#7f1d1d;margin-bottom:1.5rem}
+.tip strong{font-weight:600}
+.cta{background:linear-gradient(135deg,var(--al),#FFF8EE);border-radius:var(--r);padding:1.8rem;text-align:center}
+.cta h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:#633806;margin-bottom:.4rem}
+.cta p{font-size:.86rem;color:var(--m);margin-bottom:1rem}
+.cta-form{display:flex;gap:.5rem;max-width:360px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:2rem}
+footer strong{color:white}
+@media(max-width:640px){.hero{padding:2rem 1.2rem}.container{padding:1.5rem 1rem}.forfait{grid-template-columns:1fr 1fr;gap:.6rem}.f-icon{display:none}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#ffffff;z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;isolation:isolate}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+
+nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
+.eco-dnav-wrap{display:none;align-items:center;gap:1rem}
+@media(min-width:769px){.eco-dnav-wrap{display:flex}.nav-back{display:none}.nav-link{display:none}}
+.eco-dnav{display:flex;gap:.8rem;list-style:none;align-items:center;flex-wrap:wrap;margin:0;padding:0}
+.eco-dnav a{text-decoration:none;color:#2C2C2A;font-size:.78rem;font-weight:600;letter-spacing:.02em;position:relative;white-space:nowrap}
+.eco-dnav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,#EF9F27,#FFE29A,#EF9F27);transition:width .25s ease}
+.eco-dnav a:hover{color:#EF9F27}
+.eco-dnav a:hover::after{width:100%}
+.eco-dnav-cta{display:inline-block!important;background:linear-gradient(120deg,#085041 0%,#1D9E75 25%,#3DCB9A 45%,#1D9E75 65%,#085041 100%);background-size:220% 100%;background-position:0% 0%;color:#fff!important;padding:.4rem .9rem;border-radius:50px;font-weight:700;border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 2px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.15);transition:background-position .6s ease,transform .15s ease}
+.eco-dnav-cta:hover{background-position:100% 0%;transform:translateY(-1px)}
+.eco-dnav-cta::after{display:none}
+.eco-dnav-search{text-decoration:none;color:#2C2C2A;font-size:.8rem;font-weight:600;letter-spacing:.02em;display:inline-flex;align-items:center;gap:.3rem;position:relative;white-space:nowrap}
+.eco-dnav-search::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,#8a8f98,#e2e6ec,#8a8f98);transition:width .25s ease}
+.eco-dnav-search:hover{color:#5b6270}
+.eco-dnav-search:hover::after{width:100%}
+
+.eco-idea-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;flex-shrink:0;color:#fff;text-decoration:none;background:radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE9B0 0%,#F59E0B 42%,#7C4A03 75%,#3D2401 100%);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 3px 8px rgba(0,0,0,.4);transition:transform .15s ease,box-shadow .15s ease}
+.eco-idea-btn svg{width:17px;height:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
+.eco-idea-btn:hover{transform:scale(1.08);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.35),0 4px 12px rgba(245,158,11,.45)}
+</style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Comparateur Forfaits 5G pas cher 2026",
+  "description": "Comparez les forfaits mobiles 5G les moins chers et filtrez selon le volume de data minimum souhaité.",
+  "url": "https://economya.fr/forfaits-5g-pas-cher",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr"
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Les forfaits des opérateurs low-cost utilisent-ils un bon réseau ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui : les opérateurs low-cost (MVNO) comme Lebara, NRJ Mobile, Auchan Telecom ou Cdiscount Mobile n'ont pas leur propre antenne, ils louent le réseau d'un des 4 grands opérateurs (Orange, SFR, Bouygues, Free). Vous bénéficiez donc de la même couverture, pour un prix souvent inférieur."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Pourquoi certains forfaits pas chers augmentent de prix après quelques mois ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Beaucoup de forfaits promotionnels affichent un tarif réduit pendant 12 mois, puis reviennent à un tarif plus élevé. Vérifiez toujours la mention 'prix après la première année' avant de souscrire, et pensez à changer d'offre si besoin : c'est gratuit et sans engagement dans la plupart des cas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien de Go faut-il vraiment par mois ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "La consommation moyenne en France tourne autour de 15 à 20 Go par mois. Un usage léger (messagerie, navigation) tient dans 20 à 50 Go, tandis qu'un usage intensif (streaming vidéo, partage de connexion) justifie un forfait à 100 Go ou plus."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Forfaits 5G pas cher 2026">
+  <meta property="og:description" content="Comparez les forfaits mobiles 5G les moins chers et filtrez selon vos besoins en data.">
+  <meta property="og:url" content="https://economya.fr/forfaits-5g-pas-cher">
+  <meta property="og:image" content="https://economya.fr/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Forfaits 5G pas cher 2026">
+  <meta name="twitter:description" content="Comparez les forfaits mobiles 5G les moins chers et filtrez selon vos besoins en data.">
+  <meta name="twitter:image" content="https://economya.fr/og-image.svg">
+<link rel="canonical" href="https://economya.fr/forfaits-5g-pas-cher" />
+<meta name="description" content="Comparez les meilleurs forfaits mobiles 5G pas chers dès 9,99€/mois : Free, Bouygues, SFR, Orange et opérateurs low-cost. Filtrez selon votre besoin en data.">
+</head>
+<body>
+<nav>
+  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="index.html">← Tous les articles</a>
+
+<div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="index.html">Accueil</a></li><li><a href="community.html">🌱 Community</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="jeux.html">🎮 Jeux</a></li><li><a href="comparateurs.html">Comparateurs</a></li><li><a href="outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button><div id="navAv" style="cursor:pointer"></div></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="forum-astuces.html">💡 Astuces</a><a href="recherche.html">Rechercher</a><a href="#" id="navAvMobile">👤 Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
+
+<div class="hero">
+  <h1>Forfaits <em>5G</em> pas cher</h1>
+  <p>Réglez le curseur sur le volume de data qu'il vous faut, on trie les forfaits du moins cher au plus cher.</p>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h2>📶 Combien de Go minimum ?</h2>
+    <div class="slider-wrap">
+      <label>Data minimum souhaitée :</label>
+      <input type="range" id="data-slider" min="0" max="250" step="10" value="0">
+      <span class="slider-val" id="data-val">0 Go</span>
+    </div>
+    <div class="forfaits" id="forfaits-list"><!-- généré par JS --></div>
+  </div>
+
+  <div class="tip" id="tip-text">
+    <strong>💡 Astuce :</strong> Les opérateurs low-cost (Auchan Telecom, Cdiscount Mobile, NRJ Mobile, Lebara...) utilisent les réseaux Orange, SFR ou Bouygues : même couverture, souvent moitié prix.
+  </div>
+
+  <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
+    <h2 style="margin-bottom:1rem">❓ Questions fréquentes</h2>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Les forfaits low-cost utilisent-ils un bon réseau ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Oui : ces opérateurs (MVNO) n'ont pas leur propre antenne, ils louent le réseau d'un des 4 grands opérateurs (Orange, SFR, Bouygues, Free). Vous bénéficiez donc de la même couverture, pour un prix souvent inférieur.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Pourquoi certains forfaits augmentent de prix après quelques mois ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Beaucoup de forfaits promotionnels affichent un tarif réduit pendant 12 mois, puis reviennent à un tarif plus élevé. Vérifiez toujours la mention « prix après la première année » avant de souscrire.</p>
+    </details>
+    <details>
+      <summary style="font-weight:700;cursor:pointer">Combien de Go faut-il vraiment par mois ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">La consommation moyenne en France tourne autour de 15 à 20 Go par mois. Un usage léger tient dans 20 à 50 Go, un usage intensif (streaming, partage de connexion) justifie 100 Go ou plus.</p>
+    </details>
+  </div>
+
+  <div class="cta">
+    <h3>💬 Rejoignez la communauté</h3>
+    <p>Découvrez encore plus d'astuces testées et partagées par les membres.</p>
+    <div class="cta-form">
+      <a href="/forum-astuces.html" style="background:var(--a);color:white;text-decoration:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;font-family:inherit;font-size:.86rem;display:inline-block">Voir les astuces →</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Boutons partage -->
+<div style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.2rem 1.5rem;margin:2rem auto;max-width:680px;text-align:center">
+  <p style="font-size:.82rem;font-weight:600;color:#5F5E5A;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.05em">Partager cet article</p>
+  <div style="display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap">
+    <a href="https://www.facebook.com/sharer/sharer.php?u=URL_PAGE" target="_blank" rel="noopener" style="background:#1877F2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📘 Facebook</a>
+    <a href="https://twitter.com/intent/tweet?url=URL_PAGE&text=TITRE_PAGE" target="_blank" rel="noopener" style="background:#000;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">𝕏 Twitter</a>
+    <a href="https://www.linkedin.com/sharing/share-offsite/?url=URL_PAGE" target="_blank" rel="noopener" style="background:#0A66C2;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💼 LinkedIn</a>
+    <a href="whatsapp://send?text=TITRE_PAGE - URL_PAGE" target="_blank" rel="noopener" style="background:#25D366;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">💬 WhatsApp</a>
+    <a href="https://pinterest.com/pin/create/button/?url=URL_PAGE&description=TITRE_PAGE" target="_blank" rel="noopener" style="background:#E60023;color:white;text-decoration:none;padding:.5rem 1.1rem;border-radius:50px;font-size:.82rem;font-weight:600;display:inline-flex;align-items:center;gap:.4rem">📌 Pinterest</a>
+  </div>
+</div>
+<script>
+(function(){
+  var url = encodeURIComponent(window.location.href);
+  var titre = encodeURIComponent(document.title);
+  document.querySelectorAll('a[href*="URL_PAGE"]').forEach(function(a){
+    a.href = a.href.replace(/URL_PAGE/g, url).replace(/TITRE_PAGE/g, titre);
+  });
+})();
+</script>
+
+<footer>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Offres et tarifs à titre indicatif, vérifiés en septembre 2026. Vérifiez les conditions actuelles sur le site de chaque opérateur.</span>
+</footer>
+
+<script>
+const FORFAITS = [
+  { operateur:'Auchan Telecom', reseau:'Bouygues', data:100, prix:9.99, icon:'🛒' },
+  { operateur:'Cdiscount Mobile', reseau:'Bouygues', data:100, prix:9.99, icon:'🛍️' },
+  { operateur:'NRJ Mobile', reseau:'Bouygues', data:100, prix:9.99, icon:'📻' },
+  { operateur:'Lebara', reseau:'SFR', data:250, prix:9.99, icon:'🔴' },
+  { operateur:'Sosh', reseau:'Orange', data:80, prix:10.99, icon:'🟠' },
+  { operateur:'RED by SFR', reseau:'SFR', data:130, prix:13.99, icon:'🔴' },
+  { operateur:'B&You', reseau:'Bouygues', data:130, prix:13.99, icon:'🔵' },
+  { operateur:'Free 5G', reseau:'Free', data:150, prix:19.99, icon:'🆓' },
+];
+
+function fmtPrix(n){ return n.toFixed(2).replace('.', ',') + ' €/mois'; }
+
+function render(){
+  const minData = +document.getElementById('data-slider').value;
+  document.getElementById('data-val').textContent = minData + ' Go';
+
+  const filtered = FORFAITS
+    .filter(f => f.data >= minData)
+    .sort((a, b) => a.prix - b.prix);
+
+  const list = document.getElementById('forfaits-list');
+  list.innerHTML = '';
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="empty-msg">Aucun forfait ne propose autant de data pour le moment. Essayez de baisser le curseur.</div>';
+    return;
+  }
+
+  filtered.forEach((f, i) => {
+    const div = document.createElement('div');
+    div.className = 'forfait' + (i === 0 ? ' best' : '');
+    div.innerHTML = `
+      <div class="f-icon">${f.icon}</div>
+      <div class="f-body">
+        <h3>${f.operateur}${i === 0 ? '<span class="f-best-badge">💰 Moins cher</span>' : ''}</h3>
+        <div class="f-desc">Réseau ${f.reseau} · Sans engagement</div>
+      </div>
+      <div class="f-data">
+        <span class="data-num">${f.data}</span>
+        <div class="data-lbl">Go / mois</div>
+      </div>
+      <div class="f-prix">
+        <span class="prix-num">${fmtPrix(f.prix)}</span>
+      </div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+document.getElementById('data-slider').addEventListener('input', render);
+render();
+</script>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#F4B550;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<!-- Google Analytics -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
+Les offres et tarifs présentés sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Les prix, notamment promotionnels, peuvent avoir changé depuis la dernière mise à jour : vérifiez-les directement auprès de chaque opérateur avant de souscrire.
+</div>
+<div style="text-align:center;padding:18px 16px 26px;font-size:11px;color:#8a8a8a;font-family:Arial,Helvetica,sans-serif;background:transparent;">© 2026 Economya.fr &middot; <a href="mentions-legales.html" style="color:#8a8a8a;text-decoration:underline;">Mentions légales</a> &middot; <a href="politique-confidentialite.html" style="color:#8a8a8a;text-decoration:underline;">Confidentialité</a> &middot; <a href="cgu.html" style="color:#8a8a8a;text-decoration:underline;">CGU</a> &middot; <a href="mailto:contact@economya.fr" style="color:#8a8a8a;text-decoration:underline;">Contact</a></div>
+<script src="account-nav.js"></script>
+</body>
+</html>
