@@ -96,7 +96,7 @@
       });
     } else {
       el.style.position = '';
-      el.innerHTML = '<a href="/forum-astuces.html" class="eco-navav-login">👤 Mon compte</a>';
+      el.innerHTML = '<a href="/connexion.html" class="eco-navav-login">👤 Mon compte</a>';
     }
   }
 
@@ -106,7 +106,7 @@
       el.setAttribute('href', '/profil/' + encodeURIComponent(user));
     } else {
       el.textContent = '👤 Mon compte';
-      el.setAttribute('href', '/forum-astuces.html');
+      el.setAttribute('href', '/connexion.html');
     }
     var lo = document.getElementById('navAvMobileLogout');
     if (lo) {

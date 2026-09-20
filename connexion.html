@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion — Economya Community</title>
+<meta name="description" content="Connectez-vous ou créez votre compte Economya pour partager et voter sur les meilleures astuces d'économies.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<script src="/error-tracker.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<style>
+:root{
+  --bg:#FAFAFA;--white:#fff;--border:#EFEFEF;
+  --ink:#0A0A0A;--muted:#737373;--gold:#F59E0B;
+  --green:#22C55E;--red:#EF4444;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;}
+a{text-decoration:none;color:inherit;}
+button{font-family:'Inter',sans-serif;cursor:pointer;}
+.wrap{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 16px;}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;color:#085041;margin-bottom:28px;}
+.logo span{color:var(--gold);}
+.card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:28px 24px 32px;width:100%;max-width:400px;box-shadow:0 4px 24px rgba(0,0,0,.06);}
+.card h1{font-size:19px;font-weight:800;margin-bottom:18px;}
+#authError{display:none;font-size:13px;font-weight:600;margin-bottom:14px;padding:10px 12px;border-radius:10px;}
+.field{margin-bottom:12px;}
+.field label{display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;}
+.field input{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-size:15px;font-family:'Inter',sans-serif;outline:none;background:var(--bg);}
+.field input:focus{border-color:var(--ink);}
+.forgot-link{text-align:right;font-size:12px;color:var(--muted);margin:-6px 0 4px;cursor:pointer;}
+.cgu-field{font-size:12px;color:var(--muted);margin:4px 0 4px;}
+.cgu-field label{display:flex;align-items:flex-start;gap:8px;cursor:pointer;}
+.cgu-field input{margin-top:2px;flex-shrink:0;}
+.cgu-field a{color:var(--ink);text-decoration:underline;}
+.btn-pub{width:100%;background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:700;margin-top:6px;transition:opacity .15s ease;}
+.btn-pub:disabled{opacity:.6;cursor:default;}
+.toggle-text{text-align:center;font-size:13px;color:var(--muted);margin-top:18px;cursor:pointer;}
+.back-home{position:absolute;top:20px;left:20px;font-size:13px;color:var(--muted);}
+.forgot-panel{display:none;}
+.forgot-panel.open{display:block;}
+#forgotMsg{display:none;font-size:13px;font-weight:600;margin-bottom:12px;padding:10px 12px;border-radius:10px;}
+</style>
+</head>
+<body>
+
+<a href="/index.html" class="back-home">← Accueil</a>
+
+<div class="wrap">
+  <a href="/index.html" class="logo">Econom<span>ya</span></a>
+
+  <div class="card" id="authCard">
+    <h1 id="authTitle">🔐 Connexion</h1>
+    <div id="authError"></div>
+    <div class="field" id="authPseudoField" style="display:none">
+      <label>Pseudo</label><input id="authPseudo" placeholder="Marie" maxlength="30">
+    </div>
+    <div class="field"><label>Email</label><input id="authEmail" type="email" placeholder="vous@email.com"></div>
+    <div class="field"><label>Mot de passe</label><input id="authPassword" type="password" placeholder="6 caractères minimum" minlength="6"></div>
+    <div class="field" id="authBirthField" style="display:none">
+      <label>Date de naissance</label><input id="authBirth" type="date">
+    </div>
+    <p class="forgot-link" id="authForgotLink" onclick="openForgot()">Mot de passe oublié ?</p>
+    <p class="cgu-field" id="authCguField" style="display:none;">
+      <label>
+        <input type="checkbox" id="authCgu">
+        <span>J'accepte les <a href="/cgu.html" target="_blank">CGU</a> et la <a href="/politique-confidentialite.html" target="_blank">politique de confidentialité</a>.</span>
+      </label>
+    </p>
+    <div id="authTurnstileField" style="margin:4px 0 4px;">
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAAE8I85zclDzWf1JN"></div>
+    </div>
+    <button class="btn-pub" onclick="submitAuth()" id="authSubmitBtn">Se connecter</button>
+    <p class="toggle-text" id="authToggleText" onclick="toggleAuthMode()">Pas encore de compte ? <b>Inscrivez-vous</b></p>
+  </div>
+
+  <div class="card forgot-panel" id="forgotCard" style="margin-top:14px;">
+    <h1>🔑 Mot de passe oublié</h1>
+    <div id="forgotMsg"></div>
+    <div class="field"><label>Email</label><input id="forgotEmail" type="email" placeholder="vous@email.com"></div>
+    <button class="btn-pub" onclick="submitForgot()">Envoyer le lien</button>
+    <p class="toggle-text" onclick="closeForgot()">Retour à la connexion</p>
+  </div>
+</div>
+
+<script>
+const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+
+function getParam(name){
+  return new URLSearchParams(location.search).get(name);
+}
+const redirectTo = getParam('redirect') || '/forum-astuces.html';
+
+// Si déjà connecté, on ne montre pas le formulaire.
+(function(){
+  try {
+    const s = JSON.parse(localStorage.getItem('eco_session') || 'null');
+    if (s && s.access_token && s.expires_at > Date.now()) {
+      window.location.href = redirectTo;
+    }
+  } catch(e){}
+})();
+
+let authMode = getParam('mode') === 'signup' ? 'signup' : 'login';
+
+function applyMode(){
+  document.getElementById('authTitle').textContent = authMode === 'login' ? '🔐 Connexion' : '✨ Inscription';
+  document.getElementById('authPseudoField').style.display = authMode === 'signup' ? 'block' : 'none';
+  document.getElementById('authForgotLink').style.display = authMode === 'login' ? 'block' : 'none';
+  document.getElementById('authCguField').style.display = authMode === 'signup' ? 'block' : 'none';
+  document.getElementById('authBirthField').style.display = authMode === 'signup' ? 'block' : 'none';
+  document.getElementById('authSubmitBtn').textContent = authMode === 'login' ? 'Se connecter' : "S'inscrire";
+  document.getElementById('authToggleText').innerHTML = authMode === 'login'
+    ? 'Pas encore de compte ? <b>Inscrivez-vous</b>'
+    : 'Déjà un compte ? <b>Connectez-vous</b>';
+}
+applyMode();
+
+function toggleAuthMode(){
+  authMode = authMode === 'login' ? 'signup' : 'login';
+  document.getElementById('authError').style.display = 'none';
+  applyMode();
+}
+function showAuthError(msg, ok){
+  const el = document.getElementById('authError');
+  el.textContent = msg;
+  el.style.background = ok ? '#F0FDF4' : '#FEF2F2';
+  el.style.color = ok ? '#16A34A' : '#DC2626';
+  el.style.display = 'block';
+}
+async function submitAuth(){
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
+  const pseudo = document.getElementById('authPseudo').value.trim();
+  if(!email || !password){ showAuthError('Email et mot de passe requis.'); return; }
+  if(authMode === 'signup' && !pseudo){ showAuthError('Choisissez un pseudo.'); return; }
+  if(authMode === 'signup'){
+    const birthVal = document.getElementById('authBirth').value;
+    if(!birthVal){ showAuthError('Indiquez votre date de naissance.'); return; }
+    const birth = new Date(birthVal);
+    const today = new Date();
+    let age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if(m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+    if(age < 15){ showAuthError('Vous devez avoir au moins 15 ans pour créer un compte sur Economya.'); return; }
+  }
+  if(authMode === 'signup' && !document.getElementById('authCgu').checked){ showAuthError('Vous devez accepter les CGU pour créer un compte.'); return; }
+  const captchaToken = (typeof turnstile !== 'undefined') ? turnstile.getResponse() : null;
+  if(!captchaToken){ showAuthError('Merci de valider la vérification anti-robot.'); return; }
+  const btn = document.getElementById('authSubmitBtn');
+  btn.disabled = true;
+  try {
+    let res;
+    if(authMode === 'signup'){
+      res = await fetch(SUPABASE_URL + '/auth/v1/signup', {
+        method: 'POST',
+        headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+        body: JSON.stringify({email, password, data: {pseudo}, gotrue_meta_security: {captcha_token: captchaToken}})
+      });
+    } else {
+      res = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
+        method: 'POST',
+        headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+        body: JSON.stringify({email, password, gotrue_meta_security: {captcha_token: captchaToken}})
+      });
+    }
+    const data = await res.json();
+    if(!res.ok){
+      const msg = data.msg || data.error_description || data.error || 'Une erreur est survenue.';
+      throw new Error(msg);
+    }
+    if(authMode === 'signup' && !data.access_token){
+      showAuthError('Compte créé ! Vérifiez votre email pour confirmer, puis connectez-vous.', true);
+      if(typeof turnstile !== 'undefined'){ turnstile.reset(); }
+      btn.disabled = false;
+      return;
+    }
+    saveSession(data);
+    window.location.href = redirectTo;
+  } catch(e){
+    showAuthError(e.message === 'Invalid login credentials' ? 'Email ou mot de passe incorrect.' : e.message);
+    if(typeof turnstile !== 'undefined'){ turnstile.reset(); }
+    btn.disabled = false;
+  }
+}
+function saveSession(data){
+  const session = {
+    access_token: data.access_token,
+    refresh_token: data.refresh_token,
+    expires_at: Date.now() + (data.expires_in || 3600) * 1000,
+    user: data.user
+  };
+  localStorage.setItem('eco_session', JSON.stringify(session));
+  const pseudo = (session.user.user_metadata && session.user.user_metadata.pseudo) || session.user.email;
+  localStorage.setItem('eco_user', pseudo);
+}
+function openForgot(){
+  document.getElementById('authCard').style.display = 'none';
+  document.getElementById('forgotMsg').style.display = 'none';
+  document.getElementById('forgotEmail').value = document.getElementById('authEmail').value || '';
+  document.getElementById('forgotCard').classList.add('open');
+}
+function closeForgot(){
+  document.getElementById('forgotCard').classList.remove('open');
+  document.getElementById('authCard').style.display = 'block';
+}
+function showForgotMsg(msg, ok){
+  const el = document.getElementById('forgotMsg');
+  el.textContent = msg;
+  el.style.background = ok ? '#F0FDF4' : '#FEF2F2';
+  el.style.color = ok ? '#16A34A' : '#DC2626';
+  el.style.display = 'block';
+}
+async function submitForgot(){
+  const email = document.getElementById('forgotEmail').value.trim();
+  if(!email){ showForgotMsg('Entrez votre email.'); return; }
+  try {
+    const res = await fetch(SUPABASE_URL + '/auth/v1/recover', {
+      method: 'POST',
+      headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+      body: JSON.stringify({ email, options: { redirect_to: 'https://economya.fr/forum-astuces.html' } })
+    });
+    if(!res.ok){
+      const data = await res.json().catch(()=>({}));
+      throw new Error(data.msg || data.error_description || 'Une erreur est survenue.');
+    }
+    showForgotMsg("Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé.", true);
+  } catch(e){
+    showForgotMsg(e.message);
+  }
+}
+</script>
+</body>
+</html>
