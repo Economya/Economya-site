@@ -8,9 +8,14 @@
   var hideId = scriptEl && scriptEl.getAttribute('data-hide-when-logged-in');
 
   var PALETTE = [
-    ['#F59E0B', '#1A0A00'], ['#22C55E', '#fff'], ['#3B82F6', '#fff'],
-    ['#8B5CF6', '#fff'], ['#EC4899', '#fff'], ['#F97316', '#fff'],
-    ['#14B8A6', '#fff'], ['#6366F1', '#fff']
+    ['radial-gradient(circle at 30% 25%,#FFE29A 0%,#F59E0B 55%,#7C4A03 100%)', '#1A0A00'],
+    ['radial-gradient(circle at 30% 25%,#8FF3C0 0%,#22C55E 55%,#0B5A2E 100%)', '#fff'],
+    ['radial-gradient(circle at 30% 25%,#93C5FD 0%,#3B82F6 55%,#1E3A8A 100%)', '#fff'],
+    ['radial-gradient(circle at 30% 25%,#D8B4FE 0%,#8B5CF6 55%,#4C1D95 100%)', '#fff'],
+    ['radial-gradient(circle at 30% 25%,#FBCFE8 0%,#EC4899 55%,#831843 100%)', '#fff'],
+    ['radial-gradient(circle at 30% 25%,#FED7AA 0%,#F97316 55%,#7C2D12 100%)', '#fff'],
+    ['radial-gradient(circle at 30% 25%,#99F6E4 0%,#14B8A6 55%,#134E4A 100%)', '#fff'],
+    ['radial-gradient(circle at 30% 25%,#C7D2FE 0%,#6366F1 55%,#312E81 100%)', '#fff']
   ];
   function pc(name) { return PALETTE[(name || '?').charCodeAt(0) % PALETTE.length]; }
   function ini(name) {
@@ -40,8 +45,8 @@
     st.id = 'ecoNavAvStyle';
     st.textContent =
       '.eco-navav-trigger{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;' +
-      'font-weight:800;font-size:12px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.15);transition:transform .15s ease,box-shadow .15s ease;border:none;font-family:inherit}' +
-      '.eco-navav-trigger:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(0,0,0,.2)}' +
+      'font-weight:800;font-size:12px;cursor:pointer;box-shadow:inset 0 1px 1px rgba(255,255,255,.5),inset 0 -2px 3px rgba(0,0,0,.35),0 2px 6px rgba(0,0,0,.25);text-shadow:0 1px 2px rgba(0,0,0,.35);transition:transform .15s ease,box-shadow .15s ease;border:none;font-family:inherit}' +
+      '.eco-navav-trigger:hover{transform:translateY(-1px) scale(1.05);box-shadow:inset 0 1px 1px rgba(255,255,255,.5),inset 0 -2px 3px rgba(0,0,0,.35),0 4px 12px rgba(0,0,0,.35)}' +
       '.eco-navav-login{display:inline-flex;align-items:center;gap:6px;color:#fff;border-radius:99px;' +
       'padding:7px 14px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;' +
       'background:linear-gradient(120deg,#2b2b2b 0%,#565656 20%,#7a7a7a 40%,#2b2b2b 60%,#565656 80%,#2b2b2b 100%);' +

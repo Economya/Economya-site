@@ -80,7 +80,7 @@ footer strong{color:white}
 
 nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .eco-dnav-wrap{display:none;align-items:center;gap:1rem}
-@media(min-width:769px){.eco-dnav-wrap{display:flex}}
+@media(min-width:769px){.eco-dnav-wrap{display:flex}.nav-back{display:none}.nav-link{display:none}}
 .eco-dnav{display:flex;gap:.8rem;list-style:none;align-items:center;flex-wrap:wrap;margin:0;padding:0}
 .eco-dnav a{text-decoration:none;color:#2C2C2A;font-size:.78rem;font-weight:600;letter-spacing:.02em;position:relative;white-space:nowrap}
 .eco-dnav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,#EF9F27,#FFE29A,#EF9F27);transition:width .25s ease}
@@ -134,7 +134,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <a class="nav-back" href="index.html">← Tous les articles</a>
   <!-- Menu hamburger mobile -->
 
-<div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="index.html">Accueil</a></li><li><a href="forum-astuces.html">Forum</a></li><li><a href="jeux.html">🎮 Jeux</a></li><li><a href="comparateurs.html">Comparateurs</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
+<div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="index.html">Accueil</a></li><li><a href="community.html">🌱 Community</a></li><li><a href="forum-astuces.html">Forum</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="jeux.html">🎮 Jeux</a></li><li><a href="comparateurs.html">Comparateurs</a></li><li><a href="outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button><div id="navAv" style="cursor:pointer"></div></nav><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="a-propos.html">A propos</a><a href="recherche.html">Rechercher</a><a href="#" id="navAvMobile">👤 Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
 <div class="hero">
   <h1>Êtes-vous en <em>surconsommation</em> ?</h1>

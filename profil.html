@@ -29,7 +29,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .wrap{max-width:600px;margin:0 auto;padding-bottom:40px;}
 
 .pro-hero{background:var(--white);border-bottom:1px solid var(--border);padding:32px 20px;text-align:center;}
-.pro-av{width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;margin:0 auto 14px;overflow:hidden;position:relative;}
+.pro-av{width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;margin:0 auto 14px;overflow:hidden;position:relative;box-shadow:inset 0 2px 2px rgba(255,255,255,.5),inset 0 -3px 6px rgba(0,0,0,.35),0 4px 14px rgba(0,0,0,.2);text-shadow:0 1px 3px rgba(0,0,0,.35);}
 .pro-av img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
 .pro-av-actions{display:flex;gap:8px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;}
 .pro-av-edit{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:700;}
@@ -82,7 +82,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .danger-note{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;}
 
 .eco-dnav-wrap{display:none;align-items:center;gap:1rem}
-@media(min-width:769px){.eco-dnav-wrap{display:flex}}
+@media(min-width:769px){.eco-dnav-wrap{display:flex}.nav-back{display:none}.nav-link{display:none}}
 .eco-dnav{display:flex;gap:.9rem;list-style:none;align-items:center;flex-wrap:wrap;margin:0;padding:0}
 .eco-dnav a{text-decoration:none;color:var(--ink);font-size:13px;font-weight:600;position:relative;white-space:nowrap}
 .eco-dnav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--gold);transition:width .25s ease}
@@ -104,7 +104,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Profil utilisateur — Economya Community</h1>
 <nav class="nav">
   <a href="/index.html" class="nav-logo" style="text-decoration:none;color:inherit">Eco<em>nomya</em></a>
-  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/jeux.html">🎮 Jeux</a></li><li><a href="/outils-gratuits.html">🛠️ Outils</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/forum-astuces.html">Forum</a></li><li><a href="/community.html">🌱 Community</a></li></ul><a href="/recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
+  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/community.html">🌱 Community</a></li><li><a href="/forum-astuces.html">Forum</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/jeux.html">🎮 Jeux</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="/recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
   <a href="#" class="nav-logout" id="navLogout" style="display:none" onclick="doLogout(event)">Déconnexion</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
@@ -237,7 +237,7 @@ async function chooseEmojiAvatar(emoji){
   }
 }
 
-const PALETTE=[['#F59E0B','#1A0A00'],['#22C55E','#fff'],['#3B82F6','#fff'],['#8B5CF6','#fff'],['#EC4899','#fff'],['#F97316','#fff'],['#14B8A6','#fff'],['#6366F1','#fff']];
+const PALETTE=[['radial-gradient(circle at 30% 25%,#FFE29A 0%,#F59E0B 55%,#7C4A03 100%)','#1A0A00'],['radial-gradient(circle at 30% 25%,#8FF3C0 0%,#22C55E 55%,#0B5A2E 100%)','#fff'],['radial-gradient(circle at 30% 25%,#93C5FD 0%,#3B82F6 55%,#1E3A8A 100%)','#fff'],['radial-gradient(circle at 30% 25%,#D8B4FE 0%,#8B5CF6 55%,#4C1D95 100%)','#fff'],['radial-gradient(circle at 30% 25%,#FBCFE8 0%,#EC4899 55%,#831843 100%)','#fff'],['radial-gradient(circle at 30% 25%,#FED7AA 0%,#F97316 55%,#7C2D12 100%)','#fff'],['radial-gradient(circle at 30% 25%,#99F6E4 0%,#14B8A6 55%,#134E4A 100%)','#fff'],['radial-gradient(circle at 30% 25%,#C7D2FE 0%,#6366F1 55%,#312E81 100%)','#fff']];
 function pc(name){return PALETTE[(name||'?').charCodeAt(0)%PALETTE.length];}
 function ini(name){return (name||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
 // RANKS / rank() : voir rank.js (source unique, chargé via <script src="rank.js">)

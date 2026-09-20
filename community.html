@@ -93,7 +93,7 @@ a{text-decoration:none;color:inherit;}
 .footer a{color:var(--ink);font-weight:600;}
 
 .eco-dnav-wrap{display:none;align-items:center;gap:1rem}
-@media(min-width:769px){.eco-dnav-wrap{display:flex}}
+@media(min-width:769px){.eco-dnav-wrap{display:flex}.nav-back{display:none}.nav-link{display:none}}
 .eco-dnav{display:flex;gap:.9rem;list-style:none;align-items:center;flex-wrap:wrap;margin:0;padding:0}
 .eco-dnav a{text-decoration:none;color:var(--ink);font-size:13px;font-weight:600;position:relative;white-space:nowrap}
 .eco-dnav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--gold);transition:width .25s ease}
@@ -117,7 +117,7 @@ a{text-decoration:none;color:inherit;}
   <a href="/index.html" class="nav-logo" style="text-decoration:none;color:inherit">
     <span>Economya <span class="eco">Community</span></span>
   </a>
-  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/jeux.html">🎮 Jeux</a></li><li><a href="/outils-gratuits.html">🛠️ Outils</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/forum-astuces.html">Forum</a></li></ul><a href="/recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
+  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/community.html">🌱 Community</a></li><li><a href="/forum-astuces.html">Forum</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/jeux.html">🎮 Jeux</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="/recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
   <div class="nav-right">
     <button class="nav-btn" id="joinBtn" onclick="window.location='forum-astuces.html'">Rejoindre →</button>
     <div id="navAv" style="cursor:pointer"></div>

@@ -14,7 +14,7 @@
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   :root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FAEEDA;--ad:#633806;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.1)}
   body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);line-height:1.6}
-  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99;flex-wrap:wrap;gap:.4rem}
+  nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99;flex-wrap:wrap;column-gap:.7rem;row-gap:.4rem}
   .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);cursor:pointer}
   .logo span{background:linear-gradient(120deg,#EF9F27 0%,#FFE29A 35%,#EF9F27 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
   .nl{display:flex;gap:.7rem;list-style:none;flex-wrap:wrap}
@@ -211,6 +211,7 @@ window.economyaLoadAds = function() {
   <ul class="nl">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="community.html">🌱 Community</a></li>
+    <li><a href="forum-astuces.html">Forum</a></li>
     <li><a href="a-propos.html">À propos</a></li>
     <li><a href="jeux.html">🎮 Jeux</a></li>
     <li><a href="comparateurs.html">Comparateurs</a></li>
@@ -227,6 +228,7 @@ window.economyaLoadAds = function() {
   <button class="close-btn" onclick="toggleMenu()">✕</button>
   <a href="index.html">🏠 Accueil</a>
   <a href="community.html">🌱 Community</a>
+  <a href="forum-astuces.html">💬 Forum</a>
   <a href="a-propos.html">ℹ️ À propos</a>
   <a href="jeux.html">🎮 Jeux</a>
   <a href="comparateurs.html">🔍 Comparateurs</a>
