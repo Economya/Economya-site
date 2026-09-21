@@ -274,7 +274,7 @@ function toggleMenu(){
         <a href="forum-astuces.html" class="community-btn-ghost">Voir les astuces</a>
       </div>
     </div>
-    <div class="community-right">
+    <div class="community-right" id="communityRight">
       <div class="community-card">
         <div class="cc-header">
           <div class="cc-avatar" style="background:#F59E0B;color:#1A0A00">M</div>
@@ -305,6 +305,57 @@ function toggleMenu(){
     </div>
   </div>
 </section>
+
+<script>
+(function(){
+  var SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+
+  function escapeHtml(s){
+    return String(s==null?'':s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function timeAgo(ts){
+    var d = Date.now() - new Date(ts).getTime();
+    if(d < 3600000) return Math.floor(d/60000) + 'min';
+    if(d < 86400000) return Math.floor(d/3600000) + 'h';
+    return Math.floor(d/86400000) + 'j';
+  }
+  var AVATAR_COLORS = [['#F59E0B','#1A0A00'],['#3B82F6','#fff'],['#EC4899','#fff'],['#22C55E','#fff'],['#8B5CF6','#fff'],['#14B8A6','#fff'],['#EF4444','#fff'],['#6366F1','#fff']];
+  function avatarColor(name){ return AVATAR_COLORS[(name||'?').charCodeAt(0) % AVATAR_COLORS.length]; }
+
+  fetch(SUPABASE_URL + '/rest/v1/astuces?select=titre,categorie,economie,auteur,votes,tested,created_at&hidden=eq.false&order=votes.desc&limit=2', {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+  }).then(function(r){ return r.json(); }).then(function(rows){
+    if(!Array.isArray(rows) || rows.length < 2) return;
+    var a = rows[0], b = rows[1];
+    var ca = avatarColor(a.auteur), cb = avatarColor(b.auteur);
+    var grid = document.getElementById('communityRight');
+    if(!grid) return;
+    grid.innerHTML =
+      '<div class="community-card">' +
+        '<div class="cc-header">' +
+          '<div class="cc-avatar" style="background:' + ca[0] + ';color:' + ca[1] + '">' + escapeHtml((a.auteur||'?').charAt(0).toUpperCase()) + '</div>' +
+          '<div><div class="cc-name">' + escapeHtml(a.auteur) + ' <span class="cc-rank">📈 Contributeur</span></div>' +
+          '<div class="cc-cat">' + escapeHtml(a.categorie) + ' · il y a ' + timeAgo(a.created_at) + '</div></div>' +
+        '</div>' +
+        '<div class="cc-title">' + escapeHtml(a.titre) + '</div>' +
+        '<div class="cc-pill">💰 ' + (a.economie||0).toLocaleString('fr-FR') + '€/an</div>' +
+        '<div class="cc-actions"><span>❤️ ' + (a.votes||0) + '</span><span>✅ ' + (a.tested||0) + ' testés</span><span class="cc-rel">100% fiable</span></div>' +
+      '</div>' +
+      '<div class="community-card" style="transform:rotate(2deg);opacity:.7;margin-top:-20px;pointer-events:none">' +
+        '<div class="cc-header">' +
+          '<div class="cc-avatar" style="background:' + cb[0] + ';color:' + cb[1] + '">' + escapeHtml((b.auteur||'?').charAt(0).toUpperCase()) + '</div>' +
+          '<div><div class="cc-name">' + escapeHtml(b.auteur) + ' <span class="cc-rank">📈 Contributeur</span></div>' +
+          '<div class="cc-cat">' + escapeHtml(b.categorie) + ' · il y a ' + timeAgo(b.created_at) + '</div></div>' +
+        '</div>' +
+        '<div class="cc-title">' + escapeHtml(b.titre) + '</div>' +
+        '<div class="cc-pill">💰 ' + (b.economie||0).toLocaleString('fr-FR') + '€/an</div>' +
+      '</div>';
+  }).catch(function(){ /* garde les cartes statiques en cas d'erreur reseau */ });
+})();
+</script>
 
 <section class="why-sec">
   <div class="why-inner">

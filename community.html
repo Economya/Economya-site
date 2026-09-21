@@ -155,10 +155,47 @@ a{text-decoration:none;color:inherit;}
 (function(){
   var SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
   var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
-  fetch(SUPABASE_URL + '/rest/v1/astuces?select=votes,economie,tested', {
+
+  function escapeHtml(s){
+    return String(s==null?'':s).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function timeAgo(ts){
+    var d = Date.now() - new Date(ts).getTime();
+    if(d < 3600000) return Math.floor(d/60000) + 'min';
+    if(d < 86400000) return Math.floor(d/3600000) + 'h';
+    return Math.floor(d/86400000) + 'j';
+  }
+  function rel(p){
+    var pos = (p.votes||0) + (p.tested||0)*2;
+    var neg = (p.reports||0)*3;
+    if(pos === 0) return 100;
+    return Math.max(0, Math.min(100, Math.round((pos-neg)/pos*100)));
+  }
+  var AVATAR_COLORS = [['#F59E0B','#1A0A00'],['#3B82F6','#fff'],['#EC4899','#fff'],['#22C55E','#fff'],['#8B5CF6','#fff'],['#14B8A6','#fff'],['#EF4444','#fff'],['#6366F1','#fff']];
+  function avatarColor(name){ return AVATAR_COLORS[(name||'?').charCodeAt(0) % AVATAR_COLORS.length]; }
+
+  function buildCard(p){
+    var c = avatarColor(p.auteur);
+    var r = rel(p);
+    return '<div class="preview-card">' +
+      '<div class="pc-header"><div class="pc-avatar" style="background:' + c[0] + ';color:' + c[1] + '">' + escapeHtml((p.auteur||'?').charAt(0).toUpperCase()) + '</div>' +
+      '<div><div class="pc-name">' + escapeHtml(p.auteur) + '</div><div class="pc-cat">' + escapeHtml(p.categorie) + ' · il y a ' + timeAgo(p.created_at) + '</div></div></div>' +
+      '<div class="pc-title">' + escapeHtml(p.titre) + '</div>' +
+      '<div class="pc-body">' + escapeHtml(p.description) + '</div>' +
+      '<div class="pc-pill">💰 ' + (p.economie||0).toLocaleString('fr-FR') + '€/an</div>' +
+      '<div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:' + r + '%"></div></div><span class="rel-label">' + r + '% fiable</span></div>' +
+      '<div class="pc-actions"><span>❤️ ' + (p.votes||0) + '</span><span>✅ ' + (p.tested||0) + ' testés</span></div>' +
+      '</div>';
+  }
+
+  fetch(SUPABASE_URL + '/rest/v1/astuces?select=titre,description,categorie,economie,auteur,votes,tested,reports,created_at&hidden=eq.false&order=votes.desc', {
     headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
   }).then(function(r){ return r.json(); }).then(function(rows){
     if(!Array.isArray(rows) || rows.length === 0) return;
+
+    // Stats globales (sur toutes les astuces)
     var count = rows.length;
     var totalVotes = rows.reduce(function(s,r){ return s + (r.votes||0); }, 0);
     var totalEco = rows.reduce(function(s,r){ return s + (r.economie||0); }, 0);
@@ -173,7 +210,13 @@ a{text-decoration:none;color:inherit;}
     if(elVotes) elVotes.textContent = totalVotes.toLocaleString('fr-FR');
     if(elEco) elEco.textContent = totalEco.toLocaleString('fr-FR') + '€';
     if(elFia) elFia.textContent = fiabilite + '%';
-  }).catch(function(){ /* garde les chiffres statiques en cas d'erreur reseau */ });
+
+    // Cartes d'aperçu (les 4 plus votées, vraies données)
+    var grid = document.getElementById('previewGrid');
+    if(grid && rows.length > 0){
+      grid.innerHTML = rows.slice(0, 4).map(buildCard).join('');
+    }
+  }).catch(function(){ /* garde le contenu statique en cas d'erreur reseau */ });
 })();
 </script>
 
@@ -202,7 +245,7 @@ a{text-decoration:none;color:inherit;}
 <div class="preview">
   <div class="section-tag">Aperçu du réseau</div>
   <div class="section-title">Ce que partagent les membres</div>
-  <div class="preview-grid">
+  <div class="preview-grid" id="previewGrid">
     <div class="preview-card">
       <div class="pc-header">
         <div class="pc-avatar" style="background:#F59E0B;color:#1A0A00">M</div>
