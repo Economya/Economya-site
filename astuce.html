@@ -369,6 +369,7 @@ function renderComments(){
   }).join('');
 }
 
+let lastCommentAt = parseInt(localStorage.getItem('eco_lastcomment')||'0');
 async function submitComment(){
   if(!session || !session.user){
     window.location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname);
@@ -379,6 +380,11 @@ async function submitComment(){
   const text = ta.value.trim();
   if(!text) return;
   if(text.length > 500){ alert('500 caractères maximum.'); return; }
+  const cooldownLeft = 15000 - (Date.now() - lastCommentAt);
+  if(cooldownLeft > 0){
+    alert('Merci de patienter ' + Math.ceil(cooldownLeft/1000) + ' secondes avant de publier un nouveau commentaire.');
+    return;
+  }
   const btn = document.getElementById('commentSubmitBtn');
   if(btn) btn.disabled = true;
   try {
@@ -388,6 +394,8 @@ async function submitComment(){
       body: JSON.stringify({ astuce_id: currentAstuceId, user_id: session.user.id, auteur: auteur, contenu: text })
     });
     if(rows && rows[0]) comments.push(rows[0]);
+    lastCommentAt = Date.now();
+    localStorage.setItem('eco_lastcomment', String(lastCommentAt));
     ta.value = '';
     renderComments();
     sbFetch('astuces?id=eq.' + currentAstuceId, {
