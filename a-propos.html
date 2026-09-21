@@ -135,6 +135,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   <div id="navAv" style="cursor:pointer"></div>
 </nav>
+<main>
 <div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="community.html">Community</a><a href="forum-astuces.html">💡 Astuces</a><a href="recherche.html">Rechercher</a><a href="#" id="navAvMobile">👤 Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
 
@@ -260,6 +261,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   </div>
 </div>
 
+</main>
 <footer>
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Fait avec ❤️ en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Politique de confidentialité</a> · <a href="cgu.html">CGU</a> · <a href="mailto:contact@economya.fr">Contact</a></span>

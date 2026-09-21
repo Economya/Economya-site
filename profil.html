@@ -113,6 +113,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   <a href="#" class="nav-logout" id="navLogout" style="display:none" onclick="doLogout(event)">Déconnexion</a>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+<main>
 <div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/jeux.html">Jeux</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/comparateurs.html">Comparateurs</a><a href="/a-propos.html">A propos</a><a href="/community.html">Community</a><a href="/forum-astuces.html">💡 Astuces</a><a href="/recherche.html">Rechercher</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
 <div class="wrap">
@@ -611,5 +612,6 @@ if(btnValider){
 }
 })();
 </script>
+</main>
 </body>
 </html>

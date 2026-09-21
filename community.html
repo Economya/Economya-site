@@ -129,6 +129,7 @@ a{text-decoration:none;color:inherit;}
   </div>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+<main>
 <div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/jeux.html">Jeux</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/comparateurs.html">Comparateurs</a><a href="/a-propos.html">A propos</a><a href="/forum-astuces.html">💡 Astuces</a><a href="/recherche.html">Rechercher</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
 <script src="account-nav.js" data-hide-when-logged-in="joinBtn"></script>
@@ -416,5 +417,6 @@ if(btnValider){
 }
 })();
 </script>
+</main>
 </body>
 </html>
