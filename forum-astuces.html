@@ -370,12 +370,19 @@ async function submitAuth(){
     saveSession(data);
     closeAll();
     render();
+    refreshUserUI();
   } catch(e){
     showAuthError(e.message === 'Invalid login credentials' ? 'Email ou mot de passe incorrect.' : e.message);
     if(typeof turnstile !== 'undefined'){ turnstile.reset(); }
   }
 }
 function saveSession(data){
+  // Ne fait QUE sauvegarder le token. Ne recharge jamais la liste des votes/alertes
+  // ici : cette fonction est aussi appelee en silence par refreshSessionIfNeeded()
+  // (rafraichissement du token en cours d'action, ex. pendant un clic like/test), et
+  // relancer loadMyActions()/renderFeed() a ce moment-la ecrasait l'etat optimiste du
+  // clic en cours avec les anciennes donnees serveur (le coeur redevenait blanc juste
+  // apres etre passe rouge, meme quand le vote avait bien ete enregistre).
   session = {
     access_token: data.access_token,
     refresh_token: data.refresh_token,
@@ -385,6 +392,8 @@ function saveSession(data){
   localStorage.setItem('eco_session', JSON.stringify(session));
   currentUser = (session.user.user_metadata && session.user.user_metadata.pseudo) || session.user.email;
   localStorage.setItem('eco_user', currentUser);
+}
+function refreshUserUI(){
   updateNav();
   loadAuthorAvatars().then(updateNav);
   fetchMyAlerts().then(renderStories);
@@ -485,6 +494,7 @@ async function submitReset(){
     recoverySession = null;
     closeAll();
     render();
+    refreshUserUI();
   } catch(e){
     showResetError(e.message);
   }
