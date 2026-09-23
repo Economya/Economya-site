@@ -384,16 +384,22 @@ async function doVote(){
     window.location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname);
     return;
   }
-  if(!currentPost || myVoted || pendingActions.has('vote')) return; // deja vote : pas de retrait possible
+  if(!currentPost || pendingActions.has('vote')) return;
   pendingActions.add('vote');
   try {
-    await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:currentPost.id, action:'vote'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-    currentPost.votes = (currentPost.votes||0) + 1;
-    myVoted = true;
+    if(myVoted){
+      await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${currentPost.id}&action=eq.vote`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      currentPost.votes = Math.max(0, (currentPost.votes||0) - 1);
+      myVoted = false;
+    } else {
+      await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:currentPost.id, action:'vote'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      currentPost.votes = (currentPost.votes||0) + 1;
+      myVoted = true;
+    }
     const btn = document.getElementById('voteBtn');
     if(btn){
-      btn.classList.add('liked');
-      document.getElementById('voteIcon').textContent = '❤️';
+      btn.classList.toggle('liked', myVoted);
+      document.getElementById('voteIcon').textContent = myVoted ? '❤️' : '🤍';
       document.getElementById('voteCount').textContent = currentPost.votes;
     }
   } catch(e){ console.error(e); } finally { pendingActions.delete('vote'); }
@@ -404,16 +410,22 @@ async function doTest(){
     window.location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname);
     return;
   }
-  if(!currentPost || myTested || pendingActions.has('test')) return; // deja teste : pas de retrait possible
+  if(!currentPost || pendingActions.has('test')) return;
   pendingActions.add('test');
   try {
-    await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:currentPost.id, action:'test'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-    currentPost.tested = (currentPost.tested||0) + 1;
-    myTested = true;
+    if(myTested){
+      await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${currentPost.id}&action=eq.test`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      currentPost.tested = Math.max(0, (currentPost.tested||0) - 1);
+      myTested = false;
+    } else {
+      await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:currentPost.id, action:'test'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      currentPost.tested = (currentPost.tested||0) + 1;
+      myTested = true;
+    }
     const btn = document.getElementById('testBtn');
     if(btn){
-      btn.classList.add('tested-on');
-      document.getElementById('testIcon').textContent = '✅';
+      btn.classList.toggle('tested-on', myTested);
+      document.getElementById('testIcon').textContent = myTested ? '✅' : '☑️';
       document.getElementById('testCount').textContent = currentPost.tested;
     }
   } catch(e){ console.error(e); } finally { pendingActions.delete('test'); }
