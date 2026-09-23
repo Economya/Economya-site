@@ -384,7 +384,9 @@ function renderVoteBtn(){
   if(btn && currentPost){
     btn.classList.toggle('liked', myVoted);
     document.getElementById('voteIcon').textContent = myVoted ? '❤️' : '🤍';
-    document.getElementById('voteCount').textContent = currentPost.votes||0;
+    // Le chiffre affiche = total de base (autres personnes) + 1 si MOI j'ai vote.
+    // On ne fait jamais +1/-1 cumulatif sur currentPost.votes : ca evite toute derive.
+    document.getElementById('voteCount').textContent = (currentPost.votes||0) + (myVoted?1:0);
   }
 }
 async function doVote(){
@@ -396,8 +398,7 @@ async function doVote(){
   const wasVoted = myVoted;
   pendingActions.add('vote');
   // Mise a jour optimiste : le coeur change tout de suite (comme Twitter/YouTube)
-  if(wasVoted){ currentPost.votes = Math.max(0, (currentPost.votes||0) - 1); myVoted = false; }
-  else { currentPost.votes = (currentPost.votes||0) + 1; myVoted = true; }
+  myVoted = !wasVoted;
   renderVoteBtn();
   try {
     if(wasVoted){
@@ -407,8 +408,7 @@ async function doVote(){
     }
   } catch(e){
     console.error(e);
-    if(wasVoted){ currentPost.votes = (currentPost.votes||0) + 1; myVoted = true; }
-    else { currentPost.votes = Math.max(0, (currentPost.votes||0) - 1); myVoted = false; }
+    myVoted = wasVoted;
     renderVoteBtn();
   } finally { pendingActions.delete('vote'); }
 }
@@ -418,7 +418,7 @@ function renderTestBtn(){
   if(btn && currentPost){
     btn.classList.toggle('tested-on', myTested);
     document.getElementById('testIcon').textContent = myTested ? '✅' : '☑️';
-    document.getElementById('testCount').textContent = currentPost.tested||0;
+    document.getElementById('testCount').textContent = (currentPost.tested||0) + (myTested?1:0);
   }
 }
 async function doTest(){
@@ -429,8 +429,7 @@ async function doTest(){
   if(!currentPost || pendingActions.has('test')) return;
   const wasTested = myTested;
   pendingActions.add('test');
-  if(wasTested){ currentPost.tested = Math.max(0, (currentPost.tested||0) - 1); myTested = false; }
-  else { currentPost.tested = (currentPost.tested||0) + 1; myTested = true; }
+  myTested = !wasTested;
   renderTestBtn();
   try {
     if(wasTested){
@@ -440,8 +439,7 @@ async function doTest(){
     }
   } catch(e){
     console.error(e);
-    if(wasTested){ currentPost.tested = (currentPost.tested||0) + 1; myTested = true; }
-    else { currentPost.tested = Math.max(0, (currentPost.tested||0) - 1); myTested = false; }
+    myTested = wasTested;
     renderTestBtn();
   } finally { pendingActions.delete('test'); }
 }
@@ -645,8 +643,8 @@ async function init(){
       <span class="rel-label" style="color:${rc}">${r}% fiable</span>
     </div>
     <div class="post-actions">
-      <button type="button" class="action ${myVoted?'liked':''}" id="voteBtn" onclick="doVote()"><span id="voteIcon">${myVoted?'❤️':'🤍'}</span> <span id="voteCount">${p.votes||0}</span> votes</button>
-      <button type="button" class="action ${myTested?'tested-on':''}" id="testBtn" onclick="doTest()"><span id="testIcon">${myTested?'✅':'☑️'}</span> <span id="testCount">${p.tested||0}</span> testés</button>
+      <button type="button" class="action ${myVoted?'liked':''}" id="voteBtn" onclick="doVote()"><span id="voteIcon">${myVoted?'❤️':'🤍'}</span> <span id="voteCount">${(p.votes||0) + (myVoted?1:0)}</span> votes</button>
+      <button type="button" class="action ${myTested?'tested-on':''}" id="testBtn" onclick="doTest()"><span id="testIcon">${myTested?'✅':'☑️'}</span> <span id="testCount">${(p.tested||0) + (myTested?1:0)}</span> testés</button>
       <button class="share-cta" id="shareBtn" onclick="shareAstuce(${JSON.stringify(p).replace(/"/g,'&quot;')})">📤 Partager</button>
     </div>
   </div>

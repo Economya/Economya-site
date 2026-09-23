@@ -201,9 +201,10 @@ async function doVote(id){
   const p = currentPosts.find(x=>x.id===id); if(!p) return;
   const wasVoted = myVoted.includes(id);
   pendingActions.add(key);
-  // Mise a jour optimiste : le coeur change tout de suite (comme Twitter/YouTube)
-  if(wasVoted){ p.votes = Math.max(0, (p.votes||0) - 1); myVoted = myVoted.filter(x=>x!==id); }
-  else { p.votes = (p.votes||0) + 1; myVoted.push(id); }
+  // Mise a jour optimiste : le coeur change tout de suite (comme Twitter/YouTube).
+  // Le chiffre affiche = p.votes (base) + 1 si je fais partie des votants, jamais
+  // de +1/-1 cumulatif sur p.votes : pas de derive possible.
+  if(wasVoted){ myVoted = myVoted.filter(x=>x!==id); } else { myVoted.push(id); }
   rerenderPostsList();
   try {
     if(wasVoted){
@@ -213,8 +214,7 @@ async function doVote(id){
     }
   } catch(e){
     console.error(e);
-    if(wasVoted){ p.votes = (p.votes||0) + 1; myVoted.push(id); }
-    else { p.votes = Math.max(0, (p.votes||0) - 1); myVoted = myVoted.filter(x=>x!==id); }
+    if(wasVoted){ myVoted.push(id); } else { myVoted = myVoted.filter(x=>x!==id); }
     rerenderPostsList();
   } finally { pendingActions.delete(key); }
 }
@@ -226,8 +226,7 @@ async function doTest(id){
   const p = currentPosts.find(x=>x.id===id); if(!p) return;
   const wasTested = myTested.includes(id);
   pendingActions.add(key);
-  if(wasTested){ p.tested = Math.max(0, (p.tested||0) - 1); myTested = myTested.filter(x=>x!==id); }
-  else { p.tested = (p.tested||0) + 1; myTested.push(id); }
+  if(wasTested){ myTested = myTested.filter(x=>x!==id); } else { myTested.push(id); }
   rerenderPostsList();
   try {
     if(wasTested){
@@ -237,8 +236,7 @@ async function doTest(id){
     }
   } catch(e){
     console.error(e);
-    if(wasTested){ p.tested = (p.tested||0) + 1; myTested.push(id); }
-    else { p.tested = Math.max(0, (p.tested||0) - 1); myTested = myTested.filter(x=>x!==id); }
+    if(wasTested){ myTested.push(id); } else { myTested = myTested.filter(x=>x!==id); }
     rerenderPostsList();
   } finally { pendingActions.delete(key); }
 }
@@ -374,8 +372,8 @@ function renderPostsList(posts){
         ${p.economie ? `<div class="saving-pill">💰 ${p.economie}€ économisés</div>` : ''}
         <div class="post-meta">
           <span class="post-cat">${escapeHtml(p.categorie||'')}</span>
-          <button type="button" class="action ${hv?'liked':''}" onclick="doVote(${p.id})"><span>${hv?'❤️':'🤍'}</span> ${p.votes||0}</button>
-          <button type="button" class="action ${ht?'tested-on':''}" onclick="doTest(${p.id})"><span>${ht?'✅':'☑️'}</span> ${p.tested||0} testés</button>
+          <button type="button" class="action ${hv?'liked':''}" onclick="doVote(${p.id})"><span>${hv?'❤️':'🤍'}</span> ${(p.votes||0) + (hv?1:0)}</button>
+          <button type="button" class="action ${ht?'tested-on':''}" onclick="doTest(${p.id})"><span>${ht?'✅':'☑️'}</span> ${(p.tested||0) + (ht?1:0)} testés</button>
         </div>
       </div>
     `;
