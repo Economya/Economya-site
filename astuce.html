@@ -402,7 +402,7 @@ async function doVote(){
       document.getElementById('voteIcon').textContent = myVoted ? '❤️' : '🤍';
       document.getElementById('voteCount').textContent = currentPost.votes;
     }
-  } catch(e){ console.error(e); } finally { pendingActions.delete('vote'); }
+  } catch(e){ console.error(e); alert('Le vote n\'a pas pu etre enregistre : ' + e.message); } finally { pendingActions.delete('vote'); }
 }
 
 async function doTest(){
@@ -428,7 +428,7 @@ async function doTest(){
       document.getElementById('testIcon').textContent = myTested ? '✅' : '☑️';
       document.getElementById('testCount').textContent = currentPost.tested;
     }
-  } catch(e){ console.error(e); } finally { pendingActions.delete('test'); }
+  } catch(e){ console.error(e); alert('Le test n\'a pas pu etre enregistre : ' + e.message); } finally { pendingActions.delete('test'); }
 }
 
 let lastCommentAt = parseInt(localStorage.getItem('eco_lastcomment')||'0');

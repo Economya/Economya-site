@@ -212,7 +212,7 @@ async function doVote(id){
       myVoted.push(id);
     }
     rerenderPostsList();
-  } catch(e){ console.error(e); } finally { pendingActions.delete(key); }
+  } catch(e){ console.error(e); alert('Le vote n\'a pas pu etre enregistre : ' + e.message); } finally { pendingActions.delete(key); }
 }
 
 async function doTest(id){
@@ -233,7 +233,7 @@ async function doTest(id){
       myTested.push(id);
     }
     rerenderPostsList();
-  } catch(e){ console.error(e); } finally { pendingActions.delete(key); }
+  } catch(e){ console.error(e); alert('Le test n\'a pas pu etre enregistre : ' + e.message); } finally { pendingActions.delete(key); }
 }
 
 function doLogout(e){
