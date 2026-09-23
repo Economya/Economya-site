@@ -69,6 +69,11 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .post-title{font-weight:800;font-size:15px;line-height:1.35;margin-bottom:6px;}
 .post-body{font-size:13px;color:#404040;line-height:1.5;margin-bottom:10px;}
 .post-meta{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--muted);}
+.post-meta button.action{display:inline-flex;align-items:center;gap:4px;padding:0;border:none;background:transparent;color:var(--muted);font:inherit;font-size:12px;cursor:pointer;transition:color .15s;}
+.post-meta button.action:hover{color:var(--ink);}
+.post-meta button.action.liked{color:var(--green);}
+.post-meta button.action.tested-on{color:var(--blue);}
+
 .post-cat{font-weight:600;}
 .saving-pill{display:inline-flex;align-items:center;gap:5px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--green);margin-bottom:10px;}
 
@@ -151,8 +156,85 @@ async function sbFetch(path){
   return res.json();
 }
 
+async function authedFetch(path, options = {}){
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    ...options,
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + (mySession ? mySession.access_token : SUPABASE_KEY),
+      'Content-Type': 'application/json',
+      'Prefer': 'return=minimal',
+      ...(options.headers || {})
+    }
+  });
+  if(!res.ok) throw new Error(await res.text());
+  return res.status === 204 ? null : res.json();
+}
+
 let mySession = null;
 try { mySession = JSON.parse(localStorage.getItem('eco_session')||'null'); } catch(e){}
+
+// ── Votes / tests donnes par le visiteur connecte (sur n'importe quel profil) ──
+let myVoted = [];
+let myTested = [];
+const pendingActions = new Set();
+
+async function loadMyActions(){
+  if(!mySession || !mySession.user) return;
+  try {
+    const rows = await sbFetch('astuce_actions?user_id=eq.' + mySession.user.id + '&select=astuce_id,action');
+    myVoted = rows.filter(a=>a.action==='vote').map(a=>a.astuce_id);
+    myTested = rows.filter(a=>a.action==='test').map(a=>a.astuce_id);
+  } catch(e){ console.error(e); }
+}
+
+function rerenderPostsList(){
+  const list = document.getElementById('postsList');
+  if(list) list.innerHTML = renderPostsList(currentPosts);
+  if(typeof currentSortMode !== 'undefined' && currentSortMode === 'votes') setSort('votes');
+}
+
+async function doVote(id){
+  if(!mySession || !mySession.user){ location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname); return; }
+  const key = 'vote:' + id;
+  if(pendingActions.has(key)) return;
+  const p = currentPosts.find(x=>x.id===id); if(!p) return;
+  const isVoted = myVoted.includes(id);
+  pendingActions.add(key);
+  try {
+    if(isVoted){
+      await authedFetch(`astuce_actions?user_id=eq.${mySession.user.id}&astuce_id=eq.${id}&action=eq.vote`, {method:'DELETE'});
+      p.votes = Math.max(0, (p.votes||0) - 1);
+      myVoted = myVoted.filter(x=>x!==id);
+    } else {
+      await authedFetch('astuce_actions', {method:'POST', body: JSON.stringify({user_id: mySession.user.id, astuce_id: id, action: 'vote'})});
+      p.votes = (p.votes||0) + 1;
+      myVoted.push(id);
+    }
+    rerenderPostsList();
+  } catch(e){ console.error(e); } finally { pendingActions.delete(key); }
+}
+
+async function doTest(id){
+  if(!mySession || !mySession.user){ location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname); return; }
+  const key = 'test:' + id;
+  if(pendingActions.has(key)) return;
+  const p = currentPosts.find(x=>x.id===id); if(!p) return;
+  const isTested = myTested.includes(id);
+  pendingActions.add(key);
+  try {
+    if(isTested){
+      await authedFetch(`astuce_actions?user_id=eq.${mySession.user.id}&astuce_id=eq.${id}&action=eq.test`, {method:'DELETE'});
+      p.tested = Math.max(0, (p.tested||0) - 1);
+      myTested = myTested.filter(x=>x!==id);
+    } else {
+      await authedFetch('astuce_actions', {method:'POST', body: JSON.stringify({user_id: mySession.user.id, astuce_id: id, action: 'test'})});
+      p.tested = (p.tested||0) + 1;
+      myTested.push(id);
+    }
+    rerenderPostsList();
+  } catch(e){ console.error(e); } finally { pendingActions.delete(key); }
+}
 
 function doLogout(e){
   e.preventDefault();
@@ -275,21 +357,27 @@ function rel(p){
 }
 
 function renderPostsList(posts){
-  return posts.length ? posts.map(p=>`
+  return posts.length ? posts.map(p=>{
+    const hv = myVoted.includes(p.id);
+    const ht = myTested.includes(p.id);
+    return `
       <div class="post">
         <div class="post-title">${escapeHtml(p.titre)}</div>
         <div class="post-body">${escapeHtml(p.description)}</div>
         ${p.economie ? `<div class="saving-pill">💰 ${p.economie}€ économisés/an</div>` : ''}
         <div class="post-meta">
           <span class="post-cat">${escapeHtml(p.categorie||'')}</span>
-          <span>🤍 ${p.votes||0}</span>
-          <span>✅ ${p.tested||0} testés</span>
+          <button type="button" class="action ${hv?'liked':''}" onclick="doVote(${p.id})"><span>${hv?'❤️':'🤍'}</span> ${p.votes||0}</button>
+          <button type="button" class="action ${ht?'tested-on':''}" onclick="doTest(${p.id})"><span>${ht?'✅':'☑️'}</span> ${p.tested||0} testés</button>
         </div>
       </div>
-    `).join('') : '<div class="empty"><div class="empty-icon">📭</div><h3>Aucune astuce publiée</h3></div>';
+    `;
+  }).join('') : '<div class="empty"><div class="empty-icon">📭</div><h3>Aucune astuce publiée</h3></div>';
 }
 
+let currentSortMode = 'recent';
 function setSort(mode){
+  currentSortMode = mode;
   const sorted = currentPosts.slice().sort((a,b) => {
     if(mode === 'votes') return (b.votes||0) - (a.votes||0);
     return new Date(b.created_at) - new Date(a.created_at);
@@ -457,6 +545,7 @@ async function deleteAccount(){
 }
 
 loadProfile();
+loadMyActions();
 </script>
 <div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">

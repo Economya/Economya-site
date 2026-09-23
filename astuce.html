@@ -41,6 +41,9 @@ h1.post-title{font-family:'Playfair Display',serif;font-weight:800;font-size:1.5
 .post-actions{display:flex;gap:10px;border-top:1px solid var(--b);padding-top:14px}
 .action{display:flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--b);border-radius:99px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--t);cursor:pointer;font-family:inherit}
 .action:hover{background:#F0F0EE}
+.action.liked{color:#22C55E;background:#F0FDF4;border-color:#BBF7D0}
+.action.tested-on{color:#3B82F6;background:#EFF6FF;border-color:#BFDBFE}
+
 .share-cta{background:linear-gradient(135deg,var(--g),#25B788);color:#fff;border:none;border-radius:99px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
 .section-tag{font-size:.78rem;font-weight:700;color:var(--m);text-transform:uppercase;letter-spacing:.04em;margin:1.8rem 0 .8rem}
 .related{display:flex;flex-direction:column;gap:10px}
@@ -288,6 +291,11 @@ const TREND_THRESHOLD = 100;
 
 // ── Commentaires (#51) ─────────────────────────────────
 let currentAstuceId = null;
+let currentPost = null;
+let myVoted = false;
+let myTested = false;
+const pendingActions = new Set();
+
 let comments = [];
 let myReportedComments = (function(){ try { return JSON.parse(localStorage.getItem('eco_reported_comments')||'[]'); } catch(e){ return []; } })();
 
@@ -369,6 +377,58 @@ function renderComments(){
       <button type="button" class="comment-report ${hr?'flagged':''}" title="Signaler" onclick="reportComment(${c.id})">🚩</button>
     </div>`;
   }).join('');
+}
+
+async function doVote(){
+  if(!session || !session.user){
+    window.location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname);
+    return;
+  }
+  if(!currentPost || pendingActions.has('vote')) return;
+  pendingActions.add('vote');
+  try {
+    if(myVoted){
+      await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${currentPost.id}&action=eq.vote`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      currentPost.votes = Math.max(0, (currentPost.votes||0) - 1);
+      myVoted = false;
+    } else {
+      await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:currentPost.id, action:'vote'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      currentPost.votes = (currentPost.votes||0) + 1;
+      myVoted = true;
+    }
+    const btn = document.getElementById('voteBtn');
+    if(btn){
+      btn.classList.toggle('liked', myVoted);
+      document.getElementById('voteIcon').textContent = myVoted ? '❤️' : '🤍';
+      document.getElementById('voteCount').textContent = currentPost.votes;
+    }
+  } catch(e){ console.error(e); } finally { pendingActions.delete('vote'); }
+}
+
+async function doTest(){
+  if(!session || !session.user){
+    window.location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname);
+    return;
+  }
+  if(!currentPost || pendingActions.has('test')) return;
+  pendingActions.add('test');
+  try {
+    if(myTested){
+      await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${currentPost.id}&action=eq.test`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      currentPost.tested = Math.max(0, (currentPost.tested||0) - 1);
+      myTested = false;
+    } else {
+      await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:currentPost.id, action:'test'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+      currentPost.tested = (currentPost.tested||0) + 1;
+      myTested = true;
+    }
+    const btn = document.getElementById('testBtn');
+    if(btn){
+      btn.classList.toggle('tested-on', myTested);
+      document.getElementById('testIcon').textContent = myTested ? '✅' : '☑️';
+      document.getElementById('testCount').textContent = currentPost.tested;
+    }
+  } catch(e){ console.error(e); } finally { pendingActions.delete('test'); }
 }
 
 let lastCommentAt = parseInt(localStorage.getItem('eco_lastcomment')||'0');
@@ -475,6 +535,16 @@ async function init(){
     content.innerHTML = '<div class="state">Cette astuce n\'existe plus ou a été retirée. <a href="/forum-astuces.html">Voir toutes les astuces →</a></div>';
     return;
   }
+  currentPost = p;
+  myVoted = false;
+  myTested = false;
+  if(session && session.user){
+    try {
+      const myActions = await sbFetch('astuce_actions?user_id=eq.' + session.user.id + '&astuce_id=eq.' + p.id + '&select=action');
+      myVoted = myActions.some(a=>a.action==='vote');
+      myTested = myActions.some(a=>a.action==='test');
+    } catch(e){ console.error(e); }
+  }
 
   const slug = slugify(p.titre);
   const canonicalUrl = 'https://economya.fr/astuces/post/' + p.id + (slug ? '-' + slug : '');
@@ -560,8 +630,8 @@ async function init(){
       <span class="rel-label" style="color:${rc}">${r}% fiable</span>
     </div>
     <div class="post-actions">
-      <span class="action">🤍 ${p.votes||0} votes</span>
-      <span class="action">☑️ ${p.tested||0} testés</span>
+      <button type="button" class="action ${myVoted?'liked':''}" id="voteBtn" onclick="doVote()"><span id="voteIcon">${myVoted?'❤️':'🤍'}</span> <span id="voteCount">${p.votes||0}</span> votes</button>
+      <button type="button" class="action ${myTested?'tested-on':''}" id="testBtn" onclick="doTest()"><span id="testIcon">${myTested?'✅':'☑️'}</span> <span id="testCount">${p.tested||0}</span> testés</button>
       <button class="share-cta" id="shareBtn" onclick="shareAstuce(${JSON.stringify(p).replace(/"/g,'&quot;')})">📤 Partager</button>
     </div>
   </div>
