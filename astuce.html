@@ -312,7 +312,12 @@ async function sbFetch(path, options = {}) {
     }
   });
   if (!res.ok) throw new Error(await res.text());
-  return res.status === 204 ? null : res.json();
+  // Supabase renvoie parfois un corps VIDE avec un statut different de 204
+  // (ex: POST avec Prefer: return=minimal -> 201 Created sans corps). Faire
+  // res.json() directement plantait alors avec "Unexpected end of JSON input",
+  // ce qui annulait le vote/test optimiste juste apres qu'il ait reussi.
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
 }
 async function refreshSessionIfNeeded(){
   if(!session) return;

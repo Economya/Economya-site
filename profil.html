@@ -168,7 +168,9 @@ async function authedFetch(path, options = {}){
     }
   });
   if(!res.ok) throw new Error(await res.text());
-  return res.status === 204 ? null : res.json();
+  // Meme correctif que sbFetch : eviter de parser un corps vide en JSON.
+  const text = await res.text();
+  return text ? JSON.parse(text) : null;
 }
 
 let mySession = null;
