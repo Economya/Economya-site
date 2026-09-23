@@ -184,6 +184,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
         <option value="🛡️ Assurances">🛡️ Assurances</option>
         <option value="👕 Mode & Vêtements">👕 Mode & Vêtements</option>
         <option value="🍽️ Restaurants & Sorties">🍽️ Restaurants & Sorties</option>
+        <option value="🎟️ Sorties & Loisirs">🎟️ Sorties & Loisirs</option>
         <option value="💊 Santé & Pharmacie">💊 Santé & Pharmacie</option>
         <option value="📚 Enfants & Éducation">📚 Enfants & Éducation</option>
         <option value="🐾 Animaux">🐾 Animaux</option>
@@ -510,7 +511,7 @@ const CATS=[
   {e:'🌐',l:'Toutes'},{e:'📱',l:'Téléphonie'},{e:'🛒',l:'Courses'},
   {e:'⚡',l:'Énergie'},{e:'🏦',l:'Banque'},{e:'🚗',l:'Transport'},
   {e:'✈️',l:'Voyage'},{e:'🏠',l:'Logement'},{e:'🎬',l:'Abos'},
-  {e:'🛡️',l:'Assurances'},{e:'👕',l:'Mode'},{e:'🍽️',l:'Restos'},
+  {e:'🛡️',l:'Assurances'},{e:'👕',l:'Mode'},{e:'🍽️',l:'Restos'},{e:'🎟️',l:'Sorties'},
   {e:'💊',l:'Santé'},{e:'📚',l:'Enfants'},{e:'🐾',l:'Animaux'},
   {e:'🎁',l:'Cadeaux'},{e:'💡',l:'Bricolage'},{e:'🖥️',l:'High-Tech'},
 ];
@@ -647,7 +648,7 @@ function renderFeed(){
       </div>
       <a href="/astuces/post/${p.id}-${slugify(p.titre)}" class="post-title" style="display:block;color:inherit;text-decoration:none">${escapeHtml(p.titre)}</a>
       <div class="post-body">${escapeHtml(p.description)}</div>
-      ${p.economie>0?`<div class="saving-pill">💰 ${p.economie.toLocaleString('fr-FR')}€ économisés/an</div>`:''}
+      ${p.economie>0?`<div class="saving-pill">💰 ${p.economie.toLocaleString('fr-FR')}€ économisés</div>`:''}
       <div class="reliability">
         <div class="rel-track"><div class="rel-fill" style="width:${r}%;background:${rc}"></div></div>
         <span class="rel-label" style="color:${rc}">${r}% fiable</span>

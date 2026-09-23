@@ -364,7 +364,7 @@ function renderPostsList(posts){
       <div class="post">
         <div class="post-title">${escapeHtml(p.titre)}</div>
         <div class="post-body">${escapeHtml(p.description)}</div>
-        ${p.economie ? `<div class="saving-pill">💰 ${p.economie}€ économisés/an</div>` : ''}
+        ${p.economie ? `<div class="saving-pill">💰 ${p.economie}€ économisés</div>` : ''}
         <div class="post-meta">
           <span class="post-cat">${escapeHtml(p.categorie||'')}</span>
           <button type="button" class="action ${hv?'liked':''}" onclick="doVote(${p.id})"><span>${hv?'❤️':'🤍'}</span> ${p.votes||0}</button>

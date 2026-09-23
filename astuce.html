@@ -624,7 +624,7 @@ async function init(){
     </div>
     <h1 class="post-title">${escapeHtml(p.titre)}</h1>
     <div class="post-body">${escapeHtml(p.description)}</div>
-    ${p.economie>0?`<div class="saving-pill">💰 ${p.economie.toLocaleString('fr-FR')}€ économisés/an</div>`:''}
+    ${p.economie>0?`<div class="saving-pill">💰 ${p.economie.toLocaleString('fr-FR')}€ économisés</div>`:''}
     <div class="reliability">
       <div class="rel-track"><div class="rel-fill" style="width:${r}%;background:${rc}"></div></div>
       <span class="rel-label" style="color:${rc}">${r}% fiable</span>
@@ -656,7 +656,7 @@ async function loadRelated(p){
     wrap.innerHTML = '<div class="section-tag">Autres astuces · ' + escapeHtml(p.categorie) + '</div><div class="related">' +
       rows.map(function(r){
         const s = slugify(r.titre);
-        return `<a href="/astuces/post/${r.id}${s?'-'+s:''}">${escapeHtml(r.titre)}<div class="rv">🤍 ${r.votes||0} votes${r.economie>0?' · 💰 '+r.economie.toLocaleString('fr-FR')+'€/an':''}</div></a>`;
+        return `<a href="/astuces/post/${r.id}${s?'-'+s:''}">${escapeHtml(r.titre)}<div class="rv">🤍 ${r.votes||0} votes${r.economie>0?' · 💰 '+r.economie.toLocaleString('fr-FR')+'€':''}</div></a>`;
       }).join('') + '</div>';
   } catch(e){}
 }

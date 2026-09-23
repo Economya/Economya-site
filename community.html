@@ -184,7 +184,7 @@ a{text-decoration:none;color:inherit;}
       '<div><div class="pc-name">' + escapeHtml(p.auteur) + '</div><div class="pc-cat">' + escapeHtml(p.categorie) + ' · il y a ' + timeAgo(p.created_at) + '</div></div></div>' +
       '<div class="pc-title">' + escapeHtml(p.titre) + '</div>' +
       '<div class="pc-body">' + escapeHtml(p.description) + '</div>' +
-      '<div class="pc-pill">💰 ' + (p.economie||0).toLocaleString('fr-FR') + '€/an</div>' +
+      '<div class="pc-pill">💰 ' + (p.economie||0).toLocaleString('fr-FR') + '€</div>' +
       '<div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:' + r + '%"></div></div><span class="rel-label">' + r + '% fiable</span></div>' +
       '<div class="pc-actions"><span>❤️ ' + (p.votes||0) + '</span><span>✅ ' + (p.tested||0) + ' testés</span></div>' +
       '</div>';

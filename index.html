@@ -341,7 +341,7 @@ function toggleMenu(){
           '<div class="cc-cat">' + escapeHtml(a.categorie) + ' · il y a ' + timeAgo(a.created_at) + '</div></div>' +
         '</div>' +
         '<div class="cc-title">' + escapeHtml(a.titre) + '</div>' +
-        '<div class="cc-pill">💰 ' + (a.economie||0).toLocaleString('fr-FR') + '€/an</div>' +
+        '<div class="cc-pill">💰 ' + (a.economie||0).toLocaleString('fr-FR') + '€</div>' +
         '<div class="cc-actions"><span>❤️ ' + (a.votes||0) + '</span><span>✅ ' + (a.tested||0) + ' testés</span><span class="cc-rel">100% fiable</span></div>' +
       '</div>' +
       '<div class="community-card" style="transform:rotate(2deg);opacity:.7;margin-top:-20px;pointer-events:none">' +
@@ -351,7 +351,7 @@ function toggleMenu(){
           '<div class="cc-cat">' + escapeHtml(b.categorie) + ' · il y a ' + timeAgo(b.created_at) + '</div></div>' +
         '</div>' +
         '<div class="cc-title">' + escapeHtml(b.titre) + '</div>' +
-        '<div class="cc-pill">💰 ' + (b.economie||0).toLocaleString('fr-FR') + '€/an</div>' +
+        '<div class="cc-pill">💰 ' + (b.economie||0).toLocaleString('fr-FR') + '€</div>' +
       '</div>';
   }).catch(function(){ /* garde les cartes statiques en cas d'erreur reseau */ });
 })();
