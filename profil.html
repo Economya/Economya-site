@@ -199,20 +199,24 @@ async function doVote(id){
   const key = 'vote:' + id;
   if(pendingActions.has(key)) return;
   const p = currentPosts.find(x=>x.id===id); if(!p) return;
-  const isVoted = myVoted.includes(id);
+  const wasVoted = myVoted.includes(id);
   pendingActions.add(key);
+  // Mise a jour optimiste : le coeur change tout de suite (comme Twitter/YouTube)
+  if(wasVoted){ p.votes = Math.max(0, (p.votes||0) - 1); myVoted = myVoted.filter(x=>x!==id); }
+  else { p.votes = (p.votes||0) + 1; myVoted.push(id); }
+  rerenderPostsList();
   try {
-    if(isVoted){
+    if(wasVoted){
       await authedFetch(`astuce_actions?user_id=eq.${mySession.user.id}&astuce_id=eq.${id}&action=eq.vote`, {method:'DELETE'});
-      p.votes = Math.max(0, (p.votes||0) - 1);
-      myVoted = myVoted.filter(x=>x!==id);
     } else {
       await authedFetch('astuce_actions', {method:'POST', body: JSON.stringify({user_id: mySession.user.id, astuce_id: id, action: 'vote'})});
-      p.votes = (p.votes||0) + 1;
-      myVoted.push(id);
     }
+  } catch(e){
+    console.error(e);
+    if(wasVoted){ p.votes = (p.votes||0) + 1; myVoted.push(id); }
+    else { p.votes = Math.max(0, (p.votes||0) - 1); myVoted = myVoted.filter(x=>x!==id); }
     rerenderPostsList();
-  } catch(e){ console.error(e); } finally { pendingActions.delete(key); }
+  } finally { pendingActions.delete(key); }
 }
 
 async function doTest(id){
@@ -220,20 +224,23 @@ async function doTest(id){
   const key = 'test:' + id;
   if(pendingActions.has(key)) return;
   const p = currentPosts.find(x=>x.id===id); if(!p) return;
-  const isTested = myTested.includes(id);
+  const wasTested = myTested.includes(id);
   pendingActions.add(key);
+  if(wasTested){ p.tested = Math.max(0, (p.tested||0) - 1); myTested = myTested.filter(x=>x!==id); }
+  else { p.tested = (p.tested||0) + 1; myTested.push(id); }
+  rerenderPostsList();
   try {
-    if(isTested){
+    if(wasTested){
       await authedFetch(`astuce_actions?user_id=eq.${mySession.user.id}&astuce_id=eq.${id}&action=eq.test`, {method:'DELETE'});
-      p.tested = Math.max(0, (p.tested||0) - 1);
-      myTested = myTested.filter(x=>x!==id);
     } else {
       await authedFetch('astuce_actions', {method:'POST', body: JSON.stringify({user_id: mySession.user.id, astuce_id: id, action: 'test'})});
-      p.tested = (p.tested||0) + 1;
-      myTested.push(id);
     }
+  } catch(e){
+    console.error(e);
+    if(wasTested){ p.tested = (p.tested||0) + 1; myTested.push(id); }
+    else { p.tested = Math.max(0, (p.tested||0) - 1); myTested = myTested.filter(x=>x!==id); }
     rerenderPostsList();
-  } catch(e){ console.error(e); } finally { pendingActions.delete(key); }
+  } finally { pendingActions.delete(key); }
 }
 
 function doLogout(e){

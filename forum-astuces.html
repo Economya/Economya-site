@@ -694,20 +694,25 @@ async function doVote(id){
   const key = 'vote:'+id;
   if(pendingActions.has(key)) return;
   const p=posts.find(x=>x.id===id);if(!p)return;
-  const isVoted = voted.includes(id);
+  const wasVoted = voted.includes(id);
   pendingActions.add(key);
+  // Mise a jour optimiste : le coeur change tout de suite (comme Twitter/YouTube)
+  if(wasVoted){ p.votes = Math.max(0, (p.votes||0) - 1); voted = voted.filter(x=>x!==id); }
+  else { p.votes = (p.votes||0) + 1; voted.push(id); }
+  renderFeed();
   try {
-    if(isVoted){
+    if(wasVoted){
       await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${id}&action=eq.vote`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-      p.votes = Math.max(0, (p.votes||0) - 1);
-      voted = voted.filter(x=>x!==id);
     } else {
       await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:id, action:'vote'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-      p.votes = (p.votes||0) + 1;
-      voted.push(id);
     }
+  } catch(e){
+    console.error(e);
+    // Echec serveur : on annule la mise a jour optimiste
+    if(wasVoted){ p.votes = (p.votes||0) + 1; voted.push(id); }
+    else { p.votes = Math.max(0, (p.votes||0) - 1); voted = voted.filter(x=>x!==id); }
     renderFeed();
-  } catch(e){console.error(e);} finally { pendingActions.delete(key); }
+  } finally { pendingActions.delete(key); }
 }
 
 async function doTest(id){
@@ -715,20 +720,24 @@ async function doTest(id){
   const key = 'test:'+id;
   if(pendingActions.has(key)) return;
   const p=posts.find(x=>x.id===id);if(!p)return;
-  const isTested = tested.includes(id);
+  const wasTested = tested.includes(id);
   pendingActions.add(key);
+  // Mise a jour optimiste
+  if(wasTested){ p.tested = Math.max(0, (p.tested||0) - 1); tested = tested.filter(x=>x!==id); }
+  else { p.tested = (p.tested||0) + 1; tested.push(id); }
+  renderFeed();
   try {
-    if(isTested){
+    if(wasTested){
       await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${id}&action=eq.test`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-      p.tested = Math.max(0, (p.tested||0) - 1);
-      tested = tested.filter(x=>x!==id);
     } else {
       await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:id, action:'test'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-      p.tested = (p.tested||0) + 1;
-      tested.push(id);
     }
+  } catch(e){
+    console.error(e);
+    if(wasTested){ p.tested = (p.tested||0) + 1; tested.push(id); }
+    else { p.tested = Math.max(0, (p.tested||0) - 1); tested = tested.filter(x=>x!==id); }
     renderFeed();
-  } catch(e){console.error(e);} finally { pendingActions.delete(key); }
+  } finally { pendingActions.delete(key); }
 }
 
 async function doReport(id){
@@ -754,16 +763,21 @@ async function fetchMyAlerts(){
 }
 async function toggleAlert(slug){
   if(!session){openAuth();return;}
+  const wasOn = myAlerts.includes(slug);
+  // Mise a jour optimiste
+  if(wasOn){ myAlerts = myAlerts.filter(s=>s!==slug); } else { myAlerts.push(slug); }
+  renderStories();
   try {
-    if(myAlerts.includes(slug)){
+    if(wasOn){
       await sbFetch(`alerts?user_id=eq.${session.user.id}&categorie=eq.${slug}`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-      myAlerts = myAlerts.filter(s=>s!==slug);
     } else {
       await sbFetch('alerts', {method:'POST', body:JSON.stringify({user_id:session.user.id, categorie:slug}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-      myAlerts.push(slug);
     }
+  } catch(e){
+    console.error(e);
+    if(wasOn){ myAlerts.push(slug); } else { myAlerts = myAlerts.filter(s=>s!==slug); }
     renderStories();
-  } catch(e){console.error(e);}
+  }
 }
 
 function setSort(s,btn){
