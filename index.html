@@ -130,7 +130,7 @@ html{overflow-y:scroll}*,*::before,*::after{box-sizing:border-box;margin:0;paddi
   .mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.6rem 1.5rem;border-radius:10px}
   @media(max-width:768px){
     .hamburger{display:flex}
-    nav .nav-links, nav > a:not(.logo):not([aria-label]), nav > div:not(.mobile-menu){display:none!important}
+    nav .nav-links, nav > a:not(.logo):not([aria-label]), nav > div:not(.mobile-menu):not(.logo){display:none!important}
     nav ul{display:none!important}
   }
 </style>
@@ -237,6 +237,7 @@ window.economyaLoadAds = function() {
 
 <nav>
   <div class="logo">Econom<span>ya</span>.fr</div>
+  <div class="nav-right-group" style="display:flex;align-items:center;gap:1.8rem;flex-wrap:wrap">
   <ul class="nl">
     <li><a href="index.html">Accueil</a></li>
     <li><a href="community.html"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a></li>
@@ -249,6 +250,7 @@ window.economyaLoadAds = function() {
     <a href="forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     <a href="recherche.html" class="icon-link" aria-label="Rechercher"><svg class="ic" style="width:18px;height:18px"><use href="#ic-search"/></svg></a>
     <div id="navAv" style="cursor:pointer"></div>
+  </div>
   </div>
 
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -437,21 +439,18 @@ function toggleMenu(){
     <div class="howcom-steps">
       <div class="howcom-step">
         <div class="howcom-icon"><svg class="ic"><use href="#ic-pencil"/></svg></div>
-        <div class="howcom-num">1</div>
         <h3>Partagez votre astuce</h3>
         <p>En 30 secondes. Racontez comment vous avez économisé, sur le sujet de votre choix — forfait, courses, assurance, voyage...</p>
       </div>
       <div class="howcom-arrow"><svg class="ic"><use href="#ic-arrow-right"/></svg></div>
       <div class="howcom-step">
         <div class="howcom-icon"><svg class="ic"><use href="#ic-heart"/></svg></div>
-        <div class="howcom-num">2</div>
         <h3>La communauté vote</h3>
         <p>Les membres soutiennent et confirment « J'ai testé, ça marche ! » Un score de fiabilité s'affiche sur chaque astuce.</p>
       </div>
       <div class="howcom-arrow"><svg class="ic"><use href="#ic-arrow-right"/></svg></div>
       <div class="howcom-step">
         <div class="howcom-icon"><svg class="ic"><use href="#ic-trophy"/></svg></div>
-        <div class="howcom-num">3</div>
         <h3>Les meilleures remontent</h3>
         <p>Automatiquement. Les astuces fausses disparaissent, les vraies économies restent.</p>
       </div>
