@@ -115,8 +115,8 @@ html{overflow-y:scroll}*,*::before,*::after{box-sizing:border-box;margin:0;paddi
   .howcom-num{position:absolute;top:14px;right:14px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center}
   .howcom-step h3{font-weight:700;font-size:15.5px;margin-bottom:9px;letter-spacing:-.01em}
   .howcom-step p{font-size:13px;color:var(--m);line-height:1.6;font-weight:300}
-  .howcom-arrow{padding:24px 6px;margin-top:26px;flex-shrink:0;display:flex;align-items:center}
-  .howcom-arrow svg{width:58px;height:20px;display:block}
+  .howcom-arrow{color:var(--line);padding:24px 10px;margin-top:26px;flex-shrink:0}
+  .howcom-arrow .ic{width:20px;height:20px;stroke:#D4D4D4}
   .howcom-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
   footer{background:var(--gd);color:rgba(255,255,255,0.65);text-align:center;padding:2rem 1.6rem;font-size:.82rem}
@@ -465,23 +465,13 @@ function toggleMenu(){
         <h3>Partagez votre astuce</h3>
         <p>En 30 secondes. Racontez comment vous avez économisé, sur le sujet de votre choix — forfait, courses, assurance, voyage...</p>
       </div>
-      <div class="howcom-arrow">
-        <svg viewBox="0 0 64 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 10 C14 1,26 1,32 10 S50 19,56 10" stroke="var(--g)" stroke-width="1.6" stroke-linecap="round" stroke-dasharray=".2 6.5" opacity=".5"/>
-          <path d="M46 3.5 L58 10 L46 16.5" stroke="var(--g)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <div class="howcom-arrow"><svg class="ic"><use href="#ic-arrow-right"/></svg></div>
       <div class="howcom-step">
         <div class="howcom-icon"><svg class="ic"><use href="#ic-heart"/></svg></div>
         <h3>La communauté vote</h3>
         <p>Les membres soutiennent et confirment « J'ai testé, ça marche ! » Un score de fiabilité s'affiche sur chaque astuce.</p>
       </div>
-      <div class="howcom-arrow">
-        <svg viewBox="0 0 64 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2 10 C14 1,26 1,32 10 S50 19,56 10" stroke="var(--g)" stroke-width="1.6" stroke-linecap="round" stroke-dasharray=".2 6.5" opacity=".5"/>
-          <path d="M46 3.5 L58 10 L46 16.5" stroke="var(--g)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <div class="howcom-arrow"><svg class="ic"><use href="#ic-arrow-right"/></svg></div>
       <div class="howcom-step">
         <div class="howcom-icon"><svg class="ic"><use href="#ic-trophy"/></svg></div>
         <h3>Les meilleures remontent</h3>
