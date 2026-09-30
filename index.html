@@ -130,7 +130,8 @@ html{overflow-y:scroll}*,*::before,*::after{box-sizing:border-box;margin:0;paddi
   .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#ffffff;z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;isolation:isolate}
   .mobile-menu.open{display:flex}
   .mobile-menu a{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:#085041;text-decoration:none;display:inline-flex;align-items:center;gap:.6rem}
-  .mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.6rem;cursor:pointer;color:#085041;line-height:1}
+  #mobileMenu a[href="forum-astuces.html"] svg{color:#F59E0B}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.6rem;cursor:pointer;color:#085041;line-height:1}
   .mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.6rem 1.5rem;border-radius:10px}
   @media(max-width:768px){
     .hamburger{display:flex}
@@ -276,7 +277,7 @@ function toggleMenu(){
   <a href="community.html"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a>
   <a href="a-propos.html"><svg class="ic"><use href="#ic-info"/></svg>À propos</a>
   <a href="comparateurs.html"><svg class="ic"><use href="#ic-search"/></svg>Comparateurs</a>
-  <a href="outils-gratuits.html" class="nav-cta" onclick="toggleMenu()"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a>
+  <a href="outils-gratuits.html"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a>
   <a href="jeux.html"><svg class="ic"><use href="#ic-gamepad"/></svg>Jeux</a>
   <a href="recherche.html"><svg class="ic"><use href="#ic-search"/></svg>Rechercher</a>
   <a href="#" id="navAvMobile"><svg class="ic"><use href="#ic-user"/></svg>Connexion</a>
