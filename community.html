@@ -21,6 +21,7 @@ html{overflow-y:scroll}
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{min-height:100%;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;}
 a{text-decoration:none;color:inherit;}
+.ic{width:1em;height:1em;display:inline-block;vertical-align:-0.14em;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;margin-right:.35em}
 
 /* NAV */
 .nav{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:99;}
@@ -117,12 +118,29 @@ a{text-decoration:none;color:inherit;}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute">
+<defs>
+<symbol id="ic-leaf" viewBox="0 0 24 24"><path d="M5 19c8 1 14-5 14-14 0 0-13-1-14 9-.4 3 0 5 0 5Z"/><path d="M5 19c2-4 5-7 9-9"/></symbol>
+<symbol id="ic-gamepad" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="10" rx="4"/><path d="M7 11v4M5 13h4"/><circle cx="16" cy="12" r=".6" fill="currentColor" stroke="none"/><circle cx="18.5" cy="14.5" r=".6" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-tools" viewBox="0 0 24 24"><path d="M14.5 6.5 17 4a3 3 0 0 1 4 4l-2.5 2.5M14.5 6.5 4 17v3h3L17 9.5M14.5 6.5 17 9.5"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></symbol>
+<symbol id="ic-idea" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2"/></symbol>
+<symbol id="ic-pencil" viewBox="0 0 24 24"><path d="m4 20 1-4.2L15.6 5.2a2 2 0 0 1 2.8 0l.4.4a2 2 0 0 1 0 2.8L8.2 19 4 20Z"/><path d="M13.5 7.3 16.7 10.5"/></symbol>
+<symbol id="ic-phone" viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+<symbol id="ic-car" viewBox="0 0 24 24"><path d="M4 16v-3.5L6 8h12l2 4.5V16"/><path d="M4 16h16M7 16v2M17 16v2"/><circle cx="7.5" cy="16" r="1.3"/><circle cx="16.5" cy="16" r="1.3"/></symbol>
+<symbol id="ic-plane" viewBox="0 0 24 24"><path d="M2 16l20-8-8 20-2-8-8-2 8-2z"/></symbol>
+<symbol id="ic-shield" viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 5 3 8 7 10 4-2 7-5 7-10V6l-7-3Z"/></symbol>
+<symbol id="ic-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18"/><circle cx="16.5" cy="14" r="1"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9.3-8.8C1.1 8 2.6 5 5.7 4.3 8 3.8 10 5 12 7.3 14 5 16 3.8 18.3 4.3c3.1.7 4.6 3.7 3 6.9C19 15.6 12 20 12 20Z"/></symbol>
+<symbol id="ic-check-badge" viewBox="0 0 24 24"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></symbol>
+</defs>
+</svg>
 
 <nav class="nav">
   <a href="/index.html" class="nav-logo" style="text-decoration:none;color:inherit">
     <span>Economya <span class="eco">Community</span></span>
   </a>
-  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/community.html">🌱 Community</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/jeux.html">🎮 Jeux</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="/forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="/recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
+  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/community.html"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/jeux.html"><svg class="ic"><use href="#ic-gamepad"/></svg>Jeux</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/outils-gratuits.html" class="eco-dnav-cta"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a></li></ul><a href="/forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="/recherche.html" class="eco-dnav-search"><svg class="ic"><use href="#ic-search"/></svg>Rechercher</a></div>
   <div class="nav-right">
     <button class="nav-btn" id="joinBtn" onclick="window.location='forum-astuces.html'">Rejoindre →</button>
     <div id="navAv" style="cursor:pointer"></div>
@@ -130,16 +148,16 @@ a{text-decoration:none;color:inherit;}
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <main>
-<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/jeux.html">Jeux</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/comparateurs.html">Comparateurs</a><a href="/a-propos.html">A propos</a><a href="/forum-astuces.html">💡 Astuces</a><a href="/recherche.html">Rechercher</a></div>
+<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/jeux.html">Jeux</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/comparateurs.html">Comparateurs</a><a href="/a-propos.html">A propos</a><a href="/forum-astuces.html"><svg class="ic"><use href="#ic-idea"/></svg>Astuces</a><a href="/recherche.html">Rechercher</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
 <script src="account-nav.js" data-hide-when-logged-in="joinBtn"></script>
 
 <div class="hero">
-  <div class="hero-tag">🌱 Le réseau social de l'épargne</div>
+  <div class="hero-tag"><svg class="ic"><use href="#ic-leaf"/></svg>Le réseau social de l'épargne</div>
   <h1>Partagez l'astuce qui vous a<br>fait <em>économiser le plus</em></h1>
   <p>Un réseau où chaque conseil est voté, testé et validé par la communauté. Les meilleures astuces remontent, les fausses disparaissent.</p>
   <div class="hero-actions">
-    <button class="btn-primary" onclick="window.location='forum-astuces.html'">✏️ Partager mon astuce</button>
+    <button class="btn-primary" onclick="window.location='forum-astuces.html'"><svg class="ic"><use href="#ic-pencil"/></svg>Partager mon astuce</button>
     <button class="btn-secondary" onclick="window.location='forum-astuces.html'">Découvrir les astuces</button>
   </div>
   <div class="hero-social">Soyez les <b>premiers membres</b> de la communauté<br>Rejoignez ceux qui économisent <b style="color:var(--gold)">ensemble</b></div>
@@ -184,9 +202,9 @@ a{text-decoration:none;color:inherit;}
       '<div><div class="pc-name">' + escapeHtml(p.auteur) + '</div><div class="pc-cat">' + escapeHtml(p.categorie) + ' · il y a ' + timeAgo(p.created_at) + '</div></div></div>' +
       '<div class="pc-title">' + escapeHtml(p.titre) + '</div>' +
       '<div class="pc-body">' + escapeHtml(p.description) + '</div>' +
-      '<div class="pc-pill">💰 ' + (p.economie||0).toLocaleString('fr-FR') + '€</div>' +
+      '<div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>' + (p.economie||0).toLocaleString('fr-FR') + '€</div>' +
       '<div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:' + r + '%"></div></div><span class="rel-label">' + r + '% fiable</span></div>' +
-      '<div class="pc-actions"><span>❤️ ' + (p.votes||0) + '</span><span>✅ ' + (p.tested||0) + ' testés</span></div>' +
+      '<div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>' + (p.votes||0) + '</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>' + (p.tested||0) + ' testés</span></div>' +
       '</div>';
   }
 
@@ -249,46 +267,46 @@ a{text-decoration:none;color:inherit;}
     <div class="preview-card">
       <div class="pc-header">
         <div class="pc-avatar" style="background:#F59E0B;color:#1A0A00">M</div>
-        <div><div class="pc-name">Marie</div><div class="pc-cat">📱 Téléphonie · il y a 5j</div></div>
+        <div><div class="pc-name">Marie</div><div class="pc-cat"><svg class="ic"><use href="#ic-phone"/></svg>Téléphonie · il y a 5j</div></div>
       </div>
       <div class="pc-title">40€/mois économisés en changeant de forfait mobile</div>
       <div class="pc-body">Switché de SFR à Free Mobile. Même réseau, même qualité. 480€/an dans la poche.</div>
-      <div class="pc-pill">💰 480€/an</div>
+      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>480€/an</div>
       <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:100%"></div></div><span class="rel-label">100% fiable</span></div>
-      <div class="pc-actions"><span>❤️ 247</span><span>✅ 89 testés</span></div>
+      <div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>247</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>89 testés</span></div>
     </div>
     <div class="preview-card">
       <div class="pc-header">
         <div class="pc-avatar" style="background:#3B82F6;color:#fff">P</div>
-        <div><div class="pc-name">Pierre</div><div class="pc-cat">🚗 Transport · il y a 4j</div></div>
+        <div><div class="pc-name">Pierre</div><div class="pc-cat"><svg class="ic"><use href="#ic-car"/></svg>Transport · il y a 4j</div></div>
       </div>
       <div class="pc-title">Covoiturage domicile-travail via BlaBlaCar Daily</div>
       <div class="pc-body">3 collègues sur mon trajet, on alterne chaque semaine. 150€/mois économisés sans effort.</div>
-      <div class="pc-pill">💰 1 800€/an</div>
+      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>1 800€/an</div>
       <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:100%"></div></div><span class="rel-label">100% fiable</span></div>
-      <div class="pc-actions"><span>❤️ 203</span><span>✅ 56 testés</span></div>
+      <div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>203</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>56 testés</span></div>
     </div>
     <div class="preview-card">
       <div class="pc-header">
         <div class="pc-avatar" style="background:#EC4899;color:#fff">J</div>
-        <div><div class="pc-name">Julie</div><div class="pc-cat">✈️ Voyage · il y a 6j</div></div>
+        <div><div class="pc-name">Julie</div><div class="pc-cat"><svg class="ic"><use href="#ic-plane"/></svg>Voyage · il y a 6j</div></div>
       </div>
       <div class="pc-title">Réserver vols le mardi matin : jusqu'à -40%</div>
       <div class="pc-body">Les compagnies mettent à jour les tarifs le lundi soir. Mardi avant 10h = meilleur moment.</div>
-      <div class="pc-pill">💰 400€/an</div>
+      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>400€/an</div>
       <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:98%"></div></div><span class="rel-label">98% fiable</span></div>
-      <div class="pc-actions"><span>❤️ 167</span><span>✅ 41 testés</span></div>
+      <div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>167</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>41 testés</span></div>
     </div>
     <div class="preview-card">
       <div class="pc-header">
         <div class="pc-avatar" style="background:#22C55E;color:#fff">T</div>
-        <div><div class="pc-name">Thomas</div><div class="pc-cat">🛡️ Assurances · il y a 3j</div></div>
+        <div><div class="pc-name">Thomas</div><div class="pc-cat"><svg class="ic"><use href="#ic-shield"/></svg>Assurances · il y a 3j</div></div>
       </div>
       <div class="pc-title">Renégocier son assurance auto chaque année</div>
       <div class="pc-body">Avant l'échéance, j'appelle avec un devis concurrent. Ils s'alignent ou je pars.</div>
-      <div class="pc-pill">💰 300€/an</div>
+      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>300€/an</div>
       <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:96%"></div></div><span class="rel-label">96% fiable</span></div>
-      <div class="pc-actions"><span>❤️ 189</span><span>✅ 67 testés</span></div>
+      <div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>189</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>67 testés</span></div>
     </div>
   </div>
 </div>
@@ -297,12 +315,12 @@ a{text-decoration:none;color:inherit;}
   <div class="cta-section">
     <h2>Quelle astuce vous a fait<br>économiser le plus ?</h2>
     <p>Partagez-la. Elle pourrait aider des milliers de personnes.</p>
-    <button class="btn-primary" onclick="window.location='forum-astuces.html'">✏️ Partager mon astuce</button>
+    <button class="btn-primary" onclick="window.location='forum-astuces.html'"><svg class="ic"><use href="#ic-pencil"/></svg>Partager mon astuce</button>
   </div>
 </div>
 
 <div class="footer">
-  <b>Economya Community</b> · Un projet <a href="https://economya.fr">Economya.fr</a> · Fait avec ❤️ en France
+  <b>Economya Community</b> · Un projet <a href="https://economya.fr">Economya.fr</a> · Conçu en France
 </div>
 
 <div style="text-align:center;padding:18px 16px 26px;font-size:11px;color:#8a8a8a;font-family:Arial,Helvetica,sans-serif;background:transparent;">© 2026 Economya.fr &middot; <a href="mentions-legales.html" style="color:#8a8a8a;text-decoration:underline;">Mentions légales</a> &middot; <a href="politique-confidentialite.html" style="color:#8a8a8a;text-decoration:underline;">Confidentialité</a> &middot; <a href="cgu.html" style="color:#8a8a8a;text-decoration:underline;">CGU</a> &middot; <a href="mailto:contact@economya.fr" style="color:#8a8a8a;text-decoration:underline;">Contact</a></div>

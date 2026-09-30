@@ -124,65 +124,92 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .eco-idea-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;flex-shrink:0;color:#fff;text-decoration:none;background:radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE9B0 0%,#F59E0B 42%,#7C4A03 75%,#3D2401 100%);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 3px 8px rgba(0,0,0,.4);transition:transform .15s ease,box-shadow .15s ease}
 .eco-idea-btn svg{width:17px;height:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
 .eco-idea-btn:hover{transform:scale(1.08);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.35),0 4px 12px rgba(245,158,11,.45)}
+.ic{width:1em;height:1em;display:inline-block;vertical-align:-0.14em;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 </style>
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="ic-leaf" viewBox="0 0 24 24"><path d="M5 19c8 1 14-5 14-14 0 0-13-1-14 9-.4 3 0 5 0 5Z"/><path d="M5 19c2-4 5-7 9-9"/></symbol>
+<symbol id="ic-gamepad" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="10" rx="4"/><path d="M7 11v4M5 13h4"/><circle cx="16" cy="12" r=".6" fill="currentColor" stroke="none"/><circle cx="18.5" cy="14.5" r=".6" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-tools" viewBox="0 0 24 24"><path d="M14.5 6.5 17 4a3 3 0 0 1 4 4l-2.5 2.5M14.5 6.5 4 17v3h3L17 9.5M14.5 6.5 17 9.5"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></symbol>
+<symbol id="ic-idea" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2"/></symbol>
+<symbol id="ic-pencil" viewBox="0 0 24 24"><path d="m4 20 1-4.2L15.6 5.2a2 2 0 0 1 2.8 0l.4.4a2 2 0 0 1 0 2.8L8.2 19 4 20Z"/><path d="M13.5 7.3 16.7 10.5"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9.3-8.8C1.1 8 2.6 5 5.7 4.3 8 3.8 10 5 12 7.3 14 5 16 3.8 18.3 4.3c3.1.7 4.6 3.7 3 6.9C19 15.6 12 20 12 20Z"/></symbol>
+<symbol id="ic-check-badge" viewBox="0 0 24 24"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></symbol>
+<symbol id="ic-trending" viewBox="0 0 24 24"><path d="M3 17 9.5 10.5 13.5 14.5 21 6"/><path d="M15 6h6v6"/></symbol>
+<symbol id="ic-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10h18"/><circle cx="16.5" cy="14" r="1"/></symbol>
+<symbol id="ic-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 6H4a3 3 0 0 0 3 5M17 6h3a3 3 0 0 1-3 5"/><path d="M12 14v3M9 20h6l-1-3h-4z"/></symbol>
+<symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".8" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-handshake" viewBox="0 0 24 24"><path d="M2 12h4l3-3 3 3 2-2h4l4 3-3 3-2-2-3 3-3-3-2 2H4"/></symbol>
+<symbol id="ic-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></symbol>
+<symbol id="ic-logout" viewBox="0 0 24 24"><path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3"/><path d="M14 8l5 4-5 4M19 12H9"/></symbol>
+<symbol id="ic-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></symbol>
+<symbol id="ic-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></symbol>
+<symbol id="ic-recycle" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.6-5.7M20 12a8 8 0 0 1-13.6 5.7"/><path d="M16 4v3h3M8 20v-3H5"/></symbol>
+<symbol id="ic-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20V13"/><path d="M2 20h20"/></symbol>
+<symbol id="ic-gem" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9Z"/><path d="M2 9h20M9 3l-3 6 6 12 6-12-3-6"/></symbol>
+<symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9Z"/></symbol>
+<symbol id="ic-muscle" viewBox="0 0 24 24"><rect x="2" y="10" width="3" height="4" rx="1"/><rect x="19" y="10" width="3" height="4" rx="1"/><path d="M5 12h14M7 9v6M17 9v6"/></symbol>
+<symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M12 2c3 2 5 6 5 10 0 2-1 4-2 5l-1-3-2 2-2-2-1 3c-1-1-2-3-2-5 0-4 2-8 5-10Z"/><circle cx="12" cy="9" r="1.5" fill="currentColor" stroke="none"/><path d="M9 16l-3 3M15 16l3 3"/></symbol>
+</defs></svg>
+
 <nav>
   <a href="index.html" class="nav-logo" style="text-decoration:none;color:inherit">Economya</a>
   <a href="index.html" class="nav-back">← Accueil</a>
-  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="index.html">Accueil</a></li><li><a href="community.html">🌱 Community</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="jeux.html">🎮 Jeux</a></li><li><a href="comparateurs.html">Comparateurs</a></li><li><a href="outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
+  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="index.html">Accueil</a></li><li><a href="community.html"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="jeux.html"><svg class="ic"><use href="#ic-gamepad"/></svg>Jeux</a></li><li><a href="comparateurs.html">Comparateurs</a></li><li><a href="outils-gratuits.html" class="eco-dnav-cta"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a></li></ul><a href="forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="recherche.html" class="eco-dnav-search"><svg class="ic"><use href="#ic-search"/></svg>Rechercher</a></div>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   <div id="navAv" style="cursor:pointer"></div>
 </nav>
 <main>
-<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="community.html">Community</a><a href="forum-astuces.html">💡 Astuces</a><a href="recherche.html">Rechercher</a><a href="#" id="navAvMobile">👤 Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
+<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="index.html">Accueil</a><a href="jeux.html">Jeux</a><a href="outils-gratuits.html">Outils gratuits</a><a href="comparateurs.html">Comparateurs</a><a href="community.html">Community</a><a href="forum-astuces.html"><svg class="ic"><use href="#ic-idea"/></svg>Astuces</a><a href="recherche.html">Rechercher</a><a href="#" id="navAvMobile"><svg class="ic"><use href="#ic-user"/></svg>Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626"><svg class="ic"><use href="#ic-logout"/></svg>Déconnexion</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-tag">🌱 Economya Community</div>
+  <div class="hero-tag"><svg class="ic"><use href="#ic-leaf"/></svg>Economya Community</div>
   <h1>Le réseau social<br>qui vous fait <em>économiser</em></h1>
   <p>Une communauté où des milliers de Français partagent leurs vraies astuces, les votent, les testent — et vous aident à vivre mieux.</p>
-  <a href="community.html" class="hero-btn">🚀 Rejoindre la communauté</a>
+  <a href="community.html" class="hero-btn"><svg class="ic"><use href="#ic-rocket"/></svg>Rejoindre la communauté</a>
 </div>
 
 <!-- MACHINE À ÉCONOMISER -->
 <div class="machine-sec">
   <div class="machine-inner">
-    <div class="sec-tag green">⚙️ Comment ça fonctionne</div>
+    <div class="sec-tag green"><svg class="ic"><use href="#ic-gear"/></svg>Comment ça fonctionne</div>
     <div class="sec-title">La machine à <em>économies</em><br>qui tourne 24h/24</div>
     <div class="flow">
       <div class="flow-item">
-        <div class="flow-dot green">✏️</div>
+        <div class="flow-dot green"><svg class="ic"><use href="#ic-pencil"/></svg></div>
         <div class="flow-content">
           <h3>Quelqu'un partage une astuce</h3>
           <p>Un membre découvre qu'il économise 40€/mois en changeant de forfait. Il le partage en 30 secondes sur Economya Community.</p>
-          <span class="flow-badge green">⚡ 30 secondes</span>
+          <span class="flow-badge green"><svg class="ic"><use href="#ic-bolt"/></svg>30 secondes</span>
         </div>
       </div>
       <div class="flow-item">
-        <div class="flow-dot amber">❤️</div>
+        <div class="flow-dot amber"><svg class="ic"><use href="#ic-heart"/></svg></div>
         <div class="flow-content">
           <h3>La communauté vote et teste</h3>
           <p>D'autres membres likent, confirment "J'ai testé, ça marche !" ou signalent si c'est faux. Un score de fiabilité se calcule automatiquement.</p>
-          <span class="flow-badge amber">✅ Validé par de vraies personnes</span>
+          <span class="flow-badge amber"><svg class="ic"><use href="#ic-check-badge"/></svg>Validé par de vraies personnes</span>
         </div>
       </div>
       <div class="flow-item">
-        <div class="flow-dot blue">📈</div>
+        <div class="flow-dot blue"><svg class="ic"><use href="#ic-trending"/></svg></div>
         <div class="flow-content">
           <h3>Les meilleures remontent</h3>
           <p>Les astuces les plus votées et confirmées apparaissent en haut. Sans algorithme opaque. Sans pub déguisée. La qualité gagne.</p>
-          <span class="flow-badge blue">🏆 Classement transparent</span>
+          <span class="flow-badge blue"><svg class="ic"><use href="#ic-trophy"/></svg>Classement transparent</span>
         </div>
       </div>
       <div class="flow-item">
-        <div class="flow-dot purple">💰</div>
+        <div class="flow-dot purple"><svg class="ic"><use href="#ic-wallet"/></svg></div>
         <div class="flow-content">
           <h3>Vous économisez vraiment</h3>
           <p>Vous appliquez l'astuce. Vous économisez. Vous partagez ce que vous avez découvert. La machine tourne, la communauté grandit.</p>
-          <span class="flow-badge purple">♻️ Un cercle vertueux</span>
+          <span class="flow-badge purple"><svg class="ic"><use href="#ic-recycle"/></svg>Un cercle vertueux</span>
         </div>
       </div>
     </div>
@@ -192,21 +219,21 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <!-- STATS -->
 <div class="stats-sec">
   <div class="stats-inner">
-    <div class="sec-tag green" style="margin:0 auto 14px;">📊 Economya en chiffres</div>
+    <div class="sec-tag green" style="margin:0 auto 14px;"><svg class="ic"><use href="#ic-chart"/></svg>Economya en chiffres</div>
     <div class="sec-title" style="color:var(--ink);font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:900;">Ce que la communauté<br>a déjà accompli</div>
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-icon">🎮</div>
+        <div class="stat-icon"><svg class="ic"><use href="#ic-gamepad"/></svg></div>
         <div class="stat-val">46</div>
         <div class="stat-lbl">jeux financiers pour apprendre en s'amusant</div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon">🛠️</div>
+        <div class="stat-icon"><svg class="ic"><use href="#ic-tools"/></svg></div>
         <div class="stat-val">30+</div>
         <div class="stat-lbl">outils gratuits — simulateurs, calculateurs, comparateurs</div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon">🌱</div>
+        <div class="stat-icon"><svg class="ic"><use href="#ic-leaf"/></svg></div>
         <div class="stat-val">2026</div>
         <div class="stat-lbl">fondé en France avec une mission simple : vous faire économiser</div>
       </div>
@@ -217,32 +244,32 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <!-- VALEURS -->
 <div class="values-sec">
   <div class="values-inner">
-    <div class="sec-tag amber">💎 Nos valeurs</div>
+    <div class="sec-tag amber"><svg class="ic"><use href="#ic-gem"/></svg>Nos valeurs</div>
     <div class="sec-title" style="color:var(--ink);font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:900;margin-bottom:0;">Ce en quoi on croit</div>
     <div class="values-grid">
       <div class="val-card">
-        <div class="val-icon g">🎯</div>
+        <div class="val-icon g"><svg class="ic"><use href="#ic-target"/></svg></div>
         <div class="val-content">
           <h3>La vraie info, pas la pub</h3>
           <p>Chaque astuce est votée et testée par vous. Pas d'article sponsorisé caché. Pas de classement payant.</p>
         </div>
       </div>
       <div class="val-card">
-        <div class="val-icon a">💪</div>
+        <div class="val-icon a"><svg class="ic"><use href="#ic-muscle"/></svg></div>
         <div class="val-content">
           <h3>L'intelligence collective</h3>
           <p>Des milliers de Français qui partagent leurs secrets valent mieux qu'une équipe de rédaction.</p>
         </div>
       </div>
       <div class="val-card">
-        <div class="val-icon b">🌍</div>
+        <div class="val-icon b"><svg class="ic"><use href="#ic-globe"/></svg></div>
         <div class="val-content">
           <h3>Accessible à tous</h3>
           <p>Bien gérer son argent est un droit, pas un luxe. Economya est fait pour que chacun puisse vivre mieux, peu importe son niveau de revenus.</p>
         </div>
       </div>
       <div class="val-card">
-        <div class="val-icon p">🤝</div>
+        <div class="val-icon p"><svg class="ic"><use href="#ic-handshake"/></svg></div>
         <div class="val-content">
           <h3>Indépendance totale</h3>
           <p>Nos liens partenaires sont clairement signalés. Nos classements ne sont jamais à vendre. Notre seul juge : la communauté.</p>
@@ -257,13 +284,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <div class="cta-inner">
     <h2>La meilleure astuce, c'est peut-être la vôtre</h2>
     <p>Partagez-la. Elle pourrait changer le quotidien de milliers de personnes</p>
-    <a href="forum-astuces.html" class="cta-btn">✏️ Partager mon astuce</a>
+    <a href="forum-astuces.html" class="cta-btn"><svg class="ic"><use href="#ic-pencil"/></svg>Partager mon astuce</a>
   </div>
 </div>
 
 </main>
 <footer>
-  <strong>Economya.fr</strong> · Le réseau social de l'épargne · Fait avec ❤️ en France<br>
+  <strong>Economya.fr</strong> · Le réseau social de l'épargne · Fait avec <svg class="ic"><use href="#ic-heart"/></svg> en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Politique de confidentialité</a> · <a href="cgu.html">CGU</a> · <a href="mailto:contact@economya.fr">Contact</a></span>
 </footer>
 

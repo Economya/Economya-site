@@ -21,7 +21,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .logo span{color:var(--a)}
 .nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
 .hero{background:linear-gradient(135deg,#1a0533,#7c2d92,#a855f7);color:white;padding:3.5rem 2rem 3rem;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'🔍';position:absolute;font-size:18rem;right:-2rem;top:-3rem;opacity:.05;pointer-events:none}
+.hero::before{content:'';position:absolute;width:600px;height:600px;right:-200px;top:-200px;background:radial-gradient(circle,rgba(255,255,255,.15),transparent 70%);pointer-events:none}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin-bottom:.8rem}
 .hero h1 em{color:var(--a);font-style:normal}
 .hero p{font-size:1rem;color:rgba(255,255,255,.8);max-width:520px;margin:0 auto}
@@ -31,7 +31,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .comp-card{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.5rem;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s;display:block;position:relative}
 .comp-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(124,45,146,.1)}
 .comp-card.top{border:2px solid var(--g)}
-.top-badge{position:absolute;top:1rem;right:1rem;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.2rem .6rem;border-radius:50px}
+.top-badge{position:absolute;top:1rem;right:1rem;background:var(--g);color:white;font-size:.65rem;font-weight:700;padding:.2rem .6rem;border-radius:50px;display:inline-flex;align-items:center;gap:4px}
 .comp-icon{font-size:2.2rem;margin-bottom:.8rem;display:block}
 .comp-cat{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--g);margin-bottom:.3rem}
 .comp-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:.4rem}
@@ -86,6 +86,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .eco-idea-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;flex-shrink:0;color:#fff;text-decoration:none;background:radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE9B0 0%,#F59E0B 42%,#7C4A03 75%,#3D2401 100%);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 3px 8px rgba(0,0,0,.4);transition:transform .15s ease,box-shadow .15s ease}
 .eco-idea-btn svg{width:17px;height:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
 .eco-idea-btn:hover{transform:scale(1.08);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.35),0 4px 12px rgba(245,158,11,.45)}
+.ic{width:1em;height:1em;display:inline-block;vertical-align:-0.14em;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 </style>
 
   <script type="application/ld+json">
@@ -129,14 +130,33 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <link rel="canonical" href="https://economya.fr/comparateurs" />
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="ic-leaf" viewBox="0 0 24 24"><path d="M5 19c8 1 14-5 14-14 0 0-13-1-14 9-.4 3 0 5 0 5Z"/><path d="M5 19c2-4 5-7 9-9"/></symbol>
+<symbol id="ic-gamepad" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="10" rx="4"/><path d="M7 11v4M5 13h4"/><circle cx="16" cy="12" r=".6" fill="currentColor" stroke="none"/><circle cx="18.5" cy="14.5" r=".6" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-tools" viewBox="0 0 24 24"><path d="M14.5 6.5 17 4a3 3 0 0 1 4 4l-2.5 2.5M14.5 6.5 4 17v3h3L17 9.5M14.5 6.5 17 9.5"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></symbol>
+<symbol id="ic-idea" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2"/></symbol>
+<symbol id="ic-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></symbol>
+<symbol id="ic-logout" viewBox="0 0 24 24"><path d="M9 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h3"/><path d="M14 8l5 4-5 4M19 12H9"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-9.3-8.8C1.1 8 2.6 5 5.7 4.3 8 3.8 10 5 12 7.3 14 5 16 3.8 18.3 4.3c3.1.7 4.6 3.7 3 6.9C19 15.6 12 20 12 20Z"/></symbol>
+<symbol id="ic-bank" viewBox="0 0 24 24"><path d="M12 2 2 8h20L12 2Z"/><path d="M4 10v9M9 10v9M15 10v9M20 10v9M2 21h20"/></symbol>
+<symbol id="ic-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/><path d="M6 15h4"/></symbol>
+<symbol id="ic-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h12v-9"/></symbol>
+<symbol id="ic-doc" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v3H9z"/><path d="M8 11h8M8 15h8M8 19h5"/></symbol>
+<symbol id="ic-signal" viewBox="0 0 24 24"><path d="M12 20v-7"/><circle cx="12" cy="13" r="2"/><path d="M8 9a5.7 5.7 0 0 1 8 0M5.5 6.3a9.2 9.2 0 0 1 13 0"/></symbol>
+<symbol id="ic-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="ic-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3 6 9 7 9-7"/></symbol>
+<symbol id="ic-star" viewBox="0 0 24 24"><path d="M12 2.5 14.8 9l7 .6-5.3 4.6 1.6 6.9-6.1-3.7-6.1 3.7 1.6-6.9L2.2 9.6l7-.6Z"/></symbol>
+</defs></svg>
+
 <nav>
   <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
   <a class="nav-back" href="index.html">← Accueil</a>
   <!-- Menu hamburger mobile -->
 
-<div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="index.html">Accueil</a></li><li><a href="community.html">🌱 Community</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="jeux.html">🎮 Jeux</a></li><li><a href="comparateurs.html">Comparateurs</a></li><li><a href="outils-gratuits.html" class="eco-dnav-cta">🛠️ Outils gratuits</a></li></ul><a href="forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
+<div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="index.html">Accueil</a></li><li><a href="community.html"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="jeux.html"><svg class="ic"><use href="#ic-gamepad"/></svg>Jeux</a></li><li><a href="comparateurs.html">Comparateurs</a></li><li><a href="outils-gratuits.html" class="eco-dnav-cta"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a></li></ul><a href="forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="recherche.html" class="eco-dnav-search"><svg class="ic"><use href="#ic-search"/></svg>Rechercher</a></div>
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button><div id="navAv" style="cursor:pointer"></div></nav>
-<main><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="community.html">Community</a><a href="a-propos.html">A propos</a><a href="jeux.html">Jeux</a><a href="comparateurs.html">Comparateurs</a><a href="outils-gratuits.html">Outils gratuits</a><a href="forum-astuces.html">💡 Astuces</a><a href="recherche.html">Rechercher</a><a href="#" id="navAvMobile">👤 Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
+<main><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="index.html">Accueil</a><a href="community.html">Community</a><a href="a-propos.html">A propos</a><a href="jeux.html">Jeux</a><a href="comparateurs.html">Comparateurs</a><a href="outils-gratuits.html">Outils gratuits</a><a href="forum-astuces.html"><svg class="ic"><use href="#ic-idea"/></svg>Astuces</a><a href="recherche.html">Rechercher</a><a href="#" id="navAvMobile"><svg class="ic"><use href="#ic-user"/></svg>Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626"><svg class="ic"><use href="#ic-logout"/></svg>Déconnexion</a></div>
 
 <div class="hero">
   <h1>Nos <em>comparateurs</em> gratuits</h1>
@@ -145,12 +165,12 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
 <div class="container">
 
-  <div class="section-title">🏦 Banques & Épargne</div>
+  <div class="section-title"><svg class="ic"><use href="#ic-bank"/></svg> Banques & Épargne</div>
   <div class="comp-grid">
 
     <a href="comparateur-livrets.html" class="comp-card top">
-      <span class="top-badge">⭐ Outil interactif</span>
-      <span class="comp-icon">🏦</span>
+      <span class="top-badge"><svg class="ic"><use href="#ic-star"/></svg>Outil interactif</span>
+      <span class="comp-icon"><svg class="ic"><use href="#ic-bank"/></svg></span>
       <div class="comp-cat">Épargne</div>
       <div class="comp-name">Comparateur livrets d'épargne</div>
       <div class="comp-desc">Comparez tous les livrets réglementés et calculez vos gains selon votre montant en temps réel.</div>
@@ -165,7 +185,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </a>
 
     <a href="neobanques-2026.html" class="comp-card">
-      <span class="comp-icon">💳</span>
+      <span class="comp-icon"><svg class="ic"><use href="#ic-card"/></svg></span>
       <div class="comp-cat">Banques</div>
       <div class="comp-name">Néobanques 2026</div>
       <div class="comp-desc">Revolut, N26, Lydia, Nickel — laquelle choisir selon votre profil et vos besoins ?</div>
@@ -179,7 +199,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </a>
 
     <a href="banque-en-ligne-vs-traditionnelle.html" class="comp-card">
-      <span class="comp-icon">🏛️</span>
+      <span class="comp-icon"><svg class="ic"><use href="#ic-bank"/></svg></span>
       <div class="comp-cat">Banques</div>
       <div class="comp-name">Banque en ligne vs traditionnelle</div>
       <div class="comp-desc">Boursobank, Hello Bank, Fortuneo — zéro frais bancaires, quelle est la meilleure en 2026 ?</div>
@@ -193,12 +213,12 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
   </div>
 
-  <div class="section-title">🏠 Immobilier & Crédit</div>
+  <div class="section-title"><svg class="ic"><use href="#ic-home"/></svg> Immobilier & Crédit</div>
   <div class="comp-grid">
 
     <a href="simulateur-credit-immo.html" class="comp-card top">
-      <span class="top-badge">⭐ Outil interactif</span>
-      <span class="comp-icon">🏠</span>
+      <span class="top-badge"><svg class="ic"><use href="#ic-star"/></svg>Outil interactif</span>
+      <span class="comp-icon"><svg class="ic"><use href="#ic-home"/></svg></span>
       <div class="comp-cat">Crédit immobilier</div>
       <div class="comp-name">Simulateur crédit immobilier</div>
       <div class="comp-desc">Calculez vos mensualités et comparez l'impact du taux et de la durée sur le coût total.</div>
@@ -211,7 +231,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </a>
 
     <a href="calculateur-frais-notaire.html" class="comp-card">
-      <span class="comp-icon">📋</span>
+      <span class="comp-icon"><svg class="ic"><use href="#ic-doc"/></svg></span>
       <div class="comp-cat">Immobilier</div>
       <div class="comp-name">Frais de notaire</div>
       <div class="comp-desc">Ancien, neuf ou terrain — calculez précisément vos frais de notaire et optimisez votre budget.</div>
@@ -225,11 +245,11 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
 </div>
 
-  <div class="section-title">📱 Téléphonie & Internet</div>
+  <div class="section-title"><svg class="ic"><use href="#ic-signal"/></svg> Téléphonie & Internet</div>
   <div class="comp-grid">
 
     <a href="forfaits-5g-pas-cher.html" class="comp-card">
-      <span class="comp-icon">📡</span>
+      <span class="comp-icon"><svg class="ic"><use href="#ic-signal"/></svg></span>
       <div class="comp-cat">Mobile</div>
       <div class="comp-name">Forfaits 5G pas cher</div>
       <div class="comp-desc">Comparez les meilleurs forfaits 5G à petit prix — Free, Bouygues, SFR, Orange. Dès 9,99 €/mois.</div>
@@ -243,7 +263,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </a>
 
     <a href="vpn-gratuit-payant.html" class="comp-card">
-      <span class="comp-icon">🔒</span>
+      <span class="comp-icon"><svg class="ic"><use href="#ic-lock"/></svg></span>
       <div class="comp-cat">High-tech</div>
       <div class="comp-name">VPN gratuit vs payant</div>
       <div class="comp-desc">Quel VPN choisir en 2026 ? Comparatif complet des meilleures solutions gratuites et payantes.</div>
@@ -258,7 +278,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   </div>
 
   <div class="newsletter">
-    <h2>📬 Nouveaux comparatifs chaque semaine</h2>
+    <h2><svg class="ic"><use href="#ic-mail"/></svg> Nouveaux comparatifs chaque semaine</h2>
     <p>Recevez nos comparatifs mis à jour et les meilleures offres du moment.</p>
     <div class="nl-form">
       <form action="https://8c3516b5.sibforms.com/serve/MUIFAJ7Uw5h5Fjb8WPWvxzffQ8pcvJ7gIdeCWQHWqGm-ovG94xuIqP1HX7FWoPMTkBLZz6o-pkHCgDxXe7D_2o4X0BwLHldjyE3p6jqiajS2rYCpWpdRI44saG6YZ-m_jwv-SVXVmMm8PMkQ9Dh0rZ0X_hQg3UC3KKqm8CeDvvkj1CLAR3IBPt6ZOLCLgEOOtsFOzYGVT6MINtcZOQ==" method="POST"><input type="email" name="EMAIL" placeholder="votre@email.fr" required>
@@ -270,7 +290,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
 </main>
 <footer>
-  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec ❤️ en France<br>
+  <strong>Economya.fr</strong> · Votre meilleur allié finance · Fait avec <svg class="ic"><use href="#ic-heart"/></svg> en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · Comparatifs à titre indicatif. Vérifiez les offres sur les sites officiels.</span>
 </footer>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
