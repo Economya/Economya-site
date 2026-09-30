@@ -251,6 +251,15 @@ window.economyaLoadAds = function() {
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
   <span></span><span></span><span></span>
 </button>
+<script>
+function toggleMenu(){
+  var m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+</script>
+<script src="account-nav.js"></script>
+</nav>
 <div class="mobile-menu" id="mobileMenu">
   <button class="close-btn" onclick="toggleMenu()">&times;</button>
   <a href="index.html"><svg class="ic"><use href="#ic-home"/></svg>Accueil</a>
@@ -264,15 +273,6 @@ window.economyaLoadAds = function() {
   <a href="#" id="navAvMobile"><svg class="ic"><use href="#ic-user"/></svg>Connexion</a>
   <a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626"><svg class="ic"><use href="#ic-logout"/></svg>Déconnexion</a>
 </div>
-<script>
-function toggleMenu(){
-  var m = document.getElementById('mobileMenu');
-  m.classList.toggle('open');
-  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
-}
-</script>
-<script src="account-nav.js"></script>
-</nav>
 <main>
 
 <div class="hero">
