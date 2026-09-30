@@ -96,8 +96,8 @@ html{overflow-y:scroll}*,*::before,*::after{box-sizing:border-box;margin:0;paddi
   .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left}
   @media(max-width:760px){.why-grid{grid-template-columns:1fr}}
   @media(max-width:1000px) and (min-width:760px){.why-grid{grid-template-columns:repeat(2,1fr)}}
-  .why-card{border-radius:18px;padding:28px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:border-color .2s,background .2s}
-  .why-card:hover{border-color:rgba(255,226,154,.35);background:rgba(255,255,255,.06)}
+  .why-card{border-radius:18px;padding:28px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);transition:border-color .2s,background .2s,transform .2s ease,box-shadow .2s ease;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+  .why-card:hover{border-color:rgba(255,226,154,.35);background:rgba(255,255,255,.06);transform:translateY(-4px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 14px 30px rgba(0,0,0,.35),0 0 0 1px rgba(255,226,154,.08)}
   .why-icon{width:44px;height:44px;border-radius:12px;background:rgba(255,226,154,.12);color:#FFE29A;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
   .why-icon .ic{width:22px;height:22px}
   .why-card h3{font-weight:700;font-size:15px;margin-bottom:9px;color:#fff;line-height:1.35}
