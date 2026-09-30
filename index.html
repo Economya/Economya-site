@@ -32,8 +32,8 @@ html{overflow-y:scroll}*,*::before,*::after{box-sizing:border-box;margin:0;paddi
   .nl a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--a);transition:width .25s ease}
   .nl a:hover{color:var(--gd)}
   .nl a:hover::after{width:100%}
-  .ncta{display:inline-flex!important;align-items:center;gap:.4rem;background:var(--g);color:#fff!important;padding:.55rem 1.1rem;border-radius:10px;font-weight:700;text-decoration:none;transition:transform .15s ease,opacity .15s ease}
-  .ncta:hover{transform:translateY(-1px);opacity:.9}
+  .ncta{display:inline-flex!important;align-items:center;gap:.4rem;background:linear-gradient(120deg,#085041 0%,#1D9E75 25%,#3DCB9A 45%,#1D9E75 65%,#085041 100%);background-size:220% 100%;background-position:0% 0%;color:#fff!important;padding:.55rem 1.1rem;border-radius:50px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 2px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.15);transition:background-position .6s ease,transform .15s ease}
+  .ncta:hover{background-position:100% 0%;transform:translateY(-1px)}
   .ncta::after{display:none}
   .icon-link{width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--t);border:1px solid var(--line);text-decoration:none;transition:border-color .2s,color .2s}
   .icon-link:hover{border-color:var(--gd);color:var(--gd)}
