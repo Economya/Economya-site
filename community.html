@@ -120,6 +120,9 @@ a{text-decoration:none;color:inherit;}
 .eco-idea-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;flex-shrink:0;color:#fff;text-decoration:none;background:radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE9B0 0%,#F59E0B 42%,#7C4A03 75%,#3D2401 100%);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 3px 8px rgba(0,0,0,.4);transition:transform .15s ease,box-shadow .15s ease}
 .eco-idea-btn svg{width:17px;height:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
 .eco-idea-btn:hover{transform:scale(1.08);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.35),0 4px 12px rgba(245,158,11,.45)}
+
+.shield-badge{display:flex;justify-content:center;margin-bottom:22px}
+.shield-badge svg{width:92px;height:auto;filter:drop-shadow(0 10px 20px rgba(0,0,0,.35)) drop-shadow(0 2px 10px rgba(245,158,11,.3))}
 </style>
 </head>
 <body>
@@ -319,6 +322,31 @@ a{text-decoration:none;color:inherit;}
 
 <div style="max-width:860px;margin:0 auto;padding:0 24px 72px;">
   <div class="cta-section">
+    <div class="shield-badge">
+      <svg viewBox="0 0 220 260">
+        <defs>
+          <linearGradient id="shG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3a3a3a"/>
+            <stop offset="55%" stop-color="#1a1a1a"/>
+            <stop offset="100%" stop-color="#000"/>
+          </linearGradient>
+          <linearGradient id="shEdge" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#F5D28B"/>
+            <stop offset="100%" stop-color="#C87A06"/>
+          </linearGradient>
+        </defs>
+        <path d="M110 6 L204 34 V124 C204 190 164 232 110 254 C56 232 16 190 16 124 V34 Z" fill="url(#shG)" stroke="url(#shEdge)" stroke-width="3"/>
+        <g fill="none" stroke="#F59E0B" stroke-width="1.6" stroke-linecap="round" transform="translate(110,108)">
+          <circle fill="#F59E0B" stroke="none" cx="0" cy="-30" r="7"/>
+          <circle fill="#F59E0B" stroke="none" cx="-30" cy="18" r="7"/>
+          <circle fill="#F59E0B" stroke="none" cx="30" cy="18" r="7"/>
+          <circle fill="#fff" stroke="none" cx="0" cy="0" r="8.5"/>
+          <line x1="0" y1="-23" x2="0" y2="-7"/>
+          <line x1="-24" y1="14" x2="-6" y2="4"/>
+          <line x1="24" y1="14" x2="6" y2="4"/>
+        </g>
+      </svg>
+    </div>
     <h2>Quelle astuce vous a fait<br>économiser le plus ?</h2>
     <p>Partagez-la. Elle pourrait aider des milliers de personnes.</p>
     <button class="btn-primary" onclick="window.location='forum-astuces.html'"><svg class="ic"><use href="#ic-pencil"/></svg>Partager mon astuce</button>
