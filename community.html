@@ -111,7 +111,7 @@ a{text-decoration:none;color:inherit;}
 .hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px}
 .mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#fff;z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem}
 .mobile-menu.open{display:flex}
-.mobile-menu a{font-size:1.2rem;font-weight:700;color:var(--ink);text-decoration:none}
+.mobile-menu a{font-size:1.2rem;font-weight:700;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:.6rem}
 #mobileMenu a[href="forum-astuces.html"] svg{color:#F59E0B}
 .mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--ink)}
 @media(max-width:768px){.hamburger{display:flex}}
@@ -173,7 +173,7 @@ a{text-decoration:none;color:inherit;}
 <body>
 <svg width="0" height="0" style="position:absolute">
 <defs>
-<symbol id="ic-leaf" viewBox="0 0 24 24"><path d="M5 19c8 1 14-5 14-14 0 0-13-1-14 9-.4 3 0 5 0 5Z"/><path d="M5 19c2-4 5-7 9-9"/></symbol>
+<symbol id="ic-leaf" viewBox="0 0 24 24"><path d="M5 19c8 1 14-5 14-14 0 0-13-1-14 9-.4 3 0 5 0 5Z"/><path d="M5 19c2-4 5-7 9-9"/></symbol><symbol id="ic-home" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v9h12v-9"/></symbol><symbol id="ic-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.1"/></symbol>
 <symbol id="ic-gamepad" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="10" rx="4"/><path d="M7 11v4M5 13h4"/><circle cx="16" cy="12" r=".6" fill="currentColor" stroke="none"/><circle cx="18.5" cy="14.5" r=".6" fill="currentColor" stroke="none"/></symbol>
 <symbol id="ic-tools" viewBox="0 0 24 24"><path d="M14.5 6.5 17 4a3 3 0 0 1 4 4l-2.5 2.5M14.5 6.5 4 17v3h3L17 9.5M14.5 6.5 17 9.5"/></symbol>
 <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></symbol>
@@ -202,7 +202,7 @@ a{text-decoration:none;color:inherit;}
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <main>
-<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html"><svg class="ic"><use href="#ic-idea"/></svg>Economya Network</a><a href="/a-propos.html">A propos</a><a href="/comparateurs.html">Comparateurs</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/jeux.html">Jeux</a><a href="/recherche.html">Rechercher</a></div>
+<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html"><svg class="ic"><use href="#ic-home"/></svg>Accueil</a><a href="/forum-astuces.html"><svg class="ic"><use href="#ic-idea"/></svg>Economya Network</a><a href="/community.html"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a><a href="/a-propos.html"><svg class="ic"><use href="#ic-info"/></svg>À propos</a><a href="/comparateurs.html"><svg class="ic"><use href="#ic-search"/></svg>Comparateurs</a><a href="/outils-gratuits.html"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a><a href="/jeux.html"><svg class="ic"><use href="#ic-gamepad"/></svg>Jeux</a><a href="/recherche.html"><svg class="ic"><use href="#ic-search"/></svg>Rechercher</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
 <script src="account-nav.js" data-hide-when-logged-in="joinBtn"></script>
 
@@ -419,11 +419,11 @@ a{text-decoration:none;color:inherit;}
           <g filter="url(#nodeShadow2)"><circle cx="582" cy="305" r="27" fill="url(#nodeT2)"/><circle cx="582" cy="305" r="27" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1"/><text x="582" y="312" text-anchor="middle" font-size="18" font-weight="800" fill="#06250f" font-family="Inter">T</text></g>
           <g filter="url(#nodeShadow2)"><circle cx="350" cy="400" r="27" fill="url(#nodeS2)"/><circle cx="350" cy="400" r="27" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1"/><text x="350" y="407" text-anchor="middle" font-size="18" font-weight="800" fill="#fff" font-family="Inter">S</text></g>
 
-          <g><text class="nw-label" x="170" y="155" text-anchor="middle" font-size="13.5">Marie</text><rect class="chip-bg" x="137" y="162" width="66" height="22" rx="11"/><text class="chip-txt" x="170" y="177" text-anchor="middle" font-size="11">480€/an</text></g>
-          <g><text class="nw-label" x="540" y="155" text-anchor="middle" font-size="13.5">Pierre</text><rect class="chip-bg" x="500" y="162" width="80" height="22" rx="11"/><text class="chip-txt" x="540" y="177" text-anchor="middle" font-size="11">1 800€/an</text></g>
-          <g><text class="nw-label" x="118" y="350" text-anchor="middle" font-size="13.5">Julie</text><rect class="chip-bg" x="85" y="357" width="66" height="22" rx="11"/><text class="chip-txt" x="118" y="372" text-anchor="middle" font-size="11">400€/an</text></g>
-          <g><text class="nw-label" x="582" y="350" text-anchor="middle" font-size="13.5">Thomas</text><rect class="chip-bg" x="549" y="357" width="66" height="22" rx="11"/><text class="chip-txt" x="582" y="372" text-anchor="middle" font-size="11">250€/an</text></g>
-          <g><text class="nw-label" x="350" y="445" text-anchor="middle" font-size="13.5">Sophie</text><rect class="chip-bg" x="317" y="452" width="66" height="22" rx="11"/><text class="chip-txt" x="350" y="467" text-anchor="middle" font-size="11">600€/an</text></g>
+          <g><text class="nw-label" x="170" y="155" text-anchor="middle" font-size="13.5">Marie</text><rect class="chip-bg" x="132" y="161" width="76" height="24" rx="12"/><text class="chip-txt" x="170" y="177" text-anchor="middle" font-size="10.5">480€/an</text></g>
+          <g><text class="nw-label" x="540" y="155" text-anchor="middle" font-size="13.5">Pierre</text><rect class="chip-bg" x="492" y="161" width="96" height="24" rx="12"/><text class="chip-txt" x="540" y="177" text-anchor="middle" font-size="10.5">1 800€/an</text></g>
+          <g><text class="nw-label" x="118" y="350" text-anchor="middle" font-size="13.5">Julie</text><rect class="chip-bg" x="80" y="356" width="76" height="24" rx="12"/><text class="chip-txt" x="118" y="372" text-anchor="middle" font-size="10.5">400€/an</text></g>
+          <g><text class="nw-label" x="582" y="350" text-anchor="middle" font-size="13.5">Thomas</text><rect class="chip-bg" x="544" y="356" width="76" height="24" rx="12"/><text class="chip-txt" x="582" y="372" text-anchor="middle" font-size="10.5">250€/an</text></g>
+          <g><text class="nw-label" x="350" y="445" text-anchor="middle" font-size="13.5">Sophie</text><rect class="chip-bg" x="312" y="451" width="76" height="24" rx="12"/><text class="chip-txt" x="350" y="467" text-anchor="middle" font-size="10.5">600€/an</text></g>
 
           <g filter="url(#bnShadow2)"><polygon points="233,55 242,40 458,40 467,55 458,70 242,70" fill="url(#bnTop2)" stroke="rgba(255,255,255,.3)" stroke-width="1"/><text x="350" y="59" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Inter" letter-spacing=".3">Astuces</text></g>
           <g filter="url(#bnShadow2)"><polygon points="-7,212 22,197 138,197 147,212 138,227 22,227" fill="url(#bnLeft2)" stroke="rgba(255,255,255,.3)" stroke-width="1"/><text x="80" y="216" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Inter" letter-spacing=".3">Économies</text></g>
@@ -441,7 +441,7 @@ a{text-decoration:none;color:inherit;}
         </div>
         <div class="mlist-hub">
           <div class="mhub-avatar">E</div>
-          <div class="mtxt"><b>ECONOMYA</b><span>Le coeur du reseau</span></div>
+          <div class="mtxt"><b>ECONOMYA</b><span>Le cœur du réseau</span></div>
         </div>
         <div class="mrow"><div class="mavatar2" style="background:linear-gradient(135deg,#FFD98A,#D9830C)">M</div><div class="mtxt"><b>Marie</b><span>Telephonie</span></div><div class="mamount">480€/an</div></div>
         <div class="mrow"><div class="mavatar2" style="background:linear-gradient(135deg,#8FC7FF,#1D4ED8)">P</div><div class="mtxt"><b>Pierre</b><span>Transport</span></div><div class="mamount">1 800€/an</div></div>
@@ -452,7 +452,7 @@ a{text-decoration:none;color:inherit;}
 
   <div class="cta-row">
     <a href="/connexion.html?redirect=%2Fforum-astuces.html" class="btn-gold" id="ecoJoinNetworkBtn">Devenir le prochain membre</a>
-    <a href="forum-astuces.html" class="btn-ghost3">Voir les astuces du reseau</a>
+    <a href="forum-astuces.html" class="btn-ghost3">Voir les astuces du réseau</a>
   </div>
   <script>
   (function(){
