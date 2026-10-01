@@ -42,7 +42,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .game-card{background:rgba(10,20,60,0.7);border-radius:var(--r);border:1px solid rgba(100,150,255,0.15);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:transform .2s,box-shadow .2s,border-color .2s;text-decoration:none;color:var(--t);display:flex;flex-direction:column;backdrop-filter:blur(10px)}
 .game-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(29,78,216,0.3),0 0 20px rgba(100,150,255,0.1);border-color:rgba(100,150,255,0.4)}
 
-.game-thumb{height:180px;display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;overflow:hidden}
+.game-thumb{height:210px;position:relative;overflow:hidden}
 .game-thumb.dark{background:linear-gradient(135deg,#0a0a0a,#0d1a12)}
 .game-thumb.purple{background:linear-gradient(135deg,#1a0533,#7c2d92)}
 .game-thumb.orange{background:linear-gradient(135deg,#1a0a00,#7c3a00,#c05e00)}
@@ -53,20 +53,31 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .game-thumb.teal{background:linear-gradient(135deg,#0a1a1a,#065f46)}
 .game-thumb.red{background:linear-gradient(135deg,#1a0a0a,#7f1d1d)}
 .game-thumb.indigo{background:linear-gradient(135deg,#1a0a2e,#4c1d95)}
+.game-thumb::before{content:'';position:absolute;inset:0;background-image:url(data:image/png;base64,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);background-size:140px 140px;opacity:.06;mix-blend-mode:overlay;pointer-events:none}
+.game-thumb::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 32%,transparent 25%,rgba(0,0,0,.5) 100%);pointer-events:none}
+.game-thumb-scrim{position:absolute;left:0;right:0;bottom:0;height:68%;background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.55) 48%,transparent 100%);pointer-events:none;z-index:1}
+.game-ribbon{position:absolute;top:15px;right:-36px;width:150px;transform:rotate(40deg);background:rgba(0,0,0,.55);text-align:center;font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.9);padding:4px 0;z-index:2;border-top:1px solid rgba(255,255,255,.2);border-bottom:1px solid rgba(255,255,255,.2)}
+.game-poster-icon-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;padding-bottom:14%}
+.game-poster-glow{position:absolute;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.35) 0%,transparent 68%)}
+.game-thumb .game-poster-icon{position:relative;width:118px;height:118px;stroke-width:2.1;color:#fff;filter:drop-shadow(0 14px 30px rgba(0,0,0,.6)) drop-shadow(0 0 46px rgba(255,255,255,.35))}
+.game-card:hover .game-poster-icon{transform:scale(1.06)}
+.game-poster-icon{transition:transform .3s ease}
+.game-thumb-title{position:absolute;left:14px;right:14px;bottom:12px;z-index:2;font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;line-height:1.12;color:#fff;letter-spacing:-.01em;text-shadow:0 2px 14px rgba(0,0,0,.7)}
 
-.game-badge{position:absolute;top:.8rem;left:.8rem;color:white;font-size:.65rem;font-weight:700;padding:.25rem .6rem;border-radius:50px;text-transform:uppercase;letter-spacing:.05em}
+.game-badge{position:absolute;top:.8rem;left:.8rem;z-index:2;color:white;font-size:.63rem;font-weight:800;padding:.3rem .55rem;border-radius:6px;text-transform:uppercase;letter-spacing:.04em;display:inline-flex;align-items:center;gap:4px;box-shadow:0 3px 10px rgba(0,0,0,.35)}
+.game-badge .ic{width:10px;height:10px;margin:0}
 .game-badge.new{background:var(--g)}
 .game-badge.hot{background:#ef4444}
 .game-badge.serious{background:#1d4ed8}
 .game-badge.insta{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)}
 
 .game-info{padding:1.2rem;flex:1;display:flex;flex-direction:column}
-.game-cat{font-size:.72rem;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.3rem}
-.game-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#e8f0ff;margin-bottom:.4rem}
 .game-desc{font-size:.82rem;color:var(--m);line-height:1.5;flex:1;margin-bottom:.8rem}
 .game-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.8rem}
-.game-tag{background:rgba(29,78,216,0.15);border:1px solid rgba(100,150,255,0.2);border-radius:50px;padding:.2rem .6rem;font-size:.7rem;color:#93c5fd}
-.game-btn{display:block;text-align:center;background:linear-gradient(135deg,#1e3a8a,#1d4ed8);color:white;padding:.65rem 1rem;border-radius:50px;font-weight:700;font-size:.85rem;text-decoration:none;transition:opacity .2s}
+.game-tag{background:rgba(29,78,216,0.15);border:1px solid rgba(100,150,255,0.2);border-radius:6px;padding:.22rem .55rem;font-size:.7rem;color:#93c5fd;display:inline-flex;align-items:center;gap:4px}
+.game-tag .ic{width:11px;height:11px;margin:0}
+.game-btn{display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;background:linear-gradient(135deg,#1e3a8a,#1d4ed8);color:white;padding:.65rem 1rem;border-radius:50px;font-weight:700;font-size:.85rem;text-decoration:none;transition:opacity .2s}
+.game-btn .ic{width:11px;height:11px;margin:0}
 .game-card:hover .game-btn{background:linear-gradient(135deg,#1d4ed8,#3b82f6)}
 
 .cta{background:linear-gradient(135deg,rgba(10,20,60,0.9),rgba(20,30,80,0.9));border-radius:var(--r);padding:2rem;text-align:center;margin-top:1rem;border:1px solid rgba(100,150,255,0.2)}
@@ -125,6 +136,54 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <symbol id="ic-gamepad" viewBox="0 0 24 24"><rect x="2.5" y="8" width="19" height="10" rx="4"/><path d="M7 11v4M5 13h4"/><circle cx="16" cy="12" r=".6" fill="currentColor" stroke="none"/><circle cx="18.5" cy="14.5" r=".6" fill="currentColor" stroke="none"/></symbol>
 <symbol id="ic-tools" viewBox="0 0 24 24"><path d="M14.5 6.5 17 4a3 3 0 0 1 4 4l-2.5 2.5M14.5 6.5 4 17v3h3L17 9.5M14.5 6.5 17 9.5"/></symbol>
 <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></symbol>
+
+<symbol id="ic-tag" viewBox="0 0 24 24"><path d="M20 12.5 12.6 19.9a2 2 0 0 1-2.8 0L4 14.1V5a1 1 0 0 1 1-1h9.1a2 2 0 0 1 1.4.6l4.5 4.5a2 2 0 0 1 0 2.8Z"/><circle cx="8.3" cy="8.3" r="1.4" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.2c0-1.2 1.1-2 2.5-2s2.5.8 2.5 2c0 2.4-5 1.6-5 4 0 1.2 1.1 2 2.5 2s2.5-.8 2.5-2"/></symbol>
+<symbol id="ic-wheel" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><path d="M12 3v6M12 15v6M21 12h-6M9 12H3M18.4 5.6l-4.2 4.2M9.8 14.2l-4.2 4.2M18.4 18.4l-4.2-4.2M9.8 9.8 5.6 5.6"/></symbol>
+<symbol id="ic-slot" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2.5"/><path d="M4 9h16M9 4v5M15 4v5"/><circle cx="6.5" cy="15.2" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15.2" r="1" fill="currentColor" stroke="none"/><circle cx="17.5" cy="15.2" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.5 2.5L16 9.5"/></symbol>
+<symbol id="ic-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M3 13h18M12 9v12"/><path d="M12 9c-1.5 0-5-1-5-3.2C7 4.2 8.2 3 9.6 3 11.5 3 12 6 12 9ZM12 9c1.5 0 5-1 5-3.2C17 4.2 15.8 3 14.4 3 12.5 3 12 6 12 9Z"/></symbol>
+<symbol id="ic-camera" viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+<symbol id="ic-sparkle" viewBox="0 0 24 24"><path d="M12 3c.5 3 2 5.5 5 6.5-3 1-4.5 3.5-5 6.5-.5-3-2-5.5-5-6.5 3-1 4.5-3.5 5-6.5Z"/><path d="M19 4c.2 1.3.8 2.3 2 2.7-1.2.4-1.8 1.4-2 2.7-.2-1.3-.8-2.3-2-2.7 1.2-.4 1.8-1.4 2-2.7ZM5 15c.2 1.3.8 2.3 2 2.7-1.2.4-1.8 1.4-2 2.7-.2-1.3-.8-2.3-2-2.7 1.2-.4 1.8-1.4 2-2.7Z"/></symbol>
+<symbol id="ic-chart-up" viewBox="0 0 24 24"><path d="M4 19h16M4 19V9l4 3 4-6 4 5 4-4v12"/></symbol>
+<symbol id="ic-cap" viewBox="0 0 24 24"><path d="M12 4 2 9l10 5 10-5-10-5Z"/><path d="M6 11.5V17c0 1.1 2.7 3 6 3s6-1.9 6-3v-5.5M22 9v6"/></symbol>
+<symbol id="ic-house" viewBox="0 0 24 24"><path d="M4 11.5 12 4l8 7.5"/><path d="M6 10v10h12V10"/><path d="M10 20v-6h4v6"/></symbol>
+<symbol id="ic-alert" viewBox="0 0 24 24"><path d="M12 3 2 20h20L12 3Z"/><path d="M12 10v4M12 17h.01"/></symbol>
+<symbol id="ic-flag" viewBox="0 0 24 24"><path d="M5 3v18"/><path d="M5 4h12l-3 4 3 4H5"/></symbol>
+<symbol id="ic-receipt" viewBox="0 0 24 24"><path d="M5 3h14v18l-2.5-1.6L14 21l-2-1.6L10 21l-2.5-1.6L5 21V3Z"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+<symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-folder" viewBox="0 0 24 24"><path d="M3 7a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7Z"/></symbol>
+<symbol id="ic-car" viewBox="0 0 24 24"><path d="M4 16V12l2-5h12l2 5v4"/><path d="M4 16h16v2.5a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1V17h-9v1.5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V16Z"/><circle cx="7.5" cy="13" r="1" fill="currentColor" stroke="none"/><circle cx="16.5" cy="13" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-burst" viewBox="0 0 24 24"><path d="M12 2v5M12 17v5M2 12h5M17 12h5M4.9 4.9l3.5 3.5M15.6 15.6l3.5 3.5M19.1 4.9l-3.5 3.5M8.4 15.6l-3.5 3.5"/><circle cx="12" cy="12" r="3.2"/></symbol>
+<symbol id="ic-brick" viewBox="0 0 24 24"><rect x="2.5" y="5" width="8" height="5" rx=".5"/><rect x="13.5" y="5" width="8" height="5" rx=".5"/><rect x="2.5" y="14" width="8" height="5" rx=".5"/><rect x="13.5" y="14" width="8" height="5" rx=".5"/><path d="M10.5 7.5h3M10.5 16.5h3"/></symbol>
+<symbol id="ic-cards" viewBox="0 0 24 24"><rect x="7" y="4" width="13" height="16" rx="1.6" transform="rotate(8 13.5 12)"/><rect x="4" y="6" width="13" height="16" rx="1.6"/></symbol>
+<symbol id="ic-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9s1.3-6.5 3.8-9Z"/></symbol>
+<symbol id="ic-confetti" viewBox="0 0 24 24"><path d="M4 20 14 10M3 13l2 2M17 7l2-2M8 3l1.5 1.5M19 15l1.5 1.5M11 5.5 12.5 7M15.5 10l1.5 1.5"/><circle cx="6" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="18" cy="11" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-paw" viewBox="0 0 24 24"><circle cx="7" cy="9" r="2"/><circle cx="12" cy="6.5" r="2"/><circle cx="17" cy="9" r="2"/><path d="M12 12c-3.5 0-6.5 2-6.5 4.7 0 1.8 1.5 2.8 3 2.3 1.2-.4 2.2-1 3.5-1s2.3.6 3.5 1c1.5.5 3-.5 3-2.3 0-2.7-3-4.7-6.5-4.7Z"/></symbol>
+<symbol id="ic-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4v2a3 3 0 0 0 3 3M17 5h3v2a3 3 0 0 1-3 3"/><path d="M12 14v3M9 21h6M9.5 17.5h5l.5 3.5h-6l.5-3.5Z"/></symbol>
+<symbol id="ic-masks" viewBox="0 0 24 24"><path d="M12 3a8 8 0 0 0-8 8c0 2 1 3.5 2 5l1 2a2 2 0 0 0 2 1h6a2 2 0 0 0 2-1l1-2c1-1.5 2-3 2-5a8 8 0 0 0-8-8Z"/><circle cx="9" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="10.5" r="1" fill="currentColor" stroke="none"/><path d="M9 15.5c1 1 5 1 6 0"/></symbol>
+<symbol id="ic-chefhat" viewBox="0 0 24 24"><path d="M7.5 11c-2.2 0-4-1.7-4-3.8 0-2 1.6-3.7 3.7-3.8A4.3 4.3 0 0 1 12 2a4.3 4.3 0 0 1 4.8 1.4c2.1.1 3.7 1.8 3.7 3.8 0 2.1-1.8 3.8-4 3.8"/><path d="M7.5 11v2.5a4.5 4.5 0 0 0 9 0V11"/><rect x="7.5" y="15.5" width="9" height="5" rx=".5"/></symbol>
+<symbol id="ic-dumbbell" viewBox="0 0 24 24"><path d="M4 9v6M7 7v10M17 7v10M20 9v6"/><path d="M7 12h10"/></symbol>
+<symbol id="ic-plate" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/></symbol>
+<symbol id="ic-medal" viewBox="0 0 24 24"><path d="M9 3 6.3 10.3l3 1.3L11 5Z"/><path d="M15 3 17.7 10.3l-3 1.3L13 5Z"/><circle cx="12" cy="15.5" r="5.3"/><path d="m9.8 15.5 1.4 1.4 3-3"/></symbol>
+<symbol id="ic-palm" viewBox="0 0 24 24"><path d="M12 21V10"/><path d="M12 10c0-3-2-5-5-5 0 2 1.5 4 5 4Zm0 0c0-3 2-5 5-5 0 2-1.5 4-5 4Zm0 0c-2-2-5-2-7 0 2 1.5 5 1 7-1Zm0 0c2-2 5-2 7 0-2 1.5-5 1-7-1Z"/></symbol>
+<symbol id="ic-cocktail" viewBox="0 0 24 24"><path d="M4 4h16l-7 8v6h3M9 18h6M9 12 4 4"/></symbol>
+<symbol id="ic-grape" viewBox="0 0 24 24"><circle cx="8" cy="9" r="2"/><circle cx="12" cy="7" r="2"/><circle cx="16" cy="9" r="2"/><circle cx="7" cy="13" r="2"/><circle cx="12" cy="13" r="2"/><circle cx="17" cy="13" r="2"/><circle cx="9.5" cy="17" r="2"/><circle cx="14.5" cy="17" r="2"/><path d="M12 7V3"/></symbol>
+<symbol id="ic-cloud" viewBox="0 0 24 24"><path d="M6.5 18a4 4 0 1 1 .8-7.9A5.5 5.5 0 0 1 18 11.5a3.5 3.5 0 0 1-1 6.5H6.5Z"/></symbol>
+<symbol id="ic-bed" viewBox="0 0 24 24"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7M3 18v2M21 18v2M3 14h18"/><rect x="5" y="9" width="6" height="4" rx="1"/></symbol>
+<symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M12 2c3 1.5 5 5 5 9 0 2-1 4-2 5l-3 3-3-3c-1-1-2-3-2-5 0-4 2-7.5 5-9Z"/><circle cx="12" cy="10" r="1.8"/><path d="M9 17l-2.5 1.5L6 22l3.5-1.5M15 17l2.5 1.5L18 22l-3.5-1.5"/></symbol>
+<symbol id="ic-egg" viewBox="0 0 24 24"><path d="M12 21c4 0 7-2.8 7-7.5C19 8 15.5 3 12 3S5 8 5 13.5C5 18.2 8 21 12 21Z"/></symbol>
+<symbol id="ic-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3Z"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2"/></symbol>
+<symbol id="ic-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+<symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></symbol>
+<symbol id="ic-keyboard" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></symbol>
+<symbol id="ic-pin" viewBox="0 0 24 24"><path d="M12 22s7-7.5 7-12a7 7 0 1 0-14 0c0 4.5 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="ic-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3v1a3 3 0 0 0-1 5.8V15a3 3 0 0 0 3 3h1M15 4a3 3 0 0 1 3 3v1a3 3 0 0 1 1 5.8V15a3 3 0 0 1-3 3h-1M9 4v15M15 4v15"/></symbol>
+<symbol id="ic-play" viewBox="0 0 24 24"><path d="M7 4l13 8-13 8V4Z" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-bolt" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></symbol>
+<symbol id="ic-buildings" viewBox="0 0 24 24"><path d="M4 21V8l5-4v17M9 21V11l6 3v7M15 14v7M4 21h16"/></symbol>
+<symbol id="ic-compare" viewBox="0 0 24 24"><path d="M8 3v13M8 16l-4-4M8 16l4-4M16 21V8M16 8l-4 4M16 8l4 4"/></symbol>
+<symbol id="ic-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
 </defs></svg>
 <nav>
   <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
@@ -151,509 +210,693 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <div class="games-grid">
 
     <a class="game-card" href="inflation-run.html">
-      <div class="game-thumb dark">🏃<div class="game-badge hot">🔥 Addictif</div></div>
+      <div class="game-thumb dark">
+        <div class="game-ribbon">Runner</div>
+        <div class="game-badge hot"><svg class="ic"><use href="#ic-flame"/></svg>Addictif</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-bolt"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Inflation Run</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Runner</div>
-        <div class="game-title">Inflation Run</div>
         <div class="game-desc">Esquivez les dépenses inutiles et récupérez des économies ! Un runner addictif où chaque décision compte.</div>
-        <div class="game-meta"><span class="game-tag">⌨️ Espace / Clic</span><span class="game-tag">⏱️ 2-5 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-keyboard"/></svg>Espace / Clic</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>2-5 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="ou-vivre-mieux.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#082f49,#0c4a6e,#0891b2)">🏙️<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#082f49,#0c4a6e,#0891b2)">
+        <div class="game-ribbon">Comparateur</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-buildings"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Où vivre mieux ?</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Comparateur</div>
-        <div class="game-title">Où vivre mieux ?</div>
         <div class="game-desc">Comparez votre pouvoir d'achat réel entre 13 grandes villes françaises selon votre salaire.</div>
-        <div class="game-meta"><span class="game-tag">📍 13 villes</span><span class="game-tag">⏱️ 1 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-pin"/></svg>13 villes</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>1 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="calendrier-bons-plans.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#4a1d96,#7c3aed,#a855f7)">📅<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#4a1d96,#7c3aed,#a855f7)">
+        <div class="game-ribbon">Calendrier</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-calendar"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Calendrier des Bons Plans</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Calendrier</div>
-        <div class="game-title">Calendrier des Bons Plans</div>
         <div class="game-desc">La meilleure astuce pour économiser chaque mois de l'année : soldes, impôts, Black Friday...</div>
-        <div class="game-meta"><span class="game-tag">📅 12 mois</span><span class="game-tag">⏱️ 1 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-calendar"/></svg>12 mois</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>1 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="le-bon-deal.html">
-      <div class="game-thumb purple">⚖️<div class="game-badge new">Illimité</div></div>
+      <div class="game-thumb purple">
+        <div class="game-ribbon">Quiz rapide</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Illimité</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-compare"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Le Bon Deal</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Quiz rapide</div>
-        <div class="game-title">Le Bon Deal</div>
         <div class="game-desc">Comparez 2 offres et choisissez la moins chère en 10 secondes ! Des dizaines de questions variées.</div>
-        <div class="game-meta"><span class="game-tag">⏱️ 3-5 min</span><span class="game-tag">🧠 Éducatif</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>3-5 min</span><span class="game-tag"><svg class="ic"><use href="#ic-brain"/></svg>Éducatif</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="le-negociateur.html">
-      <div class="game-thumb orange">🤝<div class="game-badge new">Sans répétition</div></div>
+      <div class="game-thumb orange">
+        <div class="game-ribbon">Négociation</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Sans répétition</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-tag"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Le Négociateur</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Négociation</div>
-        <div class="game-title">Le Négociateur</div>
         <div class="game-desc">Négociez le prix d'une voiture, d'un loyer, d'un forfait en temps limité. Des scénarios aléatoires à chaque partie !</div>
-        <div class="game-meta"><span class="game-tag">⏱️ 5-10 min</span><span class="game-tag">💰 Stratégie</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>5-10 min</span><span class="game-tag"><svg class="ic"><use href="#ic-coin"/></svg>Stratégie</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="roue-economies.html">
-      <div class="game-thumb gold">🎡<div class="game-badge new">Édition XXL</div></div>
+      <div class="game-thumb gold">
+        <div class="game-ribbon">Roue de la fortune</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Édition XXL</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-wheel"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">La Roue des Économies</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Roue de la fortune</div>
-        <div class="game-title">La Roue des Économies</div>
         <div class="game-desc">Tournez la roue et découvrez combien vous pouvez économiser chaque année !</div>
-        <div class="game-meta"><span class="game-tag">🎡 1 clic</span><span class="game-tag">⏱️ 2 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-wheel"/></svg>1 clic</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>2 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="jackpot-finance.html">
-      <div class="game-thumb blue">🎰<div class="game-badge new">Sans limite</div></div>
+      <div class="game-thumb blue">
+        <div class="game-ribbon">Machine à sous</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Sans limite</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-slot"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Jackpot Finance</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Machine à sous</div>
-        <div class="game-title">Jackpot Finance</div>
         <div class="game-desc">Tentez votre chance ! Chaque combinaison révèle une astuce pour économiser.</div>
-        <div class="game-meta"><span class="game-tag">🎰 1 clic</span><span class="game-tag">⏱️ 3 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-slot"/></svg>1 clic</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>3 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="vrai-ou-faux.html">
-      <div class="game-thumb teal">✅<div class="game-badge new">Format marathon</div></div>
+      <div class="game-thumb teal">
+        <div class="game-ribbon">Vrai ou Faux</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Format marathon</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-check"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Vrai ou Faux Finance</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Vrai ou Faux</div>
-        <div class="game-title">Vrai ou Faux Finance</div>
         <div class="game-desc">Des dizaines d'affirmations sur l'argent — Vrai ou Faux en 5 secondes ! Testez vos connaissances.</div>
-        <div class="game-meta"><span class="game-tag">⏱️ 2-10 min</span><span class="game-tag">🧠 Éducatif</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>2-10 min</span><span class="game-tag"><svg class="ic"><use href="#ic-brain"/></svg>Éducatif</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="finance-wrapped.html">
-      <div class="game-thumb indigo">🎁<div class="game-badge insta">✨ Instagram</div></div>
+      <div class="game-thumb indigo">
+        <div class="game-ribbon">Bilan annuel</div>
+        <div class="game-badge insta"><svg class="ic"><use href="#ic-sparkle"/></svg>Instagram</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-gift"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Finance Wrapped 2026</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Bilan annuel</div>
-        <div class="game-title">Finance Wrapped 2026</div>
         <div class="game-desc">Votre bilan financier en slides colorées façon Spotify Wrapped — à partager sur Instagram !</div>
-        <div class="game-meta"><span class="game-tag">📊 Personnalisé</span><span class="game-tag">📸 Partageable</span></div>
-        <span class="game-btn">▶ Créer mon Wrapped</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-chart-up"/></svg>Personnalisé</span><span class="game-tag"><svg class="ic"><use href="#ic-camera"/></svg>Partageable</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Créer mon Wrapped</span>
       </div>
     </a>
 
     <a class="game-card" href="aura-financiere.html">
-      <div class="game-thumb purple">✨<div class="game-badge insta">✨ Instagram</div></div>
+      <div class="game-thumb purple">
+        <div class="game-ribbon">Profil financier</div>
+        <div class="game-badge insta"><svg class="ic"><use href="#ic-sparkle"/></svg>Instagram</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-sparkle"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Ton Aura Financière</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Profil financier</div>
-        <div class="game-title">Ton Aura Financière</div>
         <div class="game-desc">5 questions pour révéler votre couleur et énergie financière unique. Viral sur Instagram et TikTok !</div>
-        <div class="game-meta"><span class="game-tag">✨ Aura unique</span><span class="game-tag">⏱️ 1 min</span></div>
-        <span class="game-btn">▶ Révéler mon aura</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-sparkle"/></svg>Aura unique</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>1 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Révéler mon aura</span>
       </div>
     </a>
 
     <a class="game-card" href="investisseur-virtuel.html">
-      <div class="game-thumb green">📈<div class="game-badge serious">🎓 Sérieux</div></div>
+      <div class="game-thumb green">
+        <div class="game-ribbon">Simulation bourse</div>
+        <div class="game-badge serious"><svg class="ic"><use href="#ic-cap"/></svg>Sérieux</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-chart-up"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">L'Investisseur Virtuel</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Simulation bourse</div>
-        <div class="game-title">L'Investisseur Virtuel</div>
         <div class="game-desc">Investissez 10 000€ virtuels sur 10 ans réels (2015-2024). Chaque année, un événement économique change la donne !</div>
-        <div class="game-meta"><span class="game-tag">📈 Données réelles</span><span class="game-tag">⏱️ 10 min</span></div>
-        <span class="game-btn">▶ Investir</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-chart-up"/></svg>Données réelles</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>10 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Investir</span>
       </div>
     </a>
 
     <a class="game-card" href="primo-accedant.html">
-      <div class="game-thumb navy">🏠<div class="game-badge serious">🎓 Sérieux</div></div>
+      <div class="game-thumb navy">
+        <div class="game-ribbon">Immobilier</div>
+        <div class="game-badge serious"><svg class="ic"><use href="#ic-cap"/></svg>Sérieux</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-house"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Parcours Primo-Accédant</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Immobilier</div>
-        <div class="game-title">Parcours Primo-Accédant</div>
         <div class="game-desc">Simulez votre premier achat immobilier étape par étape. Budget, apport, crédit, frais... Êtes-vous prêt ?</div>
-        <div class="game-meta"><span class="game-tag">🏠 Immobilier</span><span class="game-tag">⏱️ 5 min</span></div>
-        <span class="game-btn">▶ Simuler</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-house"/></svg>Immobilier</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>5 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Simuler</span>
       </div>
     </a>
 
     <a class="game-card" href="budget-tower.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0a1f1c,#123f37,#1D9E75)">🏗️<div class="game-badge hot">🔥 Addictif</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0a1f1c,#123f37,#1D9E75)">
+        <div class="game-ribbon">Empilement</div>
+        <div class="game-badge hot"><svg class="ic"><use href="#ic-flame"/></svg>Addictif</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-buildings"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Budget Tower</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Empilement</div>
-        <div class="game-title">Budget Tower</div>
         <div class="game-desc">Empilez votre budget mois après mois : loyer, plaisir, épargne. Un geste raté, et la tour s'effondre.</div>
-        <div class="game-meta"><span class="game-tag">🏗️ Illimité</span><span class="game-tag">⏱️ 2-5 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-buildings"/></svg>Illimité</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>2-5 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="radar-arnaques.html">
-      <div class="game-thumb red">🚨<div class="game-badge new">Mode expert</div></div>
+      <div class="game-thumb red">
+        <div class="game-ribbon">Quiz swipe</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Mode expert</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-alert"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Le Radar à Arnaques</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Quiz swipe</div>
-        <div class="game-title">Le Radar à Arnaques</div>
         <div class="game-desc">SMS, emails, DM, appels : repérez les arnaques en 15 secondes chrono. Sauras-tu tout démasquer ?</div>
-        <div class="game-meta"><span class="game-tag">🚩 Plusieurs messages</span><span class="game-tag">⏱️ 15s/message</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-flag"/></svg>Plusieurs messages</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>15s/message</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="tas-combien-dans-les-mains.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#2e1509,#7c3a1a,#FF6B49)">🧾<div class="game-badge insta">✨ Instagram</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#2e1509,#7c3a1a,#FF6B49)">
+        <div class="game-ribbon">Estimation</div>
+        <div class="game-badge insta"><svg class="ic"><use href="#ic-sparkle"/></svg>Instagram</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-receipt"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">T'as combien dans les mains ?</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Estimation</div>
-        <div class="game-title">T'as combien dans les mains ?</div>
         <div class="game-desc">6 scènes de vie, un curseur, et votre flair pour les prix. Résultat façon ticket de caisse à partager !</div>
-        <div class="game-meta"><span class="game-tag">🧾 6 scènes</span><span class="game-tag">⏱️ 2 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-receipt"/></svg>6 scènes</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>2 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="attrape-economies.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#1B0E2E,#3A1A5C,#5C2D8F)">🎯<div class="game-badge hot">🔥 Addictif</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1B0E2E,#3A1A5C,#5C2D8F)">
+        <div class="game-ribbon">Esquive & rattrapage</div>
+        <div class="game-badge hot"><svg class="ic"><use href="#ic-flame"/></svg>Addictif</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-target"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Attrape tes Économies</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Esquive & rattrapage</div>
-        <div class="game-title">Attrape tes Économies</div>
         <div class="game-desc">Déplacez votre panier pour attraper les bons plans et esquiver les pièges à dépenses. Ça accélère vite !</div>
-        <div class="game-meta"><span class="game-tag">🎯 Vitesse croissante</span><span class="game-tag">⏱️ 1-3 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-target"/></svg>Vitesse croissante</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>1-3 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="boule-de-patrimoine.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#1a1a2e,#3a2a5c,#7c5cbf)">🪙<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1a1a2e,#3a2a5c,#7c5cbf)">
+        <div class="game-ribbon">Style Katamari</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-coin"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Boule de Patrimoine</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Style Katamari</div>
-        <div class="game-title">Boule de Patrimoine</div>
         <div class="game-desc">Roulez votre boule sur les bonnes économies et regardez votre patrimoine grossir. Jouable au joystick tactile !</div>
-        <div class="game-meta"><span class="game-tag">🕹️ Tactile</span><span class="game-tag">⏱️ 2-5 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-gamepad"/></svg>Tactile</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>2-5 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="sprint-epargne.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#1a2e1a,#2d5c2d,#4CAF50)">🏃‍♂️<div class="game-badge hot">🔥 Addictif</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1a2e1a,#2d5c2d,#4CAF50)">
+        <div class="game-ribbon">Runner</div>
+        <div class="game-badge hot"><svg class="ic"><use href="#ic-flame"/></svg>Addictif</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-bolt"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Sprint de l'Épargne</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Runner</div>
-        <div class="game-title">Sprint de l'Épargne</div>
         <div class="game-desc">Sautez, esquivez et collectez vos économies dans ce runner nerveux et rapide. Combien de mètres tiendrez-vous ?</div>
-        <div class="game-meta"><span class="game-tag">⌨️ Espace / Clic</span><span class="game-tag">⏱️ 1-3 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-keyboard"/></svg>Espace / Clic</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>1-3 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="tri-de-budget.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0a1a2e,#154a6e,#2196F3)">🗂️<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0a1a2e,#154a6e,#2196F3)">
+        <div class="game-ribbon">Tri rapide</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-folder"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Tri de Budget</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Tri rapide</div>
-        <div class="game-title">Tri de Budget</div>
         <div class="game-desc">Triez revenus et dépenses dans les 4 bonnes colonnes avant la fin du chrono. Plus vite, plus de points !</div>
-        <div class="game-meta"><span class="game-tag">🗂️ 4 colonnes</span><span class="game-tag">⏱️ 2 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-folder"/></svg>4 colonnes</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>2 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="grand-prix-epargne.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#2A0E12,#5c1a24,#c0392b)">🏎️<div class="game-badge insta">✨ Instagram</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#2A0E12,#5c1a24,#c0392b)">
+        <div class="game-ribbon">Course d'évitement</div>
+        <div class="game-badge insta"><svg class="ic"><use href="#ic-sparkle"/></svg>Instagram</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-car"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Grand Prix de l'Épargne</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Course d'évitement</div>
-        <div class="game-title">Grand Prix de l'Épargne</div>
         <div class="game-desc">Slalomez entre les pièges à dépenses, ramassez les bonus, et découvrez à l'arrivée contre qui vous avez couru !</div>
-        <div class="game-meta"><span class="game-tag">🏁 Classement</span><span class="game-tag">⏱️ 1 min</span></div>
-        <span class="game-btn">▶ Prendre le départ</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-flag"/></svg>Classement</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>1 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Prendre le départ</span>
       </div>
     </a>
 
     <a class="game-card" href="eclateur-de-dettes.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0E1A2A,#1a3450,#4BC9FF)">💥<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0E1A2A,#1a3450,#4BC9FF)">
+        <div class="game-ribbon">Visée libre</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-burst"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Éclateur de Dettes</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Visée libre</div>
-        <div class="game-title">Éclateur de Dettes</div>
         <div class="game-desc">Fragmentez les grosses dettes en mensualités avant qu'elles ne s'accumulent trop vite.</div>
-        <div class="game-meta"><span class="game-tag">🎯 Viser & tirer</span><span class="game-tag">⏱️ 2-4 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-target"/></svg>Viser & tirer</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>2-4 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="casse-tes-dettes.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#241018,#4a2030,#FF9B4B)">🧱<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#241018,#4a2030,#FF9B4B)">
+        <div class="game-ribbon">Casse-brique</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-brick"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Casse tes Dettes</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Casse-brique</div>
-        <div class="game-title">Casse tes Dettes</div>
         <div class="game-desc">Cassez les briques de dettes avant que les intérêts ne les fassent repousser.</div>
-        <div class="game-meta"><span class="game-tag">🏓 Raquette</span><span class="game-tag">⏱️ 2-4 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-compare"/></svg>Raquette</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>2-4 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="le-gestionnaire-de-crise.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#1A0E24,#3a1e52,#FFC94B)">🧯<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1A0E24,#3a1e52,#FFC94B)">
+        <div class="game-ribbon">Gestion temps réel</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-alert"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Le Gestionnaire de Crise</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Gestion temps réel</div>
-        <div class="game-title">Le Gestionnaire de Crise</div>
         <div class="game-desc">Jonglez en continu entre trésorerie, risque et opportunités, et réagissez vite aux imprévus qui surgissent.</div>
-        <div class="game-meta"><span class="game-tag">🧯 Multitâche</span><span class="game-tag">⏱️ Survie</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-tools"/></svg>Multitâche</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>Survie</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="le-marche-vivant.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0E1A2A,#1a3450,#4BC9FF)">📈<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0E1A2A,#1a3450,#4BC9FF)">
+        <div class="game-ribbon">Simulation · Allocation</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-chart-up"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Le Marché Vivant</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Simulation · Allocation</div>
-        <div class="game-title">Le Marché Vivant</div>
         <div class="game-desc">Réallouez votre portefeuille fictif à chaque tour et suivez un marché qui évolue sur 8 tours.</div>
-        <div class="game-meta"><span class="game-tag">📈 8 tours</span><span class="game-tag">⏱️ 3-5 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-chart-up"/></svg>8 tours</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>3-5 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="la-roue-des-scenarios.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#1E1030,#3a1e52,#C77DFF)">🎴<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1E1030,#3a1e52,#C77DFF)">
+        <div class="game-ribbon">Deck · Décisions</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-cards"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">La Roue des Scénarios</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Deck · Décisions</div>
-        <div class="game-title">La Roue des Scénarios</div>
         <div class="game-desc">Affrontez 12 cartes-événements. Bien gérer débloque des bonus ; mal gérer attire plus de chocs.</div>
-        <div class="game-meta"><span class="game-tag">🎴 12 cartes</span><span class="game-tag">⏱️ 3-5 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-cards"/></svg>12 cartes</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>3-5 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="le-grand-cycle-economique.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0E2438,#1a4460,#FFC94B)">🌍<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0E2438,#1a4460,#FFC94B)">
+        <div class="game-ribbon">Plateau · Long terme</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-globe"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Le Grand Cycle Économique</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Plateau · Long terme</div>
-        <div class="game-title">Le Grand Cycle Économique</div>
         <div class="game-desc">14 années à traverser : dosez risque et croissance, gare au choc tardif qui peut tout rattraper.</div>
-        <div class="game-meta"><span class="game-tag">🌍 14 années</span><span class="game-tag">⏱️ 3-5 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-globe"/></svg>14 années</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>3-5 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="la-machine-a-reves.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#1a1030,#3a1e52,#FFC94B)">✨<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1a1030,#3a1e52,#FFC94B)">
+        <div class="game-ribbon">Projection positive</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-sparkle"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">La Machine à Rêves</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Projection positive</div>
-        <div class="game-title">La Machine à Rêves</div>
         <div class="game-desc">Indiquez votre épargne mensuelle et découvrez ce qu'elle peut représenter concrètement, plus tard.</div>
-        <div class="game-meta"><span class="game-tag">✨ Aspirationnel</span><span class="game-tag">⏱️ 1 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-sparkle"/></svg>Aspirationnel</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>1 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="ton-annee-bons-plans.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#2A0E30,#4a1e52,#FF6FB5)">🎉<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#2A0E30,#4a1e52,#FF6FB5)">
+        <div class="game-ribbon">Récap façon Wrapped</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-confetti"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Ton Année Bons Plans</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Récap façon Wrapped</div>
-        <div class="game-title">Ton Année Bons Plans</div>
         <div class="game-desc">3 questions rapides pour découvrir ton récap ludique de l'année, badges et profil positifs à la clé.</div>
-        <div class="game-meta"><span class="game-tag">🎉 100% positif</span><span class="game-tag">⏱️ 1 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-confetti"/></svg>100% positif</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>1 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="ton-totem-financier.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0E2A24,#1a4a34,#3DDC84)">🐾<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0E2A24,#1a4a34,#3DDC84)">
+        <div class="game-ribbon">Portrait chinois</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-paw"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Ton Totem Financier</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Portrait chinois</div>
-        <div class="game-title">Ton Totem Financier</div>
         <div class="game-desc">Quelques associations fun pour découvrir ton totem — toujours flatteur, promis.</div>
-        <div class="game-meta"><span class="game-tag">🐾 4 questions</span><span class="game-tag">⏱️ 1 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-paw"/></svg>4 questions</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>1 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="le-trophee-du-jour.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#241A0E,#4a3418,#FFC94B)">🏆<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#241A0E,#4a3418,#FFC94B)">
+        <div class="game-ribbon">Récompense quotidienne</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-trophy"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Le Trophée du Jour</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Récompense quotidienne</div>
-        <div class="game-title">Le Trophée du Jour</div>
         <div class="game-desc">Un trophée toujours positif à chaque visite, à collectionner et partager au fil du temps.</div>
-        <div class="game-meta"><span class="game-tag">🏆 Collection</span><span class="game-tag">⏱️ 30s</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-trophy"/></svg>Collection</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>30s</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="le-sosie-celebre-de-ton-epargne.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#1E1030,#3a1e52,#C77DFF)">🎭<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1E1030,#3a1e52,#C77DFF)">
+        <div class="game-ribbon">Personnalité</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-masks"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Le Sosie Célèbre de ton Épargne</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Personnalité</div>
-        <div class="game-title">Le Sosie Célèbre de ton Épargne</div>
         <div class="game-desc">Un mini quiz pour révéler quel personnage inventé partage ton style d'épargne — que du positif.</div>
-        <div class="game-meta"><span class="game-tag">🎭 4 questions</span><span class="game-tag">⏱️ 1 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-masks"/></svg>4 questions</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>1 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="le-mur-des-bravos.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0E2A24,#1a4a34,#3DDC84)">🎉<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0E2A24,#1a4a34,#3DDC84)">
+        <div class="game-ribbon">Mur personnel</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-confetti"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Le Mur des Bravos</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Mur personnel</div>
-        <div class="game-title">Le Mur des Bravos</div>
         <div class="game-desc">Note tes petites victoires financières du jour et regarde ton mur personnel se remplir au fil du temps.</div>
-        <div class="game-meta"><span class="game-tag">🎉 Collection</span><span class="game-tag">⏱️ 30s</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-confetti"/></svg>Collection</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>30s</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="chef-econome.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#2A1C0A,#4A3010,#FFA726)">👨‍🍳<div class="game-badge new">🍳 Cuisine</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#2A1C0A,#4A3010,#FFA726)">
+        <div class="game-ribbon">Tapis roulant</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-chefhat"/></svg>Cuisine</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-chefhat"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Chef Économe</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Tapis roulant</div>
-        <div class="game-title">Chef Économe</div>
         <div class="game-desc">Des ingrédients défilent sur le tapis. Composez 3 recettes équilibrées ET pas chères en 30 secondes chrono. Budget + nutrition à surveiller !</div>
-        <div class="game-meta"><span class="game-tag">🍳 3 recettes</span><span class="game-tag">⏱️ 30s/recette</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-chefhat"/></svg>3 recettes</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>30s/recette</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
 
     <a class="game-card" href="coach-econome.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0A1A0E,#163020,#34D399)">🏋️<div class="game-badge new">🏃 Sport</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0A1A0E,#163020,#34D399)">
+        <div class="game-ribbon">Gestion sportive</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-dumbbell"/></svg>Sport</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-dumbbell"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Coach Économe</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Gestion sportive</div>
-        <div class="game-title">Coach Économe</div>
         <div class="game-desc">Gérez le budget d'un sportif sur une saison. Chaussures, nutrition, coaching : chaque euro doit maximiser la performance.</div>
-        <div class="game-meta"><span class="game-tag">⚽ 8 semaines</span><span class="game-tag">💪 4 stats</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-calendar"/></svg>8 semaines</span><span class="game-tag"><svg class="ic"><use href="#ic-chart-up"/></svg>4 stats</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="chef-resto-v2.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#120A06,#281408,#FB923C)">🍽️<div class="game-badge new">🍳 Resto</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#120A06,#281408,#FB923C)">
+        <div class="game-ribbon">Gestion temps réel</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-plate"/></svg>Resto</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-plate"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Chef Resto</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Gestion temps réel</div>
-        <div class="game-title">Chef Resto</div>
         <div class="game-desc">Service du soir, 8 tables, 3 minutes chrono. Servez les bonnes tables, choisissez les plats à forte marge, encaissez avant que les clients partent !</div>
-        <div class="game-meta"><span class="game-tag">🍽️ 8 tables</span><span class="game-tag">⏱️ 3 min</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-plate"/></svg>8 tables</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>3 min</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="marathon-budgetaire-v2.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#060E08,#142018,#34D399)">🏅<div class="game-badge new">🏃 Sport</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#060E08,#142018,#34D399)">
+        <div class="game-ribbon">Runner & décisions</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-dumbbell"/></svg>Sport</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-medal"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Marathon Budgétaire</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Runner & décisions</div>
-        <div class="game-title">Marathon Budgétaire</div>
         <div class="game-desc">42km de décisions financières. 12 phases, 4 stats, 250€ de budget. Finissez en champion !</div>
-        <div class="game-meta"><span class="game-tag">🏅 42 km</span><span class="game-tag">⚡ 12 phases</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-medal"/></svg>42 km</span><span class="game-tag"><svg class="ic"><use href="#ic-bolt"/></svg>12 phases</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="finance-runner-3d-v2.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#080C14,#162035,#60A5FA)">🏃<div class="game-badge new">🎮 Runner</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#080C14,#162035,#60A5FA)">
+        <div class="game-ribbon">Runner isométrique</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-bolt"/></svg>Runner</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-bolt"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Finance Runner 3D</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Runner isométrique</div>
-        <div class="game-title">Finance Runner 3D</div>
         <div class="game-desc">Courez sur un chemin en 3 lanes. Collectez les bonus verts, esquivez les dettes rouges.</div>
-        <div class="game-meta"><span class="game-tag">🟢 Bonus</span><span class="game-tag">🔴 Dettes</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-coin"/></svg>Bonus</span><span class="game-tag"><svg class="ic"><use href="#ic-alert"/></svg>Dettes</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="bar-de-plage.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#001A2E,#003050,#22D3EE)">🏖️<div class="game-badge new">🌴 Plage</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#001A2E,#003050,#22D3EE)">
+        <div class="game-ribbon">Gestion saisonnière</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-palm"/></svg>Plage</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-palm"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Bar de Plage</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Gestion saisonnière</div>
-        <div class="game-title">Bar de Plage</div>
         <div class="game-desc">Gérez un bar sur la Côte d'Azur. Météo capricieuse, influenceurs, soirées DJ… 10 journées pour maximiser votre CA !</div>
-        <div class="game-meta"><span class="game-tag">🌴 10 journées</span><span class="game-tag">🍹 Cocktails</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-palm"/></svg>10 journées</span><span class="game-tag"><svg class="ic"><use href="#ic-cocktail"/></svg>Cocktails</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="domaine-viticole.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0E0810,#221428,#C084FC)">🍇<div class="game-badge new">🍷 Vigne</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0E0810,#221428,#C084FC)">
+        <div class="game-ribbon">Simulation viticole</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-grape"/></svg>Vigne</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-grape"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Domaine Viticole</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Simulation viticole</div>
-        <div class="game-title">Domaine Viticole</div>
         <div class="game-desc">Héritez d'un domaine bordelais. Bio ou conventionnel ? 8 millésimes, météo aléatoire.</div>
-        <div class="game-meta"><span class="game-tag">🍇 8 millésimes</span><span class="game-tag">⛅ Météo</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-grape"/></svg>8 millésimes</span><span class="game-tag"><svg class="ic"><use href="#ic-cloud"/></svg>Météo</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="hotel-manager.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0A0E1A,#162035,#A78BFA)">🏨<div class="game-badge new">🛎️ Hôtel</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0A0E1A,#162035,#A78BFA)">
+        <div class="game-ribbon">Management hôtelier</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-bed"/></svg>Hôtel</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-bed"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Hôtel Manager</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Management hôtelier</div>
-        <div class="game-title">Hôtel Manager</div>
         <div class="game-desc">Gérez un hôtel 3★ sur 12 périodes. Tarifs, recrutement, rénovations, avis clients, événements…</div>
-        <div class="game-meta"><span class="game-tag">🏨 30 chambres</span><span class="game-tag">📅 12 périodes</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-bed"/></svg>30 chambres</span><span class="game-tag"><svg class="ic"><use href="#ic-calendar"/></svg>12 périodes</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="memory-finance.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0C1220,#182438,#60A5FA)">🃏<div class="game-badge new">🧠 Memory</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0C1220,#182438,#60A5FA)">
+        <div class="game-ribbon">Mémoire & culture</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-brain"/></svg>Memory</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-cards"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Memory Finance</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Mémoire & culture</div>
-        <div class="game-title">Memory Finance</div>
         <div class="game-desc">Retournez les cartes pour trouver les 8 paires : concept financier + taux. Contre-la-montre !</div>
-        <div class="game-meta"><span class="game-tag">🃏 8 paires</span><span class="game-tag">⏱️ Chrono</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-cards"/></svg>8 paires</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>Chrono</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="budget-run.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0A0E1A,#123018,#4CAF50)">🦘<div class="game-badge hot">🔥 Addictif</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0A0E1A,#123018,#4CAF50)">
+        <div class="game-ribbon">Runner · Style Nintendo</div>
+        <div class="game-badge hot"><svg class="ic"><use href="#ic-flame"/></svg>Addictif</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-bolt"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Budget Run</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Runner · Style Nintendo</div>
-        <div class="game-title">Budget Run</div>
         <div class="game-desc">Courez, sautez et collectez les pièces d'épargne ! Esquivez les dettes et les dépenses inutiles. Jusqu'où irez-vous ?</div>
-        <div class="game-meta"><span class="game-tag">🦘 Saut</span><span class="game-tag">⏱️ Illimité</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-bolt"/></svg>Saut</span><span class="game-tag"><svg class="ic"><use href="#ic-clock"/></svg>Illimité</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="happy-budget.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#0A0E1A,#1a0a2e,#FFD54F)">🚀<div class="game-badge new">🌌 Galactique</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0A0E1A,#1a0a2e,#FFD54F)">
+        <div class="game-ribbon">Plateforme · Style Doodle Jump</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-rocket"/></svg>Galactique</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-rocket"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Happy Budget</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Plateforme · Style Doodle Jump</div>
-        <div class="game-title">Happy Budget</div>
         <div class="game-desc">Sautez sur les plateformes financières (Livret A, Épargne, ETF, PEA...) et montez le plus haut possible sans tomber !</div>
-        <div class="game-meta"><span class="game-tag">🚀 Vertical</span><span class="game-tag">📈 Difficulté progressive</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-rocket"/></svg>Vertical</span><span class="game-tag"><svg class="ic"><use href="#ic-chart-up"/></svg>Difficulté progressive</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="prix-party.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#1B2A4A,#0A0E1A,#FFD54F)">🥳<div class="game-badge new">🎯 Défi horaire</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1B2A4A,#0A0E1A,#FFD54F)">
+        <div class="game-ribbon">Défi du prix juste</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-target"/></svg>Défi horaire</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-confetti"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Prix Party</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Défi du prix juste</div>
-        <div class="game-title">Prix Party</div>
         <div class="game-desc">Le défi du prix juste ! Un nouveau challenge chaque heure : devinez 5 prix du quotidien avec un curseur et partagez votre grille.</div>
-        <div class="game-meta"><span class="game-tag">🎯 5 manches</span><span class="game-tag">🔥 Série de défis</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-target"/></svg>5 manches</span><span class="game-tag"><svg class="ic"><use href="#ic-flame"/></svg>Série de défis</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="ile-aux-oeufs.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#2C5F2D,#97BC62,#FFF2CC)">🥚<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#2C5F2D,#97BC62,#FFF2CC)">
+        <div class="game-ribbon">Simulation pédagogique</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-egg"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">L'Île aux Œufs</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Simulation pédagogique</div>
-        <div class="game-title">L'Île aux Œufs</div>
         <div class="game-desc">Répartissez vos œufs entre plusieurs îles avant la tempête. Une leçon ludique sur la diversification de l'épargne.</div>
-        <div class="game-meta"><span class="game-tag">🥚 Diversification</span><span class="game-tag">🏝️ Stratégie</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-egg"/></svg>Diversification</span><span class="game-tag"><svg class="ic"><use href="#ic-palm"/></svg>Stratégie</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
     <a class="game-card" href="pile-ou-face-financier.html">
-      <div class="game-thumb" style="background:linear-gradient(135deg,#4A4A4A,#C0C0C0,#EF9F27)">🪙<div class="game-badge new">Nouveau</div></div>
+      <div class="game-thumb" style="background:linear-gradient(135deg,#4A4A4A,#C0C0C0,#EF9F27)">
+        <div class="game-ribbon">Dilemmes financiers</div>
+        <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
+        <div class="game-poster-icon-wrap"><div class="game-poster-glow"></div><svg class="ic game-poster-icon"><use href="#ic-coin"/></svg></div>
+        <div class="game-thumb-scrim"></div>
+        <div class="game-thumb-title">Pile ou Face Financier</div>
+      </div>
       <div class="game-info">
-        <div class="game-cat">Dilemmes financiers</div>
-        <div class="game-title">Pile ou Face Financier</div>
         <div class="game-desc">15 dilemmes financiers, un choix à faire, un fait réel révélé ensuite. Testez vos intuitions sur l'argent.</div>
-        <div class="game-meta"><span class="game-tag">🪙 15 dilemmes</span><span class="game-tag">💡 Faits réels</span></div>
-        <span class="game-btn">▶ Jouer</span>
+        <div class="game-meta"><span class="game-tag"><svg class="ic"><use href="#ic-coin"/></svg>15 dilemmes</span><span class="game-tag"><svg class="ic"><use href="#ic-bulb"/></svg>Faits réels</span></div>
+        <span class="game-btn"><svg class="ic"><use href="#ic-play"/></svg>Jouer</span>
       </div>
     </a>
 
