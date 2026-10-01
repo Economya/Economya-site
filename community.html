@@ -71,7 +71,7 @@ a{text-decoration:none;color:inherit;}
 @media(max-width:640px){.preview-grid{grid-template-columns:1fr;}}
 .preview-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:20px;}
 .pc-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.pc-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;}
+.pc-avatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex-shrink:0;box-shadow:0 3px 8px rgba(0,0,0,.2),inset 0 1px 1px rgba(255,255,255,.4),inset 0 -2px 5px rgba(0,0,0,.18);}
 .pc-name{font-weight:700;font-size:14px;}
 .pc-cat{font-size:11px;color:var(--muted);}
 .pc-title{font-weight:800;font-size:15px;line-height:1.3;margin-bottom:8px;}
@@ -123,6 +123,51 @@ a{text-decoration:none;color:inherit;}
 
 .shield-badge{display:flex;justify-content:center;margin-bottom:22px}
 .shield-badge svg{width:92px;height:auto;filter:drop-shadow(0 10px 20px rgba(0,0,0,.35)) drop-shadow(0 2px 10px rgba(245,158,11,.3))}
+
+.network-card{background:var(--ink);border-radius:24px;max-width:920px;margin:0 auto 72px;padding:56px 28px;text-align:center;position:relative;overflow:hidden;}
+.network-card::before{content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    radial-gradient(ellipse at 15% 15%,rgba(245,158,11,.12),transparent 45%),
+    radial-gradient(ellipse at 88% 85%,rgba(59,130,246,.12),transparent 45%);
+  background-size:42px 42px,42px 42px,100% 100%,100% 100%;
+  mask-image:radial-gradient(ellipse 75% 75% at 50% 45%,black 20%,transparent 85%);
+  pointer-events:none}
+.network-card .nc-inner{position:relative;z-index:1}
+.network-card .section-tag{color:var(--gold);justify-content:center;display:flex}
+.network-card h2{font-family:'Inter',sans-serif;font-weight:900;color:#fff;font-size:clamp(22px,3.6vw,32px);letter-spacing:-.02em;line-height:1.2;margin-bottom:12px;}
+.network-card h2 span{color:var(--gold);}
+.network-card .nc-sub{color:rgba(255,255,255,.55);font-size:15.5px;max-width:460px;margin:0 auto;}
+.network-card .stage{max-width:680px;margin:40px auto 0;}
+.network-card .stage svg{width:100%;height:auto;overflow:visible}
+.network-card .mobile-list{display:none}
+.network-card .link{stroke-width:1.4;stroke-linecap:round}
+.network-card .pulse{animation:ncflow 3.2s linear infinite}
+@keyframes ncflow{to{stroke-dashoffset:-40}}
+.network-card .nw-label{font-family:'Inter',sans-serif;font-weight:700;fill:#fff}
+.network-card .chip-bg{fill:rgba(0,0,0,.4);stroke:rgba(255,255,255,.1);stroke-width:1}
+.network-card .chip-txt{font-family:'Inter',sans-serif;font-weight:800;fill:#FFE29A}
+.network-card .cta-row{margin-top:40px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.network-card .btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#1A0A00;padding:14px 26px;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;font-family:'Inter',sans-serif;}
+.network-card .btn-ghost3{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.2);color:#fff;padding:14px 26px;border-radius:12px;font-weight:600;font-size:15px;text-decoration:none;font-family:'Inter',sans-serif;}
+@media (max-width:640px){
+  .network-card .stage{display:none}
+  .network-card .mobile-list{display:block;max-width:420px;margin:36px auto 0;text-align:left}
+  .network-card .mbanner-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;justify-content:center}
+  .network-card .mbanner{color:#fff;font-weight:800;font-size:12px;padding:7px 14px;border-radius:20px;box-shadow:0 3px 8px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.25)}
+  .network-card .mlist-hub{display:flex;align-items:center;gap:14px;background:#000;border:1.5px solid rgba(239,159,41,.5);border-radius:16px;padding:14px 18px;margin-bottom:14px;}
+  .network-card .mhub-avatar{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#3a3a3a,#000);border:2px solid #EF9F27;color:#F5D28B;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;flex-shrink:0}
+  .network-card .mlist-hub .mtxt b{color:#FFE29A;font-size:14px;display:block;}
+  .network-card .mlist-hub .mtxt span{color:rgba(255,255,255,.5);font-size:12.5px}
+  .network-card .mrow{display:flex;align-items:center;gap:14px;padding:11px 6px;border-bottom:1px solid rgba(255,255,255,.07)}
+  .network-card .mrow:last-child{border-bottom:none}
+  .network-card .mavatar2{width:42px;height:42px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px;box-shadow:0 4px 10px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.25)}
+  .network-card .mrow .mtxt{flex:1}
+  .network-card .mrow .mtxt b{color:#fff;font-size:14.5px;font-weight:700;display:block}
+  .network-card .mrow .mtxt span{color:rgba(255,255,255,.5);font-size:12px}
+  .network-card .mamount{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);color:#FFE29A;font-weight:800;font-size:12.5px;padding:5px 12px;border-radius:20px;white-space:nowrap}
+}
 </style>
 </head>
 <body>
@@ -200,7 +245,7 @@ a{text-decoration:none;color:inherit;}
     if(pos === 0) return 100;
     return Math.max(0, Math.min(100, Math.round((pos-neg)/pos*100)));
   }
-  var AVATAR_COLORS = [['#F59E0B','#1A0A00'],['#3B82F6','#fff'],['#EC4899','#fff'],['#22C55E','#fff'],['#8B5CF6','#fff'],['#14B8A6','#fff'],['#EF4444','#fff'],['#6366F1','#fff']];
+  var AVATAR_COLORS = [['linear-gradient(135deg,#FFD98A,#D9830C)','#2b1800'],['linear-gradient(135deg,#8FC7FF,#1D4ED8)','#fff'],['linear-gradient(135deg,#FFA9D3,#BE1361)','#fff'],['linear-gradient(135deg,#7CE8A8,#0E9448)','#06250f'],['linear-gradient(135deg,#C3A6FF,#6D28D9)','#fff'],['linear-gradient(135deg,#7DEAE0,#0E7490)','#06302d'],['linear-gradient(135deg,#FCA5A5,#B91C1C)','#fff'],['linear-gradient(135deg,#A5B4FC,#4338CA)','#fff']];
   function avatarColor(name){ return AVATAR_COLORS[(name||'?').charCodeAt(0) % AVATAR_COLORS.length]; }
 
   function buildCard(p){
@@ -275,7 +320,7 @@ a{text-decoration:none;color:inherit;}
   <div class="preview-grid" id="previewGrid">
     <div class="preview-card">
       <div class="pc-header">
-        <div class="pc-avatar" style="background:#F59E0B;color:#1A0A00">M</div>
+        <div class="pc-avatar" style="background:linear-gradient(135deg,#FFD98A,#D9830C);color:#2b1800">M</div>
         <div><div class="pc-name">Marie</div><div class="pc-cat"><svg class="ic"><use href="#ic-phone"/></svg>Téléphonie · il y a 5j</div></div>
       </div>
       <div class="pc-title">40€/mois économisés en changeant de forfait mobile</div>
@@ -286,7 +331,7 @@ a{text-decoration:none;color:inherit;}
     </div>
     <div class="preview-card">
       <div class="pc-header">
-        <div class="pc-avatar" style="background:#3B82F6;color:#fff">P</div>
+        <div class="pc-avatar" style="background:linear-gradient(135deg,#8FC7FF,#1D4ED8);color:#fff">P</div>
         <div><div class="pc-name">Pierre</div><div class="pc-cat"><svg class="ic"><use href="#ic-car"/></svg>Transport · il y a 4j</div></div>
       </div>
       <div class="pc-title">Covoiturage domicile-travail via BlaBlaCar Daily</div>
@@ -297,7 +342,7 @@ a{text-decoration:none;color:inherit;}
     </div>
     <div class="preview-card">
       <div class="pc-header">
-        <div class="pc-avatar" style="background:#EC4899;color:#fff">J</div>
+        <div class="pc-avatar" style="background:linear-gradient(135deg,#FFA9D3,#BE1361);color:#fff">J</div>
         <div><div class="pc-name">Julie</div><div class="pc-cat"><svg class="ic"><use href="#ic-plane"/></svg>Voyage · il y a 6j</div></div>
       </div>
       <div class="pc-title">Réserver vols le mardi matin : jusqu'à -40%</div>
@@ -308,7 +353,7 @@ a{text-decoration:none;color:inherit;}
     </div>
     <div class="preview-card">
       <div class="pc-header">
-        <div class="pc-avatar" style="background:#22C55E;color:#fff">T</div>
+        <div class="pc-avatar" style="background:linear-gradient(135deg,#7CE8A8,#0E9448);color:#06250f">T</div>
         <div><div class="pc-name">Thomas</div><div class="pc-cat"><svg class="ic"><use href="#ic-shield"/></svg>Assurances · il y a 3j</div></div>
       </div>
       <div class="pc-title">Renégocier son assurance auto chaque année</div>
@@ -319,6 +364,97 @@ a{text-decoration:none;color:inherit;}
     </div>
   </div>
 </div>
+
+
+<div class="network-card"><div class="nc-inner">
+  <div class="section-tag">Economya Network</div>
+  <h2>Derriere chaque astuce,<br>un <span>membre comme vous</span></h2>
+  <p class="nc-sub">Economya au centre, et un reseau de membres qui grandit a chaque astuce partagee.</p>
+      <div class="stage">
+        <svg viewBox="0 0 700 530">
+          <defs>
+            <radialGradient id="voidG2" cx="50%" cy="50%" r="60%">
+              <stop offset="0%" stop-color="#FFE29A" stop-opacity=".22"/>
+              <stop offset="60%" stop-color="#FFE29A" stop-opacity=".05"/>
+              <stop offset="100%" stop-color="#FFE29A" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="lnM2" x1="350" y1="235" x2="170" y2="110" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#F59E0B" stop-opacity=".7"/><stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/></linearGradient>
+            <linearGradient id="lnP2" x1="350" y1="235" x2="540" y2="110" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#3B82F6" stop-opacity=".7"/><stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/></linearGradient>
+            <linearGradient id="lnJ2" x1="350" y1="235" x2="118" y2="305" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#EC4899" stop-opacity=".7"/><stop offset="100%" stop-color="#EC4899" stop-opacity="0"/></linearGradient>
+            <linearGradient id="lnT2" x1="350" y1="235" x2="582" y2="305" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#22C55E" stop-opacity=".7"/><stop offset="100%" stop-color="#22C55E" stop-opacity="0"/></linearGradient>
+            <linearGradient id="lnS2" x1="350" y1="235" x2="350" y2="400" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#8B5CF6" stop-opacity=".7"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/></linearGradient>
+            <radialGradient id="nodeM2" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#FFD98A"/><stop offset="100%" stop-color="#D9830C"/></radialGradient>
+            <radialGradient id="nodeP2" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#8FC7FF"/><stop offset="100%" stop-color="#1D4ED8"/></radialGradient>
+            <radialGradient id="nodeJ2" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#FFA9D3"/><stop offset="100%" stop-color="#BE1361"/></radialGradient>
+            <radialGradient id="nodeT2" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#7CE8A8"/><stop offset="100%" stop-color="#0E9448"/></radialGradient>
+            <radialGradient id="nodeS2" cx="35%" cy="30%" r="75%"><stop offset="0%" stop-color="#C3A6FF"/><stop offset="100%" stop-color="#6D28D9"/></radialGradient>
+            <linearGradient id="ringGrad2" x1="0" y1="0" x2="700" y2="480" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#F59E0B"/><stop offset="50%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#8B5CF6"/></linearGradient>
+            <radialGradient id="hubG2" cx="35%" cy="28%" r="80%"><stop offset="0%" stop-color="#3a3a3a"/><stop offset="55%" stop-color="#1a1a1a"/><stop offset="100%" stop-color="#000"/></radialGradient>
+            <linearGradient id="hubEdge2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#FFE29A"/><stop offset="100%" stop-color="#EF9F27"/></linearGradient>
+            <linearGradient id="bnTop2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#EF9F27"/><stop offset="100%" stop-color="#C87A06"/></linearGradient>
+            <linearGradient id="bnLeft2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3DCB9A"/><stop offset="100%" stop-color="#085041"/></linearGradient>
+            <linearGradient id="bnRight2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#60A5FA"/><stop offset="100%" stop-color="#1D4ED8"/></linearGradient>
+            <linearGradient id="bnBottom2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#F472B6"/><stop offset="100%" stop-color="#9D174D"/></linearGradient>
+            <filter id="nodeShadow2" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000" flood-opacity=".4"/></filter>
+            <filter id="bnShadow2" x="-60%" y="-60%" width="220%" height="220%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity=".4"/></filter>
+          </defs>
+
+          <polygon points="170,110 540,110 582,305 350,400 118,305" fill="none" stroke="url(#ringGrad2)" stroke-width="1.6" stroke-dasharray="3 6" opacity=".55"/>
+
+          <line x1="350" y1="235" x2="170" y2="110" class="link pulse" stroke="url(#lnM2)" stroke-dasharray="5 5"/>
+          <line x1="350" y1="235" x2="540" y2="110" class="link pulse" stroke="url(#lnP2)" stroke-dasharray="5 5"/>
+          <line x1="350" y1="235" x2="118" y2="305" class="link pulse" stroke="url(#lnJ2)" stroke-dasharray="5 5"/>
+          <line x1="350" y1="235" x2="582" y2="305" class="link pulse" stroke="url(#lnT2)" stroke-dasharray="5 5"/>
+          <line x1="350" y1="235" x2="350" y2="400" class="link pulse" stroke="url(#lnS2)" stroke-dasharray="5 5"/>
+
+          <circle cx="350" cy="235" r="86" fill="url(#voidG2)"/>
+          <circle cx="350" cy="235" r="52" fill="none" stroke="url(#hubEdge2)" stroke-width="1" opacity=".4"/>
+          <g filter="url(#nodeShadow2)"><circle cx="350" cy="235" r="46" fill="url(#hubG2)" stroke="url(#hubEdge2)" stroke-width="2.5"/></g>
+          <circle cx="334" cy="219" r="14" fill="#fff" opacity=".08"/>
+          <text x="350" y="241" text-anchor="middle" font-size="14.5" font-weight="800" fill="url(#hubEdge2)" font-family="Inter" letter-spacing=".5">ECONOMYA</text>
+
+          <g filter="url(#nodeShadow2)"><circle cx="170" cy="110" r="27" fill="url(#nodeM2)"/><circle cx="170" cy="110" r="27" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1"/><text x="170" y="117" text-anchor="middle" font-size="18" font-weight="800" fill="#2b1800" font-family="Inter">M</text></g>
+          <g filter="url(#nodeShadow2)"><circle cx="540" cy="110" r="27" fill="url(#nodeP2)"/><circle cx="540" cy="110" r="27" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1"/><text x="540" y="117" text-anchor="middle" font-size="18" font-weight="800" fill="#fff" font-family="Inter">P</text></g>
+          <g filter="url(#nodeShadow2)"><circle cx="118" cy="305" r="27" fill="url(#nodeJ2)"/><circle cx="118" cy="305" r="27" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1"/><text x="118" y="312" text-anchor="middle" font-size="18" font-weight="800" fill="#fff" font-family="Inter">J</text></g>
+          <g filter="url(#nodeShadow2)"><circle cx="582" cy="305" r="27" fill="url(#nodeT2)"/><circle cx="582" cy="305" r="27" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1"/><text x="582" y="312" text-anchor="middle" font-size="18" font-weight="800" fill="#06250f" font-family="Inter">T</text></g>
+          <g filter="url(#nodeShadow2)"><circle cx="350" cy="400" r="27" fill="url(#nodeS2)"/><circle cx="350" cy="400" r="27" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1"/><text x="350" y="407" text-anchor="middle" font-size="18" font-weight="800" fill="#fff" font-family="Inter">S</text></g>
+
+          <g><text class="nw-label" x="170" y="155" text-anchor="middle" font-size="13.5">Marie</text><rect class="chip-bg" x="137" y="162" width="66" height="22" rx="11"/><text class="chip-txt" x="170" y="177" text-anchor="middle" font-size="11">480€/an</text></g>
+          <g><text class="nw-label" x="540" y="155" text-anchor="middle" font-size="13.5">Pierre</text><rect class="chip-bg" x="500" y="162" width="80" height="22" rx="11"/><text class="chip-txt" x="540" y="177" text-anchor="middle" font-size="11">1 800€/an</text></g>
+          <g><text class="nw-label" x="118" y="350" text-anchor="middle" font-size="13.5">Julie</text><rect class="chip-bg" x="85" y="357" width="66" height="22" rx="11"/><text class="chip-txt" x="118" y="372" text-anchor="middle" font-size="11">400€/an</text></g>
+          <g><text class="nw-label" x="582" y="350" text-anchor="middle" font-size="13.5">Thomas</text><rect class="chip-bg" x="549" y="357" width="66" height="22" rx="11"/><text class="chip-txt" x="582" y="372" text-anchor="middle" font-size="11">250€/an</text></g>
+          <g><text class="nw-label" x="350" y="445" text-anchor="middle" font-size="13.5">Sophie</text><rect class="chip-bg" x="317" y="452" width="66" height="22" rx="11"/><text class="chip-txt" x="350" y="467" text-anchor="middle" font-size="11">600€/an</text></g>
+
+          <g filter="url(#bnShadow2)"><polygon points="233,55 242,40 458,40 467,55 458,70 242,70" fill="url(#bnTop2)" stroke="rgba(255,255,255,.3)" stroke-width="1"/><text x="350" y="59" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Inter" letter-spacing=".3">Astuces</text></g>
+          <g filter="url(#bnShadow2)"><polygon points="-7,212 22,197 138,197 147,212 138,227 22,227" fill="url(#bnLeft2)" stroke="rgba(255,255,255,.3)" stroke-width="1"/><text x="80" y="216" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Inter" letter-spacing=".3">Économies</text></g>
+          <g filter="url(#bnShadow2)"><polygon points="559,212 568,197 680,197 689,212 680,227 568,227" fill="url(#bnRight2)" stroke="rgba(255,255,255,.3)" stroke-width="1"/><text x="624" y="216" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Inter" letter-spacing=".3">Entraide</text></g>
+          <g filter="url(#bnShadow2)"><polygon points="281,500 290,485 410,485 419,500 410,515 290,515" fill="url(#bnBottom2)" stroke="rgba(255,255,255,.3)" stroke-width="1"/><text x="350" y="504" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Inter" letter-spacing=".3">Bon plan</text></g>
+        </svg>
+      </div>
+
+      <div class="mobile-list">
+        <div class="mbanner-row">
+          <span class="mbanner" style="background:linear-gradient(135deg,#EF9F27,#C87A06)">Astuces</span>
+          <span class="mbanner" style="background:linear-gradient(135deg,#3DCB9A,#085041)">Économies</span>
+          <span class="mbanner" style="background:linear-gradient(135deg,#60A5FA,#1D4ED8)">Entraide</span>
+          <span class="mbanner" style="background:linear-gradient(135deg,#F472B6,#9D174D)">Bon plan</span>
+        </div>
+        <div class="mlist-hub">
+          <div class="mhub-avatar">E</div>
+          <div class="mtxt"><b>ECONOMYA</b><span>Le coeur du reseau</span></div>
+        </div>
+        <div class="mrow"><div class="mavatar2" style="background:linear-gradient(135deg,#FFD98A,#D9830C)">M</div><div class="mtxt"><b>Marie</b><span>Telephonie</span></div><div class="mamount">480€/an</div></div>
+        <div class="mrow"><div class="mavatar2" style="background:linear-gradient(135deg,#8FC7FF,#1D4ED8)">P</div><div class="mtxt"><b>Pierre</b><span>Transport</span></div><div class="mamount">1 800€/an</div></div>
+        <div class="mrow"><div class="mavatar2" style="background:linear-gradient(135deg,#FFA9D3,#BE1361)">J</div><div class="mtxt"><b>Julie</b><span>Energie</span></div><div class="mamount">400€/an</div></div>
+        <div class="mrow"><div class="mavatar2" style="background:linear-gradient(135deg,#7CE8A8,#0E9448)">T</div><div class="mtxt"><b>Thomas</b><span>Assurance</span></div><div class="mamount">250€/an</div></div>
+        <div class="mrow"><div class="mavatar2" style="background:linear-gradient(135deg,#C3A6FF,#6D28D9)">S</div><div class="mtxt"><b>Sophie</b><span>Courses</span></div><div class="mamount">600€/an</div></div>
+      </div>
+
+  <div class="cta-row">
+    <a href="/connexion.html?redirect=%2Fcommunity.html" class="btn-gold">Devenir le prochain membre</a>
+    <a href="forum-astuces.html" class="btn-ghost3">Voir les astuces du reseau</a>
+  </div>
+</div></div>
 
 <div style="max-width:860px;margin:0 auto;padding:0 24px 72px;">
   <div class="cta-section">
