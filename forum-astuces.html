@@ -196,6 +196,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
       </select>
     </div>
     <div class="field"><label>Économie estimée</label><input id="fSaving" type="number" placeholder="Ex: 300€, 50€/mois..." min="0" max="99999"></div>
+    <div class="field"><label>Lieu de l'économie <span style="text-transform:none;font-weight:400;letter-spacing:0">(facultatif)</span></label><input id="fLocation" placeholder="Ex: Carrefour, en ligne, Paris..." maxlength="60"></div>
     <div class="field"><label>Votre prénom</label><input id="fAuthor" placeholder="Marie" maxlength="30" readonly></div>
     <div class="sheet-actions">
       <button class="btn-ann" onclick="closeAll()">Annuler</button>
@@ -856,9 +857,11 @@ async function submitPost(){
   const auteur=currentUser||'Anonyme';
   const economie=parseInt(document.getElementById('fSaving').value)||0;
   const categorie=document.getElementById('fCat').value;
+  const lieu=document.getElementById('fLocation').value.trim();
   if(btn){ btn.disabled = true; btn.textContent = 'Publication...'; }
   try {
     const payload = {titre, description, categorie, economie, auteur, votes:1, tested:0, reports:0, user_id: session.user.id};
+    if(lieu) payload.lieu = lieu;
     const newPost = await sbFetch('astuces', {
       method:'POST',
       body:JSON.stringify(payload)
@@ -870,7 +873,7 @@ async function submitPost(){
     localStorage.setItem('eco_lastpost', String(lastPostAt));
     closeAll();
     setSort('new',document.querySelectorAll('.tab')[1]);
-    ['fTitle','fBody','fSaving'].forEach(id=>document.getElementById(id).value='');
+    ['fTitle','fBody','fSaving','fLocation'].forEach(id=>document.getElementById(id).value='');
     updateNav();
   } catch(e){
     const msg = /limite atteinte/i.test(e.message) ? 'Vous avez publié trop d\'astuces récemment. Réessayez un peu plus tard.' : 'Erreur: '+e.message;
