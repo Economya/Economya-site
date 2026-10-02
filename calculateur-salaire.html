@@ -288,7 +288,19 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <h3>💬 Rejoignez la communauté</h3>
     <p>Découvrez encore plus d'astuces testées et partagées par les membres.</p>
     <div class="cta-form">
-      <a href="/forum-astuces.html" style="background:var(--a);color:white;text-decoration:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;font-family:inherit;font-size:.86rem;display:inline-block">Voir les astuces →</a>
+      <a href="/connexion.html?redirect=%2Fforum-astuces.html" style="background:var(--a);color:white;text-decoration:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;font-family:inherit;font-size:.86rem;display:inline-block" id="ecoCtaJoinBtn">Voir les astuces →</a>
+    <script>
+    (function(){
+      try {
+        var u = localStorage.getItem('eco_user');
+        var s = JSON.parse(localStorage.getItem('eco_session') || 'null');
+        if (u && s && s.access_token) {
+          var btn = document.getElementById('ecoCtaJoinBtn');
+          if (btn) btn.href = '/forum-astuces.html';
+        }
+      } catch(e) {}
+    })();
+    </script>
     </div>
   </div>
 </div>
