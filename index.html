@@ -312,9 +312,21 @@ function toggleMenu(){
   <h1>Partagez vos meilleures<br><em>astuces d'économies</em></h1>
   <p>La communauté vote, teste et valide les astuces d'économies au quotidien. La meilleure astuce, c'est peut-être la vôtre.</p>
   <div class="hactions">
-    <a href="community.html" class="btn-primary"><svg class="ic"><use href="#ic-leaf"/></svg>Rejoindre Community</a>
+    <a href="/connexion.html?redirect=%2Fforum-astuces.html" class="btn-primary" id="ecoTopJoinBtn"><svg class="ic"><use href="#ic-leaf"/></svg>Rejoindre Community</a>
     <a href="forum-astuces.html" class="btn-outline-light">Voir les astuces <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
   </div>
+<script>
+(function(){
+  try {
+    var u = localStorage.getItem('eco_user');
+    var s = JSON.parse(localStorage.getItem('eco_session') || 'null');
+    if (u && s && s.access_token) {
+      var btn = document.getElementById('ecoTopJoinBtn');
+      if (btn) btn.href = '/forum-astuces.html';
+    }
+  } catch(e) {}
+})();
+</script>
 </div>
 
 <section class="community-sec">
@@ -452,7 +464,19 @@ function toggleMenu(){
       </div>
     </div>
     <div style="text-align:center;margin-top:36px;">
-      <a href="community.html" class="btn-dark" style="background:var(--a);color:#1A0A00">Rejoindre la communauté <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+      <a href="/connexion.html?redirect=%2Fforum-astuces.html" class="btn-dark" style="background:var(--a);color:#1A0A00" id="ecoWhyJoinBtn">Rejoindre la communauté <svg class="ic"><use href="#ic-arrow-right"/></svg></a>
+    <script>
+    (function(){
+      try {
+        var u = localStorage.getItem('eco_user');
+        var s = JSON.parse(localStorage.getItem('eco_session') || 'null');
+        if (u && s && s.access_token) {
+          var btn = document.getElementById('ecoWhyJoinBtn');
+          if (btn) btn.href = '/forum-astuces.html';
+        }
+      } catch(e) {}
+    })();
+    </script>
     </div>
   </div>
 </section>
@@ -606,9 +630,21 @@ function toggleMenu(){
     </svg>
   </div>
 
-  <a href="community.html" class="web-cta">Rejoindre le réseau <svg class="ic"><use href="#ic-idea"/></svg></a>
+  <a href="/connexion.html?redirect=%2Fforum-astuces.html" class="web-cta" id="ecoHeroJoinBtn">Rejoindre le réseau <svg class="ic"><use href="#ic-idea"/></svg></a>
   <div class="web-bottom-space"></div>
 </section>
+<script>
+(function(){
+  try {
+    var u = localStorage.getItem('eco_user');
+    var s = JSON.parse(localStorage.getItem('eco_session') || 'null');
+    if (u && s && s.access_token) {
+      var btn = document.getElementById('ecoHeroJoinBtn');
+      if (btn) btn.href = '/forum-astuces.html';
+    }
+  } catch(e) {}
+})();
+</script>
 
 <footer>
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
