@@ -426,12 +426,23 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   </div>
 
   <div class="newsletter">
-    <h2><svg class="ic"><use href="#ic-mail"/></svg> Nouveaux outils chaque semaine</h2>
-    <p>Recevez en avant-première nos nouveaux simulateurs et calculateurs gratuits.</p>
+    <h2><svg class="ic"><use href="#ic-idea"/></svg> Rejoindre Economya Network</h2>
+    <p>Partagez vos astuces et découvrez celles de la communauté, testées et approuvées.</p>
     <div class="nl-form">
-      <form action="https://8c3516b5.sibforms.com/serve/MUIFAJ7Uw5h5Fjb8WPWvxzffQ8pcvJ7gIdeCWQHWqGm-ovG94xuIqP1HX7FWoPMTkBLZz6o-pkHCgDxXe7D_2o4X0BwLHldjyE3p6jqiajS2rYCpWpdRI44saG6YZ-m_jwv-SVXVmMm8PMkQ9Dh0rZ0X_hQg3UC3KKqm8CeDvvkj1CLAR3IBPt6ZOLCLgEOOtsFOzYGVT6MINtcZOQ==" method="POST"><input type="email" name="EMAIL" placeholder="votre@email.fr" required>
-      <button type="submit">Je m'abonne</button></form>
+      <a href="/connexion.html?redirect=%2Fforum-astuces.html" id="ecoNlJoinBtn" style="background:var(--a);color:white;text-decoration:none;padding:.7rem 1.6rem;border-radius:50px;font-weight:600;font-family:inherit;display:inline-block">Rejoindre le réseau →</a>
     </div>
+    <script>
+    (function(){
+      try {
+        var u = localStorage.getItem('eco_user');
+        var s = JSON.parse(localStorage.getItem('eco_session') || 'null');
+        if (u && s && s.access_token) {
+          var btn = document.getElementById('ecoNlJoinBtn');
+          if (btn) btn.href = '/forum-astuces.html';
+        }
+      } catch(e) {}
+    })();
+    </script>
   </div>
 
 </div>
