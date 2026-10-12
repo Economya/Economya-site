@@ -64,8 +64,16 @@ exports.handler = async function (event) {
   }
 
   try {
-    const rawSlug =
-      (event.queryStringParameters && event.queryStringParameters.slug) || '';
+    // On lit l'id depuis le dernier segment du chemin plutôt que depuis
+    // une query string : Netlify ne substitue pas correctement ":splat"
+    // dans une query string en production (bug connu), seulement dans le
+    // chemin. netlify.toml redirige donc vers
+    // /.netlify/functions/astuce-ssr/:splat, et ce segment se retrouve en
+    // dernière position de event.path, que Netlify l'expose comme
+    // "/astuces/post/42-titre" ou "/.netlify/functions/astuce-ssr/42-titre"
+    // selon le contexte — dans les deux cas le dernier segment est le bon.
+    const segments = (event.path || '').split('/').filter(Boolean);
+    const rawSlug = segments.length ? segments[segments.length - 1] : '';
     const decoded = decodeURIComponent(rawSlug);
     const idMatch = decoded.match(/^(\d+)/);
     const id = idMatch ? idMatch[1] : null;
