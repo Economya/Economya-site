@@ -83,6 +83,9 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .journal-item-title{font-weight:800;font-size:14px;line-height:1.35;}
 .journal-item-date{font-size:11px;color:var(--muted);white-space:nowrap;flex-shrink:0;}
 .journal-item-meta{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);}
+.privacy-toggle{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;border:1.5px solid transparent;background:var(--white);transition:background .15s,color .15s,border-color .15s;}
+.privacy-toggle.is-public{background:#F0FDF4;border-color:#BBF7D0;color:var(--green);}
+.privacy-toggle.is-private{background:#F4F4F5;border-color:var(--border);color:var(--muted);}
 
 .empty{text-align:center;padding:60px 20px;color:var(--muted);}
 .empty-icon{font-size:44px;margin-bottom:12px;}
@@ -578,7 +581,7 @@ async function loadProfile(){
       <div id="postsList">${renderPostsList(posts)}</div>
       <div class="sec-title-row">
         <div class="sec-title">📔 Astuces testées</div>
-        ${isOwn ? `<button class="sort-tab" id="journalPrivacyBtn" onclick="toggleJournalPrivacy()">${journalIsPublic ? '🔓 Public' : '🔒 Privé'}</button>` : ''}
+        ${isOwn ? `<button class="privacy-toggle ${journalIsPublic ? 'is-public' : 'is-private'}" id="journalPrivacyBtn" onclick="toggleJournalPrivacy()" title="${journalIsPublic ? 'Visible par tout le monde — cliquer pour le rendre privé' : 'Visible par vous seul — cliquer pour le rendre public'}">${journalIsPublic ? '🌍 Public' : '🔒 Privé'}</button>` : ''}
       </div>
       <div id="journalList">${(isOwn || journalIsPublic) ? renderJournal(journalEntries) : '<div class="empty"><div class="empty-icon">🔒</div><h3>Journal privé</h3></div>'}</div>
       ${isOwn ? `<div class="danger-zone">
