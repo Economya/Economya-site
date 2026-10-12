@@ -58,6 +58,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .sort-tab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
 
 .impact-banner{margin:0 16px 14px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:14px;padding:12px 16px;font-size:13px;font-weight:600;color:#166534;text-align:center;line-height:1.5;}
+.rank-levelup-banner{margin:0 16px 14px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:14px;padding:12px 16px;font-size:13px;font-weight:700;color:#92400E;text-align:center;}
 .impact-banner b{font-weight:900;}
 .stats-row{display:flex;gap:0;border-top:1px solid var(--border);}
 .stat{flex:1;text-align:center;padding:16px 6px;border-right:1px solid var(--border);}
@@ -498,7 +499,7 @@ async function loadProfile(){
     return;
   }
   try {
-    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio,journal_public');
+    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio,journal_public,rank_seen');
     const profile = profiles[0];
     if(!profile){
       content.innerHTML = '<div class="empty"><div class="empty-icon">👤</div><h3>Profil introuvable</h3><p>"'+pseudo.replace(/</g,'')+'" n\'existe pas (encore).</p></div>';
@@ -537,6 +538,24 @@ async function loadProfile(){
     const avgReliability = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : null;
     const relColor = avgReliability===null ? '' : avgReliability>=80?'#22C55E':avgReliability>=60?'#F97316':'#EF4444';
     const r = rank(posts.length, totalVotes);
+    let rankLevelUp = false;
+    if(isOwn){
+      const rankIndex = RANKS.indexOf(r);
+      const seen = profile.rank_seen;
+      if(seen !== null && seen !== undefined && rankIndex > seen){ rankLevelUp = true; }
+      if(seen === null || seen === undefined || rankIndex !== seen){
+        fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + profile.id, {
+          method: 'PATCH',
+          headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': 'Bearer ' + mySession.access_token,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify({ rank_seen: rankIndex })
+        }).catch(()=>{});
+      }
+    }
     const [bg,fg] = pc(profile.pseudo);
     document.getElementById('navLogout').style.display = isOwn ? 'inline' : 'none';
     const isEmoji = profile.avatar_url && profile.avatar_url.startsWith('emoji:');
@@ -567,6 +586,7 @@ async function loadProfile(){
           <button class="share-btn" onclick="shareProfile('${escapeHtml(profile.pseudo).replace(/'/g,'%27')}')">🔗 Partager ce profil</button>
         </div>
       </div>
+      ${rankLevelUp ? `<div class="rank-levelup-banner">🔥 Nouveau palier atteint : ${r.l} !</div>` : ''}
       ${totalTested>0 ? `<div class="impact-banner">💪 ${isOwn ? 'Grâce à toi' : 'Grâce à ' + escapeHtml(profile.pseudo)}, ${totalTested} test${totalTested>1?'s ont été faits':' a été fait'} sur ${posts.length} astuce${posts.length>1?'s':''}</div>` : ''}
       <div class="stats-row">
         <div class="stat"><div class="stat-n">${posts.length}</div><div class="stat-l">Astuces</div></div>
