@@ -804,6 +804,7 @@ async function submitPost(){
   const titre=document.getElementById('fTitle').value.trim();
   const description=document.getElementById('fBody').value.trim();
   if(!titre||!description){alert('Titre et description obligatoires !');return;}
+  if(description.length < 40){alert('La description doit faire au moins 40 caractères (donnez un peu plus de détails sur comment ça marche et combien vous économisez).');return;}
   const auteur=currentUser||'Anonyme';
   const economie=parseInt(document.getElementById('fSaving').value)||0;
   const categorie=document.getElementById('fCat').value;
