@@ -44,6 +44,7 @@ h1.post-title{font-family:'Playfair Display',serif;font-weight:800;font-size:1.5
 .action:hover{background:#F0F0EE}
 .action.liked{color:#22C55E;background:#F0FDF4;border-color:#BBF7D0}
 .action.tested-on{color:#3B82F6;background:#EFF6FF;border-color:#BFDBFE}
+.action.flagged{color:#DC2626;background:#FEF2F2;border-color:#FECACA}
 
 .share-cta{background:linear-gradient(135deg,var(--g),#25B788);color:#fff;border:none;border-radius:99px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
 .section-tag{font-size:.78rem;font-weight:700;color:var(--m);text-transform:uppercase;letter-spacing:.04em;margin:1.8rem 0 .8rem}
@@ -259,6 +260,7 @@ const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
 let currentUser = localStorage.getItem('eco_user')||null;
 let session = JSON.parse(localStorage.getItem('eco_session')||'null');
+let reportedPosts = JSON.parse(localStorage.getItem('eco_reported')||'[]');
 
 function escapeHtml(s){
   return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -511,6 +513,29 @@ async function reportComment(id){
   } catch(e){ /* pas grave si ça échoue, l'utilisateur peut retenter */ }
 }
 
+async function doReportPost(){
+  if(!session || !session.user){
+    window.location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname);
+    return;
+  }
+  if(!currentPost || reportedPosts.includes(currentPost.id)) return;
+  if(!confirm('Signaler cette astuce ?')) return;
+  try {
+    await sbFetch(`astuces?id=eq.${currentPost.id}`, {method:'PATCH', body:JSON.stringify({reports:(currentPost.reports||0)+1}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    currentPost.reports = (currentPost.reports||0) + 1;
+    reportedPosts.push(currentPost.id);
+    localStorage.setItem('eco_reported', JSON.stringify(reportedPosts));
+    renderReportBtn();
+  } catch(e){ alert('Erreur : le signalement n\'a pas pu \u00eatre envoy\u00e9. ' + e.message); }
+}
+function renderReportBtn(){
+  const btn = document.getElementById('reportBtn');
+  if(btn && currentPost){
+    const flagged = reportedPosts.includes(currentPost.id);
+    btn.classList.toggle('flagged', flagged);
+  }
+}
+
 
 function getIdFromUrl(){
   const m = location.pathname.match(/\/astuces\/post\/([^/]+)/);
@@ -638,7 +663,7 @@ async function init(){
           <span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>
           ${(p.votes||0)>=TREND_THRESHOLD?'<span class="trend-badge">🔥 Tendance</span>':''}
         </div>
-        <div class="post-cat">${escapeHtml(p.categorie||'')}${p.enseigne?' · 🏷️ '+escapeHtml(p.enseigne):''} · il y a ${timeAgo(p.created_at)}</div>
+        <div class="post-cat">${escapeHtml(p.categorie||'')}${p.enseigne?' · 🏷️ '+escapeHtml(p.enseigne):''}${p.lieu?' · 📍 '+escapeHtml(p.lieu):''} · il y a ${timeAgo(p.created_at)}</div>
       </div>
     </div>
     <h1 class="post-title">${escapeHtml(p.titre)}</h1>
@@ -653,6 +678,7 @@ async function init(){
       <button type="button" class="action ${myVoted?'liked':''}" id="voteBtn" onclick="doVote()"><span id="voteIcon">${myVoted?'❤️':'🤍'}</span> <span id="voteCount">${(p.votes||0) + (myVoted?1:0)}</span> votes</button>
       <button type="button" class="action ${myTested?'tested-on':''}" id="testBtn" onclick="doTest()"><span id="testIcon">${myTested?'✅':'☑️'}</span> <span id="testCount">${(p.tested||0) + (myTested?1:0)}</span> testés</button>
       <button class="share-cta" id="shareBtn" onclick="shareAstuce(${JSON.stringify(p).replace(/"/g,'&quot;')})">📤 Partager</button>
+      <button type="button" class="action" id="reportBtn" onclick="doReportPost()">🚩 Signaler</button>
     </div>
   </div>
   <div class="card comments-card">
@@ -663,6 +689,7 @@ async function init(){
   <div class="cta-box">💡 Vous avez une astuce qui marche ? <a href="/forum-astuces.html">Partagez-la avec la communauté →</a></div>`;
 
   currentAstuceId = p.id;
+  renderReportBtn();
   renderCommentForm();
   loadComments(p.id);
   loadRelated(p);

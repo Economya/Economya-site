@@ -43,13 +43,13 @@ function authValidateSignup(pseudo, birthVal, cguChecked){
 
 // Appelle Supabase pour une inscription ou une connexion par mot de passe.
 // authMode: 'signup' | 'login'. Retourne {ok:true, data} ou {ok:false, msg}.
-async function authSubmit(authMode, email, password, pseudo, captchaToken){
+async function authSubmit(authMode, email, password, pseudo, captchaToken, birthDate){
   let res;
   if(authMode === 'signup'){
     res = await fetch(AUTH_SUPABASE_URL + '/auth/v1/signup', {
       method: 'POST',
       headers: {'apikey': AUTH_SUPABASE_KEY, 'Content-Type': 'application/json'},
-      body: JSON.stringify({email, password, data: {pseudo}, gotrue_meta_security: {captcha_token: captchaToken}})
+      body: JSON.stringify({email, password, data: {pseudo, birth_date: birthDate || null}, gotrue_meta_security: {captcha_token: captchaToken}})
     });
   } else {
     res = await fetch(AUTH_SUPABASE_URL + '/auth/v1/token?grant_type=password', {

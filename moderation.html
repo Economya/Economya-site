@@ -121,7 +121,7 @@ function astuceItemHtml(p, mode){
        <a href="/astuces/post/${p.id}" target="_blank">Voir →</a>`;
   return `<div class="item" id="astuce-${p.id}">
     <div class="item-head">
-      <div class="item-meta">Astuce · ${escapeHtml(p.auteur||'Anonyme')} · ${escapeHtml(p.categorie||'')} · il y a ${timeAgo(p.created_at)}</div>
+      <div class="item-meta">Astuce · ${escapeHtml(p.auteur||'Anonyme')} · ${escapeHtml(p.categorie||'')}${p.enseigne?' · 🏷️ '+escapeHtml(p.enseigne):''}${p.lieu?' · 📍 '+escapeHtml(p.lieu):''} · il y a ${timeAgo(p.created_at)}</div>
       ${badge}
     </div>
     <div class="item-title">${escapeHtml(p.titre)}</div>
@@ -184,35 +184,47 @@ async function loadAll(){
 
 async function hideAstuce(id){
   if(!confirm('Masquer cette astuce du site ?')) return;
-  await sbFetch('astuces?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:true}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-  astucesReported = astucesReported.filter(p=>p.id!==id);
-  loadAll();
+  try {
+    await sbFetch('astuces?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:true}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    astucesReported = astucesReported.filter(p=>p.id!==id);
+    loadAll();
+  } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
 }
 async function dismissAstuceReport(id){
-  await sbFetch('astuces?id=eq.'+id, {method:'PATCH', body:JSON.stringify({reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-  astucesReported = astucesReported.filter(p=>p.id!==id);
-  renderReported();
+  try {
+    await sbFetch('astuces?id=eq.'+id, {method:'PATCH', body:JSON.stringify({reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    astucesReported = astucesReported.filter(p=>p.id!==id);
+    renderReported();
+  } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
 }
 async function restoreAstuce(id){
-  await sbFetch('astuces?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:false, reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-  astucesHidden = astucesHidden.filter(p=>p.id!==id);
-  renderHidden();
+  try {
+    await sbFetch('astuces?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:false, reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    astucesHidden = astucesHidden.filter(p=>p.id!==id);
+    renderHidden();
+  } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
 }
 async function hideComment(id){
   if(!confirm('Masquer ce commentaire ?')) return;
-  await sbFetch('astuce_comments?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:true}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-  commentsReported = commentsReported.filter(c=>c.id!==id);
-  loadAll();
+  try {
+    await sbFetch('astuce_comments?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:true}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    commentsReported = commentsReported.filter(c=>c.id!==id);
+    loadAll();
+  } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
 }
 async function dismissCommentReport(id){
-  await sbFetch('astuce_comments?id=eq.'+id, {method:'PATCH', body:JSON.stringify({reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-  commentsReported = commentsReported.filter(c=>c.id!==id);
-  renderReported();
+  try {
+    await sbFetch('astuce_comments?id=eq.'+id, {method:'PATCH', body:JSON.stringify({reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    commentsReported = commentsReported.filter(c=>c.id!==id);
+    renderReported();
+  } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
 }
 async function restoreComment(id){
-  await sbFetch('astuce_comments?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:false, reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
-  commentsHidden = commentsHidden.filter(c=>c.id!==id);
-  renderHidden();
+  try {
+    await sbFetch('astuce_comments?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:false, reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    commentsHidden = commentsHidden.filter(c=>c.id!==id);
+    renderHidden();
+  } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
 }
 window.hideAstuce = hideAstuce;
 window.dismissAstuceReport = dismissAstuceReport;

@@ -359,7 +359,8 @@ async function submitAuth(){
   const captchaToken = (typeof turnstile !== 'undefined') ? turnstile.getResponse() : null;
   if(!captchaToken){ showAuthError('Merci de valider la vérification anti-robot.'); return; }
   try {
-    const result = await authSubmit(authMode, email, password, pseudo, captchaToken);
+    const birthDate = authMode === 'signup' ? document.getElementById('authBirth').value : null;
+    const result = await authSubmit(authMode, email, password, pseudo, captchaToken, birthDate);
     if(!result.ok){ throw new Error(result.msg); }
     if(authMode === 'signup' && !result.data.access_token){
       showAuthError('Compte créé ! Vérifiez votre email pour confirmer, puis connectez-vous.', true);
@@ -632,7 +633,7 @@ function renderFeed(){
             <span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>
             ${p.votes>=TREND_THRESHOLD?'<span class="trend-badge">\uD83D\uDD25 Tendance</span>':''}
           </div>
-          <div class="post-cat">${escapeHtml(p.categorie)}${p.enseigne?' · 🏷️ '+escapeHtml(p.enseigne):''} · il y a ${timeAgo(p.created_at)}</div>
+          <div class="post-cat">${escapeHtml(p.categorie)}${p.enseigne?' · 🏷️ '+escapeHtml(p.enseigne):''}${p.lieu?' · 📍 '+escapeHtml(p.lieu):''} · il y a ${timeAgo(p.created_at)}</div>
         </div>
       </div>
       <a href="/astuces/post/${p.id}-${slugify(p.titre)}" class="post-title" style="display:block;color:inherit;text-decoration:none">${escapeHtml(p.titre)}</a>

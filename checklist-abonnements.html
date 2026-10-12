@@ -397,7 +397,7 @@ function renderList(category, containerId) {
     div.id = `item_${id}`;
     div.innerHTML = `
       <div class="abo-info"><h3>${abo.nom}</h3><p>${abo.detail}</p></div>
-      <input class="abo-input" type="number" value="${abo.prix}" min="0" step="0.01" onchange="updatePrix('${id}', this.value)">
+      <input class="abo-input" type="number" value="${abo.prix}" min="0" step="0.01" aria-label="Prix mensuel de ${abo.nom}" onchange="updatePrix('${id}', this.value)">
       <div class="abo-prix">${abo.prix.toFixed(2)} €/mois</div>
       <div class="abo-btns">
         <button class="btn-garde" onclick="setStatut('${id}', 'garde', this)">✅ Garde</button>
@@ -434,8 +434,8 @@ function ajouterCustom() {
   div.className = 'abo-item';
   div.id = `item_${id}`;
   div.innerHTML = `
-    <div class="abo-info"><input type="text" placeholder="Nom de l'abonnement" style="border:1px solid var(--b);border-radius:8px;padding:.35rem .7rem;font-family:inherit;font-size:.85rem;width:100%" onchange="updateNom('${id}', this.value)"></div>
-    <input class="abo-input" type="number" value="0" min="0" step="0.01" onchange="updatePrix('${id}', this.value)">
+    <div class="abo-info"><input type="text" placeholder="Nom de l'abonnement" aria-label="Nom de l'abonnement personnalisé" style="border:1px solid var(--b);border-radius:8px;padding:.35rem .7rem;font-family:inherit;font-size:.85rem;width:100%" onchange="updateNom('${id}', this.value)"></div>
+    <input class="abo-input" type="number" value="0" min="0" step="0.01" aria-label="Prix mensuel de l'abonnement personnalisé" onchange="updatePrix('${id}', this.value)">
     <div class="abo-prix">0 €/mois</div>
     <div class="abo-btns">
       <button class="btn-garde" onclick="setStatut('${id}', 'garde', this)">✅ Garde</button>

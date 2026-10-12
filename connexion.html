@@ -140,7 +140,8 @@ async function submitAuth(){
   const btn = document.getElementById('authSubmitBtn');
   btn.disabled = true;
   try {
-    const result = await authSubmit(authMode, email, password, pseudo, captchaToken);
+    const birthDate = authMode === 'signup' ? document.getElementById('authBirth').value : null;
+    const result = await authSubmit(authMode, email, password, pseudo, captchaToken, birthDate);
     if(!result.ok){ throw new Error(result.msg); }
     if(authMode === 'signup' && !result.data.access_token){
       showAuthError('Compte créé ! Vérifiez votre email pour confirmer, puis connectez-vous.', true);
