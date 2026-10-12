@@ -77,6 +77,13 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .post-cat{font-weight:600;}
 .saving-pill{display:inline-flex;align-items:center;gap:5px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--green);margin-bottom:10px;}
 
+.journal-item{display:block;background:var(--white);border-bottom:1px solid var(--border);padding:14px 16px;text-decoration:none;color:inherit;transition:background .15s;}
+.journal-item:hover{background:var(--bg);}
+.journal-item-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px;}
+.journal-item-title{font-weight:800;font-size:14px;line-height:1.35;}
+.journal-item-date{font-size:11px;color:var(--muted);white-space:nowrap;flex-shrink:0;}
+.journal-item-meta{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);}
+
 .empty{text-align:center;padding:60px 20px;color:var(--muted);}
 .empty-icon{font-size:44px;margin-bottom:12px;}
 .empty h3{font-weight:800;font-size:16px;color:var(--ink);margin-bottom:6px;}
@@ -345,6 +352,10 @@ function getPseudoFromUrl(){
   return params.get('pseudo');
 }
 
+function slugify(s){
+  return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+
 function timeAgo(ts){
   const d=Date.now()-new Date(ts).getTime();
   if(d<86400000)return "aujourd'hui";
@@ -380,6 +391,23 @@ function renderPostsList(posts){
       </div>
     `;
   }).join('') : '<div class="empty"><div class="empty-icon">📭</div><h3>Aucune astuce publiée</h3></div>';
+}
+
+function renderJournal(entries){
+  return entries.length ? entries.map(e=>{
+    return `
+      <a class="journal-item" href="/astuces/post/${e.id}-${slugify(e.titre)}">
+        <div class="journal-item-top">
+          <div class="journal-item-title">✅ ${escapeHtml(e.titre)}</div>
+          <div class="journal-item-date">${timeAgo(e.tested_at)}</div>
+        </div>
+        <div class="journal-item-meta">
+          <span>${escapeHtml(e.categorie||'')}</span>
+          ${e.economie ? `<span style="color:var(--green);font-weight:700">💰 ${e.economie}€</span>` : ''}
+        </div>
+      </a>
+    `;
+  }).join('') : `<div class="empty"><div class="empty-icon">📔</div><h3>Aucune astuce testée pour l'instant</h3></div>`;
 }
 
 let currentSortMode = 'recent';
@@ -448,6 +476,23 @@ async function loadProfile(){
       return;
     }
     const posts = await sbFetch('astuces?user_id=eq.' + profile.id + '&order=created_at.desc');
+    let journalEntries = [];
+    try {
+      const testActions = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=astuce_id,created_at&order=created_at.desc');
+      if(testActions.length){
+        const ids = testActions.map(a=>a.astuce_id).join(',');
+        const testedAstuces = await sbFetch('astuces?id=in.(' + ids + ')&select=id,titre,categorie,economie,hidden');
+        const byId = {};
+        testedAstuces.forEach(a=>{ byId[a.id] = a; });
+        journalEntries = testActions
+          .map(a=>{
+            const astuce = byId[a.astuce_id];
+            if(!astuce || astuce.hidden) return null;
+            return { id: astuce.id, titre: astuce.titre, categorie: astuce.categorie, economie: astuce.economie, tested_at: a.created_at };
+          })
+          .filter(Boolean);
+      }
+    } catch(e){ console.error(e); }
     const totalVotes = posts.reduce((s,p)=>s+(p.votes||0),0);
     const totalTested = posts.reduce((s,p)=>s+(p.tested||0),0);
     let votesGiven = 0;
@@ -504,6 +549,10 @@ async function loadProfile(){
         </div>` : ''}
       </div>
       <div id="postsList">${renderPostsList(posts)}</div>
+      <div class="sec-title-row">
+        <div class="sec-title">📔 Astuces testées</div>
+      </div>
+      <div id="journalList">${renderJournal(journalEntries)}</div>
       ${isOwn ? `<div class="danger-zone">
         <button class="danger-btn" id="deleteAccountBtn" onclick="deleteAccount()">🗑️ Supprimer mon compte</button>
         <p class="danger-note">Cela supprime définitivement votre compte, votre photo, vos astuces et vos votes. Action irréversible.</p>
