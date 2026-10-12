@@ -54,16 +54,23 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .nav-logout{font-size:.82rem;font-weight:600;color:var(--red);margin-left:14px;}
 .pro-name{font-weight:900;font-size:22px;margin-bottom:6px;}
 .pro-rank{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700;margin-bottom:6px;}
-.badges-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:2px 0 6px;}
-.badge-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700;border:1.5px solid var(--border);}
-.badge-chip.earned{background:#FFFBEB;border-color:#FDE68A;color:#92400E;}
-.badge-chip.locked{background:var(--bg);color:var(--muted);opacity:.55;}
+.badges-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:4px 0 8px;}
+.badge-chip{display:inline-flex;align-items:center;gap:6px;padding:3px 12px 3px 3px;border-radius:99px;font-size:11px;font-weight:700;border:1px solid var(--border);background:var(--white);transition:transform .15s,box-shadow .15s;}
+.badge-medal{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;}
+.badge-chip.earned{border-color:#FDE68A;color:#92400E;box-shadow:0 1px 3px rgba(180,83,9,.14);}
+.badge-chip.earned .badge-medal{background:linear-gradient(135deg,#FDE68A,#F59E0B);box-shadow:inset 0 1px 1px rgba(255,255,255,.55),0 1px 2px rgba(180,83,9,.3);}
+.badge-chip.earned:hover{transform:translateY(-1px);box-shadow:0 3px 9px rgba(180,83,9,.22);}
+.badge-chip.locked{color:var(--muted);opacity:.6;}
+.badge-chip.locked .badge-medal{background:var(--bg);filter:grayscale(1);}
 .pro-since{font-size:12px;color:var(--muted);}
 .pro-bio{font-size:13px;color:var(--muted);margin:10px auto 0;max-width:400px;line-height:1.45;}
 .pro-hero-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
 .share-btn{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:700;}
-.follow-btn{color:var(--ink);}
-.follow-btn.is-following{background:#F0FDF4;border-color:#BBF7D0;color:var(--green);}
+@keyframes followPop{0%{transform:scale(.88);}55%{transform:scale(1.08);}100%{transform:scale(1);}}
+.follow-btn{background:var(--ink);color:#fff;border-color:var(--ink);box-shadow:0 2px 8px rgba(10,10,10,.16);transition:transform .15s,box-shadow .15s;}
+.follow-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(10,10,10,.24);}
+.follow-btn.is-following{background:linear-gradient(135deg,#ECFDF5,#D1FAE5);border-color:#A7F3D0;color:#15803D;box-shadow:none;animation:followPop .32s cubic-bezier(.34,1.56,.64,1);}
+.follow-btn.is-following:hover{transform:none;box-shadow:0 2px 8px rgba(21,128,61,.15);}
 .sec-title-row{display:flex;align-items:center;justify-content:space-between;padding:20px 16px 10px;}
 .sec-title-row .sec-title{padding:0;}
 .sort-tabs{display:flex;gap:6px;}
@@ -78,14 +85,18 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .stat:last-child{border-right:none;}
 .stat-n{font-weight:900;font-size:20px;}
 .stat-l{font-size:11px;color:var(--muted);margin-top:3px;}
-.challenge-card{margin:0 16px 14px;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:14px 16px;}
-.challenge-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
-.challenge-title{font-size:13px;font-weight:800;}
-.challenge-edit{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;}
-.challenge-sub{font-size:12.5px;color:var(--muted);margin-bottom:8px;}
-.challenge-track{height:8px;background:var(--bg);border-radius:99px;overflow:hidden;}
-.challenge-fill{height:100%;background:var(--gold);border-radius:99px;transition:width .3s;}
-.challenge-done{margin-top:8px;font-size:12.5px;font-weight:700;color:var(--green);}
+.challenge-card{margin:0 16px 14px;background:linear-gradient(135deg,#ffffff,#FFFDF7);border:1px solid var(--border);border-radius:16px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 10px 24px -18px rgba(245,158,11,.35);position:relative;}
+.challenge-card.is-complete{border-color:#FDE68A;box-shadow:0 1px 3px rgba(0,0,0,.04),0 0 0 1px #FDE68A,0 12px 28px -16px rgba(245,158,11,.45);}
+.challenge-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.challenge-title{font-size:14px;font-weight:900;letter-spacing:-.01em;}
+.challenge-edit{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;transition:background .15s,border-color .15s,color .15s;}
+.challenge-edit:hover{background:#FFFBEB;border-color:#FDE68A;color:#92400E;}
+.challenge-sub{font-size:12.5px;color:var(--muted);margin-bottom:10px;font-weight:600;}
+.challenge-track{height:10px;background:var(--bg);border-radius:99px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.07);}
+.challenge-fill{height:100%;background:linear-gradient(90deg,#FBBF24,var(--gold) 65%,#F59E0B);border-radius:99px;transition:width .6s cubic-bezier(.22,1,.36,1);position:relative;overflow:hidden;}
+.challenge-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:challengeShine 1.6s ease-out .5s 1;}
+@keyframes challengeShine{0%{transform:translateX(-130%);}100%{transform:translateX(230%);}}
+.challenge-done{margin-top:10px;font-size:13px;font-weight:800;color:#92400E;display:flex;align-items:center;gap:6px;}
 
 .sec-title{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:20px 16px 10px;}
 
@@ -113,10 +124,12 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 
 .empty{text-align:center;padding:60px 20px;color:var(--muted);}
 .empty-icon{font-size:44px;margin-bottom:12px;}
-.journal-item.saved-item{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.journal-item.saved-item{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;padding-left:22px;transition:background .18s;}
+.journal-item.saved-item::before{content:'';position:absolute;left:0;top:10px;bottom:10px;width:3px;border-radius:3px;background:linear-gradient(180deg,#FBBF24,var(--gold));opacity:.9;}
+.journal-item.saved-item:hover{background:#FFFBEB;}
 .saved-item-link{flex:1;min-width:0;text-decoration:none;color:inherit;display:block;}
-.saved-remove-btn{flex-shrink:0;border:none;background:var(--bg);color:var(--muted);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:13px;line-height:1;}
-.saved-remove-btn:hover{background:var(--border);color:var(--ink);}
+.saved-remove-btn{flex-shrink:0;border:none;background:transparent;color:var(--muted);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:13px;line-height:1;transition:background .15s,color .15s,transform .15s;}
+.saved-remove-btn:hover{background:#FEE2E2;color:#DC2626;transform:scale(1.08);}
 .empty h3{font-weight:800;font-size:16px;color:var(--ink);margin-bottom:6px;}
 .loading{text-align:center;padding:60px;color:var(--muted);font-size:14px;}
 .legal-footer{text-align:center;padding:24px 16px 32px;font-size:11px;color:var(--muted);}
@@ -176,7 +189,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 </div>
 <div class="wrapped-bg" id="wrappedBg" onclick="if(event.target===this)closeWrapped()">
   <div class="wrapped-sheet">
-    <canvas id="wrappedCanvas" width="1080" height="1920"></canvas>
+    <canvas id="wrappedCanvas" width="1080" height="1600"></canvas>
     <div class="wrapped-actions">
       <button class="wrapped-btn wrapped-btn-primary" onclick="downloadWrapped()">⬇️ Télécharger</button>
       <button class="wrapped-btn" onclick="shareWrapped()">📤 Partager</button>
@@ -370,75 +383,193 @@ function closeWrapped(){
   document.getElementById('wrappedBg').classList.remove('open');
 }
 
+function wrappedRoundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);
+  ctx.arcTo(x,y,x+w,y,r);
+  ctx.closePath();
+}
+function wrappedGlow(ctx,x,y,r,color,alpha){
+  const g = ctx.createRadialGradient(x,y,0,x,y,r);
+  g.addColorStop(0, color.replace('ALPHA',alpha));
+  g.addColorStop(1, color.replace('ALPHA','0'));
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.arc(x,y,r,0,Math.PI*2);
+  ctx.fill();
+}
+function wrappedIconBadge(ctx,x,y,r,bg,glyphColor,glyph,fontSize){
+  ctx.beginPath();
+  ctx.arc(x,y,r,0,Math.PI*2);
+  ctx.fillStyle = bg;
+  ctx.fill();
+  ctx.fillStyle = glyphColor;
+  ctx.font = '800 '+fontSize+'px Inter, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(glyph, x, y+1);
+  ctx.textBaseline = 'alphabetic';
+}
+function wrappedWrapText(ctx, text, x, y, maxWidth, lineHeight){
+  const words = text.split(' ');
+  let line = '';
+  const lines = [];
+  for(let n=0;n<words.length;n++){
+    const test = line + words[n] + ' ';
+    if(ctx.measureText(test).width > maxWidth && n>0){
+      lines.push(line.trim());
+      line = words[n] + ' ';
+    } else { line = test; }
+  }
+  lines.push(line.trim());
+  lines.forEach((l,i)=> ctx.fillText(l, x, y + i*lineHeight));
+}
+
 function drawWrapped(d){
   const canvas = document.getElementById('wrappedCanvas');
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
+  const secondary = [];
+  if(d.economy > 0) secondary.push({glyph:'€', color:'#FBBF24', value:(d.economy).toLocaleString('fr-FR')+'€', label:'économisés cette année'});
+  if(d.posts > 0) secondary.push({glyph:'+', color:'#34D399', value:String(d.posts), label:(d.posts)===1?'astuce partagée':'astuces partagées'});
 
-  const grad = ctx.createLinearGradient(0,0,0,H);
-  grad.addColorStop(0,'#0A0A0A');
-  grad.addColorStop(1,'#14321F');
+  const W = 1080;
+  const heroX = 80, heroY = 710, heroW = W-160, heroH = 380;
+  const secGap = 36, secH = 240;
+  const hasSecondary = secondary.length > 0;
+  const H = hasSecondary ? 1600 : 1324;
+
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,W,H);
+
+  const grad = ctx.createLinearGradient(0,0,W*0.3,H);
+  grad.addColorStop(0,'#0B1F16');
+  grad.addColorStop(.45,'#0A0A0A');
+  grad.addColorStop(1,'#140F07');
   ctx.fillStyle = grad;
   ctx.fillRect(0,0,W,H);
+
+  wrappedGlow(ctx, W*0.85, H*0.06, 520, 'rgba(245,158,11,ALPHA)', '.35');
+  wrappedGlow(ctx, W*0.08, H*0.35, 480, 'rgba(34,197,94,ALPHA)', '.22');
+  wrappedGlow(ctx, W*0.92, H*0.82, 440, 'rgba(34,197,94,ALPHA)', '.16');
+
   ctx.textAlign = 'center';
 
-  ctx.fillStyle = '#F59E0B';
-  ctx.font = '700 36px Inter, sans-serif';
-  ctx.fillText('ECONOMYA WRAPPED', W/2, 150);
+  const kicker = 'ECONOMYA WRAPPED';
+  ctx.font = '700 28px Inter, sans-serif';
+  const kw = ctx.measureText(kicker).width;
+  wrappedRoundRect(ctx, W/2-kw/2-28, 70, kw+56, 56, 28);
+  ctx.fillStyle = 'rgba(245,158,11,.14)';
+  ctx.fill();
+  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = 'rgba(245,158,11,.4)';
+  ctx.stroke();
+  ctx.fillStyle = '#FBBF24';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(kicker, W/2, 70+28);
+  ctx.textBaseline = 'alphabetic';
 
   ctx.fillStyle = '#ffffff';
-  ctx.font = '900 70px Inter, sans-serif';
-  ctx.fillText(String(d.year), W/2, 240);
+  ctx.font = '900 110px Inter, sans-serif';
+  ctx.fillText(String(d.year), W/2, 330);
 
-  const initials = (d.pseudo||'?').slice(0,2).toUpperCase();
+  const cx = W/2, cy = 455, rOuter = 95;
+  wrappedGlow(ctx, cx, cy, 175, 'rgba(34,197,94,ALPHA)', '.35');
   ctx.beginPath();
-  ctx.arc(W/2, 400, 90, 0, Math.PI*2);
-  ctx.fillStyle = '#22C55E';
+  ctx.arc(cx, cy, rOuter, 0, Math.PI*2);
+  ctx.strokeStyle = 'rgba(255,255,255,.25)';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  const avGrad = ctx.createLinearGradient(cx-rOuter+14,cy-rOuter+14,cx+rOuter-14,cy+rOuter-14);
+  avGrad.addColorStop(0,'#34D399');
+  avGrad.addColorStop(1,'#059669');
+  ctx.beginPath();
+  ctx.arc(cx, cy, rOuter-14, 0, Math.PI*2);
+  ctx.fillStyle = avGrad;
   ctx.fill();
   ctx.fillStyle = '#ffffff';
-  ctx.font = '900 60px Inter, sans-serif';
-  ctx.fillText(initials, W/2, 423);
+  ctx.font = '900 64px Inter, sans-serif';
+  ctx.textBaseline = 'middle';
+  ctx.fillText((d.pseudo||'?').slice(0,2).toUpperCase(), cx, cy+4);
+  ctx.textBaseline = 'alphabetic';
 
   ctx.fillStyle = '#ffffff';
-  ctx.font = '700 42px Inter, sans-serif';
-  ctx.fillText(d.pseudo||'', W/2, 545);
+  ctx.font = '800 44px Inter, sans-serif';
+  ctx.fillText(d.pseudo||'', W/2, 600);
   if(d.rankLabel){
-    ctx.fillStyle = '#A3A3A3';
+    const cleanRank = d.rankLabel.replace(/^[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]+\s*/u, '');
+    ctx.fillStyle = 'rgba(255,255,255,.55)';
     ctx.font = '600 28px Inter, sans-serif';
-    ctx.fillText(d.rankLabel, W/2, 585);
+    ctx.fillText(cleanRank, W/2, 640);
   }
 
-  let y = 780;
-  ctx.fillStyle = '#22C55E';
-  ctx.font = '900 180px Inter, sans-serif';
-  ctx.fillText(String(d.tests||0), W/2, y);
+  wrappedRoundRect(ctx, heroX, heroY, heroW, heroH, 36);
+  ctx.fillStyle = 'rgba(255,255,255,.07)';
+  ctx.fill();
+  ctx.lineWidth = 1.5;
+  ctx.strokeStyle = 'rgba(255,255,255,.14)';
+  ctx.stroke();
+
+  wrappedIconBadge(ctx, W/2-150, heroY+56, 20, 'rgba(251,191,36,.18)', '#FBBF24', '✓', 22);
+  ctx.fillStyle = '#FBBF24';
+  ctx.font = '800 24px Inter, sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('ASTUCES TESTÉES', W/2-118, heroY+64);
+  ctx.textAlign = 'center';
+
   ctx.fillStyle = '#ffffff';
-  ctx.font = '600 36px Inter, sans-serif';
-  ctx.fillText((d.tests||0)===1 ? 'astuce testée cette année' : 'astuces testées cette année', W/2, y+65);
+  ctx.font = '900 180px Inter, sans-serif';
+  ctx.fillText(String(d.tests||0), W/2, heroY+265);
 
-  y += 230;
-  if(d.economy > 0){
-    ctx.fillStyle = '#F59E0B';
-    ctx.font = '900 100px Inter, sans-serif';
-    ctx.fillText(d.economy.toLocaleString('fr-FR') + '€', W/2, y);
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '600 30px Inter, sans-serif';
-    ctx.fillText('économisés grâce à ses astuces testées', W/2, y+55);
-    y += 180;
+  ctx.fillStyle = 'rgba(255,255,255,.65)';
+  ctx.font = '600 29px Inter, sans-serif';
+  ctx.fillText((d.tests||0)===1 ? 'astuce testée cette année' : 'astuces testées cette année', W/2, heroY+320);
+
+  if(hasSecondary){
+    const secY = heroY + heroH + secGap;
+    const n = secondary.length;
+    const totalGap = (n-1)*32;
+    const cardW = (heroW - totalGap) / n;
+    secondary.forEach((s,i)=>{
+      const x = heroX + i*(cardW+32);
+      wrappedRoundRect(ctx, x, secY, cardW, secH, 28);
+      ctx.fillStyle = 'rgba(255,255,255,.05)';
+      ctx.fill();
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = 'rgba(255,255,255,.12)';
+      ctx.stroke();
+      wrappedIconBadge(ctx, x+cardW/2, secY+54, 26, s.color+'2E', s.color, s.glyph, 26);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 62px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(s.value, x+cardW/2, secY+150);
+      ctx.fillStyle = 'rgba(255,255,255,.6)';
+      ctx.font = '600 23px Inter, sans-serif';
+      wrappedWrapText(ctx, s.label, x+cardW/2, secY+190, cardW-30, 29);
+    });
   }
 
-  if(d.posts > 0){
-    ctx.fillStyle = '#3B82F6';
-    ctx.font = '900 80px Inter, sans-serif';
-    ctx.fillText(String(d.posts), W/2, y);
-    ctx.fillStyle = '#ffffff';
-    ctx.font = '600 30px Inter, sans-serif';
-    ctx.fillText(d.posts===1 ? 'astuce partagée' : 'astuces partagées', W/2, y+50);
-  }
+  ctx.strokeStyle = 'rgba(255,255,255,.12)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(W/2-60, H-110);
+  ctx.lineTo(W/2+60, H-110);
+  ctx.stroke();
 
-  ctx.fillStyle = '#737373';
-  ctx.font = '600 28px Inter, sans-serif';
-  ctx.fillText('economya.fr', W/2, H-70);
+  ctx.font = '900 36px Inter, sans-serif';
+  const eco = 'Eco', nomya = 'nomya';
+  const ecoW = ctx.measureText(eco).width;
+  const nomyaW = ctx.measureText(nomya).width;
+  const totalW = ecoW + nomyaW;
+  ctx.textAlign = 'left';
+  ctx.fillStyle = '#ffffff';
+  ctx.fillText(eco, W/2-totalW/2, H-58);
+  ctx.fillStyle = '#F59E0B';
+  ctx.fillText(nomya, W/2-totalW/2+ecoW, H-58);
+  ctx.textAlign = 'center';
 }
 
 function downloadWrapped(){
@@ -533,7 +664,7 @@ function renderBadges(stats, showLocked){
   if(!list.length) return '';
   return list.map(b=>{
     const earned = b.check(stats);
-    return `<span class="badge-chip ${earned?'earned':'locked'}" title="${escapeHtml(b.desc)}">${b.icon} ${b.label}</span>`;
+    return `<span class="badge-chip ${earned?'earned':'locked'}" title="${escapeHtml(b.desc)}"><span class="badge-medal">${b.icon}</span><span class="badge-label">${b.label}</span></span>`;
   }).join('');
 }
 
@@ -902,7 +1033,7 @@ async function loadProfile(){
         <div class="stat"><div class="stat-n">${votesGiven}</div><div class="stat-l">Votes donnés</div></div>
         <div class="stat"><div class="stat-n">${followerCount}</div><div class="stat-l">Abonnés</div></div>
       </div>
-      ${isOwn ? `<div class="challenge-card">
+      ${isOwn ? `<div class="challenge-card ${profile.test_goal && testsThisYear>=profile.test_goal ? 'is-complete' : ''}">
         <div class="challenge-head">
           <div class="challenge-title">🎯 Défi ${currentYear}</div>
           <button class="challenge-edit" onclick="editGoal()">${profile.test_goal ? '✏️ Modifier' : '➕ Définir un défi'}</button>

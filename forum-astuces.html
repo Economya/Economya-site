@@ -82,7 +82,9 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .action.liked{color:var(--green);}
 .action.tested-on{color:var(--blue);}
 .action.flagged{color:var(--red);}
-.action.saved-on{color:var(--gold);}
+@keyframes savePop{0%{transform:scale(.82);}55%{transform:scale(1.14);}100%{transform:scale(1);}}
+.action.saved-on{color:#B45309;background:linear-gradient(135deg,#FFFBEB,#FDE9B8);box-shadow:inset 0 0 0 1px #FBCE77,0 1px 3px rgba(180,83,9,.18);border-radius:10px;animation:savePop .32s cubic-bezier(.34,1.56,.64,1);}
+.action.saved-on .action-icon{filter:drop-shadow(0 1px 1px rgba(180,83,9,.2));}
 .action-icon{font-size:18px;}
 
 .fab{position:fixed;bottom:24px;right:20px;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:50;cursor:pointer;}
