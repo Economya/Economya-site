@@ -35,6 +35,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .tabs{background:var(--white);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:52px;z-index:98;}
 .tabs::-webkit-scrollbar{display:none;}
 .tab{flex-shrink:0;padding:14px 16px;font-size:14px;font-weight:600;color:var(--muted);border:none;background:transparent;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s;}
+.tabs::after{content:'';position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(to right,transparent,var(--white));pointer-events:none;}
 .tab.active{color:var(--ink);border-bottom-color:var(--ink);}
 
 .wrap{max-width:600px;margin:0 auto;}
@@ -620,7 +621,7 @@ function renderFeed(){
     const r=rel(p);
     const rc=r>=80?'#22C55E':r>=60?'#F97316':'#EF4444';
     const [bg,fg]=pc(p.auteur||'A');
-    const authorPosts=posts.filter(x=>x.user_id===p.user_id);
+    const authorPosts=p.user_id ? posts.filter(x=>x.user_id===p.user_id) : [p];
     const userPosts=authorPosts.length;
     const userVotes=authorPosts.reduce((s,x)=>s+(x.votes||0),0);
     const rk=rank(userPosts, userVotes);
