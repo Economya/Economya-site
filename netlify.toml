@@ -20,12 +20,16 @@
   to = "/profil.html"
   status = 200
 
-# Page individuelle d'une astuce : /astuces/post/42-titre -> astuce.html
+# Page individuelle d'une astuce : /astuces/post/42-titre -> fonction SSR
+# qui injecte le vrai titre/description/contenu avant de renvoyer
+# astuce.html (correctif SEO : avant, Google/les aperçus de partage ne
+# voyaient que le HTML brut générique, le vrai contenu n'arrivant
+# qu'après l'appel Supabase fait par le JS).
 # (DOIT rester avant la règle générique /astuces/* ci-dessous : Netlify
 # prend la première règle qui correspond dans l'ordre du fichier).
 [[redirects]]
   from = "/astuces/post/*"
-  to = "/astuce.html"
+  to = "/.netlify/functions/astuce-ssr?slug=:splat"
   status = 200
 
 # Forums par catégorie : /astuces/telephonie -> forum-astuces.html?cat=...
@@ -34,5 +38,18 @@
   to = "/forum-astuces.html"
   status = 200
 
+# Sitemap généré dynamiquement (ajoute les URLs des astuces individuelles,
+# absentes de l'ancien sitemap.xml statique). force = true car un fichier
+# sitemap.xml statique existe toujours sur le disque et serait sinon
+# servi en priorité par Netlify avant cette redirection.
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/.netlify/functions/sitemap"
+  status = 200
+  force = true
+
 [build]
   publish = "."
+
+[functions]
+  directory = "netlify/functions"
