@@ -29,7 +29,7 @@
 # prend la première règle qui correspond dans l'ordre du fichier).
 [[redirects]]
   from = "/astuces/post/*"
-  to = "/.netlify/functions/astuce-ssr?slug=:splat"
+  to = "/.netlify/functions/astuce-ssr/:splat"
   status = 200
 
 # Forums par catégorie : /astuces/telephonie -> forum-astuces.html?cat=...
