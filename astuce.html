@@ -638,7 +638,7 @@ async function init(){
           <span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>
           ${(p.votes||0)>=TREND_THRESHOLD?'<span class="trend-badge">🔥 Tendance</span>':''}
         </div>
-        <div class="post-cat">${escapeHtml(p.categorie||'')} · il y a ${timeAgo(p.created_at)}</div>
+        <div class="post-cat">${escapeHtml(p.categorie||'')}${p.enseigne?' · 🏷️ '+escapeHtml(p.enseigne):''} · il y a ${timeAgo(p.created_at)}</div>
       </div>
     </div>
     <h1 class="post-title">${escapeHtml(p.titre)}</h1>

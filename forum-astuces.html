@@ -209,6 +209,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     </div>
     <div class="field"><label>Économie estimée</label><input id="fSaving" type="number" placeholder="Ex: 300€, 50€/mois..." min="0" max="99999"></div>
     <div class="field"><label>Lieu de l'économie <span style="text-transform:none;font-weight:400;letter-spacing:0">(facultatif)</span></label><input id="fLocation" placeholder="Ex: Carrefour, en ligne, Paris..." maxlength="60"></div>
+    <div class="field"><label>Enseigne / marque <span style="text-transform:none;font-weight:400;letter-spacing:0">(facultatif)</span></label><input id="fBrand" placeholder="Ex: Carrefour, Free, Decathlon..." maxlength="60"></div>
     <div class="field">
       <label>Preuve <span style="text-transform:none;font-weight:400;letter-spacing:0">(facultatif)</span></label>
       <input type="file" id="fProofInput" accept="image/*" style="display:none">
@@ -631,7 +632,7 @@ function renderFeed(){
             <span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>
             ${p.votes>=TREND_THRESHOLD?'<span class="trend-badge">\uD83D\uDD25 Tendance</span>':''}
           </div>
-          <div class="post-cat">${escapeHtml(p.categorie)} · il y a ${timeAgo(p.created_at)}</div>
+          <div class="post-cat">${escapeHtml(p.categorie)}${p.enseigne?' · 🏷️ '+escapeHtml(p.enseigne):''} · il y a ${timeAgo(p.created_at)}</div>
         </div>
       </div>
       <a href="/astuces/post/${p.id}-${slugify(p.titre)}" class="post-title" style="display:block;color:inherit;text-decoration:none">${escapeHtml(p.titre)}</a>
@@ -854,10 +855,12 @@ async function submitPost(){
   const economie=parseInt(document.getElementById('fSaving').value)||0;
   const categorie=document.getElementById('fCat').value;
   const lieu=document.getElementById('fLocation').value.trim();
+  const enseigne=document.getElementById('fBrand').value.trim();
   if(btn){ btn.disabled = true; btn.textContent = 'Publication...'; }
   try {
     const payload = {titre, description, categorie, economie, auteur, votes:1, tested:0, reports:0, user_id: session.user.id};
     if(lieu) payload.lieu = lieu;
+    if(enseigne) payload.enseigne = enseigne;
     const newPost = await sbFetch('astuces', {
       method:'POST',
       body:JSON.stringify(payload)
@@ -893,7 +896,7 @@ async function submitPost(){
     }
     closeAll();
     setSort('new',document.querySelectorAll('.tab')[1]);
-    ['fTitle','fBody','fSaving','fLocation'].forEach(id=>document.getElementById(id).value='');
+    ['fTitle','fBody','fSaving','fLocation','fBrand'].forEach(id=>document.getElementById(id).value='');
     removeProofFile();
     updateNav();
   } catch(e){
