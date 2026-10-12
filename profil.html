@@ -461,6 +461,30 @@ async function editBio(){
   }
 }
 
+async function toggleJournalPrivacy(){
+  if(!mySession || !currentProfile) return;
+  const newValue = !currentProfile.journal_public;
+  const btn = document.getElementById('journalPrivacyBtn');
+  if(btn) btn.disabled = true;
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + mySession.user.id, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + mySession.access_token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ journal_public: newValue })
+    });
+    if(!res.ok) throw new Error(await res.text());
+    loadProfile();
+  } catch(e){
+    alert('Erreur : ' + e.message);
+    if(btn) btn.disabled = false;
+  }
+}
+
 async function loadProfile(){
   const pseudo = getPseudoFromUrl();
   const content = document.getElementById('content');
@@ -469,30 +493,34 @@ async function loadProfile(){
     return;
   }
   try {
-    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio');
+    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio,journal_public');
     const profile = profiles[0];
     if(!profile){
       content.innerHTML = '<div class="empty"><div class="empty-icon">👤</div><h3>Profil introuvable</h3><p>"'+pseudo.replace(/</g,'')+'" n\'existe pas (encore).</p></div>';
       return;
     }
+    const isOwn = mySession && mySession.user && mySession.user.id === profile.id;
+    const journalIsPublic = profile.journal_public !== false;
     const posts = await sbFetch('astuces?user_id=eq.' + profile.id + '&order=created_at.desc');
     let journalEntries = [];
-    try {
-      const testActions = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=astuce_id,created_at&order=created_at.desc');
-      if(testActions.length){
-        const ids = testActions.map(a=>a.astuce_id).join(',');
-        const testedAstuces = await sbFetch('astuces?id=in.(' + ids + ')&select=id,titre,categorie,economie,hidden');
-        const byId = {};
-        testedAstuces.forEach(a=>{ byId[a.id] = a; });
-        journalEntries = testActions
-          .map(a=>{
-            const astuce = byId[a.astuce_id];
-            if(!astuce || astuce.hidden) return null;
-            return { id: astuce.id, titre: astuce.titre, categorie: astuce.categorie, economie: astuce.economie, tested_at: a.created_at };
-          })
-          .filter(Boolean);
-      }
-    } catch(e){ console.error(e); }
+    if(isOwn || journalIsPublic){
+      try {
+        const testActions = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=astuce_id,created_at&order=created_at.desc');
+        if(testActions.length){
+          const ids = testActions.map(a=>a.astuce_id).join(',');
+          const testedAstuces = await sbFetch('astuces?id=in.(' + ids + ')&select=id,titre,categorie,economie,hidden');
+          const byId = {};
+          testedAstuces.forEach(a=>{ byId[a.id] = a; });
+          journalEntries = testActions
+            .map(a=>{
+              const astuce = byId[a.astuce_id];
+              if(!astuce || astuce.hidden) return null;
+              return { id: astuce.id, titre: astuce.titre, categorie: astuce.categorie, economie: astuce.economie, tested_at: a.created_at };
+            })
+            .filter(Boolean);
+        }
+      } catch(e){ console.error(e); }
+    }
     const totalVotes = posts.reduce((s,p)=>s+(p.votes||0),0);
     const totalTested = posts.reduce((s,p)=>s+(p.tested||0),0);
     let votesGiven = 0;
@@ -505,7 +533,6 @@ async function loadProfile(){
     const relColor = avgReliability===null ? '' : avgReliability>=80?'#22C55E':avgReliability>=60?'#F97316':'#EF4444';
     const r = rank(posts.length, totalVotes);
     const [bg,fg] = pc(profile.pseudo);
-    const isOwn = mySession && mySession.user && mySession.user.id === profile.id;
     document.getElementById('navLogout').style.display = isOwn ? 'inline' : 'none';
     const isEmoji = profile.avatar_url && profile.avatar_url.startsWith('emoji:');
     const isPhoto = profile.avatar_url && !isEmoji;
@@ -551,8 +578,9 @@ async function loadProfile(){
       <div id="postsList">${renderPostsList(posts)}</div>
       <div class="sec-title-row">
         <div class="sec-title">📔 Astuces testées</div>
+        ${isOwn ? `<button class="sort-tab" id="journalPrivacyBtn" onclick="toggleJournalPrivacy()">${journalIsPublic ? '🔓 Public' : '🔒 Privé'}</button>` : ''}
       </div>
-      <div id="journalList">${renderJournal(journalEntries)}</div>
+      <div id="journalList">${(isOwn || journalIsPublic) ? renderJournal(journalEntries) : '<div class="empty"><div class="empty-icon">🔒</div><h3>Journal privé</h3></div>'}</div>
       ${isOwn ? `<div class="danger-zone">
         <button class="danger-btn" id="deleteAccountBtn" onclick="deleteAccount()">🗑️ Supprimer mon compte</button>
         <p class="danger-note">Cela supprime définitivement votre compte, votre photo, vos astuces et vos votes. Action irréversible.</p>
