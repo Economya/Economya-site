@@ -44,13 +44,26 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .avpick-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
 .avpick-item{aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;border:none;cursor:pointer;}
 .avpick-close{margin-top:14px;width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:12px;font-weight:700;color:var(--muted);}
+.wrapped-bg{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:260;padding:20px;}
+.wrapped-bg.open{display:flex;}
+.wrapped-sheet{background:var(--white);border-radius:20px;padding:16px;max-width:360px;width:100%;max-height:90vh;overflow-y:auto;text-align:center;}
+.wrapped-sheet canvas{width:100%;height:auto;border-radius:14px;display:block;}
+.wrapped-actions{display:flex;gap:8px;margin-top:14px;}
+.wrapped-btn{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:11px;font-weight:700;color:var(--muted);font-size:13px;}
+.wrapped-btn-primary{background:var(--ink);color:#fff;border-color:var(--ink);}
 .nav-logout{font-size:.82rem;font-weight:600;color:var(--red);margin-left:14px;}
 .pro-name{font-weight:900;font-size:22px;margin-bottom:6px;}
 .pro-rank{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:700;margin-bottom:6px;}
+.badges-row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:2px 0 6px;}
+.badge-chip{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:99px;font-size:11px;font-weight:700;border:1.5px solid var(--border);}
+.badge-chip.earned{background:#FFFBEB;border-color:#FDE68A;color:#92400E;}
+.badge-chip.locked{background:var(--bg);color:var(--muted);opacity:.55;}
 .pro-since{font-size:12px;color:var(--muted);}
 .pro-bio{font-size:13px;color:var(--muted);margin:10px auto 0;max-width:400px;line-height:1.45;}
 .pro-hero-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
 .share-btn{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:6px 14px;font-size:12px;font-weight:700;}
+.follow-btn{color:var(--ink);}
+.follow-btn.is-following{background:#F0FDF4;border-color:#BBF7D0;color:var(--green);}
 .sec-title-row{display:flex;align-items:center;justify-content:space-between;padding:20px 16px 10px;}
 .sec-title-row .sec-title{padding:0;}
 .sort-tabs{display:flex;gap:6px;}
@@ -65,6 +78,14 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .stat:last-child{border-right:none;}
 .stat-n{font-weight:900;font-size:20px;}
 .stat-l{font-size:11px;color:var(--muted);margin-top:3px;}
+.challenge-card{margin:0 16px 14px;background:var(--white);border:1px solid var(--border);border-radius:14px;padding:14px 16px;}
+.challenge-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.challenge-title{font-size:13px;font-weight:800;}
+.challenge-edit{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;}
+.challenge-sub{font-size:12.5px;color:var(--muted);margin-bottom:8px;}
+.challenge-track{height:8px;background:var(--bg);border-radius:99px;overflow:hidden;}
+.challenge-fill{height:100%;background:var(--gold);border-radius:99px;transition:width .3s;}
+.challenge-done{margin-top:8px;font-size:12.5px;font-weight:700;color:var(--green);}
 
 .sec-title{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:20px 16px 10px;}
 
@@ -92,6 +113,10 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 
 .empty{text-align:center;padding:60px 20px;color:var(--muted);}
 .empty-icon{font-size:44px;margin-bottom:12px;}
+.journal-item.saved-item{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.saved-item-link{flex:1;min-width:0;text-decoration:none;color:inherit;display:block;}
+.saved-remove-btn{flex-shrink:0;border:none;background:var(--bg);color:var(--muted);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:13px;line-height:1;}
+.saved-remove-btn:hover{background:var(--border);color:var(--ink);}
 .empty h3{font-weight:800;font-size:16px;color:var(--ink);margin-bottom:6px;}
 .loading{text-align:center;padding:60px;color:var(--muted);font-size:14px;}
 .legal-footer{text-align:center;padding:24px 16px 32px;font-size:11px;color:var(--muted);}
@@ -147,6 +172,16 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     <div class="avpick-title">Choisir un avatar</div>
     <div class="avpick-grid" id="avpickGrid"></div>
     <button class="avpick-close" onclick="closeAvatarPicker()">Fermer</button>
+  </div>
+</div>
+<div class="wrapped-bg" id="wrappedBg" onclick="if(event.target===this)closeWrapped()">
+  <div class="wrapped-sheet">
+    <canvas id="wrappedCanvas" width="1080" height="1920"></canvas>
+    <div class="wrapped-actions">
+      <button class="wrapped-btn wrapped-btn-primary" onclick="downloadWrapped()">⬇️ Télécharger</button>
+      <button class="wrapped-btn" onclick="shareWrapped()">📤 Partager</button>
+      <button class="wrapped-btn" onclick="closeWrapped()">Fermer</button>
+    </div>
   </div>
 </div>
 </div>
@@ -324,6 +359,112 @@ function openAvatarPicker(){
 function closeAvatarPicker(){
   document.getElementById('avpickBg').classList.remove('open');
 }
+
+async function openWrapped(){
+  if(!currentWrapped) return;
+  document.getElementById('wrappedBg').classList.add('open');
+  try { await document.fonts.ready; } catch(e){}
+  drawWrapped(currentWrapped);
+}
+function closeWrapped(){
+  document.getElementById('wrappedBg').classList.remove('open');
+}
+
+function drawWrapped(d){
+  const canvas = document.getElementById('wrappedCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  const grad = ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0,'#0A0A0A');
+  grad.addColorStop(1,'#14321F');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,W,H);
+  ctx.textAlign = 'center';
+
+  ctx.fillStyle = '#F59E0B';
+  ctx.font = '700 36px Inter, sans-serif';
+  ctx.fillText('ECONOMYA WRAPPED', W/2, 150);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '900 70px Inter, sans-serif';
+  ctx.fillText(String(d.year), W/2, 240);
+
+  const initials = (d.pseudo||'?').slice(0,2).toUpperCase();
+  ctx.beginPath();
+  ctx.arc(W/2, 400, 90, 0, Math.PI*2);
+  ctx.fillStyle = '#22C55E';
+  ctx.fill();
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '900 60px Inter, sans-serif';
+  ctx.fillText(initials, W/2, 423);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '700 42px Inter, sans-serif';
+  ctx.fillText(d.pseudo||'', W/2, 545);
+  if(d.rankLabel){
+    ctx.fillStyle = '#A3A3A3';
+    ctx.font = '600 28px Inter, sans-serif';
+    ctx.fillText(d.rankLabel, W/2, 585);
+  }
+
+  let y = 780;
+  ctx.fillStyle = '#22C55E';
+  ctx.font = '900 180px Inter, sans-serif';
+  ctx.fillText(String(d.tests||0), W/2, y);
+  ctx.fillStyle = '#ffffff';
+  ctx.font = '600 36px Inter, sans-serif';
+  ctx.fillText((d.tests||0)===1 ? 'astuce testée cette année' : 'astuces testées cette année', W/2, y+65);
+
+  y += 230;
+  if(d.economy > 0){
+    ctx.fillStyle = '#F59E0B';
+    ctx.font = '900 100px Inter, sans-serif';
+    ctx.fillText(d.economy.toLocaleString('fr-FR') + '€', W/2, y);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '600 30px Inter, sans-serif';
+    ctx.fillText('économisés grâce à ses astuces testées', W/2, y+55);
+    y += 180;
+  }
+
+  if(d.posts > 0){
+    ctx.fillStyle = '#3B82F6';
+    ctx.font = '900 80px Inter, sans-serif';
+    ctx.fillText(String(d.posts), W/2, y);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '600 30px Inter, sans-serif';
+    ctx.fillText(d.posts===1 ? 'astuce partagée' : 'astuces partagées', W/2, y+50);
+  }
+
+  ctx.fillStyle = '#737373';
+  ctx.font = '600 28px Inter, sans-serif';
+  ctx.fillText('economya.fr', W/2, H-70);
+}
+
+function downloadWrapped(){
+  if(!currentWrapped) return;
+  const canvas = document.getElementById('wrappedCanvas');
+  const link = document.createElement('a');
+  link.download = 'economya-wrapped-' + currentWrapped.year + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+async function shareWrapped(){
+  if(!currentWrapped) return;
+  const canvas = document.getElementById('wrappedCanvas');
+  try {
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+    const file = new File([blob], 'economya-wrapped.png', { type: 'image/png' });
+    if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+      await navigator.share({ files: [file], title: 'Mon Economya Wrapped ' + currentWrapped.year });
+    } else {
+      downloadWrapped();
+    }
+  } catch(e){
+    console.error(e);
+  }
+}
 async function chooseEmojiAvatar(emoji){
   if(!mySession) return;
   try {
@@ -372,12 +513,28 @@ function timeAgo(ts){
 
 let currentPosts = [];
 let currentProfile = null;
+let currentSaved = [];
+let currentWrapped = null;
 
 function rel(p){
   const pos=(p.votes||0)+(p.tested||0)*2;
   const neg=(p.reports||0)*3;
   if(pos===0)return null;
   return Math.max(0,Math.min(100,Math.round((pos-neg)/pos*100)));
+}
+
+const BADGES = [
+  { slug:'createur', icon:'✍️', label:'Créateur', desc:'5 astuces publiées', check:(s)=>s.postsCount>=5 },
+  { slug:'testeur', icon:'🧪', label:'Testeur', desc:'10 astuces testées', check:(s)=>s.testsGiven>=10 },
+  { slug:'supporter', icon:'🤝', label:'Supporter', desc:'50 votes donnés', check:(s)=>s.votesGiven>=50 },
+];
+function renderBadges(stats, showLocked){
+  const list = showLocked ? BADGES : BADGES.filter(b=>b.check(stats));
+  if(!list.length) return '';
+  return list.map(b=>{
+    const earned = b.check(stats);
+    return `<span class="badge-chip ${earned?'earned':'locked'}" title="${escapeHtml(b.desc)}">${b.icon} ${b.label}</span>`;
+  }).join('');
 }
 
 function renderPostsList(posts){
@@ -414,6 +571,47 @@ function renderJournal(entries){
       </a>
     `;
   }).join('') : `<div class="empty"><div class="empty-icon">📔</div><h3>Aucune astuce testée pour l'instant</h3></div>`;
+}
+
+function renderSavedList(entries){
+  return entries.length ? entries.map(e=>{
+    return `
+      <div class="journal-item saved-item">
+        <a href="/astuces/post/${e.id}-${slugify(e.titre)}" class="saved-item-link">
+          <div class="journal-item-top">
+            <div class="journal-item-title">📑 ${escapeHtml(e.titre)}</div>
+          </div>
+          <div class="journal-item-meta">
+            <span>${escapeHtml(e.categorie||'')}</span>
+            ${e.economie ? `<span style="color:var(--green);font-weight:700">💰 ${e.economie}€</span>` : ''}
+          </div>
+        </a>
+        <button type="button" class="saved-remove-btn" onclick="doUnsave(${e.id})" title="Retirer de ma liste à tester">✕</button>
+      </div>
+    `;
+  }).join('') : `<div class="empty"><div class="empty-icon">📑</div><h3>Aucune astuce sauvegardée pour l'instant</h3><p>Clique sur 🔖 sur une astuce pour la garder de côté.</p></div>`;
+}
+
+function rerenderSavedList(){
+  const list = document.getElementById('savedList');
+  if(list) list.innerHTML = renderSavedList(currentSaved);
+}
+
+async function doUnsave(id){
+  if(!mySession || !mySession.user) return;
+  const key = 'unsave:' + id;
+  if(pendingActions.has(key)) return;
+  pendingActions.add(key);
+  const before = currentSaved.slice();
+  currentSaved = currentSaved.filter(e=>e.id!==id);
+  rerenderSavedList();
+  try {
+    await authedFetch(`astuce_actions?user_id=eq.${mySession.user.id}&astuce_id=eq.${id}&action=eq.save`, {method:'DELETE'});
+  } catch(e){
+    console.error(e);
+    currentSaved = before;
+    rerenderSavedList();
+  } finally { pendingActions.delete(key); }
 }
 
 let currentSortMode = 'recent';
@@ -467,6 +665,35 @@ async function editBio(){
   }
 }
 
+async function editGoal(){
+  if(!mySession || !currentProfile) return;
+  const input = prompt('Combien d\'astuces voulez-vous tester cette année ? (défi personnel, laissez vide pour retirer le défi)', currentProfile.test_goal || '');
+  if(input === null) return;
+  const trimmed = input.trim();
+  let newGoal = null;
+  if(trimmed !== ''){
+    const n = parseInt(trimmed, 10);
+    if(!Number.isFinite(n) || n <= 0){ alert('Entrez un nombre positif.'); return; }
+    newGoal = Math.min(n, 1000);
+  }
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + mySession.user.id, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + mySession.access_token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ test_goal: newGoal })
+    });
+    if(!res.ok) throw new Error(await res.text());
+    loadProfile();
+  } catch(e){
+    alert('Erreur : ' + e.message);
+  }
+}
+
 async function toggleJournalPrivacy(){
   if(!mySession || !currentProfile) return;
   const newValue = !currentProfile.journal_public;
@@ -491,6 +718,33 @@ async function toggleJournalPrivacy(){
   }
 }
 
+async function doFollow(){
+  if(!mySession || !mySession.user){ location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname); return; }
+  if(!currentProfile) return;
+  const btn = document.getElementById('followBtn');
+  if(btn) btn.disabled = true;
+  try {
+    await authedFetch('follows', {method:'POST', body: JSON.stringify({follower_id: mySession.user.id, followed_id: currentProfile.id})});
+    loadProfile();
+  } catch(e){
+    console.error(e);
+    if(btn) btn.disabled = false;
+  }
+}
+
+async function doUnfollow(){
+  if(!mySession || !mySession.user || !currentProfile) return;
+  const btn = document.getElementById('followBtn');
+  if(btn) btn.disabled = true;
+  try {
+    await authedFetch(`follows?follower_id=eq.${mySession.user.id}&followed_id=eq.${currentProfile.id}`, {method:'DELETE'});
+    loadProfile();
+  } catch(e){
+    console.error(e);
+    if(btn) btn.disabled = false;
+  }
+}
+
 async function loadProfile(){
   const pseudo = getPseudoFromUrl();
   const content = document.getElementById('content');
@@ -499,7 +753,7 @@ async function loadProfile(){
     return;
   }
   try {
-    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio,journal_public,rank_seen');
+    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio,journal_public,rank_seen,test_goal');
     const profile = profiles[0];
     if(!profile){
       content.innerHTML = '<div class="empty"><div class="empty-icon">👤</div><h3>Profil introuvable</h3><p>"'+pseudo.replace(/</g,'')+'" n\'existe pas (encore).</p></div>';
@@ -507,11 +761,24 @@ async function loadProfile(){
     }
     const isOwn = mySession && mySession.user && mySession.user.id === profile.id;
     const journalIsPublic = profile.journal_public !== false;
+    let testsThisYear = 0;
+    let economySavedThisYear = 0;
+    const currentYear = new Date().getFullYear();
+    let followerCount = 0;
+    let isFollowing = false;
+    try {
+      const followers = await sbFetch('follows?followed_id=eq.' + profile.id + '&select=follower_id');
+      followerCount = followers.length;
+      if(!isOwn && mySession && mySession.user){
+        isFollowing = followers.some(f=>f.follower_id === mySession.user.id);
+      }
+    } catch(e){ console.error(e); }
     const posts = await sbFetch('astuces?user_id=eq.' + profile.id + '&order=created_at.desc');
     let journalEntries = [];
     if(isOwn || journalIsPublic){
       try {
         const testActions = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=astuce_id,created_at&order=created_at.desc');
+        testsThisYear = testActions.filter(a=>new Date(a.created_at).getFullYear()===currentYear).length;
         if(testActions.length){
           const ids = testActions.map(a=>a.astuce_id).join(',');
           const testedAstuces = await sbFetch('astuces?id=in.(' + ids + ')&select=id,titre,categorie,economie,hidden');
@@ -524,15 +791,43 @@ async function loadProfile(){
               return { id: astuce.id, titre: astuce.titre, categorie: astuce.categorie, economie: astuce.economie, tested_at: a.created_at };
             })
             .filter(Boolean);
+          economySavedThisYear = journalEntries
+            .filter(e=>new Date(e.tested_at).getFullYear()===currentYear)
+            .reduce((s,e)=>s+(e.economie||0),0);
+        }
+      } catch(e){ console.error(e); }
+    }
+    let savedEntries = [];
+    if(isOwn){
+      try {
+        const saveActions = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.save&select=astuce_id,created_at&order=created_at.desc');
+        if(saveActions.length){
+          const testedIds = new Set(journalEntries.map(e=>e.id));
+          const ids = saveActions.map(a=>a.astuce_id).join(',');
+          const savedAstuces = await sbFetch('astuces?id=in.(' + ids + ')&select=id,titre,categorie,economie,hidden');
+          const byId = {};
+          savedAstuces.forEach(a=>{ byId[a.id] = a; });
+          savedEntries = saveActions
+            .map(a=>{
+              const astuce = byId[a.astuce_id];
+              if(!astuce || astuce.hidden || testedIds.has(astuce.id)) return null;
+              return { id: astuce.id, titre: astuce.titre, categorie: astuce.categorie, economie: astuce.economie, saved_at: a.created_at };
+            })
+            .filter(Boolean);
         }
       } catch(e){ console.error(e); }
     }
     const totalVotes = posts.reduce((s,p)=>s+(p.votes||0),0);
     const totalTested = posts.reduce((s,p)=>s+(p.tested||0),0);
     let votesGiven = 0;
+    let testsGiven = 0;
     try {
       const given = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.vote&select=id');
       votesGiven = given.length;
+    } catch(e){ /* colonne/table pas encore accessible en lecture publique */ }
+    try {
+      const testedByMe = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=id');
+      testsGiven = testedByMe.length;
     } catch(e){ /* colonne/table pas encore accessible en lecture publique */ }
     const scores = posts.map(rel).filter(s=>s!==null);
     const avgReliability = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : null;
@@ -568,6 +863,15 @@ async function loadProfile(){
 
     currentPosts = posts;
     currentProfile = profile;
+    currentSaved = savedEntries;
+    currentWrapped = {
+      pseudo: profile.pseudo,
+      year: currentYear,
+      tests: testsThisYear,
+      economy: economySavedThisYear,
+      posts: posts.filter(p=>new Date(p.created_at).getFullYear()===currentYear).length,
+      rankLabel: r.l
+    };
 
     content.innerHTML = `
       <div class="pro-hero">
@@ -579,10 +883,13 @@ async function loadProfile(){
         <div class="pro-name">${escapeHtml(profile.pseudo)}</div>
         <div class="pro-rank" style="background:${r.bg};color:${r.c}">${r.l}</div>
         ${avgReliability!==null ? `<div class="pro-rank" style="background:${relColor}1A;color:${relColor};margin-left:6px">🛡️ Fiabilité ${avgReliability}%</div>` : ''}
+        <div class="badges-row">${renderBadges({postsCount:posts.length, votesGiven, testsGiven}, isOwn)}</div>
         <div class="pro-since">Membre depuis ${timeAgo(profile.created_at)}</div>
         ${profile.bio ? `<div class="pro-bio">${escapeHtml(profile.bio)}</div>` : ''}
         <div class="pro-hero-actions">
           ${isOwn ? `<button class="share-btn" onclick="editBio()">✏️ ${profile.bio ? 'Modifier' : 'Ajouter'} ma bio</button>` : ''}
+          ${isOwn ? `<button class="share-btn" onclick="openWrapped()">📊 Mon Wrapped ${currentYear}</button>` : ''}
+          ${!isOwn ? `<button class="share-btn follow-btn ${isFollowing?'is-following':''}" id="followBtn" onclick="${isFollowing?'doUnfollow()':'doFollow()'}">${isFollowing?'✅ Suivi':'➕ Suivre'}</button>` : ''}
           <button class="share-btn" onclick="shareProfile('${escapeHtml(profile.pseudo).replace(/'/g,'%27')}')">🔗 Partager ce profil</button>
         </div>
       </div>
@@ -593,7 +900,19 @@ async function loadProfile(){
         <div class="stat"><div class="stat-n">${totalVotes}</div><div class="stat-l">Votes reçus</div></div>
         <div class="stat"><div class="stat-n">${totalTested}</div><div class="stat-l">Tests</div></div>
         <div class="stat"><div class="stat-n">${votesGiven}</div><div class="stat-l">Votes donnés</div></div>
+        <div class="stat"><div class="stat-n">${followerCount}</div><div class="stat-l">Abonnés</div></div>
       </div>
+      ${isOwn ? `<div class="challenge-card">
+        <div class="challenge-head">
+          <div class="challenge-title">🎯 Défi ${currentYear}</div>
+          <button class="challenge-edit" onclick="editGoal()">${profile.test_goal ? '✏️ Modifier' : '➕ Définir un défi'}</button>
+        </div>
+        ${profile.test_goal ? `
+          <div class="challenge-sub">${testsThisYear} / ${profile.test_goal} astuces testées cette année</div>
+          <div class="challenge-track"><div class="challenge-fill" style="width:${Math.min(100, Math.round(testsThisYear/profile.test_goal*100))}%"></div></div>
+          ${testsThisYear >= profile.test_goal ? `<div class="challenge-done">🏆 Défi atteint !</div>` : ''}
+        ` : `<div class="challenge-sub">Fixez-vous un objectif d'astuces à tester cette année, et suivez votre progression ici.</div>`}
+      </div>` : ''}
       <div class="sec-title-row">
         <div class="sec-title">Astuces publiées</div>
         ${posts.length > 1 ? `<div class="sort-tabs">
@@ -602,6 +921,10 @@ async function loadProfile(){
         </div>` : ''}
       </div>
       <div id="postsList">${renderPostsList(posts)}</div>
+      ${isOwn ? `<div class="sec-title-row">
+        <div class="sec-title">📑 À tester</div>
+      </div>
+      <div id="savedList">${renderSavedList(savedEntries)}</div>` : ''}
       <div class="sec-title-row">
         <div class="sec-title">📔 Astuces testées</div>
         ${isOwn ? `<button class="privacy-toggle ${journalIsPublic ? 'is-public' : 'is-private'}" id="journalPrivacyBtn" onclick="toggleJournalPrivacy()" title="${journalIsPublic ? 'Visible par tout le monde — cliquer pour le rendre privé' : 'Visible par vous seul — cliquer pour le rendre public'}">${journalIsPublic ? '🌍 Public' : '🔒 Privé'}</button>` : ''}

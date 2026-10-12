@@ -82,6 +82,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .action.liked{color:var(--green);}
 .action.tested-on{color:var(--blue);}
 .action.flagged{color:var(--red);}
+.action.saved-on{color:var(--gold);}
 .action-icon{font-size:18px;}
 
 .fab{position:fixed;bottom:24px;right:20px;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:50;cursor:pointer;}
@@ -163,6 +164,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   <button class="tab" onclick="setSort('new',this)">🆕 Nouveau</button>
   <button class="tab" onclick="setSort('eco',this)">💰 Économies</button>
   <button class="tab" onclick="setSort('rel',this)">✅ Fiables</button>
+  <button class="tab" onclick="setSort('following',this)">👥 Abonnements</button>
 </div></div>
 
 <div class="cta-bar">
@@ -515,6 +517,8 @@ let myAlerts = [];
 let lastSeen = JSON.parse(localStorage.getItem('eco_lastseen')||'{}');
 let voted = [];
 let tested = [];
+let saved = [];
+let followedIds = [];
 let reported = JSON.parse(localStorage.getItem('eco_reported')||'[]');
 let currentUser = localStorage.getItem('eco_user')||null;
 let session = JSON.parse(localStorage.getItem('eco_session')||'null');
@@ -538,6 +542,11 @@ function timeAgo(ts){
 
 function getSorted(){
   let list=filterCat?posts.filter(p=>p.categorie.startsWith(filterCat.slice(0,2))):[...posts];
+  if(sortMode==='following'){
+    list=list.filter(p=>p.user_id && followedIds.includes(p.user_id));
+    list.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+    return list;
+  }
   if(sortMode==='top')list.sort((a,b)=>b.votes-a.votes);
   else if(sortMode==='new')list.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
   else if(sortMode==='eco')list.sort((a,b)=>b.economie-a.economie);
@@ -564,6 +573,15 @@ async function loadMyActions(){
     const actions = await sbFetch('astuce_actions?user_id=eq.' + session.user.id + '&select=astuce_id,action');
     voted = actions.filter(a=>a.action==='vote').map(a=>a.astuce_id);
     tested = actions.filter(a=>a.action==='test').map(a=>a.astuce_id);
+    saved = actions.filter(a=>a.action==='save').map(a=>a.astuce_id);
+  } catch(e){ console.error(e); }
+}
+
+async function loadFollows(){
+  if(!session || !session.user) return;
+  try {
+    const rows = await sbFetch('follows?follower_id=eq.' + session.user.id + '&select=followed_id');
+    followedIds = rows.map(r=>r.followed_id);
   } catch(e){ console.error(e); }
 }
 
@@ -571,6 +589,7 @@ async function loadPosts() {
   try {
     posts = await sbFetch('astuces?hidden=eq.false&order=votes.desc&limit=100');
     await loadMyActions();
+    await loadFollows();
     await loadAuthorAvatars();
     render();
   } catch(e) {
@@ -612,6 +631,12 @@ function renderFeed(){
   const list=getSorted();
   const feed=document.getElementById('feed');
   if(!list.length){
+    if(sortMode==='following'){
+      feed.innerHTML = followedIds.length
+        ? `<div class="empty"><div class="empty-icon">👥</div><h3>Rien de nouveau pour l'instant</h3><p>Les membres que vous suivez n'ont rien posté récemment.</p></div>`
+        : `<div class="empty"><div class="empty-icon">👥</div><h3>Vous ne suivez personne encore</h3><p>Allez sur le profil d'un membre et cliquez sur "Suivre" pour voir ses astuces ici.</p></div>`;
+      return;
+    }
     feed.innerHTML=`<div class="empty"><div class="empty-icon">💡</div><h3>Soyez le premier !</h3><p>Partagez votre première astuce économies.</p></div>`;
     return;
   }
@@ -619,6 +644,7 @@ function renderFeed(){
     const hv=voted.includes(p.id);
     const ht=tested.includes(p.id);
     const hr=reported.includes(p.id);
+    const hs=saved.includes(p.id);
     const r=rel(p);
     const rc=r>=80?'#22C55E':r>=60?'#F97316':'#EF4444';
     const [bg,fg]=pc(p.auteur||'A');
@@ -659,6 +685,9 @@ function renderFeed(){
         </a>
         <button class="action ${hr?'flagged':''}" onclick="doReport(${p.id})">
           <span class="action-icon">🚩</span>${p.reports>0?' '+p.reports:''}
+        </button>
+        <button class="action ${hs?'saved-on':''}" onclick="doSave(${p.id})" title="${hs?'Retirer de ma liste à tester':'Sauvegarder pour plus tard'}">
+          <span class="action-icon">${hs?'🔖':'📑'}</span>
         </button>
       </div>
     </div>`;
@@ -730,6 +759,28 @@ async function doTest(id){
   } finally { pendingActions.delete(key); }
 }
 
+async function doSave(id){
+  if(!session || !session.user){ openAuth(); return; }
+  const key = 'save:'+id;
+  if(pendingActions.has(key)) return;
+  const p=posts.find(x=>x.id===id);if(!p)return;
+  const wasSaved = saved.includes(id);
+  pendingActions.add(key);
+  if(wasSaved){ saved = saved.filter(x=>x!==id); } else { saved.push(id); }
+  renderFeed();
+  try {
+    if(wasSaved){
+      await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${id}&action=eq.save`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    } else {
+      await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:id, action:'save'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    }
+  } catch(e){
+    console.error(e);
+    if(wasSaved){ saved.push(id); } else { saved = saved.filter(x=>x!==id); }
+    renderFeed();
+  } finally { pendingActions.delete(key); }
+}
+
 async function doReport(id){
   if(!session || !session.user){ openAuth(); return; }
   const p=posts.find(x=>x.id===id);if(!p)return;
@@ -771,6 +822,7 @@ async function toggleAlert(slug){
 }
 
 function setSort(s,btn){
+  if(s==='following' && (!session || !session.user)){ openAuth(); return; }
   sortMode=s;
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   if(btn)btn.classList.add('active');

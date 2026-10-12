@@ -45,6 +45,7 @@ h1.post-title{font-family:'Playfair Display',serif;font-weight:800;font-size:1.5
 .action.liked{color:#22C55E;background:#F0FDF4;border-color:#BBF7D0}
 .action.tested-on{color:#3B82F6;background:#EFF6FF;border-color:#BFDBFE}
 .action.flagged{color:#DC2626;background:#FEF2F2;border-color:#FECACA}
+.action.saved-on{color:#D97706;background:#FFFBEB;border-color:#FDE68A}
 
 .share-cta{background:linear-gradient(135deg,var(--g),#25B788);color:#fff;border:none;border-radius:99px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
 .section-tag{font-size:.78rem;font-weight:700;color:var(--m);text-transform:uppercase;letter-spacing:.04em;margin:1.8rem 0 .8rem}
@@ -297,6 +298,7 @@ let currentAstuceId = null;
 let currentPost = null;
 let myVoted = false;
 let myTested = false;
+let mySaved = false;
 const pendingActions = new Set();
 
 let comments = [];
@@ -452,6 +454,37 @@ async function doTest(){
   } finally { pendingActions.delete('test'); }
 }
 
+function renderSaveBtn(){
+  const btn = document.getElementById('saveBtn');
+  if(btn && currentPost){
+    btn.classList.toggle('saved-on', mySaved);
+    document.getElementById('saveIcon').textContent = mySaved ? '🔖' : '📑';
+    btn.title = mySaved ? 'Retirer de ma liste à tester' : 'Sauvegarder pour plus tard';
+  }
+}
+async function doSave(){
+  if(!session || !session.user){
+    window.location.href = '/connexion.html?redirect=' + encodeURIComponent(location.pathname);
+    return;
+  }
+  if(!currentPost || pendingActions.has('save')) return;
+  const wasSaved = mySaved;
+  pendingActions.add('save');
+  mySaved = !wasSaved;
+  renderSaveBtn();
+  try {
+    if(wasSaved){
+      await sbFetch(`astuce_actions?user_id=eq.${session.user.id}&astuce_id=eq.${currentPost.id}&action=eq.save`, {method:'DELETE', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    } else {
+      await sbFetch('astuce_actions', {method:'POST', body:JSON.stringify({user_id:session.user.id, astuce_id:currentPost.id, action:'save'}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    }
+  } catch(e){
+    console.error(e);
+    mySaved = wasSaved;
+    renderSaveBtn();
+  } finally { pendingActions.delete('save'); }
+}
+
 let lastCommentAt = parseInt(localStorage.getItem('eco_lastcomment')||'0');
 async function submitComment(){
   if(!session || !session.user){
@@ -582,11 +615,13 @@ async function init(){
   currentPost = p;
   myVoted = false;
   myTested = false;
+  mySaved = false;
   if(session && session.user){
     try {
       const myActions = await sbFetch('astuce_actions?user_id=eq.' + session.user.id + '&astuce_id=eq.' + p.id + '&select=action');
       myVoted = myActions.some(a=>a.action==='vote');
       myTested = myActions.some(a=>a.action==='test');
+      mySaved = myActions.some(a=>a.action==='save');
     } catch(e){ console.error(e); }
   }
 
@@ -677,6 +712,7 @@ async function init(){
     <div class="post-actions">
       <button type="button" class="action ${myVoted?'liked':''}" id="voteBtn" onclick="doVote()"><span id="voteIcon">${myVoted?'❤️':'🤍'}</span> <span id="voteCount">${(p.votes||0) + (myVoted?1:0)}</span> votes</button>
       <button type="button" class="action ${myTested?'tested-on':''}" id="testBtn" onclick="doTest()"><span id="testIcon">${myTested?'✅':'☑️'}</span> <span id="testCount">${(p.tested||0) + (myTested?1:0)}</span> testés</button>
+      <button type="button" class="action ${mySaved?'saved-on':''}" id="saveBtn" onclick="doSave()" title="${mySaved?'Retirer de ma liste à tester':'Sauvegarder pour plus tard'}"><span id="saveIcon">${mySaved?'🔖':'📑'}</span></button>
       <button class="share-cta" id="shareBtn" onclick="shareAstuce(${JSON.stringify(p).replace(/"/g,'&quot;')})">📤 Partager</button>
       <button type="button" class="action" id="reportBtn" onclick="doReportPost()">🚩 Signaler</button>
     </div>
