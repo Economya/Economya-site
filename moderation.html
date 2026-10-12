@@ -27,6 +27,7 @@ h2{font-size:1.05rem;font-weight:700;margin:2rem 0 1rem;display:flex;align-items
 .item-meta{font-size:.78rem;color:var(--m)}
 .item-title{font-weight:700;font-size:.95rem;margin-bottom:4px}
 .item-body{font-size:.88rem;line-height:1.55;color:var(--t);white-space:pre-wrap;margin-bottom:10px}
+.item-proof-img{display:block;max-width:220px;max-height:160px;border-radius:8px;border:1px solid var(--b);margin-bottom:10px;object-fit:cover}
 .report-badge{display:inline-flex;align-items:center;gap:5px;background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;border-radius:99px;padding:3px 11px;font-size:.75rem;font-weight:700;white-space:nowrap}
 .hidden-badge{display:inline-flex;align-items:center;gap:5px;background:#F3F4F6;color:#6B7280;border:1px solid #E5E7EB;border-radius:99px;padding:3px 11px;font-size:.75rem;font-weight:700;white-space:nowrap}
 .item-actions{display:flex;gap:8px;flex-wrap:wrap}
@@ -125,6 +126,7 @@ function astuceItemHtml(p, mode){
     </div>
     <div class="item-title">${escapeHtml(p.titre)}</div>
     <div class="item-body">${escapeHtml(p.description)}</div>
+    ${p.proof_image_url?`<a href="${escapeHtml(p.proof_image_url)}" target="_blank" rel="noopener"><img class="item-proof-img" src="${escapeHtml(p.proof_image_url)}" alt="Preuve jointe"></a>`:''}
     <div class="item-actions">${actions}</div>
   </div>`;
 }

@@ -610,6 +610,22 @@ async function deleteAccount(){
       }
     } catch(e){}
 
+    // Best effort : supprime les images de preuve jointes aux astuces de ce compte
+    try {
+      const myAstucesRes = await fetch(SUPABASE_URL + '/rest/v1/astuces?user_id=eq.' + mySession.user.id + '&select=id', {
+        headers: {'Authorization': 'Bearer ' + mySession.access_token, 'apikey': SUPABASE_KEY}
+      });
+      const myAstuces = myAstucesRes.ok ? await myAstucesRes.json() : [];
+      for(const a of myAstuces){
+        for(const ext of ['jpg','jpeg','png','webp','gif']){
+          await fetch(SUPABASE_URL + '/storage/v1/object/astuce-proofs/' + mySession.user.id + '/' + a.id + '.' + ext, {
+            method: 'DELETE',
+            headers: {'Authorization': 'Bearer ' + mySession.access_token, 'apikey': SUPABASE_KEY}
+          });
+        }
+      }
+    } catch(e){}
+
     const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/delete_own_account', {
       method: 'POST',
       headers: {

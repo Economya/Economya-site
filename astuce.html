@@ -34,6 +34,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 h1.post-title{font-family:'Playfair Display',serif;font-weight:800;font-size:1.5rem;line-height:1.3;margin-bottom:12px;color:var(--t)}
 .post-body{font-size:.98rem;line-height:1.7;color:var(--t);white-space:pre-wrap;margin-bottom:14px}
 .saving-pill{display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;color:#166534;margin-bottom:14px}
+.proof-img{display:block;max-width:100%;max-height:360px;border-radius:12px;border:1px solid var(--b);margin-bottom:14px;object-fit:cover}
 .reliability{display:flex;align-items:center;gap:8px;margin-bottom:16px}
 .rel-track{flex:1;height:6px;background:#F0F0EE;border-radius:99px;overflow:hidden}
 .rel-fill{height:100%;border-radius:99px}
@@ -642,6 +643,7 @@ async function init(){
     </div>
     <h1 class="post-title">${escapeHtml(p.titre)}</h1>
     <div class="post-body">${escapeHtml(p.description)}</div>
+    ${p.proof_image_url?`<a href="${escapeHtml(p.proof_image_url)}" target="_blank" rel="noopener"><img class="proof-img" src="${escapeHtml(p.proof_image_url)}" alt="Preuve jointe à l'astuce" loading="lazy"></a>`:''}
     ${p.economie>0?`<div class="saving-pill">💰 ${p.economie.toLocaleString('fr-FR')}€ économisés</div>`:''}
     <div class="reliability">
       <div class="rel-track"><div class="rel-fill" style="width:${r}%;background:${rc}"></div></div>

@@ -94,6 +94,12 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .field label{display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;}
 .field input,.field textarea,.field select{width:100%;border:1.5px solid var(--border);border-radius:12px;padding:11px 14px;font-size:15px;font-family:'Inter',sans-serif;outline:none;background:var(--bg);}
 .field textarea{min-height:80px;resize:none;}
+.proof-upload-btn{width:100%;border:1.5px dashed var(--border);border-radius:12px;padding:11px 14px;font-size:14px;font-weight:600;color:var(--muted);background:var(--bg);text-align:center;cursor:pointer;}
+.proof-preview{display:flex;align-items:center;gap:10px;margin-top:8px;}
+.proof-preview img{width:56px;height:56px;object-fit:cover;border-radius:10px;border:1.5px solid var(--border);}
+.proof-remove-btn{background:none;border:none;color:#EF4444;font-size:12px;font-weight:700;cursor:pointer;}
+.proof-hint{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.4;}
+.proof-feed-img{display:block;max-width:100%;max-height:260px;border-radius:12px;border:1px solid var(--border);margin-bottom:12px;object-fit:cover;}
 .char-count{float:right;font-weight:500;color:var(--muted);}
 .sheet-actions{display:flex;gap:10px;margin-top:16px;}
 .btn-pub{flex:1;background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px;font-size:16px;font-weight:700;}
@@ -202,6 +208,16 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     </div>
     <div class="field"><label>Économie estimée</label><input id="fSaving" type="number" placeholder="Ex: 300€, 50€/mois..." min="0" max="99999"></div>
     <div class="field"><label>Lieu de l'économie <span style="text-transform:none;font-weight:400;letter-spacing:0">(facultatif)</span></label><input id="fLocation" placeholder="Ex: Carrefour, en ligne, Paris..." maxlength="60"></div>
+    <div class="field">
+      <label>Preuve <span style="text-transform:none;font-weight:400;letter-spacing:0">(facultatif)</span></label>
+      <input type="file" id="fProofInput" accept="image/*" style="display:none">
+      <button type="button" class="proof-upload-btn" id="fProofBtn" onclick="document.getElementById('fProofInput').click()">📎 Joindre une capture d'écran (ticket, email...)</button>
+      <div class="proof-preview" id="fProofPreview" style="display:none">
+        <img id="fProofPreviewImg" alt="Aperçu de la preuve">
+        <button type="button" class="proof-remove-btn" onclick="removeProofFile()">✕ Retirer</button>
+      </div>
+      <p class="proof-hint">Pensez à flouter vos informations personnelles (nom, email, numéro de compte) avant d'envoyer.</p>
+    </div>
     <div class="sheet-actions">
       <button class="btn-ann" onclick="closeAll()">Annuler</button>
       <button class="btn-pub" onclick="submitPost()" id="submitPostBtn">🚀 Publier</button>
@@ -614,6 +630,7 @@ function renderFeed(){
       </div>
       <a href="/astuces/post/${p.id}-${slugify(p.titre)}" class="post-title" style="display:block;color:inherit;text-decoration:none">${escapeHtml(p.titre)}</a>
       <div class="post-body">${escapeHtml(p.description)}</div>
+      ${p.proof_image_url?`<a href="${escapeHtml(p.proof_image_url)}" target="_blank" rel="noopener"><img class="proof-feed-img" src="${escapeHtml(p.proof_image_url)}" alt="Preuve jointe par ${escapeHtml(p.auteur||'l\'auteur')}" loading="lazy"></a>`:''}
       ${p.economie>0?`<div class="saving-pill">💰 ${p.economie.toLocaleString('fr-FR')}€ économisés</div>`:''}
       <div class="reliability">
         <div class="rel-track"><div class="rel-fill" style="width:${r}%;background:${rc}"></div></div>
@@ -776,8 +793,35 @@ window.addEventListener('popstate', (e)=>{
 // ── Post ──────────────────────────────────────────────
 function openPost(){
   if(!session || !session.user){ openAuth(); return; }
+  removeProofFile();
   document.getElementById('shPost').classList.add('open');
 }
+
+let proofFile = null;
+const MAX_PROOF_SIZE = 5 * 1024 * 1024; // 5 Mo
+function removeProofFile(){
+  proofFile = null;
+  const input = document.getElementById('fProofInput');
+  const preview = document.getElementById('fProofPreview');
+  const btn = document.getElementById('fProofBtn');
+  if(input) input.value = '';
+  if(preview) preview.style.display = 'none';
+  if(btn) btn.style.display = 'block';
+}
+document.getElementById('fProofInput').addEventListener('change', e=>{
+  const f = e.target.files[0];
+  if(!f) return;
+  if(!f.type.startsWith('image/')){ alert('Le fichier doit être une image.'); e.target.value=''; return; }
+  if(f.size > MAX_PROOF_SIZE){ alert('Image trop lourde (5 Mo maximum).'); e.target.value=''; return; }
+  proofFile = f;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    document.getElementById('fProofPreviewImg').src = ev.target.result;
+    document.getElementById('fProofPreview').style.display = 'flex';
+    document.getElementById('fProofBtn').style.display = 'none';
+  };
+  reader.readAsDataURL(f);
+});
 
 function updateCount(){
   const len=document.getElementById('fBody').value.length;
@@ -812,14 +856,39 @@ async function submitPost(){
       method:'POST',
       body:JSON.stringify(payload)
     });
-    posts.unshift(Array.isArray(newPost)?newPost[0]:newPost);
+    const createdPost = Array.isArray(newPost)?newPost[0]:newPost;
+    posts.unshift(createdPost);
     voted.push(posts[0].id);
     localStorage.setItem('eco_voted',JSON.stringify(voted));
     lastPostAt = Date.now();
     localStorage.setItem('eco_lastpost', String(lastPostAt));
+    if(proofFile){
+      try {
+        const ext = (proofFile.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g,'') || 'jpg';
+        const path = session.user.id + '/' + createdPost.id + '.' + ext;
+        const up = await fetch(SUPABASE_URL + '/storage/v1/object/astuce-proofs/' + path, {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + session.access_token,
+            'apikey': SUPABASE_KEY,
+            'Content-Type': proofFile.type || 'image/jpeg',
+            'x-upsert': 'true'
+          },
+          body: proofFile
+        });
+        if(!up.ok) throw new Error(await up.text());
+        const proofUrl = SUPABASE_URL + '/storage/v1/object/public/astuce-proofs/' + path + '?t=' + Date.now();
+        await sbFetch('astuces?id=eq.' + createdPost.id, {method:'PATCH', body:JSON.stringify({proof_image_url: proofUrl}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+        createdPost.proof_image_url = proofUrl;
+      } catch(e){
+        console.error('Échec upload preuve:', e);
+        alert("Votre astuce a été publiée, mais l'envoi de la preuve a échoué : elle reste visible, sans image jointe.");
+      }
+    }
     closeAll();
     setSort('new',document.querySelectorAll('.tab')[1]);
     ['fTitle','fBody','fSaving','fLocation'].forEach(id=>document.getElementById(id).value='');
+    removeProofFile();
     updateNav();
   } catch(e){
     const msg = /limite atteinte/i.test(e.message) ? 'Vous avez publié trop d\'astuces récemment. Réessayez un peu plus tard.' : 'Erreur: '+e.message;
