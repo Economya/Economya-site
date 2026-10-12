@@ -3,6 +3,7 @@
 <head>
 <script src="/error-tracker.js"></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<script src="/auth-shared.js"></script>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta charset="UTF-8">
@@ -327,62 +328,33 @@ function toggleAuthMode(){
   document.getElementById('authError').style.display = 'none';
 }
 function showAuthError(msg, ok){
-  const el = document.getElementById('authError');
-  el.textContent = msg;
-  el.style.background = ok ? '#F0FDF4' : '#FEF2F2';
-  el.style.color = ok ? '#16A34A' : '#DC2626';
-  el.style.display = 'block';
+  authShowMessage('authError', msg, ok);
 }
 async function submitAuth(){
   const email = document.getElementById('authEmail').value.trim();
   const password = document.getElementById('authPassword').value;
   const pseudo = document.getElementById('authPseudo').value.trim();
   if(!email || !password){ showAuthError('Email et mot de passe requis.'); return; }
-  if(authMode === 'signup' && !pseudo){ showAuthError('Choisissez un pseudo.'); return; }
   if(authMode === 'signup'){
-    const birthVal = document.getElementById('authBirth').value;
-    if(!birthVal){ showAuthError('Indiquez votre date de naissance.'); return; }
-    const birth = new Date(birthVal);
-    const today = new Date();
-    let age = today.getFullYear() - birth.getFullYear();
-    const m = today.getMonth() - birth.getMonth();
-    if(m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
-    if(age < 15){ showAuthError('Vous devez avoir au moins 15 ans pour créer un compte sur Economya.'); return; }
+    const err = authValidateSignup(pseudo, document.getElementById('authBirth').value, document.getElementById('authCgu').checked);
+    if(err){ showAuthError(err); return; }
   }
-  if(authMode === 'signup' && !document.getElementById('authCgu').checked){ showAuthError('Vous devez accepter les CGU pour créer un compte.'); return; }
   const captchaToken = (typeof turnstile !== 'undefined') ? turnstile.getResponse() : null;
   if(!captchaToken){ showAuthError('Merci de valider la vérification anti-robot.'); return; }
   try {
-    let res;
-    if(authMode === 'signup'){
-      res = await fetch(SUPABASE_URL + '/auth/v1/signup', {
-        method: 'POST',
-        headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
-        body: JSON.stringify({email, password, data: {pseudo}, gotrue_meta_security: {captcha_token: captchaToken}})
-      });
-    } else {
-      res = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=password', {
-        method: 'POST',
-        headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
-        body: JSON.stringify({email, password, gotrue_meta_security: {captcha_token: captchaToken}})
-      });
-    }
-    const data = await res.json();
-    if(!res.ok){
-      const msg = data.msg || data.error_description || data.error || 'Une erreur est survenue.';
-      throw new Error(msg);
-    }
-    if(authMode === 'signup' && !data.access_token){
+    const result = await authSubmit(authMode, email, password, pseudo, captchaToken);
+    if(!result.ok){ throw new Error(result.msg); }
+    if(authMode === 'signup' && !result.data.access_token){
       showAuthError('Compte créé ! Vérifiez votre email pour confirmer, puis connectez-vous.', true);
       if(typeof turnstile !== 'undefined'){ turnstile.reset(); }
       return;
     }
-    saveSession(data);
+    saveSession(result.data);
     closeAll();
     render();
     refreshUserUI();
   } catch(e){
-    showAuthError(e.message === 'Invalid login credentials' ? 'Email ou mot de passe incorrect.' : e.message);
+    showAuthError(e.message);
     if(typeof turnstile !== 'undefined'){ turnstile.reset(); }
   }
 }
@@ -393,15 +365,8 @@ function saveSession(data){
   // relancer loadMyActions()/renderFeed() a ce moment-la ecrasait l'etat optimiste du
   // clic en cours avec les anciennes donnees serveur (le coeur redevenait blanc juste
   // apres etre passe rouge, meme quand le vote avait bien ete enregistre).
-  session = {
-    access_token: data.access_token,
-    refresh_token: data.refresh_token,
-    expires_at: Date.now() + (data.expires_in || 3600) * 1000,
-    user: data.user
-  };
-  localStorage.setItem('eco_session', JSON.stringify(session));
+  session = authSaveSession(data);
   currentUser = (session.user.user_metadata && session.user.user_metadata.pseudo) || session.user.email;
-  localStorage.setItem('eco_user', currentUser);
 }
 function refreshUserUI(){
   updateNav();
@@ -440,29 +405,14 @@ function openForgot(){
   document.getElementById('shForgot').classList.add('open');
 }
 function showForgotMsg(msg, ok){
-  const el = document.getElementById('forgotMsg');
-  el.textContent = msg;
-  el.style.background = ok ? '#F0FDF4' : '#FEF2F2';
-  el.style.color = ok ? '#16A34A' : '#DC2626';
-  el.style.display = 'block';
+  authShowMessage('forgotMsg', msg, ok);
 }
 async function submitForgot(){
   const email = document.getElementById('forgotEmail').value.trim();
   if(!email){ showForgotMsg('Entrez votre email.'); return; }
-  try {
-    const res = await fetch(SUPABASE_URL + '/auth/v1/recover', {
-      method: 'POST',
-      headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
-      body: JSON.stringify({ email, options: { redirect_to: 'https://economya.fr/forum-astuces.html' } })
-    });
-    if(!res.ok){
-      const data = await res.json().catch(()=>({}));
-      throw new Error(data.msg || data.error_description || 'Une erreur est survenue.');
-    }
-    showForgotMsg("Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé.", true);
-  } catch(e){
-    showForgotMsg(e.message);
-  }
+  const result = await authRecover(email, 'https://economya.fr/forum-astuces.html');
+  if(!result.ok){ showForgotMsg(result.msg); return; }
+  showForgotMsg("Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé.", true);
 }
 let recoverySession = null;
 function checkRecoveryHash(){
@@ -477,11 +427,7 @@ function checkRecoveryHash(){
   }
 }
 function showResetError(msg){
-  const el = document.getElementById('resetError');
-  el.textContent = msg;
-  el.style.background = '#FEF2F2';
-  el.style.color = '#DC2626';
-  el.style.display = 'block';
+  authShowMessage('resetError', msg, false);
 }
 async function submitReset(){
   const password = document.getElementById('resetPassword').value;
