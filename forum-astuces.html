@@ -32,10 +32,11 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .nav-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;cursor:pointer;box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 3px 8px rgba(0,0,0,.4);text-shadow:0 1px 2px rgba(0,0,0,.45);}
 .nav-login{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border:none;border-radius:99px;padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer;}
 
+.tabs-wrap{position:relative;}
+.tabs-wrap::after{content:'';position:absolute;top:0;right:0;bottom:0;width:24px;background:linear-gradient(to right,transparent,var(--white) 65%);box-shadow:inset -8px 0 8px -6px rgba(0,0,0,.15);pointer-events:none;z-index:99;}
 .tabs{background:var(--white);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;position:sticky;top:52px;z-index:98;}
 .tabs::-webkit-scrollbar{display:none;}
 .tab{flex-shrink:0;padding:14px 16px;font-size:14px;font-weight:600;color:var(--muted);border:none;background:transparent;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .15s;}
-.tabs::after{content:'';position:absolute;top:0;right:0;bottom:0;width:28px;background:linear-gradient(to right,transparent,var(--white));pointer-events:none;}
 .tab.active{color:var(--ink);border-bottom-color:var(--ink);}
 
 .wrap{max-width:600px;margin:0 auto;}
@@ -157,12 +158,12 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
 <div class="wrap">
 
-<div class="tabs">
+<div class="tabs-wrap"><div class="tabs">
   <button class="tab active" onclick="setSort('top',this)">🔥 Top</button>
   <button class="tab" onclick="setSort('new',this)">🆕 Nouveau</button>
   <button class="tab" onclick="setSort('eco',this)">💰 Économies</button>
   <button class="tab" onclick="setSort('rel',this)">✅ Fiables</button>
-</div>
+</div></div>
 
 <div class="cta-bar">
   <div class="cta-bar-text">💡 Votre astuce peut aider des milliers de personnes · <a href="regles-communaute.html" style="color:#92400E;text-decoration:underline">📜 Règles</a></div>
