@@ -134,8 +134,8 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .escape-manifest::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:26px 26px;z-index:0;pointer-events:none;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 0%,transparent 75%)}
 .escape-manifest-head{position:relative;z-index:1;max-width:720px;margin:0 auto;text-align:center}
 .escape-manifest-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#F59E0B;border:1px solid rgba(245,158,11,.35);padding:6px 13px;border-radius:100px;margin-bottom:26px;background:rgba(245,158,11,.05)}
-.escape-manifest-title{font-family:'Playfair Display',serif;font-weight:500;font-style:italic;font-size:clamp(1.9rem,3.8vw,2.9rem);line-height:1.26;letter-spacing:.002em;color:#fff;margin-bottom:22px}
-.grad-word{color:#F2B544}
+.escape-manifest-title{font-family:'Playfair Display',serif;font-weight:500;font-style:normal;font-size:clamp(1.9rem,3.8vw,2.9rem);line-height:1.26;letter-spacing:.002em;color:#fff;margin-bottom:22px}
+.grad-word{color:#F2B544;font-style:italic}
 .escape-manifest-copy{font-size:clamp(.96rem,1.3vw,1.05rem);line-height:1.75;color:rgba(255,255,255,.58);max-width:520px;margin:0 auto;font-weight:300}
 .escape-centerpiece{position:relative;z-index:1;max-width:1100px;margin:clamp(50px,7vw,86px) auto;height:clamp(230px,26vw,340px);display:flex;align-items:center;justify-content:center}
 .escape-centerpiece-ring{position:absolute;border-radius:50%;border:1px solid rgba(245,158,11,.22)}
@@ -151,6 +151,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .triad2-label.l2{bottom:-8%;left:16%}
 .triad2-label.l3{bottom:-8%;right:14%}
 .escape-features{position:relative;z-index:1;max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.1)}
+.escape-features-2col{grid-template-columns:repeat(2,1fr);max-width:760px}
 .escape-feature{padding:clamp(26px,3vw,38px) clamp(16px,2.2vw,26px) 0;border-left:1px solid rgba(255,255,255,.1)}
 .escape-feature:first-child{border-left:none}
 .ef-dots{display:flex;gap:6px;margin-bottom:15px}
@@ -351,9 +352,8 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </main>
 <section class="escape-manifest">
   <div class="escape-manifest-head">
-    <div class="escape-manifest-kicker">✨ Un pilier Economya</div>
-    <h2 class="escape-manifest-title">Economya Escape.<br><span class="grad-word">La même exigence, ailleurs.</span></h2>
-    <p class="escape-manifest-copy">Economya ne s'arrête pas à l'argent qu'on économise. Il y a aussi celui qu'on dépense bien. Sous le nom d'Economya Escape, cette même exigence s'applique aux sorties, aux restos et aux voyages. Proposés par la communauté ou par les commerces, vérifiés avant publication, jamais confondus avec de la publicité déguisée.</p>
+    <h2 class="escape-manifest-title">Economya Escape<br><span class="grad-word">Bien dépenser compte aussi</span></h2>
+    <p class="escape-manifest-copy">Economya ne s'arrête pas à l'argent qu'on économise. Il y a aussi celui qu'on dépense bien. Sous le nom d'Economya Escape, cette même exigence s'applique aux sorties, aux restos et aux voyages. Proposés par la communauté ou par les commerces.</p>
   </div>
 
   <div class="escape-centerpiece">
@@ -370,22 +370,16 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </div>
   </div>
 
-  <div class="escape-features">
+  <div class="escape-features escape-features-2col">
     <div class="escape-feature">
-      <div class="ef-dots"><span class="ef-dot g"></span><span class="ef-dot b"></span><span class="ef-dot r"></span></div>
       <span class="ef-num">01</span>
-      <h3>Trois univers</h3>
-      <p>Sorties, restos et voyages. Les bons plans qui comptent une fois que l'argent est déjà économisé.</p>
+      <h3>Depuis Economya Community</h3>
+      <p>Un membre partage une astuce sorties, restos ou voyage. Plébiscitée par la communauté, elle apparaît sur Economya Escape.</p>
     </div>
     <div class="escape-feature">
       <span class="ef-num">02</span>
-      <h3>Même exigence</h3>
-      <p>Chaque offre est vérifiée avant publication, exactement comme vos astuces. Rien n'est mis en ligne automatiquement.</p>
-    </div>
-    <div class="escape-feature">
-      <span class="ef-num">03</span>
-      <h3>Ouvert aux commerces</h3>
-      <p>Un commerce peut proposer son offre directement. Chaque soumission est vérifiée, et tout partenariat rémunéré reste signalé comme tel.</p>
+      <h3>Depuis un commerce</h3>
+      <p>Un commerçant dépose son offre via un formulaire dédié. Après vérification, elle est publiée sur Economya Escape, partenariat signalé si rémunéré.</p>
     </div>
   </div>
 

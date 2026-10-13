@@ -165,8 +165,8 @@ html{overflow-y:scroll}*,*::before,*::after{box-sizing:border-box;margin:0;paddi
 .escape-manifest::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);background-size:26px 26px;z-index:0;pointer-events:none;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 0%,transparent 75%)}
 .escape-manifest-head{position:relative;z-index:1;max-width:720px;margin:0 auto;text-align:center}
 .escape-manifest-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#F59E0B;border:1px solid rgba(245,158,11,.35);padding:6px 13px;border-radius:100px;margin-bottom:26px;background:rgba(245,158,11,.05)}
-.escape-manifest-title{font-family:'Playfair Display',serif;font-weight:500;font-style:italic;font-size:clamp(1.9rem,3.8vw,2.9rem);line-height:1.26;letter-spacing:.002em;color:#fff;margin-bottom:22px}
-.grad-word{color:#F2B544}
+.escape-manifest-title{font-family:'Playfair Display',serif;font-weight:500;font-style:normal;font-size:clamp(1.9rem,3.8vw,2.9rem);line-height:1.26;letter-spacing:.002em;color:#fff;margin-bottom:22px}
+.grad-word{color:#F2B544;font-style:italic}
 .escape-manifest-copy{font-size:clamp(.96rem,1.3vw,1.05rem);line-height:1.75;color:rgba(255,255,255,.58);max-width:520px;margin:0 auto;font-weight:300}
 .escape-centerpiece{position:relative;z-index:1;max-width:1100px;margin:clamp(50px,7vw,86px) auto;height:clamp(230px,26vw,340px);display:flex;align-items:center;justify-content:center}
 .escape-centerpiece-ring{position:absolute;border-radius:50%;border:1px solid rgba(245,158,11,.22);width:clamp(200px,24vw,290px);height:clamp(200px,24vw,290px)}
@@ -685,9 +685,8 @@ function toggleMenu(){
 
 <section class="escape-manifest cp-index">
   <div class="escape-manifest-head">
-    <div class="escape-manifest-kicker">✨ Un pilier Economya</div>
-    <h2 class="escape-manifest-title">Economya Escape.<br><span class="grad-word">Sorties, restos et voyages.</span></h2>
-    <p class="escape-manifest-copy">Economya Escape réunit les meilleurs bons plans sorties, restos et voyages du moment. Proposés par la communauté ou directement par les commerces, vérifiés avant publication, jamais présentés comme de la publicité déguisée.</p>
+    <h2 class="escape-manifest-title">Economya Escape<br><span class="grad-word">Sorties, restos et voyages</span></h2>
+    <p class="escape-manifest-copy">Economya Escape réunit les meilleurs bons plans sorties, restos et voyages du moment. Proposés par la communauté ou directement par les commerces.</p>
   </div>
 
   <div class="escape-centerpiece">
@@ -702,7 +701,7 @@ function toggleMenu(){
       <div class="ef-dots"><span class="ef-dot g"></span><span class="ef-dot b"></span><span class="ef-dot r"></span></div>
       <span class="ef-num">01</span>
       <h3>Trois univers</h3>
-      <p>Sorties, restos et voyages. Les bons plans qui comptent une fois que l'argent est économisé.</p>
+      <p>De nouvelles idées de bons plans sorties, restos et voyages, tout en économisant.</p>
     </div>
     <div class="escape-feature">
       <span class="ef-num">02</span>
