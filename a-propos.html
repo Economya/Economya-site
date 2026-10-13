@@ -128,32 +128,47 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .eco-idea-btn:hover{transform:scale(1.08);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.35),0 4px 12px rgba(245,158,11,.45)}
 .ic{width:1em;height:1em;display:inline-block;vertical-align:-0.14em;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 
-/* ===== Economya Escape — promo section (à propos) ===== */
-.escape-obj{position:relative;background:#0A0A0A;overflow:hidden;padding:clamp(70px,10vw,130px) clamp(24px,6vw,80px);isolation:isolate}
-.escape-obj-grid{position:relative;z-index:1;max-width:1180px;margin:0 auto;display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,5vw,60px);align-items:center}
-.escape-obj-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F59E0B;border:1px solid rgba(245,158,11,.4);padding:7px 14px;border-radius:100px;margin-bottom:28px;background:rgba(245,158,11,.06)}
-.escape-obj-title{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:clamp(2rem,4.6vw,3.2rem);line-height:.98;letter-spacing:-.01em;margin-bottom:22px;color:#fff}
-.escape-obj-title span{display:block;font-style:normal;font-weight:400;font-size:.4em;letter-spacing:.02em;color:rgba(255,255,255,.55);margin-bottom:10px}
-.escape-obj-copy{font-size:clamp(1rem,1.5vw,1.15rem);line-height:1.6;color:rgba(255,255,255,.72);max-width:460px;margin-bottom:30px}
-.escape-obj-cta{display:inline-flex;align-items:center;gap:10px;background:#F59E0B;color:#0A0A0A;font-weight:700;font-size:.98rem;padding:16px 30px;border-radius:100px;text-decoration:none;box-shadow:0 18px 40px -12px rgba(245,158,11,.5),0 2px 0 rgba(0,0,0,.2) inset;transition:transform .25s ease,box-shadow .25s ease}
+/* ===== Economya Escape — manifeste (à propos) ===== */
+.escape-manifest{position:relative;background:#0A0A0A;overflow:hidden;padding:clamp(80px,11vw,140px) clamp(24px,6vw,80px) clamp(70px,9vw,110px);isolation:isolate}
+.escape-manifest::before{content:'';position:absolute;top:-10%;left:50%;transform:translateX(-50%);width:95vw;height:62vw;max-width:1260px;max-height:860px;background:radial-gradient(circle at 28% 22%,rgba(124,58,237,.38) 0%,transparent 44%),radial-gradient(circle at 72% 30%,rgba(245,158,11,.25) 0%,transparent 42%),radial-gradient(circle at 50% 62%,rgba(74,14,30,.55) 0%,transparent 56%);filter:blur(52px);z-index:0}
+.escape-manifest::after{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.035) 1px,transparent 1px);background-size:26px 26px;z-index:0;pointer-events:none;mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 0%,transparent 75%)}
+.escape-manifest-head{position:relative;z-index:1;max-width:880px;margin:0 auto;text-align:center}
+.escape-manifest-kicker{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#F59E0B;border:1px solid rgba(245,158,11,.4);padding:7px 14px;border-radius:100px;margin-bottom:30px;background:rgba(245,158,11,.06)}
+.escape-manifest-title{font-family:'Playfair Display',serif;font-weight:900;font-style:italic;font-size:clamp(2.7rem,6.6vw,4.9rem);line-height:1.04;letter-spacing:-.01em;color:#fff;margin-bottom:30px}
+.grad-word{background:linear-gradient(120deg,#FDE68A 0%,#F59E0B 35%,#7C3AED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.escape-manifest-copy{font-size:clamp(1.02rem,1.6vw,1.2rem);line-height:1.75;color:rgba(255,255,255,.7);max-width:640px;margin:0 auto}
+.escape-centerpiece{position:relative;z-index:1;max-width:1100px;margin:clamp(54px,8vw,96px) auto;height:clamp(260px,30vw,400px);display:flex;align-items:center;justify-content:center}
+.escape-centerpiece-ring{position:absolute;border-radius:50%;border:1px solid rgba(245,158,11,.32)}
+.escape-centerpiece-ring.r2{border-color:rgba(124,58,237,.24)}
+.escape-axis{position:absolute;top:0;bottom:0;left:50%;width:1px;background:linear-gradient(to bottom,transparent,rgba(245,158,11,.55),transparent)}
+.triad2{position:relative;width:100%;height:100%}
+.triad2-orb{position:absolute;border-radius:50%;box-shadow:0 40px 80px -18px rgba(74,14,30,.55),inset -10px -10px 30px rgba(0,0,0,.35),inset 8px 8px 24px rgba(255,255,255,.18)}
+.triad2-orb.t1{width:clamp(130px,15vw,190px);height:clamp(130px,15vw,190px);top:6%;left:50%;transform:translateX(-50%);background:radial-gradient(circle at 32% 28%,#FDE68A 0%,#F59E0B 35%,#7C3AED 70%,#4A0E1E 100%)}
+.triad2-orb.t2{width:clamp(90px,10.5vw,135px);height:clamp(90px,10.5vw,135px);bottom:10%;left:22%;background:radial-gradient(circle at 32% 28%,#FDE68A 0%,#0EA5E9 55%,#4A0E1E 100%)}
+.triad2-orb.t3{width:clamp(80px,9.5vw,120px);height:clamp(80px,9.5vw,120px);bottom:6%;right:20%;background:radial-gradient(circle at 32% 28%,#FDE68A 0%,#E11D48 55%,#4A0E1E 100%)}
+.triad2-label{position:absolute;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5);white-space:nowrap}
+.triad2-label.l1{top:-8%;left:50%;transform:translateX(-50%)}
+.triad2-label.l2{bottom:-8%;left:14%}
+.triad2-label.l3{bottom:-8%;right:12%}
+.escape-features{position:relative;z-index:1;max-width:1020px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.14)}
+.escape-feature{padding:clamp(28px,3.4vw,42px) clamp(18px,2.4vw,28px) 0;border-left:1px solid rgba(255,255,255,.14)}
+.escape-feature:first-child{border-left:none}
+.ef-dots{display:flex;gap:6px;margin-bottom:16px}
+.ef-dot{width:9px;height:9px;border-radius:50%}
+.ef-dot.g{background:#F59E0B}
+.ef-dot.b{background:#0EA5E9}
+.ef-dot.r{background:#E11D48}
+.ef-num{display:block;font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:1.6rem;color:#F59E0B;margin-bottom:14px}
+.escape-feature h3{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:10px}
+.escape-feature p{font-size:.93rem;line-height:1.65;color:rgba(255,255,255,.6)}
+.escape-manifest-cta{position:relative;z-index:1;text-align:center;margin-top:clamp(46px,6vw,64px)}
+.escape-obj-cta{display:inline-flex;align-items:center;gap:10px;background:#F59E0B;color:#0A0A0A;font-weight:700;font-size:.98rem;padding:17px 34px;border-radius:100px;text-decoration:none;box-shadow:0 18px 40px -12px rgba(245,158,11,.5),0 2px 0 rgba(0,0,0,.2) inset;transition:transform .25s ease,box-shadow .25s ease}
 .escape-obj-cta:hover{transform:translateY(-2px);box-shadow:0 22px 46px -10px rgba(245,158,11,.6),0 2px 0 rgba(0,0,0,.2) inset}
-.v-apropos::before{content:'';position:absolute;bottom:-25%;left:-12%;width:55vw;height:55vw;max-width:760px;max-height:760px;background:radial-gradient(circle at 60% 60%,#F59E0B 0%,#4A0E1E 42%,transparent 70%);filter:blur(44px);opacity:.5;z-index:0;border-radius:50%}
-.v-apropos .escape-obj-visual{order:1;position:relative;height:clamp(260px,28vw,360px)}
-.v-apropos .escape-obj-text{order:2}
-.triad{position:relative;width:100%;height:100%}
-.triad-orb{position:absolute;border-radius:50%;box-shadow:0 30px 60px -16px rgba(74,14,30,.5),inset -8px -8px 24px rgba(0,0,0,.35),inset 6px 6px 18px rgba(255,255,255,.16)}
-.triad-orb.t1{width:clamp(140px,16vw,190px);height:clamp(140px,16vw,190px);top:4%;left:18%;background:radial-gradient(circle at 32% 28%,#FDE68A 0%,#7C3AED 55%,#4A0E1E 100%)}
-.triad-orb.t2{width:clamp(100px,12vw,140px);height:clamp(100px,12vw,140px);top:46%;left:0%;background:radial-gradient(circle at 32% 28%,#FDE68A 0%,#0EA5E9 55%,#4A0E1E 100%)}
-.triad-orb.t3{width:clamp(90px,11vw,125px);height:clamp(90px,11vw,125px);bottom:2%;left:40%;background:radial-gradient(circle at 32% 28%,#FDE68A 0%,#E11D48 55%,#4A0E1E 100%)}
-.triad-label{position:absolute;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.55)}
-.triad-label.l1{top:0%;left:60%}
-.triad-label.l2{top:58%;left:32%}
-.triad-label.l3{bottom:0%;left:72%}
 @media (max-width:860px){
-  .escape-obj-grid{grid-template-columns:1fr;text-align:center}
-  .v-apropos .escape-obj-visual{height:clamp(220px,52vw,300px)}
-  .escape-obj-copy{margin-left:auto;margin-right:auto}
-  .triad-label{display:none}
+  .escape-features{grid-template-columns:1fr}
+  .escape-feature{border-left:none;border-top:1px solid rgba(255,255,255,.14);padding-top:28px}
+  .escape-feature:first-child{border-top:none}
+  .triad2-label{display:none}
 }
 </style>
 </head>
@@ -218,27 +233,6 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </script>
 </div>
 
-
-<section class="escape-obj v-apropos">
-  <div class="escape-obj-grid">
-    <div class="escape-obj-visual">
-      <div class="triad">
-        <div class="triad-orb t1"></div>
-        <div class="triad-orb t2"></div>
-        <div class="triad-orb t3"></div>
-        <div class="triad-label l1">Sorties</div>
-        <div class="triad-label l2">Voyage</div>
-        <div class="triad-label l3">Restos</div>
-      </div>
-    </div>
-    <div class="escape-obj-text">
-      <div class="escape-obj-kicker">✨ Depuis peu</div>
-      <h2 class="escape-obj-title"><span>La même exigence,</span>appliquée<br>au-delà<br>du quotidien.</h2>
-      <p class="escape-obj-copy">Sous le nom d'Economya Escape, cette rigueur s'étend aux sorties, aux restos et aux voyages — sélectionnés avec la même exigence que nos astuces, jamais présentés comme de la publicité déguisée.</p>
-      <a href="/economya-escape.html" class="escape-obj-cta">Explorer Economya Escape →</a>
-    </div>
-  </div>
-</section>
 
 <!-- MACHINE À ÉCONOMISER -->
 <div class="machine-sec">
@@ -355,6 +349,51 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </div>
 
 </main>
+<section class="escape-manifest">
+  <div class="escape-manifest-head">
+    <div class="escape-manifest-kicker">✨ Un pilier Economya</div>
+    <h2 class="escape-manifest-title">L'autre moitié<br><span class="grad-word">de l'équation.</span></h2>
+    <p class="escape-manifest-copy">Economya ne s'arrête pas à l'argent qu'on économise. Il y a aussi celui qu'on dépense bien. Sous le nom d'Economya Escape, cette même exigence s'applique aux sorties, aux restos et aux voyages. Sélectionnés par la communauté, vérifiés avant publication, jamais confondus avec de la publicité déguisée.</p>
+  </div>
+
+  <div class="escape-centerpiece">
+    <div class="escape-centerpiece-ring"></div>
+    <div class="escape-centerpiece-ring r2"></div>
+    <div class="escape-axis"></div>
+    <div class="triad2">
+      <div class="triad2-orb t1"></div>
+      <div class="triad2-orb t2"></div>
+      <div class="triad2-orb t3"></div>
+      <div class="triad2-label l1">Voyage</div>
+      <div class="triad2-label l2">Sorties</div>
+      <div class="triad2-label l3">Restos</div>
+    </div>
+  </div>
+
+  <div class="escape-features">
+    <div class="escape-feature">
+      <div class="ef-dots"><span class="ef-dot g"></span><span class="ef-dot b"></span><span class="ef-dot r"></span></div>
+      <span class="ef-num">01</span>
+      <h3>Trois univers</h3>
+      <p>Sorties, restos et voyages. Les bons plans qui comptent une fois que l'argent est déjà économisé.</p>
+    </div>
+    <div class="escape-feature">
+      <span class="ef-num">02</span>
+      <h3>Même exigence</h3>
+      <p>Chaque offre est vérifiée avant publication, exactement comme vos astuces. Rien n'est mis en ligne automatiquement.</p>
+    </div>
+    <div class="escape-feature">
+      <span class="ef-num">03</span>
+      <h3>Transparence totale</h3>
+      <p>Un partenariat rémunéré est toujours signalé comme tel. Jamais présenté comme un bon plan communautaire ordinaire.</p>
+    </div>
+  </div>
+
+  <div class="escape-manifest-cta">
+    <a href="/economya-escape.html" class="escape-obj-cta">Explorer Economya Escape →</a>
+  </div>
+</section>
+
 <footer>
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="cgu.html" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
