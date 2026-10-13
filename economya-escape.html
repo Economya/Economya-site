@@ -137,12 +137,13 @@ a{text-decoration:none;color:inherit;}
     <li><a href="/forum-astuces.html">💡 Astuces</a></li>
     <li><a href="/economya-escape.html" style="color:var(--gold)">✨ Escape</a></li>
     <li><a href="/comparateurs.html">Comparateurs</a></li>
-    <li><a href="#business" class="eco-dnav-cta">Proposer une offre</a></li>
   </ul></div>
+  <div id="navAv" style="cursor:pointer;margin-left:6px"></div>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html">Astuces</a><a href="/economya-escape.html">Escape</a><a href="/comparateurs.html">Comparateurs</a><a href="#business" onclick="toggleMenu()">Proposer une offre</a></div>
+<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html">Astuces</a><a href="/economya-escape.html">Escape</a><a href="/comparateurs.html">Comparateurs</a><a href="#business" id="navAvMobile" onclick="toggleMenu()">👤 Mon compte</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
+<script src="/account-nav.js"></script>
 
 <main>
 <div class="hero">
