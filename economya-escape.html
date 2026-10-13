@@ -27,7 +27,7 @@ a{text-decoration:none;color:inherit;}
 .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
 .nav-logo{font-weight:900;font-size:20px;letter-spacing:-.03em;}
 .nav-logo em{color:var(--gold);font-style:normal;}
-.eco-dnav-wrap{display:none;align-items:center;gap:18px;flex:1;justify-content:flex-end;}
+.eco-dnav-wrap{display:none;align-items:center;gap:18px;}
 @media(min-width:860px){.eco-dnav-wrap{display:flex;}}
 .eco-dnav{display:flex;gap:18px;list-style:none;align-items:center;}
 .eco-dnav a{font-size:13.5px;font-weight:600;color:var(--ink);}
@@ -131,15 +131,19 @@ a{text-decoration:none;color:inherit;}
 </head>
 <body>
 <nav class="nav">
-  <a href="/index.html" class="nav-logo">Eco<em>nomya</em></a>
-  <div class="eco-dnav-wrap"><ul class="eco-dnav">
-    <li><a href="/index.html">Accueil</a></li>
-    <li><a href="/forum-astuces.html">💡 Astuces</a></li>
-    <li><a href="/economya-escape.html" style="color:var(--gold)">✨ Escape</a></li>
-    <li><a href="/comparateurs.html">Comparateurs</a></li>
-  </ul></div>
-  <div id="navAv" style="cursor:pointer;margin-left:6px"></div>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div style="display:flex;align-items:center;gap:28px">
+    <a href="/index.html" class="nav-logo">Eco<em>nomya</em></a>
+    <div class="eco-dnav-wrap"><ul class="eco-dnav">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/forum-astuces.html">💡 Astuces</a></li>
+      <li><a href="/economya-escape.html" style="color:var(--gold)">✨ Escape</a></li>
+      <li><a href="/comparateurs.html">Comparateurs</a></li>
+    </ul></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div id="navAv" style="cursor:pointer"></div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html">Astuces</a><a href="/economya-escape.html">Escape</a><a href="/comparateurs.html">Comparateurs</a><a href="#business" id="navAvMobile" onclick="toggleMenu()">👤 Mon compte</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
@@ -149,7 +153,7 @@ a{text-decoration:none;color:inherit;}
 <div class="hero">
   <div class="hero-glow" style="width:520px;height:520px;background:#7C3AED;top:-160px;right:-120px;"></div>
   <div class="hero-glow" style="width:420px;height:420px;background:#B8860B;bottom:-140px;left:-120px;"></div>
-  <div class="hero-badge">✨ Nouveau pilier Economya</div>
+  <div class="hero-badge">✨ Un pilier Economya</div>
   <h1 class="serif">Economya <em>Escape</em></h1>
   <p>Les meilleurs bons plans sorties, restos et voyages partagés par la communauté — sélectionnés et mis à jour régulièrement.</p>
   <a href="#business" class="hero-sublink">Vous tenez un commerce ? Proposez votre offre →</a>
