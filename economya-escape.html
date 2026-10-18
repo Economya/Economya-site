@@ -72,6 +72,7 @@ a{text-decoration:none;color:inherit;}
 .deal-title{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;line-height:1.3;}
 .deal-desc{font-size:13.5px;color:#404040;line-height:1.55;flex:1;}
 .deal-pill{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:1px solid #BBF7D0;border-radius:99px;padding:5px 12px;font-size:12.5px;font-weight:800;color:#15803D;}
+.deal-stats{font-size:12px;color:var(--muted);font-weight:600;}
 .deal-meta{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);padding-top:8px;border-top:1px solid var(--border);}
 .deal-link{font-weight:700;color:var(--ink);}
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted);font-size:14px;}
@@ -276,6 +277,13 @@ function slugify(s){
   return String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
 }
 
+function rel(p){
+  const pos = (p.votes||0) + (p.tested||0)*2;
+  const neg = (p.reports||0)*3;
+  if(pos === 0) return 100;
+  return Math.max(0, Math.min(100, Math.round((pos-neg)/pos*100)));
+}
+
 let allDeals = [];
 let activeCat = 'all';
 
@@ -293,13 +301,15 @@ function render(){
   grid.innerHTML = list.map(p => {
     const catKey = ['Sorties','Voyage','Restos'].find(k => matchCat(p.categorie, k)) || 'Sorties';
     const s = CAT_STYLE[catKey];
-    const link = `/astuces/post/${p.id}-${slugify(p.titre)}`;
-    const eco = p.economie ? `<span class="deal-pill">💰 ${escapeHtml(p.economie)}</span>` : '';
+    const link = `/astuces/post/${p.id}-${slugify(p.titre)}?from=escape`;
+    const eco = p.economie ? `<span class="deal-pill">💰 ${Number(p.economie).toLocaleString('fr-FR')}€ économisés</span>` : '';
+    const r = rel(p);
     return `<div class="deal-card">
       <span class="deal-cat" style="background:${s.bg};color:${s.color}">${s.emoji} ${catKey}</span>
       <a href="${link}" class="deal-title" style="color:inherit">${escapeHtml(p.titre)}</a>
       <p class="deal-desc">${escapeHtml((p.description||'').slice(0,110))}${(p.description||'').length>110?'…':''}</p>
       ${eco}
+      <div class="deal-stats">❤️ ${p.votes||0} votes · ${r}% fiable</div>
       <div class="deal-meta">
         <span>${escapeHtml(p.auteur||'Anonyme')}</span>
         <a href="${link}" class="deal-link">Voir l'astuce →</a>
@@ -317,7 +327,7 @@ function setCat(cat, el){
 
 async function loadDeals(){
   try{
-    const res = await fetch(SUPABASE_URL + '/rest/v1/astuces?select=id,titre,description,economie,auteur,categorie,votes,created_at&order=votes.desc&limit=80', {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/astuces?select=id,titre,description,economie,auteur,categorie,votes,tested,reports,created_at&order=votes.desc&limit=80', {
       headers: {'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY}
     });
     const data = await res.json();
