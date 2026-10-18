@@ -20,6 +20,26 @@
   to = "/economya-escape"
   status = 301
 
+# Anciens articles de blog, supprimés du site (commit "Suppression de tous
+# les articles") mais encore indexés/liés ailleurs sur le web : on évite
+# de les laisser tomber sur une 404 sèche (perte de valeur SEO/trafic) en
+# les redirigeant vers le forum d'astuces, le contenu le plus proche de ce
+# qu'ils couvraient.
+[[redirects]]
+  from = "/article-*"
+  to = "/forum-astuces"
+  status = 301
+
+[[redirects]]
+  from = "/Aarticle*"
+  to = "/forum-astuces"
+  status = 301
+
+[[redirects]]
+  from = "/Arrticle*"
+  to = "/forum-astuces"
+  status = 301
+
 # Profils publics : /profil/pseudo -> profil.html (rewrite, pas redirect,
 # pour garder l'URL propre dans la barre d'adresse)
 [[redirects]]
