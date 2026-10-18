@@ -13,6 +13,13 @@
   status = 301
   force = true
 
+# Raccourci /escape -> /economya-escape (le lien "naturel" que les gens
+# tapent/partagent renvoyait une 404 car la vraie page est /economya-escape)
+[[redirects]]
+  from = "/escape"
+  to = "/economya-escape"
+  status = 301
+
 # Profils publics : /profil/pseudo -> profil.html (rewrite, pas redirect,
 # pour garder l'URL propre dans la barre d'adresse)
 [[redirects]]
