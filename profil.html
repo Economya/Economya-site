@@ -128,6 +128,8 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .journal-item-title{font-weight:800;font-size:14px;line-height:1.35;}
 .journal-item-date{font-size:11px;color:var(--muted);white-space:nowrap;flex-shrink:0;}
 .journal-item-meta{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);}
+.journal-amount-btn{margin-left:auto;background:none;border:1px solid var(--border);border-radius:99px;padding:3px 11px;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;transition:background .15s,color .15s;}
+.journal-amount-btn:hover{background:#F0FDF4;color:#16A34A;border-color:#BBF7D0;}
 .privacy-toggle{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:5px 12px;font-size:11px;font-weight:700;border:1.5px solid transparent;background:var(--white);transition:background .15s,color .15s,border-color .15s;}
 .privacy-toggle.is-public{background:#F0FDF4;border-color:#BBF7D0;color:var(--green);}
 .privacy-toggle.is-private{background:#F4F4F5;border-color:var(--border);color:var(--muted);}
@@ -665,6 +667,7 @@ function timeAgo(ts){
 let currentPosts = [];
 let currentProfile = null;
 let currentSaved = [];
+let currentJournalEntries = [];
 let currentWrapped = null;
 
 function rel(p){
@@ -713,8 +716,9 @@ function renderPostsList(posts){
   }).join('') : '<div class="empty"><div class="empty-icon">📭</div><h3>Aucune astuce publiée</h3></div>';
 }
 
-function renderJournal(entries){
+function renderJournal(entries, isOwn){
   return entries.length ? entries.map(e=>{
+    const hasAmount = e.montant_personnel != null;
     return `
       <a class="journal-item" href="/astuces/post/${e.id}-${slugify(e.titre)}">
         <div class="journal-item-top">
@@ -723,7 +727,8 @@ function renderJournal(entries){
         </div>
         <div class="journal-item-meta">
           <span>${escapeHtml(e.categorie||'')}</span>
-          ${e.economie ? `<span style="color:var(--green);font-weight:700">💰 ${e.economie}€</span>` : ''}
+          ${hasAmount ? `<span style="color:var(--green);font-weight:700">💰 ${e.montant_personnel}€</span>` : ''}
+          ${isOwn ? `<button type="button" class="journal-amount-btn" onclick="event.preventDefault();editJournalAmount(${e.id})">${hasAmount ? '✏️ Modifier' : '+ Mon montant'}</button>` : ''}
         </div>
       </a>
     `;
@@ -872,9 +877,10 @@ async function editGoal(){
   }
 }
 
-async function editEconomies(){
-  if(!mySession || !currentProfile) return;
-  const input = prompt('Combien avez-vous économisé au total grâce à Economya ? (en €, laissez vide pour retirer)', currentProfile.total_economise != null ? String(currentProfile.total_economise) : '');
+async function editJournalAmount(astuceId){
+  if(!mySession) return;
+  const entry = (currentJournalEntries || []).find(e => e.id === astuceId);
+  const input = prompt('Combien as-tu économisé grâce à cette astuce ? (en €, laissez vide pour retirer)', entry && entry.montant_personnel != null ? String(entry.montant_personnel) : '');
   if(input === null) return;
   const trimmed = input.trim().replace(',', '.');
   let newAmount = null;
@@ -884,7 +890,7 @@ async function editEconomies(){
     newAmount = Math.round(n * 100) / 100;
   }
   try {
-    const res = await fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + mySession.user.id, {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/astuce_actions?user_id=eq.' + mySession.user.id + '&astuce_id=eq.' + astuceId + '&action=eq.test', {
       method: 'PATCH',
       headers: {
         'apikey': SUPABASE_KEY,
@@ -892,7 +898,7 @@ async function editEconomies(){
         'Content-Type': 'application/json',
         'Prefer': 'return=minimal'
       },
-      body: JSON.stringify({ total_economise: newAmount })
+      body: JSON.stringify({ montant_personnel: newAmount })
     });
     if(!res.ok) throw new Error(await res.text());
     loadProfile();
@@ -960,7 +966,7 @@ async function loadProfile(){
     return;
   }
   try {
-    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio,journal_public,rank_seen,test_goal,total_economise');
+    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio,journal_public,rank_seen,test_goal');
     const profile = profiles[0];
     if(!profile){
       content.innerHTML = '<div class="empty"><div class="empty-icon">👤</div><h3>Profil introuvable</h3><p>"'+pseudo.replace(/</g,'')+'" n\'existe pas (encore).</p></div>';
@@ -970,6 +976,7 @@ async function loadProfile(){
     const journalIsPublic = profile.journal_public !== false;
     let testsThisYear = 0;
     let economySavedThisYear = 0;
+    let totalEconomiePersonnel = 0;
     const currentYear = new Date().getFullYear();
     let followerCount = 0;
     let isFollowing = false;
@@ -991,7 +998,7 @@ async function loadProfile(){
     let journalEntries = [];
     if(isOwn || journalIsPublic){
       try {
-        const testActions = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=astuce_id,created_at&order=created_at.desc');
+        const testActions = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=astuce_id,created_at,montant_personnel&order=created_at.desc');
         testsThisYear = testActions.filter(a=>new Date(a.created_at).getFullYear()===currentYear).length;
         if(testActions.length){
           const ids = testActions.map(a=>a.astuce_id).join(',');
@@ -1002,12 +1009,14 @@ async function loadProfile(){
             .map(a=>{
               const astuce = byId[a.astuce_id];
               if(!astuce || astuce.hidden) return null;
-              return { id: astuce.id, titre: astuce.titre, categorie: astuce.categorie, economie: astuce.economie, tested_at: a.created_at };
+              return { id: astuce.id, titre: astuce.titre, categorie: astuce.categorie, economie: astuce.economie, montant_personnel: a.montant_personnel, tested_at: a.created_at };
             })
             .filter(Boolean);
           economySavedThisYear = journalEntries
             .filter(e=>new Date(e.tested_at).getFullYear()===currentYear)
             .reduce((s,e)=>s+(e.economie||0),0);
+          totalEconomiePersonnel = journalEntries
+            .reduce((s,e)=>s+(e.montant_personnel||0),0);
         }
       } catch(e){ console.error(e); }
     }
@@ -1076,6 +1085,7 @@ async function loadProfile(){
         : ini(profile.pseudo);
 
     currentPosts = posts;
+    currentJournalEntries = journalEntries;
     currentProfile = profile;
     currentSaved = savedEntries;
     currentWrapped = {
@@ -1119,12 +1129,11 @@ async function loadProfile(){
       ${isOwn ? `<div class="challenge-card">
         <div class="challenge-head">
           <div class="challenge-title">💰 Mes économies</div>
-          <button class="challenge-edit" onclick="editEconomies()">${profile.total_economise!=null ? '✏️ Modifier' : '➕ Ajouter'}</button>
         </div>
-        ${profile.total_economise!=null ? `
-          <div style="font-size:24px;font-weight:800;color:#16A34A;margin:2px 0">${profile.total_economise.toLocaleString('fr-FR')}€</div>
-          <div class="challenge-sub">économisés grâce à Economya · visible seulement par toi</div>
-        ` : `<div class="challenge-sub">Indique combien tu as économisé grâce aux astuces testées. Juste pour toi, visible seulement sur ton profil.</div>`}
+        ${totalEconomiePersonnel>0 ? `
+          <div style="font-size:24px;font-weight:800;color:#16A34A;margin:2px 0">${totalEconomiePersonnel.toLocaleString('fr-FR')}€</div>
+          <div class="challenge-sub">somme de ce que tu as renseigné astuce par astuce dans ton journal · visible seulement par toi</div>
+        ` : `<div class="challenge-sub">Ajoute un montant sur une astuce testée dans ton journal ci-dessous, et ton total s'affichera ici automatiquement.</div>`}
       </div>` : ''}
       ${isOwn ? `<div class="challenge-card ${profile.test_goal && testsThisYear>=profile.test_goal ? 'is-complete' : ''}">
         <div class="challenge-head">
@@ -1163,7 +1172,7 @@ async function loadProfile(){
         <div class="sec-title">📔 Astuces testées</div>
         ${isOwn ? `<button class="privacy-toggle ${journalIsPublic ? 'is-public' : 'is-private'}" id="journalPrivacyBtn" onclick="toggleJournalPrivacy()" title="${journalIsPublic ? 'Visible par tout le monde — cliquer pour le rendre privé' : 'Visible par vous seul — cliquer pour le rendre public'}">${journalIsPublic ? '🌍 Public' : '🔒 Privé'}</button>` : ''}
       </div>
-      <div id="journalList">${(isOwn || journalIsPublic) ? renderJournal(journalEntries) : '<div class="empty"><div class="empty-icon">🔒</div><h3>Journal privé</h3></div>'}</div>
+      <div id="journalList">${(isOwn || journalIsPublic) ? renderJournal(journalEntries, isOwn) : '<div class="empty"><div class="empty-icon">🔒</div><h3>Journal privé</h3></div>'}</div>
       ${isOwn ? `<div class="danger-zone">
         <button class="danger-btn" id="deleteAccountBtn" onclick="deleteAccount()">🗑️ Supprimer mon compte</button>
         <p class="danger-note">Cela supprime définitivement votre compte, votre photo, vos astuces et vos votes. Action irréversible.</p>
