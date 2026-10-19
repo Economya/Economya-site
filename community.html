@@ -67,6 +67,15 @@ a{text-decoration:none;color:inherit;}
 
 /* PREVIEW */
 .preview{max-width:860px;margin:0 auto 72px;padding:0 24px;}
+.leaderboard{max-width:860px;margin:0 auto 72px;padding:0 24px;}
+.lb-list{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.lb-row{display:flex;align-items:center;gap:14px;padding:14px 18px;border-bottom:1px solid var(--border);}
+.lb-row:last-child{border-bottom:none;}
+.lb-rank{font-family:'Georgia',serif;font-weight:900;font-size:17px;color:var(--muted);width:22px;text-align:center;flex-shrink:0;}
+.lb-row:nth-child(1) .lb-rank{color:var(--gold);}
+.lb-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;}
+.lb-name{font-weight:700;font-size:14.5px;flex:1;}
+.lb-stat{font-size:13px;color:var(--muted);font-weight:600;white-space:nowrap;}
 .preview-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
 @media(max-width:640px){.preview-grid{grid-template-columns:1fr;}}
 .preview-card{background:var(--white);border:1px solid var(--border);border-radius:20px;padding:20px;}
@@ -205,25 +214,25 @@ footer a{color:rgba(255,255,255,.75)}
   <a href="/index.html" class="nav-logo" style="text-decoration:none;color:inherit">
     <span>Economya <span class="eco">Community</span></span>
   </a>
-  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/community.html"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a></li><li><a href="/economya-escape.html" style="color:#B8860B;font-weight:700">✨ Escape</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/outils-gratuits.html"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a></li><li><a href="/jeux.html"><svg class="ic"><use href="#ic-gamepad"/></svg>Jeux</a></li></ul><a href="/forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/community.html"><svg class="ic" aria-hidden="true"><use href="#ic-leaf"/></svg>Community</a></li><li><a href="/economya-escape.html" style="color:#B8860B;font-weight:700">✨ Escape</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/outils-gratuits.html"><svg class="ic" aria-hidden="true"><use href="#ic-tools"/></svg>Outils gratuits</a></li><li><a href="/jeux.html"><svg class="ic" aria-hidden="true"><use href="#ic-gamepad"/></svg>Jeux</a></li></ul><a href="/forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
   <div class="nav-right">
-    <a href="/recherche.html" class="eco-dnav-search"><svg class="ic"><use href="#ic-search"/></svg>Rechercher</a>
+    <a href="/recherche.html" class="eco-dnav-search"><svg class="ic" aria-hidden="true"><use href="#ic-search"/></svg>Rechercher</a>
     <button class="nav-btn" id="joinBtn" onclick="window.location='forum-astuces.html'">Rejoindre →</button>
     <div id="navAv" style="cursor:pointer"></div>
   </div>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <main>
-<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html"><svg class="ic"><use href="#ic-home"/></svg>Accueil</a><a href="/forum-astuces.html"><svg class="ic"><use href="#ic-idea"/></svg>Economya Network</a><a href="/community.html"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a><a href="/economya-escape.html">✨ Escape</a><a href="/a-propos.html"><svg class="ic"><use href="#ic-info"/></svg>À propos</a><a href="/comparateurs.html"><svg class="ic"><use href="#ic-search"/></svg>Comparateurs</a><a href="/outils-gratuits.html"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a><a href="/jeux.html"><svg class="ic"><use href="#ic-gamepad"/></svg>Jeux</a><a href="/recherche.html"><svg class="ic"><use href="#ic-search"/></svg>Rechercher</a></div>
+<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html"><svg class="ic" aria-hidden="true"><use href="#ic-home"/></svg>Accueil</a><a href="/forum-astuces.html"><svg class="ic" aria-hidden="true"><use href="#ic-idea"/></svg>Economya Network</a><a href="/community.html"><svg class="ic" aria-hidden="true"><use href="#ic-leaf"/></svg>Community</a><a href="/economya-escape.html">✨ Escape</a><a href="/a-propos.html"><svg class="ic" aria-hidden="true"><use href="#ic-info"/></svg>À propos</a><a href="/comparateurs.html"><svg class="ic" aria-hidden="true"><use href="#ic-search"/></svg>Comparateurs</a><a href="/outils-gratuits.html"><svg class="ic" aria-hidden="true"><use href="#ic-tools"/></svg>Outils gratuits</a><a href="/jeux.html"><svg class="ic" aria-hidden="true"><use href="#ic-gamepad"/></svg>Jeux</a><a href="/recherche.html"><svg class="ic" aria-hidden="true"><use href="#ic-search"/></svg>Rechercher</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
 <script src="account-nav.js" data-hide-when-logged-in="joinBtn"></script>
 
 <div class="hero">
-  <div class="hero-tag"><svg class="ic"><use href="#ic-leaf"/></svg>Le réseau social de l'épargne</div>
+  <div class="hero-tag"><svg class="ic" aria-hidden="true"><use href="#ic-leaf"/></svg>Le réseau social de l'épargne</div>
   <h1>Partagez l'astuce qui vous a<br>fait <em>économiser le plus</em></h1>
   <p>Un réseau où chaque conseil est voté, testé et validé par la communauté. Les meilleures astuces remontent, les mauvaises disparaissent.</p>
   <div class="hero-actions">
-    <button class="btn-primary" onclick="window.location='forum-astuces.html'"><svg class="ic"><use href="#ic-pencil"/></svg>Partager mon astuce</button>
+    <button class="btn-primary" onclick="window.location='forum-astuces.html'"><svg class="ic" aria-hidden="true"><use href="#ic-pencil"/></svg>Partager mon astuce</button>
     <button class="btn-secondary" onclick="window.location='forum-astuces.html'">Découvrir les astuces</button>
   </div>
   <div class="hero-social">Soyez les <b>premiers membres</b> de la communauté<br>Rejoignez ceux qui économisent <b style="color:var(--gold)">ensemble</b></div>
@@ -268,9 +277,9 @@ footer a{color:rgba(255,255,255,.75)}
       '<div><div class="pc-name">' + escapeHtml(p.auteur) + '</div><div class="pc-cat">' + escapeHtml(p.categorie) + ' · il y a ' + timeAgo(p.created_at) + '</div></div></div>' +
       '<div class="pc-title">' + escapeHtml(p.titre) + '</div>' +
       '<div class="pc-body">' + escapeHtml(p.description) + '</div>' +
-      '<div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>' + (p.economie||0).toLocaleString('fr-FR') + '€</div>' +
+      '<div class="pc-pill"><svg class="ic" style="width:11px;height:11px" aria-hidden="true"><use href="#ic-wallet"/></svg>' + (p.economie||0).toLocaleString('fr-FR') + '€</div>' +
       '<div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:' + r + '%"></div></div><span class="rel-label">' + r + '% fiable</span></div>' +
-      '<div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>' + (p.votes||0) + '</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>' + (p.tested||0) + ' testés</span></div>' +
+      '<div class="pc-actions"><span><svg class="ic" aria-hidden="true"><use href="#ic-heart"/></svg>' + (p.votes||0) + '</span><span><svg class="ic" aria-hidden="true"><use href="#ic-check-badge"/></svg>' + (p.tested||0) + ' testés</span></div>' +
       '</div>';
   }
 
@@ -299,6 +308,34 @@ footer a{color:rgba(255,255,255,.75)}
     var grid = document.getElementById('previewGrid');
     if(grid && rows.length > 0){
       grid.innerHTML = rows.slice(0, 4).map(buildCard).join('');
+    }
+
+    // Top contributeurs (classement par votes cumulés sur leurs astuces)
+    var byAuthor = {};
+    rows.forEach(function(r){
+      var name = (r.auteur || '').trim();
+      if(!name) return;
+      if(!byAuthor[name]) byAuthor[name] = { auteur: name, votes: 0, astuces: 0, economie: 0 };
+      byAuthor[name].votes += (r.votes || 0);
+      byAuthor[name].astuces += 1;
+      byAuthor[name].economie += (r.economie || 0);
+    });
+    var ranking = Object.keys(byAuthor).map(function(k){ return byAuthor[k]; })
+      .sort(function(a,b){ return b.votes - a.votes; })
+      .slice(0, 5);
+    var lbSection = document.getElementById('leaderboardSection');
+    var lbList = document.getElementById('leaderboardList');
+    if(lbSection && lbList && ranking.length > 1){
+      lbList.innerHTML = ranking.map(function(p, i){
+        var c = avatarColor(p.auteur);
+        return '<div class="lb-row">' +
+          '<div class="lb-rank">' + (i+1) + '</div>' +
+          '<div class="lb-avatar" style="background:' + c[0] + ';color:' + c[1] + '">' + escapeHtml(p.auteur.charAt(0).toUpperCase()) + '</div>' +
+          '<div class="lb-name">' + escapeHtml(p.auteur) + '</div>' +
+          '<div class="lb-stat">' + p.votes + ' votes · ' + p.astuces + ' astuce' + (p.astuces > 1 ? 's' : '') + '</div>' +
+          '</div>';
+      }).join('');
+      lbSection.style.display = '';
     }
   }).catch(function(){ /* garde le contenu statique en cas d'erreur reseau */ });
 })();
@@ -333,50 +370,55 @@ footer a{color:rgba(255,255,255,.75)}
     <div class="preview-card">
       <div class="pc-header">
         <div class="pc-avatar" style="background:linear-gradient(135deg,#FFD98A,#D9830C);color:#2b1800">M</div>
-        <div><div class="pc-name">Marie</div><div class="pc-cat"><svg class="ic"><use href="#ic-phone"/></svg>Téléphonie · il y a 5j</div></div>
+        <div><div class="pc-name">Marie</div><div class="pc-cat"><svg class="ic" aria-hidden="true"><use href="#ic-phone"/></svg>Téléphonie · il y a 5j</div></div>
       </div>
       <div class="pc-title">40€/mois économisés en changeant de forfait mobile</div>
       <div class="pc-body">Switché de SFR à Free Mobile. Même réseau, même qualité. 480€/an dans la poche.</div>
-      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>480€/an</div>
+      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px" aria-hidden="true"><use href="#ic-wallet"/></svg>480€/an</div>
       <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:100%"></div></div><span class="rel-label">100% fiable</span></div>
-      <div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>247</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>89 testés</span></div>
+      <div class="pc-actions"><span><svg class="ic" aria-hidden="true"><use href="#ic-heart"/></svg>247</span><span><svg class="ic" aria-hidden="true"><use href="#ic-check-badge"/></svg>89 testés</span></div>
     </div>
     <div class="preview-card">
       <div class="pc-header">
         <div class="pc-avatar" style="background:linear-gradient(135deg,#8FC7FF,#1D4ED8);color:#fff">P</div>
-        <div><div class="pc-name">Pierre</div><div class="pc-cat"><svg class="ic"><use href="#ic-car"/></svg>Transport · il y a 4j</div></div>
+        <div><div class="pc-name">Pierre</div><div class="pc-cat"><svg class="ic" aria-hidden="true"><use href="#ic-car"/></svg>Transport · il y a 4j</div></div>
       </div>
       <div class="pc-title">Covoiturage domicile-travail via BlaBlaCar Daily</div>
       <div class="pc-body">3 collègues sur mon trajet, on alterne chaque semaine. 150€/mois économisés sans effort.</div>
-      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>1 800€/an</div>
+      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px" aria-hidden="true"><use href="#ic-wallet"/></svg>1 800€/an</div>
       <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:100%"></div></div><span class="rel-label">100% fiable</span></div>
-      <div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>203</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>56 testés</span></div>
+      <div class="pc-actions"><span><svg class="ic" aria-hidden="true"><use href="#ic-heart"/></svg>203</span><span><svg class="ic" aria-hidden="true"><use href="#ic-check-badge"/></svg>56 testés</span></div>
     </div>
     <div class="preview-card">
       <div class="pc-header">
         <div class="pc-avatar" style="background:linear-gradient(135deg,#FFA9D3,#BE1361);color:#fff">J</div>
-        <div><div class="pc-name">Julie</div><div class="pc-cat"><svg class="ic"><use href="#ic-plane"/></svg>Voyage · il y a 6j</div></div>
+        <div><div class="pc-name">Julie</div><div class="pc-cat"><svg class="ic" aria-hidden="true"><use href="#ic-plane"/></svg>Voyage · il y a 6j</div></div>
       </div>
       <div class="pc-title">Réserver vols le mardi matin : jusqu'à -40%</div>
       <div class="pc-body">Les compagnies mettent à jour les tarifs le lundi soir. Mardi avant 10h = meilleur moment.</div>
-      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>400€/an</div>
+      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px" aria-hidden="true"><use href="#ic-wallet"/></svg>400€/an</div>
       <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:98%"></div></div><span class="rel-label">98% fiable</span></div>
-      <div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>167</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>41 testés</span></div>
+      <div class="pc-actions"><span><svg class="ic" aria-hidden="true"><use href="#ic-heart"/></svg>167</span><span><svg class="ic" aria-hidden="true"><use href="#ic-check-badge"/></svg>41 testés</span></div>
     </div>
     <div class="preview-card">
       <div class="pc-header">
         <div class="pc-avatar" style="background:linear-gradient(135deg,#7CE8A8,#0E9448);color:#06250f">T</div>
-        <div><div class="pc-name">Thomas</div><div class="pc-cat"><svg class="ic"><use href="#ic-shield"/></svg>Assurances · il y a 3j</div></div>
+        <div><div class="pc-name">Thomas</div><div class="pc-cat"><svg class="ic" aria-hidden="true"><use href="#ic-shield"/></svg>Assurances · il y a 3j</div></div>
       </div>
       <div class="pc-title">Renégocier son assurance auto chaque année</div>
       <div class="pc-body">Avant l'échéance, j'appelle avec un devis concurrent. Ils s'alignent ou je pars.</div>
-      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>300€/an</div>
+      <div class="pc-pill"><svg class="ic" style="width:11px;height:11px" aria-hidden="true"><use href="#ic-wallet"/></svg>300€/an</div>
       <div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:96%"></div></div><span class="rel-label">96% fiable</span></div>
-      <div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>189</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>67 testés</span></div>
+      <div class="pc-actions"><span><svg class="ic" aria-hidden="true"><use href="#ic-heart"/></svg>189</span><span><svg class="ic" aria-hidden="true"><use href="#ic-check-badge"/></svg>67 testés</span></div>
     </div>
   </div>
 </div>
 
+<div class="leaderboard" id="leaderboardSection" style="display:none">
+  <div class="section-tag">Classement</div>
+  <div class="section-title">Top contributeurs</div>
+  <div class="lb-list" id="leaderboardList"></div>
+</div>
 
 <div class="network-card"><div class="nc-inner">
   <div class="section-tag">Economya Network</div>
@@ -509,7 +551,7 @@ footer a{color:rgba(255,255,255,.75)}
     </div>
     <h2>Quelle astuce vous a fait<br>économiser le plus ?</h2>
     <p>Partagez-la. Elle pourrait aider des milliers de personnes.</p>
-    <button class="btn-primary" onclick="window.location='forum-astuces.html'"><svg class="ic"><use href="#ic-pencil"/></svg>Partager mon astuce</button>
+    <button class="btn-primary" onclick="window.location='forum-astuces.html'"><svg class="ic" aria-hidden="true"><use href="#ic-pencil"/></svg>Partager mon astuce</button>
   </div>
 </div>
 

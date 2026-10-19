@@ -174,7 +174,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   </div>
 </nav>
 <main>
-<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html"><svg class="ic"><use href="#ic-idea"/></svg>Economya Network</a><a href="/community.html">Community</a><a href="/economya-escape.html">✨ Escape</a><a href="/a-propos.html">À propos</a><a href="/comparateurs.html">Comparateurs</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/jeux.html">Jeux</a><a href="/recherche.html">Rechercher</a></div>
+<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html"><svg class="ic" aria-hidden="true"><use href="#ic-idea"/></svg>Economya Network</a><a href="/community.html">Community</a><a href="/economya-escape.html">✨ Escape</a><a href="/a-propos.html">À propos</a><a href="/comparateurs.html">Comparateurs</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/jeux.html">Jeux</a><a href="/recherche.html">Rechercher</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
 <div class="wrap">
 
@@ -386,10 +386,12 @@ async function submitAuth(){
     const result = await authSubmit(authMode, email, password, pseudo, captchaToken, birthDate);
     if(!result.ok){ throw new Error(result.msg); }
     if(authMode === 'signup' && !result.data.access_token){
+      if(typeof gtag === 'function'){ gtag('event', 'sign_up', { method: 'email' }); }
       showAuthError('Compte créé ! Vérifiez votre email pour confirmer, puis connectez-vous.', true);
       if(typeof turnstile !== 'undefined'){ turnstile.reset(); }
       return;
     }
+    if(typeof gtag === 'function'){ gtag('event', authMode === 'signup' ? 'sign_up' : 'login', { method: 'email' }); }
     saveSession(result.data);
     closeAll();
     render();
@@ -940,6 +942,7 @@ async function submitPost(){
       body:JSON.stringify(payload)
     });
     const createdPost = Array.isArray(newPost)?newPost[0]:newPost;
+    if(typeof gtag === 'function'){ gtag('event', 'astuce_published', { categorie: categorie }); }
     posts.unshift(createdPost);
     voted.push(posts[0].id);
     localStorage.setItem('eco_voted',JSON.stringify(voted));
