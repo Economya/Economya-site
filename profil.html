@@ -44,6 +44,17 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .avpick-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
 .avpick-item{aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;border:none;cursor:pointer;}
 .avpick-close{margin-top:14px;width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:12px;padding:12px;font-weight:700;color:var(--muted);}
+.amount-bg{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:flex-end;justify-content:center;z-index:250;}
+.amount-bg.open{display:flex;}
+.amount-sheet{background:var(--white);border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:420px;}
+.amount-sub{font-size:13px;color:var(--muted);margin:-8px 0 14px;}
+.amount-input-row{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border);border-radius:14px;padding:10px 16px;}
+.amount-input-row:focus-within{border-color:#16A34A;}
+.amount-currency{font-size:22px;font-weight:800;color:#16A34A;}
+.amount-input{flex:1;border:none;outline:none;font-size:22px;font-weight:800;color:var(--ink);background:transparent;min-width:0;}
+.amount-save-btn{margin-top:14px;width:100%;background:#16A34A;border:none;border-radius:12px;padding:12px;font-weight:800;color:#fff;cursor:pointer;}
+.amount-remove-btn{margin-top:10px;width:100%;background:none;border:none;color:#EF4444;font-weight:700;font-size:13px;padding:6px;cursor:pointer;}
+
 @keyframes wrappedFadeIn{from{opacity:0;}to{opacity:1;}}
 @keyframes wrappedPop{0%{transform:scale(.92);opacity:0;}100%{transform:scale(1);opacity:1;}}
 .wrapped-bg{position:fixed;inset:0;background:rgba(5,8,6,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:260;padding:20px;}
@@ -207,6 +218,19 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     <div class="avpick-title">Choisir un avatar</div>
     <div class="avpick-grid" id="avpickGrid"></div>
     <button class="avpick-close" onclick="closeAvatarPicker()">Fermer</button>
+  </div>
+</div>
+<div class="amount-bg" id="amountBg" onclick="if(event.target===this)closeAmountModal()">
+  <div class="amount-sheet">
+    <div class="avpick-title" id="amountTitle">Combien as-tu économisé ?</div>
+    <div class="amount-sub">Juste pour cette astuce, ça s'ajoute à ton total.</div>
+    <div class="amount-input-row">
+      <span class="amount-currency">€</span>
+      <input type="number" id="amountInput" inputmode="decimal" step="0.01" min="0" placeholder="0" class="amount-input">
+    </div>
+    <button class="amount-save-btn" onclick="saveAmountModal()">Enregistrer</button>
+    <button class="amount-remove-btn" id="amountRemoveBtn" style="display:none" onclick="saveAmountModal(true)">Retirer ce montant</button>
+    <button class="avpick-close" onclick="closeAmountModal()">Annuler</button>
   </div>
 </div>
 <div class="wrapped-bg" id="wrappedBg" onclick="if(event.target===this)closeWrapped()">
@@ -728,7 +752,7 @@ function renderJournal(entries, isOwn){
         <div class="journal-item-meta">
           <span>${escapeHtml(e.categorie||'')}</span>
           ${hasAmount ? `<span style="color:var(--green);font-weight:700">💰 ${e.montant_personnel}€</span>` : ''}
-          ${isOwn ? `<button type="button" class="journal-amount-btn" onclick="event.preventDefault();editJournalAmount(${e.id})">${hasAmount ? '✏️ Modifier' : '+ Mon montant'}</button>` : ''}
+          ${isOwn ? `<button type="button" class="journal-amount-btn" onclick="event.preventDefault();openAmountModal(${e.id})">${hasAmount ? '✏️ Modifier' : '+ Mon montant'}</button>` : ''}
         </div>
       </a>
     `;
@@ -877,20 +901,35 @@ async function editGoal(){
   }
 }
 
-async function editJournalAmount(astuceId){
+let amountModalAstuceId = null;
+function openAmountModal(astuceId){
   if(!mySession) return;
+  amountModalAstuceId = astuceId;
   const entry = (currentJournalEntries || []).find(e => e.id === astuceId);
-  const input = prompt('Combien as-tu économisé grâce à cette astuce ? (en €, laissez vide pour retirer)', entry && entry.montant_personnel != null ? String(entry.montant_personnel) : '');
-  if(input === null) return;
-  const trimmed = input.trim().replace(',', '.');
+  const hasAmount = entry && entry.montant_personnel != null;
+  document.getElementById('amountTitle').textContent = entry ? `Combien as-tu économisé avec "${entry.titre}" ?` : 'Combien as-tu économisé ?';
+  document.getElementById('amountInput').value = hasAmount ? entry.montant_personnel : '';
+  document.getElementById('amountRemoveBtn').style.display = hasAmount ? 'block' : 'none';
+  document.getElementById('amountBg').classList.add('open');
+  setTimeout(()=>{ const el = document.getElementById('amountInput'); if(el) el.focus(); }, 50);
+}
+function closeAmountModal(){
+  document.getElementById('amountBg').classList.remove('open');
+  amountModalAstuceId = null;
+}
+async function saveAmountModal(remove){
+  if(!mySession || amountModalAstuceId === null) return;
   let newAmount = null;
-  if(trimmed !== ''){
-    const n = parseFloat(trimmed);
-    if(!Number.isFinite(n) || n < 0){ alert('Entrez un montant positif.'); return; }
-    newAmount = Math.round(n * 100) / 100;
+  if(!remove){
+    const raw = document.getElementById('amountInput').value.trim().replace(',', '.');
+    if(raw !== ''){
+      const n = parseFloat(raw);
+      if(!Number.isFinite(n) || n < 0){ alert('Entrez un montant positif.'); return; }
+      newAmount = Math.round(n * 100) / 100;
+    }
   }
   try {
-    const res = await fetch(SUPABASE_URL + '/rest/v1/astuce_actions?user_id=eq.' + mySession.user.id + '&astuce_id=eq.' + astuceId + '&action=eq.test', {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/astuce_actions?user_id=eq.' + mySession.user.id + '&astuce_id=eq.' + amountModalAstuceId + '&action=eq.test', {
       method: 'PATCH',
       headers: {
         'apikey': SUPABASE_KEY,
@@ -901,6 +940,7 @@ async function editJournalAmount(astuceId){
       body: JSON.stringify({ montant_personnel: newAmount })
     });
     if(!res.ok) throw new Error(await res.text());
+    closeAmountModal();
     loadProfile();
   } catch(e){
     alert('Erreur : ' + e.message);
