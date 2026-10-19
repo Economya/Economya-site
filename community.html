@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rejoindre la Community — Economya.fr</title>
-<meta name="description" content="Partagez l'astuce qui vous a fait économiser le plus, votez pour les meilleures astuces de la communauté et découvrez celles qui marchent vraiment. Gratuit et sans inscription obligatoire.">
+<meta name="description" content="Partagez l'astuce qui vous a fait économiser le plus, votez pour les meilleures et découvrez celles qui marchent. Gratuit, sans inscription obligatoire.">
 <style>
 html{overflow-y:scroll}
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
@@ -235,7 +235,7 @@ footer a{color:rgba(255,255,255,.75)}
 <main>
 <div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html"><svg class="ic"><use href="#ic-home"/></svg>Accueil</a><a href="/forum-astuces.html"><svg class="ic"><use href="#ic-idea"/></svg>Economya Network</a><a href="/community.html"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a><a href="/economya-escape.html">✨ Escape</a><a href="/a-propos.html"><svg class="ic"><use href="#ic-info"/></svg>À propos</a><a href="/comparateurs.html"><svg class="ic"><use href="#ic-search"/></svg>Comparateurs</a><a href="/outils-gratuits.html"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a><a href="/jeux.html"><svg class="ic"><use href="#ic-gamepad"/></svg>Jeux</a><a href="/recherche.html"><svg class="ic"><use href="#ic-search"/></svg>Rechercher</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
-<script src="account-nav.js" data-hide-when-logged-in="joinBtn"></script>
+<script src="account-nav.js" data-hide-when-logged-in="joinBtn" defer></script>
 
 <div class="hero">
   <div class="hero-tag"><svg class="ic"><use href="#ic-leaf"/></svg>Le réseau social de l'épargne</div>
