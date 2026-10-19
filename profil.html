@@ -1054,7 +1054,7 @@ async function loadProfile(){
             .filter(Boolean);
           economySavedThisYear = journalEntries
             .filter(e=>new Date(e.tested_at).getFullYear()===currentYear)
-            .reduce((s,e)=>s+(e.economie||0),0);
+            .reduce((s,e)=>s+(e.montant_personnel||0),0);
           totalEconomiePersonnel = journalEntries
             .reduce((s,e)=>s+(e.montant_personnel||0),0);
         }
