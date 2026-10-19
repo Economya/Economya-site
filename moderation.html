@@ -95,6 +95,7 @@ async function sbFetch(path, options = {}) {
   await refreshSessionIfNeeded();
   const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
     ...options,
+    keepalive: true,
     headers: {
       'apikey': SUPABASE_KEY,
       'Authorization': 'Bearer ' + (session ? session.access_token : SUPABASE_KEY),

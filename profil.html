@@ -266,6 +266,7 @@ async function sbFetch(path){
 async function authedFetch(path, options = {}){
   const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
     ...options,
+    keepalive: true,
     headers: {
       'apikey': SUPABASE_KEY,
       'Authorization': 'Bearer ' + (mySession ? mySession.access_token : SUPABASE_KEY),
