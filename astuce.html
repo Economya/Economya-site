@@ -115,6 +115,16 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </style>
 </head>
 <body>
+<script>
+(function(){
+  try {
+    var ref = new URLSearchParams(location.search).get('ref');
+    if(ref){
+      localStorage.setItem('eco_ref', JSON.stringify({ pseudo: ref, ts: Date.now() }));
+    }
+  } catch(e){}
+})();
+</script>
 <nav>
   <a class="logo" href="/index.html">Econom<span>ya</span>.fr</a>
   <a class="nav-back" href="/forum-astuces.html" id="backLink">← Retour au forum</a>

@@ -161,6 +161,16 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <link rel="canonical" href="https://economya.fr/forum-astuces" />
 </head>
 <body>
+<script>
+(function(){
+  try {
+    var ref = new URLSearchParams(location.search).get('ref');
+    if(ref){
+      localStorage.setItem('eco_ref', JSON.stringify({ pseudo: ref, ts: Date.now() }));
+    }
+  } catch(e){}
+})();
+</script>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="ic-idea" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2"/></symbol>
 </defs></svg>
@@ -370,6 +380,26 @@ function toggleAuthMode(){
 function showAuthError(msg, ok){
   authShowMessage('authError', msg, ok);
 }
+function claimReferral(session, excludePseudo){
+  try {
+    const raw = localStorage.getItem('eco_ref');
+    if(!raw) return;
+    const ref = JSON.parse(raw);
+    if(!ref || !ref.pseudo) { localStorage.removeItem('eco_ref'); return; }
+    if(Date.now() - ref.ts > 30*24*60*60*1000){ localStorage.removeItem('eco_ref'); return; }
+    if(excludePseudo && ref.pseudo.trim().toLowerCase() === excludePseudo.trim().toLowerCase()){ localStorage.removeItem('eco_ref'); return; }
+    fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + session.user.id + '&referred_by=is.null', {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + session.access_token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ referred_by: ref.pseudo })
+    }).then(function(){ localStorage.removeItem('eco_ref'); }).catch(function(){});
+  } catch(e){}
+}
 async function submitAuth(){
   const email = document.getElementById('authEmail').value.trim();
   const password = document.getElementById('authPassword').value;
@@ -392,6 +422,7 @@ async function submitAuth(){
       return;
     }
     if(typeof gtag === 'function'){ gtag('event', authMode === 'signup' ? 'sign_up' : 'login', { method: 'email' }); }
+    claimReferral(result.data, pseudo);
     saveSession(result.data);
     closeAll();
     render();

@@ -145,6 +145,16 @@ a{text-decoration:none;color:inherit;}
 <meta property="og:locale" content="fr_FR">
 </head>
 <body>
+<script>
+(function(){
+  try {
+    var ref = new URLSearchParams(location.search).get('ref');
+    if(ref){
+      localStorage.setItem('eco_ref', JSON.stringify({ pseudo: ref, ts: Date.now() }));
+    }
+  } catch(e){}
+})();
+</script>
 <svg width="0" height="0" style="position:absolute">
 <defs>
 <symbol id="ic-leaf" viewBox="0 0 24 24"><path d="M5 19c8 1 14-5 14-14 0 0-13-1-14 9-.4 3 0 5 0 5Z"/><path d="M5 19c2-4 5-7 9-9"/></symbol>

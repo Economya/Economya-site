@@ -136,6 +136,28 @@ function toggleAuthMode(){
 function showAuthError(msg, ok){
   authShowMessage('authError', msg, ok);
 }
+function claimReferral(session, excludePseudo){
+  try {
+    const raw = localStorage.getItem('eco_ref');
+    if(!raw) return;
+    const ref = JSON.parse(raw);
+    if(!ref || !ref.pseudo) { localStorage.removeItem('eco_ref'); return; }
+    if(Date.now() - ref.ts > 30*24*60*60*1000){ localStorage.removeItem('eco_ref'); return; }
+    if(excludePseudo && ref.pseudo.trim().toLowerCase() === excludePseudo.trim().toLowerCase()){ localStorage.removeItem('eco_ref'); return; }
+    const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+    fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + session.user.id + '&referred_by=is.null', {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + session.access_token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ referred_by: ref.pseudo })
+    }).then(function(){ localStorage.removeItem('eco_ref'); }).catch(function(){});
+  } catch(e){}
+}
 async function submitAuth(){
   const email = document.getElementById('authEmail').value.trim();
   const password = document.getElementById('authPassword').value;
@@ -161,6 +183,7 @@ async function submitAuth(){
       return;
     }
     if(typeof gtag === 'function'){ gtag('event', authMode === 'signup' ? 'sign_up' : 'login', { method: 'email' }); }
+    claimReferral(result.data, pseudo);
     authSaveSession(result.data);
     window.location.href = redirectTo;
   } catch(e){

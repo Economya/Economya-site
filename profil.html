@@ -799,6 +799,27 @@ function shareProfile(pseudo){
   }
 }
 
+function copyReferralLink(){
+  const input = document.getElementById('referralLinkInput');
+  const btn = document.getElementById('referralCopyBtn');
+  if(!input) return;
+  const url = input.value;
+  const done = function(){
+    if(btn){ const old = btn.textContent; btn.textContent = '✅ Lien copié !'; setTimeout(function(){ btn.textContent = old; }, 2000); }
+  };
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(done).catch(function(){
+      input.select();
+      document.execCommand('copy');
+      done();
+    });
+  } else {
+    input.select();
+    document.execCommand('copy');
+    done();
+  }
+}
+
 async function editBio(){
   if(!mySession || !currentProfile) return;
   const newBio = prompt('Une phrase pour vous présenter (120 caractères max) :', currentProfile.bio || '');
@@ -930,6 +951,13 @@ async function loadProfile(){
         isFollowing = followers.some(f=>f.follower_id === mySession.user.id);
       }
     } catch(e){ console.error(e); }
+    let referralCount = 0;
+    if(isOwn){
+      try {
+        const referred = await sbFetch('profiles?referred_by=eq.' + encodeURIComponent(profile.pseudo) + '&select=id');
+        referralCount = referred.length;
+      } catch(e){ console.error(e); }
+    }
     const posts = await sbFetch('astuces?user_id=eq.' + profile.id + '&order=created_at.desc');
     let journalEntries = [];
     if(isOwn || journalIsPublic){
@@ -1069,6 +1097,16 @@ async function loadProfile(){
           <div class="challenge-track"><div class="challenge-fill" style="width:${Math.min(100, Math.round(testsThisYear/profile.test_goal*100))}%"></div></div>
           ${testsThisYear >= profile.test_goal ? `<div class="challenge-done">🏆 Défi atteint !</div>` : ''}
         ` : `<div class="challenge-sub">Fixez-vous un objectif d'astuces à tester cette année, et suivez votre progression ici.</div>`}
+      </div>` : ''}
+      ${isOwn ? `<div class="challenge-card">
+        <div class="challenge-head">
+          <div class="challenge-title">🤝 Invite tes proches</div>
+        </div>
+        <div class="challenge-sub">${referralCount > 0 ? `${referralCount} personne${referralCount>1?'s':''} inscrite${referralCount>1?'s':''} grâce à toi` : "Partage ton lien, et vois qui s'inscrit grâce à toi."}</div>
+        <div class="referral-link-row" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+          <input id="referralLinkInput" type="text" readonly value="https://economya.fr/community?ref=${escapeHtml(profile.pseudo)}" style="flex:1;min-width:200px;padding:.5rem .8rem;border:1px solid var(--bd,#E5E5E5);border-radius:8px;font-size:.85rem;background:var(--bg2,#F7F7F7)">
+          <button class="share-btn" id="referralCopyBtn" onclick="copyReferralLink()">📋 Copier le lien</button>
+        </div>
       </div>` : ''}
       <div class="sec-title-row">
         <div class="sec-title">Astuces publiées</div>

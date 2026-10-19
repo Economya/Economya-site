@@ -266,6 +266,16 @@ window.economyaLoadAds = function() {
 <meta name="description" content="Le réseau social de l'épargne : partagez vos meilleures astuces d'économies, votez pour les meilleures et découvrez celles qui marchent vraiment.">
 </head>
 <body>
+<script>
+(function(){
+  try {
+    var ref = new URLSearchParams(location.search).get('ref');
+    if(ref){
+      localStorage.setItem('eco_ref', JSON.stringify({ pseudo: ref, ts: Date.now() }));
+    }
+  } catch(e){}
+})();
+</script>
 
 <!-- ============ ICONES SVG REUTILISABLES (aucun emoji sur tout le site) ============ -->
 <svg width="0" height="0" style="position:absolute">
