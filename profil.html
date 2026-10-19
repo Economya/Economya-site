@@ -872,6 +872,35 @@ async function editGoal(){
   }
 }
 
+async function editEconomies(){
+  if(!mySession || !currentProfile) return;
+  const input = prompt('Combien avez-vous économisé au total grâce à Economya ? (en €, laissez vide pour retirer)', currentProfile.total_economise != null ? String(currentProfile.total_economise) : '');
+  if(input === null) return;
+  const trimmed = input.trim().replace(',', '.');
+  let newAmount = null;
+  if(trimmed !== ''){
+    const n = parseFloat(trimmed);
+    if(!Number.isFinite(n) || n < 0){ alert('Entrez un montant positif.'); return; }
+    newAmount = Math.round(n * 100) / 100;
+  }
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/profiles?id=eq.' + mySession.user.id, {
+      method: 'PATCH',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + mySession.access_token,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ total_economise: newAmount })
+    });
+    if(!res.ok) throw new Error(await res.text());
+    loadProfile();
+  } catch(e){
+    alert('Erreur : ' + e.message);
+  }
+}
+
 async function toggleJournalPrivacy(){
   if(!mySession || !currentProfile) return;
   const newValue = !currentProfile.journal_public;
@@ -931,7 +960,7 @@ async function loadProfile(){
     return;
   }
   try {
-    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio,journal_public,rank_seen,test_goal');
+    const profiles = await sbFetch('profiles?pseudo=eq.' + encodeURIComponent(pseudo) + '&select=id,pseudo,created_at,avatar_url,bio,journal_public,rank_seen,test_goal,total_economise');
     const profile = profiles[0];
     if(!profile){
       content.innerHTML = '<div class="empty"><div class="empty-icon">👤</div><h3>Profil introuvable</h3><p>"'+pseudo.replace(/</g,'')+'" n\'existe pas (encore).</p></div>';
@@ -1087,6 +1116,16 @@ async function loadProfile(){
         <div class="stat"><div class="stat-n">${votesGiven}</div><div class="stat-l">Votes donnés</div></div>
         <div class="stat"><div class="stat-n">${followerCount}</div><div class="stat-l">Abonnés</div></div>
       </div>
+      ${isOwn ? `<div class="challenge-card">
+        <div class="challenge-head">
+          <div class="challenge-title">💰 Mes économies</div>
+          <button class="challenge-edit" onclick="editEconomies()">${profile.total_economise!=null ? '✏️ Modifier' : '➕ Ajouter'}</button>
+        </div>
+        ${profile.total_economise!=null ? `
+          <div style="font-size:24px;font-weight:800;color:#16A34A;margin:2px 0">${profile.total_economise.toLocaleString('fr-FR')}€</div>
+          <div class="challenge-sub">économisés grâce à Economya · visible seulement par toi</div>
+        ` : `<div class="challenge-sub">Indique combien tu as économisé grâce aux astuces testées. Juste pour toi, visible seulement sur ton profil.</div>`}
+      </div>` : ''}
       ${isOwn ? `<div class="challenge-card ${profile.test_goal && testsThisYear>=profile.test_goal ? 'is-complete' : ''}">
         <div class="challenge-head">
           <div class="challenge-title">🎯 Défi ${currentYear}</div>
