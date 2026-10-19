@@ -751,7 +751,7 @@ function renderJournal(entries, isOwn){
         </div>
         <div class="journal-item-meta">
           <span>${escapeHtml(e.categorie||'')}</span>
-          ${hasAmount ? `<span style="color:var(--green);font-weight:700">💰 ${e.montant_personnel}€</span>` : ''}
+          ${hasAmount ? `<span style="color:var(--green);font-weight:700">💰 ${e.montant_personnel}€ (toi)</span>` : ''}
           ${isOwn ? `<button type="button" class="journal-amount-btn" onclick="event.preventDefault();openAmountModal(${e.id})">${hasAmount ? '✏️ Modifier' : '+ Mon montant'}</button>` : ''}
         </div>
       </a>
