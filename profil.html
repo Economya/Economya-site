@@ -1186,16 +1186,11 @@ async function loadProfile(){
           ${testsThisYear >= profile.test_goal ? `<div class="challenge-done">🏆 Défi atteint !</div>` : ''}
         ` : `<div class="challenge-sub">Fixez-vous un objectif d'astuces à tester cette année, et suivez votre progression ici.</div>`}
       </div>` : ''}
-      ${isOwn ? `<div class="challenge-card">
-        <div class="challenge-head">
-          <div class="challenge-title">🤝 Invite tes proches</div>
-        </div>
-        <div class="challenge-sub">${referralCount > 0 ? `${referralCount} personne${referralCount>1?'s':''} inscrite${referralCount>1?'s':''} grâce à toi` : "Partage ton lien, et vois qui s'inscrit grâce à toi."}</div>
-        <div class="referral-link-row" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-          <input id="referralLinkInput" type="text" readonly value="https://economya.fr/community?ref=${escapeHtml(profile.pseudo)}" style="flex:1;min-width:200px;padding:.5rem .8rem;border:1px solid var(--bd,#E5E5E5);border-radius:8px;font-size:.85rem;background:var(--bg2,#F7F7F7)">
-          <button class="share-btn" id="referralCopyBtn" onclick="copyReferralLink()">📋 Copier le lien</button>
-        </div>
-      </div>` : ''}
+      <div class="sec-title-row">
+        <div class="sec-title">📔 Astuces testées</div>
+        ${isOwn ? `<button class="privacy-toggle ${journalIsPublic ? 'is-public' : 'is-private'}" id="journalPrivacyBtn" onclick="toggleJournalPrivacy()" title="${journalIsPublic ? 'Visible par tout le monde — cliquer pour le rendre privé' : 'Visible par vous seul — cliquer pour le rendre public'}">${journalIsPublic ? '🌍 Public' : '🔒 Privé'}</button>` : ''}
+      </div>
+      <div id="journalList">${(isOwn || journalIsPublic) ? renderJournal(journalEntries, isOwn) : '<div class="empty"><div class="empty-icon">🔒</div><h3>Journal privé</h3></div>'}</div>
       <div class="sec-title-row">
         <div class="sec-title">Astuces publiées</div>
         ${posts.length > 1 ? `<div class="sort-tabs">
@@ -1208,11 +1203,16 @@ async function loadProfile(){
         <div class="sec-title">📑 À tester</div>
       </div>
       <div id="savedList">${renderSavedList(savedEntries)}</div>` : ''}
-      <div class="sec-title-row">
-        <div class="sec-title">📔 Astuces testées</div>
-        ${isOwn ? `<button class="privacy-toggle ${journalIsPublic ? 'is-public' : 'is-private'}" id="journalPrivacyBtn" onclick="toggleJournalPrivacy()" title="${journalIsPublic ? 'Visible par tout le monde — cliquer pour le rendre privé' : 'Visible par vous seul — cliquer pour le rendre public'}">${journalIsPublic ? '🌍 Public' : '🔒 Privé'}</button>` : ''}
-      </div>
-      <div id="journalList">${(isOwn || journalIsPublic) ? renderJournal(journalEntries, isOwn) : '<div class="empty"><div class="empty-icon">🔒</div><h3>Journal privé</h3></div>'}</div>
+      ${isOwn ? `<div class="challenge-card">
+        <div class="challenge-head">
+          <div class="challenge-title">🤝 Invite tes proches</div>
+        </div>
+        <div class="challenge-sub">${referralCount > 0 ? `${referralCount} personne${referralCount>1?'s':''} inscrite${referralCount>1?'s':''} grâce à toi` : "Partage ton lien, et vois qui s'inscrit grâce à toi."}</div>
+        <div class="referral-link-row" style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+          <input id="referralLinkInput" type="text" readonly value="https://economya.fr/community?ref=${escapeHtml(profile.pseudo)}" style="flex:1;min-width:200px;padding:.5rem .8rem;border:1px solid var(--bd,#E5E5E5);border-radius:8px;font-size:.85rem;background:var(--bg2,#F7F7F7)">
+          <button class="share-btn" id="referralCopyBtn" onclick="copyReferralLink()">📋 Copier le lien</button>
+        </div>
+      </div>` : ''}
       ${isOwn ? `<div class="danger-zone">
         <button class="danger-btn" id="deleteAccountBtn" onclick="deleteAccount()">🗑️ Supprimer mon compte</button>
         <p class="danger-note">Cela supprime définitivement votre compte, votre photo, vos astuces et vos votes. Action irréversible.</p>
