@@ -76,7 +76,11 @@ exports.handler = async function (event) {
     return { statusCode: 400, body: 'Missing record.nom_commerce' };
   }
 
-  const to = process.env.NOTIFY_EMAIL_TO || 'alexandre.goffinet@sfr.fr';
+  const to = process.env.NOTIFY_EMAIL_TO;
+  if (!to) {
+    console.error('notify-business-submission: NOTIFY_EMAIL_TO manquante');
+    return { statusCode: 500, body: 'NOTIFY_EMAIL_TO not configured' };
+  }
   const from = process.env.NOTIFY_EMAIL_FROM || 'Economya <onboarding@resend.dev>';
 
   const rows = [
