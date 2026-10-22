@@ -100,3 +100,52 @@ async function authRecover(email, redirectTo){
     return {ok:false, msg: e.message};
   }
 }
+
+// Verifie un code de recuperation de mot de passe a 6 chiffres (recu par
+// email suite a authRecover) et retourne une session (access_token /
+// refresh_token) si le code est valide. Utilise a la place du lien
+// cliquable historique : certains clients mail (Gmail en tete, mais pas
+// seulement) pre-visitent automatiquement les liens contenus dans un email
+// pour les scanner avant que l'utilisateur ne clique dessus, ce qui
+// "consomme" le lien a usage unique et le rend invalide des que
+// l'utilisateur clique vraiment dessus (erreur otp_expired). Un code que
+// l'utilisateur recopie lui-meme est immunise contre ce probleme, quelle
+// que soit la messagerie utilisee.
+async function authVerifyRecovery(email, token){
+  try {
+    const res = await fetch(AUTH_SUPABASE_URL + '/auth/v1/verify', {
+      method: 'POST',
+      headers: {'apikey': AUTH_SUPABASE_KEY, 'Content-Type': 'application/json'},
+      body: JSON.stringify({ type: 'recovery', email, token })
+    });
+    const data = await res.json();
+    if(!res.ok){
+      const msg = data.msg || data.error_description || data.error || 'Code invalide ou expiré.';
+      return {ok:false, msg};
+    }
+    return {ok:true, data};
+  } catch(e){
+    return {ok:false, msg: e.message};
+  }
+}
+
+// Definit un nouveau mot de passe pour l'utilisateur identifie par
+// accessToken (obtenu via authVerifyRecovery, ou via l'ancien lien
+// cliquable dans le hash de l'URL). Retourne {ok:true, data} (l'utilisateur
+// a jour) ou {ok:false, msg}.
+async function authSetNewPassword(accessToken, password){
+  try {
+    const res = await fetch(AUTH_SUPABASE_URL + '/auth/v1/user', {
+      method: 'PUT',
+      headers: {'apikey': AUTH_SUPABASE_KEY, 'Authorization': 'Bearer ' + accessToken, 'Content-Type': 'application/json'},
+      body: JSON.stringify({ password })
+    });
+    const data = await res.json();
+    if(!res.ok){
+      return {ok:false, msg: data.msg || data.error_description || 'Une erreur est survenue.'};
+    }
+    return {ok:true, data};
+  } catch(e){
+    return {ok:false, msg: e.message};
+  }
+}

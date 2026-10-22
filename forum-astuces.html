@@ -300,7 +300,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     <div class="field"><label>Email</label><input id="forgotEmail" type="email" placeholder="vous@email.com"></div>
     <div class="sheet-actions">
       <button class="btn-ann" onclick="closeAll()">Annuler</button>
-      <button class="btn-pub" onclick="submitForgot()">Envoyer le lien</button>
+      <button class="btn-pub" onclick="submitForgot()">Envoyer le code</button>
     </div>
   </div>
 </div>
@@ -310,6 +310,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     <div class="sheet-handle"></div>
     <h3>🔒 Nouveau mot de passe</h3>
     <div id="resetError" style="display:none;font-size:13px;font-weight:600;margin-bottom:12px;padding:10px 12px;border-radius:10px;"></div>
+    <div class="field" id="resetCodeField"><label>Code reçu par email</label><input id="resetCode" type="text" inputmode="numeric" placeholder="123456" maxlength="6"></div>
     <div class="field"><label>Nouveau mot de passe</label><input id="resetPassword" type="password" placeholder="6 caractères minimum" minlength="6"></div>
     <div class="sheet-actions">
       <button class="btn-pub" style="flex:1" onclick="submitReset()">Valider</button>
@@ -484,14 +485,24 @@ function openForgot(){
 function showForgotMsg(msg, ok){
   authShowMessage('forgotMsg', msg, ok);
 }
+let resetEmail = '';
 async function submitForgot(){
   const email = document.getElementById('forgotEmail').value.trim();
   if(!email){ showForgotMsg('Entrez votre email.'); return; }
   const result = await authRecover(email, 'https://economya.fr/forum-astuces.html');
   if(!result.ok){ showForgotMsg(result.msg); return; }
-  showForgotMsg("Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé.", true);
+  resetEmail = email;
+  closeAll();
+  document.getElementById('resetError').style.display = 'none';
+  document.getElementById('resetCode').value = '';
+  document.getElementById('resetPassword').value = '';
+  document.getElementById('resetCodeField').style.display = 'block';
+  document.getElementById('shReset').classList.add('open');
 }
 let recoverySession = null;
+// Conserve en secours : si un jour un lien de recuperation n'est pas
+// grille par un scanner de messagerie, on le prend quand meme en compte et
+// on saute l'etape "code" (deja authentifie via le lien).
 function checkRecoveryHash(){
   if(!location.hash) return;
   const params = new URLSearchParams(location.hash.slice(1));
@@ -500,6 +511,7 @@ function checkRecoveryHash(){
     history.replaceState(null, '', location.pathname + location.search);
     document.getElementById('resetError').style.display = 'none';
     document.getElementById('resetPassword').value = '';
+    document.getElementById('resetCodeField').style.display = 'none';
     document.getElementById('shReset').classList.add('open');
   }
 }
@@ -509,20 +521,21 @@ function showResetError(msg){
 async function submitReset(){
   const password = document.getElementById('resetPassword').value;
   if(!password || password.length < 6){ showResetError('6 caractères minimum.'); return; }
-  if(!recoverySession){ showResetError('Lien expiré, refaites une demande.'); return; }
+  if(!recoverySession){
+    const code = document.getElementById('resetCode').value.trim();
+    if(!code){ showResetError('Entrez le code reçu par email.'); return; }
+    const verify = await authVerifyRecovery(resetEmail, code);
+    if(!verify.ok){ showResetError(verify.msg); return; }
+    recoverySession = { access_token: verify.data.access_token, refresh_token: verify.data.refresh_token };
+  }
   try {
-    const res = await fetch(SUPABASE_URL + '/auth/v1/user', {
-      method: 'PUT',
-      headers: {'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + recoverySession.access_token, 'Content-Type': 'application/json'},
-      body: JSON.stringify({ password })
-    });
-    const data = await res.json();
-    if(!res.ok){ throw new Error(data.msg || data.error_description || 'Une erreur est survenue.'); }
+    const result = await authSetNewPassword(recoverySession.access_token, password);
+    if(!result.ok){ throw new Error(result.msg); }
     saveSession({
       access_token: recoverySession.access_token,
       refresh_token: recoverySession.refresh_token,
       expires_in: 3600,
-      user: data
+      user: result.data
     });
     recoverySession = null;
     closeAll();
