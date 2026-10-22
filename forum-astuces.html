@@ -177,15 +177,15 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 </defs></svg>
 <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Astuces de la communauté Economya — partagez et découvrez des astuces pour épargner</h1>
 <nav class="nav">
-  <a href="/index.html" class="nav-logo" style="text-decoration:none;color:inherit">Eco<em>nomya</em></a>
-  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/index.html">Accueil</a></li><li><a href="/community.html">🌱 Community</a></li><li><a href="/economya-escape.html" style="color:#B8860B;font-weight:700">✨ Escape</a></li><li><a href="/a-propos.html">À propos</a></li><li><a href="/comparateurs.html">Comparateurs</a></li><li><a href="/outils-gratuits.html" class="eco-dnav-cta">Outils gratuits</a></li><li><a href="/jeux.html">Jeux</a></li></ul><a href="/forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="/recherche.html" class="eco-dnav-search">🔍 Rechercher</a></div>
+  <a href="/" class="nav-logo" style="text-decoration:none;color:inherit">Eco<em>nomya</em></a>
+  <div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/">Accueil</a></li><li><a href="/community">🌱 Community</a></li><li><a href="/economya-escape" style="color:#B8860B;font-weight:700">✨ Escape</a></li><li><a href="/a-propos">À propos</a></li><li><a href="/comparateurs">Comparateurs</a></li><li><a href="/outils-gratuits" class="eco-dnav-cta">Outils gratuits</a></li><li><a href="/jeux">Jeux</a></li></ul><a href="/forum-astuces" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="/recherche" class="eco-dnav-search">🔍 Rechercher</a></div>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   <div class="nav-icons">
     <div id="navAv" onclick="onAvatarClick()"></div>
   </div>
 </nav>
 <main>
-<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/index.html">Accueil</a><a href="/forum-astuces.html"><svg class="ic"><use href="#ic-idea"/></svg>Economya Network</a><a href="/community.html">Community</a><a href="/economya-escape.html">✨ Escape</a><a href="/a-propos.html">À propos</a><a href="/comparateurs.html">Comparateurs</a><a href="/outils-gratuits.html">Outils gratuits</a><a href="/jeux.html">Jeux</a><a href="/recherche.html">Rechercher</a></div>
+<div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/">Accueil</a><a href="/forum-astuces"><svg class="ic"><use href="#ic-idea"/></svg>Economya Network</a><a href="/community">Community</a><a href="/economya-escape">✨ Escape</a><a href="/a-propos">À propos</a><a href="/comparateurs">Comparateurs</a><a href="/outils-gratuits">Outils gratuits</a><a href="/jeux">Jeux</a><a href="/recherche">Rechercher</a></div>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
 <div class="wrap">
 
@@ -278,7 +278,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     <p id="authCguField" style="display:none;font-size:12px;color:var(--muted);margin:4px 0 4px;">
       <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;">
         <input type="checkbox" id="authCgu" style="margin-top:2px;flex-shrink:0;">
-        <span>J'accepte les <a href="/cgu.html" target="_blank" style="color:var(--ink);text-decoration:underline;">CGU</a> et la <a href="/politique-confidentialite.html" target="_blank" style="color:var(--ink);text-decoration:underline;">politique de confidentialité</a>.</span>
+        <span>J'accepte les <a href="/cgu" target="_blank" style="color:var(--ink);text-decoration:underline;">CGU</a> et la <a href="/politique-confidentialite" target="_blank" style="color:var(--ink);text-decoration:underline;">politique de confidentialité</a>.</span>
       </label>
     </p>
     <div id="authTurnstileField" style="display:none;margin:4px 0 4px;">
@@ -1079,7 +1079,7 @@ loadPosts();
 <div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
-<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite.html" style="color:#F4B550;text-decoration:underline;">En savoir plus</a></p>
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite" style="color:#F4B550;text-decoration:underline;">En savoir plus</a></p>
 <div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
 <button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
 <button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
