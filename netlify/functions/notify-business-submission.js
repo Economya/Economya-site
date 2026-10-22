@@ -76,7 +76,7 @@ exports.handler = async function (event) {
     return { statusCode: 400, body: 'Missing record.nom_commerce' };
   }
 
-  const to = process.env.NOTIFY_EMAIL_TO || 'contact@economya.fr';
+  const to = process.env.NOTIFY_EMAIL_TO || 'alexandre.goffinet@sfr.fr';
   const from = process.env.NOTIFY_EMAIL_FROM || 'Economya <onboarding@resend.dev>';
 
   const rows = [
