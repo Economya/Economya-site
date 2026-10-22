@@ -95,6 +95,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     <div class="field" id="forgotCodeField" style="display:none"><label>Code reçu par email</label><input id="forgotCode" type="text" inputmode="numeric" placeholder="123456" maxlength="6"></div>
     <div class="field" id="forgotPassField" style="display:none"><label>Nouveau mot de passe</label><input id="forgotNewPassword" type="password" placeholder="6 caractères minimum" minlength="6"></div>
     <button class="btn-pub" onclick="submitForgot()" id="forgotBtn">Envoyer le code</button>
+    <p class="toggle-text" id="forgotResend" style="display:none" onclick="resendForgotCode()">Renvoyer le code</p>
     <p class="toggle-text" onclick="closeForgot()">Retour à la connexion</p>
   </div>
 </div>
@@ -206,7 +207,10 @@ function openForgot(){
   document.getElementById('forgotEmailField').style.display = 'block';
   document.getElementById('forgotCodeField').style.display = 'none';
   document.getElementById('forgotPassField').style.display = 'none';
+  document.getElementById('forgotBtn').disabled = false;
   document.getElementById('forgotBtn').textContent = 'Envoyer le code';
+  document.getElementById('forgotResend').style.display = 'none';
+  if(forgotCooldownTimer){ clearInterval(forgotCooldownTimer); forgotCooldownTimer = null; }
   document.getElementById('forgotCard').classList.add('open');
 }
 function closeForgot(){
@@ -215,6 +219,36 @@ function closeForgot(){
 }
 function showForgotMsg(msg, ok){
   authShowMessage('forgotMsg', msg, ok);
+}
+let forgotCooldownUntil = 0;
+let forgotCooldownTimer = null;
+function startForgotCooldown(seconds){
+  forgotCooldownUntil = Date.now() + seconds * 1000;
+  const link = document.getElementById('forgotResend');
+  link.style.display = 'block';
+  if(forgotCooldownTimer) clearInterval(forgotCooldownTimer);
+  function tick(){
+    const remaining = Math.ceil((forgotCooldownUntil - Date.now()) / 1000);
+    if(remaining <= 0){
+      clearInterval(forgotCooldownTimer);
+      link.textContent = 'Renvoyer le code';
+      link.style.opacity = '1';
+      link.style.pointerEvents = 'auto';
+      return;
+    }
+    link.textContent = 'Renvoyer le code dans ' + remaining + 's';
+    link.style.opacity = '0.5';
+    link.style.pointerEvents = 'none';
+  }
+  tick();
+  forgotCooldownTimer = setInterval(tick, 1000);
+}
+async function resendForgotCode(){
+  if(Date.now() < forgotCooldownUntil || !forgotResetEmail){ return; }
+  const result = await authRecover(forgotResetEmail, 'https://economya.fr/forum-astuces.html');
+  if(!result.ok){ showForgotMsg(result.msg); return; }
+  showForgotMsg('Nouveau code envoyé.', true);
+  startForgotCooldown(60);
 }
 async function submitForgot(){
   if(forgotStep === 'email'){
@@ -231,6 +265,7 @@ async function submitForgot(){
     document.getElementById('forgotNewPassword').value = '';
     document.getElementById('forgotBtn').textContent = 'Valider';
     showForgotMsg("Si un compte existe avec cet email, un code de vérification vient d'être envoyé.", true);
+    startForgotCooldown(60);
     return;
   }
   const code = document.getElementById('forgotCode').value.trim();
@@ -250,6 +285,26 @@ async function submitForgot(){
   showForgotMsg('Mot de passe mis à jour, vous êtes connecté !', true);
   setTimeout(function(){ window.location.href = '/'; }, 1200);
 }
+
+// Si on arrive depuis le lien de l'email de reinitialisation
+// (https://economya.fr/connexion.html?reset=1&email=...), on ouvre
+// directement le panneau avec le champ "code" pret a remplir, sans
+// redemander un nouveau code (celui recu par email est deja valide).
+(function(){
+  if(getParam('reset') === '1'){
+    const email = getParam('email');
+    document.getElementById('authCard').style.display = 'none';
+    forgotStep = 'code';
+    forgotResetEmail = email || '';
+    document.getElementById('forgotEmailField').style.display = 'none';
+    document.getElementById('forgotCodeField').style.display = 'block';
+    document.getElementById('forgotPassField').style.display = 'block';
+    document.getElementById('forgotBtn').textContent = 'Valider';
+    document.getElementById('forgotMsg').style.display = 'none';
+    document.getElementById('forgotCard').classList.add('open');
+    startForgotCooldown(60);
+  }
+})();
 </script>
 
 <!-- Google Analytics -->

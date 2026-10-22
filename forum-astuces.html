@@ -311,6 +311,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
     <h3>🔒 Nouveau mot de passe</h3>
     <div id="resetError" style="display:none;font-size:13px;font-weight:600;margin-bottom:12px;padding:10px 12px;border-radius:10px;"></div>
     <div class="field" id="resetCodeField"><label>Code reçu par email</label><input id="resetCode" type="text" inputmode="numeric" placeholder="123456" maxlength="6"></div>
+    <p class="toggle-text" id="forgotResend" style="display:none" onclick="resendForgotCode()">Renvoyer le code</p>
     <div class="field"><label>Nouveau mot de passe</label><input id="resetPassword" type="password" placeholder="6 caractères minimum" minlength="6"></div>
     <div class="sheet-actions">
       <button class="btn-pub" style="flex:1" onclick="submitReset()">Valider</button>
@@ -480,12 +481,44 @@ function openForgot(){
   closeAll();
   document.getElementById('forgotMsg').style.display = 'none';
   document.getElementById('forgotEmail').value = document.getElementById('authEmail').value || '';
+  document.getElementById('forgotResend').style.display = 'none';
+  if(forgotCooldownTimer){ clearInterval(forgotCooldownTimer); forgotCooldownTimer = null; }
   document.getElementById('shForgot').classList.add('open');
 }
 function showForgotMsg(msg, ok){
   authShowMessage('forgotMsg', msg, ok);
 }
 let resetEmail = '';
+let forgotCooldownUntil = 0;
+let forgotCooldownTimer = null;
+function startForgotCooldown(seconds){
+  forgotCooldownUntil = Date.now() + seconds * 1000;
+  const link = document.getElementById('forgotResend');
+  link.style.display = 'block';
+  if(forgotCooldownTimer) clearInterval(forgotCooldownTimer);
+  function tick(){
+    const remaining = Math.ceil((forgotCooldownUntil - Date.now()) / 1000);
+    if(remaining <= 0){
+      clearInterval(forgotCooldownTimer);
+      link.textContent = 'Renvoyer le code';
+      link.style.opacity = '1';
+      link.style.pointerEvents = 'auto';
+      return;
+    }
+    link.textContent = 'Renvoyer le code dans ' + remaining + 's';
+    link.style.opacity = '0.5';
+    link.style.pointerEvents = 'none';
+  }
+  tick();
+  forgotCooldownTimer = setInterval(tick, 1000);
+}
+async function resendForgotCode(){
+  if(Date.now() < forgotCooldownUntil || !resetEmail){ return; }
+  const result = await authRecover(resetEmail, 'https://economya.fr/forum-astuces.html');
+  if(!result.ok){ showResetError(result.msg); return; }
+  authShowMessage('resetError', 'Nouveau code envoyé.', true);
+  startForgotCooldown(60);
+}
 async function submitForgot(){
   const email = document.getElementById('forgotEmail').value.trim();
   if(!email){ showForgotMsg('Entrez votre email.'); return; }
@@ -498,6 +531,7 @@ async function submitForgot(){
   document.getElementById('resetPassword').value = '';
   document.getElementById('resetCodeField').style.display = 'block';
   document.getElementById('shReset').classList.add('open');
+  startForgotCooldown(60);
 }
 let recoverySession = null;
 // Conserve en secours : si un jour un lien de recuperation n'est pas
