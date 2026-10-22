@@ -40,11 +40,15 @@
   to = "/forum-astuces"
   status = 301
 
-# Profils publics : /profil/pseudo -> profil.html (rewrite, pas redirect,
-# pour garder l'URL propre dans la barre d'adresse)
+# Profil individuel : /profil/pseudo -> fonction SSR qui injecte le
+# vrai titre/la vraie description/les stats du membre avant de renvoyer
+# profil.html (même logique que /astuces/post/* ci-dessous : avant,
+# Google/les aperçus de partage ne voyaient qu'un gabarit générique
+# identique pour tous les profils, le vrai contenu n'arrivant qu'après
+# l'appel Supabase fait par le JS).
 [[redirects]]
   from = "/profil/*"
-  to = "/profil.html"
+  to = "/.netlify/functions/profil-ssr/:splat"
   status = 200
 
 # Page individuelle d'une astuce : /astuces/post/42-titre -> fonction SSR
