@@ -191,20 +191,11 @@ exports.handler = async function (event) {
 
     html = html.replace('</head>', extraHead);
 
-    const snapshot =
-      '<div class="loading" style="text-align:center">' +
-      '<h1 style="font-size:1.3rem;margin-bottom:.4rem">' +
-      escapeHtml(profile.pseudo) +
-      '</h1>' +
-      '<p>' +
-      escapeHtml(statsLine) +
-      '</p>' +
-      '</div>';
-
-    html = html.replace(
-      '<div id="content"><div class="loading">Chargement du profil...</div></div>',
-      '<div id="content">' + snapshot + '</div>'
-    );
+    // Volontairement AUCUN changement dans le <body> : le contenu visible
+    // ("Chargement du profil...") reste strictement identique à avant pour
+    // un visiteur normal. Seul le <head> (invisible) est enrichi ci-dessus
+    // — c'est lui qui fait tout le travail pour Google et les aperçus de
+    // partage, pas le texte affiché pendant le chargement.
 
     return {
       statusCode: 200,
