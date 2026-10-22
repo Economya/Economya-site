@@ -248,7 +248,7 @@ async function resendForgotCode(){
   const result = await authRecover(forgotResetEmail, 'https://economya.fr/forum-astuces.html');
   if(!result.ok){ showForgotMsg(result.msg); return; }
   showForgotMsg('Nouveau code envoyé.', true);
-  startForgotCooldown(60);
+  startForgotCooldown(120);
 }
 async function submitForgot(){
   if(forgotStep === 'email'){
@@ -265,7 +265,7 @@ async function submitForgot(){
     document.getElementById('forgotNewPassword').value = '';
     document.getElementById('forgotBtn').textContent = 'Valider';
     showForgotMsg("Si un compte existe avec cet email, un code de vérification vient d'être envoyé.", true);
-    startForgotCooldown(60);
+    startForgotCooldown(120);
     return;
   }
   const code = document.getElementById('forgotCode').value.trim();
@@ -302,7 +302,7 @@ async function submitForgot(){
     document.getElementById('forgotBtn').textContent = 'Valider';
     document.getElementById('forgotMsg').style.display = 'none';
     document.getElementById('forgotCard').classList.add('open');
-    startForgotCooldown(60);
+    startForgotCooldown(120);
   }
 })();
 </script>

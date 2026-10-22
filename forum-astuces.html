@@ -517,7 +517,7 @@ async function resendForgotCode(){
   const result = await authRecover(resetEmail, 'https://economya.fr/forum-astuces.html');
   if(!result.ok){ showResetError(result.msg); return; }
   authShowMessage('resetError', 'Nouveau code envoyé.', true);
-  startForgotCooldown(60);
+  startForgotCooldown(120);
 }
 async function submitForgot(){
   const email = document.getElementById('forgotEmail').value.trim();
@@ -531,7 +531,7 @@ async function submitForgot(){
   document.getElementById('resetPassword').value = '';
   document.getElementById('resetCodeField').style.display = 'block';
   document.getElementById('shReset').classList.add('open');
-  startForgotCooldown(60);
+  startForgotCooldown(120);
 }
 let recoverySession = null;
 // Conserve en secours : si un jour un lien de recuperation n'est pas
