@@ -78,6 +78,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .post-body{font-size:14px;color:#404040;line-height:1.55;margin-bottom:12px;}
 .saving-pill{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border:1px solid #BBF7D0;border-radius:99px;padding:6px 14px 6px 11px;font-size:13px;font-weight:800;color:#15803D;margin-bottom:12px;box-shadow:0 1px 3px rgba(21,128,61,.1);}
 .trend-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#FFEDD5,#FED7AA);border:1px solid #FDBA74;border-radius:99px;padding:3px 10px 3px 8px;font-size:11px;font-weight:800;color:#9A3412;margin-left:8px;vertical-align:middle;box-shadow:0 1px 3px rgba(194,65,12,.15);}
+.partner-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1px solid #FCD34D;border-radius:99px;padding:3px 10px 3px 8px;font-size:11px;font-weight:800;color:#92400E;margin-left:8px;vertical-align:middle;}
 .reliability{display:flex;align-items:center;gap:9px;margin-bottom:14px;}
 .rel-track{flex:1;height:6px;background:var(--bg);border-radius:99px;overflow:hidden;max-width:110px;box-shadow:inset 0 1px 2px rgba(0,0,0,.05);}
 .rel-fill{height:100%;border-radius:99px;transition:width .4s ease;}
@@ -706,13 +707,14 @@ function renderFeed(){
     const userPosts=authorPosts.length;
     const userVotes=authorPosts.reduce((s,x)=>s+(x.votes||0),0);
     const rk=rank(userPosts, userVotes);
+    const partnerBadge = p.partenariat ? '<span class="partner-badge">🤝️ Partenariat</span>' : '';
     return `<div class="post">
       <div class="post-header">
         <div class="post-avatar" style="background:${bg};color:${fg}">${avatarInner(authorAvatars[p.auteur], p.auteur)}</div>
         <div class="post-meta">
           <div class="post-name">
             ${p.auteur && p.user_id ? `<a href="/profil/${encodeURIComponent(p.auteur)}" style="cursor:pointer">${escapeHtml(p.auteur)}</a>` : `<span>${p.auteur ? escapeHtml(p.auteur) : 'Anonyme'}</span>`}
-            <span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>
+            ${p.partenariat ? partnerBadge : `<span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>`}
             ${p.votes>=TREND_THRESHOLD?'<span class="trend-badge">\uD83D\uDD25 Tendance</span>':''}
           </div>
           <div class="post-cat">${escapeHtml(p.categorie)}${p.enseigne?' · 🏷️ '+escapeHtml(p.enseigne):''}${p.lieu?' · 📍 '+escapeHtml(p.lieu):''} · il y a ${timeAgo(p.created_at)}</div>

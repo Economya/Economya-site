@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Candidatures commerce — Economya.fr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+html{overflow-y:scroll}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b)}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.container{max-width:760px;margin:0 auto;padding:2.2rem 1.5rem 4rem}
+h1{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;margin-bottom:.4rem}
+.sub{color:var(--m);font-size:.9rem;margin-bottom:1.6rem}
+h2{font-size:1.05rem;font-weight:700;margin:2rem 0 1rem;display:flex;align-items:center;gap:8px}
+.state{text-align:center;padding:2.5rem 1rem;color:var(--m)}
+.item{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem 1.4rem;margin-bottom:12px}
+.item-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+.item-meta{font-size:.78rem;color:var(--m)}
+.item-title{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.item-sub{font-size:.82rem;color:var(--m);margin-bottom:8px}
+.item-body{font-size:.88rem;line-height:1.55;color:var(--t);white-space:pre-wrap;margin-bottom:10px}
+.cat-badge{display:inline-flex;align-items:center;gap:5px;background:#F3E8FF;color:#7C3AED;border-radius:99px;padding:3px 11px;font-size:.75rem;font-weight:700;white-space:nowrap}
+.status-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:3px 11px;font-size:.75rem;font-weight:700;white-space:nowrap}
+.status-published{background:var(--gl);color:var(--gd)}
+.status-rejected{background:#FEF2F2;color:#DC2626}
+.item-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.item-actions button{border:1px solid var(--b);background:var(--bg);border-radius:99px;padding:7px 15px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;color:var(--t)}
+.item-actions button:hover{background:#F0F0EE}
+.item-actions button.danger{color:#DC2626;border-color:#FECACA}
+.item-actions button.primary{background:linear-gradient(135deg,var(--g),#25B788);color:#fff;border:none}
+.item-actions button.partner{background:linear-gradient(135deg,var(--a),#D98A1A);color:#fff;border:none}
+.item-actions button:disabled{opacity:.55;cursor:default}
+.item-actions a{color:var(--gd);font-size:.8rem;font-weight:600;text-decoration:none;align-self:center}
+.empty{color:var(--m);font-size:.88rem;padding:.5rem 0}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--t);color:#fff;padding:10px 18px;border-radius:99px;font-size:.85rem;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.show{opacity:1}
+details{margin-top:.5rem}
+summary{cursor:pointer;font-size:.85rem;font-weight:600;color:var(--m);padding:.4rem 0}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/index.html">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="/economya-escape.html">← Retour à Escape</a>
+</nav>
+<main>
+
+<div class="container">
+  <h1>🤝 Candidatures commerce</h1>
+  <div class="sub">Dépôts d'offres reçus via le formulaire Economya Escape.</div>
+  <div id="gate" class="state">Vérification des droits…</div>
+  <div id="panel" style="display:none">
+    <h2>📥 En attente <span id="pendingCount"></span></h2>
+    <div id="pendingList"></div>
+    <details>
+      <summary>🗂️ Historique (publiées / rejetées)</summary>
+      <div id="historyList" style="margin-top:.8rem"></div>
+    </details>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+</main>
+<script>
+const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+let currentUser = localStorage.getItem('eco_user')||null;
+let session = JSON.parse(localStorage.getItem('eco_session')||'null');
+
+function escapeHtml(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function timeAgo(ts){
+  const d=Date.now()-new Date(ts).getTime();
+  if(d<3600000)return Math.floor(d/60000)+'min';
+  if(d<86400000)return Math.floor(d/3600000)+'h';
+  return Math.floor(d/86400000)+'j';
+}
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2600);
+}
+async function refreshSessionIfNeeded(){
+  if(!session) return;
+  if(Date.now() < session.expires_at - 60000) return;
+  try {
+    const res = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+      method: 'POST',
+      headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+      body: JSON.stringify({refresh_token: session.refresh_token})
+    });
+    const data = await res.json();
+    if(res.ok){
+      session = { access_token:data.access_token, refresh_token:data.refresh_token, expires_at: Date.now()+(data.expires_in||3600)*1000, user:data.user };
+      localStorage.setItem('eco_session', JSON.stringify(session));
+    } else {
+      session = null; currentUser = null;
+      localStorage.removeItem('eco_session'); localStorage.removeItem('eco_user');
+    }
+  } catch(e){}
+}
+async function sbFetch(path, options = {}) {
+  await refreshSessionIfNeeded();
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    ...options,
+    keepalive: true,
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + (session ? session.access_token : SUPABASE_KEY),
+      'Content-Type': 'application/json',
+      'Prefer': options.prefer || 'return=representation',
+      ...options.headers
+    }
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.status === 204 ? null : res.json();
+}
+
+let pending = [], history = [];
+
+function subLine(s){
+  const parts = [];
+  if(s.ville) parts.push('📍 ' + escapeHtml(s.ville));
+  if(s.dates_validite) parts.push('🗓️ ' + escapeHtml(s.dates_validite));
+  if(s.site_web) parts.push(`🔗 <a href="${escapeHtml(s.site_web)}" target="_blank" rel="noopener">${escapeHtml(s.site_web)}</a>`);
+  return parts.join(' · ');
+}
+
+function pendingItemHtml(s){
+  return `<div class="item" id="sub-${s.id}">
+    <div class="item-head">
+      <div class="item-meta">${escapeHtml(s.nom_commerce||'Commerce')} · <a href="mailto:${escapeHtml(s.email||'')}">${escapeHtml(s.email||'')}</a> · il y a ${timeAgo(s.created_at)}</div>
+      <span class="cat-badge">${escapeHtml(s.categorie||'')}</span>
+    </div>
+    <div class="item-title">${escapeHtml(s.titre_offre||'')}</div>
+    <div class="item-sub">${subLine(s)}</div>
+    <div class="item-body">${escapeHtml(s.description||'')}</div>
+    <div class="item-actions">
+      <button class="primary" onclick="publish(${JSON.stringify(s.id)}, false, this)">Publier (gratuit)</button>
+      <button class="partner" onclick="publish(${JSON.stringify(s.id)}, true, this)">Publier en partenariat 🤝</button>
+      <button class="danger" onclick="reject(${JSON.stringify(s.id)}, this)">Rejeter</button>
+    </div>
+  </div>`;
+}
+
+function historyItemHtml(s){
+  const badge = s.status === 'published'
+    ? `<span class="status-badge status-published">✅ publiée</span>`
+    : `<span class="status-badge status-rejected">❌ rejetée</span>`;
+  return `<div class="item">
+    <div class="item-head">
+      <div class="item-meta">${escapeHtml(s.nom_commerce||'Commerce')} · il y a ${timeAgo(s.created_at)}</div>
+      ${badge}
+    </div>
+    <div class="item-title">${escapeHtml(s.titre_offre||'')}</div>
+  </div>`;
+}
+
+function renderPending(){
+  const list = document.getElementById('pendingList');
+  document.getElementById('pendingCount').textContent = pending.length ? '(' + pending.length + ')' : '';
+  if(!pending.length){ list.innerHTML = '<p class="empty">Aucune candidature en attente.</p>'; return; }
+  list.innerHTML = pending.map(pendingItemHtml).join('');
+}
+function renderHistory(){
+  const list = document.getElementById('historyList');
+  if(!history.length){ list.innerHTML = '<p class="empty">Rien pour l\'instant.</p>'; return; }
+  list.innerHTML = history.map(historyItemHtml).join('');
+}
+
+async function loadAll(){
+  try {
+    [pending, history] = await Promise.all([
+      sbFetch('business_submissions?status=eq.pending&order=created_at.asc&select=*'),
+      sbFetch('business_submissions?status=neq.pending&order=created_at.desc&limit=30&select=*')
+    ]);
+  } catch(e){
+    document.getElementById('pendingList').innerHTML = '<p class="empty">Impossible de charger les candidatures.</p>';
+    return;
+  }
+  renderPending();
+  renderHistory();
+}
+
+// mappe l'emoji+libellé du formulaire ("🎟️ Sorties" / "✈️ Voyage" / "🍽️ Restos")
+// — déjà au bon format pour matcher le filtre de la page Economya Escape.
+async function publish(id, partenariat, btn){
+  const s = pending.find(x => String(x.id) === String(id));
+  if(!s) return;
+  if(btn){ btn.disabled = true; btn.textContent = 'Publication…'; }
+  try {
+    let description = s.description || '';
+    const extra = [];
+    if(s.dates_validite) extra.push('Valable : ' + s.dates_validite + '.');
+    if(s.site_web) extra.push('En savoir plus : ' + s.site_web);
+    if(extra.length) description = description + '\\n\\n' + extra.join(' ');
+
+    const astucePayload = {
+      titre: s.titre_offre,
+      description: description,
+      categorie: s.categorie,
+      economie: null,
+      auteur: s.nom_commerce,
+      enseigne: s.nom_commerce,
+      lieu: s.ville || null,
+      votes: 0,
+      tested: 0,
+      reports: 0,
+      comments: 0,
+      hidden: false,
+      user_id: null,
+      partenariat: !!partenariat
+    };
+    await sbFetch('astuces', { method: 'POST', body: JSON.stringify(astucePayload) });
+    await sbFetch('business_submissions?id=eq.' + encodeURIComponent(id), {
+      method: 'PATCH', body: JSON.stringify({ status: 'published' }),
+      prefer: 'return=minimal', headers: {'Prefer':'return=minimal'}
+    });
+    pending = pending.filter(x => String(x.id) !== String(id));
+    s.status = 'published';
+    history.unshift(s);
+    renderPending(); renderHistory();
+    toast(partenariat ? 'Publiée en partenariat 🤝' : 'Publiée (gratuit) ✅');
+  } catch(e){
+    console.error(e);
+    toast("Échec de la publication — voir la console.");
+    if(btn){ btn.disabled = false; btn.textContent = partenariat ? 'Publier en partenariat 🤝' : 'Publier (gratuit)'; }
+  }
+}
+
+async function reject(id, btn){
+  const s = pending.find(x => String(x.id) === String(id));
+  if(!s) return;
+  if(btn){ btn.disabled = true; btn.textContent = 'Rejet…'; }
+  try {
+    await sbFetch('business_submissions?id=eq.' + encodeURIComponent(id), {
+      method: 'PATCH', body: JSON.stringify({ status: 'rejected' }),
+      prefer: 'return=minimal', headers: {'Prefer':'return=minimal'}
+    });
+    pending = pending.filter(x => String(x.id) !== String(id));
+    s.status = 'rejected';
+    history.unshift(s);
+    renderPending(); renderHistory();
+    toast('Candidature rejetée.');
+  } catch(e){
+    console.error(e);
+    toast("Échec — voir la console.");
+    if(btn){ btn.disabled = false; btn.textContent = 'Rejeter'; }
+  }
+}
+
+async function init(){
+  const gate = document.getElementById('gate');
+  if(!session || !currentUser){
+    gate.innerHTML = 'Cette page est réservée aux administrateurs. <a href="/connexion.html?redirect=' + encodeURIComponent(location.pathname) + '">Connectez-vous</a>.';
+    return;
+  }
+  try {
+    const rows = await sbFetch('profiles?id=eq.' + session.user.id + '&select=is_admin');
+    if(!rows || !rows[0] || !rows[0].is_admin){
+      gate.textContent = 'Accès réservé aux administrateurs. Ce compte n\'a pas les droits nécessaires.';
+      return;
+    }
+  } catch(e){
+    gate.textContent = 'Impossible de vérifier vos droits pour le moment.';
+    return;
+  }
+  gate.style.display = 'none';
+  document.getElementById('panel').style.display = 'block';
+  loadAll();
+}
+init();
+</script>
+</body>
+</html>
