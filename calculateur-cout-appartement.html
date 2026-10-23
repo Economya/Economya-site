@@ -62,8 +62,8 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .field{margin-bottom:1.1rem}
 .field label{display:block;font-size:.82rem;font-weight:600;color:var(--t);margin-bottom:.4rem}
 .field .hint{font-size:.72rem;color:var(--m);margin-top:.3rem}
-.field input{width:100%;padding:.75rem 1rem;border:1.5px solid var(--b);border-radius:12px;font-size:1rem;font-family:inherit;background:var(--bg);color:var(--t)}
-.field input:focus{outline:none;border-color:var(--g)}
+.field input,.field select{width:100%;padding:.75rem 1rem;border:1.5px solid var(--b);border-radius:12px;font-size:1rem;font-family:inherit;background:var(--bg);color:var(--t)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--g)}
 
 .check-row{display:flex;align-items:flex-start;gap:.6rem;background:var(--bg);border-radius:12px;padding:.8rem 1rem;margin-bottom:1.1rem}
 .check-row input[type="checkbox"]{width:18px;height:18px;margin-top:.15rem;accent-color:var(--g);flex-shrink:0}
@@ -222,9 +222,18 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="hint">Moyenne nationale 2026 : ~51 €/m²/an. Modifiable si vous avez le montant exact du syndic.</div>
     </div>
     <div class="field">
-      <label for="taxeFonciere">Taxe foncière annuelle</label>
+      <label for="profilTaxe">Taxe foncière — profil de commune</label>
+      <select id="profilTaxe">
+        <option value="moyen" selected>Moyenne nationale (~1 070 €/an)</option>
+        <option value="bas">Commune à taux bas (~700 €/an)</option>
+        <option value="eleve">Commune à taux élevé (~1 600 €/an)</option>
+        <option value="perso">Je connais le montant exact</option>
+      </select>
+      <div class="hint" id="hint-taxe">Contrairement à une idée reçue, la taxe foncière n'est <strong>pas</strong> forcément plus élevée dans les grandes villes : elle dépend du taux voté par chaque commune, pas de sa taille. Paris (~20,5%) est ainsi moins taxée que Grenoble (~68%) ou Lille (~40-45%). Pour le montant exact de votre commune, utilisez <a href="https://www.economie.gouv.fr/particuliers/impots-et-fiscalite/gerer-mes-impots-locaux/impots-locaux-visualisez-les-donnees-pres-de-chez-vous" target="_blank" rel="noopener" style="color:var(--g)">l'outil officiel du ministère de l'Économie</a>.</div>
+    </div>
+    <div class="field" id="field-taxe-perso" style="display:none">
+      <label for="taxeFonciere">Montant exact de votre taxe foncière</label>
       <input type="number" id="taxeFonciere" placeholder="Ex : 1090" min="0" step="10">
-      <div class="hint">Moyenne nationale ~1 090 €/an, mais varie énormément selon la commune (de ~560 € à plus de 3 500 €/an). Renseignez-vous en mairie ou auprès du vendeur.</div>
     </div>
     <div class="field">
       <label for="assurance">Assurance habitation annuelle</label>
@@ -290,6 +299,16 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
   </div>
 
 
+  <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
+    <h2 style="margin-bottom:1rem">🔗 À consulter aussi</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:.7rem">
+    <a href="/calculateur-rendement-locatif" style="background:var(--gl);color:var(--gd);text-decoration:none;padding:.6rem 1.2rem;border-radius:50px;font-weight:600;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem;border:1px solid rgba(0,0,0,0.06)">🏢 Rendement locatif</a>
+    <a href="/simulateur-credit-immo" style="background:var(--gl);color:var(--gd);text-decoration:none;padding:.6rem 1.2rem;border-radius:50px;font-weight:600;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem;border:1px solid rgba(0,0,0,0.06)">🏛️ Simulateur crédit immobilier</a>
+    <a href="/calculateur-frais-notaire" style="background:var(--gl);color:var(--gd);text-decoration:none;padding:.6rem 1.2rem;border-radius:50px;font-weight:600;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem;border:1px solid rgba(0,0,0,0.06)">📜 Calculateur frais de notaire</a>
+    <a href="/outils-gratuits" style="background:var(--gd);color:#fff;text-decoration:none;padding:.6rem 1.2rem;border-radius:50px;font-weight:600;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem">Tous les outils gratuits →</a>
+    </div>
+  </div>
+
   <div class="cta">
     <h3>💬 Rejoignez la communauté</h3>
     <p>Découvrez encore plus d'astuces testées et partagées par les membres.</p>
@@ -319,7 +338,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}
 
 const CHARGES_COPRO_M2_AN = 51;
-const TAXE_FONCIERE_DEFAUT = 1090;
+const TAXE_FONCIERE_PROFILS = { bas: 700, moyen: 1070, eleve: 1600 };
 const ASSURANCE_DEFAUT = 200;
 const TAUX_PROVISION_TRAVAUX = 0.01; // 1%/an de la valeur du bien
 
@@ -338,12 +357,17 @@ document.getElementById('chargesCopro').addEventListener('input', function(){
   this.dataset.userEdited = 'true';
 });
 
+document.getElementById('profilTaxe').addEventListener('change', function(){
+  document.getElementById('field-taxe-perso').style.display = (this.value === 'perso') ? 'block' : 'none';
+});
+
 function calculer(){
   const prixBien = parseFloat(document.getElementById('prixBien').value) || 0;
   const surface = parseFloat(document.getElementById('surface').value) || 0;
   const mensualite = parseFloat(document.getElementById('mensualite').value) || 0;
   let chargesCopro = parseFloat(document.getElementById('chargesCopro').value);
-  let taxeFonciere = parseFloat(document.getElementById('taxeFonciere').value);
+  const profilTaxe = document.getElementById('profilTaxe').value;
+  let taxeFonciere = (profilTaxe === 'perso') ? parseFloat(document.getElementById('taxeFonciere').value) : TAXE_FONCIERE_PROFILS[profilTaxe];
   let assurance = parseFloat(document.getElementById('assurance').value);
   const inclureTravaux = document.getElementById('inclureTravaux').checked;
 
@@ -353,7 +377,7 @@ function calculer(){
   }
 
   if(isNaN(chargesCopro)) chargesCopro = Math.round(surface * CHARGES_COPRO_M2_AN);
-  if(isNaN(taxeFonciere)) taxeFonciere = TAXE_FONCIERE_DEFAUT;
+  if(isNaN(taxeFonciere)) taxeFonciere = TAXE_FONCIERE_PROFILS.moyen;
   if(isNaN(assurance)) assurance = ASSURANCE_DEFAUT;
 
   const provisionTravaux = inclureTravaux ? (prixBien * TAUX_PROVISION_TRAVAUX) : 0;
