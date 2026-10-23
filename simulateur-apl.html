@@ -277,7 +277,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </details>
     <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Pourquoi le plafond de loyer dépend-il de la zone géographique ?</summary>
-      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Les loyers plafonds pris en compte varient selon la zone (1, 2 ou 3) car le coût du logement diffère fortement entre Paris/grandes agglomérations et zones rurales. Un loyer réel supérieur au plafond de sa zone n'est pas pris en compte au-delà de ce plafond dans le calcul.</p>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Les loyers plafonds pris en compte varient selon la zone (1, 2 ou 3) car le coût du logement diffère fortement entre Paris/grandes agglomérations et zones rurales. Un loyer réel supérieur au plafond de sa zone n'est pas pris en compte au-delà de ce plafond dans le calcul. Ces plafonds sont revalorisés chaque année au 1er octobre.</p>
     </details>
     <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Le forfait de charges dépend-il aussi de la zone ?</summary>
@@ -345,12 +345,12 @@ const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
 // Loyers plafonds APL par zone et situation (approximatifs 2026)
 const PLAFONDS = {
-  seul:       [331, 290, 272],
-  couple:     [402, 355, 330],
-  '1enfant':  [454, 400, 370],
-  '2enfants': [520, 458, 423],
-  '3enfants': [586, 516, 476],
-  parent_seul:[402, 355, 330],
+  seul:       [337, 294, 275],
+  couple:     [406, 359, 334],
+  '1enfant':  [459, 404, 374],
+  '2enfants': [526, 463, 428],
+  '3enfants': [593, 522, 481],
+  parent_seul:[406, 359, 334],
 };
 
 // Forfait charges CAF — dépend de la composition du foyer, PAS de la zone
