@@ -102,7 +102,8 @@ a{text-decoration:none;color:inherit;}
 
 .tiers{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:44px;}
 @media(min-width:620px){.tiers{grid-template-columns:1fr 1fr;}}
-.tier{border-radius:18px;padding:24px 22px;border:1px solid var(--border);}
+.tier{border-radius:18px;padding:24px 22px;border:1px solid var(--border);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;}
+.tier:hover{transform:translateY(-2px);box-shadow:0 14px 30px -16px rgba(10,10,10,.25);}
 .tier.standard{background:var(--white);}
 .tier.featured{background:linear-gradient(135deg,#0A0A0A,#1A1410,#B8860B 180%);color:#fff;border:none;}
 .tier h3{font-family:'Playfair Display',serif;font-weight:900;font-size:19px;margin-bottom:8px;}
@@ -245,17 +246,15 @@ a{text-decoration:none;color:inherit;}
   </div>
 
   <div class="tiers">
-    <div class="tier standard">
+    <div class="tier standard" onclick="goToForm('standard')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')goToForm('standard')">
       <span class="tier-tag">Visibilité standard</span>
       <h3 class="serif">Gratuite</h3>
       <p>Votre offre est listée sur Economya Business, dans la catégorie correspondante, et peut apparaître dans le flux Community au milieu des astuces de la communauté.</p>
-      <button type="button" class="tier-btn" onclick="goToForm('standard')" style="margin-top:14px;width:100%;background:var(--ink);color:#fff;border:none;border-radius:99px;padding:11px;font-weight:800;font-size:13.5px;cursor:pointer">Déposer gratuitement ↓</button>
     </div>
-    <div class="tier featured">
+    <div class="tier featured" onclick="goToForm('mise_en_avant')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')goToForm('mise_en_avant')">
       <span class="tier-tag">Mise en avant</span>
       <h3 class="serif">Sur devis</h3>
       <p>Votre offre apparaît en tête de sélection et dans l'alerte envoyée aux abonnés de la catégorie. Toujours identifiée clairement comme partenariat. Contactez-nous pour en discuter.</p>
-      <button type="button" class="tier-btn" onclick="goToForm('mise_en_avant')" style="margin-top:14px;width:100%;background:#fff;color:#0A0A0A;border:none;border-radius:99px;padding:11px;font-weight:800;font-size:13.5px;cursor:pointer">Être recontacté ↓</button>
     </div>
   </div>
 
