@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Mon espace entreprise — Economya Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+html{overflow-y:scroll}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--al:#FFFBEB;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b)}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.container{max-width:760px;margin:0 auto;padding:2.2rem 1.5rem 4rem}
+h1{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;margin-bottom:.4rem}
+.sub{color:var(--m);font-size:.9rem;margin-bottom:1.6rem}
+.state{text-align:center;padding:2.5rem 1rem;color:var(--m)}
+.state a{color:var(--gd);font-weight:700}
+.top-actions{display:flex;justify-content:flex-end;margin-bottom:1.2rem}
+.btn-new{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,var(--g),#25B788);color:#fff;border:none;border-radius:99px;padding:10px 20px;font-size:.85rem;font-weight:700;text-decoration:none}
+.item{background:var(--w);border:1px solid var(--b);border-radius:var(--r);padding:1.2rem 1.4rem;margin-bottom:12px}
+.item-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;flex-wrap:wrap}
+.item-meta{font-size:.78rem;color:var(--m)}
+.item-title{font-weight:700;font-size:.95rem;margin-bottom:4px}
+.cat-badge{display:inline-flex;align-items:center;gap:5px;background:#F3E8FF;color:#7C3AED;border-radius:99px;padding:3px 11px;font-size:.75rem;font-weight:700;white-space:nowrap}
+.status-badge{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:3px 11px;font-size:.75rem;font-weight:700;white-space:nowrap}
+.status-pending{background:var(--al);color:#92400E}
+.status-published{background:var(--gl);color:var(--gd)}
+.status-rejected{background:#FEF2F2;color:#DC2626}
+.empty{color:var(--m);font-size:.88rem;padding:1.4rem 0;text-align:center}
+.featured-note{font-size:.78rem;color:var(--a);font-weight:700;margin-top:6px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="/economya-business">← Retour à Business</a>
+</nav>
+<main>
+
+<div class="container">
+  <h1>🏢 Mon espace entreprise</h1>
+  <div class="sub">Suivez le statut des offres déposées avec ce compte.</div>
+  <div id="gate" class="state">Vérification du compte…</div>
+  <div id="panel" style="display:none">
+    <div class="top-actions">
+      <a class="btn-new" href="/economya-business.html#bizForm">+ Déposer une nouvelle offre</a>
+    </div>
+    <div id="list"></div>
+  </div>
+</div>
+
+</main>
+<script src="/auth-shared.js"></script>
+<script>
+const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+let session = JSON.parse(localStorage.getItem('eco_session')||'null');
+
+function escapeHtml(s){
+  return String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function timeAgo(ts){
+  const d=Date.now()-new Date(ts).getTime();
+  if(d<3600000)return Math.floor(d/60000)+'min';
+  if(d<86400000)return Math.floor(d/3600000)+'h';
+  return Math.floor(d/86400000)+'j';
+}
+async function refreshSessionIfNeeded(){
+  if(!session) return;
+  if(Date.now() < session.expires_at - 60000) return;
+  try {
+    const res = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+      method: 'POST',
+      headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+      body: JSON.stringify({refresh_token: session.refresh_token})
+    });
+    const data = await res.json();
+    if(res.ok){
+      session = { access_token:data.access_token, refresh_token:data.refresh_token, expires_at: Date.now()+(data.expires_in||3600)*1000, user:data.user };
+      localStorage.setItem('eco_session', JSON.stringify(session));
+    } else {
+      session = null;
+      localStorage.removeItem('eco_session'); localStorage.removeItem('eco_user'); localStorage.removeItem('eco_is_entreprise');
+    }
+  } catch(e){}
+}
+async function sbFetch(path){
+  await refreshSessionIfNeeded();
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + (session ? session.access_token : SUPABASE_KEY),
+      'Content-Type': 'application/json'
+    }
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
+function statusBadge(s){
+  if(s.status === 'published') return '<span class="status-badge status-published">✅ Publiée</span>';
+  if(s.status === 'rejected') return '<span class="status-badge status-rejected">❌ Rejetée</span>';
+  return '<span class="status-badge status-pending">⏳ En attente de vérification</span>';
+}
+
+function itemHtml(s){
+  return `<div class="item">
+    <div class="item-head">
+      <span class="cat-badge">${escapeHtml(s.categorie||'')}</span>
+      ${statusBadge(s)}
+    </div>
+    <div class="item-title">${escapeHtml(s.titre_offre||'')}</div>
+    <div class="item-meta">Déposée il y a ${timeAgo(s.created_at)}${s.visibilite_souhaitee === 'mise_en_avant' ? ' · ⭐ Mise en avant demandée' : ''}</div>
+  </div>`;
+}
+
+async function loadSubmissions(){
+  const list = document.getElementById('list');
+  try {
+    const email = session.user.email;
+    const rows = await sbFetch('business_submissions?email=eq.' + encodeURIComponent(email) + '&order=created_at.desc&select=id,titre_offre,categorie,status,visibilite_souhaitee,created_at');
+    if(!rows || !rows.length){
+      list.innerHTML = '<div class="empty">Aucune offre déposée pour le moment avec ce compte. Utilisez le bouton ci-dessus pour en déposer une.</div>';
+      return;
+    }
+    list.innerHTML = rows.map(itemHtml).join('');
+  } catch(e){
+    console.error(e);
+    list.innerHTML = '<div class="empty">Impossible de charger vos offres pour le moment.</div>';
+  }
+}
+
+async function init(){
+  const gate = document.getElementById('gate');
+  const isEnt = localStorage.getItem('eco_is_entreprise') === '1';
+  if(!session || !isEnt){
+    gate.innerHTML = 'Cette page est réservée aux comptes entreprise. <a href="/connexion.html?type=entreprise&redirect=' + encodeURIComponent(location.pathname) + '">Connectez-vous avec votre compte entreprise</a>.';
+    return;
+  }
+  gate.style.display = 'none';
+  document.getElementById('panel').style.display = 'block';
+  loadSubmissions();
+}
+init();
+</script>
+</body>
+</html>

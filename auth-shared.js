@@ -42,14 +42,18 @@ function authValidateSignup(pseudo, birthVal, cguChecked){
 }
 
 // Appelle Supabase pour une inscription ou une connexion par mot de passe.
-// authMode: 'signup' | 'login'. Retourne {ok:true, data} ou {ok:false, msg}.
-async function authSubmit(authMode, email, password, pseudo, captchaToken, birthDate){
+// authMode: 'signup' | 'login'. extraMeta (optionnel) : champs additionnels
+// fusionnes dans les user_metadata a la creation du compte (ex. compte
+// entreprise : {is_entreprise:true}). Retourne {ok:true, data} ou
+// {ok:false, msg}.
+async function authSubmit(authMode, email, password, pseudo, captchaToken, birthDate, extraMeta){
   let res;
   if(authMode === 'signup'){
+    const meta = Object.assign({pseudo, birth_date: birthDate || null}, extraMeta || {});
     res = await fetch(AUTH_SUPABASE_URL + '/auth/v1/signup', {
       method: 'POST',
       headers: {'apikey': AUTH_SUPABASE_KEY, 'Content-Type': 'application/json'},
-      body: JSON.stringify({email, password, data: {pseudo, birth_date: birthDate || null}, gotrue_meta_security: {captcha_token: captchaToken}})
+      body: JSON.stringify({email, password, data: meta, gotrue_meta_security: {captcha_token: captchaToken}})
     });
   } else {
     res = await fetch(AUTH_SUPABASE_URL + '/auth/v1/token?grant_type=password', {
@@ -80,6 +84,9 @@ function authSaveSession(data){
   localStorage.setItem('eco_session', JSON.stringify(session));
   const pseudo = (session.user.user_metadata && session.user.user_metadata.pseudo) || session.user.email;
   localStorage.setItem('eco_user', pseudo);
+  const isEntreprise = !!(session.user.user_metadata && session.user.user_metadata.is_entreprise);
+  if(isEntreprise){ localStorage.setItem('eco_is_entreprise', '1'); }
+  else { localStorage.removeItem('eco_is_entreprise'); }
   return session;
 }
 

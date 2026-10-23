@@ -31,6 +31,10 @@
     return null;
   }
 
+  function isEntreprise() {
+    try { return localStorage.getItem('eco_is_entreprise') === '1'; } catch (e) { return false; }
+  }
+
   function logout() {
     try {
       localStorage.removeItem('eco_session');
@@ -77,14 +81,18 @@
 
   function renderDesktop(el, user) {
     if (user) {
+      var ent = isEntreprise();
       var c = pc(user);
       el.style.position = 'relative';
+      var profileLink = ent
+        ? '<a href="/compte-entreprise.html">🏢 Mon espace entreprise</a>'
+        : '<a href="/profil/' + encodeURIComponent(user) + '">👤 Mon profil</a>' +
+          '  <a href="/regles-communaute.html">📜 Règles de la communauté</a>';
       el.innerHTML =
         '<button type="button" class="eco-navav-trigger" style="background:' + c[0] + ';color:' + c[1] + '">' + ini(user) + '</button>' +
         '<div class="eco-navav-menu">' +
         '  <div class="hd">👋 ' + user + '</div>' +
-        '  <a href="/profil/' + encodeURIComponent(user) + '">👤 Mon profil</a>' +
-        '  <a href="/regles-communaute.html">📜 Règles de la communauté</a>' +
+        '  ' + profileLink +
         '  <button type="button" class="danger">🚪 Déconnexion</button>' +
         '</div>';
       var trigger = el.querySelector('.eco-navav-trigger');
@@ -107,8 +115,13 @@
 
   function renderMobile(el, user) {
     if (user) {
-      el.textContent = '👤 Mon profil';
-      el.setAttribute('href', '/profil/' + encodeURIComponent(user));
+      if (isEntreprise()) {
+        el.textContent = '🏢 Mon espace entreprise';
+        el.setAttribute('href', '/compte-entreprise.html');
+      } else {
+        el.textContent = '👤 Mon profil';
+        el.setAttribute('href', '/profil/' + encodeURIComponent(user));
+      }
     } else {
       el.textContent = '👤 Mon compte';
       el.setAttribute('href', '/connexion.html');
