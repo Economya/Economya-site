@@ -194,6 +194,11 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
           <option value="independant">Indépendant / Auto-entrepreneur</option>
         </select>
       </div>
+      <div class="field">
+        <label>Âge de début de carrière</label>
+        <div class="val" id="v-debut-carriere">22 <span>ans</span></div>
+        <input type="range" id="debutCarriere" min="16" max="30" step="1" value="22">
+      </div>
     </div>
   </div>
 
@@ -221,6 +226,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
   <div class="detail">
     <h2>💰 Combien épargner pour combler le manque ?</h2>
+    <div class="detail-row"><span class="lbl">Trimestres cotisés estimés au départ</span><span id="d-trimestres">—</span></div>
     <div class="detail-row"><span class="lbl">Salaire actuel net</span><span id="d-salaire">—</span></div>
     <div class="detail-row"><span class="lbl">Pension estimée</span><span id="d-pension">—</span></div>
     <div class="detail-row"><span class="lbl">Manque mensuel à la retraite</span><span id="d-manque">—</span></div>
@@ -287,19 +293,28 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
+const TRIMESTRES_REQUIS_TAUX_PLEIN = 168; // ≈ 42 ans — repère moyen, varie réellement de 166 à 172 trimestres selon l'année de naissance (voir info-retraite.fr)
+
 function calculate() {
   const age = +document.getElementById('age').value;
   const salaire = +document.getElementById('salaire').value;
   const depart = +document.getElementById('depart').value;
   const statut = document.getElementById('statut').value;
+  const debutCarriere = +document.getElementById('debutCarriere').value;
 
   document.getElementById('v-age').innerHTML = age + ' <span>ans</span>';
   document.getElementById('v-salaire').innerHTML = salaire.toLocaleString('fr-FR') + ' <span>€/mois</span>';
   document.getElementById('v-depart').innerHTML = depart + ' <span>ans</span>';
+  document.getElementById('v-debut-carriere').innerHTML = debutCarriere + ' <span>ans</span>';
 
   const anneesRestantes = Math.max(0, depart - age);
 
-  // Taux de remplacement selon statut
+  // Durée de carrière estimée au moment du départ, et trimestres cotisés correspondants
+  const anneesCarriere = Math.max(0, depart - debutCarriere);
+  const trimestresCotises = Math.min(TRIMESTRES_REQUIS_TAUX_PLEIN, Math.round(anneesCarriere * 4));
+  const ratioCarriere = trimestresCotises / TRIMESTRES_REQUIS_TAUX_PLEIN;
+
+  // Taux de remplacement selon statut, pour une carrière complète
   let tauxRemplacement;
   if(statut === 'fonctionnaire') tauxRemplacement = 0.75;
   else if(statut === 'independant') tauxRemplacement = 0.45;
@@ -308,6 +323,10 @@ function calculate() {
   // Ajustement selon âge de départ
   if(depart < 62) tauxRemplacement *= 0.85;
   else if(depart >= 67) tauxRemplacement *= 1.1;
+
+  // Réduction proportionnelle si la carrière est incomplète par rapport au repère de trimestres requis
+  // (approximation simplifiée — la vraie décote légale dépend de règles plus fines par génération)
+  tauxRemplacement *= ratioCarriere;
 
   const pension = salaire * tauxRemplacement;
   const manque = Math.max(0, salaire - pension);
@@ -329,6 +348,7 @@ function calculate() {
   document.getElementById('r-manque').textContent = fmt(manque);
   document.getElementById('r-annees').textContent = anneesRestantes + ' ans';
 
+  document.getElementById('d-trimestres').textContent = trimestresCotises + ' / ' + TRIMESTRES_REQUIS_TAUX_PLEIN + (ratioCarriere >= 1 ? ' ✅ taux plein' : ' ⚠️ carrière incomplète');
   document.getElementById('d-salaire').textContent = fmt(salaire);
   document.getElementById('d-pension').textContent = fmt(pension);
   document.getElementById('d-manque').textContent = fmt(manque);
@@ -343,6 +363,9 @@ function calculate() {
     tip.innerHTML = `<strong>⚡ Le moment d'agir !</strong> Ouvrez un PER maintenant — vous déduisez vos versements de vos impôts ET préparez votre retraite. Double avantage. Visez ${fmt(epargneMensuelle)}/mois.`;
   } else {
     tip.innerHTML = `<strong>🚨 Urgent !</strong> Il vous reste ${anneesRestantes} ans. Maximisez vos versements PER et PEA immédiatement. Consultez un conseiller en gestion de patrimoine pour optimiser votre stratégie.`;
+  }
+  if(ratioCarriere < 1) {
+    tip.innerHTML += ` <br><br><strong>⚠️ Carrière incomplète :</strong> avec un début de carrière à ${debutCarriere} ans, vous auriez environ ${trimestresCotises} trimestres cotisés au moment du départ, contre ${TRIMESTRES_REQUIS_TAUX_PLEIN} pour le taux plein — ce qui réduit la pension de ce calcul d'environ ${((1 - ratioCarriere) * 100).toFixed(0)}%. Partir plus tard ou racheter des trimestres peut combler cet écart.`;
   }
 }
 
