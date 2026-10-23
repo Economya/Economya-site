@@ -221,6 +221,16 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </div>
   </div>
 
+  <div class="card" id="fonds-urgence-card" style="display:none">
+    <h2>🛟 Votre fonds d'urgence réaliste</h2>
+    <p id="fonds-urgence-content" style="font-size:.88rem;color:var(--m);line-height:1.6"></p>
+  </div>
+
+  <div class="card" id="fonds-urgence-card-empty">
+    <h2>🛟 Votre fonds d'urgence réaliste</h2>
+    <p style="font-size:.88rem;color:var(--m);line-height:1.6">La règle classique dit « 3 mois de dépenses », mais c'est plus parlant une fois rapporté à votre budget réel. Utilisez notre <a href="/calculateur-budget" style="color:var(--g);font-weight:600">calculateur de budget 50/30/20</a> : votre fonds d'urgence cible s'affichera automatiquement ici au prochain passage sur cette page.</p>
+  </div>
+
   <div class="card" id="repartition-card">
     <h2>🧩 Répartition optimale de votre épargne</h2>
     <p style="font-size:.82rem;color:#5F5E5A;margin-bottom:.8rem">Classement par taux décroissant, dans la limite des plafonds. Les livrets ci-dessous sont tous disponibles immédiatement (sauf mention contraire).</p>
@@ -447,11 +457,47 @@ function renderRepartition(montant) {
   }
 }
 
+function afficherFondsUrgence(montant) {
+  let data = null;
+  try {
+    data = JSON.parse(localStorage.getItem('eco_budget_data') || 'null');
+  } catch (e) {}
+
+  const cardFull = document.getElementById('fonds-urgence-card');
+  const cardEmpty = document.getElementById('fonds-urgence-card-empty');
+
+  if (!data || !data.besoins || !data.envies) {
+    cardFull.style.display = 'none';
+    cardEmpty.style.display = 'block';
+    return;
+  }
+
+  cardFull.style.display = 'block';
+  cardEmpty.style.display = 'none';
+
+  const depensesMensuelles = data.besoins + data.envies;
+  const cible = Math.round(depensesMensuelles * 3);
+  const contenu = document.getElementById('fonds-urgence-content');
+
+  let msg = `D'après votre budget enregistré (${fmt(depensesMensuelles)}/mois de besoins + envies), un fonds d'urgence de <strong>3 mois</strong> représente environ <strong>${fmt(cible)}</strong>.`;
+
+  if (montant > 0) {
+    if (montant >= cible) {
+      msg += ` Avec ${fmt(montant)} à placer, vous couvrez déjà cet objectif — le surplus peut être orienté vers un placement plus long terme (PEA, assurance-vie).`;
+    } else {
+      const manque = cible - montant;
+      msg += ` Avec ${fmt(montant)} à placer, il vous manque environ <strong>${fmt(manque)}</strong> pour atteindre ce coussin de sécurité avant d'envisager des placements plus risqués.`;
+    }
+  }
+  contenu.innerHTML = msg;
+}
+
 function calculate() {
   const montant = Math.max(0, +document.getElementById('montant').value || 0);
   const list = document.getElementById('livrets-list');
   list.innerHTML = '';
   renderRepartition(montant);
+  afficherFondsUrgence(montant);
 
   LIVRETS.forEach(l => {
     const montantEffectif = Math.min(montant, l.plafond);
