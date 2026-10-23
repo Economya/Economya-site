@@ -177,6 +177,14 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         "@type": "Answer",
         "text": "Idéalement tous les 6 mois, et systématiquement à la fin de chaque essai gratuit, moment où les abonnements oubliés se créent le plus souvent."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi les prix du streaming changent-ils aussi souvent ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les plateformes ajustent regulierement leurs grilles tarifaires, parfois a la baisse lors de fusions ou restructurations (OCS devenu Max en 2025 par exemple). Les prix pre-remplis sont des moyennes verifiees regulierement, mais peuvent etre modifies si besoin."
+      }
     }
   ]
 }
@@ -270,6 +278,10 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <summary style="font-weight:700;cursor:pointer">À quelle fréquence faut-il refaire cet audit ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Idéalement tous les 6 mois, et systématiquement à la fin de chaque essai gratuit — c'est le moment où les abonnements oubliés se créent le plus souvent, quand la reconduction automatique passe inaperçue.</p>
     </details>
+    <details>
+      <summary style="font-weight:700;cursor:pointer">Pourquoi les prix du streaming changent-ils aussi souvent ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Les plateformes ajustent régulièrement leurs grilles tarifaires (hausses, mais aussi parfois baisses lors de fusions ou de restructurations, comme OCS devenu Max en 2025). Les prix pré-remplis ci-dessus sont des moyennes vérifiées régulièrement, mais modifiez-les si votre abonnement affiche un tarif différent — c'est fait pour.</p>
+    </details>
   </div>
 
   <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
@@ -333,13 +345,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <script>
 const ABONNEMENTS = {
   streaming: [
-    { nom: 'Netflix', detail: 'Standard sans pub', prix: 14.99 },
-    { nom: 'Netflix', detail: 'Avec publicités', prix: 7.99 },
-    { nom: 'Disney+', detail: 'Standard', prix: 10.99 },
+    { nom: 'Netflix', detail: 'Standard sans pub', prix: 13.49 },
+    { nom: 'Netflix', detail: 'Avec publicités', prix: 5.99 },
+    { nom: 'Disney+', detail: 'Standard', prix: 9.99 },
     { nom: 'Prime Video', detail: 'Amazon Prime', prix: 6.99 },
-    { nom: 'Canal+', detail: 'Tous programmes', prix: 26.99 },
+    { nom: 'Canal+', detail: 'Tous programmes', prix: 24.99 },
     { nom: 'Apple TV+', detail: 'Séries Apple', prix: 9.99 },
-    { nom: 'OCS / Max', detail: 'HBO & Warner', prix: 14.99 },
+    { nom: 'Max (ex-OCS)', detail: 'HBO & Warner', prix: 9.99 },
   ],
   musique: [
     { nom: 'Spotify', detail: 'Premium individuel', prix: 12.14 },
