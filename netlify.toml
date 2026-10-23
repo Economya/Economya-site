@@ -98,5 +98,13 @@
 [build]
   publish = "."
 
+[build.environment]
+  # Le scanner de secrets de Netlify confond SUPABASE_SERVICE_ROLE_KEY
+  # avec la clé anon publique deja presente dans le code (meme prefixe
+  # JWT) : faux positif documente, sans fuite reelle (la cle n'est
+  # jamais ecrite en clair, uniquement lue via process.env dans les
+  # fonctions Netlify server-side).
+  SECRETS_SCAN_OMIT_KEYS = "SUPABASE_SERVICE_ROLE_KEY"
+
 [functions]
   directory = "netlify/functions"
