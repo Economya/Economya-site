@@ -216,6 +216,11 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <div class="val" id="v-duree">10 <span>ans</span></div>
         <input type="range" id="duree" min="1" max="40" step="1" value="10">
       </div>
+      <div class="field">
+        <label>Inflation moyenne anticipée</label>
+        <div class="val" id="v-inflation">2,0 <span>%</span></div>
+        <input type="range" id="inflation" min="0" max="5" step="0.1" value="2">
+      </div>
     </div>
   </div>
 
@@ -237,6 +242,10 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="res-item">
         <span class="num" id="r-rendement">0%</span>
         <div class="lbl">Rendement total</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-reel">0 €</span>
+        <div class="lbl">Capital final en pouvoir d'achat actuel</div>
       </div>
     </div>
   </div>
@@ -338,6 +347,7 @@ function calculate() {
   const initial = +document.getElementById('initial').value;
   const taux = +document.getElementById('taux').value / 100;
   const duree = +document.getElementById('duree').value;
+  const inflation = +document.getElementById('inflation').value / 100;
   const tauxMensuel = taux / 12;
   const mois = duree * 12;
 
@@ -346,12 +356,14 @@ function calculate() {
   document.getElementById('v-initial').innerHTML = initial.toLocaleString('fr-FR') + ' <span>€</span>';
   document.getElementById('v-taux').innerHTML = (+document.getElementById('taux').value).toFixed(1) + ' <span>%</span>';
   document.getElementById('v-duree').innerHTML = duree + ' <span>ans</span>';
+  document.getElementById('v-inflation').innerHTML = (+document.getElementById('inflation').value).toFixed(1) + ' <span>%</span>';
 
   // Calcul intérêts composés
   let capital = initial;
   const labels = [];
   const dataCapital = [];
   const dataVerse = [];
+  const dataCapitalReel = []; // capital déflaté, en pouvoir d'achat d'aujourd'hui
 
   for(let a = 0; a <= duree; a++) {
     labels.push(a + ' an' + (a > 1 ? 's' : ''));
@@ -364,10 +376,12 @@ function calculate() {
     }
     dataCapital.push(Math.round(cap));
     dataVerse.push(Math.round(verse));
+    dataCapitalReel.push(Math.round(cap / Math.pow(1 + inflation, a)));
   }
 
   const totalVerse = initial + mensuel * mois;
   const capitalFinal = dataCapital[duree];
+  const capitalFinalReel = dataCapitalReel[duree];
   const interets = capitalFinal - totalVerse;
   const rendement = ((capitalFinal - totalVerse) / totalVerse * 100).toFixed(1);
 
@@ -375,6 +389,7 @@ function calculate() {
   document.getElementById('r-verse').textContent = fmt(totalVerse);
   document.getElementById('r-interets').textContent = fmt(interets);
   document.getElementById('r-rendement').textContent = rendement + '%';
+  document.getElementById('r-reel').textContent = fmt(capitalFinalReel);
 
   // Conseil dynamique
   const tipEl = document.getElementById('tip-text');
@@ -382,6 +397,10 @@ function calculate() {
     tipEl.innerHTML = `<strong>🎉 Excellent !</strong> Les intérêts composés font travailler votre argent — vous gagnez <strong>${fmt(interets)}</strong> sans effort supplémentaire.`;
   } else {
     tipEl.innerHTML = `<strong>💡 Conseil :</strong> Augmentez la durée ou le taux pour maximiser les intérêts composés. Sur ${duree} ans vous gagnez ${fmt(interets)} d'intérêts.`;
+  }
+  if(inflation > 0) {
+    const perteInflation = capitalFinal - capitalFinalReel;
+    tipEl.innerHTML += ` <br><br><strong>📉 Attention à l'inflation :</strong> avec ${(inflation*100).toFixed(1)}% d'inflation moyenne anticipée, vos ${fmt(capitalFinal)} de demain n'achèteront que l'équivalent de ${fmt(capitalFinalReel)} aujourd'hui — un écart de ${fmt(perteInflation)} en pouvoir d'achat réel.`;
   }
 
   // Graphique
@@ -409,6 +428,16 @@ function calculate() {
           fill: true,
           tension: 0.4,
           borderDash: [5,5],
+          pointRadius: 2
+        },
+        {
+          label: "Capital en pouvoir d'achat actuel",
+          data: dataCapitalReel,
+          borderColor: '#9333ea',
+          backgroundColor: 'rgba(147,51,234,0.05)',
+          fill: false,
+          tension: 0.4,
+          borderDash: [2,3],
           pointRadius: 2
         }
       ]
