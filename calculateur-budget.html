@@ -221,23 +221,43 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </div>
   </div>
 
+  <div class="card" id="split-card">
+    <h2>🎛️ Adaptez la répartition à votre situation</h2>
+    <p style="font-size:.85rem;color:var(--m);margin-bottom:1rem">La règle 50/30/20 est un point de départ, pas une obligation. Ajustez les curseurs si votre loyer pèse plus lourd, ou si vous voulez épargner davantage.</p>
+    <div style="display:flex;flex-direction:column;gap:.9rem">
+      <label style="display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:600;color:var(--m)">
+        🏠 Besoins essentiels : <span id="pct-besoins-val">50</span>%
+        <input type="range" id="pct-besoins" min="10" max="90" value="50" step="1">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:600;color:var(--m)">
+        🎉 Envies & loisirs : <span id="pct-envies-val">30</span>%
+        <input type="range" id="pct-envies" min="0" max="80" value="30" step="1">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:600;color:var(--m)">
+        💰 Épargne : <span id="pct-epargne-val">20</span>%
+        <input type="range" id="pct-epargne" min="0" max="80" value="20" step="1">
+      </label>
+    </div>
+    <button type="button" onclick="resetSplit()" style="margin-top:1rem;background:var(--gl);color:var(--gd);border:none;padding:.5rem 1.1rem;border-radius:50px;font-weight:600;font-size:.82rem;cursor:pointer">↺ Revenir à 50/30/20</button>
+  </div>
+
   <div class="categories">
     <div class="cat cat-besoins">
-      <div class="cat-pct">50%</div>
+      <div class="cat-pct" id="catpct-besoins">50%</div>
       <div class="cat-titre">Besoins essentiels</div>
       <div class="cat-nom">Loyer, courses, transport</div>
       <div class="cat-montant" id="m-besoins">1 000 €</div>
       <div class="cat-detail">Tout ce dont vous avez besoin pour vivre</div>
     </div>
     <div class="cat cat-envies">
-      <div class="cat-pct">30%</div>
+      <div class="cat-pct" id="catpct-envies">30%</div>
       <div class="cat-titre">Envies & loisirs</div>
       <div class="cat-nom">Sorties, vacances, shopping</div>
       <div class="cat-montant" id="m-envies">600 €</div>
       <div class="cat-detail">Ce qui rend la vie agréable</div>
     </div>
     <div class="cat cat-epargne">
-      <div class="cat-pct">20%</div>
+      <div class="cat-pct" id="catpct-epargne">20%</div>
       <div class="cat-titre">Épargne & investissement</div>
       <div class="cat-nom">Livret A, PEA, remboursement dettes</div>
       <div class="cat-montant" id="m-epargne">400 €</div>
@@ -253,9 +273,9 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="bar-s" id="bar-s" style="width:20%">20%</div>
     </div>
     <div class="legende">
-      <div class="leg-item"><div class="leg-dot" style="background:#059669"></div> Besoins (50%)</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#3b82f6"></div> Envies (30%)</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#d97706"></div> Épargne (20%)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#059669"></div> Besoins (<span id="leg-besoins">50</span>%)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#3b82f6"></div> Envies (<span id="leg-envies">30</span>%)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#d97706"></div> Épargne (<span id="leg-epargne">20</span>%)</div>
     </div>
   </div>
 
@@ -319,6 +339,16 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </details>
   </div>
 
+  <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
+    <h2 style="margin-bottom:1rem">🔗 À consulter aussi</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:.7rem">
+    <a href="/comparateur-livrets" style="background:var(--gl);color:var(--gd);text-decoration:none;padding:.6rem 1.2rem;border-radius:50px;font-weight:600;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem;border:1px solid rgba(0,0,0,0.06)">💳 Comparateur de livrets d'épargne</a>
+    <a href="/simulateur-epargne" style="background:var(--gl);color:var(--gd);text-decoration:none;padding:.6rem 1.2rem;border-radius:50px;font-weight:600;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem;border:1px solid rgba(0,0,0,0.06)">📈 Simulateur d'épargne</a>
+    <a href="/checklist-abonnements" style="background:var(--gl);color:var(--gd);text-decoration:none;padding:.6rem 1.2rem;border-radius:50px;font-weight:600;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem;border:1px solid rgba(0,0,0,0.06)">📋 Checklist abonnements à surveiller</a>
+    <a href="/outils-gratuits" style="background:var(--gd);color:#fff;text-decoration:none;padding:.6rem 1.2rem;border-radius:50px;font-weight:600;font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem">Tous les outils gratuits →</a>
+    </div>
+  </div>
+
   <div class="cta">
     <h3>💬 Rejoignez la communauté</h3>
     <p>Découvrez encore plus d'astuces testées et partagées par les membres.</p>
@@ -369,11 +399,46 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </footer>
 
 <script>
+const sliders = {
+  besoins: document.getElementById('pct-besoins'),
+  envies: document.getElementById('pct-envies'),
+  epargne: document.getElementById('pct-epargne'),
+};
+
+function rebalance(changedKey) {
+  const keys = ['besoins', 'envies', 'epargne'];
+  const changedVal = +sliders[changedKey].value;
+  const others = keys.filter(k => k !== changedKey);
+  const remaining = 100 - changedVal;
+  const othersSum = others.reduce((s, k) => s + (+sliders[k].value), 0) || 1;
+  others.forEach(k => {
+    const share = Math.max(0, Math.round((+sliders[k].value / othersSum) * remaining));
+    sliders[k].value = share;
+  });
+  // Correction d'arrondi pour garantir une somme exacte de 100
+  const total = keys.reduce((s, k) => s + (+sliders[k].value), 0);
+  if (total !== 100) {
+    const fixKey = others[0];
+    sliders[fixKey].value = Math.max(0, +sliders[fixKey].value + (100 - total));
+  }
+}
+
+function resetSplit() {
+  sliders.besoins.value = 50;
+  sliders.envies.value = 30;
+  sliders.epargne.value = 20;
+  calculate();
+}
+
 function calculate() {
   const revenu = Math.max(0, +document.getElementById('revenu').value || 0);
-  const besoins = Math.round(revenu * 0.5);
-  const envies = Math.round(revenu * 0.3);
-  const epargne = Math.round(revenu * 0.2);
+  const pctBesoins = +sliders.besoins.value;
+  const pctEnvies = +sliders.envies.value;
+  const pctEpargne = +sliders.epargne.value;
+
+  const besoins = Math.round(revenu * pctBesoins / 100);
+  const envies = Math.round(revenu * pctEnvies / 100);
+  const epargne = Math.round(revenu * pctEpargne / 100);
 
   const fmt = n => n.toLocaleString('fr-FR') + ' €';
 
@@ -383,9 +448,36 @@ function calculate() {
   document.getElementById('c-besoins').textContent = fmt(besoins);
   document.getElementById('c-envies').textContent = fmt(envies);
   document.getElementById('c-epargne').textContent = fmt(epargne);
+
+  document.getElementById('pct-besoins-val').textContent = pctBesoins;
+  document.getElementById('pct-envies-val').textContent = pctEnvies;
+  document.getElementById('pct-epargne-val').textContent = pctEpargne;
+  document.getElementById('catpct-besoins').textContent = pctBesoins + '%';
+  document.getElementById('catpct-envies').textContent = pctEnvies + '%';
+  document.getElementById('catpct-epargne').textContent = pctEpargne + '%';
+  document.getElementById('leg-besoins').textContent = pctBesoins;
+  document.getElementById('leg-envies').textContent = pctEnvies;
+  document.getElementById('leg-epargne').textContent = pctEpargne;
+  document.getElementById('bar-b').style.width = pctBesoins + '%';
+  document.getElementById('bar-b').textContent = pctBesoins + '%';
+  document.getElementById('bar-e').style.width = pctEnvies + '%';
+  document.getElementById('bar-e').textContent = pctEnvies + '%';
+  document.getElementById('bar-s').style.width = pctEpargne + '%';
+  document.getElementById('bar-s').textContent = pctEpargne + '%';
+
+  try {
+    localStorage.setItem('eco_budget_data', JSON.stringify({
+      revenu, besoins, envies, epargne,
+      pctBesoins, pctEnvies, pctEpargne,
+      updated: Date.now()
+    }));
+  } catch (e) {}
 }
 
 document.getElementById('revenu').addEventListener('input', calculate);
+Object.keys(sliders).forEach(k => {
+  sliders[k].addEventListener('input', () => { rebalance(k); calculate(); });
+});
 calculate();
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
