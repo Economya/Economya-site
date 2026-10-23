@@ -13,11 +13,27 @@
   status = 301
   force = true
 
-# Raccourci /escape -> /economya-escape (le lien "naturel" que les gens
-# tapent/partagent renvoyait une 404 car la vraie page est /economya-escape)
+# Raccourci /escape -> /economya-business (le lien "naturel" que les gens
+# tapent/partagent renvoyait une 404 car la vraie page est /economya-business)
 [[redirects]]
   from = "/escape"
-  to = "/economya-escape"
+  to = "/economya-business"
+  status = 301
+
+# Economya Escape a été fusionné dans Economya Business (le funnel B2B
+# s'ouvre maintenant à toutes les catégories d'astuces, plus seulement
+# sorties/restos/voyage) : on redirige l'ancienne URL pour ne pas perdre
+# les liens déjà partagés/indexés. La page economya-escape.html fait
+# aussi sa propre redirection JS en défense en profondeur (cas des liens
+# qui pointent vers le .html directement, hors passage par _redirects).
+[[redirects]]
+  from = "/economya-escape"
+  to = "/economya-business"
+  status = 301
+
+[[redirects]]
+  from = "/economya-escape.html"
+  to = "/economya-business"
   status = 301
 
 # Anciens articles de blog, supprimés du site (commit "Suppression de tous

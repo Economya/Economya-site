@@ -51,13 +51,13 @@ summary{cursor:pointer;font-size:.85rem;font-weight:600;color:var(--m);padding:.
 <body>
 <nav>
   <a class="logo" href="/">Econom<span>ya</span>.fr</a>
-  <a class="nav-back" href="/economya-escape">← Retour à Escape</a>
+  <a class="nav-back" href="/economya-business">← Retour à Business</a>
 </nav>
 <main>
 
 <div class="container">
   <h1>🤝 Candidatures commerce</h1>
-  <div class="sub">Dépôts d'offres reçus via le formulaire Economya Escape.</div>
+  <div class="sub">Dépôts d'offres reçus via le formulaire Economya Business (toutes catégories).</div>
   <div id="gate" class="state">Vérification des droits…</div>
   <div id="panel" style="display:none">
     <h2>📥 En attente <span id="pendingCount"></span></h2>
@@ -194,8 +194,8 @@ async function loadAll(){
   renderHistory();
 }
 
-// mappe l'emoji+libellé du formulaire ("🎟️ Sorties" / "✈️ Voyage" / "🍽️ Restos")
-// — déjà au bon format pour matcher le filtre de la page Economya Escape.
+// mappe l'emoji+libellé du formulaire (les mêmes 17 catégories que forum-astuces.html)
+// — déjà au bon format pour matcher le filtre de la page Economya Business.
 async function publish(id, partenariat, btn){
   const s = pending.find(x => String(x.id) === String(id));
   if(!s) return;
