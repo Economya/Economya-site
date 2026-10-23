@@ -227,6 +227,12 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <div class="val" id="v-deductions">0 <span>€</span></div>
         <input type="range" id="deductions" min="0" max="20000" step="500" value="0">
       </div>
+      <div class="field">
+        <label>Frais professionnels réels (optionnel)</label>
+        <div class="val" id="v-frais-reels">0 <span>€</span></div>
+        <input type="range" id="fraisReels" min="0" max="20000" step="100" value="0">
+        <div class="hint" style="font-size:.78rem;color:var(--m);margin-top:.3rem">Laissez à 0 pour garder l'abattement forfaitaire de 10% (par défaut, plus avantageux dans la plupart des cas). Ne renseignez que si vos frais réels justifiés (trajets, repas, double résidence...) dépassent ce forfait.</div>
+      </div>
     </div>
   </div>
 
@@ -269,7 +275,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <div class="detail">
     <h2>🔢 Détail du calcul</h2>
     <div class="detail-row"><span class="lbl">Revenus nets déclarés</span><span id="d-revenus">—</span></div>
-    <div class="detail-row"><span class="lbl">Abattement forfaitaire 10%</span><span id="d-abattement">—</span></div>
+    <div class="detail-row"><span class="lbl" id="d-abattement-label">Abattement forfaitaire 10%</span><span id="d-abattement">—</span></div>
     <div class="detail-row"><span class="lbl">Déductions supplémentaires</span><span id="d-deductions">—</span></div>
     <div class="detail-row"><span class="lbl">Revenu imposable</span><span id="d-imposable">—</span></div>
     <div class="detail-row"><span class="lbl">Nombre de parts fiscales</span><span id="d-parts">—</span></div>
@@ -384,12 +390,18 @@ function calculate() {
   const revenus = +document.getElementById('revenus').value;
   const parts = +document.getElementById('situation').value;
   const deductions = +document.getElementById('deductions').value;
+  const fraisReels = +document.getElementById('fraisReels').value;
 
   document.getElementById('v-revenus').innerHTML = revenus.toLocaleString('fr-FR') + ' <span>€/an</span>';
   document.getElementById('v-deductions').innerHTML = deductions.toLocaleString('fr-FR') + ' <span>€</span>';
+  document.getElementById('v-frais-reels').innerHTML = fraisReels.toLocaleString('fr-FR') + ' <span>€</span>';
 
   // Abattement forfaitaire 10% (min 509€, max 14555€) — barème 2026
-  const abattement = Math.min(Math.max(revenus * 0.10, 509), 14555);
+  const abattementForfait = Math.min(Math.max(revenus * 0.10, 509), 14555);
+  // Le contribuable choisit automatiquement l'option la plus avantageuse (frais réels justifiés vs abattement forfaitaire)
+  const fraisReelsPlusAvantageux = fraisReels > abattementForfait;
+  const abattement = fraisReelsPlusAvantageux ? fraisReels : abattementForfait;
+  document.getElementById('d-abattement-label').textContent = fraisReelsPlusAvantageux ? 'Frais réels déduits (plus avantageux)' : 'Abattement forfaitaire 10%';
   const revenuImposable = Math.max(0, revenus - abattement - deductions);
   const revenuParPart = revenuImposable / parts;
 
@@ -442,7 +454,7 @@ function calculate() {
   } else if(tmi >= 30) {
     tip.innerHTML = `<strong>💡 Optimisation possible :</strong> Avec un TMI de ${tmi}%, chaque euro versé sur un PER vous économise ${tmi} centimes d'impôt. Un versement de 5 000 € sur un PER = ${fmt(5000 * tmi/100)} d'impôt en moins.`;
   } else {
-    tip.innerHTML = `<strong>💡 Conseil :</strong> Votre taux moyen est de ${tauxMoyen}%. Pensez à vérifier les déductions auxquelles vous avez droit : dons aux associations (66% déduit), emploi à domicile (50% déduit), frais réels si supérieurs à ${fmt(abattement)}.`;
+    tip.innerHTML = `<strong>💡 Conseil :</strong> Votre taux moyen est de ${tauxMoyen}%. Pensez à vérifier les déductions auxquelles vous avez droit : dons aux associations (66% déduit), emploi à domicile (50% déduit), et si vos frais professionnels réels (trajets, repas, double résidence...) dépassent ${fmt(abattementForfait)}, renseignez-les ci-dessus pour les déduire à la place de l'abattement forfaitaire.`;
   }
 }
 
