@@ -194,6 +194,16 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
           <option value="lmnp_reel">LMNP Réel (amortissement)</option>
         </select>
       </div>
+      <div class="field">
+        <label>Votre tranche marginale d'imposition (TMI)</label>
+        <select id="tmi" onchange="calculate()">
+          <option value="0">0%</option>
+          <option value="0.11">11%</option>
+          <option value="0.30" selected>30%</option>
+          <option value="0.41">41%</option>
+          <option value="0.45">45%</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -221,7 +231,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="detail-row"><span class="lbl">Charges annuelles</span><span id="d-charges">—</span></div>
     <div class="detail-row"><span class="lbl">Taxe foncière estimée</span><span id="d-taxe">—</span></div>
     <div class="detail-row"><span class="lbl">Revenus nets avant impôts</span><span id="d-nets">—</span></div>
-    <div class="detail-row"><span class="lbl">Impôts (TMI 30% + PS 17,2%)</span><span id="d-impots">—</span></div>
+    <div class="detail-row"><span class="lbl" id="d-impots-label">Impôts (TMI 30% + PS 17,2%)</span><span id="d-impots">—</span></div>
     <div class="detail-row"><span class="lbl">Cashflow mensuel net</span><span id="d-cashflow">—</span></div>
     <div class="detail-row"><span class="lbl"><strong>Revenus nets annuels</strong></span><span id="d-revenus-nets">—</span></div>
   </div>
@@ -289,6 +299,7 @@ function calculate() {
   const loyer = +document.getElementById('loyer').value;
   const charges = +document.getElementById('charges').value;
   const fiscal = document.getElementById('fiscal').value;
+  const tmi = +document.getElementById('tmi').value;
 
   document.getElementById('v-prix').innerHTML = (prix/1000).toFixed(0) + ' 000 <span>€</span>';
   document.getElementById('v-loyer').innerHTML = loyer.toLocaleString('fr-FR') + ' <span>€/mois</span>';
@@ -304,17 +315,17 @@ function calculate() {
   let baseImposable, impots;
   if(fiscal === 'micro') {
     baseImposable = loyersAnnuels * 0.70; // abattement 30%
-    impots = baseImposable * (0.30 + 0.172); // TMI 30% + prelevements sociaux 17,2% (taux inchangé depuis 2018)
+    impots = baseImposable * (tmi + 0.172); // TMI + prelevements sociaux 17,2% (taux inchangé depuis 2018)
   } else if(fiscal === 'reel') {
     baseImposable = Math.max(0, revenusNets);
-    impots = baseImposable * (0.30 + 0.172); // prelevements sociaux 17,2% (taux inchangé depuis 2018)
+    impots = baseImposable * (tmi + 0.172); // prelevements sociaux 17,2% (taux inchangé depuis 2018)
   } else if(fiscal === 'lmnp') {
     baseImposable = loyersAnnuels * 0.50; // abattement 50%
-    impots = baseImposable * (0.30 + 0.186); // TMI 30% + prelevements sociaux 18,6% (LMNP, hausse LFSS 2026)
+    impots = baseImposable * (tmi + 0.186); // TMI + prelevements sociaux 18,6% (LMNP, hausse LFSS 2026)
   } else { // lmnp_reel
     const amortissement = prix * 0.025; // 2.5%/an
     baseImposable = Math.max(0, revenusNets - amortissement);
-    impots = baseImposable * (0.30 + 0.186); // prelevements sociaux 18,6% (LMNP, hausse LFSS 2026)
+    impots = baseImposable * (tmi + 0.186); // prelevements sociaux 18,6% (LMNP, hausse LFSS 2026)
   }
 
   const revenusNetsApresImpots = revenusNets - impots;
@@ -332,6 +343,8 @@ function calculate() {
   document.getElementById('d-charges').textContent = '- ' + fmt(charges);
   document.getElementById('d-taxe').textContent = '- ' + fmt(taxeFonciere);
   document.getElementById('d-nets').textContent = fmt(revenusNets);
+  const psTaux = (fiscal === 'lmnp' || fiscal === 'lmnp_reel') ? '18,6' : '17,2';
+  document.getElementById('d-impots-label').textContent = `Impôts (TMI ${(tmi*100).toFixed(0)}% + PS ${psTaux}%)`;
   document.getElementById('d-impots').textContent = '- ' + fmt(impots);
   document.getElementById('d-cashflow').textContent = fmt(cashflowMensuel) + '/mois';
   document.getElementById('d-revenus-nets').textContent = fmt(revenusNetsApresImpots) + '/an';
