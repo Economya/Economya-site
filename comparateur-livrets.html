@@ -213,7 +213,19 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <input type="number" id="montant" value="10000" min="0" max="100000" step="100">
         <span>€</span>
       </div>
+      <div class="eligibilite" style="margin-top:.8rem;display:flex;flex-direction:column;gap:.4rem;font-size:.86rem">
+        <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer"><input type="checkbox" id="eligibleLEP"> Je suis éligible au LEP (revenus modestes)</label>
+        <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer"><input type="checkbox" id="eligibleLJ"> J'ai entre 12 et 25 ans (Livret Jeune)</label>
+        <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer"><input type="checkbox" id="accepteBlocage"> J'accepte de bloquer une partie 4 ans min. (PEL, taux 2%)</label>
+      </div>
     </div>
+  </div>
+
+  <div class="card" id="repartition-card">
+    <h2>🧩 Répartition optimale de votre épargne</h2>
+    <p style="font-size:.82rem;color:#5F5E5A;margin-bottom:.8rem">Classement par taux décroissant, dans la limite des plafonds. Les livrets ci-dessous sont tous disponibles immédiatement (sauf mention contraire).</p>
+    <div id="repartition-list"></div>
+    <div class="tip" id="repartition-tip" style="margin-top:1rem"></div>
   </div>
 
   <div class="card">
@@ -384,10 +396,62 @@ const LIVRETS = [
 
 function fmt(n) { return Math.round(n).toLocaleString('fr-FR') + ' €'; }
 
+function allocationOptimale(montant, eligibleLEP, eligibleLJ, accepteBlocage) {
+  const livretsEligibles = LIVRETS.filter(l => {
+    if (l.id === 'lep') return eligibleLEP;
+    if (l.id === 'lj') return eligibleLJ;
+    if (l.id === 'pel') return accepteBlocage;
+    return true;
+  });
+  const tries = [...livretsEligibles].sort((a, b) => b.taux - a.taux);
+  let reste = montant;
+  const repartition = [];
+  for (const l of tries) {
+    if (reste <= 0) break;
+    const alloue = Math.min(reste, l.plafond);
+    if (alloue > 0) {
+      repartition.push({ ...l, alloue, gain: alloue * l.taux / 100 });
+      reste -= alloue;
+    }
+  }
+  const gainTotal = repartition.reduce((s, r) => s + r.gain, 0);
+  return { repartition, reste, gainTotal };
+}
+
+function renderRepartition(montant) {
+  const eligibleLEP = document.getElementById('eligibleLEP').checked;
+  const eligibleLJ = document.getElementById('eligibleLJ').checked;
+  const accepteBlocage = document.getElementById('accepteBlocage').checked;
+  const { repartition, reste, gainTotal } = allocationOptimale(montant, eligibleLEP, eligibleLJ, accepteBlocage);
+
+  const list = document.getElementById('repartition-list');
+  list.innerHTML = repartition.map(r => `
+    <div class="livret" style="display:flex;align-items:center;gap:.8rem;padding:.6rem 0;border-bottom:1px solid rgba(0,0,0,.06)">
+      <div style="font-size:1.4rem">${r.icon}</div>
+      <div style="flex:1">
+        <strong>${r.nom}</strong>${r.id === 'pel' ? ' <span style="font-size:.75rem;color:#92400e">🔒 bloqué 4 ans min.</span>' : ''}
+        <div style="font-size:.8rem;color:#5F5E5A">${fmt(r.alloue)} placés à ${r.taux.toFixed(2)}%</div>
+      </div>
+      <div style="text-align:right;font-weight:700;color:#1D9E75">+${fmt(r.gain)}/an</div>
+    </div>
+  `).join('') || '<p style="color:#5F5E5A;font-size:.86rem">Entrez un montant pour voir la répartition.</p>';
+
+  const tip = document.getElementById('repartition-tip');
+  if (montant > 0) {
+    const gainLivretASeul = Math.min(montant, LIVRETS.find(l => l.id === 'livretA').plafond) * LIVRETS.find(l => l.id === 'livretA').taux / 100;
+    const diff = gainTotal - gainLivretASeul;
+    let resteMsg = reste > 0 ? ` Il reste ${fmt(reste)} non placés sur un livret réglementé (plafonds atteints) — à orienter vers une assurance-vie ou un PEA.` : '';
+    tip.innerHTML = `<strong>💡 Résultat :</strong> Cette répartition rapporte <strong>${fmt(gainTotal)}/an</strong>, soit ${diff > 0 ? fmt(diff) + '/an de plus' : 'autant'} que de tout laisser sur un seul Livret A (${fmt(gainLivretASeul)}/an).${resteMsg}`;
+  } else {
+    tip.innerHTML = '';
+  }
+}
+
 function calculate() {
   const montant = Math.max(0, +document.getElementById('montant').value || 0);
   const list = document.getElementById('livrets-list');
   list.innerHTML = '';
+  renderRepartition(montant);
 
   LIVRETS.forEach(l => {
     const montantEffectif = Math.min(montant, l.plafond);
@@ -416,8 +480,10 @@ function calculate() {
 
   // Conseil dynamique
   const tip = document.getElementById('tip-text');
-  const gainLEP = Math.min(montant, 10000) * 2.5 / 100;
-  const gainA = Math.min(montant, 22950) * 3 / 100;
+  const lepRef = LIVRETS.find(l => l.id === 'lep');
+  const aRef = LIVRETS.find(l => l.id === 'livretA');
+  const gainLEP = Math.min(montant, lepRef.plafond) * lepRef.taux / 100;
+  const gainA = Math.min(montant, aRef.plafond) * aRef.taux / 100;
 
   if(montant <= 0) {
     tip.innerHTML = '<strong>💡 Conseil :</strong> Entrez un montant pour voir vos gains potentiels.';
@@ -429,6 +495,9 @@ function calculate() {
 }
 
 document.getElementById('montant').addEventListener('input', calculate);
+document.getElementById('eligibleLEP').addEventListener('change', calculate);
+document.getElementById('eligibleLJ').addEventListener('change', calculate);
+document.getElementById('accepteBlocage').addEventListener('change', calculate);
 calculate();
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
