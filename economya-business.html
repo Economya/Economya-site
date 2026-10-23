@@ -118,14 +118,17 @@ a{text-decoration:none;color:inherit;}
 .tier{border-radius:18px;padding:24px 22px;border:1px solid var(--border);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;display:flex;flex-direction:column;height:100%;box-sizing:border-box;}
 .tier:hover{transform:translateY(-2px);box-shadow:0 14px 30px -16px rgba(10,10,10,.25);}
 .tier.standard{background:var(--white);}
-.tier.featured{background:linear-gradient(135deg,#0A0A0A,#1A1410,#B8860B 180%);color:#fff;border:none;}
+.tier.featured{position:relative;color:#fff;border:1.5px solid transparent;background-image:linear-gradient(135deg,#0A0A0A,#1A1410 55%,#B8860B 180%),linear-gradient(140deg,#FDE68A 0%,#B8860B 45%,#FDE68A 75%,#8A5D08 100%);background-origin:border-box;background-clip:padding-box, border-box;box-shadow:0 0 0 1px rgba(253,230,138,.06),0 24px 48px -20px rgba(138,93,8,.55),inset 0 1px 0 rgba(255,255,255,.06);}
+.tier.featured::before{content:'';position:absolute;inset:0;border-radius:18px;background:radial-gradient(ellipse 60% 50% at 100% 0%, rgba(253,230,138,.16), transparent 70%);pointer-events:none;z-index:0;}
+.tier.featured:hover{box-shadow:0 0 0 1px rgba(253,230,138,.12),0 28px 56px -18px rgba(184,134,11,.65),inset 0 1px 0 rgba(255,255,255,.08);}
+.tier.featured .tier-tag,.tier.featured h3,.tier.featured p{position:relative;z-index:1;}
 .tier h3{font-family:'Playfair Display',serif;font-weight:900;font-size:19px;margin-bottom:8px;}
 .tier p{font-size:13px;line-height:1.55;}
 .tier.standard p{color:var(--muted);}
 .tier.featured p{color:rgba(255,255,255,.78);}
 .tier-tag{display:inline-block;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:3px 10px;border-radius:99px;margin-bottom:10px;}
 .tier.standard .tier-tag{background:var(--bg);color:var(--muted);}
-.tier.featured .tier-tag{background:rgba(253,230,138,.18);color:#FDE68A;}
+.tier.featured .tier-tag{background:rgba(253,230,138,.16);color:#FDE68A;border:1px solid rgba(253,230,138,.28);}
 
 .disclosure{background:#FFFBEB;border:1px solid #FDE68A;border-radius:14px;padding:16px 18px;font-size:12.5px;color:#78350F;line-height:1.6;margin-bottom:36px;}
 
