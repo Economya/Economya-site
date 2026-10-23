@@ -147,6 +147,22 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
           "@type": "Answer",
           "text": "Cela dépend fortement de l'offre et de la néobanque. Les offres gratuites plafonnent souvent le nombre de retraits gratuits par mois en zone euro et facturent au-delà, tandis que les paiements par carte à l'étranger sont généralement gratuits sur les offres de base. Les formules payantes lèvent la plupart de ces limites."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelle est la difference entre une neobanque et une banque en ligne ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Une banque en ligne detient un agrement bancaire complet et peut proposer credit immobilier, decouvert autorise et livrets reglementes. Une neobanque est souvent agreee etablissement de paiement ou de monnaie electronique, une licence plus legere qui ne permet pas de preter de l'argent. N26 fait exception avec une veritable licence bancaire allemande."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mes depots sont-ils garantis si la neobanque est basee dans un autre pays europeen ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oui, a condition qu'elle soit agreee dans l'UE/EEE : grace au passeport europeen, elle peut operer en France sans agrement francais, et les depots sont couverts par le fonds de garantie de son pays d'origine, avec un plafond equivalent a 100 000 euros par deposant et par etablissement."
+        }
       }
     ]
   }
@@ -195,6 +211,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="banks" id="banks-list"><!-- généré par JS --></div>
   </div>
 
+  <div class="card">
+    <h2>📝 Néobanque ou banque en ligne : quelle différence ?</h2>
+    <p style="font-size:.9rem;color:var(--m);line-height:1.7;margin-bottom:.9rem">Une néobanque n'est pas forcément une banque au sens strict. Beaucoup (Revolut, N26, Sumeria) sont agréées comme <strong>établissement de paiement ou de monnaie électronique</strong>, pas comme banque de plein exercice : elles ne peuvent ni prêter ni proposer de crédit immobilier. D'autres, comme N26, détiennent une licence bancaire complète en Allemagne. Dans tous les cas, vérifiez l'agrément et le pays qui le délivre : grâce au « passeport européen », une néobanque agréée dans un pays de l'UE/EEE peut opérer en France sans agrément français, et vos dépôts restent couverts par le fonds de garantie <strong>du pays d'origine</strong> (plafond équivalent à 100 000€ par déposant et par établissement).</p>
+    <p style="font-size:.9rem;color:var(--m);line-height:1.7">C'est pourquoi la plupart des utilisateurs gardent une banque traditionnelle ou en ligne « complète » en complément d'une néobanque : pour un crédit immobilier, un découvert autorisé ou un conseiller physique en cas de pépin.</p>
+    <p style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Comparatif vérifié le 23/10/2026</strong> à partir des grilles tarifaires publiques des établissements.</p>
+  </div>
+
   <div class="tip" id="tip-text">
     <strong>💡 Conseil :</strong> Sélectionnez un critère ci-dessus pour voir la néobanque la plus adaptée.
   </div>
@@ -213,9 +236,17 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <summary style="font-weight:700;cursor:pointer">Comment déposer des espèces sur une néobanque ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">La plupart des néobanques 100% mobiles ne permettent pas le dépôt d'espèces directement. Nickel est une exception notable : les dépôts se font chez les buralistes partenaires moyennant une petite commission.</p>
     </details>
-    <details>
+    <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Les néobanques prélèvent-elles des frais à l'étranger ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Cela dépend de l'offre : les formules gratuites plafonnent souvent le nombre de retraits gratuits par mois en zone euro, tandis que les paiements par carte à l'étranger sont généralement gratuits sur les offres de base. Les formules payantes lèvent la plupart de ces limites.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Quelle est la différence entre une néobanque et une banque en ligne ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Une banque en ligne (BoursoBank, Fortuneo, Monabanq...) détient un agrément bancaire complet : elle peut proposer crédit immobilier, découvert autorisé, livrets réglementés. Une néobanque est souvent agréée « établissement de paiement » ou « de monnaie électronique », une licence plus légère qui ne permet pas de prêter de l'argent. N26 fait exception avec une vraie licence bancaire allemande.</p>
+    </details>
+    <details>
+      <summary style="font-weight:700;cursor:pointer">Mes dépôts sont-ils garantis si la néobanque est basée dans un autre pays européen ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Oui, à condition qu'elle soit agréée dans l'UE/EEE : grâce au « passeport européen », elle peut opérer en France sans agrément français, et vos dépôts sont couverts par le fonds de garantie de son pays d'origine (par exemple la Lituanie pour Revolut Bank UAB), avec un plafond équivalent à 100 000€ par déposant et par établissement — le même principe que le FGDR français.</p>
     </details>
   </div>
 
@@ -292,10 +323,10 @@ const NEOBANKS = [
     id:'revolut', icon:'🟣', nom:'Revolut',
     desc:"Change de devises au taux réel et paiements à l'étranger sans frais cachés : la référence pour les voyageurs.",
     facts:{
-      'Formule gratuite':'Oui, carte virtuelle incluse',
-      'Formules payantes':'Dès 3,99€/mois (Plus, Premium, Metal)',
-      'Retraits zone euro':'5 retraits gratuits/mois, puis commission',
-      "À l'étranger":"Paiements gratuits, change au taux interbancaire",
+      'Formule gratuite':'Oui (Standard), carte virtuelle incluse',
+      'Formules payantes':'Plus 3,99€, Premium 9,99€, Metal 16,99€/mois',
+      'Retraits zone euro':'200€/mois gratuits (Standard), 400€ (Plus/Premium), 800€ (Metal)',
+      "À l'étranger":"Change à 0% en semaine, +1% le week-end",
     },
     profils:['voyage']
   },
@@ -304,17 +335,17 @@ const NEOBANKS = [
     desc:"Une appli épurée et un compte gratuit sans engagement, pensé pour un usage quotidien simple.",
     facts:{
       'Formule gratuite':'Oui (N26 Standard)',
-      'Formules payantes':'Dès 4,90€/mois (Smart, You, Metal)',
-      'Retraits zone euro':'3 retraits gratuits/mois, puis commission',
-      "À l'étranger":'Paiements par carte gratuits',
+      'Formules payantes':'Smart, You, Metal (tarifs variables selon les options)',
+      'Retraits zone euro':'3 retraits ou 120€/mois gratuits, puis commission',
+      "À l'étranger":'Change à 0%, paiements par carte gratuits',
     },
     profils:['quotidien','voyage']
   },
   {
     id:'nickel', icon:'🟠', nom:'Nickel',
-    desc:"Le compte qui s'ouvre en 5 minutes chez un buraliste, sans condition de revenus ni de dépôt initial.",
+    desc:"Le compte qui s'ouvre en 5 minutes chez un buraliste, sans condition de revenus, de dépôt initial ni consultation du fichier des incidents bancaires : une vraie option pour les personnes en interdit bancaire.",
     facts:{
-      'Coût annuel':"À partir de 25€/an selon l'offre",
+      'Coût annuel':"Environ 20€/an sur l'offre de base",
       'Dépôt/retrait espèces':'Oui, chez les buralistes partenaires (commission)',
       'Retraits DAB':'Commission par retrait',
       "À l'étranger":'Frais sur paiements hors zone euro',
@@ -327,10 +358,21 @@ const NEOBANKS = [
     facts:{
       'Formule gratuite':'Oui, carte virtuelle incluse',
       'Formules payantes':'Avec cashback et carte physique/métal',
-      'Épargne':'Compte rémunéré disponible en option',
+      'Épargne':"Jusqu'à 4%/an sur l'offre payante, moins sur la gratuite",
       "À l'étranger":'Variable selon la formule souscrite',
     },
     profils:['epargne','quotidien']
+  },
+  {
+    id:'traderepublic', icon:'🔷', nom:'Trade Republic',
+    desc:"Pensée pour qui veut faire fructifier son solde automatiquement : compte courant rémunéré et épargne investie en un clic.",
+    facts:{
+      'Formule gratuite':'Oui, compte courant + carte incluse',
+      'Rémunération':"2%/an sur le solde du compte courant",
+      'Investissement':"Courtage à 1€ par ordre, Saveback (1% des paiements réinvesti en ETF)",
+      "À l'étranger":'Pas de frais de change mis en avant pour un usage courant',
+    },
+    profils:['epargne']
   },
 ];
 
