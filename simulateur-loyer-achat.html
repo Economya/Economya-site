@@ -213,7 +213,17 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="compare-row"><span class="lbl">Loyers totaux payés</span><span class="val" id="l-total">—</span></div>
       <div class="compare-row"><span class="lbl">Apport investi (5%/an)</span><span class="val" id="l-apport">—</span></div>
       <div class="compare-row"><span class="lbl">Gain sur placement apport</span><span class="val" id="l-gain">—</span></div>
+      <div class="compare-row"><span class="lbl">Écart mensuel investi (si locataire moins cher)</span><span class="val" id="l-gain-mensuel">—</span></div>
       <div class="compare-row"><span class="lbl"><strong>Coût net final</strong></span><span class="val" id="l-net">—</span></div>
+    </div>
+  </div>
+
+  <div class="chart-card" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.4rem 1.5rem;margin:1.5rem 0">
+    <h3 style="margin-bottom:.8rem">📈 Coût cumulé dans le temps</h3>
+    <svg id="chart-loyer-achat" viewBox="0 0 600 220" style="width:100%;height:auto;overflow:visible" preserveAspectRatio="xMidYMid meet"></svg>
+    <div style="display:flex;gap:1.2rem;margin-top:.6rem;font-size:.8rem;color:#5F5E5A">
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#4f46e5;margin-right:.3rem"></span>Acheter</span>
+      <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#059669;margin-right:.3rem"></span>Louer</span>
     </div>
   </div>
 
@@ -273,6 +283,82 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
+function drawChart(serieAchat, serieLoyer, dureeActuelle) {
+  const svg = document.getElementById('chart-loyer-achat');
+  if (!svg) return;
+  const W = 600, H = 220, padL = 40, padR = 10, padT = 10, padB = 24;
+  const n = serieAchat.length; // 30 points (années 1 à 30)
+  const allVals = serieAchat.concat(serieLoyer);
+  const minV = Math.min(0, ...allVals);
+  const maxV = Math.max(...allVals);
+  const x = i => padL + (i / (n - 1)) * (W - padL - padR);
+  const y = v => H - padB - ((v - minV) / (maxV - minV || 1)) * (H - padT - padB);
+
+  const path = (serie) => serie.map((v, i) => `${i === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+
+  const xActuel = x(Math.min(dureeActuelle, n) - 1);
+
+  svg.innerHTML = `
+    <line x1="${padL}" y1="${H-padB}" x2="${W-padR}" y2="${H-padB}" stroke="#e5e5e0" stroke-width="1"/>
+    <line x1="${xActuel.toFixed(1)}" y1="${padT}" x2="${xActuel.toFixed(1)}" y2="${H-padB}" stroke="#EF9F27" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <path d="${path(serieAchat)}" fill="none" stroke="#4f46e5" stroke-width="2.5"/>
+    <path d="${path(serieLoyer)}" fill="none" stroke="#059669" stroke-width="2.5"/>
+    <text x="${xActuel.toFixed(1)}" y="${padT + 10}" font-size="11" fill="#EF9F27" text-anchor="middle">${dureeActuelle} ans</text>
+    <text x="${padL}" y="${H-6}" font-size="10" fill="#5F5E5A">1 an</text>
+    <text x="${W-padR}" y="${H-6}" font-size="10" fill="#5F5E5A" text-anchor="end">30 ans</text>
+  `;
+}
+
+// Taux indicatifs : crédit ~3,7% (moyenne marché 25 ans, septembre 2026), placement alternatif ~5%/an (ETF monde)
+const TAUX_CREDIT_ANNUEL = 0.037;
+const DUREE_CREDIT_ANS = 25;
+const TAUX_PLACEMENT_ANNUEL = 0.05;
+
+// Calcule le coût net (achat vs location) sur `years` années, pour un même prix/loyer/apport.
+// Centralisé ici pour que l'affichage principal, le point de bascule et le graphique utilisent
+// exactement la même formule (avant, le point de bascule était calculé avec une formule légèrement
+// différente du reste de la page, ce qui pouvait les faire se contredire).
+function scenario(prix, loyer, apport, years) {
+  // ACHAT
+  const emprunt = prix - apport;
+  const tauxMensuel = TAUX_CREDIT_ANNUEL / 12;
+  const n = DUREE_CREDIT_ANS * 12;
+  const mensualite = emprunt * tauxMensuel / (1 - Math.pow(1 + tauxMensuel, -n));
+  const chargesAchat = prix * 0.003; // 0.3% du prix/an (charges + taxe foncière)
+  const fraisNotaire = prix * 0.08;
+  const coutMensuelAchat = mensualite + chargesAchat / 12;
+  const coutTotalAchat = coutMensuelAchat * 12 * years + fraisNotaire;
+  const revente = prix * Math.pow(1.02, years); // +2%/an
+  const netAchatBrut = coutTotalAchat - revente + prix;
+
+  // LOYER
+  const chargesLoc = loyer * 0.15; // 15% de charges locatives
+  const coutMensuelLoyer = loyer * 1.01 + chargesLoc; // approx. +1%/an de hausse de loyer étalée sur la période
+  const loyersTotal = (loyer * 1.01 + chargesLoc) * 12 * years;
+  const apportPlacement = apport * (Math.pow(1 + TAUX_PLACEMENT_ANNUEL, years) - 1); // apport investi à 5%/an
+  const netLoyerBrut = loyersTotal - apportPlacement;
+
+  // Coût d'opportunité de l'écart mensuel : celui qui paie moins chaque mois peut investir la différence.
+  // C'est ce qui manquait : seul l'apport (capital de départ) était investi, jamais l'écart récurrent.
+  const r = TAUX_PLACEMENT_ANNUEL / 12;
+  const nMois = years * 12;
+  const fvAnnuite = (pmt) => r > 0 ? pmt * (Math.pow(1 + r, nMois) - 1) / r : pmt * nMois;
+  const ecartMensuel = coutMensuelAchat - coutMensuelLoyer;
+  let gainEcartMensuel = 0;
+  let netAchat = netAchatBrut, netLoyer = netLoyerBrut;
+  if (ecartMensuel > 0) {
+    // Louer coûte moins cher chaque mois : le locataire investit la différence.
+    gainEcartMensuel = fvAnnuite(ecartMensuel);
+    netLoyer -= gainEcartMensuel;
+  } else if (ecartMensuel < 0) {
+    // Acheter coûte moins cher chaque mois : l'acheteur investit la différence.
+    gainEcartMensuel = fvAnnuite(-ecartMensuel);
+    netAchat -= gainEcartMensuel;
+  }
+
+  return { mensualite, chargesAchat, fraisNotaire, coutTotalAchat, revente, netAchat, chargesLoc, loyersTotal, apportPlacement, ecartMensuel, gainEcartMensuel, netLoyer };
+}
+
 function calculate() {
   const prix = +document.getElementById('prix').value;
   const loyer = +document.getElementById('loyer').value;
@@ -284,23 +370,8 @@ function calculate() {
   document.getElementById('v-apport').innerHTML = (apport/1000).toFixed(0) + ' 000 <span>€</span>';
   document.getElementById('v-duree').innerHTML = duree + ' <span>ans</span>';
 
-  // ACHAT
-  const emprunt = prix - apport;
-  const tauxMensuel = 0.037 / 12; // Taux indicatif ~3,7% (moyenne marché crédit 25 ans, septembre 2026, fluctue mensuellement)
-  const n = 25 * 12; // durée crédit 25 ans
-  const mensualite = emprunt * tauxMensuel / (1 - Math.pow(1 + tauxMensuel, -n));
-  const chargesAchat = prix * 0.003; // 0.3% du prix/an (charges + taxe foncière)
-  const fraisNotaire = prix * 0.08;
-  const coutTotalAchat = (mensualite * 12 + chargesAchat) * duree + fraisNotaire;
-  const revente = prix * Math.pow(1.02, duree); // +2%/an
-  const capitalRembourse = mensualite * 12 * duree - emprunt * 0.035 * duree; // approximatif
-  const netAchat = coutTotalAchat - revente + prix;
-
-  // LOYER
-  const chargesLoc = loyer * 0.15; // 15% de charges locatives
-  const loyersTotal = loyer * 12 * duree * 1.01; // +1%/an loyer
-  const apportPlacement = apport * (Math.pow(1.05, duree) - 1); // apport investi à 5%/an
-  const netLoyer = loyersTotal - apportPlacement;
+  const s = scenario(prix, loyer, apport, duree);
+  const { mensualite, chargesAchat, fraisNotaire, coutTotalAchat, revente, netAchat, chargesLoc, loyersTotal, apportPlacement, ecartMensuel, gainEcartMensuel, netLoyer } = s;
 
   document.getElementById('c-mensualite').textContent = fmt(mensualite) + '/mois';
   document.getElementById('c-charges').textContent = fmt(chargesAchat) + '/an';
@@ -314,17 +385,22 @@ function calculate() {
   document.getElementById('l-total').textContent = fmt(loyersTotal);
   document.getElementById('l-apport').textContent = fmt(apport) + ' → ' + fmt(apport + apportPlacement);
   document.getElementById('l-gain').textContent = '+' + fmt(apportPlacement);
-  document.getElementById('l-net').textContent = fmt(netLoyer);
+  document.getElementById('l-gain-mensuel').textContent = ecartMensuel > 0
+    ? '+' + fmt(gainEcartMensuel) + ' (côté location)'
+    : (ecartMensuel < 0 ? '+' + fmt(gainEcartMensuel) + ' (côté achat)' : '—');
 
-  // Point de bascule
+  // Point de bascule + séries pour le graphique (même formule `scenario()` que ci-dessus)
   let bascule = 0;
+  const serieAchat = [], serieLoyer = [];
   for(let i = 1; i <= 30; i++) {
-    const ca = (mensualite * 12 + chargesAchat) * i + fraisNotaire - (prix * Math.pow(1.02, i) - prix);
-    const cl = loyer * 12 * i - apport * (Math.pow(1.05, i) - 1);
-    if(ca < cl) { bascule = i; break; }
+    const si = scenario(prix, loyer, apport, i);
+    serieAchat.push(si.netAchat);
+    serieLoyer.push(si.netLoyer);
+    if(bascule === 0 && si.netAchat < si.netLoyer) bascule = i;
   }
 
   document.getElementById('bascule-annees').textContent = bascule > 0 ? bascule + ' ans' : '30+ ans';
+  drawChart(serieAchat, serieLoyer, duree);
 
   // Verdict
   const verdict = document.getElementById('verdict');
