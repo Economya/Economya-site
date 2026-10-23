@@ -87,6 +87,19 @@ a{text-decoration:none;color:inherit;}
 .biz-card h2{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;margin-bottom:10px;}
 .biz-card p{font-size:14px;color:rgba(255,255,255,.78);max-width:480px;margin:0 auto 22px;line-height:1.6;}
 .biz-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0A0A0A;padding:13px 28px;border-radius:99px;font-weight:800;font-size:14px;}
+.biz-card{display:flex;align-items:center;gap:30px;text-align:left}
+.biz-card-text{flex:1;min-width:0}
+.biz-mosaic-wrap{display:none;width:300px;height:209px;overflow:hidden;border-radius:16px;position:relative;flex-shrink:0;background:#1A1410;border:1px solid rgba(255,255,255,.08)}
+@media(min-width:760px){.biz-mosaic-wrap{display:block}}
+.biz-mosaic-canvas{width:460px;height:320px;transform:scale(.652);transform-origin:top left;position:absolute;top:0;left:0}
+.bm-cell{position:absolute;border-radius:3px}
+.bm-chip{position:absolute;background:#fff;color:#0A0A0A;font-size:11px;font-weight:800;padding:6px 12px;border-radius:99px;display:flex;align-items:center;gap:6px;box-shadow:0 6px 16px rgba(0,0,0,.3);z-index:3;white-space:nowrap}
+.bm-node{position:absolute;width:48px;height:48px;border-radius:12px;background:rgba(10,10,10,.82);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 8px 18px rgba(0,0,0,.35)}
+.bm-node svg{width:22px;height:22px;stroke:#FDE68A;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bm-diamond{position:absolute;border:1.5px solid rgba(255,255,255,.22);border-radius:6px;transform:rotate(45deg);z-index:2}
+.bm-label{position:absolute;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);z-index:2}
+.bm-lines{position:absolute;inset:0;z-index:1;width:100%;height:100%}
+@media(max-width:759px){.biz-card{justify-content:center}}
 
 /* SECTION BUSINESS (ex-Economya Business, fusionnée dans la page) */
 .biz-section{max-width:720px;margin:0 auto;padding:44px 20px;}
@@ -231,9 +244,118 @@ a{text-decoration:none;color:inherit;}
 
 <div class="biz-cta">
   <div class="biz-card">
-    <h2 class="serif">Vous représentez une entreprise ?</h2>
-    <p>Faites connaître votre offre auprès d'une communauté attentive à son argent — banque, énergie, télécoms, assurance, voyage, restauration. Dépôt simple, mise en avant optionnelle, toujours identifiée comme partenariat.</p>
-    <a href="#business" class="biz-btn">Déposer mon offre ↓</a>
+    <div class="biz-card-text">
+      <h2 class="serif">Vous représentez une entreprise ?</h2>
+      <p>Faites connaître votre offre auprès d'une communauté attentive à son argent — banque, énergie, télécoms, assurance, voyage, restauration. Dépôt simple, mise en avant optionnelle, toujours identifiée comme partenariat.</p>
+      <a href="#business" class="biz-btn">Déposer mon offre ↓</a>
+    </div>
+    <div class="biz-mosaic-wrap"><div class="biz-mosaic-canvas">
+<div class="bm-cell" style="left:0px;top:0px;width:38px;height:38px;background:#3A2608;opacity:0.94"></div>
+<div class="bm-cell" style="left:40px;top:0px;width:38px;height:38px;background:#3A2608;opacity:0.75"></div>
+<div class="bm-cell" style="left:80px;top:0px;width:38px;height:38px;background:#6B4607;opacity:0.63"></div>
+<div class="bm-cell" style="left:120px;top:0px;width:38px;height:38px;background:#3A2608;opacity:0.83"></div>
+<div class="bm-cell" style="left:160px;top:0px;width:38px;height:38px;background:#4A2F05;opacity:0.59"></div>
+<div class="bm-cell" style="left:200px;top:0px;width:38px;height:38px;background:#8A5D08;opacity:0.61"></div>
+<div class="bm-cell" style="left:240px;top:0px;width:38px;height:38px;background:#1A1410;opacity:0.82"></div>
+<div class="bm-cell" style="left:280px;top:0px;width:38px;height:38px;background:#5C3A02;opacity:0.98"></div>
+<div class="bm-cell" style="left:320px;top:0px;width:38px;height:38px;background:#4A2F05;opacity:0.83"></div>
+<div class="bm-cell" style="left:360px;top:0px;width:38px;height:38px;background:#2E1F0A;opacity:0.58"></div>
+<div class="bm-cell" style="left:400px;top:0px;width:38px;height:38px;background:#6B4607;opacity:0.95"></div>
+<div class="bm-cell" style="left:0px;top:40px;width:38px;height:38px;background:#1A1410;opacity:0.9"></div>
+<div class="bm-cell" style="left:40px;top:40px;width:38px;height:38px;background:#B8860B;opacity:0.75"></div>
+<div class="bm-cell" style="left:80px;top:40px;width:38px;height:38px;background:#6B4607;opacity:0.78"></div>
+<div class="bm-cell" style="left:120px;top:40px;width:38px;height:38px;background:#8A5D08;opacity:0.77"></div>
+<div class="bm-cell" style="left:160px;top:40px;width:38px;height:38px;background:#2E1F0A;opacity:0.76"></div>
+<div class="bm-cell" style="left:200px;top:40px;width:38px;height:38px;background:#8A5D08;opacity:0.73"></div>
+<div class="bm-cell" style="left:240px;top:40px;width:38px;height:38px;background:#2E1F0A;opacity:0.87"></div>
+<div class="bm-cell" style="left:280px;top:40px;width:38px;height:38px;background:#B8860B;opacity:0.89"></div>
+<div class="bm-cell" style="left:320px;top:40px;width:38px;height:38px;background:#8A5D08;opacity:0.56"></div>
+<div class="bm-cell" style="left:360px;top:40px;width:38px;height:38px;background:#2E1F0A;opacity:0.73"></div>
+<div class="bm-cell" style="left:400px;top:40px;width:38px;height:38px;background:#8A5D08;opacity:0.72"></div>
+<div class="bm-cell" style="left:0px;top:80px;width:38px;height:38px;background:#1A1410;opacity:0.93"></div>
+<div class="bm-cell" style="left:40px;top:80px;width:38px;height:38px;background:#1A1410;opacity:0.65"></div>
+<div class="bm-cell" style="left:80px;top:80px;width:38px;height:38px;background:#1A1410;opacity:0.76"></div>
+<div class="bm-cell" style="left:120px;top:80px;width:38px;height:38px;background:#5C3A02;opacity:0.74"></div>
+<div class="bm-cell" style="left:160px;top:80px;width:38px;height:38px;background:#6B4607;opacity:0.9"></div>
+<div class="bm-cell" style="left:200px;top:80px;width:38px;height:38px;background:#8A5D08;opacity:0.7"></div>
+<div class="bm-cell" style="left:240px;top:80px;width:38px;height:38px;background:#8A5D08;opacity:0.7"></div>
+<div class="bm-cell" style="left:280px;top:80px;width:38px;height:38px;background:#5C3A02;opacity:0.89"></div>
+<div class="bm-cell" style="left:320px;top:80px;width:38px;height:38px;background:#2E1F0A;opacity:0.61"></div>
+<div class="bm-cell" style="left:360px;top:80px;width:38px;height:38px;background:#2E1F0A;opacity:0.55"></div>
+<div class="bm-cell" style="left:400px;top:80px;width:38px;height:38px;background:#3A2608;opacity:0.91"></div>
+<div class="bm-cell" style="left:0px;top:120px;width:38px;height:38px;background:#4A2F05;opacity:0.86"></div>
+<div class="bm-cell" style="left:40px;top:120px;width:38px;height:38px;background:#6B4607;opacity:0.75"></div>
+<div class="bm-cell" style="left:80px;top:120px;width:38px;height:38px;background:#6B4607;opacity:0.99"></div>
+<div class="bm-cell" style="left:120px;top:120px;width:38px;height:38px;background:#4A2F05;opacity:0.74"></div>
+<div class="bm-cell" style="left:160px;top:120px;width:38px;height:38px;background:#5C3A02;opacity:0.6"></div>
+<div class="bm-cell" style="left:200px;top:120px;width:38px;height:38px;background:#5C3A02;opacity:1.0"></div>
+<div class="bm-cell" style="left:240px;top:120px;width:38px;height:38px;background:#1A1410;opacity:0.67"></div>
+<div class="bm-cell" style="left:280px;top:120px;width:38px;height:38px;background:#8A5D08;opacity:1.0"></div>
+<div class="bm-cell" style="left:320px;top:120px;width:38px;height:38px;background:#1A1410;opacity:0.64"></div>
+<div class="bm-cell" style="left:360px;top:120px;width:38px;height:38px;background:#5C3A02;opacity:1.0"></div>
+<div class="bm-cell" style="left:400px;top:120px;width:38px;height:38px;background:#2E1F0A;opacity:0.57"></div>
+<div class="bm-cell" style="left:0px;top:160px;width:38px;height:38px;background:#4A2F05;opacity:0.65"></div>
+<div class="bm-cell" style="left:40px;top:160px;width:38px;height:38px;background:#8A5D08;opacity:0.55"></div>
+<div class="bm-cell" style="left:80px;top:160px;width:38px;height:38px;background:#B8860B;opacity:0.92"></div>
+<div class="bm-cell" style="left:120px;top:160px;width:38px;height:38px;background:#5C3A02;opacity:0.58"></div>
+<div class="bm-cell" style="left:160px;top:160px;width:38px;height:38px;background:#2E1F0A;opacity:0.64"></div>
+<div class="bm-cell" style="left:200px;top:160px;width:38px;height:38px;background:#6B4607;opacity:0.56"></div>
+<div class="bm-cell" style="left:240px;top:160px;width:38px;height:38px;background:#B8860B;opacity:0.72"></div>
+<div class="bm-cell" style="left:280px;top:160px;width:38px;height:38px;background:#3A2608;opacity:0.61"></div>
+<div class="bm-cell" style="left:320px;top:160px;width:38px;height:38px;background:#3A2608;opacity:0.92"></div>
+<div class="bm-cell" style="left:360px;top:160px;width:38px;height:38px;background:#4A2F05;opacity:0.94"></div>
+<div class="bm-cell" style="left:400px;top:160px;width:38px;height:38px;background:#4A2F05;opacity:0.83"></div>
+<div class="bm-cell" style="left:0px;top:200px;width:38px;height:38px;background:#8A5D08;opacity:0.96"></div>
+<div class="bm-cell" style="left:40px;top:200px;width:38px;height:38px;background:#6B4607;opacity:0.88"></div>
+<div class="bm-cell" style="left:80px;top:200px;width:38px;height:38px;background:#4A2F05;opacity:0.88"></div>
+<div class="bm-cell" style="left:120px;top:200px;width:38px;height:38px;background:#6B4607;opacity:0.86"></div>
+<div class="bm-cell" style="left:160px;top:200px;width:38px;height:38px;background:#5C3A02;opacity:0.95"></div>
+<div class="bm-cell" style="left:200px;top:200px;width:38px;height:38px;background:#2E1F0A;opacity:0.74"></div>
+<div class="bm-cell" style="left:240px;top:200px;width:38px;height:38px;background:#2E1F0A;opacity:0.6"></div>
+<div class="bm-cell" style="left:280px;top:200px;width:38px;height:38px;background:#8A5D08;opacity:0.66"></div>
+<div class="bm-cell" style="left:320px;top:200px;width:38px;height:38px;background:#5C3A02;opacity:0.67"></div>
+<div class="bm-cell" style="left:360px;top:200px;width:38px;height:38px;background:#3A2608;opacity:0.68"></div>
+<div class="bm-cell" style="left:400px;top:200px;width:38px;height:38px;background:#4A2F05;opacity:0.97"></div>
+<div class="bm-cell" style="left:0px;top:240px;width:38px;height:38px;background:#2E1F0A;opacity:0.61"></div>
+<div class="bm-cell" style="left:40px;top:240px;width:38px;height:38px;background:#3A2608;opacity:0.8"></div>
+<div class="bm-cell" style="left:80px;top:240px;width:38px;height:38px;background:#2E1F0A;opacity:0.68"></div>
+<div class="bm-cell" style="left:120px;top:240px;width:38px;height:38px;background:#6B4607;opacity:0.89"></div>
+<div class="bm-cell" style="left:160px;top:240px;width:38px;height:38px;background:#2E1F0A;opacity:0.67"></div>
+<div class="bm-cell" style="left:200px;top:240px;width:38px;height:38px;background:#3A2608;opacity:0.66"></div>
+<div class="bm-cell" style="left:240px;top:240px;width:38px;height:38px;background:#1A1410;opacity:0.63"></div>
+<div class="bm-cell" style="left:280px;top:240px;width:38px;height:38px;background:#B8860B;opacity:0.79"></div>
+<div class="bm-cell" style="left:320px;top:240px;width:38px;height:38px;background:#4A2F05;opacity:0.59"></div>
+<div class="bm-cell" style="left:360px;top:240px;width:38px;height:38px;background:#4A2F05;opacity:0.95"></div>
+<div class="bm-cell" style="left:400px;top:240px;width:38px;height:38px;background:#B8860B;opacity:0.85"></div>
+<div class="bm-cell" style="left:0px;top:280px;width:38px;height:38px;background:#4A2F05;opacity:0.82"></div>
+<div class="bm-cell" style="left:40px;top:280px;width:38px;height:38px;background:#1A1410;opacity:0.76"></div>
+<div class="bm-cell" style="left:80px;top:280px;width:38px;height:38px;background:#B8860B;opacity:0.87"></div>
+<div class="bm-cell" style="left:120px;top:280px;width:38px;height:38px;background:#1A1410;opacity:0.56"></div>
+<div class="bm-cell" style="left:160px;top:280px;width:38px;height:38px;background:#2E1F0A;opacity:0.77"></div>
+<div class="bm-cell" style="left:200px;top:280px;width:38px;height:38px;background:#8A5D08;opacity:0.69"></div>
+<div class="bm-cell" style="left:240px;top:280px;width:38px;height:38px;background:#2E1F0A;opacity:0.58"></div>
+<div class="bm-cell" style="left:280px;top:280px;width:38px;height:38px;background:#B8860B;opacity:0.88"></div>
+<div class="bm-cell" style="left:320px;top:280px;width:38px;height:38px;background:#4A2F05;opacity:0.91"></div>
+<div class="bm-cell" style="left:360px;top:280px;width:38px;height:38px;background:#B8860B;opacity:0.71"></div>
+<div class="bm-cell" style="left:400px;top:280px;width:38px;height:38px;background:#3A2608;opacity:0.96"></div>
+      <svg class="bm-lines" viewBox="0 0 460 320">
+        <path d="M 95 70 L 95 110 L 150 110" fill="none" stroke="rgba(253,230,138,.45)" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <path d="M 150 110 L 210 110 L 210 150" fill="none" stroke="rgba(253,230,138,.45)" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <path d="M 330 90 L 330 140 L 290 140" fill="none" stroke="rgba(253,230,138,.45)" stroke-width="1.5" stroke-dasharray="3 4"/>
+        <circle cx="95" cy="70" r="3" fill="rgba(253,230,138,.6)"/>
+        <circle cx="150" cy="110" r="3" fill="rgba(253,230,138,.6)"/>
+        <circle cx="330" cy="90" r="3" fill="rgba(253,230,138,.6)"/>
+      </svg>
+      <div class="bm-diamond" style="width:20px;height:20px;top:26px;right:36px"></div>
+      <div class="bm-diamond" style="width:13px;height:13px;bottom:30px;left:28px;border-color:rgba(253,230,138,.3)"></div>
+      <div class="bm-label" style="top:14px;left:18px">Catégorie</div>
+      <div class="bm-label" style="bottom:16px;right:20px">Partenariat</div>
+      <div class="bm-chip" style="top:120px;left:170px">🎯 De nouveaux clients</div>
+      <div class="bm-node" style="top:40px;left:70px"><svg viewBox="0 0 24 24"><path d="M3 10l9-6 9 6-9 6-9-6Z"/><path d="M7 12.5V18c0 1 2.2 2 5 2s5-1 5-2v-5.5"/></svg></div>
+      <div class="bm-node" style="top:150px;left:125px"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2Z"/></svg></div>
+      <div class="bm-node" style="top:62px;left:306px"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 13.5c0 1.4 1.3 2.3 3.5 2.3s3.5-.8 3.5-2c0-1.3-1.1-1.8-3.5-2.3S8.5 10.7 8.5 9.5c0-1.2 1.3-2 3.5-2s3.5.9 3.5 2.3"/></svg></div>
+      <div class="bm-node" style="top:200px;left:300px"><svg viewBox="0 0 24 24"><path d="M4 19V11M10 19V5M16 19v-8M22 19H2"/></svg></div>
+    </div></div>
   </div>
 </div>
 

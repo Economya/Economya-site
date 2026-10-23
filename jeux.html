@@ -33,6 +33,16 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .hstat{text-align:center}
 .hstat-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;color:var(--a);display:block}
 .hstat-lbl{font-size:.72rem;color:rgba(255,255,255,.65);text-transform:uppercase;letter-spacing:.05em}
+.corner{position:absolute;right:0;bottom:0;width:300px;height:210px;z-index:1;overflow:hidden;display:none;
+  mask-image:linear-gradient(to left, #000 50%, transparent 100%);
+  -webkit-mask-image:linear-gradient(to left, #000 50%, transparent 100%);}
+@media(min-width:900px){.corner{display:block}}
+.jm-cell{position:absolute;border-radius:2px}
+.path-svg{position:absolute;inset:0;width:100%;height:100%}
+.lvl{position:absolute;width:30px;height:30px;border-radius:50%;background:#071226;border:2px solid #EF9F27;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:#EF9F27;z-index:2}
+.lvl.done{background:#1D9E75;border-color:#1D9E75;color:#fff}
+.star{position:absolute;font-size:16px;opacity:.55;z-index:2}
+.trophy-chip{position:absolute;top:18px;right:22px;background:#fff;color:#0a0a0a;font-size:11px;font-weight:800;padding:6px 12px;border-radius:99px;z-index:3;box-shadow:0 6px 14px rgba(0,0,0,.3);white-space:nowrap}
 
 .container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem;position:relative;z-index:1}
 .section-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:#60a5fa;margin-bottom:1.2rem;text-shadow:0 0 20px rgba(96,165,250,0.3)}
@@ -212,6 +222,157 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="hstat"><span class="hstat-val">46</span><span class="hstat-lbl">Jeux disponibles</span></div>
     <div class="hstat"><span class="hstat-val">100%</span><span class="hstat-lbl">Gratuit</span></div>
     <div class="hstat"><span class="hstat-val">∞</span><span class="hstat-lbl">Parties illimitées</span></div>
+  </div>
+  <div class="corner">
+<div class="jm-cell" style="left:0px;top:0px;width:33px;height:33px;background:#0a1333;opacity:0.5"></div>
+<div class="jm-cell" style="left:34px;top:0px;width:33px;height:33px;background:#0d1b4b;opacity:0.54"></div>
+<div class="jm-cell" style="left:68px;top:0px;width:33px;height:33px;background:#0a1333;opacity:0.64"></div>
+<div class="jm-cell" style="left:102px;top:0px;width:33px;height:33px;background:#0d1b4b;opacity:0.74"></div>
+<div class="jm-cell" style="left:136px;top:0px;width:33px;height:33px;background:#0a1333;opacity:0.55"></div>
+<div class="jm-cell" style="left:170px;top:0px;width:33px;height:33px;background:#0d1b4b;opacity:0.54"></div>
+<div class="jm-cell" style="left:204px;top:0px;width:33px;height:33px;background:#0a1333;opacity:0.58"></div>
+<div class="jm-cell" style="left:238px;top:0px;width:33px;height:33px;background:#0d1b4b;opacity:0.77"></div>
+<div class="jm-cell" style="left:272px;top:0px;width:33px;height:33px;background:#0a1333;opacity:0.55"></div>
+<div class="jm-cell" style="left:306px;top:0px;width:33px;height:33px;background:#0d1b4b;opacity:0.76"></div>
+<div class="jm-cell" style="left:340px;top:0px;width:33px;height:33px;background:#0a1333;opacity:0.73"></div>
+<div class="jm-cell" style="left:374px;top:0px;width:33px;height:33px;background:#0d1b4b;opacity:0.55"></div>
+<div class="jm-cell" style="left:408px;top:0px;width:33px;height:33px;background:#0a1333;opacity:0.69"></div>
+<div class="jm-cell" style="left:442px;top:0px;width:33px;height:33px;background:#0d1b4b;opacity:0.66"></div>
+<div class="jm-cell" style="left:0px;top:34px;width:33px;height:33px;background:#0d1b4b;opacity:0.64"></div>
+<div class="jm-cell" style="left:34px;top:34px;width:33px;height:33px;background:#0a1333;opacity:0.85"></div>
+<div class="jm-cell" style="left:68px;top:34px;width:33px;height:33px;background:#0d1b4b;opacity:0.53"></div>
+<div class="jm-cell" style="left:102px;top:34px;width:33px;height:33px;background:#0a1333;opacity:0.51"></div>
+<div class="jm-cell" style="left:136px;top:34px;width:33px;height:33px;background:#0d1b4b;opacity:0.83"></div>
+<div class="jm-cell" style="left:170px;top:34px;width:33px;height:33px;background:#0a1333;opacity:0.64"></div>
+<div class="jm-cell" style="left:204px;top:34px;width:33px;height:33px;background:#0d1b4b;opacity:0.57"></div>
+<div class="jm-cell" style="left:238px;top:34px;width:33px;height:33px;background:#0a1333;opacity:0.62"></div>
+<div class="jm-cell" style="left:272px;top:34px;width:33px;height:33px;background:#0d1b4b;opacity:0.63"></div>
+<div class="jm-cell" style="left:306px;top:34px;width:33px;height:33px;background:#0a1333;opacity:0.83"></div>
+<div class="jm-cell" style="left:340px;top:34px;width:33px;height:33px;background:#0d1b4b;opacity:0.57"></div>
+<div class="jm-cell" style="left:374px;top:34px;width:33px;height:33px;background:#0a1333;opacity:0.58"></div>
+<div class="jm-cell" style="left:408px;top:34px;width:33px;height:33px;background:#0d1b4b;opacity:0.7"></div>
+<div class="jm-cell" style="left:442px;top:34px;width:33px;height:33px;background:#0a1333;opacity:0.69"></div>
+<div class="jm-cell" style="left:0px;top:68px;width:33px;height:33px;background:#0a1333;opacity:0.83"></div>
+<div class="jm-cell" style="left:34px;top:68px;width:33px;height:33px;background:#0d1b4b;opacity:0.79"></div>
+<div class="jm-cell" style="left:68px;top:68px;width:33px;height:33px;background:#0a1333;opacity:0.62"></div>
+<div class="jm-cell" style="left:102px;top:68px;width:33px;height:33px;background:#0d1b4b;opacity:0.57"></div>
+<div class="jm-cell" style="left:136px;top:68px;width:33px;height:33px;background:#0a1333;opacity:0.79"></div>
+<div class="jm-cell" style="left:170px;top:68px;width:33px;height:33px;background:#0d1b4b;opacity:0.85"></div>
+<div class="jm-cell" style="left:204px;top:68px;width:33px;height:33px;background:#0a1333;opacity:0.51"></div>
+<div class="jm-cell" style="left:238px;top:68px;width:33px;height:33px;background:#0d1b4b;opacity:0.76"></div>
+<div class="jm-cell" style="left:272px;top:68px;width:33px;height:33px;background:#0a1333;opacity:0.8"></div>
+<div class="jm-cell" style="left:306px;top:68px;width:33px;height:33px;background:#0d1b4b;opacity:0.73"></div>
+<div class="jm-cell" style="left:340px;top:68px;width:33px;height:33px;background:#0a1333;opacity:0.58"></div>
+<div class="jm-cell" style="left:374px;top:68px;width:33px;height:33px;background:#0d1b4b;opacity:0.78"></div>
+<div class="jm-cell" style="left:408px;top:68px;width:33px;height:33px;background:#0a1333;opacity:0.76"></div>
+<div class="jm-cell" style="left:442px;top:68px;width:33px;height:33px;background:#0d1b4b;opacity:0.57"></div>
+<div class="jm-cell" style="left:0px;top:102px;width:33px;height:33px;background:#0d1b4b;opacity:0.72"></div>
+<div class="jm-cell" style="left:34px;top:102px;width:33px;height:33px;background:#0a1333;opacity:0.58"></div>
+<div class="jm-cell" style="left:68px;top:102px;width:33px;height:33px;background:#0d1b4b;opacity:0.51"></div>
+<div class="jm-cell" style="left:102px;top:102px;width:33px;height:33px;background:#0a1333;opacity:0.62"></div>
+<div class="jm-cell" style="left:136px;top:102px;width:33px;height:33px;background:#0d1b4b;opacity:0.62"></div>
+<div class="jm-cell" style="left:170px;top:102px;width:33px;height:33px;background:#0a1333;opacity:0.64"></div>
+<div class="jm-cell" style="left:204px;top:102px;width:33px;height:33px;background:#0d1b4b;opacity:0.73"></div>
+<div class="jm-cell" style="left:238px;top:102px;width:33px;height:33px;background:#0a1333;opacity:0.79"></div>
+<div class="jm-cell" style="left:272px;top:102px;width:33px;height:33px;background:#0d1b4b;opacity:0.84"></div>
+<div class="jm-cell" style="left:306px;top:102px;width:33px;height:33px;background:#0a1333;opacity:0.84"></div>
+<div class="jm-cell" style="left:340px;top:102px;width:33px;height:33px;background:#0d1b4b;opacity:0.85"></div>
+<div class="jm-cell" style="left:374px;top:102px;width:33px;height:33px;background:#0a1333;opacity:0.78"></div>
+<div class="jm-cell" style="left:408px;top:102px;width:33px;height:33px;background:#0d1b4b;opacity:0.61"></div>
+<div class="jm-cell" style="left:442px;top:102px;width:33px;height:33px;background:#0a1333;opacity:0.56"></div>
+<div class="jm-cell" style="left:0px;top:136px;width:33px;height:33px;background:#0a1333;opacity:0.72"></div>
+<div class="jm-cell" style="left:34px;top:136px;width:33px;height:33px;background:#0d1b4b;opacity:0.69"></div>
+<div class="jm-cell" style="left:68px;top:136px;width:33px;height:33px;background:#0a1333;opacity:0.74"></div>
+<div class="jm-cell" style="left:102px;top:136px;width:33px;height:33px;background:#0d1b4b;opacity:0.53"></div>
+<div class="jm-cell" style="left:136px;top:136px;width:33px;height:33px;background:#0a1333;opacity:0.57"></div>
+<div class="jm-cell" style="left:170px;top:136px;width:33px;height:33px;background:#0d1b4b;opacity:0.82"></div>
+<div class="jm-cell" style="left:204px;top:136px;width:33px;height:33px;background:#0a1333;opacity:0.71"></div>
+<div class="jm-cell" style="left:238px;top:136px;width:33px;height:33px;background:#0d1b4b;opacity:0.74"></div>
+<div class="jm-cell" style="left:272px;top:136px;width:33px;height:33px;background:#0a1333;opacity:0.53"></div>
+<div class="jm-cell" style="left:306px;top:136px;width:33px;height:33px;background:#0d1b4b;opacity:0.64"></div>
+<div class="jm-cell" style="left:340px;top:136px;width:33px;height:33px;background:#0a1333;opacity:0.82"></div>
+<div class="jm-cell" style="left:374px;top:136px;width:33px;height:33px;background:#0d1b4b;opacity:0.73"></div>
+<div class="jm-cell" style="left:408px;top:136px;width:33px;height:33px;background:#0a1333;opacity:0.85"></div>
+<div class="jm-cell" style="left:442px;top:136px;width:33px;height:33px;background:#0d1b4b;opacity:0.57"></div>
+<div class="jm-cell" style="left:0px;top:170px;width:33px;height:33px;background:#0d1b4b;opacity:0.66"></div>
+<div class="jm-cell" style="left:34px;top:170px;width:33px;height:33px;background:#0a1333;opacity:0.78"></div>
+<div class="jm-cell" style="left:68px;top:170px;width:33px;height:33px;background:#0d1b4b;opacity:0.66"></div>
+<div class="jm-cell" style="left:102px;top:170px;width:33px;height:33px;background:#0a1333;opacity:0.78"></div>
+<div class="jm-cell" style="left:136px;top:170px;width:33px;height:33px;background:#0d1b4b;opacity:0.7"></div>
+<div class="jm-cell" style="left:170px;top:170px;width:33px;height:33px;background:#0a1333;opacity:0.54"></div>
+<div class="jm-cell" style="left:204px;top:170px;width:33px;height:33px;background:#0d1b4b;opacity:0.53"></div>
+<div class="jm-cell" style="left:238px;top:170px;width:33px;height:33px;background:#0a1333;opacity:0.84"></div>
+<div class="jm-cell" style="left:272px;top:170px;width:33px;height:33px;background:#0d1b4b;opacity:0.54"></div>
+<div class="jm-cell" style="left:306px;top:170px;width:33px;height:33px;background:#0a1333;opacity:0.57"></div>
+<div class="jm-cell" style="left:340px;top:170px;width:33px;height:33px;background:#0d1b4b;opacity:0.62"></div>
+<div class="jm-cell" style="left:374px;top:170px;width:33px;height:33px;background:#0a1333;opacity:0.75"></div>
+<div class="jm-cell" style="left:408px;top:170px;width:33px;height:33px;background:#0d1b4b;opacity:0.8"></div>
+<div class="jm-cell" style="left:442px;top:170px;width:33px;height:33px;background:#0a1333;opacity:0.67"></div>
+<div class="jm-cell" style="left:0px;top:204px;width:33px;height:33px;background:#0a1333;opacity:0.67"></div>
+<div class="jm-cell" style="left:34px;top:204px;width:33px;height:33px;background:#0d1b4b;opacity:0.78"></div>
+<div class="jm-cell" style="left:68px;top:204px;width:33px;height:33px;background:#0a1333;opacity:0.6"></div>
+<div class="jm-cell" style="left:102px;top:204px;width:33px;height:33px;background:#0d1b4b;opacity:0.63"></div>
+<div class="jm-cell" style="left:136px;top:204px;width:33px;height:33px;background:#0a1333;opacity:0.71"></div>
+<div class="jm-cell" style="left:170px;top:204px;width:33px;height:33px;background:#0d1b4b;opacity:0.72"></div>
+<div class="jm-cell" style="left:204px;top:204px;width:33px;height:33px;background:#0a1333;opacity:0.51"></div>
+<div class="jm-cell" style="left:238px;top:204px;width:33px;height:33px;background:#0d1b4b;opacity:0.54"></div>
+<div class="jm-cell" style="left:272px;top:204px;width:33px;height:33px;background:#0a1333;opacity:0.55"></div>
+<div class="jm-cell" style="left:306px;top:204px;width:33px;height:33px;background:#0d1b4b;opacity:0.75"></div>
+<div class="jm-cell" style="left:340px;top:204px;width:33px;height:33px;background:#0a1333;opacity:0.74"></div>
+<div class="jm-cell" style="left:374px;top:204px;width:33px;height:33px;background:#0d1b4b;opacity:0.84"></div>
+<div class="jm-cell" style="left:408px;top:204px;width:33px;height:33px;background:#0a1333;opacity:0.77"></div>
+<div class="jm-cell" style="left:442px;top:204px;width:33px;height:33px;background:#0d1b4b;opacity:0.59"></div>
+<div class="jm-cell" style="left:0px;top:238px;width:33px;height:33px;background:#0d1b4b;opacity:0.77"></div>
+<div class="jm-cell" style="left:34px;top:238px;width:33px;height:33px;background:#0a1333;opacity:0.84"></div>
+<div class="jm-cell" style="left:68px;top:238px;width:33px;height:33px;background:#0d1b4b;opacity:0.62"></div>
+<div class="jm-cell" style="left:102px;top:238px;width:33px;height:33px;background:#0a1333;opacity:0.5"></div>
+<div class="jm-cell" style="left:136px;top:238px;width:33px;height:33px;background:#0d1b4b;opacity:0.63"></div>
+<div class="jm-cell" style="left:170px;top:238px;width:33px;height:33px;background:#0a1333;opacity:0.6"></div>
+<div class="jm-cell" style="left:204px;top:238px;width:33px;height:33px;background:#0d1b4b;opacity:0.56"></div>
+<div class="jm-cell" style="left:238px;top:238px;width:33px;height:33px;background:#0a1333;opacity:0.52"></div>
+<div class="jm-cell" style="left:272px;top:238px;width:33px;height:33px;background:#0d1b4b;opacity:0.54"></div>
+<div class="jm-cell" style="left:306px;top:238px;width:33px;height:33px;background:#0a1333;opacity:0.8"></div>
+<div class="jm-cell" style="left:340px;top:238px;width:33px;height:33px;background:#0d1b4b;opacity:0.52"></div>
+<div class="jm-cell" style="left:374px;top:238px;width:33px;height:33px;background:#0a1333;opacity:0.71"></div>
+<div class="jm-cell" style="left:408px;top:238px;width:33px;height:33px;background:#0d1b4b;opacity:0.57"></div>
+<div class="jm-cell" style="left:442px;top:238px;width:33px;height:33px;background:#0a1333;opacity:0.57"></div>
+<div class="jm-cell" style="left:0px;top:272px;width:33px;height:33px;background:#0a1333;opacity:0.79"></div>
+<div class="jm-cell" style="left:34px;top:272px;width:33px;height:33px;background:#0d1b4b;opacity:0.6"></div>
+<div class="jm-cell" style="left:68px;top:272px;width:33px;height:33px;background:#0a1333;opacity:0.56"></div>
+<div class="jm-cell" style="left:102px;top:272px;width:33px;height:33px;background:#0d1b4b;opacity:0.66"></div>
+<div class="jm-cell" style="left:136px;top:272px;width:33px;height:33px;background:#0a1333;opacity:0.74"></div>
+<div class="jm-cell" style="left:170px;top:272px;width:33px;height:33px;background:#0d1b4b;opacity:0.68"></div>
+<div class="jm-cell" style="left:204px;top:272px;width:33px;height:33px;background:#0a1333;opacity:0.8"></div>
+<div class="jm-cell" style="left:238px;top:272px;width:33px;height:33px;background:#0d1b4b;opacity:0.64"></div>
+<div class="jm-cell" style="left:272px;top:272px;width:33px;height:33px;background:#0a1333;opacity:0.68"></div>
+<div class="jm-cell" style="left:306px;top:272px;width:33px;height:33px;background:#0d1b4b;opacity:0.75"></div>
+<div class="jm-cell" style="left:340px;top:272px;width:33px;height:33px;background:#0a1333;opacity:0.66"></div>
+<div class="jm-cell" style="left:374px;top:272px;width:33px;height:33px;background:#0d1b4b;opacity:0.75"></div>
+<div class="jm-cell" style="left:408px;top:272px;width:33px;height:33px;background:#0a1333;opacity:0.66"></div>
+<div class="jm-cell" style="left:442px;top:272px;width:33px;height:33px;background:#0d1b4b;opacity:0.55"></div>
+<div class="jm-cell" style="left:0px;top:306px;width:33px;height:33px;background:#0d1b4b;opacity:0.54"></div>
+<div class="jm-cell" style="left:34px;top:306px;width:33px;height:33px;background:#0a1333;opacity:0.77"></div>
+<div class="jm-cell" style="left:68px;top:306px;width:33px;height:33px;background:#0d1b4b;opacity:0.76"></div>
+<div class="jm-cell" style="left:102px;top:306px;width:33px;height:33px;background:#0a1333;opacity:0.83"></div>
+<div class="jm-cell" style="left:136px;top:306px;width:33px;height:33px;background:#0d1b4b;opacity:0.74"></div>
+<div class="jm-cell" style="left:170px;top:306px;width:33px;height:33px;background:#0a1333;opacity:0.7"></div>
+<div class="jm-cell" style="left:204px;top:306px;width:33px;height:33px;background:#0d1b4b;opacity:0.56"></div>
+<div class="jm-cell" style="left:238px;top:306px;width:33px;height:33px;background:#0a1333;opacity:0.8"></div>
+<div class="jm-cell" style="left:272px;top:306px;width:33px;height:33px;background:#0d1b4b;opacity:0.54"></div>
+<div class="jm-cell" style="left:306px;top:306px;width:33px;height:33px;background:#0a1333;opacity:0.65"></div>
+<div class="jm-cell" style="left:340px;top:306px;width:33px;height:33px;background:#0d1b4b;opacity:0.55"></div>
+<div class="jm-cell" style="left:374px;top:306px;width:33px;height:33px;background:#0a1333;opacity:0.63"></div>
+<div class="jm-cell" style="left:408px;top:306px;width:33px;height:33px;background:#0d1b4b;opacity:0.61"></div>
+<div class="jm-cell" style="left:442px;top:306px;width:33px;height:33px;background:#0a1333;opacity:0.65"></div>
+    <svg class="path-svg" viewBox="0 0 300 210">
+      <path d="M 40 160 Q 90 190 120 140 T 200 110 Q 230 95 260 60" fill="none" stroke="rgba(239,159,39,.55)" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/>
+    </svg>
+    <div class="lvl done" style="left:26px;top:146px">1</div>
+    <div class="lvl done" style="left:108px;top:126px">2</div>
+    <div class="lvl" style="left:188px;top:96px">3</div>
+    <div class="star" style="left:70px;top:70px">⭐</div>
+    <div class="star" style="left:150px;top:40px;font-size:12px">⭐</div>
+    <div class="trophy-chip">🏆 1 240 pts</div>
   </div>
 </div>
 
