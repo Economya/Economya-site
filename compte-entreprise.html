@@ -36,6 +36,9 @@ h1{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;margin-
 .status-rejected{background:#FEF2F2;color:#DC2626}
 .empty{color:var(--m);font-size:.88rem;padding:1.4rem 0;text-align:center}
 .featured-note{font-size:.78rem;color:var(--a);font-weight:700;margin-top:6px}
+.stats-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:.82rem;color:var(--m)}
+.featured-countdown{display:inline-flex;align-items:center;gap:6px;background:#FFFBEB;color:#92400E;border-radius:99px;padding:4px 11px;font-size:.75rem;font-weight:700;margin-top:8px}
+.featured-expired{display:inline-flex;align-items:center;gap:6px;background:#F3F4F6;color:#5F5E5A;border-radius:99px;padding:4px 11px;font-size:.75rem;font-weight:700;margin-top:8px}
 </style>
 </head>
 <body>
@@ -111,7 +114,27 @@ function statusBadge(s){
   return '<span class="status-badge status-pending">⏳ En attente de vérification</span>';
 }
 
-function itemHtml(s){
+function rel(p){
+  const pos = (p.votes||0) + (p.tested||0)*2;
+  const neg = (p.reports||0)*3;
+  if(pos === 0) return 100;
+  return Math.max(0, Math.min(100, Math.round((pos-neg)/pos*100)));
+}
+
+function featuredNote(a){
+  if(!a || !a.partenariat) return '';
+  const until = a.featured_until ? new Date(a.featured_until) : null;
+  if(until && until.getTime() > Date.now()){
+    const daysLeft = Math.max(1, Math.ceil((until.getTime()-Date.now())/86400000));
+    return `<div class="featured-countdown">⭐ Mise en avant active — encore ${daysLeft} jour${daysLeft>1?'s':''}</div>`;
+  }
+  return '<div class="featured-expired">Mise en avant terminée — repassée en tri normal</div>';
+}
+
+function itemHtml(s, astuce){
+  const stats = astuce
+    ? `<div class="stats-row"><span>❤️ ${astuce.votes||0} votes</span><span>✅ ${astuce.tested||0} testé${(astuce.tested||0)>1?'s':''}</span><span>${rel(astuce)}% fiable</span></div>${featuredNote(astuce)}`
+    : '';
   return `<div class="item">
     <div class="item-head">
       <span class="cat-badge">${escapeHtml(s.categorie||'')}</span>
@@ -119,6 +142,7 @@ function itemHtml(s){
     </div>
     <div class="item-title">${escapeHtml(s.titre_offre||'')}</div>
     <div class="item-meta">Déposée il y a ${timeAgo(s.created_at)}${s.visibilite_souhaitee === 'mise_en_avant' ? ' · ⭐ Mise en avant demandée' : ''}</div>
+    ${stats}
   </div>`;
 }
 
@@ -126,12 +150,24 @@ async function loadSubmissions(){
   const list = document.getElementById('list');
   try {
     const email = session.user.email;
-    const rows = await sbFetch('business_submissions?email=eq.' + encodeURIComponent(email) + '&order=created_at.desc&select=id,titre_offre,categorie,status,visibilite_souhaitee,created_at');
+    const rows = await sbFetch('business_submissions?email=eq.' + encodeURIComponent(email) + '&order=created_at.desc&select=id,titre_offre,categorie,status,visibilite_souhaitee,created_at,nom_commerce');
     if(!rows || !rows.length){
       list.innerHTML = '<div class="empty">Aucune offre déposée pour le moment avec ce compte. Utilisez le bouton ci-dessus pour en déposer une.</div>';
       return;
     }
-    list.innerHTML = rows.map(itemHtml).join('');
+    // Pour les offres publiées, on va chercher les vraies stats (votes,
+    // testé, fiabilité, mise en avant) sur l'astuce correspondante — pas
+    // de système de vues à part, on réutilise ce qui existe déjà.
+    const nomCommerce = rows[0].nom_commerce;
+    let astucesByTitre = {};
+    const hasPublished = rows.some(r => r.status === 'published');
+    if(hasPublished && nomCommerce){
+      try {
+        const astuces = await sbFetch('astuces?enseigne=eq.' + encodeURIComponent(nomCommerce) + '&hidden=eq.false&select=id,titre,votes,tested,reports,partenariat,featured_until');
+        (astuces||[]).forEach(a => { astucesByTitre[a.titre] = a; });
+      } catch(e){ console.error('astuces fetch failed (non-bloquant)', e); }
+    }
+    list.innerHTML = rows.map(s => itemHtml(s, astucesByTitre[s.titre_offre])).join('');
   } catch(e){
     console.error(e);
     list.innerHTML = '<div class="empty">Impossible de charger vos offres pour le moment.</div>';

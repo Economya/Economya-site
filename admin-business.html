@@ -199,6 +199,25 @@ async function loadAll(){
 
 // mappe l'emoji+libellé du formulaire (les mêmes 17 catégories que forum-astuces.html)
 // — déjà au bon format pour matcher le filtre de la page Economya Business.
+async function notifySubmissionResult(s, result, partenariat){
+  if(!s.email) return;
+  try {
+    await fetch('/.netlify/functions/notify-submission-result', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: s.email,
+        nom_commerce: s.nom_commerce,
+        titre_offre: s.titre_offre,
+        result: result,
+        partenariat: !!partenariat
+      })
+    });
+  } catch(e){
+    console.error('notifySubmissionResult failed (non-bloquant)', e);
+  }
+}
+
 async function publish(id, partenariat, btn){
   const s = pending.find(x => String(x.id) === String(id));
   if(!s) return;
@@ -237,6 +256,7 @@ async function publish(id, partenariat, btn){
     history.unshift(s);
     renderPending(); renderHistory();
     toast(partenariat ? 'Publiée en partenariat 🤝 — mise en avant active 7 jours' : 'Publiée (gratuit) ✅');
+    notifySubmissionResult(s, 'published', partenariat);
   } catch(e){
     console.error(e);
     toast("Échec de la publication — voir la console.");
@@ -258,6 +278,7 @@ async function reject(id, btn){
     history.unshift(s);
     renderPending(); renderHistory();
     toast('Candidature rejetée.');
+    notifySubmissionResult(s, 'rejected', false);
   } catch(e){
     console.error(e);
     toast("Échec — voir la console.");

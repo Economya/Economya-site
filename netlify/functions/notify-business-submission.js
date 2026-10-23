@@ -108,6 +108,9 @@ exports.handler = async function (event) {
     </div>
   `;
 
+  // Email interne : prévient l'admin qu'une nouvelle candidature est
+  // arrivée (comportement d'origine, inchangé).
+  let adminOk = true;
   try {
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -124,13 +127,56 @@ exports.handler = async function (event) {
     });
     if (!res.ok) {
       const errText = await res.text();
-      console.error('notify-business-submission: echec Resend', res.status, errText);
-      return { statusCode: 502, body: 'Resend error: ' + errText };
+      console.error('notify-business-submission: echec Resend (admin)', res.status, errText);
+      adminOk = false;
     }
   } catch (e) {
-    console.error('notify-business-submission: erreur envoi', e);
-    return { statusCode: 500, body: 'Send failed' };
+    console.error('notify-business-submission: erreur envoi (admin)', e);
+    adminOk = false;
   }
 
-  return { statusCode: 200, body: 'OK' };
+  // Accusé de réception envoyé à l'entreprise elle-même : avant, elle ne
+  // recevait strictement rien dans sa boîte mail après avoir déposé son
+  // offre, seulement un message à l'écran. Une erreur ici ne doit jamais
+  // faire échouer la notification admin ci-dessus, qui est prioritaire.
+  let submitterOk = true;
+  if (s.email) {
+    const submitterHtml = `
+      <div style="font-family:system-ui,-apple-system,sans-serif;max-width:560px">
+        <h2 style="margin:0 0 12px">✅ Candidature bien reçue</h2>
+        <p style="font-size:14px;color:#111">Bonjour,</p>
+        <p style="font-size:14px;color:#111">Nous avons bien reçu votre offre <strong>${escapeHtml(s.titre_offre || '')}</strong> pour <strong>${escapeHtml(s.nom_commerce)}</strong> sur Economya Business.</p>
+        <p style="font-size:14px;color:#111">Elle est en cours de vérification. Nous revenons vers vous dès qu'elle est traitée — généralement sous quelques jours.</p>
+        <p style="font-size:14px;color:#111;margin-top:20px">À bientôt,<br>L'équipe Economya</p>
+      </div>
+    `;
+    try {
+      const res2 = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + apiKey,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from,
+          to: [s.email],
+          subject: 'Candidature bien reçue — Economya Business',
+          html: submitterHtml,
+        }),
+      });
+      if (!res2.ok) {
+        const errText2 = await res2.text();
+        console.error('notify-business-submission: echec Resend (accusé entreprise)', res2.status, errText2);
+        submitterOk = false;
+      }
+    } catch (e) {
+      console.error('notify-business-submission: erreur envoi (accusé entreprise)', e);
+      submitterOk = false;
+    }
+  }
+
+  if (!adminOk && !submitterOk) {
+    return { statusCode: 502, body: 'Both notifications failed' };
+  }
+  return { statusCode: 200, body: JSON.stringify({ adminOk, submitterOk }) };
 };

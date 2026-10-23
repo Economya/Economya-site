@@ -439,6 +439,18 @@ async function loadDeals(){
 }
 loadDeals();
 
+// Pré-remplit l'email si un compte entreprise est déjà connecté (pas
+// besoin de retaper une info que le système connaît déjà).
+(function prefillEntrepriseEmail(){
+  try {
+    if(localStorage.getItem('eco_is_entreprise') !== '1') return;
+    const session = JSON.parse(localStorage.getItem('eco_session') || 'null');
+    const email = session && session.user && session.user.email;
+    const field = document.getElementById('f-email');
+    if(email && field && !field.value) field.value = email;
+  } catch(e){}
+})();
+
 document.getElementById('bizForm').addEventListener('submit', async function(e){
   e.preventDefault();
   const btn = document.getElementById('submitBtn');
