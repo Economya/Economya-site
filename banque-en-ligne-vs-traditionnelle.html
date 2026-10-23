@@ -153,6 +153,22 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
           "@type": "Answer",
           "text": "Depuis la loi Macron, le service de mobilité bancaire est gratuit et automatique : votre nouvelle banque se charge de transférer vos prélèvements et virements récurrents vers le nouveau compte, en général en moins de 22 jours ouvrés."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Combien les Francais paient-ils en moyenne de frais bancaires ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Environ 191,90 euros par an en 2026 selon le comparateur Panorabanque, un montant en hausse : les frais de tenue de compte ont progresse de 6,39% sur un an selon la CLCV. C'est l'ecart principal avec les banques en ligne, qui ne facturent presque jamais de tenue de compte."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Les banques en ligne sont-elles vraiment gratuites a vie ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pas toujours sans condition. La gratuite de la carte est souvent liee a un usage minimum (un virement entrant ou quelques paiements par mois selon l'offre) : en cas d'inactivite prolongee, des frais peuvent s'appliquer. Lisez la brochure tarifaire avant de changer de banque."
+        }
       }
     ]
   }
@@ -230,6 +246,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   </div>
 
   <div class="card">
+    <h2>📝 Combien coûte vraiment une banque traditionnelle ?</h2>
+    <p style="font-size:.9rem;color:var(--m);line-height:1.7;margin-bottom:.9rem">Selon le comparateur Panorabanque, les Français paieront en moyenne <strong>191,90€ de frais bancaires en 2026</strong>, un montant en hausse constante : les frais de tenue de compte ont grimpé de 6,39% sur un an selon la CLCV, et sont désormais facturés par la quasi-totalité des établissements. Les banques en ligne, elles, ne facturent presque jamais de tenue de compte et proposent une carte gratuite sous simple condition d'usage (un virement ou quelques paiements par mois selon l'offre) — c'est la principale source d'économie, bien avant les primes de bienvenue.</p>
+    <p style="font-size:.9rem;color:var(--m);line-height:1.7">Attention toutefois : « gratuit » n'est pas toujours synonyme de « gratuit à vie sans condition ». Relisez la brochure tarifaire de l'offre avant de changer : certaines cartes redeviennent payantes en cas d'inactivité prolongée ou de non-respect du seuil minimum de paiements mensuels.</p>
+    <p style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Chiffres vérifiés le 23/10/2026</strong> (Panorabanque, CLCV).</p>
+  </div>
+
+  <div class="card">
     <h2>🏆 Les banques en ligne les plus intéressantes</h2>
     <div class="banks" id="banks-list"><!-- généré par JS --></div>
   </div>
@@ -252,9 +275,17 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <summary style="font-weight:700;cursor:pointer">Comment profiter de la carte gratuite d'une banque en ligne ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">La plupart des banques en ligne conditionnent la gratuité de la carte à un montant minimum de virements ou de paiements par mois (souvent entre 300€ et 1000€ selon l'offre). Vérifiez cette condition avant d'ouvrir un compte.</p>
     </details>
-    <details>
+    <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Comment changer de banque sans complications ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Depuis la loi Macron, le service de mobilité bancaire est gratuit et automatique : votre nouvelle banque se charge de transférer vos prélèvements et virements récurrents, en général en moins de 22 jours ouvrés.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Combien les Français paient-ils en moyenne de frais bancaires ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Environ 191,90€ par an en 2026 selon le comparateur Panorabanque, un montant en hausse : les frais de tenue de compte ont progressé de 6,39% sur un an selon la CLCV. C'est l'écart principal avec les banques en ligne, qui ne facturent presque jamais de tenue de compte.</p>
+    </details>
+    <details>
+      <summary style="font-weight:700;cursor:pointer">Les banques en ligne sont-elles vraiment gratuites à vie ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Pas toujours sans condition. La gratuité de la carte est souvent liée à un usage minimum (un virement entrant ou quelques paiements par mois selon l'offre) : en cas d'inactivité prolongée, des frais peuvent s'appliquer. Lisez la brochure tarifaire avant de changer de banque.</p>
     </details>
   </div>
 
@@ -348,6 +379,16 @@ const ONLINE_BANKS = [
       'Carte gratuite':'Oui (Hello One), sans condition de revenus',
       'Prime de bienvenue':'280€ sous conditions',
       "À l'étranger":'Gratuit avec l\'offre Hello Prime',
+    }
+  },
+  {
+    id:'monabanq', icon:'🟢', nom:'Monabanq',
+    bonus:'160€ offerts',
+    desc:"Filiale du Crédit Mutuel Alliance Fédérale, avec un service client joignable 7j/7 souvent cité comme son point fort.",
+    facts:{
+      'Carte gratuite':'Oui, sous condition de 3 paiements/mois',
+      'Prime de bienvenue':'160€ sous conditions',
+      "À l'étranger":'Retraits et paiements gratuits en zone euro',
     }
   },
 ];
