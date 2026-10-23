@@ -203,6 +203,18 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <h2>🚗 Votre voiture</h2>
     <div class="grid">
       <div class="field">
+        <label>Type de motorisation</label>
+        <select id="motorisation" onchange="appliquerMotorisation()">
+          <option value="">— Choisir pour pré-remplir carburant/entretien —</option>
+          <option value="essence">⛽ Essence</option>
+          <option value="diesel">⛽ Diesel</option>
+          <option value="hybride">🔋 Hybride</option>
+          <option value="electrique">⚡ Électrique</option>
+        </select>
+        <div style="font-size:.76rem;color:var(--m);margin-top:.3rem">Pré-remplit carburant et entretien pour 12 000 km/an (prix constatés oct. 2026). Vous pouvez ensuite ajuster les curseurs.</div>
+        <div id="comparatif-motorisation" style="margin-top:.6rem;font-size:.8rem;display:flex;flex-wrap:wrap;gap:.5rem"></div>
+      </div>
+      <div class="field">
         <label>Prix d'achat du véhicule</label>
         <div class="val" id="v-achat">15 000 <span>€</span></div>
         <input type="range" id="achat" min="1000" max="80000" step="500" value="15000">
@@ -349,6 +361,38 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
+// Estimations pour 12 000 km/an, prix constatés mi-octobre 2026 (gazole/SP95 moyenne nationale, kWh tarif base)
+const MOTORISATIONS = {
+  essence:   { label: 'Essence',   consoPour100km: 7,    prixUnite: 2.209, uniteLabel: 'L',   entretienAnnuel: 800 },
+  diesel:    { label: 'Diesel',    consoPour100km: 6,    prixUnite: 2.346, uniteLabel: 'L',   entretienAnnuel: 900 },
+  hybride:   { label: 'Hybride',   consoPour100km: 4.5,  prixUnite: 2.209, uniteLabel: 'L',   entretienAnnuel: 750 },
+  electrique:{ label: 'Électrique',consoPour100km: 17,   prixUnite: 0.194, uniteLabel: 'kWh', entretienAnnuel: 500 },
+};
+const DISTANCE_ANNUELLE_REF = 12000;
+
+function appliquerMotorisation() {
+  const key = document.getElementById('motorisation').value;
+  if (!key) return;
+  const m = MOTORISATIONS[key];
+  const carburantMensuel = Math.round((m.consoPour100km / 100) * (DISTANCE_ANNUELLE_REF / 12) * m.prixUnite);
+  document.getElementById('carburant').value = carburantMensuel;
+  document.getElementById('entretien').value = m.entretienAnnuel;
+  calculate();
+  afficherComparatifMotorisations();
+}
+
+function afficherComparatifMotorisations() {
+  const el = document.getElementById('comparatif-motorisation');
+  if (!el) return;
+  const selected = document.getElementById('motorisation').value;
+  el.innerHTML = Object.entries(MOTORISATIONS).map(([key, m]) => {
+    const carburantMensuel = Math.round((m.consoPour100km / 100) * (DISTANCE_ANNUELLE_REF / 12) * m.prixUnite);
+    const totalMensuel = carburantMensuel + m.entretienAnnuel / 12;
+    const actif = key === selected;
+    return `<span style="padding:.3rem .6rem;border-radius:8px;background:${actif ? 'var(--gl)' : '#f7f7f5'};border:1px solid ${actif ? 'var(--g)' : 'rgba(0,0,0,.08)'}">${m.label} : ~${fmt(totalMensuel)}/mois</span>`;
+  }).join('');
+}
+
 const COULEURS = ['#dc2626','#ea580c','#d97706','#65a30d','#0891b2'];
 
 function calculate() {
@@ -440,6 +484,7 @@ function calculate() {
 
 document.querySelectorAll('input[type=range]').forEach(el => el.addEventListener('input', calculate));
 calculate();
+afficherComparatifMotorisations();
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
