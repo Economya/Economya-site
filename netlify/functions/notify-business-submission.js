@@ -100,7 +100,7 @@ exports.handler = async function (event) {
 
   const html = `
     <div style="font-family:system-ui,-apple-system,sans-serif;max-width:560px">
-      <h2 style="margin:0 0 12px">🤝 Nouvelle candidature commerce — Economya Escape</h2>
+      <h2 style="margin:0 0 12px">🤝 Nouvelle candidature commerce — Economya Business</h2>
       <table style="border-collapse:collapse;font-size:14px">${htmlRows}</table>
       <p style="margin:16px 0 4px;font-size:14px"><strong>Description :</strong></p>
       <p style="margin:0;font-size:14px;white-space:pre-wrap;color:#111">${escapeHtml(s.description)}</p>
