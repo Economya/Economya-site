@@ -50,6 +50,7 @@ const STATIC_URLS = [
   ['https://economya.fr/forfaits-5g-pas-cher', 'monthly', '0.85'],
   ['https://economya.fr/vpn-gratuit-payant', 'monthly', '0.85'],
   ['https://economya.fr/recherche', 'weekly', '0.8'],
+  ['https://economya.fr/economya-business', 'monthly', '0.8'],
   ['https://economya.fr/lexique-finance', 'monthly', '0.8'],
   ['https://economya.fr/community', 'daily', '0.8'],
   ['https://economya.fr/forum-astuces', 'daily', '0.8'],
