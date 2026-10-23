@@ -152,6 +152,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <meta name="twitter:description" content="Estimez votre future pension de retraite et calculez combien épargner pour maintenir votre niveau de vie. Gratuit sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.png">
 <link rel="canonical" href="https://economya.fr/simulateur-retraite" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 </head>
 <body>
 <nav>
@@ -235,6 +236,11 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="detail-row"><span class="lbl"><strong>Avec PER (déduction fiscale)</strong></span><span id="d-per">—</span></div>
   </div>
 
+  <div class="chart-wrap" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.4rem 1.5rem;margin:1.5rem 0">
+    <h2 style="margin-bottom:.8rem">📈 Construction de votre épargne retraite</h2>
+    <canvas id="chartRetraite" height="220"></canvas>
+  </div>
+
   <div class="tip" id="tip-text">Chargement...</div>
 
   <div class="warn">
@@ -293,6 +299,54 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
+let chartRetraite;
+function dessinerGraphique(epargneMensuelle, capitalNecessaire, anneesRestantes) {
+  const canvas = document.getElementById('chartRetraite');
+  if (!canvas || anneesRestantes <= 0) { if(chartRetraite){chartRetraite.destroy(); chartRetraite=null;} return; }
+  const r = 0.05 / 12;
+  const labels = [], dataCapital = [];
+  for (let a = 0; a <= anneesRestantes; a++) {
+    const n = a * 12;
+    const cap = r > 0 ? epargneMensuelle * (Math.pow(1 + r, n) - 1) / r : epargneMensuelle * n;
+    labels.push(a + ' an' + (a > 1 ? 's' : ''));
+    dataCapital.push(Math.round(cap));
+  }
+  if (chartRetraite) chartRetraite.destroy();
+  chartRetraite = new Chart(canvas.getContext('2d'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Capital épargné (PER/ETF à 5%/an)',
+          data: dataCapital,
+          borderColor: '#1D9E75',
+          backgroundColor: 'rgba(29,158,117,0.1)',
+          fill: true,
+          tension: 0.3,
+          pointRadius: 2,
+        },
+        {
+          label: 'Capital nécessaire pour combler le manque',
+          data: labels.map(() => Math.round(capitalNecessaire)),
+          borderColor: '#EF9F27',
+          borderDash: [6, 4],
+          pointRadius: 0,
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom' },
+        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ' : ' + ctx.parsed.y.toLocaleString('fr-FR') + ' €' } },
+      },
+      scales: { y: { ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(0) + 'k €' : v + ' €' } } },
+    },
+  });
+}
+
 const TRIMESTRES_REQUIS_TAUX_PLEIN = 168; // ≈ 42 ans — repère moyen, varie réellement de 166 à 172 trimestres selon l'année de naissance (voir info-retraite.fr)
 
 function calculate() {
@@ -342,6 +396,8 @@ function calculate() {
 
   // Avec PER (économie fiscale TMI 30%)
   const epargneAvecPER = epargneMensuelle * 0.70;
+
+  dessinerGraphique(epargneMensuelle, capitalNecessaire, anneesRestantes);
 
   document.getElementById('r-pension').textContent = fmt(pension);
   document.getElementById('r-taux').textContent = (tauxRemplacement * 100).toFixed(0) + '%';
