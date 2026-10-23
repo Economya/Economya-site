@@ -159,6 +159,22 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
           "@type": "Answer",
           "text": "Non, c'est un outil pédagogique. Seule une banque ou un courtier peut faire une offre réelle après étude complète du dossier."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Quels sont les taux de credit immobilier actuels ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Selon le barometre CAFPI d'octobre 2026, les moyennes observees sont de 3,30% sur 15 ans, 3,51% sur 20 ans et 3,58% sur 25 ans, hors assurance. Ce sont des moyennes nationales : le taux reel depend du profil de l'emprunteur et de la banque."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Quelles sont les regles du HCSF sur le taux d'endettement ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le Haut Conseil de stabilite financiere limite le taux d'endettement a 35% assurance incluse, et la duree a 25 ans. Les banques gardent une marge de flexibilite de 20% de leur production de credits pour deroger a ces regles, notamment pour la residence principale et les primo-accedants."
+        }
       }
     ]
   }
@@ -213,8 +229,8 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
       <div class="field">
         <label>Taux d'intérêt</label>
-        <div class="val" id="v-taux">3,6 <span>%</span></div>
-        <input type="range" id="taux" min="0.5" max="8" step="0.1" value="3.6">
+        <div class="val" id="v-taux">3,5 <span>%</span></div>
+        <input type="range" id="taux" min="0.5" max="8" step="0.1" value="3.5">
       </div>
       <div class="field">
         <label>Durée du prêt</label>
@@ -270,6 +286,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </table>
   </div>
 
+  <div class="card">
+    <h2>📝 Taux actuels et règles du HCSF</h2>
+    <p style="font-size:.9rem;color:var(--m);line-height:1.7;margin-bottom:.9rem">Selon le baromètre CAFPI, les taux moyens observés en octobre 2026 sont de <strong>3,30% sur 15 ans, 3,51% sur 20 ans et 3,58% sur 25 ans</strong> (hors assurance). Ce sont des moyennes : votre taux réel dépend de votre profil, de votre apport et de la banque sollicitée — d'où l'intérêt de comparer plusieurs offres ou de passer par un courtier.</p>
+    <p style="font-size:.9rem;color:var(--m);line-height:1.7">Le Haut Conseil de stabilité financière (HCSF) encadre aussi l'octroi des crédits : <strong>taux d'endettement maximum de 35% (assurance incluse)</strong> et <strong>durée maximum de 25 ans</strong>. Les banques disposent toutefois d'une marge de flexibilité de 20% de leur production de crédits pour déroger à ces règles (70% réservée à la résidence principale, 30% aux primo-accédants) — c'est souvent par cette marge qu'un dossier un peu tendu peut malgré tout passer.</p>
+    <p style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Taux et règles HCSF vérifiés le 23/10/2026</strong> (CAFPI, HCSF).</p>
+  </div>
+
   <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
     <h2 style="margin-bottom:1rem">❓ Questions fréquentes sur le crédit immobilier</h2>
     <details style="margin-bottom:.9rem">
@@ -288,9 +311,17 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <summary style="font-weight:700;cursor:pointer">Vaut-il mieux un taux fixe ou un taux variable ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">En France, l'immense majorité des crédits immobiliers sont à taux fixe, ce qui sécurise vos mensualités sur toute la durée. Un taux variable peut être plus bas au départ mais expose à une hausse des mensualités si les taux remontent, ce qui est plus risqué sur un engagement aussi long.</p>
     </details>
-    <details>
+    <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Ce simulateur donne-t-il une offre de prêt réelle ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non, c'est un outil pédagogique pour comprendre l'impact du taux et de la durée sur vos mensualités. Seule une banque ou un courtier peut vous faire une offre réelle après étude de votre dossier complet (revenus, apport, situation professionnelle, autres crédits).</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Quels sont les taux de crédit immobilier actuels ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Selon le baromètre CAFPI d'octobre 2026, les moyennes observées sont de 3,30% sur 15 ans, 3,51% sur 20 ans et 3,58% sur 25 ans (hors assurance). Ce sont des moyennes nationales : votre taux dépend de votre profil et de la banque, d'où l'intérêt de comparer plusieurs offres.</p>
+    </details>
+    <details>
+      <summary style="font-weight:700;cursor:pointer">Quelles sont les règles du HCSF sur le taux d'endettement ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Le Haut Conseil de stabilité financière limite le taux d'endettement à 35% (assurance incluse) et la durée à 25 ans. Les banques gardent toutefois une marge de flexibilité de 20% de leur production de crédits pour déroger à ces règles, notamment pour l'achat d'une résidence principale ou les primo-accédants.</p>
     </details>
   </div>
 
