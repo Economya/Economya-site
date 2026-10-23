@@ -200,7 +200,15 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <span>€/an</span>
       </div>
     </div>
+    <div class="montant-wrap" style="margin-top:.8rem">
+      <label>Prime de bienvenue de la banque en ligne choisie (optionnel) :</label>
+      <div class="montant-input">
+        <input type="number" id="prime" value="150" min="0" max="350" step="10">
+        <span>€</span>
+      </div>
+    </div>
     <div class="savings-grid" id="savings-list"><!-- généré par JS --></div>
+    <div class="tip" id="invest-tip" style="margin-top:1rem"></div>
   </div>
 
   <div class="card">
@@ -348,9 +356,11 @@ function fmt(n){ return Math.round(n).toLocaleString('fr-FR') + ' €'; }
 
 function calculate(){
   const frais = Math.max(0, +document.getElementById('frais').value || 0);
+  const prime = Math.max(0, +document.getElementById('prime').value || 0);
   const list = document.getElementById('savings-list');
   list.innerHTML = '';
 
+  // La prime de bienvenue est perçue une seule fois, dès la première année
   [
     {label:'Économie sur 1 an', years:1},
     {label:'Économie sur 5 ans', years:5},
@@ -358,9 +368,21 @@ function calculate(){
   ].forEach(s => {
     const div = document.createElement('div');
     div.className = 'saving';
-    div.innerHTML = `<span class="s-num">${fmt(frais * s.years)}</span><div class="s-lbl">${s.label}</div>`;
+    div.innerHTML = `<span class="s-num">${fmt(frais * s.years + prime)}</span><div class="s-lbl">${s.label}</div>`;
     list.appendChild(div);
   });
+
+  // Et si cette économie annuelle était investie plutôt que dépensée ? (même taux indicatif que les autres simulateurs du site : ETF monde ~5%/an)
+  const tauxPlacement = 0.05;
+  const r = tauxPlacement / 12;
+  const economieMensuelle = frais / 12;
+  const invest10ans = prime * Math.pow(1 + tauxPlacement, 10) + (r > 0 ? economieMensuelle * (Math.pow(1 + r, 120) - 1) / r : economieMensuelle * 120);
+  const investTip = document.getElementById('invest-tip');
+  if (frais > 0 || prime > 0) {
+    investTip.innerHTML = `<strong>📈 Et si vous investissiez cette économie ?</strong> En plaçant ${fmt(economieMensuelle)}/mois (+ la prime de bienvenue) à 5%/an plutôt que de les laisser filer en frais bancaires, vous auriez <strong>${fmt(invest10ans)}</strong> dans 10 ans.`;
+  } else {
+    investTip.innerHTML = '';
+  }
 }
 
 function renderBanks(){
@@ -386,6 +408,7 @@ function renderBanks(){
 }
 
 document.getElementById('frais').addEventListener('input', calculate);
+document.getElementById('prime').addEventListener('input', calculate);
 calculate();
 renderBanks();
 </script>
