@@ -137,7 +137,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         "name": "Le taux utilisé dans ce simulateur est-il garanti ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Non, c'est un taux indicatif de marché. Seule une simulation personnalisée auprès d'une banque ou d'un courtier donne un chiffre fiable."
+          "text": "Non, vous pouvez l'ajuster vous-même avec le curseur dédié (3,6% par défaut). Utilisez le taux proposé par votre banque ou votre courtier pour un résultat fiable."
         }
       },
       {
@@ -207,6 +207,11 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <div class="val" id="v-duree">20 <span>ans</span></div>
         <input type="range" id="duree" min="5" max="30" step="1" value="20">
       </div>
+      <div class="field">
+        <label>Taux d'intérêt annuel</label>
+        <div class="val" id="v-taux">3,6 <span>%</span></div>
+        <input type="range" id="taux" min="2.5" max="5.5" step="0.1" value="3.6">
+      </div>
     </div>
   </div>
 
@@ -236,7 +241,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="detail-row"><span class="lbl">Taux d'endettement max (35%)</span><span id="d-max">—</span></div>
     <div class="detail-row"><span class="lbl">Autres crédits en cours</span><span id="d-credits">—</span></div>
     <div class="detail-row"><span class="lbl">Mensualité disponible pour l'immo</span><span id="d-mensualite">—</span></div>
-    <div class="detail-row"><span class="lbl">Montant empruntable (taux 3,6%)</span><span id="d-emprunt">—</span></div>
+    <div class="detail-row"><span class="lbl">Montant empruntable (taux <span id="d-taux-label">3,6</span>%)</span><span id="d-emprunt">—</span></div>
     <div class="detail-row"><span class="lbl">Apport personnel</span><span id="d-apport">—</span></div>
     <div class="detail-row"><span class="lbl"><strong>Budget total acquisition</strong></span><span id="d-total">—</span></div>
   </div>
@@ -264,7 +269,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </details>
     <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Le taux utilisé dans ce simulateur est-il garanti ?</summary>
-      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non, c'est un taux indicatif basé sur une moyenne de marché à un instant donné. Les taux réels varient selon votre profil (apport, durée, revenus, historique bancaire) et évoluent chaque mois : seule une simulation personnalisée auprès d'une banque ou d'un courtier donne un chiffre fiable.</p>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non, et c'est pour ça que vous pouvez désormais l'ajuster vous-même avec le curseur "Taux d'intérêt annuel" (3,6% par défaut, moyenne de marché sur 20 ans en septembre 2026). Les taux réels varient selon votre profil (apport, durée, revenus, historique bancaire) et évoluent chaque mois : utilisez le taux proposé par votre banque ou votre courtier pour un résultat au plus proche de la réalité.</p>
     </details>
     <details>
       <summary style="font-weight:700;cursor:pointer">Le "reste à vivre" est-il pris en compte par les banques ?</summary>
@@ -314,15 +319,18 @@ function calculate() {
   const credits = +document.getElementById('credits').value;
   const apport = +document.getElementById('apport').value;
   const duree = +document.getElementById('duree').value;
+  const taux = +document.getElementById('taux').value;
 
   document.getElementById('v-revenus').innerHTML = revenus.toLocaleString('fr-FR') + ' <span>€/mois</span>';
   document.getElementById('v-credits').innerHTML = credits.toLocaleString('fr-FR') + ' <span>€/mois</span>';
   document.getElementById('v-apport').innerHTML = apport.toLocaleString('fr-FR') + ' <span>€</span>';
   document.getElementById('v-duree').innerHTML = duree + ' <span>ans</span>';
+  document.getElementById('v-taux').innerHTML = taux.toFixed(1).replace('.', ',') + ' <span>%</span>';
+  document.getElementById('d-taux-label').textContent = taux.toFixed(1).replace('.', ',');
 
   const mensualiteMax = revenus * 0.35;
   const mensualiteImmo = Math.max(0, mensualiteMax - credits);
-  const tauxMensuel = 0.036 / 12; // Taux indicatif ~3,6% (moyenne marché sur 20 ans, septembre 2026, fluctue mensuellement - vérifiez les taux actuels avant simulation réelle)
+  const tauxMensuel = (taux / 100) / 12; // Taux ajustable par l'utilisateur — 3,6% par défaut (moyenne marché ~20 ans, septembre 2026). Vérifiez le taux réel proposé par votre banque avant toute décision.
   const n = duree * 12;
 
   // Calcul montant empruntable
