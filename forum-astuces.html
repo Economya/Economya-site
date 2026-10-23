@@ -194,7 +194,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <div class="tabs-wrap"><div class="tabs">
   <button class="tab active" onclick="setSort('top',this)">🔥 Top</button>
   <button class="tab" onclick="setSort('new',this)">🆕 Récent</button>
-  <button class="tab" onclick="setSort('eco',this)">💰 Économies</button>
   <button class="tab" onclick="setSort('rel',this)">✅ Fiables</button>
   <button class="tab" onclick="setSort('following',this)">👥 Abonnements</button>
 </div></div>
@@ -653,7 +652,6 @@ function getSorted(){
   }
   if(sortMode==='top')list.sort((a,b)=>b.votes-a.votes);
   else if(sortMode==='new')list.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
-  else if(sortMode==='eco')list.sort((a,b)=>b.economie-a.economie);
   else if(sortMode==='rel')list.sort((a,b)=>rel(b)-rel(a));
   return list;
 }
