@@ -142,6 +142,22 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
           "@type": "Answer",
           "text": "La consommation moyenne en France tourne autour de 15 à 20 Go par mois. Un usage léger (messagerie, navigation) tient dans 20 à 50 Go, tandis qu'un usage intensif (streaming vidéo, partage de connexion) justifie un forfait à 100 Go ou plus."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Mon forfait est annonce 5G, vais-je vraiment capter la 5G ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seulement si votre telephone est compatible 5G et que vous etes dans une zone couverte : sans ces deux conditions, vous resterez automatiquement en 4G. Les MVNO n'ont pas toujours acces a toutes les frequences 5G de l'operateur dont ils louent le reseau, ce qui peut limiter le debit reel."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Le prix affiche est-il garanti sur la duree ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Pas toujours. De nombreux forfaits a prix d'appel augmentent apres 12 mois, parfois significativement. Avant de souscrire, cherchez la ligne prix apres la premiere annee dans le detail de l'offre ; resilier un forfait sans engagement reste gratuit a tout moment."
+        }
       }
     ]
   }
@@ -190,6 +206,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="forfaits" id="forfaits-list"><!-- généré par JS --></div>
   </div>
 
+  <div class="card">
+    <h2>📝 5G affichée, 4G utilisée : ce qu'il faut vérifier</h2>
+    <p style="font-size:.9rem;color:var(--m);line-height:1.7;margin-bottom:.9rem">Un forfait « 5G » loue en réalité le réseau d'un des 4 opérateurs possédant des antennes (Orange, SFR, Bouygues, Free) : même couverture, souvent moitié prix. Mais deux points méritent d'être vérifiés avant de signer. D'abord, la <strong>compatibilité de votre téléphone</strong> : sans puce 5G, vous resterez en 4G même avec le forfait le plus cher. Ensuite, le <strong>tarif après la première année</strong> : beaucoup de prix d'appel affichés ci-dessus grimpent au bout de 12 mois — regardez toujours la ligne « prix après 1 an » dans le détail de l'offre avant de valider.</p>
+    <p style="font-size:.9rem;color:var(--m);line-height:1.7">Autre nuance utile : les MVNO (opérateurs sans antenne) n'ont pas toujours accès à 100% des fréquences 5G de l'opérateur hôte, et certains plafonnent le débit même en 5G. Pour un usage simple (messagerie, navigation, streaming audio), ça ne change rien ; pour du streaming vidéo intensif en 5G, mieux vaut vérifier les avis récents sur le débit réel de l'offre visée.</p>
+    <p style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Comparatif vérifié le 23/10/2026</strong>, prix hors promotions d'appel non garanties dans la durée.</p>
+  </div>
+
   <div class="tip" id="tip-text">
     <strong>💡 Astuce :</strong> Les opérateurs low-cost (Auchan Telecom, Cdiscount Mobile, NRJ Mobile, Lebara...) utilisent les réseaux Orange, SFR ou Bouygues : même couverture, souvent moitié prix.
   </div>
@@ -204,9 +227,17 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <summary style="font-weight:700;cursor:pointer">Pourquoi certains forfaits augmentent de prix après quelques mois ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Beaucoup de forfaits promotionnels affichent un tarif réduit pendant 12 mois, puis reviennent à un tarif plus élevé. Vérifiez toujours la mention « prix après la première année » avant de souscrire.</p>
     </details>
-    <details>
+    <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Combien de Go faut-il vraiment par mois ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">La consommation moyenne en France tourne autour de 15 à 20 Go par mois. Un usage léger tient dans 20 à 50 Go, un usage intensif (streaming, partage de connexion) justifie 100 Go ou plus.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Mon forfait est annoncé « 5G », vais-je vraiment capter la 5G ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Seulement si votre téléphone est compatible 5G et que vous êtes dans une zone couverte : sans ces deux conditions, vous resterez automatiquement en 4G, même avec un forfait « 5G ». Les MVNO n'ont pas toujours accès à toutes les fréquences 5G de l'opérateur dont ils louent le réseau, ce qui peut aussi limiter le débit réel par rapport à l'offre équivalente chez l'opérateur historique.</p>
+    </details>
+    <details>
+      <summary style="font-weight:700;cursor:pointer">Le prix affiché est-il garanti sur la durée ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Pas toujours. De nombreux forfaits à prix d'appel (souvent ceux affichés comme les moins chers) augmentent après 12 mois, parfois significativement. Avant de souscrire, cherchez la ligne « prix après la première année » dans le détail de l'offre, et sachez que résilier un forfait sans engagement est gratuit à tout moment.</p>
     </details>
   </div>
 
@@ -275,8 +306,13 @@ const FORFAITS = [
   { operateur:'Auchan Telecom', reseau:'Bouygues', data:100, prix:9.99, icon:'🛒' },
   { operateur:'Cdiscount Mobile', reseau:'Bouygues', data:100, prix:9.99, icon:'🛍️' },
   { operateur:'NRJ Mobile', reseau:'Bouygues', data:100, prix:9.99, icon:'📻' },
-  { operateur:'Lebara', reseau:'SFR', data:250, prix:9.99, icon:'🔴' },
+  { operateur:'Lebara', reseau:'SFR', data:200, prix:9.99, icon:'🔴' },
+  { operateur:'Syma Mobile', reseau:'SFR', data:100, prix:9.99, icon:'📶' },
+  { operateur:'Prixtel Oxygène', reseau:'SFR', data:100, prix:9.99, icon:'📶' },
+  { operateur:'YouPrice', reseau:'SFR', data:200, prix:9.99, icon:'📶' },
+  { operateur:'La Poste Mobile', reseau:'Bouygues', data:130, prix:10.99, icon:'📮' },
   { operateur:'Sosh', reseau:'Orange', data:80, prix:10.99, icon:'🟠' },
+  { operateur:'Coriolis Le Connecté', reseau:'SFR', data:200, prix:11.99, icon:'📶' },
   { operateur:'RED by SFR', reseau:'SFR', data:130, prix:13.99, icon:'🔴' },
   { operateur:'B&You', reseau:'Bouygues', data:130, prix:13.99, icon:'🔵' },
   { operateur:'Free 5G', reseau:'Free', data:150, prix:19.99, icon:'🆓' },
