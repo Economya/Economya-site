@@ -249,11 +249,13 @@ a{text-decoration:none;color:inherit;}
       <span class="tier-tag">Visibilité standard</span>
       <h3 class="serif">Gratuite</h3>
       <p>Votre offre est listée sur Economya Business, dans la catégorie correspondante, et peut apparaître dans le flux Community au milieu des astuces de la communauté.</p>
+      <button type="button" class="tier-btn" onclick="goToForm('standard')" style="margin-top:14px;width:100%;background:var(--ink);color:#fff;border:none;border-radius:99px;padding:11px;font-weight:800;font-size:13.5px;cursor:pointer">Déposer gratuitement ↓</button>
     </div>
     <div class="tier featured">
       <span class="tier-tag">Mise en avant</span>
       <h3 class="serif">Sur devis</h3>
       <p>Votre offre apparaît en tête de sélection et dans l'alerte envoyée aux abonnés de la catégorie. Toujours identifiée clairement comme partenariat. Contactez-nous pour en discuter.</p>
+      <button type="button" class="tier-btn" onclick="goToForm('mise_en_avant')" style="margin-top:14px;width:100%;background:#fff;color:#0A0A0A;border:none;border-radius:99px;padding:11px;font-weight:800;font-size:13.5px;cursor:pointer">Être recontacté ↓</button>
     </div>
   </div>
 
@@ -300,6 +302,19 @@ a{text-decoration:none;color:inherit;}
       <div class="row2">
         <div class="field"><label>Dates de validité</label><input type="text" id="f-dates" maxlength="60" placeholder="Ex : jusqu'au 31/12"></div>
         <div class="field"><label>Site web</label><input type="url" id="f-web" maxlength="200" placeholder="https://"></div>
+      </div>
+      <div class="field">
+        <label>Visibilité souhaitée</label>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+          <label style="display:flex;gap:8px;align-items:flex-start;font-size:13.5px;font-weight:500;color:var(--ink);cursor:pointer">
+            <input type="radio" name="f-visibilite" value="standard" checked style="margin-top:3px">
+            <span>Visibilité standard (gratuite)</span>
+          </label>
+          <label style="display:flex;gap:8px;align-items:flex-start;font-size:13.5px;font-weight:500;color:var(--ink);cursor:pointer">
+            <input type="radio" name="f-visibilite" value="mise_en_avant" id="f-visibilite-featured" style="margin-top:3px">
+            <span>Mise en avant — nous vous recontactons par email pour le tarif</span>
+          </label>
+        </div>
       </div>
       <label class="consent">
         <input type="checkbox" id="f-consent" required>
@@ -390,6 +405,13 @@ function setCat(cat){
   render();
 }
 
+function goToForm(pref){
+  const radio = document.querySelector('input[name="f-visibilite"][value="' + pref + '"]');
+  if(radio) radio.checked = true;
+  const target = document.getElementById('f-nom');
+  if(target){ target.scrollIntoView({behavior:'smooth', block:'center'}); target.focus({preventScroll:true}); }
+}
+
 async function loadDeals(){
   try{
     const res = await fetch(SUPABASE_URL + '/rest/v1/astuces?select=id,titre,description,economie,auteur,categorie,votes,tested,reports,created_at,partenariat&partenariat=eq.true&hidden=eq.false&order=created_at.desc&limit=80', {
@@ -411,6 +433,7 @@ document.getElementById('bizForm').addEventListener('submit', async function(e){
   msg.className = 'form-msg';
   msg.textContent = '';
 
+  const visibiliteEl = document.querySelector('input[name="f-visibilite"]:checked');
   const payload = {
     nom_commerce: document.getElementById('f-nom').value.trim(),
     email: document.getElementById('f-email').value.trim(),
@@ -420,6 +443,7 @@ document.getElementById('bizForm').addEventListener('submit', async function(e){
     description: document.getElementById('f-desc').value.trim(),
     dates_validite: document.getElementById('f-dates').value.trim() || null,
     site_web: document.getElementById('f-web').value.trim() || null,
+    visibilite_souhaitee: visibiliteEl ? visibiliteEl.value : 'standard',
     consent_rgpd: document.getElementById('f-consent').checked,
     status: 'pending'
   };

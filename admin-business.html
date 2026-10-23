@@ -139,10 +139,13 @@ function subLine(s){
 }
 
 function pendingItemHtml(s){
+  const featBadge = s.visibilite_souhaitee === 'mise_en_avant'
+    ? `<span class="status-badge" style="background:#FFFBEB;color:#92400E">⭐ Veut être mis en avant</span>` : '';
   return `<div class="item" id="sub-${s.id}">
     <div class="item-head">
       <div class="item-meta">${escapeHtml(s.nom_commerce||'Commerce')} · <a href="mailto:${escapeHtml(s.email||'')}">${escapeHtml(s.email||'')}</a> · il y a ${timeAgo(s.created_at)}</div>
       <span class="cat-badge">${escapeHtml(s.categorie||'')}</span>
+      ${featBadge}
     </div>
     <div class="item-title">${escapeHtml(s.titre_offre||'')}</div>
     <div class="item-sub">${subLine(s)}</div>
