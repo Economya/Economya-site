@@ -68,10 +68,10 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 
   <div class="card" id="authCard">
     <div class="acct-toggle" id="acctToggle">
-      <button type="button" id="acctBtnPerso" class="active" onclick="setAccountType('particulier')">👤 Particulier</button>
-      <button type="button" id="acctBtnEnt" onclick="setAccountType('entreprise')">🏢 Entreprise</button>
+      <button type="button" id="acctBtnPerso" class="active" onclick="setAccountType('particulier')">Particulier</button>
+      <button type="button" id="acctBtnEnt" onclick="setAccountType('entreprise')">Entreprise</button>
     </div>
-    <h1 id="authTitle">🔐 Connexion</h1>
+    <h1 id="authTitle">Connexion</h1>
     <div id="authError"></div>
     <div class="field" id="authPseudoField" style="display:none">
       <label id="authPseudoLabel">Pseudo</label><input id="authPseudo" placeholder="Marie" maxlength="30">
@@ -96,7 +96,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
   </div>
 
   <div class="card forgot-panel" id="forgotCard" style="margin-top:14px;">
-    <h1>🔑 Mot de passe oublié</h1>
+    <h1>Mot de passe oublié</h1>
     <div id="forgotMsg"></div>
     <div class="field" id="forgotEmailField"><label>Email</label><input id="forgotEmail" type="email" placeholder="vous@email.com"></div>
     <div class="field" id="forgotCodeField" style="display:none"><label>Code reçu par email</label><input id="forgotCode" type="text" inputmode="numeric" placeholder="123456" maxlength="6"></div>
@@ -128,7 +128,7 @@ let accountType = getParam('type') === 'entreprise' ? 'entreprise' : 'particulie
 
 function applyMode(){
   const isEnt = accountType === 'entreprise';
-  document.getElementById('authTitle').textContent = (authMode === 'login' ? '🔐 Connexion' : '✨ Inscription') + (isEnt ? ' — entreprise' : '');
+  document.getElementById('authTitle').textContent = (authMode === 'login' ? 'Connexion' : 'Inscription') + (isEnt ? ' — entreprise' : '');
   document.getElementById('authPseudoField').style.display = authMode === 'signup' ? 'block' : 'none';
   document.getElementById('authPseudoLabel').textContent = isEnt ? "Nom de l'entreprise" : 'Pseudo';
   document.getElementById('authPseudo').placeholder = isEnt ? 'Ma Boutique' : 'Marie';
