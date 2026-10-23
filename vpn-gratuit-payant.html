@@ -138,6 +138,22 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
           "@type": "Answer",
           "text": "C'est l'engagement du fournisseur VPN à ne conserver aucun journal de votre activité (sites visités, adresse IP d'origine). Privilégiez les fournisseurs dont la politique no-log a été vérifiée par un audit indépendant."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Qu'est-ce que l'alliance Five Eyes / Nine Eyes, et pourquoi ca compte ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ce sont des accords de partage de renseignement entre pays (Five Eyes : USA, Royaume-Uni, Canada, Australie, Nouvelle-Zelande ; Nine Eyes y ajoute notamment la France, les Pays-Bas, le Danemark, la Norvege). Un VPN base dans un pays membre peut en theorie etre contraint de cooperer avec les autorites, ce qui pousse certains fournisseurs a s'installer en Suisse ou au Panama."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment verifier qu'un VPN tient vraiment sa promesse de no-log ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cherchez si la politique a ete verifiee par un audit independant publie (Deloitte pour NordVPN, SEC Consult pour ProtonVPN, Securitum pour Windscribe, plusieurs cabinets pour Mullvad). Un simple engagement marketing sans audit publie vaut beaucoup moins qu'un rapport recent et documente."
+        }
       }
     ]
   }
@@ -186,6 +202,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="vpns" id="vpns-list"><!-- généré par JS --></div>
   </div>
 
+  <div class="card">
+    <h2>📝 Comment bien choisir son VPN</h2>
+    <p style="font-size:.9rem;color:var(--m);line-height:1.7;margin-bottom:.9rem">Trois critères comptent plus que le nom de la marque. D'abord, l'<strong>audit indépendant</strong> de la politique « no-log » : un engagement marketing non vérifié vaut beaucoup moins qu'un rapport d'audit publié (Deloitte, Cure53, SEC Consult, Securitum...). Ensuite, la <strong>juridiction</strong> du fournisseur : les VPN basés dans un pays membre des alliances de renseignement <em>Five Eyes</em> ou <em>Nine Eyes</em> (Royaume-Uni, USA, France, Pays-Bas...) peuvent en théorie être soumis à des demandes légales de coopération, ce qui pousse certains éditeurs à s'installer en Suisse (ProtonVPN) ou au Panama (NordVPN).</p>
+    <p style="font-size:.9rem;color:var(--m);line-height:1.7">Enfin, le <strong>protocole</strong> utilisé : WireGuard (Mullvad, NordVPN et la plupart des services récents) est aujourd'hui plus rapide et plus simple à auditer qu'OpenVPN. Pour un usage ponctuel (voyage, Wi-Fi public), une version gratuite sérieuse (ProtonVPN, Windscribe) suffit largement ; pour débloquer du streaming étranger au quotidien, un abonnement payant reste nécessaire, aucun VPN gratuit n'étant optimisé pour ça durablement.</p>
+    <p style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Comparatif vérifié le 23/10/2026</strong> à partir des pages tarifaires et rapports d'audit publics des éditeurs.</p>
+  </div>
+
   <div class="tip" id="tip-text">
     <strong>💡 Conseil :</strong> Sélectionnez un usage ci-dessus pour voir le VPN le plus adapté.
   </div>
@@ -200,9 +223,17 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <summary style="font-weight:700;cursor:pointer">Un VPN me rend-il totalement anonyme ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non. Un VPN chiffre votre trafic et masque votre adresse IP vis-à-vis des sites visités, mais il ne vous rend pas anonyme si vous êtes connecté à des comptes personnels. C'est un outil de confidentialité, pas d'anonymat complet.</p>
     </details>
-    <details>
+    <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Qu'est-ce qu'une politique « no-log » ?</summary>
       <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">C'est l'engagement du fournisseur à ne conserver aucun journal de votre activité. Privilégiez les fournisseurs dont la politique no-log a été vérifiée par un audit indépendant.</p>
+    </details>
+    <details style="margin-bottom:.9rem">
+      <summary style="font-weight:700;cursor:pointer">Qu'est-ce que l'alliance « Five Eyes » / « Nine Eyes », et pourquoi ça compte ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Ce sont des accords de partage de renseignement entre pays (Five Eyes : USA, Royaume-Uni, Canada, Australie, Nouvelle-Zélande ; Nine Eyes y ajoute notamment la France, les Pays-Bas, le Danemark, la Norvège). Un VPN basé dans un pays membre peut en théorie être contraint de coopérer avec les autorités. C'est pourquoi certains fournisseurs s'installent volontairement en Suisse ou au Panama, hors de ces alliances — sans que ça garantisse une protection absolue.</p>
+    </details>
+    <details>
+      <summary style="font-weight:700;cursor:pointer">Comment vérifier qu'un VPN tient vraiment sa promesse de « no-log » ?</summary>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Cherchez si la politique a été vérifiée par un audit indépendant <strong>publié</strong> (Deloitte pour NordVPN, SEC Consult pour ProtonVPN, Securitum pour Windscribe, plusieurs cabinets pour Mullvad...). Un simple engagement marketing sans audit ni détail de méthode vaut beaucoup moins qu'un rapport récent et documenté.</p>
     </details>
   </div>
 
@@ -279,9 +310,9 @@ const VPNS = [
     id:'protonvpn', icon:'🛡️', nom:'ProtonVPN',
     desc:"Le seul de ce comparatif à proposer une vraie version gratuite illimitée en données, avec un excellent niveau de confidentialité.",
     facts:{
-      'Prix':'Gratuit, ou dès 2,99€/mois en payant',
-      'Version gratuite':'Oui, données illimitées, moins de serveurs',
-      'No-log':'Politique stricte, société basée en Suisse',
+      'Prix':'Gratuit (1 appareil, 3 pays), ou dès 4,49€/mois en Plus',
+      'Version gratuite':'Oui, données illimitées mais 1 appareil et 3 pays seulement',
+      'No-log':'Audité par SEC Consult, société basée en Suisse',
       'Streaming':'Bon sur l\'offre payante',
     },
     profils:['gratuit','vieprivee','voyage']
@@ -290,10 +321,10 @@ const VPNS = [
     id:'nordvpn', icon:'🔵', nom:'NordVPN',
     desc:"Un très large réseau de serveurs et de bonnes performances pour débloquer les plateformes de streaming.",
     facts:{
-      'Prix':'Dès ~3-4€/mois sur engagement long',
+      'Prix':'Dès ~3€/mois sur engagement 2 ans, puis 7-8€/mois au renouvellement',
       'Version gratuite':'Non',
-      'No-log':'Revendiquée',
-      'Streaming':'Très bon',
+      'No-log':'Audité par Deloitte',
+      'Streaming':'Très bon (Netflix, Disney+, BBC iPlayer...)',
     },
     profils:['streaming']
   },
@@ -303,7 +334,7 @@ const VPNS = [
     facts:{
       'Prix':'Souvent le moins cher sur engagement long',
       'Version gratuite':'Non',
-      'No-log':'Revendiquée',
+      'No-log':'Revendiquée, pas d\'audit indépendant publié à ce jour',
       'Appareils':'Nombre illimité sur un compte',
     },
     profils:['streaming','gratuit']
@@ -312,12 +343,23 @@ const VPNS = [
     id:'mullvad', icon:'🕵️', nom:'Mullvad',
     desc:"Le choix des puristes de la vie privée : tarif fixe, aucune donnée personnelle demandée à l'inscription.",
     facts:{
-      'Prix':'Tarif fixe, sans réduction ni hausse',
+      'Prix':'5€/mois fixe, sans engagement ni promo',
       'Version gratuite':'Non',
-      'No-log':'Minimise les données au maximum, pas d\'email requis',
+      'No-log':'6 audits indépendants publiés (Cure53 notamment), pas d\'email requis',
       'Streaming':'Non optimisé pour ça',
     },
     profils:['vieprivee']
+  },
+  {
+    id:'windscribe', icon:'🌬️', nom:'Windscribe',
+    desc:"Le meilleur compromis pour qui veut un vrai forfait gratuit généreux sans sortir la carte bancaire, sur un nombre d'appareils illimité.",
+    facts:{
+      'Prix':'Gratuit (15 Go/mois), ou environ 3,70€/mois en payant',
+      'Version gratuite':'Oui, 15 Go/mois, appareils illimités, ~10 pays',
+      'No-log':'Audité par Securitum',
+      'Streaming':'Partiel, pas optimisé',
+    },
+    profils:['gratuit']
   },
 ];
 
