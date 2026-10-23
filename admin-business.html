@@ -152,7 +152,7 @@ function pendingItemHtml(s){
     <div class="item-body">${escapeHtml(s.description||'')}</div>
     <div class="item-actions">
       <button class="primary" onclick="publish(${JSON.stringify(s.id)}, false, this)">Publier (gratuit)</button>
-      <button class="partner" onclick="publish(${JSON.stringify(s.id)}, true, this)">Publier en partenariat 🤝</button>
+      <button class="partner" onclick="publish(${JSON.stringify(s.id)}, true, this)" title="Mise en avant active 7 jours, puis retour au tri normal">Publier en partenariat 🤝 (7j)</button>
       <button class="danger" onclick="reject(${JSON.stringify(s.id)}, this)">Rejeter</button>
     </div>
   </div>`;
@@ -224,7 +224,8 @@ async function publish(id, partenariat, btn){
       comments: 0,
       hidden: false,
       user_id: null,
-      partenariat: !!partenariat
+      partenariat: !!partenariat,
+      featured_until: partenariat ? new Date(Date.now() + 7*24*60*60*1000).toISOString() : null
     };
     await sbFetch('astuces', { method: 'POST', body: JSON.stringify(astucePayload) });
     await sbFetch('business_submissions?id=eq.' + encodeURIComponent(id), {
@@ -235,11 +236,11 @@ async function publish(id, partenariat, btn){
     s.status = 'published';
     history.unshift(s);
     renderPending(); renderHistory();
-    toast(partenariat ? 'Publiée en partenariat 🤝' : 'Publiée (gratuit) ✅');
+    toast(partenariat ? 'Publiée en partenariat 🤝 — mise en avant active 7 jours' : 'Publiée (gratuit) ✅');
   } catch(e){
     console.error(e);
     toast("Échec de la publication — voir la console.");
-    if(btn){ btn.disabled = false; btn.textContent = partenariat ? 'Publier en partenariat 🤝' : 'Publier (gratuit)'; }
+    if(btn){ btn.disabled = false; btn.textContent = partenariat ? 'Publier en partenariat 🤝 (7j)' : 'Publier (gratuit)'; }
   }
 }
 
