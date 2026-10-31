@@ -8,7 +8,7 @@
 <title>Mon espace entreprise — Economya Business</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
 html{overflow-y:scroll}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -40,6 +40,7 @@ h1{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;margin-
 .featured-countdown{display:inline-flex;align-items:center;gap:6px;background:#FFFBEB;color:#92400E;border-radius:99px;padding:4px 11px;font-size:.75rem;font-weight:700;margin-top:8px}
 .featured-expired{display:inline-flex;align-items:center;gap:6px;background:#F3F4F6;color:#5F5E5A;border-radius:99px;padding:4px 11px;font-size:.75rem;font-weight:700;margin-top:8px}
 </style>
+<link rel="preconnect" href="https://awelbxqiltokhsoddako.supabase.co" crossorigin>
 </head>
 <body>
 <nav>
@@ -54,7 +55,7 @@ h1{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;margin-
   <div id="gate" class="state">Vérification du compte…</div>
   <div id="panel" style="display:none">
     <div class="top-actions">
-      <a class="btn-new" href="/economya-business.html#bizForm">+ Déposer une nouvelle offre</a>
+      <a class="btn-new" href="/economya-business#bizForm">+ Déposer une nouvelle offre</a>
     </div>
     <div id="list"></div>
   </div>

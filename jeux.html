@@ -10,7 +10,7 @@
 <meta name="description" content="46 jeux gratuits pour apprendre à gérer votre argent en jouant ! Economya.fr">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
 html{overflow-y:scroll}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}body{margin:0;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -159,6 +159,9 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="fr_FR">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Jeux Finance", "description": "46 jeux gratuits pour apprendre à gérer votre argent en jouant ! Economya.fr", "url": "https://economya.fr/jeux"}</script>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#085041">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute"><defs>
@@ -216,14 +219,14 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <symbol id="ic-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
 </defs></svg>
 <nav>
-  <a class="logo" href="index.html">Econom<span>ya</span>.fr</a>
-  <a class="nav-back" href="index.html">← Accueil</a>
+  <a class="logo" href="/">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="/">← Accueil</a>
   <!-- Menu hamburger mobile -->
 
-<div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="index.html">Accueil</a></li><li><a href="community.html"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a></li><li><a href="economya-business.html" style="color:#B8860B;font-weight:700">💼 Business</a></li><li><a href="a-propos.html">À propos</a></li><li><a href="comparateurs.html">Comparateurs</a></li><li><a href="outils-gratuits.html"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a></li><li><a href="jeux.html"><svg class="ic"><use href="#ic-gamepad"/></svg>Jeux</a></li></ul><a href="forum-astuces.html" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-<div class="nav-right-group" style="display:flex;align-items:center;gap:1rem"><a href="recherche.html" class="eco-dnav-search"><svg class="ic"><use href="#ic-search"/></svg>Rechercher</a><div id="navAv" style="cursor:pointer"></div></div>
+<div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/">Accueil</a></li><li><a href="/community"><svg class="ic"><use href="#ic-leaf"/></svg>Community</a></li><li><a href="/economya-business" style="color:#B8860B;font-weight:700">💼 Business</a></li><li><a href="/a-propos">À propos</a></li><li><a href="/comparateurs">Comparateurs</a></li><li><a href="/outils-gratuits"><svg class="ic"><use href="#ic-tools"/></svg>Outils gratuits</a></li><li><a href="/jeux"><svg class="ic"><use href="#ic-gamepad"/></svg>Jeux</a></li></ul><a href="/forum-astuces" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<div class="nav-right-group" style="display:flex;align-items:center;gap:1rem"><a href="/recherche" class="eco-dnav-search"><svg class="ic"><use href="#ic-search"/></svg>Rechercher</a><div id="navAv" style="cursor:pointer"></div></div>
 <button class="hamburger" onclick="toggleMenu()" aria-label="Menu" style="order:99"><span></span><span></span><span></span></button></nav>
-<main><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="index.html">Accueil</a><a href="forum-astuces.html"><svg class="ic"><use href="#ic-idea"/></svg>Economya Network</a><a href="community.html">Community</a><a href="economya-business.html">💼 Business</a><a href="a-propos.html">À propos</a><a href="comparateurs.html">Comparateurs</a><a href="outils-gratuits.html">Outils gratuits</a><a href="jeux.html">Jeux</a><a href="recherche.html">Rechercher</a><a href="#" id="navAvMobile"><svg class="ic"><use href="#ic-user"/></svg>Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626"><svg class="ic"><use href="#ic-logout"/></svg>Déconnexion</a></div>
+<main><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">✕</button><a href="/">Accueil</a><a href="/forum-astuces"><svg class="ic"><use href="#ic-idea"/></svg>Economya Network</a><a href="/community">Community</a><a href="/economya-business">💼 Business</a><a href="/a-propos">À propos</a><a href="/comparateurs">Comparateurs</a><a href="/outils-gratuits">Outils gratuits</a><a href="/jeux">Jeux</a><a href="/recherche">Rechercher</a><a href="#" id="navAvMobile"><svg class="ic"><use href="#ic-user"/></svg>Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626"><svg class="ic"><use href="#ic-logout"/></svg>Déconnexion</a></div>
 
 <div class="hero">
   <h1>🎮 Jeux <em>Finance</em></h1>
@@ -597,7 +600,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <div class="section-title">🕹️ Tous les jeux</div>
   <div class="games-grid">
 
-    <a class="game-card" href="inflation-run.html">
+    <a class="game-card" href="/inflation-run">
       <div class="game-thumb dark">
         <div class="game-ribbon">Runner</div>
         <div class="game-badge hot"><svg class="ic"><use href="#ic-flame"/></svg>Addictif</div>
@@ -612,7 +615,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="ou-vivre-mieux.html">
+    <a class="game-card" href="/ou-vivre-mieux">
       <div class="game-thumb" style="background:linear-gradient(135deg,#082f49,#0c4a6e,#0891b2)">
         <div class="game-ribbon">Comparateur</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -627,7 +630,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="calendrier-bons-plans.html">
+    <a class="game-card" href="/calendrier-bons-plans">
       <div class="game-thumb" style="background:linear-gradient(135deg,#4a1d96,#7c3aed,#a855f7)">
         <div class="game-ribbon">Calendrier</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -642,7 +645,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="le-bon-deal.html">
+    <a class="game-card" href="/le-bon-deal">
       <div class="game-thumb purple">
         <div class="game-ribbon">Quiz rapide</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Illimité</div>
@@ -657,7 +660,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="le-negociateur.html">
+    <a class="game-card" href="/le-negociateur">
       <div class="game-thumb orange">
         <div class="game-ribbon">Négociation</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Sans répétition</div>
@@ -672,7 +675,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="roue-economies.html">
+    <a class="game-card" href="/roue-economies">
       <div class="game-thumb gold">
         <div class="game-ribbon">Roue de la fortune</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Édition XXL</div>
@@ -687,7 +690,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="jackpot-finance.html">
+    <a class="game-card" href="/jackpot-finance">
       <div class="game-thumb blue">
         <div class="game-ribbon">Machine à sous</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Sans limite</div>
@@ -702,7 +705,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="vrai-ou-faux.html">
+    <a class="game-card" href="/vrai-ou-faux">
       <div class="game-thumb teal">
         <div class="game-ribbon">Vrai ou Faux</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Format marathon</div>
@@ -717,7 +720,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="finance-wrapped.html">
+    <a class="game-card" href="/finance-wrapped">
       <div class="game-thumb indigo">
         <div class="game-ribbon">Bilan annuel</div>
         <div class="game-badge insta"><svg class="ic"><use href="#ic-sparkle"/></svg>Instagram</div>
@@ -732,7 +735,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="aura-financiere.html">
+    <a class="game-card" href="/aura-financiere">
       <div class="game-thumb purple">
         <div class="game-ribbon">Profil financier</div>
         <div class="game-badge insta"><svg class="ic"><use href="#ic-sparkle"/></svg>Instagram</div>
@@ -747,7 +750,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="investisseur-virtuel.html">
+    <a class="game-card" href="/investisseur-virtuel">
       <div class="game-thumb green">
         <div class="game-ribbon">Simulation bourse</div>
         <div class="game-badge serious"><svg class="ic"><use href="#ic-cap"/></svg>Sérieux</div>
@@ -762,7 +765,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="primo-accedant.html">
+    <a class="game-card" href="/primo-accedant">
       <div class="game-thumb navy">
         <div class="game-ribbon">Immobilier</div>
         <div class="game-badge serious"><svg class="ic"><use href="#ic-cap"/></svg>Sérieux</div>
@@ -777,7 +780,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="budget-tower.html">
+    <a class="game-card" href="/budget-tower">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0a1f1c,#123f37,#1D9E75)">
         <div class="game-ribbon">Empilement</div>
         <div class="game-badge hot"><svg class="ic"><use href="#ic-flame"/></svg>Addictif</div>
@@ -792,7 +795,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="radar-arnaques.html">
+    <a class="game-card" href="/radar-arnaques">
       <div class="game-thumb red">
         <div class="game-ribbon">Quiz swipe</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Mode expert</div>
@@ -807,7 +810,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="tas-combien-dans-les-mains.html">
+    <a class="game-card" href="/tas-combien-dans-les-mains">
       <div class="game-thumb" style="background:linear-gradient(135deg,#2e1509,#7c3a1a,#FF6B49)">
         <div class="game-ribbon">Estimation</div>
         <div class="game-badge insta"><svg class="ic"><use href="#ic-sparkle"/></svg>Instagram</div>
@@ -822,7 +825,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="attrape-economies.html">
+    <a class="game-card" href="/attrape-economies">
       <div class="game-thumb" style="background:linear-gradient(135deg,#1B0E2E,#3A1A5C,#5C2D8F)">
         <div class="game-ribbon">Esquive & rattrapage</div>
         <div class="game-badge hot"><svg class="ic"><use href="#ic-flame"/></svg>Addictif</div>
@@ -837,7 +840,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="boule-de-patrimoine.html">
+    <a class="game-card" href="/boule-de-patrimoine">
       <div class="game-thumb" style="background:linear-gradient(135deg,#1a1a2e,#3a2a5c,#7c5cbf)">
         <div class="game-ribbon">Style Katamari</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -852,7 +855,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="sprint-epargne.html">
+    <a class="game-card" href="/sprint-epargne">
       <div class="game-thumb" style="background:linear-gradient(135deg,#1a2e1a,#2d5c2d,#4CAF50)">
         <div class="game-ribbon">Runner</div>
         <div class="game-badge hot"><svg class="ic"><use href="#ic-flame"/></svg>Addictif</div>
@@ -867,7 +870,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="tri-de-budget.html">
+    <a class="game-card" href="/tri-de-budget">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0a1a2e,#154a6e,#2196F3)">
         <div class="game-ribbon">Tri rapide</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -882,7 +885,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="grand-prix-epargne.html">
+    <a class="game-card" href="/grand-prix-epargne">
       <div class="game-thumb" style="background:linear-gradient(135deg,#2A0E12,#5c1a24,#c0392b)">
         <div class="game-ribbon">Course d'évitement</div>
         <div class="game-badge insta"><svg class="ic"><use href="#ic-sparkle"/></svg>Instagram</div>
@@ -897,7 +900,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="eclateur-de-dettes.html">
+    <a class="game-card" href="/eclateur-de-dettes">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0E1A2A,#1a3450,#4BC9FF)">
         <div class="game-ribbon">Visée libre</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -912,7 +915,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="casse-tes-dettes.html">
+    <a class="game-card" href="/casse-tes-dettes">
       <div class="game-thumb" style="background:linear-gradient(135deg,#241018,#4a2030,#FF9B4B)">
         <div class="game-ribbon">Casse-brique</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -927,7 +930,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="le-gestionnaire-de-crise.html">
+    <a class="game-card" href="/le-gestionnaire-de-crise">
       <div class="game-thumb" style="background:linear-gradient(135deg,#1A0E24,#3a1e52,#FFC94B)">
         <div class="game-ribbon">Gestion temps réel</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -942,7 +945,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="le-marche-vivant.html">
+    <a class="game-card" href="/le-marche-vivant">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0E1A2A,#1a3450,#4BC9FF)">
         <div class="game-ribbon">Simulation · Allocation</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -957,7 +960,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="la-roue-des-scenarios.html">
+    <a class="game-card" href="/la-roue-des-scenarios">
       <div class="game-thumb" style="background:linear-gradient(135deg,#1E1030,#3a1e52,#C77DFF)">
         <div class="game-ribbon">Deck · Décisions</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -972,7 +975,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="le-grand-cycle-economique.html">
+    <a class="game-card" href="/le-grand-cycle-economique">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0E2438,#1a4460,#FFC94B)">
         <div class="game-ribbon">Plateau · Long terme</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -987,7 +990,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="la-machine-a-reves.html">
+    <a class="game-card" href="/la-machine-a-reves">
       <div class="game-thumb" style="background:linear-gradient(135deg,#1a1030,#3a1e52,#FFC94B)">
         <div class="game-ribbon">Projection positive</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -1002,7 +1005,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="ton-annee-bons-plans.html">
+    <a class="game-card" href="/ton-annee-bons-plans">
       <div class="game-thumb" style="background:linear-gradient(135deg,#2A0E30,#4a1e52,#FF6FB5)">
         <div class="game-ribbon">Récap façon Wrapped</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -1017,7 +1020,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="ton-totem-financier.html">
+    <a class="game-card" href="/ton-totem-financier">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0E2A24,#1a4a34,#3DDC84)">
         <div class="game-ribbon">Portrait chinois</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -1032,7 +1035,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="le-trophee-du-jour.html">
+    <a class="game-card" href="/le-trophee-du-jour">
       <div class="game-thumb" style="background:linear-gradient(135deg,#241A0E,#4a3418,#FFC94B)">
         <div class="game-ribbon">Récompense quotidienne</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -1047,7 +1050,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="le-sosie-celebre-de-ton-epargne.html">
+    <a class="game-card" href="/le-sosie-celebre-de-ton-epargne">
       <div class="game-thumb" style="background:linear-gradient(135deg,#1E1030,#3a1e52,#C77DFF)">
         <div class="game-ribbon">Personnalité</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -1062,7 +1065,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="le-mur-des-bravos.html">
+    <a class="game-card" href="/le-mur-des-bravos">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0E2A24,#1a4a34,#3DDC84)">
         <div class="game-ribbon">Mur personnel</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -1077,7 +1080,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="chef-econome.html">
+    <a class="game-card" href="/chef-econome">
       <div class="game-thumb" style="background:linear-gradient(135deg,#2A1C0A,#4A3010,#FFA726)">
         <div class="game-ribbon">Tapis roulant</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-chefhat"/></svg>Cuisine</div>
@@ -1093,7 +1096,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </a>
 
 
-    <a class="game-card" href="coach-econome.html">
+    <a class="game-card" href="/coach-econome">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0A1A0E,#163020,#34D399)">
         <div class="game-ribbon">Gestion sportive</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-dumbbell"/></svg>Sport</div>
@@ -1108,7 +1111,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="chef-resto-v2.html">
+    <a class="game-card" href="/chef-resto-v2">
       <div class="game-thumb" style="background:linear-gradient(135deg,#120A06,#281408,#FB923C)">
         <div class="game-ribbon">Gestion temps réel</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-plate"/></svg>Resto</div>
@@ -1123,7 +1126,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="marathon-budgetaire-v2.html">
+    <a class="game-card" href="/marathon-budgetaire-v2">
       <div class="game-thumb" style="background:linear-gradient(135deg,#060E08,#142018,#34D399)">
         <div class="game-ribbon">Runner & décisions</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-dumbbell"/></svg>Sport</div>
@@ -1138,7 +1141,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="finance-runner-3d-v2.html">
+    <a class="game-card" href="/finance-runner-3d-v2">
       <div class="game-thumb" style="background:linear-gradient(135deg,#080C14,#162035,#60A5FA)">
         <div class="game-ribbon">Runner isométrique</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-bolt"/></svg>Runner</div>
@@ -1153,7 +1156,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="bar-de-plage.html">
+    <a class="game-card" href="/bar-de-plage">
       <div class="game-thumb" style="background:linear-gradient(135deg,#001A2E,#003050,#22D3EE)">
         <div class="game-ribbon">Gestion saisonnière</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-palm"/></svg>Plage</div>
@@ -1168,7 +1171,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="domaine-viticole.html">
+    <a class="game-card" href="/domaine-viticole">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0E0810,#221428,#C084FC)">
         <div class="game-ribbon">Simulation viticole</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-grape"/></svg>Vigne</div>
@@ -1183,7 +1186,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="hotel-manager.html">
+    <a class="game-card" href="/hotel-manager">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0A0E1A,#162035,#A78BFA)">
         <div class="game-ribbon">Management hôtelier</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-bed"/></svg>Hôtel</div>
@@ -1198,7 +1201,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="memory-finance.html">
+    <a class="game-card" href="/memory-finance">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0C1220,#182438,#60A5FA)">
         <div class="game-ribbon">Mémoire & culture</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-brain"/></svg>Memory</div>
@@ -1213,7 +1216,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="budget-run.html">
+    <a class="game-card" href="/budget-run">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0A0E1A,#123018,#4CAF50)">
         <div class="game-ribbon">Runner · Style Nintendo</div>
         <div class="game-badge hot"><svg class="ic"><use href="#ic-flame"/></svg>Addictif</div>
@@ -1228,7 +1231,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="happy-budget.html">
+    <a class="game-card" href="/happy-budget">
       <div class="game-thumb" style="background:linear-gradient(135deg,#0A0E1A,#1a0a2e,#FFD54F)">
         <div class="game-ribbon">Plateforme · Style Doodle Jump</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-rocket"/></svg>Galactique</div>
@@ -1243,7 +1246,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="prix-party.html">
+    <a class="game-card" href="/prix-party">
       <div class="game-thumb" style="background:linear-gradient(135deg,#1B2A4A,#0A0E1A,#FFD54F)">
         <div class="game-ribbon">Défi du prix juste</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-target"/></svg>Défi horaire</div>
@@ -1258,7 +1261,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="ile-aux-oeufs.html">
+    <a class="game-card" href="/ile-aux-oeufs">
       <div class="game-thumb" style="background:linear-gradient(135deg,#2C5F2D,#97BC62,#FFF2CC)">
         <div class="game-ribbon">Simulation pédagogique</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -1273,7 +1276,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
     </a>
 
-    <a class="game-card" href="pile-ou-face-financier.html">
+    <a class="game-card" href="/pile-ou-face-financier">
       <div class="game-thumb" style="background:linear-gradient(135deg,#4A4A4A,#C0C0C0,#EF9F27)">
         <div class="game-ribbon">Dilemmes financiers</div>
         <div class="game-badge new"><svg class="ic"><use href="#ic-sparkle"/></svg>Nouveau</div>
@@ -1294,7 +1297,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <h3>💬 Rejoignez la communauté</h3>
     <p>Découvrez encore plus d'astuces testées et partagées par les membres.</p>
     <div class="cta-form">
-      <a href="/connexion.html?redirect=%2Fforum-astuces.html" style="background:var(--a);color:white;text-decoration:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;font-family:inherit;font-size:.86rem;display:inline-block" id="ecoCtaJoinBtn">Voir les astuces →</a>
+      <a href="/connexion?redirect=%2Fforum-astuces.html" style="background:var(--a);color:white;text-decoration:none;padding:.65rem 1.3rem;border-radius:50px;font-weight:600;font-family:inherit;font-size:.86rem;display:inline-block" id="ecoCtaJoinBtn">Voir les astuces →</a>
     <script>
     (function(){
       try {
@@ -1314,7 +1317,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </main>
 <footer>
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="cgu.html" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">

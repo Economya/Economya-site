@@ -1,0 +1,16 @@
+{
+  "name": "Economya",
+  "short_name": "Economya",
+  "description": "Le réseau social des économies du quotidien : astuces vérifiées, outils et comparateurs.",
+  "lang": "fr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FBFAF7",
+  "theme_color": "#085041",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

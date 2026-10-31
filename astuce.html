@@ -10,7 +10,7 @@
 <meta id="metaDesc" name="description" content="Découvrez une astuce pour économiser partagée par la communauté Economya.fr.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
 html{overflow-y:scroll}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -114,6 +114,10 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .comment-report{background:none;border:none;color:var(--m);cursor:pointer;font-size:.8rem;flex-shrink:0;align-self:flex-start;padding:4px}
 .comment-report.flagged{color:#DC2626}
 </style>
+<link rel="preconnect" href="https://awelbxqiltokhsoddako.supabase.co" crossorigin>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#085041">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body>
 <script>
@@ -157,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function(){
 </main>
 <footer>
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
-  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="mentions-legales.html" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="politique-confidentialite.html" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="cgu.html" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
 
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script>
@@ -377,7 +381,7 @@ function renderCommentForm(){
       <button type="button" id="commentSubmitBtn" onclick="submitComment()">Publier</button>
     </div>`;
   } else {
-    wrap.innerHTML = `<div class="comment-login-cta"><a href="/connexion.html?redirect=${encodeURIComponent(location.pathname)}">Connectez-vous</a> pour laisser un commentaire.</div>`;
+    wrap.innerHTML = `<div class="comment-login-cta"><a href="/connexion?redirect=${encodeURIComponent(location.pathname)}">Connectez-vous</a> pour laisser un commentaire.</div>`;
   }
 }
 
