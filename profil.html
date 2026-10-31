@@ -994,7 +994,7 @@ async function openFollowers(){
   try {
     const rows = await sbFetch('profiles?id=in.(' + ids.join(',') + ')&select=id,pseudo,avatar_url');
     const list = rows.sort((a,b)=>(newIds.includes(b.id)?1:0)-(newIds.includes(a.id)?1:0)).map(r=>{
-      const av = r.avatar_url ? '<img class="fol-av" src="'+escapeHtml(r.avatar_url)+'" alt="">' : '<div class="fol-av">'+escapeHtml((r.pseudo||'?')[0].toUpperCase())+'</div>';
+      const av = r.avatar_url ? '<img class="fol-av" src="'+escapeHtml(r.avatar_url)+'" alt="" width="32" height="32" loading="lazy" decoding="async">' : '<div class="fol-av">'+escapeHtml((r.pseudo||'?')[0].toUpperCase())+'</div>';
       return '<a class="fol-row" href="/profil/'+encodeURIComponent(r.pseudo)+'">'+av+'<span>'+escapeHtml(r.pseudo)+'</span>'+(newIds.includes(r.id)?'<span class="fol-new">nouveau</span>':'')+'</a>';
     }).join('');
     document.getElementById('folList').innerHTML = list || 'Aucun abonné visible.';

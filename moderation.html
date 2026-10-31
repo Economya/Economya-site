@@ -127,7 +127,7 @@ function astuceItemHtml(p, mode){
     </div>
     <div class="item-title">${escapeHtml(p.titre)}</div>
     <div class="item-body">${escapeHtml(p.description)}</div>
-    ${p.proof_image_url?`<a href="${escapeHtml(p.proof_image_url)}" target="_blank" rel="noopener"><img class="item-proof-img" src="${escapeHtml(p.proof_image_url)}" alt="Preuve jointe"></a>`:''}
+    ${p.proof_image_url?`<a href="${escapeHtml(p.proof_image_url)}" target="_blank" rel="noopener"><img class="item-proof-img" src="${escapeHtml(p.proof_image_url)}" alt="Preuve jointe" loading="lazy" decoding="async"></a>`:''}
     <div class="item-actions">${actions}</div>
   </div>`;
 }
