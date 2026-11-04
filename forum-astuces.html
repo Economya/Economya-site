@@ -897,7 +897,7 @@ async function doReport(id){
   if(reported.includes(id))return;
   if(!confirm('Signaler cette astuce ?'))return;
   try {
-    await sbFetch(`astuces?id=eq.${id}`, {method:'PATCH', body:JSON.stringify({reports:p.reports+1}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    await sbFetch('rpc/report_astuce', {method:'POST', body:JSON.stringify({p_id:String(id)}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
     p.reports+=1;reported.push(id);
     localStorage.setItem('eco_reported',JSON.stringify(reported));
     renderFeed();
