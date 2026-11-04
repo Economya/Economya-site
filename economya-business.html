@@ -644,7 +644,7 @@ function render(){
       <a href="${link}" class="deal-title" style="color:inherit">${escapeHtml(p.titre)}</a>
       <p class="deal-desc">${escapeHtml((p.description||'').slice(0,110))}${(p.description||'').length>110?'…':''}</p>
       ${eco}
-      <div class="deal-stats">❤️ ${p.votes||0} votes · ${r}% fiable</div>
+      <div class="deal-stats">❤️ ${p.votes||0} votes · ${((p.votes||0)+(p.tested||0)*2)>0 ? r+'% fiable' : 'Pas encore évaluée'}</div>
       <div class="deal-meta">
         <span>${escapeHtml(p.auteur||'Anonyme')}</span>
         <a href="${link}" class="deal-link">Voir l'astuce →</a>

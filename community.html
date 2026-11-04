@@ -92,6 +92,7 @@ a{text-decoration:none;color:inherit;}
 .rel-track{width:80px;height:4px;background:var(--border);border-radius:99px;overflow:hidden;}
 .rel-fill{height:100%;border-radius:99px;background:var(--green);}
 .rel-label{font-size:11px;font-weight:700;color:var(--green);}
+.rel-info{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;margin-left:6px;border-radius:50%;border:1px solid currentColor;font-size:9px;font-weight:700;font-style:normal;line-height:1;cursor:pointer;opacity:.5;background:none;color:#6B7280;padding:0;vertical-align:middle}.rel-info:hover{opacity:.9}.rel-pop{position:absolute;z-index:9999;max-width:240px;background:#1F2937;color:#fff;font-size:12px;font-weight:500;line-height:1.45;padding:8px 11px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.22)}
 
 /* CTA */
 .cta-section{background:var(--ink);color:#fff;border-radius:24px;max-width:860px;margin:0 auto 72px;padding:48px 32px;text-align:center;}
@@ -280,6 +281,20 @@ footer a{color:rgba(255,255,255,.75)}
     if(d < 86400000) return Math.floor(d/3600000) + 'h';
     return Math.floor(d/86400000) + 'j';
   }
+  function relRated(p){ return ((p.votes||0) + (p.tested||0)*2) > 0; }
+  function relInfoBtn(){ return '<button type="button" class="rel-info" aria-label="Comment est calcul\u00e9 ce score ?" onclick="relInfo(this,event)">i</button>'; }
+  function relInfo(btn, ev){
+    ev.preventDefault(); ev.stopPropagation();
+    var old = document.getElementById('relPop');
+    if(old){ var same = old._btn === btn; old.remove(); if(same) return; }
+    var pop = document.createElement('div'); pop.id = 'relPop'; pop.className = 'rel-pop'; pop._btn = btn;
+    pop.textContent = 'Score calcul\u00e9 \u00e0 partir des votes, des tests et des signalements de la communaut\u00e9.';
+    document.body.appendChild(pop);
+    var r = btn.getBoundingClientRect();
+    var left = Math.min(Math.max(8, r.left + window.scrollX - 110), window.scrollX + document.documentElement.clientWidth - pop.offsetWidth - 8);
+    pop.style.left = left + 'px'; pop.style.top = (r.bottom + window.scrollY + 8) + 'px';
+    setTimeout(function(){ document.addEventListener('click', function h(){ var p = document.getElementById('relPop'); if(p) p.remove(); document.removeEventListener('click', h); }); }, 0);
+  }
   function rel(p){
     var pos = (p.votes||0) + (p.tested||0)*2;
     var neg = (p.reports||0)*3;
@@ -298,7 +313,7 @@ footer a{color:rgba(255,255,255,.75)}
       '<div class="pc-title">' + escapeHtml(p.titre) + '</div>' +
       '<div class="pc-body">' + escapeHtml(p.description) + '</div>' +
       '<div class="pc-pill"><svg class="ic" style="width:11px;height:11px"><use href="#ic-wallet"/></svg>' + (p.economie||0).toLocaleString('fr-FR') + '€</div>' +
-      '<div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:' + r + '%"></div></div><span class="rel-label">' + r + '% fiable</span></div>' +
+      '<div class="reliability"><div class="rel-track"><div class="rel-fill" style="width:' + (relRated(p) ? r : 0) + '%"></div></div>' + (relRated(p) ? '<span class="rel-label">' + r + '% fiable</span>' : '<span class="rel-label" style="color:#9CA3AF">Pas encore \u00e9valu\u00e9e</span>') + relInfoBtn() + '</div>' +
       '<div class="pc-actions"><span><svg class="ic"><use href="#ic-heart"/></svg>' + (p.votes||0) + '</span><span><svg class="ic"><use href="#ic-check-badge"/></svg>' + (p.tested||0) + ' testés</span></div>' +
       '</div>';
   }

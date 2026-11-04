@@ -468,7 +468,7 @@ function toggleMenu(){
         '</div>' +
         '<div class="cc-title">' + escapeHtml(a.titre) + '</div>' +
         '<div class="cc-pill">' + WA + (a.economie||0).toLocaleString('fr-FR') + '€</div>' +
-        '<div class="cc-actions"><span>' + HE + (a.votes||0) + '</span><span>' + CH + (a.tested||0) + ' testés</span><span class="cc-rel">100% fiable</span></div>' +
+        '<div class="cc-actions"><span>' + HE + (a.votes||0) + '</span><span>' + CH + (a.tested||0) + ' testés</span>' + (((a.votes||0)+(a.tested||0)*2) > 0 ? '<span class="cc-rel">' + Math.max(0, Math.min(100, Math.round((((a.votes||0)+(a.tested||0)*2) - (a.reports||0)*3) / ((a.votes||0)+(a.tested||0)*2) * 100))) + '% fiable</span>' : '<span class="cc-rel" style="color:#9CA3AF">Pas encore \u00e9valu\u00e9e</span>') + '</div>' +
       '</div>' +
       '<div class="community-card" style="transform:rotate(2deg);opacity:.7;margin-top:-20px;pointer-events:none">' +
         '<div class="cc-header">' +

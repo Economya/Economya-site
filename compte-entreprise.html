@@ -134,7 +134,7 @@ function featuredNote(a){
 
 function itemHtml(s, astuce){
   const stats = astuce
-    ? `<div class="stats-row"><span>❤️ ${astuce.votes||0} votes</span><span>✅ ${astuce.tested||0} testé${(astuce.tested||0)>1?'s':''}</span><span>${rel(astuce)}% fiable</span></div>${featuredNote(astuce)}`
+    ? `<div class="stats-row"><span>❤️ ${astuce.votes||0} votes</span><span>✅ ${astuce.tested||0} testé${(astuce.tested||0)>1?'s':''}</span><span>${((astuce.votes||0)+(astuce.tested||0)*2)>0 ? rel(astuce)+'% fiable' : 'Pas encore évaluée'}</span></div>${featuredNote(astuce)}`
     : '';
   return `<div class="item">
     <div class="item-head">
