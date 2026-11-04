@@ -201,9 +201,12 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
   <h2>8. Durée de conservation</h2>
   <ul>
-    <li>Données de navigation : 13 mois (Google Analytics)</li>
+    <li>Données de navigation : 2 mois (Google Analytics)</li>
     <li>Cookies : 13 mois maximum</li>
-    <li>Données de compte (email, pseudo, mot de passe, photo, contenu publié) : conservées tant que votre compte est actif, puis supprimées dans un délai de 30 jours suivant une demande de suppression de compte</li>
+    <li>Données de compte (email, pseudo, mot de passe, photo, contenu publié) : conservées tant que votre compte est actif, puis supprimées dans un délai de 30 jours suivant une demande de suppression de compte. Un compte inactif depuis 3 ans est supprimé.</li>
+    <li>Images de preuve jointes aux astuces : supprimées en même temps que l'astuce ou que le compte</li>
+    <li>Signalements de contenus : conservés 12 mois après la décision prise</li>
+    <li>Journaux techniques (adresse IP, date et page demandée) : conservés par nos hébergeurs (Netlify, Supabase) selon leurs propres durées de conservation ; Economya n'en garde pas de copie</li>
     <li>Candidatures Economya Business : conservées 12 mois à compter de la soumission, sauf acceptation (auquel cas elles sont conservées le temps de la mise en avant)</li>
   </ul>
 
@@ -270,7 +273,7 @@ window.economyaLoadGA = function() {
   s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
   document.head.appendChild(s);
   gtag("js", new Date());
-  gtag("config", "G-YBK8GHCDT5");
+  gtag("config", "G-YBK8GHCDT5", { cookie_expires: 34128000 });
 };
 </script>
 <script>
