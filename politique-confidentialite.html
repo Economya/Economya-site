@@ -119,7 +119,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <main><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="/">Accueil</a><a href="/community">Community</a><a href="/economya-business">💼 Business</a><a href="/a-propos">A propos</a><a href="/comparateurs">Comparateurs</a><a href="/outils-gratuits">Outils gratuits</a><a href="/jeux">Jeux</a><a href="/forum-astuces">💡 Astuces</a><a href="/recherche">Rechercher</a><a href="#" id="navAvMobile">👤 Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
 <div class="hero">
   <h1>Politique de confidentialité</h1>
-  <p>Dernière mise à jour : octobre 2026 (ajout Economya Business)</p>
+  <p>Dernière mise à jour : novembre 2026</p>
 </div>
 <div class="container">
 
@@ -134,7 +134,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <h2>2. Données collectées</h2>
   <p>Economya.fr collecte les données suivantes :</p>
   <ul>
-    <li><strong>Données de navigation</strong> — via Google Analytics : pages visitées, durée de visite, pays, appareil utilisé. Ces données sont anonymisées.</li>
+    <li><strong>Données de navigation</strong> — via Google Analytics : pages visitées, durée de visite, pays, appareil utilisé. Ces données sont pseudonymisées et ne sont collectées qu'avec votre consentement.</li>
     <li><strong>Adresse email (newsletter)</strong> — uniquement si vous vous inscrivez volontairement à la newsletter.</li>
     <li><strong>Données publicitaires</strong> — via Google AdSense : cookies publicitaires pour personnaliser les annonces.</li>
     <li><strong>Données de compte</strong> — si vous créez un compte pour participer au forum d'astuces : adresse email, pseudonyme, mot de passe (stocké sous forme chiffrée, nous n'y avons jamais accès en clair) et, si vous choisissez d'en ajouter une, une photo de profil.</li>
@@ -162,7 +162,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <li><strong>Cookies publicitaires</strong> (Google AdSense) — personnalisation des annonces. Durée : 13 mois maximum.</li>
     <li><strong>Cookies fonctionnels</strong> — mémorisation de vos préférences de consentement.</li>
   </ul>
-  <p>Vous pouvez refuser les cookies non essentiels via le bandeau de consentement affiché lors de votre première visite, ou via les paramètres de votre navigateur.</p>
+  <p>Vous pouvez refuser les cookies non essentiels via le bandeau de consentement affiché lors de votre première visite, ou via les paramètres de votre navigateur. Vous pouvez modifier ou retirer votre choix à tout moment grâce au lien « Gérer mes cookies » situé en bas de chaque page.</p>
 
   <h2>5. Base légale du traitement</h2>
   <ul>
@@ -176,6 +176,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <p>Economya.fr peut partager vos données avec les prestataires suivants, qui agissent en tant que sous-traitants et sont contractuellement tenus de protéger vos données :</p>
   <ul>
     <li><strong>Google LLC</strong> — via Google Analytics et Google AdSense (traitement aux États-Unis sous garanties adéquates)</li>
+    <li><strong>Netlify, Inc.</strong> — hébergement du site et traitement technique des requêtes de connexion (dont l'adresse IP). Ce prestataire étant basé aux États-Unis, ce traitement est encadré par des garanties appropriées.</li>
     <li><strong>Brevo (Sendinblue)</strong> — pour l'envoi de la newsletter si vous y êtes inscrit</li>
     <li><strong>Supabase Inc.</strong> — hébergement de la base de données, authentification et stockage des photos de profil et des images de preuve jointes aux astuces. Les serveurs de la base de données sont situés à Paris, France (Union Européenne) : vos données de compte ne sont donc pas transférées hors de l'UE à ce titre.</li>
     <li><strong>Resend</strong> — envoi des emails transactionnels liés à votre compte (confirmation d'inscription, réinitialisation de mot de passe). Ce prestataire étant basé aux États-Unis, ce traitement est encadré par des garanties appropriées (clauses contractuelles types de la Commission européenne).</li>
@@ -189,8 +190,10 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <li>Droit de rectification</li>
     <li>Droit à l'effacement ("droit à l'oubli")</li>
     <li>Droit d'opposition au traitement</li>
+    <li>Droit à la limitation du traitement</li>
     <li>Droit à la portabilité des données</li>
     <li>Droit de retirer votre consentement à tout moment</li>
+    <li>Droit de définir des directives relatives au sort de vos données après votre décès</li>
   </ul>
   <p>Si vous avez un compte, vous pouvez également supprimer votre compte et le contenu qui lui est associé (astuces, votes, photo de profil, images de preuve jointes) directement et immédiatement depuis votre page de profil, ou en nous contactant si vous préférez.</p>
   <p>Pour exercer ces droits, contactez-nous à : <a href="mailto:contact@economya.fr">contact@economya.fr</a>. Nous répondrons dans un délai de 30 jours.</p>
@@ -376,5 +379,6 @@ if(btnValider){
 })();
 </script>
 <script src="account-nav.js" defer></script>
+<script src="/cookie-manage.js" defer></script>
 </body>
 </html>
