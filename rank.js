@@ -19,3 +19,17 @@ function rank(posts, votes){
   const v = votes === undefined ? Infinity : votes;
   return RANKS.filter(r => posts >= r.minPosts && v >= r.minVotes).pop() || RANKS[0];
 }
+
+// Astuce « verifiee » (action 81) : au moins 3 personnes l'ont testee ET score de
+// fiabilite d'au moins 80 %. Source unique partagee par la page d'une astuce et le profil.
+const VERIF_MIN_TESTS = 3;
+const VERIF_MIN_REL = 80;
+function verifState(n, relScore){
+  const verified = n >= VERIF_MIN_TESTS && relScore !== null && relScore !== undefined && relScore >= VERIF_MIN_REL;
+  return { verified: verified, n: n, missing: Math.max(0, VERIF_MIN_TESTS - n) };
+}
+function verifText(n, relScore){
+  if (verifState(n, relScore).verified) return { ok:true, text:'\u2705 V\u00e9rifi\u00e9e : test\u00e9e par ' + n + ' personnes' };
+  if (n >= VERIF_MIN_TESTS) return { ok:false, text:'En cours de v\u00e9rification (test\u00e9e par ' + n + ' personnes, fiabilit\u00e9 \u00e0 confirmer)' };
+  return { ok:false, text:'En cours de v\u00e9rification (' + n + ' test' + (n>1?'s':'') + ' sur ' + VERIF_MIN_TESTS + ')' };
+}

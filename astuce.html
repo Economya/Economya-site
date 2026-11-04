@@ -33,6 +33,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .partner-badge{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border:1px solid #FCD34D;border-radius:99px;padding:3px 10px;font-size:11px;font-weight:800;color:#92400E}
 .post-cat{font-size:12px;color:var(--m);margin-top:2px}
 .post-date{font-size:11px;color:#9CA3AF;margin-top:1px}
+.verif-line{margin:6px 0 2px}.verif{display:inline-block;font-size:12px;font-weight:700;border-radius:99px;padding:3px 10px}.verif.ok{color:#166534;background:#F0FDF4;border:1px solid #BBF7D0}.verif.pending{color:#6B7280;font-weight:600;padding-left:0}
 h1.post-title{font-family:'Playfair Display',serif;font-weight:800;font-size:1.5rem;line-height:1.3;margin-bottom:12px;color:var(--t)}
 .post-body{font-size:.98rem;line-height:1.7;color:var(--t);white-space:pre-wrap;margin-bottom:14px}
 .saving-pill{display:inline-flex;align-items:center;gap:6px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:5px 14px;font-size:13px;font-weight:700;color:#166534;margin-bottom:14px}
@@ -311,6 +312,13 @@ function timeAgo(ts){
   if(d<86400000)return Math.floor(d/3600000)+'h';
   return Math.floor(d/86400000)+'j';
 }
+function verifHtml(p){
+  // Personnes distinctes ayant teste (compteur de la base, auteur exclu depuis l'interdiction de l'auto-test).
+  // Le test du visiteur en cours est ajoute/retire en direct sans double compte.
+  const n = Math.max(0, (p.tested||0) - (initialMyTested?1:0) + (myTested?1:0));
+  const v = verifText(n, relRated(p) ? rel(p) : null);
+  return '<span class="verif ' + (v.ok?'ok':'pending') + '">' + v.text + '</span>';
+}
 function relRated(p){ return ((p.votes||0) + (p.tested||0)*2) > 0; }
 function relInfoBtn(){ return '<button type="button" class="rel-info" aria-label="Comment est calcul\u00e9 ce score ?" onclick="relInfo(this,event)">i</button>'; }
 function relInfo(btn, ev){
@@ -341,6 +349,7 @@ let currentAstuceId = null;
 let currentPost = null;
 let myVoted = false;
 let myTested = false;
+let initialMyTested = false;
 let mySaved = false;
 const pendingActions = new Set();
 
@@ -473,6 +482,7 @@ function renderTestBtn(){
     btn.classList.toggle('tested-on', myTested);
     document.getElementById('testIcon').textContent = myTested ? '✅' : '☑️';
     document.getElementById('testCount').textContent = (currentPost.tested||0) + (myTested?1:0);
+    const vl = document.getElementById('verifLine'); if(vl) vl.innerHTML = verifHtml(currentPost);
   }
 }
 async function doTest(){
@@ -694,6 +704,7 @@ async function init(){
       const myActions = await sbFetch('astuce_actions?user_id=eq.' + session.user.id + '&astuce_id=eq.' + p.id + '&select=action');
       myVoted = myActions.some(a=>a.action==='vote');
       myTested = myActions.some(a=>a.action==='test');
+      initialMyTested = myTested;
       mySaved = myActions.some(a=>a.action==='save');
     } catch(e){ console.error(e); }
   }
@@ -784,6 +795,7 @@ async function init(){
       <div class="rel-track"><div class="rel-fill" style="width:${relRated(p)?r:0}%;background:${rc}"></div></div>
       ${relRated(p)?`<span class="rel-label" style="color:${rc}">${r}% fiable</span>`:`<span class="rel-label" style="color:#9CA3AF">Pas encore \u00e9valu\u00e9e</span>`}${relInfoBtn()}
     </div>
+    <div class="verif-line" id="verifLine">${verifHtml(p)}</div>
     <div class="post-actions">
       <button type="button" class="action ${myVoted?'liked':''}" id="voteBtn" onclick="doVote()"><span id="voteIcon">${myVoted?'❤️':'🤍'}</span> <span id="voteCount">${(p.votes||0) + (myVoted?1:0)}</span> votes</button>
       <button type="button" class="action ${myTested?'tested-on':''}" id="testBtn" onclick="doTest()"><span id="testIcon">${myTested?'✅':'☑️'}</span> <span id="testCount">${(p.tested||0) + (myTested?1:0)}</span> testés</button>
