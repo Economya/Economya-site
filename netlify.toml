@@ -95,6 +95,13 @@
   status = 200
   force = true
 
+# Scripts d'audit et fichiers de travail internes : jamais visibles du public.
+[[redirects]]
+  from = "/outils-internes/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 [build]
   publish = "."
 
