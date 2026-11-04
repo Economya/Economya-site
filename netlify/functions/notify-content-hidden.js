@@ -117,12 +117,16 @@ exports.handler = async function (event) {
   // 3. Adresse de l'auteur, lue cote serveur.
   let email;
   try {
-    const res = await fetch(SUPABASE_URL + '/auth/v1/admin/users/' + encodeURIComponent(authorId), {
-      headers: { apikey: serviceKey, Authorization: 'Bearer ' + serviceKey },
-    });
+    // Cle JWT classique (eyJ...) : apikey + Authorization. Nouvelle cle secrete (sb_secret_...) : apikey seule.
+    const isJwt = serviceKey.indexOf('eyJ') === 0;
+    const headers = isJwt ? { apikey: serviceKey, Authorization: 'Bearer ' + serviceKey } : { apikey: serviceKey };
+    const res = await fetch(SUPABASE_URL + '/auth/v1/admin/users/' + encodeURIComponent(authorId), { headers });
     if (!res.ok) {
-      console.error('notify-content-hidden: lecture auteur refusee', res.status);
-      return reply(200, { sent: false, reason: 'lookup_' + res.status });
+      const kind = isJwt ? 'jwt' : (serviceKey.indexOf('sb_secret_') === 0 ? 'sb_secret' : 'autre');
+      let detail = '';
+      try { detail = (await res.text()).slice(0, 120); } catch (e) {}
+      console.error('notify-content-hidden: lecture auteur refusee', res.status, kind, detail);
+      return reply(200, { sent: false, reason: 'lookup_' + res.status + '_' + kind, detail: detail });
     }
     const u = await res.json();
     email = u && u.email;

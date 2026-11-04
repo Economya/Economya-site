@@ -120,6 +120,7 @@ function astuceItemHtml(p, mode){
        <button onclick="dismissAstuceReport(${p.id})">Ignorer le signalement</button>
        <a href="/astuces/post/${p.id}" target="_blank">Voir →</a>`
     : `<button onclick="restoreAstuce(${p.id})" class="primary">Restaurer</button>
+       <button onclick="resendNotice('astuce', ${p.id})">Prévenir l'auteur</button>
        <a href="/astuces/post/${p.id}" target="_blank">Voir →</a>`;
   return `<div class="item" id="astuce-${p.id}">
     <div class="item-head">
@@ -142,6 +143,7 @@ function commentItemHtml(c, mode){
        <button onclick="dismissCommentReport(${c.id})">Ignorer le signalement</button>
        <a href="/astuces/post/${c.astuce_id}" target="_blank">Voir l'astuce →</a>`
     : `<button onclick="restoreComment(${c.id})" class="primary">Restaurer</button>
+       <button onclick="resendNotice('comment', ${c.id})">Prévenir l'auteur</button>
        <a href="/astuces/post/${c.astuce_id}" target="_blank">Voir l'astuce →</a>`;
   return `<div class="item" id="comment-${c.id}">
     <div class="item-head">
@@ -235,14 +237,26 @@ async function notifyHidden(type, id, motif){
       body: JSON.stringify({type: type, id: id, categorie: motif.categorie, detail: motif.detail})
     });
     const data = await res.json().catch(function(){ return {}; });
-    if(res.ok && data.sent === false && data.reason === 'no_user') return; // contenu sans compte (ex. offre Business)
+    if(res.ok && data.sent === false && data.reason === 'no_user') return false; // contenu sans compte (ex. offre Business)
     if(!res.ok || data.sent !== true){
-      alert("Contenu masque, mais l'e-mail a l'auteur n'a pas pu etre envoye (cause : " + (data.reason || data.error || ('HTTP ' + res.status)) + "). Ecrivez-lui a la main, avec le motif.");
+      alert("L'e-mail a l'auteur n'a pas pu etre envoye (cause : " + (data.reason || data.error || ('HTTP ' + res.status)) + (data.detail ? ' - ' + data.detail : '') + "). Ecrivez-lui a la main, avec le motif.");
+      return false;
     }
+    return true;
   } catch(e){
-    alert("Contenu masque, mais l'e-mail a l'auteur n'a pas pu etre envoye. Ecrivez-lui a la main, avec le motif.");
+    alert("L'e-mail a l'auteur n'a pas pu etre envoye. Ecrivez-lui a la main, avec le motif.");
+    return false;
   }
 }
+
+// Renvoyer l'e-mail a l'auteur d'un contenu deja masque (ex. si le premier envoi a echoue)
+async function resendNotice(type, id){
+  const motif = await askMotif();
+  if(!motif) return;
+  const ok = await notifyHidden(type, id, motif);
+  if(ok) alert("E-mail envoye a l'auteur.");
+}
+window.resendNotice = resendNotice;
 
 async function hideAstuce(id){
   const motif = await askMotif();
