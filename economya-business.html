@@ -211,6 +211,7 @@ a{text-decoration:none;color:inherit;}
 .vis-prev [hidden]{display:none !important;}
 
 .pv-sqgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.pv-sqgrid .pv-sq:not(.gh){order:-1;}
 .pv-sq{position:relative;aspect-ratio:1/1;border-radius:12px;overflow:hidden;color:#fff;background:#222;}
 .pv-sq svg{position:absolute;inset:0;width:100%;height:100%;}
 .pv-sq::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 35%,rgba(0,0,0,.8) 100%);}
