@@ -172,6 +172,8 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </div>
 <div class="container">
 
+  <div id="b-note" style="display:none;margin:0 0 14px;padding:10px 14px;border-radius:12px;background:#ECFDF5;border:1px solid #A7F3D0;color:#065F46;font-size:.85rem;font-weight:600;text-align:center"></div>
+
   <!-- Setup -->
   <div class="setup" id="setup">
     <h2>🎯 Définissez votre objectif</h2>
@@ -271,6 +273,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
 
+<script src="/auth-shared.js"></script>
 <script>
 const OBJECTIFS = {
   vacances:   { emoji: '✈️', nom: 'Vacances' },
@@ -296,8 +299,12 @@ const MILESTONES = [
 let objActuel = 'vacances';
 let objectifMontant = 1500;
 let totalEconomise = 0;
+// Une seule liste pour tout : ajouts manuels + astuces testees (jamais copies, donc jamais en double).
+// { kind:'manuel'|'astuce', date:Date, montant:number|null, titre?, id?, rowId? }
 let historique = [];
 let milestonesDeja = new Set();
+let bUser = null;          // utilisateur connecte (sinon boite « de passage », en memoire seulement)
+let bEnregistre = false;   // la boite est-elle enregistree sur le compte ?
 
 function selectObj(btn) {
   document.querySelectorAll('.obj-btn').forEach(b => b.classList.remove('active'));
@@ -314,34 +321,51 @@ document.getElementById('objectif').addEventListener('input', function() {
   document.getElementById('v-objectif').innerHTML = (+this.value).toLocaleString('fr-FR') + ' <span>€</span>';
 });
 
+function recalculer() {
+  totalEconomise = historique.reduce((t, h) => t + (h.montant > 0 ? h.montant : 0), 0);
+}
+
 function demarrer() {
   objectifMontant = +document.getElementById('objectif').value;
-  const obj = OBJECTIFS[objActuel];
-  totalEconomise = 0;
-  historique = [];
-  milestonesDeja = new Set();
+  afficherBoite();
+  if (bUser) {
+    bFetch('boite_economies?on_conflict=user_id', {
+      method: 'POST',
+      body: JSON.stringify({ user_id: bUser.id, objectif: objActuel, objectif_montant: objectifMontant }),
+      prefer: 'resolution=merge-duplicates,return=minimal'
+    }).then(() => { bEnregistre = true; majNote(); }).catch(() => majNote('Non enregistrée : réessayez plus tard.'));
+  }
+  document.getElementById('boite-wrap').scrollIntoView({behavior:'smooth'});
+}
 
+function afficherBoite() {
+  const obj = OBJECTIFS[objActuel] || OBJECTIFS.custom;
+  milestonesDeja = new Set();
   document.getElementById('boite-titre').textContent = `Ma boîte ${obj.nom} ${obj.emoji}`;
   document.getElementById('boite-sous').textContent = `Objectif : ${objectifMontant.toLocaleString('fr-FR')} €`;
   document.getElementById('boite-icon').textContent = obj.emoji;
   document.getElementById('pieces').innerHTML = '';
-  document.getElementById('histo-list').innerHTML = '<div class="histo-empty">Aucune économie encore — commencez maintenant !</div>';
-
+  recalculer();
   updateBoite();
+  updateHistorique();
   document.getElementById('setup').style.display = 'none';
   document.getElementById('boite-wrap').classList.add('show');
-  document.getElementById('boite-wrap').scrollIntoView({behavior:'smooth'});
+  majNote();
 }
 
 function ajouter(montant) {
-  totalEconomise = Math.min(totalEconomise + montant, objectifMontant);
   const now = new Date();
-  const dateStr = now.toLocaleDateString('fr-FR', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'});
-  historique.unshift({ montant, date: dateStr });
+  const entree = { kind: 'manuel', date: now, montant };
+  historique.unshift(entree);
+  recalculer();
   ajouterPiece();
   updateBoite();
   updateHistorique();
   checkMilestone();
+  if (bUser && bEnregistre) {
+    bFetch('boite_ajouts', { method: 'POST', body: JSON.stringify({ user_id: bUser.id, montant }), prefer: 'return=minimal' })
+      .catch(() => majNote('Cet ajout n\u2019a pas pu \u00eatre enregistr\u00e9.'));
+  }
 }
 
 function ajouterCustom() {
@@ -374,15 +398,29 @@ function updateBoite() {
   setTimeout(() => icon.style.transform = 'scale(1)', 300);
 }
 
+function fmtDate(d) {
+  return d.toLocaleDateString('fr-FR', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'});
+}
+function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
 function updateHistorique() {
   const list = document.getElementById('histo-list');
-  if(historique.length === 0) {
-    list.innerHTML = '<div class="histo-empty">Aucune économie encore !</div>';
+  if (historique.length === 0) {
+    list.innerHTML = '<div class="histo-empty">Aucune économie encore — commencez maintenant !</div>';
     return;
   }
+  const tri = [...historique].sort((a, b) => b.date - a.date);
   list.innerHTML = '';
-  historique.slice(0, 10).forEach(h => {
-    list.innerHTML += `<div class="histo-item"><span class="histo-date">${h.date}</span><span class="histo-amt">+${h.montant} €</span></div>`;
+  tri.slice(0, 15).forEach(h => {
+    if (h.kind === 'astuce') {
+      const lien = '/astuces/post/' + h.id;
+      const droite = h.montant > 0
+        ? '+' + h.montant.toLocaleString('fr-FR') + ' €'
+        : '<a href="' + lien + '" style="color:inherit">montant à renseigner</a>';
+      list.innerHTML += `<div class="histo-item"><span class="histo-date">${fmtDate(h.date)} · ${h.montant > 0 ? '✅' : '⏳'} <a href="${lien}" style="color:inherit">${esc(h.titre)}</a></span><span class="histo-amt">${droite}</span></div>`;
+    } else {
+      list.innerHTML += `<div class="histo-item"><span class="histo-date">${fmtDate(h.date)}</span><span class="histo-amt">+${h.montant} €</span></div>`;
+    }
   });
 }
 
@@ -400,14 +438,114 @@ function checkMilestone() {
 }
 
 function reset() {
-  if(confirm('Recommencer à zéro ?')) {
+  const garde = historique.some(h => h.kind === 'astuce');
+  const msg = garde
+    ? 'Recommencer à zéro ? Vos ajouts manuels seront effacés. Les montants de vos astuces testées restent (modifiables depuis votre profil).'
+    : 'Recommencer à zéro ?';
+  if (confirm(msg)) {
+    historique = historique.filter(h => h.kind === 'astuce');
+    recalculer();
     document.getElementById('setup').style.display = 'block';
     document.getElementById('boite-wrap').classList.remove('show');
-    totalEconomise = 0;
-    historique = [];
+    if (bUser) {
+      bFetch('boite_ajouts?user_id=eq.' + bUser.id, { method: 'DELETE', prefer: 'return=minimal' }).catch(() => {});
+      bFetch('boite_economies?user_id=eq.' + bUser.id, { method: 'DELETE', prefer: 'return=minimal' }).catch(() => {});
+      bEnregistre = false;
+    }
     window.scrollTo({top:0, behavior:'smooth'});
   }
 }
+
+// ── Compte du membre : la boite est enregistree et reprend ses astuces testees ──
+const B_URL = AUTH_SUPABASE_URL, B_KEY = AUTH_SUPABASE_KEY;
+
+async function bSession() {
+  try {
+    let sess = JSON.parse(localStorage.getItem('eco_session') || 'null');
+    if (!sess || !sess.access_token || !sess.user) return null;
+    if (Date.now() > (sess.expires_at || 0) - 60000) {
+      const r = await fetch(B_URL + '/auth/v1/token?grant_type=refresh_token', {
+        method: 'POST', headers: {'apikey': B_KEY, 'Content-Type': 'application/json'},
+        body: JSON.stringify({refresh_token: sess.refresh_token})
+      });
+      if (!r.ok) return null;
+      sess = authSaveSession(await r.json());
+    }
+    return sess;
+  } catch (e) { return null; }
+}
+
+async function bFetch(path, opt) {
+  opt = opt || {};
+  const sess = await bSession();
+  if (!sess) throw new Error('non connecte');
+  const ctl = new AbortController();
+  const timer = setTimeout(() => ctl.abort(), 15000);
+  try {
+    const res = await fetch(B_URL + '/rest/v1/' + path, {
+      method: opt.method || 'GET', body: opt.body, signal: ctl.signal,
+      headers: {
+        'apikey': B_KEY, 'Authorization': 'Bearer ' + sess.access_token,
+        'Content-Type': 'application/json', 'Prefer': opt.prefer || 'return=representation'
+      }
+    });
+    if (!res.ok) throw new Error(await res.text());
+    const txt = await res.text();
+    return txt ? JSON.parse(txt) : null;
+  } finally { clearTimeout(timer); }
+}
+
+function majNote(erreur) {
+  const n = document.getElementById('b-note');
+  if (!n) return;
+  if (erreur) { n.textContent = erreur; n.style.display = 'block'; return; }
+  if (bUser) { n.textContent = bEnregistre ? '☁️ Votre boîte est enregistrée sur votre compte. Les astuces que vous testez s\u2019y ajoutent automatiquement.' : '☁️ Connecté : vos astuces testées sont déjà comptées ci-dessous.'; }
+  else { n.innerHTML = 'Boîte de passage : <a href="/connexion?redirect=%2Fboite-economies" style="color:inherit;font-weight:700">connectez-vous</a> pour la garder et y retrouver vos astuces testées.'; }
+  n.style.display = 'block';
+}
+
+async function chargerCompte() {
+  const sess = await bSession();
+  if (!sess) { majNote(); return; }
+  try {
+    const id = sess.user.id;
+    const [cfg, ajouts, tests] = await Promise.all([
+      bFetch('boite_economies?user_id=eq.' + id + '&select=objectif,objectif_montant'),
+      bFetch('boite_ajouts?user_id=eq.' + id + '&select=id,montant,created_at&order=created_at.desc&limit=200'),
+      bFetch('astuce_actions?user_id=eq.' + id + '&action=eq.test&select=astuce_id,montant_personnel,created_at&order=created_at.desc&limit=200')
+    ]);
+    bUser = { id: id };
+    let titres = {};
+    if (tests && tests.length) {
+      const ids = tests.map(t => t.astuce_id).join(',');
+      const as = await bFetch('astuces?id=in.(' + ids + ')&select=id,titre,hidden');
+      (as || []).forEach(a => { titres[a.id] = a; });
+    }
+    historique = [];
+    (ajouts || []).forEach(a => historique.push({ kind: 'manuel', date: new Date(a.created_at), montant: +a.montant }));
+    (tests || []).forEach(t => {
+      const a = titres[t.astuce_id];
+      if (!a || a.hidden) return;
+      historique.push({ kind: 'astuce', id: t.astuce_id, titre: a.titre, date: new Date(t.created_at), montant: t.montant_personnel == null ? null : +t.montant_personnel });
+    });
+    if (cfg && cfg.length) {
+      bEnregistre = true;
+      objActuel = OBJECTIFS[cfg[0].objectif] ? cfg[0].objectif : 'custom';
+      objectifMontant = +cfg[0].objectif_montant;
+      afficherBoite();
+    } else {
+      majNote();
+      if (historique.some(h => h.kind === 'astuce' && h.montant > 0)) {
+        const n = document.getElementById('b-note');
+        n.textContent = '💡 Vous avez déjà ' + historique.reduce((t,h)=>t+(h.montant>0?h.montant:0),0).toLocaleString('fr-FR') + ' € d\u2019économies grâce à vos astuces testées : créez votre boîte pour les voir s\u2019ajouter.';
+      }
+    }
+  } catch (e) {
+    bUser = null; // tables absentes ou reseau coupe : on reste en mode « de passage »
+    majNote();
+  }
+}
+chargerCompte();
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
