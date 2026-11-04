@@ -55,6 +55,8 @@ h2{font-size:1.05rem;font-weight:700;margin:2rem 0 1rem;display:flex;align-items
     <div id="reportedList"></div>
     <h2>🙈 Contenu masqué <span id="hiddenCount"></span></h2>
     <div id="hiddenList"></div>
+    <h2>📜 Historique des décisions <span id="logCount"></span></h2>
+    <div id="logList"></div>
   </div>
 </div>
 
@@ -184,6 +186,43 @@ async function loadAll(){
   }
   renderReported();
   renderHidden();
+  loadLog();
+}
+
+// ---- Historique des decisions de moderation (trace datee, visible des admins uniquement) ----
+const DECISIONS = {masque:'Masqué', restaure:'Restauré', signalement_ignore:'Signalement ignoré', notice_renvoyee:'E-mail renvoyé'};
+function motifLabel(key){ const m = MOTIFS.find(function(x){ return x[0] === key; }); return m ? m[1] : (key || ''); }
+async function logDecision(type, item, decision, motif){
+  try {
+    await sbFetch('moderation_log', {method:'POST', prefer:'return=minimal', headers:{'Prefer':'return=minimal'}, body: JSON.stringify({
+      content_type: type,
+      content_id: String(item ? item.id : ''),
+      content_title: item ? String(type === 'astuce' ? (item.titre||'') : (item.contenu||'')).slice(0,200) : null,
+      author_id: (item && item.user_id) || null,
+      decision: decision,
+      motif_categorie: motif ? motif.categorie : null,
+      motif_detail: motif && motif.detail ? motif.detail : null
+    })});
+    loadLog();
+  } catch(e){
+    alert("La décision a bien été appliquée, mais elle n'a pas pu être enregistrée dans l'historique : " + e.message);
+  }
+}
+async function loadLog(){
+  const list = document.getElementById('logList');
+  try {
+    const rows = await sbFetch('moderation_log?order=created_at.desc&limit=50&select=*');
+    document.getElementById('logCount').textContent = rows.length ? '(' + rows.length + ' dernières)' : '';
+    if(!rows.length){ list.innerHTML = '<p class="empty">Aucune décision enregistrée pour le moment.</p>'; return; }
+    list.innerHTML = rows.map(function(r){
+      const d = new Date(r.created_at).toLocaleString('fr-FR', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'});
+      const motif = r.motif_categorie ? ' · ' + escapeHtml(motifLabel(r.motif_categorie)) + (r.motif_detail ? ' (' + escapeHtml(r.motif_detail) + ')' : '') : '';
+      return '<div class="item"><div class="item-head"><div class="item-meta">' + d + ' · ' + (r.content_type === 'astuce' ? 'Astuce' : 'Commentaire') + ' n°' + escapeHtml(r.content_id) + '</div><span class="hidden-badge">' + escapeHtml(DECISIONS[r.decision] || r.decision) + '</span></div>'
+        + '<div class="item-body">' + escapeHtml(r.content_title || '') + motif + '</div></div>';
+    }).join('');
+  } catch(e){
+    list.innerHTML = '<p class="empty">Historique indisponible : ' + escapeHtml(e.message) + '</p>';
+  }
 }
 
 const MOTIFS = [
@@ -254,7 +293,11 @@ async function resendNotice(type, id){
   const motif = await askMotif();
   if(!motif) return;
   const ok = await notifyHidden(type, id, motif);
-  if(ok) alert("E-mail envoye a l'auteur.");
+  if(ok){
+    alert("E-mail envoye a l'auteur.");
+    const src = type === 'astuce' ? astucesHidden : commentsHidden;
+    logDecision(type, src.find(function(x){ return x.id === id; }), 'notice_renvoyee', motif);
+  }
 }
 window.resendNotice = resendNotice;
 
@@ -263,7 +306,9 @@ async function hideAstuce(id){
   if(!motif) return;
   try {
     await sbFetch('astuces?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:true}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    const item = astucesReported.find(p=>p.id===id);
     astucesReported = astucesReported.filter(p=>p.id!==id);
+    await logDecision('astuce', item, 'masque', motif);
     await notifyHidden('astuce', id, motif);
     loadAll();
   } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
@@ -271,6 +316,7 @@ async function hideAstuce(id){
 async function dismissAstuceReport(id){
   try {
     await sbFetch('astuces?id=eq.'+id, {method:'PATCH', body:JSON.stringify({reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    logDecision('astuce', astucesReported.find(p=>p.id===id), 'signalement_ignore', null);
     astucesReported = astucesReported.filter(p=>p.id!==id);
     renderReported();
   } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
@@ -278,6 +324,7 @@ async function dismissAstuceReport(id){
 async function restoreAstuce(id){
   try {
     await sbFetch('astuces?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:false, reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    logDecision('astuce', astucesHidden.find(p=>p.id===id), 'restaure', null);
     astucesHidden = astucesHidden.filter(p=>p.id!==id);
     renderHidden();
   } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
@@ -287,7 +334,9 @@ async function hideComment(id){
   if(!motif) return;
   try {
     await sbFetch('astuce_comments?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:true}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    const item = commentsReported.find(c=>c.id===id);
     commentsReported = commentsReported.filter(c=>c.id!==id);
+    await logDecision('comment', item, 'masque', motif);
     await notifyHidden('comment', id, motif);
     loadAll();
   } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
@@ -295,6 +344,7 @@ async function hideComment(id){
 async function dismissCommentReport(id){
   try {
     await sbFetch('astuce_comments?id=eq.'+id, {method:'PATCH', body:JSON.stringify({reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    logDecision('comment', commentsReported.find(c=>c.id===id), 'signalement_ignore', null);
     commentsReported = commentsReported.filter(c=>c.id!==id);
     renderReported();
   } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
@@ -302,6 +352,7 @@ async function dismissCommentReport(id){
 async function restoreComment(id){
   try {
     await sbFetch('astuce_comments?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:false, reports:0}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
+    logDecision('comment', commentsHidden.find(c=>c.id===id), 'restaure', null);
     commentsHidden = commentsHidden.filter(c=>c.id!==id);
     renderHidden();
   } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
