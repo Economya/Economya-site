@@ -135,7 +135,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <p>Economya.fr collecte les données suivantes :</p>
   <ul>
     <li><strong>Données de navigation</strong> — via Google Analytics : pages visitées, durée de visite, pays, appareil utilisé. Ces données sont pseudonymisées et ne sont collectées qu'avec votre consentement.</li>
-    <li><strong>Adresse email (newsletter)</strong> — uniquement si vous vous inscrivez volontairement à la newsletter.</li>
+    <li><strong>Vérification anti-robot</strong> — sur les pages de connexion, d'inscription et du forum, un contrôle (Cloudflare Turnstile) analyse votre navigateur et votre adresse IP pour distinguer un humain d'un robot.</li>
     <li><strong>Données publicitaires</strong> — via Google AdSense : cookies publicitaires pour personnaliser les annonces.</li>
     <li><strong>Données de compte</strong> — si vous créez un compte pour participer au forum d'astuces : adresse email, pseudonyme, mot de passe (stocké sous forme chiffrée, nous n'y avons jamais accès en clair) et, si vous choisissez d'en ajouter une, une photo de profil.</li>
     <li><strong>Contenu publié</strong> — les astuces, votes et éventuels commentaires que vous publiez sur le site, associés à votre pseudonyme public, ainsi que, si vous choisissez d'en joindre une à une astuce, une image servant de preuve (ex. capture d'écran d'un ticket ou d'un email).</li>
@@ -147,7 +147,6 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <p>Les données collectées sont utilisées pour :</p>
   <ul>
     <li>Mesurer l'audience du site et améliorer les contenus (Google Analytics)</li>
-    <li>Envoyer la newsletter si vous y avez consenti</li>
     <li>Diffuser des publicités pertinentes (Google AdSense)</li>
     <li>Créer et gérer votre compte utilisateur, et vous permettre de publier des astuces et d'interagir avec la communauté</li>
     <li>Vous envoyer les emails nécessaires au fonctionnement de votre compte (confirmation d'inscription, réinitialisation de mot de passe)</li>
@@ -166,7 +165,8 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
   <h2>5. Base légale du traitement</h2>
   <ul>
-    <li><strong>Consentement</strong> — pour les cookies analytiques et publicitaires, et la newsletter</li>
+    <li><strong>Consentement</strong> — pour les cookies analytiques et publicitaires</li>
+    <li><strong>Intérêt légitime</strong> — pour la sécurité du site et la lutte contre les robots et les abus (contrôle anti-robot)</li>
     <li><strong>Exécution contractuelle</strong> — pour la création et la gestion de votre compte utilisateur, nécessaires pour vous fournir l'accès au forum d'astuces</li>
     <li><strong>Intérêt légitime</strong> — pour les cookies strictement nécessaires au fonctionnement du site et la prévention des abus</li>
     <li><strong>Consentement</strong> — pour l'étude de votre candidature via le formulaire Economya Business</li>
@@ -177,7 +177,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <ul>
     <li><strong>Google LLC</strong> — via Google Analytics et Google AdSense (traitement aux États-Unis sous garanties adéquates)</li>
     <li><strong>Netlify, Inc.</strong> — hébergement du site et traitement technique des requêtes de connexion (dont l'adresse IP). Ce prestataire étant basé aux États-Unis, ce traitement est encadré par des garanties appropriées.</li>
-    <li><strong>Brevo (Sendinblue)</strong> — pour l'envoi de la newsletter si vous y êtes inscrit</li>
+    <li><strong>Cloudflare, Inc.</strong> — contrôle anti-robot (Turnstile) sur les pages de connexion, d'inscription et du forum. Ce prestataire étant basé aux États-Unis, ce traitement est encadré par des garanties appropriées.</li>
     <li><strong>Supabase Inc.</strong> — hébergement de la base de données, authentification et stockage des photos de profil et des images de preuve jointes aux astuces. Les serveurs de la base de données sont situés à Paris, France (Union Européenne) : vos données de compte ne sont donc pas transférées hors de l'UE à ce titre.</li>
     <li><strong>Resend</strong> — envoi des emails transactionnels liés à votre compte (confirmation d'inscription, réinitialisation de mot de passe). Ce prestataire étant basé aux États-Unis, ce traitement est encadré par des garanties appropriées (clauses contractuelles types de la Commission européenne).</li>
   </ul>
@@ -202,7 +202,6 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <h2>8. Durée de conservation</h2>
   <ul>
     <li>Données de navigation : 13 mois (Google Analytics)</li>
-    <li>Adresse email newsletter : jusqu'à désinscription</li>
     <li>Cookies : 13 mois maximum</li>
     <li>Données de compte (email, pseudo, mot de passe, photo, contenu publié) : conservées tant que votre compte est actif, puis supprimées dans un délai de 30 jours suivant une demande de suppression de compte</li>
     <li>Candidatures Economya Business : conservées 12 mois à compter de la soumission, sauf acceptation (auquel cas elles sont conservées le temps de la mise en avant)</li>
