@@ -400,6 +400,7 @@ let currentPost = null;
 let myVoted = false;
 let myTested = false;
 let initialMyTested = false;
+let initialMyVoted = false;
 let myAmount = null;      // montant personnel saisi pour cette astuce (null = en attente)
 let boiteSkipped = false;
 let mySaved = false;
@@ -501,7 +502,7 @@ function renderVoteBtn(){
     document.getElementById('voteIcon').textContent = myVoted ? '❤️' : '🤍';
     // Le chiffre affiche = total de base (autres personnes) + 1 si MOI j'ai vote.
     // On ne fait jamais +1/-1 cumulatif sur currentPost.votes : ca evite toute derive.
-    document.getElementById('voteCount').textContent = (currentPost.votes||0) + (myVoted?1:0);
+    document.getElementById('voteCount').textContent = (currentPost.votes||0) + (myVoted?1:0) - (initialMyVoted?1:0);
   }
 }
 async function doVote(){
@@ -533,7 +534,7 @@ function renderTestBtn(){
   if(btn && currentPost){
     btn.classList.toggle('tested-on', myTested);
     document.getElementById('testIcon').textContent = myTested ? '✅' : '☑️';
-    document.getElementById('testCount').textContent = (currentPost.tested||0) + (myTested?1:0);
+    document.getElementById('testCount').textContent = (currentPost.tested||0) + (myTested?1:0) - (initialMyTested?1:0);
     const vl = document.getElementById('verifLine'); if(vl) vl.innerHTML = verifHtml(currentPost);
     if(!myTested){ boiteSkipped = false; myAmount = null; }
     renderBoiteLine();
@@ -759,6 +760,7 @@ async function init(){
       myVoted = myActions.some(a=>a.action==='vote');
       myTested = myActions.some(a=>a.action==='test');
       initialMyTested = myTested;
+      initialMyVoted = myVoted;
       const trow = myActions.find(a=>a.action==='test');
       myAmount = (trow && trow.montant_personnel != null) ? Number(trow.montant_personnel) : null;
       mySaved = myActions.some(a=>a.action==='save');
@@ -854,8 +856,8 @@ async function init(){
     <div class="verif-line" id="verifLine">${verifHtml(p)}</div>
     <div class="boite-line" id="boiteLine">${boiteHtml(p)}</div>
     <div class="post-actions">
-      <button type="button" class="action ${myVoted?'liked':''}" id="voteBtn" onclick="doVote()"><span id="voteIcon">${myVoted?'❤️':'🤍'}</span> <span id="voteCount">${(p.votes||0) + (myVoted?1:0)}</span> votes</button>
-      <button type="button" class="action ${myTested?'tested-on':''}" id="testBtn" onclick="doTest()"><span id="testIcon">${myTested?'✅':'☑️'}</span> <span id="testCount">${(p.tested||0) + (myTested?1:0)}</span> testés</button>
+      <button type="button" class="action ${myVoted?'liked':''}" id="voteBtn" onclick="doVote()"><span id="voteIcon">${myVoted?'❤️':'🤍'}</span> <span id="voteCount">${(p.votes||0) + (myVoted?1:0) - (initialMyVoted?1:0)}</span> votes</button>
+      <button type="button" class="action ${myTested?'tested-on':''}" id="testBtn" onclick="doTest()"><span id="testIcon">${myTested?'✅':'☑️'}</span> <span id="testCount">${(p.tested||0) + (myTested?1:0) - (initialMyTested?1:0)}</span> testés</button>
       <button type="button" class="action ${mySaved?'saved-on':''}" id="saveBtn" onclick="doSave()" title="${mySaved?'Retirer de ma liste à tester':'Sauvegarder pour plus tard'}"><span id="saveIcon">${mySaved?'🔖':'📑'}</span></button>
       <button class="share-cta" id="shareBtn" onclick="shareAstuce(${JSON.stringify(p).replace(/"/g,'&quot;')})">📤 Partager</button>
       <button type="button" class="action" id="reportBtn" onclick="doReportPost()">🚩 Signaler</button>

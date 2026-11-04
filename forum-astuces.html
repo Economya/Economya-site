@@ -638,6 +638,8 @@ let myAlerts = [];
 let lastSeen = JSON.parse(localStorage.getItem('eco_lastseen')||'{}');
 let voted = [];
 let tested = [];
+let votedInit = [];
+let testedInit = [];
 let saved = [];
 let followedIds = [];
 let reported = JSON.parse(localStorage.getItem('eco_reported')||'[]');
@@ -701,6 +703,8 @@ async function loadMyActions(){
     voted = actions.filter(a=>a.action==='vote').map(a=>a.astuce_id);
     tested = actions.filter(a=>a.action==='test').map(a=>a.astuce_id);
     saved = actions.filter(a=>a.action==='save').map(a=>a.astuce_id);
+    // Les compteurs de la base incluent deja mes votes/tests : on garde l'etat initial pour ne pas les compter deux fois
+    votedInit = voted.slice(); testedInit = tested.slice();
   } catch(e){ console.error(e); }
 }
 
@@ -810,10 +814,10 @@ function renderFeed(){
       </div>
       <div class="post-actions">
         <button class="action ${hv?'liked':''}" onclick="doVote(${p.id})">
-          <span class="action-icon">${hv?'❤️':'🤍'}</span> ${(p.votes||0) + (hv?1:0)}
+          <span class="action-icon">${hv?'❤️':'🤍'}</span> ${(p.votes||0) + (hv?1:0) - (votedInit.includes(p.id)?1:0)}
         </button>
         <button class="action ${ht?'tested-on':''}" onclick="doTest(${p.id})">
-          <span class="action-icon">${ht?'✅':'☑️'}</span> ${(p.tested||0) + (ht?1:0)} testés
+          <span class="action-icon">${ht?'✅':'☑️'}</span> ${(p.tested||0) + (ht?1:0) - (testedInit.includes(p.id)?1:0)} testés
         </button>
         <a class="action" style="text-decoration:none" href="/astuces/post/${p.id}-${slugify(p.titre)}">
           <span class="action-icon">💬</span> ${p.comments||0}
