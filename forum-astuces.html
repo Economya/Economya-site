@@ -82,7 +82,6 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .rel-track{flex:1;height:6px;background:var(--bg);border-radius:99px;overflow:hidden;max-width:110px;box-shadow:inset 0 1px 2px rgba(0,0,0,.05);}
 .rel-fill{height:100%;border-radius:99px;transition:width .4s ease;}
 .rel-label{font-size:12px;font-weight:700;}
-.rel-info{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;margin-left:6px;border-radius:50%;border:1px solid currentColor;font-size:9px;font-weight:700;font-style:normal;line-height:1;cursor:pointer;opacity:.5;background:none;color:#6B7280;padding:0;vertical-align:middle}.rel-info:hover{opacity:.9}.rel-pop{position:absolute;z-index:9999;max-width:240px;background:#1F2937;color:#fff;font-size:12px;font-weight:500;line-height:1.45;padding:8px 11px;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.22)}
 .post-actions{display:flex;align-items:center;gap:0;}
 .action{display:flex;align-items:center;gap:5px;padding:8px 10px;border:none;background:transparent;color:var(--muted);font-size:13px;font-weight:600;border-radius:8px;transition:all .15s;flex:1;justify-content:center;}
 .action:hover{background:var(--bg);}
@@ -637,19 +636,6 @@ if(session && session.user){
 }
 
 function relRated(p){ return ((p.votes||0) + (p.tested||0)*2) > 0; }
-function relInfoBtn(){ return '<button type="button" class="rel-info" aria-label="Comment est calcul\u00e9 ce score ?" onclick="relInfo(this,event)">i</button>'; }
-function relInfo(btn, ev){
-  ev.preventDefault(); ev.stopPropagation();
-  var old = document.getElementById('relPop');
-  if(old){ var same = old._btn === btn; old.remove(); if(same) return; }
-  var pop = document.createElement('div'); pop.id = 'relPop'; pop.className = 'rel-pop'; pop._btn = btn;
-  pop.textContent = 'Score calcul\u00e9 \u00e0 partir des votes, des tests et des signalements de la communaut\u00e9.';
-  document.body.appendChild(pop);
-  var r = btn.getBoundingClientRect();
-  var left = Math.min(Math.max(8, r.left + window.scrollX - 110), window.scrollX + document.documentElement.clientWidth - pop.offsetWidth - 8);
-  pop.style.left = left + 'px'; pop.style.top = (r.bottom + window.scrollY + 8) + 'px';
-  setTimeout(function(){ document.addEventListener('click', function h(){ var p = document.getElementById('relPop'); if(p) p.remove(); document.removeEventListener('click', h); }); }, 0);
-}
 function rel(p){
   const pos=p.votes+p.tested*2;
   const neg=p.reports*3;
@@ -801,7 +787,7 @@ function renderFeed(){
       ${p.economie>0?`<div class="saving-pill">💰 ${p.economie.toLocaleString('fr-FR')}€ économisés</div>`:''}
       <div class="reliability">
         <div class="rel-track"><div class="rel-fill" style="width:${relRated(p)?r:0}%;background:linear-gradient(90deg,${rc}99,${rc})"></div></div>
-        ${relRated(p)?`<span class="rel-label" style="color:${rc}">${r}% fiable</span>`:`<span class="rel-label" style="color:#9CA3AF">Pas encore \u00e9valu\u00e9e</span>`}${relInfoBtn()}
+        ${relRated(p)?`<span class="rel-label" style="color:${rc}">${r}% fiable</span>`:`<span class="rel-label" style="color:#9CA3AF">Pas encore \u00e9valu\u00e9e</span>`}
         ${r<50?'<span style="font-size:11px;font-weight:600;color:#EF4444">⚠️ À vérifier</span>':''}
       </div>
       <div class="post-actions">
