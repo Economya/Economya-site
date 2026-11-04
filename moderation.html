@@ -184,11 +184,47 @@ async function loadAll(){
   renderHidden();
 }
 
-async function askMotif(){
-  const m = prompt("Motif du masquage (il sera envoye par e-mail a l'auteur, 3 caracteres minimum) :", '');
-  if(m === null) return null;
-  if(m.trim().length < 3){ alert('Motif trop court : action annulee.'); return null; }
-  return m.trim();
+const MOTIFS = [
+  ['illegal',     'Contenu illégal ou incitant à la haine'],
+  ['diffamation', 'Propos diffamatoires, injurieux ou discriminatoires'],
+  ['droits',      "Atteinte aux droits d'un tiers (droit d'auteur, droit à l'image, vie privée)"],
+  ['trompeur',    'Astuce ou offre trompeuse ou fausse'],
+  ['spam',        'Spam, publicité ou démarchage non autorisés'],
+  ['usurpation',  "Usurpation d'identité"],
+  ['partenariat', 'Offre commerciale non signalée comme partenariat'],
+  ['autre',       'Autre motif (à préciser)']
+];
+function askMotif(){
+  return new Promise(function(resolve){
+    const ov = document.createElement('div');
+    ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;display:flex;align-items:center;justify-content:center;padding:16px';
+    const box = document.createElement('div');
+    box.style.cssText = 'background:#fff;border-radius:14px;max-width:460px;width:100%;padding:20px;font-family:inherit;box-shadow:0 20px 50px rgba(0,0,0,.25)';
+    box.innerHTML = '<h3 style="margin:0 0 6px;font-size:1.05rem">Pourquoi masquer ce contenu ?</h3>'
+      + '<p style="margin:0 0 12px;font-size:.85rem;color:#6b7280">Le motif sera envoyé par e-mail à l\'auteur, avec la possibilité de contester.</p>'
+      + '<label style="font-size:.8rem;font-weight:700">Catégorie</label>'
+      + '<select id="mdMotif" style="width:100%;margin:4px 0 12px;padding:9px;border:1px solid #d1d5db;border-radius:8px;font-size:.9rem"></select>'
+      + '<label style="font-size:.8rem;font-weight:700">Précisions <span id="mdReq" style="font-weight:400;color:#6b7280">(facultatif)</span></label>'
+      + '<textarea id="mdDetail" maxlength="500" rows="3" style="width:100%;margin:4px 0 4px;padding:9px;border:1px solid #d1d5db;border-radius:8px;font-size:.9rem;font-family:inherit;resize:vertical"></textarea>'
+      + '<div id="mdErr" style="color:#dc2626;font-size:.8rem;min-height:1.1em;margin-bottom:8px"></div>'
+      + '<div style="display:flex;gap:8px;justify-content:flex-end">'
+      + '<button type="button" id="mdCancel" style="padding:9px 14px;border:1px solid #d1d5db;background:#fff;border-radius:8px;cursor:pointer">Annuler</button>'
+      + '<button type="button" id="mdOk" style="padding:9px 14px;border:0;background:#dc2626;color:#fff;border-radius:8px;cursor:pointer;font-weight:700">Masquer et prévenir l\'auteur</button>'
+      + '</div>';
+    ov.appendChild(box); document.body.appendChild(ov);
+    const sel = box.querySelector('#mdMotif');
+    MOTIFS.forEach(function(m){ const o = document.createElement('option'); o.value = m[0]; o.textContent = m[1]; sel.appendChild(o); });
+    const req = box.querySelector('#mdReq');
+    sel.addEventListener('change', function(){ req.textContent = sel.value === 'autre' ? '(obligatoire)' : '(facultatif)'; });
+    function done(v){ document.body.removeChild(ov); resolve(v); }
+    box.querySelector('#mdCancel').addEventListener('click', function(){ done(null); });
+    ov.addEventListener('click', function(e){ if(e.target === ov) done(null); });
+    box.querySelector('#mdOk').addEventListener('click', function(){
+      const detail = box.querySelector('#mdDetail').value.trim();
+      if(sel.value === 'autre' && detail.length < 3){ box.querySelector('#mdErr').textContent = 'Merci de préciser le motif.'; return; }
+      done({categorie: sel.value, detail: detail});
+    });
+  });
 }
 async function notifyHidden(type, id, motif){
   try {
@@ -196,7 +232,7 @@ async function notifyHidden(type, id, motif){
     const res = await fetch('/.netlify/functions/notify-content-hidden', {
       method: 'POST',
       headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + (session ? session.access_token : '')},
-      body: JSON.stringify({type: type, id: id, motif: motif})
+      body: JSON.stringify({type: type, id: id, categorie: motif.categorie, detail: motif.detail})
     });
     const data = await res.json().catch(function(){ return {}; });
     if(res.ok && data.sent === false && data.reason === 'no_user') return; // contenu sans compte (ex. offre Business)

@@ -15,12 +15,25 @@
 // Variables d'environnement Netlify : RESEND_API_KEY, NOTIFY_EMAIL_FROM,
 // SUPABASE_SERVICE_ROLE_KEY.
 //
-// Body (JSON) : { type: 'astuce' | 'comment', id, motif }
+// Body (JSON) : { type: 'astuce' | 'comment', id, categorie, detail? }
+//   categorie = une cle de MOTIFS ci-dessous ; detail = precisions facultatives.
 // Header      : Authorization: Bearer <jeton de session de l'admin>
 
 const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
 // Cle publique (anon) du projet, deja presente dans le code du site.
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+
+// Libelles des motifs : definis ici cote serveur, jamais pris dans la requete.
+const MOTIFS = {
+  illegal: 'Contenu illégal ou incitant à la haine',
+  diffamation: 'Propos diffamatoires, injurieux ou discriminatoires',
+  droits: "Atteinte aux droits d'un tiers (droit d'auteur, droit à l'image, vie privée)",
+  trompeur: 'Astuce ou offre trompeuse ou fausse',
+  spam: 'Spam, publicité ou démarchage non autorisés',
+  usurpation: "Usurpation d'identité",
+  partenariat: 'Offre commerciale non signalée comme partenariat',
+  autre: 'Autre motif',
+};
 
 function escapeHtml(str) {
   return String(str || '')
@@ -63,9 +76,13 @@ exports.handler = async function (event) {
   }
   const type = payload.type;
   const id = payload.id;
-  const motif = String(payload.motif || '').trim().slice(0, 500);
-  if ((type !== 'astuce' && type !== 'comment') || !id || motif.length < 3) {
-    return reply(400, { error: 'Missing type, id or motif' });
+  const categorie = String(payload.categorie || '');
+  const detail = String(payload.detail || '').trim().slice(0, 500);
+  if ((type !== 'astuce' && type !== 'comment') || !id || !Object.prototype.hasOwnProperty.call(MOTIFS, categorie)) {
+    return reply(400, { error: 'Missing type, id or categorie' });
+  }
+  if (categorie === 'autre' && detail.length < 3) {
+    return reply(400, { error: 'Detail required for categorie autre' });
   }
 
   const auth = event.headers.authorization || event.headers.Authorization || '';
@@ -122,7 +139,8 @@ exports.handler = async function (event) {
       <h2 style="margin:0 0 12px">Votre ${noun} a été masqué</h2>
       <p style="font-size:14px;color:#111">Bonjour,</p>
       <p style="font-size:14px;color:#111">Après examen, nous avons masqué votre ${noun} « ${escapeHtml(label)} » sur Economya.</p>
-      <p style="font-size:14px;color:#111"><strong>Motif :</strong> ${escapeHtml(motif)}</p>
+      <p style="font-size:14px;color:#111"><strong>Motif :</strong> ${escapeHtml(MOTIFS[categorie])}</p>
+      ${detail ? `<p style="font-size:14px;color:#111"><strong>Précisions :</strong> ${escapeHtml(detail)}</p>` : ''}
       <p style="font-size:14px;color:#111">Si vous pensez qu'il s'agit d'une erreur, vous pouvez contester cette décision en écrivant à <a href="mailto:contact@economya.fr" style="color:#085041;font-weight:700">contact@economya.fr</a> : votre demande sera réexaminée et une réponse vous sera donnée.</p>
       <p style="font-size:12px;color:#666;margin-top:20px">Voir nos <a href="https://economya.fr/cgu" style="color:#085041">conditions d'utilisation</a> et la <a href="https://economya.fr/signalement" style="color:#085041">procédure de signalement</a>.</p>
     </div>
