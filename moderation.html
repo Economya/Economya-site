@@ -237,7 +237,7 @@ async function notifyHidden(type, id, motif){
     const data = await res.json().catch(function(){ return {}; });
     if(res.ok && data.sent === false && data.reason === 'no_user') return; // contenu sans compte (ex. offre Business)
     if(!res.ok || data.sent !== true){
-      alert("Contenu masque, mais l'e-mail a l'auteur n'a pas pu etre envoye. Ecrivez-lui a la main, avec le motif.");
+      alert("Contenu masque, mais l'e-mail a l'auteur n'a pas pu etre envoye (cause : " + (data.reason || data.error || ('HTTP ' + res.status)) + "). Ecrivez-lui a la main, avec le motif.");
     }
   } catch(e){
     alert("Contenu masque, mais l'e-mail a l'auteur n'a pas pu etre envoye. Ecrivez-lui a la main, avec le motif.");

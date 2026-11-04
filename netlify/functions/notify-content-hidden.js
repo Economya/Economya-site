@@ -120,14 +120,17 @@ exports.handler = async function (event) {
     const res = await fetch(SUPABASE_URL + '/auth/v1/admin/users/' + encodeURIComponent(authorId), {
       headers: { apikey: serviceKey, Authorization: 'Bearer ' + serviceKey },
     });
-    if (!res.ok) return reply(200, { sent: false, reason: 'no_user' });
+    if (!res.ok) {
+      console.error('notify-content-hidden: lecture auteur refusee', res.status);
+      return reply(200, { sent: false, reason: 'lookup_' + res.status });
+    }
     const u = await res.json();
     email = u && u.email;
   } catch (e) {
     console.error('notify-content-hidden: erreur lecture auteur', e);
     return reply(500, { error: 'Author lookup failed' });
   }
-  if (!email) return reply(200, { sent: false, reason: 'no_user' });
+  if (!email) return reply(200, { sent: false, reason: 'no_email' });
 
   const from = process.env.NOTIFY_EMAIL_FROM || 'Economya <onboarding@resend.dev>';
   const noun = type === 'astuce' ? 'astuce' : 'commentaire';
