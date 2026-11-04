@@ -60,6 +60,8 @@ const STATIC_URLS = [
   ['https://economya.fr/mentions-legales', 'yearly', '0.3'],
   ['https://economya.fr/politique-confidentialite', 'yearly', '0.3'],
   ['https://economya.fr/cgu', 'yearly', '0.3'],
+  ['https://economya.fr/signalement', 'yearly', '0.3'],
+  ['https://economya.fr/cgv-business', 'yearly', '0.3'],
   // Outils & calculateurs (22)
   ['https://economya.fr/simulateur-epargne', 'monthly', '0.9'],
   ['https://economya.fr/calculateur-budget', 'monthly', '0.9'],
