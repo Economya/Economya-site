@@ -184,11 +184,37 @@ async function loadAll(){
   renderHidden();
 }
 
+async function askMotif(){
+  const m = prompt("Motif du masquage (il sera envoye par e-mail a l'auteur, 3 caracteres minimum) :", '');
+  if(m === null) return null;
+  if(m.trim().length < 3){ alert('Motif trop court : action annulee.'); return null; }
+  return m.trim();
+}
+async function notifyHidden(type, id, motif){
+  try {
+    await refreshSessionIfNeeded();
+    const res = await fetch('/.netlify/functions/notify-content-hidden', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + (session ? session.access_token : '')},
+      body: JSON.stringify({type: type, id: id, motif: motif})
+    });
+    const data = await res.json().catch(function(){ return {}; });
+    if(res.ok && data.sent === false && data.reason === 'no_user') return; // contenu sans compte (ex. offre Business)
+    if(!res.ok || data.sent !== true){
+      alert("Contenu masque, mais l'e-mail a l'auteur n'a pas pu etre envoye. Ecrivez-lui a la main, avec le motif.");
+    }
+  } catch(e){
+    alert("Contenu masque, mais l'e-mail a l'auteur n'a pas pu etre envoye. Ecrivez-lui a la main, avec le motif.");
+  }
+}
+
 async function hideAstuce(id){
-  if(!confirm('Masquer cette astuce du site ?')) return;
+  const motif = await askMotif();
+  if(!motif) return;
   try {
     await sbFetch('astuces?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:true}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
     astucesReported = astucesReported.filter(p=>p.id!==id);
+    await notifyHidden('astuce', id, motif);
     loadAll();
   } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
 }
@@ -207,10 +233,12 @@ async function restoreAstuce(id){
   } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
 }
 async function hideComment(id){
-  if(!confirm('Masquer ce commentaire ?')) return;
+  const motif = await askMotif();
+  if(!motif) return;
   try {
     await sbFetch('astuce_comments?id=eq.'+id, {method:'PATCH', body:JSON.stringify({hidden:true}), prefer:'return=minimal', headers:{'Prefer':'return=minimal'}});
     commentsReported = commentsReported.filter(c=>c.id!==id);
+    await notifyHidden('comment', id, motif);
     loadAll();
   } catch(e){ alert('Erreur : l\'action n\'a pas pu etre effectuee. ' + e.message); }
 }
