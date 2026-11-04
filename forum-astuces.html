@@ -339,24 +339,36 @@ function escapeHtml(s){
 
 async function sbFetch(path, options = {}) {
   await refreshSessionIfNeeded();
-  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
-    ...options,
-    keepalive: true,
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + (session ? session.access_token : SUPABASE_KEY),
-      'Content-Type': 'application/json',
-      'Prefer': options.prefer || 'return=representation',
-      ...options.headers
-    }
-  });
-  if (!res.ok) throw new Error(await res.text());
-  // Supabase renvoie parfois un corps VIDE avec un statut different de 204
-  // (ex: POST avec Prefer: return=minimal -> 201 Created sans corps). Faire
-  // res.json() directement plantait alors avec "Unexpected end of JSON input",
-  // ce qui annulait le vote/test optimiste juste apres qu'il ait reussi.
-  const text = await res.text();
-  return text ? JSON.parse(text) : null;
+  // Delai maximum : sans lui, une requete qui ne repond jamais (reseau mobile, serveur lent)
+  // laissait « Chargement des astuces... » fige a l'ecran, sans erreur ni bouton.
+  const ctl = new AbortController();
+  const timer = setTimeout(()=>ctl.abort(), 15000);
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+      ...options,
+      keepalive: true,
+      signal: ctl.signal,
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + (session ? session.access_token : SUPABASE_KEY),
+        'Content-Type': 'application/json',
+        'Prefer': options.prefer || 'return=representation',
+        ...options.headers
+      }
+    });
+    if (!res.ok) throw new Error(await res.text());
+    // Supabase renvoie parfois un corps VIDE avec un statut different de 204
+    // (ex: POST avec Prefer: return=minimal -> 201 Created sans corps). Faire
+    // res.json() directement plantait alors avec "Unexpected end of JSON input",
+    // ce qui annulait le vote/test optimiste juste apres qu'il ait reussi.
+    const text = await res.text();
+    return text ? JSON.parse(text) : null;
+  } catch(e) {
+    if (e && e.name === 'AbortError') throw new Error('Le serveur met trop de temps a repondre.');
+    throw e;
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
 // ── Auth Supabase (email + mot de passe) ───────────────
@@ -700,16 +712,22 @@ async function loadFollows(){
   } catch(e){ console.error(e); }
 }
 
-async function loadPosts() {
+async function loadPosts(attempt) {
+  attempt = attempt || 0;
   try {
     posts = await sbFetch('astuces?hidden=eq.false&order=votes.desc&limit=100');
-    await loadMyActions();
-    await loadFollows();
-    await loadAuthorAvatars();
+    // On affiche les astuces tout de suite ; votes, abonnements et avatars arrivent
+    // ensuite en arriere-plan (avant : le fil attendait ces 3 requetes pour s'afficher).
     render();
+    Promise.allSettled([loadMyActions(), loadFollows(), loadAuthorAvatars()]).then(()=>render());
   } catch(e) {
-    document.getElementById('feed').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><h3>Erreur de chargement</h3><p>'+e.message+'</p></div>';
+    if (attempt < 1) { setTimeout(()=>loadPosts(1), 1500); return; }
+    document.getElementById('feed').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><h3>Les astuces n\'ont pas pu se charger</h3><p>Vérifiez votre connexion, puis réessayez.</p><button type="button" class="btn-retry" onclick="retryLoadPosts()" style="margin-top:12px;padding:10px 18px;border:0;border-radius:10px;background:#085041;color:#fff;font-weight:700;cursor:pointer">Réessayer</button></div>';
   }
+}
+function retryLoadPosts(){
+  document.getElementById('feed').innerHTML = '<div class="loading">Chargement des astuces...</div>';
+  loadPosts(0);
 }
 
 // ── Render ─────────────────────────────────────────────
