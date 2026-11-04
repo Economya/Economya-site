@@ -1318,6 +1318,15 @@ async function deleteAccount(){
       }
     } catch(e){}
 
+    // Best effort : e-mail de confirmation (ne bloque jamais la suppression)
+    try {
+      await fetch('/.netlify/functions/notify-account-deleted', {
+        method: 'POST',
+        headers: {'Authorization': 'Bearer ' + mySession.access_token},
+        keepalive: true
+      });
+    } catch(e){}
+
     const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/delete_own_account', {
       method: 'POST',
       headers: {
