@@ -12,12 +12,31 @@
 //   - RESEND_API_KEY   : cle API Resend
 //   - NOTIFY_EMAIL_FROM : adresse d'expedition (domaine verifie)
 //
+// Securite : la fonction n'accepte AUCUNE adresse ni aucun texte dans la
+// requete. Elle exige le jeton de session d'un administrateur
+// (profiles.is_admin), relit elle-meme la candidature dans Supabase et
+// n'ecrit qu'a l'adresse enregistree sur cette candidature. Elle ne peut
+// donc pas servir a envoyer des e-mails arbitraires depuis le domaine.
+//
 // Body attendu (JSON) :
-//   { email, nom_commerce, titre_offre, result: 'published' | 'rejected', partenariat? }
+//   { submission_id, result: 'published' | 'rejected', partenariat? }
+// Header : Authorization: Bearer <jeton de session de l'admin>
 //
 // En cas d'erreur, repond par un statut d'erreur mais ne doit jamais
 // bloquer le flux de publication/rejet cote admin-business.html, qui a
 // deja eu lieu avant cet appel.
+
+const SUPABASE_URL = 'https://awelbxqiltokhsoddako.supabase.co';
+// Cle publique (anon) du projet, deja presente dans le code du site.
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3ZWxieHFpbHRva2hzb2RkYWtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkzNTM1MjIsImV4cCI6MjEwNDkyOTUyMn0.pao4Gxw9S7bdfTFExd3W1idWEV76VvykeiZSSf3mQxw';
+
+async function sb(path, token) {
+  const res = await fetch(SUPABASE_URL + path, {
+    headers: { apikey: SUPABASE_KEY, Authorization: 'Bearer ' + token },
+  });
+  if (!res.ok) return null;
+  return res.json();
+}
 
 function escapeHtml(str) {
   return String(str || '')
@@ -46,12 +65,49 @@ exports.handler = async function (event) {
     return { statusCode: 400, body: 'Invalid JSON' };
   }
 
-  const { email, nom_commerce, titre_offre, result, partenariat } = payload;
-  if (!email || !result) {
-    return { statusCode: 400, body: 'Missing email or result' };
+  const { submission_id, result, partenariat } = payload;
+  if (!submission_id || !result) {
+    return { statusCode: 400, body: 'Missing submission_id or result' };
   }
   if (result !== 'published' && result !== 'rejected') {
     return { statusCode: 400, body: 'Invalid result' };
+  }
+
+  // 1. Jeton de session obligatoire.
+  const auth = event.headers.authorization || event.headers.Authorization || '';
+  const token = auth.replace(/^Bearer\s+/i, '');
+  if (!token) {
+    return { statusCode: 401, body: 'Missing token' };
+  }
+
+  let email, nom_commerce, titre_offre;
+  try {
+    // 2. Le jeton doit etre valide ...
+    const user = await sb('/auth/v1/user', token);
+    if (!user || !user.id) {
+      return { statusCode: 401, body: 'Invalid token' };
+    }
+    // 3. ... et appartenir a un administrateur.
+    const prof = await sb('/rest/v1/profiles?id=eq.' + encodeURIComponent(user.id) + '&select=is_admin', token);
+    if (!prof || !prof[0] || !prof[0].is_admin) {
+      return { statusCode: 403, body: 'Forbidden' };
+    }
+    // 4. L'adresse et les textes viennent de la base, pas de la requete.
+    const rows = await sb('/rest/v1/business_submissions?id=eq.' + encodeURIComponent(String(submission_id)) + '&select=email,nom_commerce,titre_offre,status', token);
+    const sub = rows && rows[0];
+    if (!sub || !sub.email) {
+      return { statusCode: 404, body: 'Submission not found' };
+    }
+    // 5. Le resultat demande doit correspondre au statut reel enregistre.
+    if (sub.status !== result) {
+      return { statusCode: 409, body: 'Status mismatch' };
+    }
+    email = sub.email;
+    nom_commerce = sub.nom_commerce;
+    titre_offre = sub.titre_offre;
+  } catch (e) {
+    console.error('notify-submission-result: erreur verification', e);
+    return { statusCode: 500, body: 'Verification failed' };
   }
 
   const from = process.env.NOTIFY_EMAIL_FROM || 'Economya <onboarding@resend.dev>';
@@ -92,7 +148,7 @@ exports.handler = async function (event) {
     if (!res.ok) {
       const errText = await res.text();
       console.error('notify-submission-result: echec Resend', res.status, errText);
-      return { statusCode: 502, body: 'Resend error: ' + errText };
+      return { statusCode: 502, body: 'Resend error' };
     }
   } catch (e) {
     console.error('notify-submission-result: erreur envoi', e);
