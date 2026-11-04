@@ -659,6 +659,12 @@ function getSorted(){
   if(sortMode==='top')list.sort((a,b)=>b.votes-a.votes);
   else if(sortMode==='new')list.sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
   else if(sortMode==='rel')list.sort((a,b)=>rel(b)-rel(a));
+  // Mise en avant (sur devis) : en tête de la sélection de sa catégorie, pendant la durée prévue.
+  // Toujours signalée « Partenariat » (badge affiché sur la carte).
+  if(filterCat){
+    const feat=p=>!!p.partenariat && !!p.featured_until && new Date(p.featured_until)>new Date();
+    list=[...list.filter(feat),...list.filter(p=>!feat(p))];
+  }
   return list;
 }
 
@@ -768,7 +774,7 @@ function renderFeed(){
         <div class="post-meta">
           <div class="post-name">
             ${p.auteur && p.user_id ? `<a href="/profil/${encodeURIComponent(p.auteur)}" style="cursor:pointer">${escapeHtml(p.auteur)}</a>` : `<span>${p.auteur ? escapeHtml(p.auteur) : 'Anonyme'}</span>`}
-            ${p.partenariat ? partnerBadge : (p.enseigne ? bizBadge : `<span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>`)}
+            ${p.partenariat ? partnerBadge + (filterCat && p.featured_until && new Date(p.featured_until)>new Date() ? '<span class="trend-badge" style="margin-left:6px">⭐ En tête de sélection</span>' : '') : (p.enseigne ? bizBadge : `<span class="post-rank" style="background:${rk.bg};color:${rk.c}">${rk.l}</span>`)}
             ${p.votes>=TREND_THRESHOLD?'<span class="trend-badge">\uD83D\uDD25 Tendance</span>':''}
           </div>
           <div class="post-cat">${escapeHtml(p.categorie)}${p.enseigne?' · 🏷️ '+escapeHtml(p.enseigne):''}${p.lieu?' · 📍 '+escapeHtml(p.lieu):''} · il y a ${timeAgo(p.created_at)}</div>
