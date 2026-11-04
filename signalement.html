@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script src="/error-tracker.js"></script>
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signaler un contenu — Economya.fr</title>
+<meta name="description" content="Comment signaler un contenu abusif ou trompeur sur Economya.fr et comment nous traitons les signalements : délais, décisions possibles, contestation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+<style>
+html{overflow-y:scroll}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#1D9E75;--gl:#E1F5EE;--gd:#085041;--a:#EF9F27;--r:16px;--t:#2C2C2A;--m:#5F5E5A;--bg:#FAFAF8;--w:#fff;--b:rgba(0,0,0,0.08)}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
+nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 1.8rem;background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:99}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;color:var(--gd);text-decoration:none}
+.logo span{color:var(--a)}
+.nav-back{text-decoration:none;color:var(--m);font-size:.82rem;font-weight:500}
+.hero{background:linear-gradient(135deg,#1e293b,#334155,#475569);color:white;padding:3rem 2rem;text-align:center}
+.hero h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;margin-bottom:.5rem}
+.hero p{font-size:.9rem;color:rgba(255,255,255,.7)}
+.container{max-width:760px;margin:0 auto;padding:3rem 1.5rem}
+h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gd);margin:2rem 0 .8rem;border-left:4px solid var(--g);padding-left:.8rem}
+p{font-size:.92rem;line-height:1.8;margin-bottom:.8rem;color:var(--t)}
+ul{margin:.5rem 0 .8rem 1.2rem;font-size:.92rem;line-height:1.8}
+a{color:var(--g)}
+.box{background:var(--gl);border-radius:var(--r);padding:1.2rem 1.5rem;margin:1rem 0;font-size:.9rem;color:var(--gd)}
+footer{background:var(--gd);color:rgba(255,255,255,.6);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:3rem}
+footer strong{color:white}
+@media(max-width:640px){.container{padding:2rem 1rem}}
+
+/* Menu hamburger mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gd,#085041);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#ffffff;z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;isolation:isolate}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#085041;text-decoration:none}
+.mobile-menu .close-btn{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.8rem;cursor:pointer;color:#085041}
+.mobile-menu .nav-cta{background:#1D9E75;color:white!important;padding:.5rem 1.4rem;border-radius:50px}
+@media(max-width:768px){
+  .hamburger{display:flex}
+  nav .nav-links, nav > a:not(.logo), nav > div{display:none!important}
+  nav li{display:none!important}
+}
+
+nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
+.eco-dnav-wrap{display:none;align-items:center;gap:1rem}
+@media(min-width:769px){.eco-dnav-wrap{display:flex}.nav-back{display:none}.nav-link{display:none}}
+.eco-dnav{display:flex;gap:.8rem;list-style:none;align-items:center;flex-wrap:wrap;margin:0;padding:0}
+.eco-dnav a{text-decoration:none;color:#2C2C2A;font-size:.78rem;font-weight:600;letter-spacing:.02em;position:relative;white-space:nowrap}
+.eco-dnav a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,#EF9F27,#FFE29A,#EF9F27);transition:width .25s ease}
+.eco-dnav a:hover{color:#EF9F27}
+.eco-dnav a:hover::after{width:100%}
+.eco-dnav-cta{display:inline-block!important;background:linear-gradient(120deg,#085041 0%,#1D9E75 25%,#3DCB9A 45%,#1D9E75 65%,#085041 100%);background-size:220% 100%;background-position:0% 0%;color:#fff!important;padding:.4rem .9rem;border-radius:50px;font-weight:700;border:1px solid rgba(255,255,255,.15);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),inset 0 -1px 2px rgba(0,0,0,.3),0 2px 8px rgba(0,0,0,.15);transition:background-position .6s ease,transform .15s ease}
+.eco-dnav-cta:hover{background-position:100% 0%;transform:translateY(-1px)}
+.eco-dnav-cta::after{display:none}
+.eco-dnav-search{text-decoration:none;color:#2C2C2A;font-size:.8rem;font-weight:600;letter-spacing:.02em;display:inline-flex;align-items:center;gap:.3rem;position:relative;white-space:nowrap}
+.eco-dnav-search::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:linear-gradient(90deg,#8a8f98,#e2e6ec,#8a8f98);transition:width .25s ease}
+.eco-dnav-search:hover{color:#5b6270}
+.eco-dnav-search:hover::after{width:100%}
+
+.eco-idea-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;flex-shrink:0;color:#fff;text-decoration:none;background:radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE9B0 0%,#F59E0B 42%,#7C4A03 75%,#3D2401 100%);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 3px 8px rgba(0,0,0,.4);transition:transform .15s ease,box-shadow .15s ease}
+.eco-idea-btn svg{width:17px;height:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
+.eco-idea-btn:hover{transform:scale(1.08);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.35),0 4px 12px rgba(245,158,11,.45)}
+</style>
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Signaler un contenu",
+  "description": "Comment signaler un contenu abusif ou trompeur sur Economya.fr et comment nous traitons les signalements : délais, décisions possibles, contestation.",
+  "url": "https://economya.fr/signalement",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Economya.fr",
+    "url": "https://economya.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://economya.fr/favicon.svg"
+    }
+  },
+  "inLanguage": "fr-FR"
+}
+  </script>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Economya.fr">
+  <meta property="og:title" content="Signaler un contenu">
+  <meta property="og:description" content="Comment signaler un contenu abusif ou trompeur sur Economya.fr et comment nous traitons les signalements : délais, décisions possibles, contestation.">
+  <meta property="og:url" content="https://economya.fr/signalement">
+  <meta property="og:image" content="https://economya.fr/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="fr_FR">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Signaler un contenu">
+  <meta name="twitter:description" content="Comment signaler un contenu abusif ou trompeur sur Economya.fr et comment nous traitons les signalements : délais, décisions possibles, contestation.">
+  <meta name="twitter:image" content="https://economya.fr/og-image.png">
+<link rel="canonical" href="https://economya.fr/signalement" />
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#085041">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+<nav>
+  <a class="logo" href="/">Econom<span>ya</span>.fr</a>
+  <a class="nav-back" href="/">← Accueil</a>
+  <!-- Menu hamburger mobile -->
+
+<div class="eco-dnav-wrap"><ul class="eco-dnav"><li><a href="/">Accueil</a></li><li><a href="/community">🌱 Community</a></li><li><a href="/economya-business" style="color:#B8860B;font-weight:700">💼 Business</a></li><li><a href="/a-propos">À propos</a></li><li><a href="/comparateurs">Comparateurs</a></li><li><a href="/outils-gratuits" class="eco-dnav-cta">Outils gratuits</a></li><li><a href="/jeux">Jeux</a></li></ul><a href="/forum-astuces" class="eco-idea-btn" aria-label="Astuces"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.4.3.5.7.5 1.1v.5h6v-.5c0-.4.1-.8.5-1.1A6 6 0 0 0 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 6.5v3M10.3 11l1.7-2 1.7 2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a href="/recherche" class="eco-dnav-search">🔍 Rechercher</a></div>
+<button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button><div id="navAv" style="cursor:pointer"></div></nav>
+<main><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="/">Accueil</a><a href="/community">Community</a><a href="/economya-business">💼 Business</a><a href="/a-propos">A propos</a><a href="/comparateurs">Comparateurs</a><a href="/outils-gratuits">Outils gratuits</a><a href="/jeux">Jeux</a><a href="/forum-astuces">💡 Astuces</a><a href="/recherche">Rechercher</a><a href="#" id="navAvMobile">👤 Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
+<div class="hero">
+  <h1>Signaler un contenu</h1>
+  <p>Dernière mise à jour : novembre 2026</p>
+</div>
+<div class="container">
+
+  <div class="box">
+    🚩 Economya.fr héberge des astuces, commentaires et offres publiés par des membres et des entreprises. Cette page explique comment signaler un contenu et comment nous traitons chaque signalement.
+  </div>
+
+  <h2>1. Que pouvez-vous signaler ?</h2>
+  <ul>
+    <li>Un contenu illégal, diffamatoire, injurieux, discriminatoire ou incitant à la haine.</li>
+    <li>Un contenu qui porte atteinte à vos droits (droit d'auteur, droit à l'image, vie privée).</li>
+    <li>Une astuce ou une offre trompeuse ou fausse (réduction inexistante, faux avis, fausse validation « testé »).</li>
+    <li>Du spam, de la publicité ou du démarchage non autorisés.</li>
+    <li>Une usurpation d'identité.</li>
+    <li>Une offre Economya Business trompeuse, ou qui n'est pas clairement signalée comme partenariat.</li>
+  </ul>
+
+  <h2>2. Comment signaler ?</h2>
+  <ul>
+    <li>Sur une astuce ou un commentaire, cliquez sur le bouton « Signaler » (🚩).</li>
+    <li>Ou écrivez à <a href="mailto:contact@economya.fr">contact@economya.fr</a> en indiquant l'adresse exacte (URL) du contenu, le motif du signalement et vos explications. Si le contenu porte atteinte à vos droits, précisez qui vous êtes et en quoi.</li>
+  </ul>
+  <p>Plus un signalement est précis, plus il est traité vite.</p>
+
+  <h2>3. Comment traitons-nous un signalement ?</h2>
+  <ul>
+    <li><strong>Accusé de réception</strong> : si vous nous avez écrit, nous vous répondons sous 3 jours.</li>
+    <li><strong>Examen</strong> : nous lisons le contenu et le comparons à nos <a href="/cgu">CGU</a>, à nos <a href="/regles-communaute">règles de la communauté</a> et à la loi.</li>
+    <li><strong>Décision sous 7 jours</strong> : contenu maintenu, modifié, masqué ou supprimé. En cas de manquement grave ou répété, le compte peut être averti, suspendu ou supprimé.</li>
+    <li><strong>Contenu manifestement illégal</strong> : retiré en priorité, dès que nous en avons connaissance.</li>
+  </ul>
+
+  <h2>4. Information de l'auteur et contestation</h2>
+  <p>Quand nous masquons ou supprimons un contenu, son auteur en est informé par e-mail, avec le motif de la décision. Il peut la contester en écrivant à <a href="mailto:contact@economya.fr">contact@economya.fr</a> : la demande est réexaminée et une réponse lui est donnée, comme prévu à l'article 5 des CGU.</p>
+
+  <h2>5. Offres Economya Business</h2>
+  <p>Chaque offre est vérifiée avant publication. Si une offre déjà publiée est signalée, elle est examinée dans les mêmes délais et peut être masquée le temps de la vérification. Une offre trompeuse est retirée. Tout partenariat rémunéré est signalé comme tel.</p>
+
+  <h2>6. Signalements abusifs</h2>
+  <p>Les signalements répétés, répondant manifestement à une volonté de nuire, peuvent conduire à la restriction de la fonction « Signaler » pour le compte concerné.</p>
+
+  <h2>7. Contact</h2>
+  <p>Pour toute question : <a href="mailto:contact@economya.fr">contact@economya.fr</a></p>
+
+</div>
+
+</main>
+<footer>
+  <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
+  <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
+</footer>
+<script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
+<div style="max-width:1100px;margin:0 auto;">
+<div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">
+<p style="margin:0;font-size:0.9rem;line-height:1.5;flex:1;min-width:240px;">Nous utilisons des cookies pour mesurer l'audience du site et diffuser des publicités. Vous pouvez choisir les catégories que vous acceptez. <a href="/politique-confidentialite" style="color:#F4B550;text-decoration:underline;">En savoir plus</a></p>
+<div style="display:flex;gap:10px;flex-shrink:0;flex-wrap:wrap;">
+<button id="economya-cmp-personnaliser" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Personnaliser</button>
+<button id="economya-cookie-refuse" style="background:transparent;border:1px solid #ffffff;color:#ffffff;padding:8px 16px;border-radius:4px;cursor:pointer;font-size:0.85rem;">Tout refuser</button>
+<button id="economya-cookie-accept" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Tout accepter</button>
+</div>
+</div>
+<div id="economya-cmp-categories" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.2);">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:default;">
+<input type="checkbox" checked disabled style="width:16px;height:16px;">
+Cookies essentiels (toujours actifs — fonctionnement du site)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-analytics" style="width:16px;height:16px;cursor:pointer;">
+Mesure d'audience (Google Analytics)
+</label>
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:0.85rem;cursor:pointer;">
+<input type="checkbox" id="economya-cat-publicite" style="width:16px;height:16px;cursor:pointer;">
+Publicité personnalisée (Google AdSense)
+</label>
+<button id="economya-cmp-valider" style="background:#EF9F27;border:none;color:#2C2C2A;padding:8px 16px;border-radius:4px;cursor:pointer;font-weight:600;font-size:0.85rem;">Valider mes choix</button>
+</div>
+</div>
+</div>
+<!-- Google Analytics -->
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+window.gtag = gtag;
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+window.economyaLoadGA = function() {
+  if (window.economyaGALoaded) return;
+  window.economyaGALoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=G-YBK8GHCDT5";
+  document.head.appendChild(s);
+  gtag("js", new Date());
+  gtag("config", "G-YBK8GHCDT5");
+};
+</script>
+<script>
+window.economyaLoadAds = function() {
+  if (window.economyaAdsLoaded) return;
+  window.economyaAdsLoaded = true;
+  var s = document.createElement("script");
+  s.async = true;
+  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3051071564398795";
+  s.crossOrigin = "anonymous";
+  document.head.appendChild(s);
+};
+</script>
+<script>
+(function(){
+var K = "economya_cookie_consent_v2";
+var D = 180;
+
+function getC(){
+  try{
+    var r = localStorage.getItem(K);
+    if(!r) return null;
+    var d = JSON.parse(r);
+    var e = new Date(d.timestamp);
+    e.setDate(e.getDate() + D);
+    if(new Date() > e) return null;
+    return d;
+  }catch(e){ return null; }
+}
+
+function setC(analytics, publicite){
+  try{
+    localStorage.setItem(K, JSON.stringify({
+      analytics: analytics,
+      publicite: publicite,
+      timestamp: new Date().toISOString()
+    }));
+  }catch(e){}
+}
+
+function applyConsent(analytics, publicite){
+  if(typeof window.gtag === "function"){
+    window.gtag('consent', 'update', {
+      'analytics_storage': analytics ? 'granted' : 'denied',
+      'ad_storage': publicite ? 'granted' : 'denied',
+      'ad_user_data': publicite ? 'granted' : 'denied',
+      'ad_personalization': publicite ? 'granted' : 'denied'
+    });
+  }
+  if(analytics && typeof window.economyaLoadGA === "function"){
+    window.economyaLoadGA();
+  }
+  if(publicite && typeof window.economyaLoadAds === "function"){
+    window.economyaLoadAds();
+  }
+}
+
+var banner = document.getElementById("economya-cookie-banner");
+var existing = getC();
+
+if(existing){
+  applyConsent(existing.analytics, existing.publicite);
+}else if(banner){
+  banner.style.display = "block";
+}
+
+var btnAccept = document.getElementById("economya-cookie-accept");
+var btnRefuse = document.getElementById("economya-cookie-refuse");
+var btnPersonnaliser = document.getElementById("economya-cmp-personnaliser");
+var btnValider = document.getElementById("economya-cmp-valider");
+var divCategories = document.getElementById("economya-cmp-categories");
+var divSimple = document.getElementById("economya-cmp-simple");
+var checkAnalytics = document.getElementById("economya-cat-analytics");
+var checkPublicite = document.getElementById("economya-cat-publicite");
+
+if(btnAccept){
+  btnAccept.addEventListener("click", function(){
+    setC(true, true);
+    applyConsent(true, true);
+    banner.style.display = "none";
+  });
+}
+if(btnRefuse){
+  btnRefuse.addEventListener("click", function(){
+    setC(false, false);
+    applyConsent(false, false);
+    banner.style.display = "none";
+  });
+}
+if(btnPersonnaliser){
+  btnPersonnaliser.addEventListener("click", function(){
+    divCategories.style.display = "block";
+    divSimple.style.display = "none";
+  });
+}
+if(btnValider){
+  btnValider.addEventListener("click", function(){
+    var a = checkAnalytics ? checkAnalytics.checked : false;
+    var p = checkPublicite ? checkPublicite.checked : false;
+    setC(a, p);
+    applyConsent(a, p);
+    banner.style.display = "none";
+  });
+}
+})();
+</script>
+<script src="account-nav.js" defer></script>
+<script src="/cookie-manage.js" defer></script>
+</body>
+</html>
