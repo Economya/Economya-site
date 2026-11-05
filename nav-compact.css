@@ -1,0 +1,16 @@
+/* En-tête resserré pour les fenêtres moyennes (770 à 1240 px), dont la fenêtre de l'application installée.
+   Sans ça, « Rechercher » et « Mon compte » passaient sur une 2e ligne.
+   Au-dessus de 1240 px et sur téléphone (768 px et moins), rien ne change. */
+@media (min-width: 769px) and (max-width: 1240px) {
+  nav .nl { gap: .7rem !important; }
+  nav .eco-dnav { gap: .55rem !important; }
+  nav .nl a, nav .eco-dnav a { font-size: .73rem !important; }
+  nav .nav-left-group { gap: .7rem !important; }
+  nav .eco-dnav-wrap { gap: .55rem !important; }
+  /* « Rechercher » : on garde la loupe, on masque le mot */
+  nav .nav-search, nav .eco-dnav-search { font-size: 0 !important; gap: 0 !important; }
+  nav .nav-search svg, nav .eco-dnav-search svg { width: 17px; height: 17px; }
+  nav { column-gap: .5rem !important; padding-left: 1rem !important; padding-right: 1rem !important; }
+  nav .nav-right { gap: .5rem !important; }
+  nav .nav-btn { padding: 7px 12px !important; font-size: 13px !important; }
+}
