@@ -100,6 +100,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   "url": "https://economya.fr/forfaits-5g-pas-cher",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
+  "dateModified": "2026-11-05",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -179,7 +180,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <meta name="twitter:description" content="Comparez les forfaits mobiles 5G les moins chers et filtrez selon vos besoins en data.">
   <meta name="twitter:image" content="https://economya.fr/og-image.png">
 <link rel="canonical" href="https://economya.fr/forfaits-5g-pas-cher" />
-<meta name="description" content="Comparez les meilleurs forfaits mobiles 5G pas chers dès 9,99€/mois : Free, Bouygues, SFR, Orange et opérateurs low-cost. Filtrez selon votre besoin en data.">
+<meta name="description" content="Comparez les meilleurs forfaits mobiles 5G pas chers dès 7,99€/mois : Free, Bouygues, SFR, Orange et opérateurs low-cost. Filtrez selon votre besoin en data.">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#085041">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -213,7 +214,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <h2>📝 5G affichée, 4G utilisée : ce qu'il faut vérifier</h2>
     <p style="font-size:.9rem;color:var(--m);line-height:1.7;margin-bottom:.9rem">Un forfait « 5G » loue en réalité le réseau d'un des 4 opérateurs possédant des antennes (Orange, SFR, Bouygues, Free) : même couverture, souvent moitié prix. Mais deux points méritent d'être vérifiés avant de signer. D'abord, la <strong>compatibilité de votre téléphone</strong> : sans puce 5G, vous resterez en 4G même avec le forfait le plus cher. Ensuite, le <strong>tarif après la première année</strong> : beaucoup de prix d'appel affichés ci-dessus grimpent au bout de 12 mois — regardez toujours la ligne « prix après 1 an » dans le détail de l'offre avant de valider.</p>
     <p style="font-size:.9rem;color:var(--m);line-height:1.7">Autre nuance utile : les MVNO (opérateurs sans antenne) n'ont pas toujours accès à 100% des fréquences 5G de l'opérateur hôte, et certains plafonnent le débit même en 5G. Pour un usage simple (messagerie, navigation, streaming audio), ça ne change rien ; pour du streaming vidéo intensif en 5G, mieux vaut vérifier les avis récents sur le débit réel de l'offre visée.</p>
-    <p style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Comparatif vérifié le 23/10/2026</strong>, prix hors promotions d'appel non garanties dans la durée.</p>
+    <p class="maj-note" style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Dernière révision : 5 novembre 2026.</strong> Sources : offres publiques des opérateurs, relevées via les comparateurs MonPetitForfait (4 novembre 2026) et Selectra (3 novembre 2026), prix hors promotions d'appel. Les offres changent souvent : vérifiez-les sur le site de l'établissement avant de souscrire.</p>
   </div>
 
   <div class="tip" id="tip-text">
@@ -306,19 +307,17 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
 <script>
 const FORFAITS = [
-  { operateur:'Auchan Telecom', reseau:'Bouygues', data:100, prix:9.99, icon:'🛒' },
+  { operateur:'Lycamobile', reseau:'Bouygues', data:150, prix:7.99, icon:'📞' },
   { operateur:'Cdiscount Mobile', reseau:'Bouygues', data:100, prix:9.99, icon:'🛍️' },
   { operateur:'NRJ Mobile', reseau:'Bouygues', data:100, prix:9.99, icon:'📻' },
   { operateur:'Lebara', reseau:'SFR', data:200, prix:9.99, icon:'🔴' },
   { operateur:'Syma Mobile', reseau:'SFR', data:100, prix:9.99, icon:'📶' },
   { operateur:'Prixtel Oxygène', reseau:'SFR', data:100, prix:9.99, icon:'📶' },
-  { operateur:'YouPrice', reseau:'SFR', data:200, prix:9.99, icon:'📶' },
+  { operateur:'YouPrice', reseau:'Orange', data:130, prix:9.99, icon:'📶' },
   { operateur:'La Poste Mobile', reseau:'Bouygues', data:130, prix:10.99, icon:'📮' },
-  { operateur:'Sosh', reseau:'Orange', data:80, prix:10.99, icon:'🟠' },
-  { operateur:'Coriolis Le Connecté', reseau:'SFR', data:200, prix:11.99, icon:'📶' },
-  { operateur:'RED by SFR', reseau:'SFR', data:130, prix:13.99, icon:'🔴' },
-  { operateur:'B&You', reseau:'Bouygues', data:130, prix:13.99, icon:'🔵' },
-  { operateur:'Free 5G', reseau:'Free', data:150, prix:19.99, icon:'🆓' },
+  { operateur:'RED by SFR', reseau:'SFR', data:120, prix:12.99, icon:'🔴' },
+  { operateur:'B&You', reseau:'Bouygues', data:100, prix:13.99, icon:'🔵' },
+  { operateur:'Free 5G', reseau:'Free', data:110, prix:19.99, icon:'🆓' },
 ];
 
 function fmtPrix(n){ return n.toFixed(2).replace('.', ',') + ' €/mois'; }

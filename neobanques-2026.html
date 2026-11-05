@@ -97,6 +97,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   "url": "https://economya.fr/neobanques-2026",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
+  "dateModified": "2026-11-05",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -218,7 +219,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <h2>📝 Néobanque ou banque en ligne : quelle différence ?</h2>
     <p style="font-size:.9rem;color:var(--m);line-height:1.7;margin-bottom:.9rem">Une néobanque n'est pas forcément une banque au sens strict. Beaucoup (Revolut, N26, Sumeria) sont agréées comme <strong>établissement de paiement ou de monnaie électronique</strong>, pas comme banque de plein exercice : elles ne peuvent ni prêter ni proposer de crédit immobilier. D'autres, comme N26, détiennent une licence bancaire complète en Allemagne. Dans tous les cas, vérifiez l'agrément et le pays qui le délivre : grâce au « passeport européen », une néobanque agréée dans un pays de l'UE/EEE peut opérer en France sans agrément français, et vos dépôts restent couverts par le fonds de garantie <strong>du pays d'origine</strong> (plafond équivalent à 100 000€ par déposant et par établissement).</p>
     <p style="font-size:.9rem;color:var(--m);line-height:1.7">C'est pourquoi la plupart des utilisateurs gardent une banque traditionnelle ou en ligne « complète » en complément d'une néobanque : pour un crédit immobilier, un découvert autorisé ou un conseiller physique en cas de pépin.</p>
-    <p style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Comparatif vérifié le 23/10/2026</strong> à partir des grilles tarifaires publiques des établissements.</p>
+    <p class="maj-note" style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Dernière révision : 5 novembre 2026.</strong> Sources : grilles tarifaires publiques de Revolut, N26, Nickel, Sumeria et Trade Republic, relevées via MoneyVox et PrimeBanque (grilles du 10 octobre au 5 novembre 2026). Les offres changent souvent : vérifiez-les sur le site de l'établissement avant de souscrire.</p>
   </div>
 
   <div class="tip" id="tip-text">
@@ -327,8 +328,8 @@ const NEOBANKS = [
     desc:"Change de devises au taux réel et paiements à l'étranger sans frais cachés : la référence pour les voyageurs.",
     facts:{
       'Formule gratuite':'Oui (Standard), carte virtuelle incluse',
-      'Formules payantes':'Plus 3,99€, Premium 9,99€, Metal 16,99€/mois',
-      'Retraits zone euro':'200€/mois gratuits (Standard), 400€ (Plus/Premium), 800€ (Metal)',
+      'Formules payantes':'Plus 3,99€, Premium 10,99€, Metal 18,99€/mois',
+      'Retraits zone euro':'200€/mois gratuits (Standard), 400€ (Premium), 800€ (Metal), puis 2%',
       "À l'étranger":"Change à 0% en semaine, +1% le week-end",
     },
     profils:['voyage']
@@ -338,9 +339,9 @@ const NEOBANKS = [
     desc:"Une appli épurée et un compte gratuit sans engagement, pensé pour un usage quotidien simple.",
     facts:{
       'Formule gratuite':'Oui (N26 Standard)',
-      'Formules payantes':'Smart, You, Metal (tarifs variables selon les options)',
-      'Retraits zone euro':'3 retraits ou 120€/mois gratuits, puis commission',
-      "À l'étranger":'Change à 0%, paiements par carte gratuits',
+      'Formules payantes':'Smart 4,90€, Go 9,90€ (ex-You), Metal 16,90€/mois',
+      'Retraits zone euro':'2 retraits gratuits/mois en Standard (3 en Smart, 5 en Go, 8 en Metal), puis 2€',
+      "À l'étranger":'Paiements par carte gratuits ; retraits hors zone euro à 1,7% (Standard, Smart)',
     },
     profils:['quotidien','voyage']
   },
@@ -348,31 +349,31 @@ const NEOBANKS = [
     id:'nickel', icon:'🟠', nom:'Nickel',
     desc:"Le compte qui s'ouvre en 5 minutes chez un buraliste, sans condition de revenus, de dépôt initial ni consultation du fichier des incidents bancaires : une vraie option pour les personnes en interdit bancaire.",
     facts:{
-      'Coût annuel':"Environ 20€/an sur l'offre de base",
-      'Dépôt/retrait espèces':'Oui, chez les buralistes partenaires (commission)',
-      'Retraits DAB':'Commission par retrait',
-      "À l'étranger":'Frais sur paiements hors zone euro',
+      'Coût annuel':"25€/an sur l'offre de base (Nickel Classic)",
+      'Dépôt/retrait espèces':'Oui, chez les buralistes partenaires (dépôt 3%, 3 retraits gratuits/mois puis 0,50€)',
+      'Retraits DAB':'1,50€ par retrait (gratuit avec la formule Metal)',
+      "À l'étranger":'Hors zone SEPA : 1,50€ par paiement en Classic (gratuit en Chrome et Metal)',
     },
     profils:['cash']
   },
   {
     id:'sumeria', icon:'🩷', nom:'Sumeria (ex-Lydia)',
-    desc:"Compte gratuit avec option d'épargne rémunérée et cashback sur les formules premium.",
+    desc:"Compte gratuit tant qu'il reste utilisé, avec épargne rémunérée sous conditions d'usage et cashback sur les formules payantes.",
     facts:{
-      'Formule gratuite':'Oui, carte virtuelle incluse',
-      'Formules payantes':'Avec cashback et carte physique/métal',
-      'Épargne':"Jusqu'à 4%/an sur l'offre payante, moins sur la gratuite",
+      'Formule gratuite':'Oui (Basique), carte virtuelle incluse ; 3€/mois si le compte reste inactif 2 mois, carte physique 5€',
+      'Formules payantes':'Standard 4,99€, Noire 10,99€/mois (cashback, carte physique incluse)',
+      'Épargne':"1% brut/an sous conditions d'usage (10 paiements par carte/mois), plafonné à 10 000€ en Basique et Standard",
       "À l'étranger":'Variable selon la formule souscrite',
     },
-    profils:['epargne','quotidien']
+    profils:['quotidien']
   },
   {
     id:'traderepublic', icon:'🔷', nom:'Trade Republic',
     desc:"Pensée pour qui veut faire fructifier son solde automatiquement : compte courant rémunéré et épargne investie en un clic.",
     facts:{
-      'Formule gratuite':'Oui, compte courant + carte incluse',
-      'Rémunération':"2%/an sur le solde du compte courant",
-      'Investissement':"Courtage à 1€ par ordre, Saveback (1% des paiements réinvesti en ETF)",
+      'Formule gratuite':'Oui, compte courant + carte virtuelle incluse (carte physique : 5€ une fois)',
+      'Rémunération':"3% brut/an (2,25% pour les comptes ouverts avant le 12 mai 2026)",
+      'Investissement':"Investissement dès 1€, Saveback (1% des paiements réinvesti, plafonné à 15€ par mois)",
       "À l'étranger":'Pas de frais de change mis en avant pour un usage courant',
     },
     profils:['epargne']

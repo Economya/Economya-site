@@ -28,6 +28,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.2rem;color:var(--gd)}
 .montant-wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 .montant-wrap label{font-size:.9rem;font-weight:600;color:var(--m);white-space:nowrap}
+@media(max-width:600px){.montant-wrap label{white-space:normal}}
 .montant-input{display:flex;align-items:center;gap:.5rem;background:var(--bg);border:2px solid var(--bl);border-radius:50px;padding:.5rem 1.2rem;flex:1;max-width:300px}
 .montant-input input{border:none;background:transparent;font-size:1.3rem;font-family:'Playfair Display',serif;font-weight:700;color:var(--bl);width:100%;outline:none}
 .montant-input span{font-size:1.1rem;color:var(--bl);font-weight:700}
@@ -103,6 +104,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   "url": "https://economya.fr/banque-en-ligne-vs-traditionnelle",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
+  "dateModified": "2026-11-05",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -143,7 +145,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         "name": "Comment profiter de la carte gratuite d'une banque en ligne ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "La plupart des banques en ligne conditionnent la gratuité de la carte à un montant minimum de virements ou de paiements par mois (souvent entre 300€ et 1000€ selon l'offre). Vérifiez cette condition avant d'ouvrir un compte pour ne pas être surpris par des frais."
+          "text": "La plupart des banques en ligne conditionnent la gratuité de la carte à un usage minimum (par exemple au moins un paiement par mois) ou à des conditions de revenus pour les cartes haut de gamme. Vérifiez cette condition avant d'ouvrir un compte pour ne pas être surpris par des frais."
         }
       },
       {
@@ -237,10 +239,10 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <tr><th>Critère</th><th>Banque en ligne</th><th>Banque traditionnelle</th></tr>
       </thead>
       <tbody>
-        <tr><td>Carte bancaire</td><td class="vs-online">Souvent gratuite (sous condition d'usage)</td><td>Généralement payante (~40 à 130€/an)</td></tr>
+        <tr><td>Carte bancaire</td><td class="vs-online">Souvent gratuite (sous condition d'usage)</td><td>Généralement payante</td></tr>
         <tr><td>Tenue de compte</td><td class="vs-online">Gratuite</td><td>Parfois facturée</td></tr>
         <tr><td>Retraits/paiements à l'étranger</td><td class="vs-online">Souvent gratuits (zone euro)</td><td>Fréquemment facturés</td></tr>
-        <tr><td>Prime de bienvenue</td><td class="vs-online">Fréquente (150 à 350€)</td><td>Rare ou plus faible</td></tr>
+        <tr><td>Prime de bienvenue</td><td class="vs-online">Fréquente (souvent 150 à 330€ selon les campagnes)</td><td>Rare ou plus faible</td></tr>
         <tr><td>Conseiller en agence</td><td>Non (support en ligne/téléphone)</td><td class="vs-online">Oui, réseau d'agences</td></tr>
         <tr><td>Dépôt de chèques/espèces</td><td>Plus limité</td><td class="vs-online">Simple en agence</td></tr>
         <tr><td>Crédit immobilier</td><td>Possible mais moins spécialisé</td><td class="vs-online">Souvent plus adapté</td></tr>
@@ -264,6 +266,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <strong>💡 Bon à savoir :</strong> Vous n'êtes pas obligé de choisir : beaucoup de Français gardent leur banque traditionnelle pour le crédit immobilier et les gros projets, et utilisent une banque en ligne gratuite pour leur carte du quotidien.
   </div>
 
+  <div class="card" style="margin-bottom:1.6rem;padding:1rem 1.3rem"><p class="maj-note" style="font-size:.78rem;color:var(--m);margin:0;line-height:1.6"><strong>✅ Dernière révision : 5 novembre 2026.</strong> Sources : grilles tarifaires publiques relevées via PrimeBanque et Meilleurtaux (octobre 2026), enquêtes CLCV et Panorabanque sur les frais bancaires 2026 ; les primes de bienvenue varient selon les campagnes. Les offres changent souvent : vérifiez-les sur le site de l'établissement avant de souscrire.</p></div>
   <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
     <h2 style="margin-bottom:1rem">❓ Questions fréquentes</h2>
     <details style="margin-bottom:.9rem">
@@ -276,7 +279,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </details>
     <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Comment profiter de la carte gratuite d'une banque en ligne ?</summary>
-      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">La plupart des banques en ligne conditionnent la gratuité de la carte à un montant minimum de virements ou de paiements par mois (souvent entre 300€ et 1000€ selon l'offre). Vérifiez cette condition avant d'ouvrir un compte.</p>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">La plupart des banques en ligne conditionnent la gratuité de la carte à un usage minimum (par exemple au moins un paiement par mois) ou à des conditions de revenus pour les cartes haut de gamme. Vérifiez cette condition avant d'ouvrir un compte.</p>
     </details>
     <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Comment changer de banque sans complications ?</summary>
@@ -356,41 +359,41 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 const ONLINE_BANKS = [
   {
     id:'boursobank', icon:'🟠', nom:'BoursoBank',
-    bonus:'180€ offerts',
+    bonus:'Jusqu\'à 180€',
     desc:"La banque en ligne la plus utilisée en France, carte Welcome gratuite sans condition de revenus.",
     facts:{
-      'Carte gratuite':'Oui, sans condition de revenus',
-      'Prime de bienvenue':'180€ sous conditions',
+      'Carte gratuite':'Oui (Welcome), sans condition de revenus',
+      'Prime de bienvenue':"Jusqu'à 180€ hors campagne (jusqu'à 320€ lors d'offres boostées ponctuelles), sous conditions",
       "À l'étranger":'Retraits et paiements gratuits en zone euro',
     }
   },
   {
     id:'fortuneo', icon:'🔵', nom:'Fortuneo',
-    bonus:'250€ offerts',
-    desc:"Carte Fosfo gratuite à vie sans condition de revenus, et frais quasi nuls à l'international.",
+    bonus:'Offre variable',
+    desc:"Carte Fosfo sans condition de revenus (gratuite si utilisée chaque mois), et frais quasi nuls à l'international.",
     facts:{
-      'Carte gratuite':'Oui, sans condition de revenus',
-      'Prime de bienvenue':'250€ sous conditions',
+      'Carte gratuite':'Oui, sans condition de revenus (3€/mois si aucun paiement dans le mois)',
+      'Prime de bienvenue':"Variable selon les campagnes (jusqu'à 260€ en octobre 2026), sous conditions",
       "À l'étranger":'Aucun frais sur retraits et paiements dans le monde',
     }
   },
   {
     id:'hellobank', icon:'🟡', nom:'Hello bank!',
-    bonus:'280€ offerts',
-    desc:"Adossée à BNP Paribas, avec la possibilité de passer en agence BNP si besoin.",
+    bonus:'Jusqu\'à 280€',
+    desc:"Banque en ligne du groupe BNP Paribas.",
     facts:{
-      'Carte gratuite':'Oui (Hello One), sans condition de revenus',
-      'Prime de bienvenue':'280€ sous conditions',
+      'Carte gratuite':'Oui (Hello One), sans condition de revenus (6€/mois si la carte n\'est pas utilisée dans le mois)',
+      'Prime de bienvenue':"Environ 280€ selon les campagnes (330€ avec Hello Prime), sous conditions",
       "À l'étranger":'Gratuit avec l\'offre Hello Prime',
     }
   },
   {
     id:'monabanq', icon:'🟢', nom:'Monabanq',
-    bonus:'160€ offerts',
+    bonus:'Jusqu\'à 280€',
     desc:"Filiale du Crédit Mutuel Alliance Fédérale, avec un service client joignable 7j/7 souvent cité comme son point fort.",
     facts:{
-      'Carte gratuite':'Oui, sous condition de 3 paiements/mois',
-      'Prime de bienvenue':'160€ sous conditions',
+      'Carte gratuite':'Non : cotisation à partir de 3€/mois (dépôts d\'espèces et service client inclus)',
+      'Prime de bienvenue':"Jusqu'à 280€ par étapes (dépôt de 300€ minimum, 30 paiements en 2 mois, mobilité bancaire)",
       "À l'étranger":'Retraits et paiements gratuits en zone euro',
     }
   },

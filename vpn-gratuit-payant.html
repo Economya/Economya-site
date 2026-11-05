@@ -96,6 +96,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   "url": "https://economya.fr/vpn-gratuit-payant",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
+  "dateModified": "2026-11-05",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -152,7 +153,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         "name": "Comment verifier qu'un VPN tient vraiment sa promesse de no-log ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cherchez si la politique a ete verifiee par un audit independant publie (Deloitte pour NordVPN, SEC Consult pour ProtonVPN, Securitum pour Windscribe, plusieurs cabinets pour Mullvad). Un simple engagement marketing sans audit publie vaut beaucoup moins qu'un rapport recent et documente."
+          "text": "Cherchez si la politique a ete verifiee par un audit independant publie (Deloitte pour NordVPN et Surfshark, Securitum pour ProtonVPN, Leviathan et Packetlabs pour Windscribe, Cure53 pour Mullvad). Un simple engagement marketing sans audit publie vaut beaucoup moins qu'un rapport recent et documente."
         }
       }
     ]
@@ -209,7 +210,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <h2>📝 Comment bien choisir son VPN</h2>
     <p style="font-size:.9rem;color:var(--m);line-height:1.7;margin-bottom:.9rem">Trois critères comptent plus que le nom de la marque. D'abord, l'<strong>audit indépendant</strong> de la politique « no-log » : un engagement marketing non vérifié vaut beaucoup moins qu'un rapport d'audit publié (Deloitte, Cure53, SEC Consult, Securitum...). Ensuite, la <strong>juridiction</strong> du fournisseur : les VPN basés dans un pays membre des alliances de renseignement <em>Five Eyes</em> ou <em>Nine Eyes</em> (Royaume-Uni, USA, France, Pays-Bas...) peuvent en théorie être soumis à des demandes légales de coopération, ce qui pousse certains éditeurs à s'installer en Suisse (ProtonVPN) ou au Panama (NordVPN).</p>
     <p style="font-size:.9rem;color:var(--m);line-height:1.7">Enfin, le <strong>protocole</strong> utilisé : WireGuard (Mullvad, NordVPN et la plupart des services récents) est aujourd'hui plus rapide et plus simple à auditer qu'OpenVPN. Pour un usage ponctuel (voyage, Wi-Fi public), une version gratuite sérieuse (ProtonVPN, Windscribe) suffit largement ; pour débloquer du streaming étranger au quotidien, un abonnement payant reste nécessaire, aucun VPN gratuit n'étant optimisé pour ça durablement.</p>
-    <p style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Comparatif vérifié le 23/10/2026</strong> à partir des pages tarifaires et rapports d'audit publics des éditeurs.</p>
+    <p class="maj-note" style="font-size:.78rem;color:var(--m);margin-top:1rem"><strong>✅ Dernière révision : 5 novembre 2026.</strong> Sources : pages tarifaires publiques et rapports d'audit des éditeurs (Securitum, Deloitte, Cure53, Leviathan, Packetlabs), prix en euros ou en dollars selon l'éditeur. Les offres changent souvent : vérifiez-les sur le site de l'établissement avant de souscrire.</p>
   </div>
 
   <div class="tip" id="tip-text">
@@ -236,7 +237,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </details>
     <details>
       <summary style="font-weight:700;cursor:pointer">Comment vérifier qu'un VPN tient vraiment sa promesse de « no-log » ?</summary>
-      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Cherchez si la politique a été vérifiée par un audit indépendant <strong>publié</strong> (Deloitte pour NordVPN, SEC Consult pour ProtonVPN, Securitum pour Windscribe, plusieurs cabinets pour Mullvad...). Un simple engagement marketing sans audit ni détail de méthode vaut beaucoup moins qu'un rapport récent et documenté.</p>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Cherchez si la politique a été vérifiée par un audit indépendant <strong>publié</strong> (Deloitte pour NordVPN et Surfshark, Securitum pour ProtonVPN, Leviathan et Packetlabs pour Windscribe, Cure53 pour Mullvad...). Un simple engagement marketing sans audit ni détail de méthode vaut beaucoup moins qu'un rapport récent et documenté.</p>
     </details>
   </div>
 
@@ -313,9 +314,9 @@ const VPNS = [
     id:'protonvpn', icon:'🛡️', nom:'ProtonVPN',
     desc:"Le seul de ce comparatif à proposer une vraie version gratuite illimitée en données, avec un excellent niveau de confidentialité.",
     facts:{
-      'Prix':'Gratuit (1 appareil, 3 pays), ou dès 4,49€/mois en Plus',
-      'Version gratuite':'Oui, données illimitées mais 1 appareil et 3 pays seulement',
-      'No-log':'Audité par SEC Consult, société basée en Suisse',
+      'Prix':'Gratuit (1 appareil, 10 pays), ou dès environ 3€/mois en Plus sur 2 ans (près de 10€/mois sans engagement)',
+      'Version gratuite':'Oui, données illimitées mais 1 appareil à la fois, pays choisi automatiquement parmi 10',
+      'No-log':'Audité par Securitum (audits annuels de 2022 à 2025)',
       'Streaming':'Bon sur l\'offre payante',
     },
     profils:['gratuit','vieprivee','voyage']
@@ -324,9 +325,9 @@ const VPNS = [
     id:'nordvpn', icon:'🔵', nom:'NordVPN',
     desc:"Un très large réseau de serveurs et de bonnes performances pour débloquer les plateformes de streaming.",
     facts:{
-      'Prix':'Dès ~3€/mois sur engagement 2 ans, puis 7-8€/mois au renouvellement',
+      'Prix':'Dès environ 3€/mois sur engagement 2 ans, puis nettement plus cher au renouvellement (plus de 10€/mois sans engagement)',
       'Version gratuite':'Non',
-      'No-log':'Audité par Deloitte',
+      'No-log':'Audité par Deloitte (2022 à 2025)',
       'Streaming':'Très bon (Netflix, Disney+, BBC iPlayer...)',
     },
     profils:['streaming']
@@ -335,9 +336,9 @@ const VPNS = [
     id:'surfshark', icon:'🐳', nom:'Surfshark',
     desc:"Un bon rapport qualité-prix avec connexions illimitées sur un seul abonnement, pratique pour toute la famille.",
     facts:{
-      'Prix':'Souvent le moins cher sur engagement long',
+      'Prix':'Souvent le moins cher sur engagement long (environ 2€/mois sur 2 ans), mais bien plus cher au renouvellement',
       'Version gratuite':'Non',
-      'No-log':'Revendiquée, pas d\'audit indépendant publié à ce jour',
+      'No-log':'Audité par Deloitte (2023 et 2025)',
       'Appareils':'Nombre illimité sur un compte',
     },
     profils:['streaming','gratuit']
@@ -348,18 +349,18 @@ const VPNS = [
     facts:{
       'Prix':'5€/mois fixe, sans engagement ni promo',
       'Version gratuite':'Non',
-      'No-log':'6 audits indépendants publiés (Cure53 notamment), pas d\'email requis',
+      'No-log':'Plusieurs audits indépendants publiés (Cure53 notamment, dernier en 2024), pas d\'email requis',
       'Streaming':'Non optimisé pour ça',
     },
     profils:['vieprivee']
   },
   {
     id:'windscribe', icon:'🌬️', nom:'Windscribe',
-    desc:"Le meilleur compromis pour qui veut un vrai forfait gratuit généreux sans sortir la carte bancaire, sur un nombre d'appareils illimité.",
+    desc:"Un vrai forfait gratuit sans sortir la carte bancaire, avec 10 Go par mois et des serveurs dans 10 pays.",
     facts:{
-      'Prix':'Gratuit (15 Go/mois), ou environ 3,70€/mois en payant',
-      'Version gratuite':'Oui, 15 Go/mois, appareils illimités, ~10 pays',
-      'No-log':'Audité par Securitum',
+      'Prix':'Gratuit (10 Go/mois), ou environ 5,75$/mois en abonnement annuel (69$/an)',
+      'Version gratuite':'Oui, 10 Go/mois avec un email confirmé (2 Go sinon), serveurs dans 10 pays',
+      'No-log':'Audits indépendants (Leviathan Security, Packetlabs)',
       'Streaming':'Partiel, pas optimisé',
     },
     profils:['gratuit']

@@ -28,6 +28,7 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .card h2{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;color:var(--gd)}
 .montant-wrap{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
 .montant-wrap label{font-size:.9rem;font-weight:600;color:var(--m);white-space:nowrap}
+@media(max-width:600px){.montant-wrap label{white-space:normal}}
 .montant-input{display:flex;align-items:center;gap:.5rem;background:var(--bg);border:2px solid var(--g);border-radius:50px;padding:.5rem 1.2rem;flex:1;max-width:300px}
 .montant-input input{border:none;background:transparent;font-size:1.3rem;font-family:'Playfair Display',serif;font-weight:700;color:var(--gd);width:100%;outline:none}
 .montant-input span{font-size:1.1rem;color:var(--g);font-weight:700}
@@ -108,6 +109,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   "url": "https://economya.fr/comparateur-livrets",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "Web",
+  "dateModified": "2026-11-05",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -315,6 +317,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <strong>💡 Conseil :</strong> Chargement...
   </div>
 
+  <div class="card" style="margin-bottom:1.6rem;padding:1rem 1.3rem"><p class="maj-note" style="font-size:.78rem;color:var(--m);margin:0;line-height:1.6"><strong>✅ Dernière révision : 5 novembre 2026.</strong> Sources : Banque de France et arrêté du Journal officiel (taux au 1er août 2026), service-public.fr pour les plafonds, MoneyVox et Meilleurtaux pour le recoupement. Les offres changent souvent : vérifiez-les sur le site de l'établissement avant de souscrire.</p></div>
   <div class="faq-block" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.6rem 1.7rem;margin:1.6rem 0">
     <h2 style="margin-bottom:1rem">❓ Questions fréquentes sur les livrets d'épargne</h2>
     <details style="margin-bottom:.9rem">
@@ -403,7 +406,7 @@ const LIVRETS = [
   { id:'livretA', icon:'🏦', nom:'Livret A', desc:'Le livret réglementé le plus connu — ouvert à tous', taux:1.7, plafond:22950 },
   { id:'ldds', icon:'💙', nom:'LDDS', desc:'Livret de Développement Durable et Solidaire', taux:1.7, plafond:12000 },
   { id:'pel', icon:'🏠', nom:'PEL', desc:'Plan d\'Épargne Logement — bloqué 4 ans min. (ouverture 2026)', taux:2.0, plafond:61200 },
-  { id:'cel', icon:'🌿', nom:'CEL', desc:'Compte Épargne Logement — complément du PEL', taux:1.0, plafond:15300 },
+  { id:'cel', icon:'🌿', nom:'CEL', desc:'Compte Épargne Logement — complément du PEL', taux:1.25, plafond:15300 },
   { id:'lj', icon:'👶', nom:'Livret Jeune', desc:'Réservé aux 12-25 ans — taux fixé librement par chaque banque, jamais sous celui du Livret A (1,7 % minimum)', taux:1.7, plafond:1600 },
 ];
 
