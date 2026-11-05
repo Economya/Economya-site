@@ -173,6 +173,9 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
 <div class="container">
 
+  <div class="eco-ctrl"><label for="hub-q">Chercher un comparateur</label><input type="search" id="hub-q" placeholder="ex : livret, VPN, crédit…" autocomplete="off" style="flex:1;min-width:200px"><span id="hub-n" class="sr-only" aria-live="polite"></span></div>
+  <p id="hub-none" style="display:none;color:#5F5E5A;margin-bottom:1.5rem">Aucun comparateur ne correspond. Essayez un autre mot.</p>
+
   <div class="section-title"><svg class="ic"><use href="#ic-bank"/></svg> Banques & Épargne</div>
   <div class="comp-grid">
 
@@ -313,6 +316,25 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
 <script src="/tools.js"></script>
+<script>
+(function(){
+  var q=document.getElementById('hub-q'); if(!q) return;
+  function norm(t){return (t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+  q.addEventListener('input',function(){
+    var v=norm(q.value.trim()),shown=0;
+    [].forEach.call(document.querySelectorAll('.comp-card'),function(c){
+      var ok=!v||norm(c.textContent).indexOf(v)>-1; c.style.display=ok?'':'none'; if(ok) shown++;
+    });
+    [].forEach.call(document.querySelectorAll('.comp-grid'),function(g){
+      var any=[].some.call(g.querySelectorAll('.comp-card'),function(c){return c.style.display!=='none';});
+      g.style.display=any?'':'none'; var t=g.previousElementSibling;
+      if(t&&t.classList.contains('section-title')) t.style.display=any?'':'none';
+    });
+    document.getElementById('hub-none').style.display=shown?'none':'';
+    document.getElementById('hub-n').textContent=shown+' comparateur'+(shown>1?'s':'');
+  });
+})();
+</script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
 <div id="economya-cmp-simple" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;">

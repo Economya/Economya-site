@@ -210,6 +210,8 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <div class="card">
     <h2>🎯 Qu'attendez-vous en priorité ?</h2>
     <div class="profils-wrap" id="profils-list"><!-- généré par JS --></div>
+    <label id="hide-wrap" style="display:none;margin-top:.9rem;font-size:.84rem;font-weight:600;color:var(--m);cursor:pointer"><input type="checkbox" id="hide-others"> Masquer les offres qui ne correspondent pas</label>
+    <p style="font-size:.78rem;color:var(--m);margin-top:.7rem">Vous pouvez choisir plusieurs critères : les offres sont classées selon le nombre de critères remplis.</p>
   </div>
 
   <div class="card">
@@ -383,18 +385,20 @@ const NEOBANKS = [
   },
 ];
 
-let activeProfil = null;
+let activeProfils = [];
+let hideOthers = false;
 
 function renderProfils(){
   const wrap = document.getElementById('profils-list');
   wrap.innerHTML = '';
   PROFILS.forEach(p => {
     const btn = document.createElement('button');
-    btn.className = 'profil-btn' + (activeProfil === p.id ? ' active' : '');
+    btn.className = 'profil-btn' + (activeProfils.includes(p.id) ? ' active' : '');
+    btn.setAttribute('aria-pressed', activeProfils.includes(p.id) ? 'true' : 'false');
     btn.type = 'button';
     btn.textContent = p.label;
     btn.addEventListener('click', () => {
-      activeProfil = (activeProfil === p.id) ? null : p.id;
+      activeProfils = activeProfils.includes(p.id) ? activeProfils.filter(x => x !== p.id) : activeProfils.concat(p.id);
       renderProfils();
       renderBanks();
     });
@@ -405,10 +409,15 @@ function renderProfils(){
 function renderBanks(){
   const list = document.getElementById('banks-list');
   list.innerHTML = '';
-
-  NEOBANKS.forEach(b => {
-    const isMatch = activeProfil && b.profils.includes(activeProfil);
-    const isDim = activeProfil && !isMatch;
+  const act = activeProfils;
+  document.getElementById('hide-wrap').style.display = act.length ? '' : 'none';
+  const scored = NEOBANKS.map((x, i) => ({ x, i, score: x.profils.filter(p => act.includes(p)).length }));
+  if (act.length) scored.sort((a, b) => b.score - a.score || a.i - b.i);
+  const best = act.length ? Math.max(...scored.map(s => s.score)) : 0;
+  scored.forEach(({ x: b, score }) => {
+    const isMatch = act.length > 0 && score > 0;
+    const isDim = act.length > 0 && !isMatch;
+    if (isDim && hideOthers) return;
     const div = document.createElement('div');
     div.className = 'bank' + (isMatch ? ' match' : '') + (isDim ? ' dim' : '');
 
@@ -416,12 +425,14 @@ function renderBanks(){
     for (const [k, v] of Object.entries(b.facts)) {
       factsHtml += `<div class="b-fact"><strong>${k}</strong>${v}</div>`;
     }
+    const matched = PROFILS.filter(p => act.includes(p.id) && b.profils.includes(p.id)).map(p => p.label);
 
     div.innerHTML = `
       <div class="b-icon">${b.icon}</div>
       <div class="b-body">
-        <h3>${b.nom}<span class="b-badge">✅ Recommandée pour vous</span></h3>
+        <h3>${b.nom}<span class="b-badge">${score === best && best > 0 && act.length > 1 ? '✅ Le plus adapté à vos critères' : '✅ Recommandée pour vous'}</span></h3>
         <div class="b-desc">${b.desc}</div>
+        ${isMatch ? '<div class="b-match">Correspond à : ' + matched.join(' · ') + '</div>' : ''}
         <div class="b-facts">${factsHtml}</div>
       </div>
     `;
@@ -429,17 +440,27 @@ function renderBanks(){
   });
 
   const tip = document.getElementById('tip-text');
-  if (!activeProfil) {
-    tip.innerHTML = '<strong>💡 Conseil :</strong> Sélectionnez un critère ci-dessus pour voir la néobanque la plus adaptée.';
+  if (!act.length) {
+    tip.innerHTML = '<strong>💡 Conseil :</strong> Sélectionnez un ou plusieurs critères ci-dessus pour voir la néobanque la plus adaptée.';
   } else {
-    const matches = NEOBANKS.filter(b => b.profils.includes(activeProfil));
-    const noms = matches.map(b => b.nom).join(' et ');
-    tip.innerHTML = `<strong>💡 Notre conseil :</strong> D'après ce critère, ${noms} ${matches.length > 1 ? 'sont les plus adaptées' : 'est la plus adaptée'}. Comparez aussi les autres critères ci-dessous avant de choisir : la meilleure néobanque dépend toujours de l'usage que vous en ferez.`;
+    const matches = scored.filter(s => s.score === best && best > 0).map(s => s.x);
+    if (!matches.length) {
+      tip.innerHTML = '<strong>💡 Notre conseil :</strong> aucune offre de ce comparatif ne remplit ces critères à la fois. Essayez d\'en décocher un.';
+    } else {
+      const noms = matches.map(b => b.nom).join(' et ');
+      tip.innerHTML = `<strong>💡 Notre conseil :</strong> D'après ${act.length > 1 ? 'ces ' + act.length + ' critères' : 'ce critère'}, ${noms} ${matches.length > 1 ? 'sont les plus adaptées' : 'est la plus adaptée'}${act.length > 1 ? ' (' + best + ' critère' + (best > 1 ? 's' : '') + ' sur ' + act.length + ')' : ''}. Comparez aussi les autres critères avant de choisir, et cochez « Comparer » sur 2 ou 3 offres pour les voir côte à côte.`;
+    }
   }
 }
 
 renderProfils();
 renderBanks();
+document.getElementById('hide-others').addEventListener('change', e => { hideOthers = e.target.checked; renderBanks(); });
+EcoViz.cards({
+  list: '#banks-list', card: '.bank',
+  name: c => c.querySelector('h3').childNodes[0].textContent.trim(),
+  facts: c => [...c.querySelectorAll('.b-fact')].map(f => { const l = f.querySelector('strong').textContent; return [l, f.textContent.replace(l, '').trim()]; })
+});
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">

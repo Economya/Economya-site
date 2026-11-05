@@ -251,6 +251,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
   <div class="card">
     <h2>📊 Comparatif des livrets réglementés</h2>
+    <div class="eco-ctrl"><label for="tri-livrets">Trier par</label><select id="tri-livrets"><option value="taux">Meilleur taux</option><option value="gain">Gain annuel</option><option value="plafond">Plafond le plus élevé</option></select></div>
     <div class="livrets" id="livrets-list">
       <!-- Généré par JS -->
     </div>
@@ -522,7 +523,10 @@ function calculate() {
   afficherFondsUrgence(montant);
 
   const gainMax = Math.max(1, ...LIVRETS.map(x => Math.min(montant, x.plafond) * x.taux / 100));
-  LIVRETS.forEach(l => {
+  const tri = (document.getElementById("tri-livrets") || {}).value || "taux";
+  const gainDe = x => Math.min(montant, x.plafond) * x.taux / 100;
+  const ordre = LIVRETS.slice().sort((a, b) => tri === "gain" ? gainDe(b) - gainDe(a) || b.taux - a.taux : tri === "plafond" ? b.plafond - a.plafond : b.taux - a.taux);
+  ordre.forEach(l => {
     const montantEffectif = Math.min(montant, l.plafond);
     const gainAnnuel = montantEffectif * l.taux / 100;
     const gainMensuel = gainAnnuel / 12;
@@ -566,10 +570,16 @@ function calculate() {
 
 document.getElementById('montant').addEventListener('input', calculate);
 document.getElementById('tauxActuel').addEventListener('input', calculate);
+document.getElementById('tri-livrets').addEventListener('change', calculate);
 document.getElementById('eligibleLEP').addEventListener('change', calculate);
 document.getElementById('eligibleLJ').addEventListener('change', calculate);
 document.getElementById('accepteBlocage').addEventListener('change', calculate);
 calculate();
+EcoViz.cards({
+  list: '#livrets-list', card: '.livret',
+  name: c => c.querySelector('h3').childNodes[0].textContent.trim(),
+  facts: c => [['Taux annuel', c.querySelector('.taux-num').textContent], ['Gain / an', c.querySelector('.gain-num').textContent + ' ' + c.querySelector('.gain-lbl').textContent.replace('/ an ', '')], ['Description', c.querySelector('.l-desc').textContent]]
+});
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">

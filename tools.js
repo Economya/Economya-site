@@ -102,6 +102,78 @@
     h.setAttribute("role", "img"); h.setAttribute("aria-label", (o.title ? o.title + " : " : "") + txt.join(", "));
   };
 
+
+  /* ---------- Comparaison côte à côte (2 ou 3 offres) ----------
+     EcoViz.cards({ list:'#banks-list', card:'.bank', name:fn(card), facts:fn(card)->[[label, valeur], ...] }) */
+  E.cards = function (o) {
+    var list = document.querySelector(o.list); if (!list) return;
+    var sel = {}, order = [], bar, modal, uidc = 0;
+    function count() { return order.length; }
+    function ensureBar() {
+      if (bar) return;
+      bar = document.createElement("div"); bar.className = "eco-cmpbar"; bar.setAttribute("role", "region"); bar.setAttribute("aria-label", "Comparaison d'offres");
+      bar.innerHTML = '<span class="eco-cmpbar-t"></span><button type="button" class="eco-cmpbar-go">Comparer</button><button type="button" class="eco-cmpbar-x" aria-label="Vider la sélection">Effacer</button>';
+      document.body.appendChild(bar);
+      bar.querySelector(".eco-cmpbar-go").addEventListener("click", openModal);
+      bar.querySelector(".eco-cmpbar-x").addEventListener("click", function () { sel = {}; order = []; sync(); });
+    }
+    function updateBar() {
+      ensureBar();
+      var n = count();
+      bar.classList.toggle("on", n > 0);
+      bar.querySelector(".eco-cmpbar-t").textContent = n + " offre" + (n > 1 ? "s" : "") + " sélectionnée" + (n > 1 ? "s" : "") + (n < 2 ? " : choisissez-en au moins 2" : "");
+      bar.querySelector(".eco-cmpbar-go").disabled = n < 2;
+    }
+    function sync() {
+      [].forEach.call(list.querySelectorAll(o.card), function (c) {
+        var cb = c.querySelector(".eco-cmp-chk input"); if (!cb) return;
+        cb.checked = !!sel[o.name(c)];
+        c.classList.toggle("eco-picked", cb.checked);
+      });
+      updateBar();
+    }
+    function inject() {
+      [].forEach.call(list.querySelectorAll(o.card), function (c) {
+        if (c.querySelector(".eco-cmp-chk")) return;
+        var lab = document.createElement("label"); lab.className = "eco-cmp-chk";
+        var cb = document.createElement("input"); cb.type = "checkbox"; cb.id = "eco-cmp-" + (++uidc);
+        lab.appendChild(cb); lab.appendChild(document.createTextNode(" Comparer"));
+        cb.addEventListener("change", function () {
+          var nm = o.name(c);
+          if (cb.checked) {
+            if (count() >= 3) { cb.checked = false; ensureBar(); bar.querySelector(".eco-cmpbar-t").textContent = "3 offres maximum à la fois"; return; }
+            sel[nm] = o.facts(c); order.push(nm);
+          } else { delete sel[nm]; order = order.filter(function (x) { return x !== nm; }); }
+          sync();
+        });
+        c.appendChild(lab);
+      });
+      sync();
+    }
+    function openModal() {
+      if (count() < 2) return;
+      var labels = [], seen = {};
+      order.forEach(function (n) { sel[n].forEach(function (f) { if (!seen[f[0]]) { seen[f[0]] = 1; labels.push(f[0]); } }); });
+      var h = "<table><thead><tr><th></th>" + order.map(function (n) { return "<th>" + esc(n) + "</th>"; }).join("") + "</tr></thead><tbody>";
+      labels.forEach(function (l) {
+        h += "<tr><th scope=\"row\">" + esc(l) + "</th>" + order.map(function (n) {
+          var f = sel[n].filter(function (x) { return x[0] === l; })[0]; return "<td>" + (f ? esc(f[1]) : "—") + "</td>";
+        }).join("") + "</tr>";
+      });
+      h += "</tbody></table>";
+      modal = document.createElement("div"); modal.className = "eco-modal"; modal.setAttribute("role", "dialog"); modal.setAttribute("aria-modal", "true"); modal.setAttribute("aria-label", "Comparaison côte à côte");
+      modal.innerHTML = '<div class="eco-modal-box"><button type="button" class="eco-modal-x" aria-label="Fermer">✕</button><h2>Comparaison côte à côte</h2><div class="eco-scroll" tabindex="0">' + h + '</div><p class="eco-modal-n">Les offres évoluent : vérifiez-les sur le site de l\'établissement avant de vous décider.</p></div>';
+      document.body.appendChild(modal);
+      var prev = document.activeElement, x = modal.querySelector(".eco-modal-x");
+      function close() { document.removeEventListener("keydown", key); modal.remove(); modal = null; if (prev && prev.focus) prev.focus(); }
+      function key(e) { if (e.key === "Escape") close(); if (e.key === "Tab") { e.preventDefault(); x.focus(); } }
+      modal.addEventListener("click", function (e) { if (e.target === modal) close(); });
+      x.addEventListener("click", close); document.addEventListener("keydown", key); x.focus();
+    }
+    inject();
+    if (window.MutationObserver) new MutationObserver(function () { inject(); }).observe(list, { childList: true });
+  };
+
   /* Petite jauge a inserer dans une carte : renvoie du HTML */
   E.meter = function (pct) { return '<div class="eco-meter" aria-hidden="true"><i style="width:' + Math.max(0, Math.min(100, pct)).toFixed(1) + '%"></i></div>'; };
 

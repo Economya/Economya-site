@@ -209,6 +209,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <input type="range" id="data-slider" min="0" max="250" step="10" value="0">
       <span class="slider-val" id="data-val">0 Go</span>
     </div>
+    <div class="eco-ctrl"><span id="lbl-reseau" style="font-size:.82rem;font-weight:600;color:var(--m)">Réseau</span><span id="reseau-chips" role="group" aria-labelledby="lbl-reseau"></span><label for="tri-forfaits" style="margin-left:auto">Trier par</label><select id="tri-forfaits"><option value="prix">Prix le plus bas</option><option value="data">Plus de data</option><option value="go">Prix au Go</option></select></div>
     <div class="forfaits" id="forfaits-list"><!-- généré par JS --></div>
   </div>
 
@@ -325,30 +326,52 @@ const FORFAITS = [
 
 function fmtPrix(n){ return n.toFixed(2).replace('.', ',') + ' €/mois'; }
 
+let reseau = 'Tous';
+function renderChips(){
+  const box = document.getElementById('reseau-chips');
+  box.innerHTML = '';
+  ['Tous'].concat([...new Set(FORFAITS.map(f => f.reseau))]).forEach(r => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'eco-chip' + (r === reseau ? ' on' : '');
+    b.setAttribute('aria-pressed', r === reseau ? 'true' : 'false');
+    b.textContent = r;
+    b.addEventListener('click', () => { reseau = r; renderChips(); render(); });
+    box.appendChild(b);
+  });
+}
+
 function render(){
   const minData = +document.getElementById('data-slider').value;
   document.getElementById('data-val').textContent = minData + ' Go';
+  const tri = document.getElementById('tri-forfaits').value;
+  const cmp = {
+    prix: (a, b) => a.prix - b.prix || b.data - a.data,
+    data: (a, b) => b.data - a.data || a.prix - b.prix,
+    go: (a, b) => a.prix / a.data - b.prix / b.data
+  }[tri];
 
   const filtered = FORFAITS
-    .filter(f => f.data >= minData)
-    .sort((a, b) => a.prix - b.prix);
+    .filter(f => f.data >= minData && (reseau === 'Tous' || f.reseau === reseau))
+    .sort(cmp);
 
   const list = document.getElementById('forfaits-list');
   list.innerHTML = '';
 
   if (filtered.length === 0) {
-    list.innerHTML = '<div class="empty-msg">Aucun forfait ne propose autant de data pour le moment. Essayez de baisser le curseur.</div>';
+    list.innerHTML = '<div class="empty-msg">Aucun forfait ne correspond. Essayez de baisser le curseur ou de changer de réseau.</div>';
     return;
   }
+  const badge = {prix:'💰 Moins cher', data:'📶 Le plus de data', go:'🏷️ Meilleur prix au Go'}[tri];
 
   filtered.forEach((f, i) => {
     const div = document.createElement('div');
     div.className = 'forfait' + (i === 0 ? ' best' : '');
+    const eurGo = (f.prix / f.data).toFixed(3).replace('.', ',');
     div.innerHTML = `
       <div class="f-icon">${f.icon}</div>
       <div class="f-body">
-        <h3>${f.operateur}${i === 0 ? '<span class="f-best-badge">💰 Moins cher</span>' : ''}</h3>
-        <div class="f-desc">Réseau ${f.reseau} · Sans engagement</div>
+        <h3>${f.operateur}${i === 0 ? '<span class="f-best-badge">' + badge + '</span>' : ''}</h3>
+        <div class="f-desc">Réseau ${f.reseau} · Sans engagement · ${eurGo} €/Go</div>
       </div>
       <div class="f-data">
         <span class="data-num">${f.data}</span>
@@ -363,7 +386,14 @@ function render(){
 }
 
 document.getElementById('data-slider').addEventListener('input', render);
+document.getElementById('tri-forfaits').addEventListener('change', render);
+renderChips();
 render();
+EcoViz.cards({
+  list: '#forfaits-list', card: '.forfait',
+  name: c => c.querySelector('h3').childNodes[0].textContent.trim(),
+  facts: c => [['Prix', c.querySelector('.prix-num').textContent], ['Data', c.querySelector('.data-num').textContent + ' Go / mois'], ['Réseau et prix au Go', c.querySelector('.f-desc').textContent.replace('Réseau ', '')]]
+});
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">
