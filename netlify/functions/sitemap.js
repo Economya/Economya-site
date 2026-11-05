@@ -57,6 +57,7 @@ const STATIC_URLS = [
   ['https://economya.fr/jeux', 'weekly', '0.9'],
   ['https://economya.fr/a-propos', 'monthly', '0.6'],
   ['https://economya.fr/regles-communaute', 'monthly', '0.5'],
+  ['https://economya.fr/comment-nous-choisissons', 'monthly', '0.5'],
   ['https://economya.fr/mentions-legales', 'yearly', '0.3'],
   ['https://economya.fr/politique-confidentialite', 'yearly', '0.3'],
   ['https://economya.fr/cgu', 'yearly', '0.3'],
