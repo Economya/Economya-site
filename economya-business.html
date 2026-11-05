@@ -250,7 +250,19 @@ a{text-decoration:none;color:inherit;}
 .visibilite-choice{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;font-weight:500;text-transform:none;color:var(--ink);cursor:pointer;background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;transition:border-color .15s ease;}
 .visibilite-choice:hover{border-color:var(--gold);}
 .visibilite-choice input{width:auto;flex:none;background:none;border:none;padding:0;margin:2px 0 0;accent-color:var(--gold);}
-.submit-btn{width:100%;background:var(--ink);color:#fff;border:none;border-radius:12px;padding:14px;font-weight:800;font-size:14.5px;cursor:pointer;}
+.submit-btn{width:100%;background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:12px;padding:14px;font-weight:800;font-size:14.5px;cursor:pointer;transition:background .18s,border-color .18s,box-shadow .18s,transform .18s;}
+.submit-btn:hover:not(:disabled){background:#2b2a28;border-color:rgba(255,255,255,.22);box-shadow:0 10px 24px -12px rgba(10,10,10,.55);transform:translateY(-1px);}
+.submit-btn:active:not(:disabled){transform:translateY(0);}
+.submit-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+/* Signature Economya Business */
+.biz-sign{display:flex;flex-direction:column;align-items:center;gap:10px;padding:34px 16px 6px;text-align:center;}
+.biz-sign svg{display:block;filter:drop-shadow(0 10px 18px rgba(184,134,11,.28));}
+.biz-word{font-family:'Playfair Display',serif;font-weight:900;font-size:1.7rem;letter-spacing:-.01em;color:#085041;line-height:1;}
+.biz-word em{color:var(--gold);font-style:normal;}
+.biz-tag{display:flex;align-items:center;gap:12px;font-size:10.5px;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:#8a6a1c;}
+.biz-tag::before,.biz-tag::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,#C9A24A);}
+.biz-tag::after{transform:scaleX(-1);}
+.biz-sub{font-size:11.5px;color:var(--muted);letter-spacing:.02em;}
 .submit-btn:disabled{opacity:.5;cursor:not-allowed;}
 .form-msg{margin-top:14px;font-size:13px;padding:12px 14px;border-radius:10px;display:none;}
 .form-msg.ok{display:block;background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0;}
@@ -579,6 +591,23 @@ a{text-decoration:none;color:inherit;}
       <div class="form-msg" id="formMsg"></div>
     </form>
   </div>
+</div>
+
+<div class="biz-sign" aria-label="Economya Business">
+  <svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-hidden="true">
+    <defs>
+      <linearGradient id="bzBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14201c"/><stop offset="1" stop-color="#0A0A0A"/></linearGradient>
+      <linearGradient id="bzGold" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#B8860B"/><stop offset=".55" stop-color="#F5C04A"/><stop offset="1" stop-color="#FDE68A"/></linearGradient>
+    </defs>
+    <rect x="1" y="1" width="62" height="62" rx="18" fill="url(#bzBg)"/>
+    <rect x="1.5" y="1.5" width="61" height="61" rx="17.5" fill="none" stroke="url(#bzGold)" stroke-opacity=".55"/>
+    <path d="M20 44V20h20M20 32h15M20 44h22" fill="none" stroke="url(#bzGold)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M36 40l7-8 5 4 8-11" fill="none" stroke="#1D9E75" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="56" cy="25" r="2.6" fill="#FDE68A"/>
+  </svg>
+  <div class="biz-word">Econom<em>ya</em></div>
+  <div class="biz-tag">Business</div>
+  <div class="biz-sub">Des offres vérifiées, une communauté qui teste.</div>
 </div>
 
 <div class="legal-footer">© 2026 Economya.fr · <a href="/mentions-legales">Mentions légales</a> · <a href="/politique-confidentialite">Confidentialité</a> · <a href="/cgu">CGU</a> · <a href="/cgv-business">CGV Business</a> · <a href="mailto:contact@economya.fr">Contact</a></div>
