@@ -1,6 +1,8 @@
 /* Lien « Gérer mes cookies » : permet de modifier ou retirer son consentement à tout moment. */
 (function () {
   var K = "economya_cookie_consent_v2";
+  // PWA : service worker et bouton « Installer Economya » (voir pwa.js)
+  try { var pw = document.createElement("script"); pw.src = "/pwa.js"; pw.defer = true; document.head.appendChild(pw); } catch (e) {}
   function ready(fn) {
     if (document.readyState !== "loading") fn();
     else document.addEventListener("DOMContentLoaded", fn);
