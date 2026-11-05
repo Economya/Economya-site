@@ -94,6 +94,25 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .action.saved-on .action-icon{filter:drop-shadow(0 1px 1px rgba(180,83,9,.2));}
 .action-icon{font-size:18px;}
 
+/* Signature Economya Network */
+.net-sign{display:flex;flex-direction:column;align-items:center;gap:10px;padding:34px 16px 10px;text-align:center;}
+.net-sign svg{display:block;filter:drop-shadow(0 10px 18px rgba(184,134,11,.28));animation:netFloat 4.5s ease-in-out infinite;transition:transform .3s;}
+.net-sign:hover svg{animation-play-state:paused;transform:scale(1.07) rotate(-3deg);}
+.net-word{font-family:'Playfair Display',serif;font-weight:900;font-size:1.7rem;letter-spacing:-.01em;color:#085041;line-height:1;animation:netRise .8s .1s both;}
+.net-word em{font-style:normal;background:linear-gradient(100deg,#F59E0B 20%,#FFE29A 45%,#F59E0B 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:netShine 4.5s linear infinite;}
+.net-tag{display:flex;align-items:center;gap:12px;font-size:10.5px;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:#8a6a1c;animation:netRise .8s .25s both;}
+.net-tag::before,.net-tag::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,#C9A24A);}
+.net-tag::after{transform:scaleX(-1);}
+.net-sub{font-size:11.5px;color:var(--muted);letter-spacing:.02em;animation:netRise .8s .4s both;}
+.net-link{stroke-dasharray:3 4;animation:netFlow 1.6s linear infinite;}
+.net-node{animation:netPulse 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center;}
+.net-node:nth-of-type(2){animation-delay:.6s}.net-node:nth-of-type(3){animation-delay:1.2s}.net-node:nth-of-type(4){animation-delay:1.8s}.net-node:nth-of-type(5){animation-delay:2.4s}
+@keyframes netFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes netFlow{to{stroke-dashoffset:-14}}
+@keyframes netPulse{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.4);opacity:1}}
+@keyframes netShine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes netRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.net-sign *,.net-sign svg{animation:none!important}}
 .fab{position:fixed;bottom:24px;right:20px;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:50;cursor:pointer;}
 .fab:active{transform:scale(.93);}
 
@@ -211,6 +230,30 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 
 <div class="stories" id="stories"></div>
 <div id="feed"><div class="loading">Chargement des astuces...</div></div>
+<div class="net-sign" aria-label="Economya Network">
+  <svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-hidden="true">
+    <defs>
+      <linearGradient id="ntBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14201c"/><stop offset="1" stop-color="#0A0A0A"/></linearGradient>
+      <linearGradient id="ntGold" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#B8860B"/><stop offset=".55" stop-color="#F5C04A"/><stop offset="1" stop-color="#FDE68A"/></linearGradient>
+    </defs>
+    <rect x="1" y="1" width="62" height="62" rx="18" fill="url(#ntBg)"/>
+    <rect x="1.5" y="1.5" width="61" height="61" rx="17.5" fill="none" stroke="url(#ntGold)" stroke-opacity=".55"/>
+    <g fill="none" stroke="url(#ntGold)" stroke-width="1.5" stroke-linecap="round" stroke-opacity=".9">
+      <path class="net-link" d="M32 32L32 14M32 32L49 24M32 32L47 47M32 32L17 46M32 32L15 22"/>
+      <path d="M32 14L49 24L47 47L17 46L15 22Z" stroke-opacity=".35"/>
+    </g>
+    <circle class="net-node" cx="32" cy="14" r="3.6" fill="#F5C04A"/>
+    <circle class="net-node" cx="49" cy="24" r="3.6" fill="#2BD39A"/>
+    <circle class="net-node" cx="47" cy="47" r="3.6" fill="#F5C04A"/>
+    <circle class="net-node" cx="17" cy="46" r="3.6" fill="#2BD39A"/>
+    <circle class="net-node" cx="15" cy="22" r="3.6" fill="#F5C04A"/>
+    <circle cx="32" cy="32" r="6.5" fill="#fff"/>
+    <circle cx="32" cy="32" r="3" fill="url(#ntGold)"/>
+  </svg>
+  <div class="net-word">Econom<em>ya</em></div>
+  <div class="net-tag">Network</div>
+  <div class="net-sub">Le réseau social de l’épargne</div>
+</div>
 <div class="legal-footer">© 2026 Economya.fr · <a href="/mentions-legales">Mentions légales</a> · <a href="/politique-confidentialite">Confidentialité</a> · <a href="/cgu">CGU</a> · <a href="/regles-communaute">Règles de la communauté</a> · <a href="mailto:contact@economya.fr">Contact</a></div>
 </div>
 
