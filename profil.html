@@ -302,6 +302,46 @@ async function authedFetch(path, options = {}){
 let mySession = null;
 try { mySession = JSON.parse(localStorage.getItem('eco_session')||'null'); } catch(e){}
 
+// Les actions des membres (votes, tests, montants) ne sont lisibles que par leur proprietaire :
+// on les lit avec le jeton du membre connecte (renouvele si besoin), pas avec la cle publique.
+async function ownToken(){
+  if(!mySession) return null;
+  if(mySession.expires_at && Date.now() > mySession.expires_at - 60000 && mySession.refresh_token){
+    try {
+      const res = await fetch(SUPABASE_URL + '/auth/v1/token?grant_type=refresh_token', {
+        method: 'POST',
+        headers: {'apikey': SUPABASE_KEY, 'Content-Type': 'application/json'},
+        body: JSON.stringify({refresh_token: mySession.refresh_token})
+      });
+      const d = await res.json();
+      if(res.ok && d.access_token){
+        mySession = Object.assign({}, mySession, {access_token: d.access_token, refresh_token: d.refresh_token, expires_at: Date.now() + (d.expires_in || 3600) * 1000, user: d.user || mySession.user});
+        localStorage.setItem('eco_session', JSON.stringify(mySession));
+      }
+    } catch(e){ /* reseau indispo : on tente avec le jeton actuel */ }
+  }
+  return mySession.access_token;
+}
+async function sbFetchOwn(path){
+  const tok = await ownToken();
+  if(!tok) return [];
+  const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    headers: {'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + tok}
+  });
+  if(!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+// Fonctions de la base qui ne renvoient que ce qu'un membre a choisi de rendre public.
+async function sbRpc(name, args){
+  const res = await fetch(SUPABASE_URL + '/rest/v1/rpc/' + name, {
+    method: 'POST',
+    headers: {'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json'},
+    body: JSON.stringify(args)
+  });
+  if(!res.ok) throw new Error(await res.text());
+  return res.json();
+}
+
 // ── Votes / tests donnes par le visiteur connecte (sur n'importe quel profil) ──
 let myVoted = [];
 let myTested = [];
@@ -312,7 +352,7 @@ const pendingActions = new Set();
 async function loadMyActions(){
   if(!mySession || !mySession.user) return;
   try {
-    const rows = await sbFetch('astuce_actions?user_id=eq.' + mySession.user.id + '&select=astuce_id,action');
+    const rows = await sbFetchOwn('astuce_actions?user_id=eq.' + mySession.user.id + '&select=astuce_id,action');
     myVoted = rows.filter(a=>a.action==='vote').map(a=>a.astuce_id);
     myTested = rows.filter(a=>a.action==='test').map(a=>a.astuce_id);
     myVotedInit = myVoted.slice(); myTestedInit = myTested.slice();
@@ -1104,7 +1144,10 @@ async function loadProfile(){
     let journalEntries = [];
     if(isOwn || journalIsPublic){
       try {
-        const testActions = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=astuce_id,created_at,montant_personnel&order=created_at.desc');
+        const testPath = 'astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=astuce_id,created_at,montant_personnel&order=created_at.desc';
+        const testActions = isOwn
+          ? await sbFetchOwn(testPath)
+          : await sbRpc('public_journal', {p_user: profile.id}).catch(()=>sbFetch(testPath));
         testsThisYear = testActions.filter(a=>new Date(a.created_at).getFullYear()===currentYear).length;
         if(testActions.length){
           const ids = testActions.map(a=>a.astuce_id).join(',');
@@ -1129,7 +1172,7 @@ async function loadProfile(){
     let savedEntries = [];
     if(isOwn){
       try {
-        const saveActions = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.save&select=astuce_id,created_at&order=created_at.desc');
+        const saveActions = await sbFetchOwn('astuce_actions?user_id=eq.' + profile.id + '&action=eq.save&select=astuce_id,created_at&order=created_at.desc');
         if(saveActions.length){
           const testedIds = new Set(journalEntries.map(e=>e.id));
           const ids = saveActions.map(a=>a.astuce_id).join(',');
@@ -1155,13 +1198,17 @@ async function loadProfile(){
     let votesGiven = 0;
     let testsGiven = 0;
     try {
-      const given = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.vote&select=id');
-      votesGiven = given.length;
-    } catch(e){ /* colonne/table pas encore accessible en lecture publique */ }
-    try {
-      const testedByMe = await sbFetch('astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=id');
-      testsGiven = testedByMe.length;
-    } catch(e){ /* colonne/table pas encore accessible en lecture publique */ }
+      if(isOwn){
+        votesGiven = (await sbFetchOwn('astuce_actions?user_id=eq.' + profile.id + '&action=eq.vote&select=id')).length;
+        testsGiven = (await sbFetchOwn('astuce_actions?user_id=eq.' + profile.id + '&action=eq.test&select=id')).length;
+      } else {
+        // Profil d'un autre membre : seulement les totaux, jamais le detail de ses actions.
+        const c = await sbRpc('profile_action_counts', {p_user: profile.id});
+        const r = Array.isArray(c) ? c[0] : c;
+        votesGiven = (r && r.votes_given) || 0;
+        testsGiven = (r && r.tests_given) || 0;
+      }
+    } catch(e){ /* fonction pas encore disponible : on n'affiche pas ces totaux */ }
     const scores = posts.map(rel).filter(s=>s!==null);
     const avgReliability = scores.length ? Math.round(scores.reduce((a,b)=>a+b,0)/scores.length) : null;
     const relColor = avgReliability===null ? '' : avgReliability>=80?'#22C55E':avgReliability>=60?'#F97316':'#EF4444';
