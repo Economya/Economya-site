@@ -222,6 +222,21 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <input type="range" id="duree" min="1" max="40" step="1" value="10">
       </div>
       <div class="field">
+        <label for="annuel">Versement annuel en plus (prime, 13e mois…)</label>
+        <div class="val" id="v-annuel">0 <span>€/an</span></div>
+        <input type="range" id="annuel" min="0" max="20000" step="100" value="0">
+      </div>
+      <div class="field">
+        <label for="enveloppe">Où placez-vous cet argent ?</label>
+        <select id="enveloppe" onchange="calculate()">
+          <option value="brut">Sans fiscalité (résultat brut)</option>
+          <option value="livret">Livret A, LDDS ou LEP (exonéré)</option>
+          <option value="av">Assurance-vie</option>
+          <option value="pea">PEA</option>
+          <option value="pfu">Compte-titres, compte à terme ou livret non réglementé</option>
+        </select>
+      </div>
+      <div class="field">
         <label>Inflation moyenne anticipée</label>
         <div class="val" id="v-inflation">2,0 <span>%</span></div>
         <input type="range" id="inflation" min="0" max="5" step="0.1" value="2">
@@ -252,8 +267,18 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <span class="num" id="r-reel">0 €</span>
         <div class="lbl">Capital final en pouvoir d'achat actuel</div>
       </div>
+      <div class="res-item" id="item-net" style="display:none">
+        <span class="num" id="r-net">0 €</span>
+        <div class="lbl">Capital net après impôts et prélèvements</div>
+      </div>
+      <div class="res-item" id="item-fisc" style="display:none">
+        <span class="num" id="r-fisc">0 €</span>
+        <div class="lbl">Impôts et prélèvements sur les gains</div>
+      </div>
     </div>
   </div>
+
+  <p id="note-fisc" style="display:none;font-size:.82rem;color:var(--m);line-height:1.6;margin:-.4rem 0 1.2rem"></p>
 
   <div class="chart-wrap">
     <h2>📈 Évolution de votre épargne</h2>
@@ -363,6 +388,8 @@ function calculate() {
   const taux = +document.getElementById('taux').value / 100;
   const duree = +document.getElementById('duree').value;
   const inflation = +document.getElementById('inflation').value / 100;
+  const annuel = +document.getElementById('annuel').value;
+  const enveloppe = document.getElementById('enveloppe').value;
   const tauxMensuel = taux / 12;
   const mois = duree * 12;
 
@@ -371,6 +398,7 @@ function calculate() {
   document.getElementById('v-initial').innerHTML = initial.toLocaleString('fr-FR') + ' <span>€</span>';
   document.getElementById('v-taux').innerHTML = (+document.getElementById('taux').value).toFixed(1) + ' <span>%</span>';
   document.getElementById('v-duree').innerHTML = duree + ' <span>ans</span>';
+  document.getElementById('v-annuel').innerHTML = annuel.toLocaleString('fr-FR') + ' <span>€/an</span>';
   document.getElementById('v-inflation').innerHTML = (+document.getElementById('inflation').value).toFixed(1) + ' <span>%</span>';
 
   // Calcul intérêts composés
@@ -382,23 +410,46 @@ function calculate() {
 
   for(let a = 0; a <= duree; a++) {
     labels.push(a + ' an' + (a > 1 ? 's' : ''));
-    const verse = initial + mensuel * 12 * a;
+    const verse = initial + mensuel * 12 * a + annuel * a;
     let cap = initial * Math.pow(1 + taux, a);
     if(tauxMensuel > 0) {
       cap += mensuel * (Math.pow(1 + tauxMensuel, a*12) - 1) / tauxMensuel;
     } else {
       cap += mensuel * a * 12;
     }
+    // Versement annuel en plus, placé en fin d'année
+    cap += taux > 0 ? annuel * (Math.pow(1 + taux, a) - 1) / taux : annuel * a;
     dataCapital.push(Math.round(cap));
     dataVerse.push(Math.round(verse));
     dataCapitalReel.push(Math.round(cap / Math.pow(1 + inflation, a)));
   }
 
-  const totalVerse = initial + mensuel * mois;
+  const totalVerse = initial + mensuel * mois + annuel * duree;
   const capitalFinal = dataCapital[duree];
   const capitalFinalReel = dataCapitalReel[duree];
   const interets = capitalFinal - totalVerse;
   const rendement = ((capitalFinal - totalVerse) / totalVerse * 100).toFixed(1);
+
+  // Fiscalité sur les gains selon l'enveloppe (taux en vigueur en 2026 : prélèvements sociaux 18,6 % ou 17,2 %)
+  const gains = Math.max(0, interets);
+  let fisc = 0, noteFisc = '';
+  if (enveloppe === 'livret') { noteFisc = 'Les intérêts du Livret A, du LDDS et du LEP sont exonérés d\'impôt et de prélèvements sociaux (dans la limite des plafonds de ces livrets).'; }
+  else if (enveloppe === 'pfu') { fisc = gains * 0.314; noteFisc = 'Flat tax (PFU) de 31,4 % sur les gains : 12,8 % d\'impôt sur le revenu et 18,6 % de prélèvements sociaux. Vous pouvez choisir le barème progressif si c\'est plus avantageux.'; }
+  else if (enveloppe === 'pea') {
+    if (duree >= 5) { fisc = gains * 0.186; noteFisc = 'PEA de plus de 5 ans : pas d\'impôt sur le revenu, seulement 18,6 % de prélèvements sociaux sur les gains.'; }
+    else { fisc = gains * 0.314; noteFisc = 'PEA retiré avant 5 ans : flat tax de 31,4 % sur les gains et clôture du plan. Au-delà de 5 ans, seuls 18,6 % de prélèvements sociaux s\'appliquent.'; }
+  }
+  else if (enveloppe === 'av') {
+    if (duree >= 8) { fisc = gains * 0.172 + Math.max(0, gains - 4600) * 0.075; noteFisc = 'Assurance-vie de plus de 8 ans : 17,2 % de prélèvements sociaux, puis 7,5 % d\'impôt après un abattement de 4 600 € de gains (9 200 € pour un couple, non pris en compte ici). Hypothèse : retrait unique en fin de période.'; }
+    else { fisc = gains * 0.30; noteFisc = 'Assurance-vie de moins de 8 ans : environ 30 % sur les gains (12,8 % d\'impôt + 17,2 % de prélèvements sociaux). Après 8 ans, la fiscalité devient bien plus douce.'; }
+  }
+  document.getElementById('item-net').style.display = enveloppe === 'brut' ? 'none' : '';
+  document.getElementById('item-fisc').style.display = (enveloppe === 'brut' || enveloppe === 'livret') ? 'none' : '';
+  document.getElementById('r-net').textContent = fmt(capitalFinal - fisc);
+  document.getElementById('r-fisc').textContent = fmt(fisc);
+  const nf = document.getElementById('note-fisc');
+  nf.style.display = noteFisc ? '' : 'none';
+  nf.textContent = noteFisc ? '🧾 ' + noteFisc + ' Estimation indicative, hors situation particulière.' : '';
 
   document.getElementById('r-total').textContent = fmt(capitalFinal);
   document.getElementById('r-verse').textContent = fmt(totalVerse);

@@ -241,12 +241,45 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </div>
   </div>
 
+  <div class="card">
+    <h2>🎁 Réductions et crédits d'impôt <span style="font-size:.8rem;font-weight:500;color:var(--m)">(facultatif)</span></h2>
+    <div class="grid">
+      <div class="field">
+        <label for="per">Versement sur un PER</label>
+        <div class="val" id="v-per">0 <span>€/an</span></div>
+        <input type="range" id="per" min="0" max="40000" step="500" value="0">
+        <div class="hint" style="font-size:.78rem;color:var(--m);margin-top:.3rem">Déduit de votre revenu imposable, dans la limite de votre plafond.</div>
+      </div>
+      <div class="field">
+        <label for="dons">Dons aux associations</label>
+        <div class="val" id="v-dons">0 <span>€/an</span></div>
+        <input type="range" id="dons" min="0" max="5000" step="50" value="0">
+        <div class="hint" style="font-size:.78rem;color:var(--m);margin-top:.3rem">Réduction de 66 % (limite : 20 % du revenu imposable).</div>
+      </div>
+      <div class="field">
+        <label for="emploi">Emploi à domicile (ménage, soutien scolaire…)</label>
+        <div class="val" id="v-emploi">0 <span>€/an</span></div>
+        <input type="range" id="emploi" min="0" max="15000" step="100" value="0">
+        <div class="hint" style="font-size:.78rem;color:var(--m);margin-top:.3rem">Crédit de 50 % des dépenses (plafond 12 000 €).</div>
+      </div>
+      <div class="field">
+        <label for="garde">Frais de garde d'enfants de moins de 6 ans</label>
+        <div class="val" id="v-garde">0 <span>€/an</span></div>
+        <input type="range" id="garde" min="0" max="10000" step="100" value="0">
+        <select id="nbGarde" onchange="calculate()" aria-label="Nombre d'enfants gardés" style="margin-top:.5rem">
+          <option value="1">1 enfant gardé</option><option value="2">2 enfants gardés</option><option value="3">3 enfants gardés</option>
+        </select>
+        <div class="hint" style="font-size:.78rem;color:var(--m);margin-top:.3rem">Crédit de 50 % jusqu'à 3 500 € de frais par enfant.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="results">
     <h2>📊 Votre impôt estimé 2026</h2>
     <div class="res-grid">
       <div class="res-item highlight">
         <span class="num" id="r-impot">—</span>
-        <div class="lbl">Impôt annuel</div>
+        <div class="lbl" id="lbl-impot">Impôt annuel</div>
       </div>
       <div class="res-item">
         <span class="num" id="r-mensuel">—</span>
@@ -259,6 +292,14 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="res-item">
         <span class="num" id="r-taux-moyen">—</span>
         <div class="lbl">Taux moyen d'imposition</div>
+      </div>
+      <div class="res-item" id="item-per" style="display:none">
+        <span class="num" id="r-per">—</span>
+        <div class="lbl">Impôt économisé grâce au PER</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-plus">—</span>
+        <div class="lbl">Impôt en plus si +1 000 € de revenu</div>
       </div>
     </div>
   </div>
@@ -285,10 +326,14 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="detail-row"><span class="lbl">Revenu imposable</span><span id="d-imposable">—</span></div>
     <div class="detail-row"><span class="lbl">Nombre de parts fiscales</span><span id="d-parts">—</span></div>
     <div class="detail-row"><span class="lbl">Revenu par part</span><span id="d-par-part">—</span></div>
+    <div class="detail-row" id="row-per" style="display:none"><span class="lbl" id="l-per">Versement PER déduit</span><span id="d-per">—</span></div>
     <div class="detail-row"><span class="lbl">Impôt brut calculé</span><span id="d-brut">—</span></div>
     <div class="detail-row" id="row-qf" style="display:none"><span class="lbl">dont plafonnement du quotient familial (impôt relevé)</span><span id="d-qf">—</span></div>
     <div class="detail-row" id="row-cehr" style="display:none"><span class="lbl">dont CEHR (contribution exceptionnelle sur les hauts revenus)</span><span id="d-cehr">—</span></div>
-    <div class="detail-row"><span class="lbl"><strong>Impôt net à payer</strong></span><span id="d-net">—</span></div>
+    <div class="detail-row" id="row-dons" style="display:none"><span class="lbl">Réduction d'impôt pour dons</span><span id="d-dons">—</span></div>
+    <div class="detail-row" id="row-emploi" style="display:none"><span class="lbl">Crédit d'impôt emploi à domicile</span><span id="d-emploi">—</span></div>
+    <div class="detail-row" id="row-garde" style="display:none"><span class="lbl">Crédit d'impôt garde d'enfants</span><span id="d-garde">—</span></div>
+    <div class="detail-row"><span class="lbl"><strong id="l-net">Impôt net à payer</strong></span><span id="d-net">—</span></div>
   </div>
 
   <div class="tip" id="tip-text">Chargement...</div>
@@ -411,70 +456,120 @@ function calcCEHR(rfr, couple) {
   return Math.max(0, Math.min(rfr, s2) - s1) * 0.03 + Math.max(0, rfr - s2) * 0.04;
 }
 
-function calculate() {
-  const revenus = +document.getElementById('revenus').value;
+function lireFamille() {
   const sitVal = document.getElementById('situation').value;
   const isole = sitVal.charAt(0) === 'i';
   const parts = parseFloat(sitVal.replace('i', ''));
-  const couple = !isole && parts >= 2;
-  const deductions = +document.getElementById('deductions').value;
-  const fraisReels = +document.getElementById('fraisReels').value;
+  return { parts, isole, couple: !isole && parts >= 2 };
+}
 
-  document.getElementById('v-revenus').innerHTML = revenus.toLocaleString('fr-FR') + ' <span>€/an</span>';
-  document.getElementById('v-deductions').innerHTML = deductions.toLocaleString('fr-FR') + ' <span>€</span>';
-  document.getElementById('v-frais-reels').innerHTML = fraisReels.toLocaleString('fr-FR') + ' <span>€</span>';
-
-  // Abattement forfaitaire 10% (min 509€, max 14555€) — barème 2026
-  const abattementForfait = Math.min(Math.max(revenus * 0.10, 509), 14555);
-  // Le contribuable choisit automatiquement l'option la plus avantageuse (frais réels justifiés vs abattement forfaitaire)
-  const fraisReelsPlusAvantageux = fraisReels > abattementForfait;
-  const abattement = fraisReelsPlusAvantageux ? fraisReels : abattementForfait;
-  document.getElementById('d-abattement-label').textContent = fraisReelsPlusAvantageux ? 'Frais réels déduits (plus avantageux)' : 'Abattement forfaitaire 10%';
-  const revenuImposable = Math.max(0, revenus - abattement - deductions);
+// Calcul de l'impôt avant réductions et crédits (barème, quotient familial, décote, CEHR)
+function calcIR(o) {
+  const fam = o.fam, parts = fam.parts;
+  const abattementForfait = Math.min(Math.max(o.revenus * 0.10, 509), 14555);
+  const fraisReelsPlusAvantageux = o.fraisReels > abattementForfait;
+  const abattement = fraisReelsPlusAvantageux ? o.fraisReels : abattementForfait;
+  // Plafond de déduction PER (versements 2025) : 10 % des revenus pro, entre 4 637 € et 37 094 €
+  const perPlafond = Math.min(37094, Math.max(4637, Math.max(0, o.revenus - abattement) * 0.10));
+  const perDeduit = Math.min(o.per, perPlafond);
+  const revenuImposable = Math.max(0, o.revenus - abattement - o.deductions - perDeduit);
   const revenuParPart = revenuImposable / parts;
-
   let impotBrut = calcImpot(revenuParPart) * parts;
 
-  // Plafonnement du quotient familial (revenus 2025) : l'avantage lié aux parts supplémentaires est limité.
-  // 1 807 € par demi-part ; parent isolé : 4 262 € pour la première part supplémentaire.
-  let plafondQF = 0, baseParts = isole ? 1 : (couple ? 2 : 1);
-  if(isole) plafondQF = 4262 + Math.max(0, parts - 2) * 2 * 1807;
-  else if(couple) plafondQF = (parts - 2) * 2 * 1807;
+  // Plafonnement du quotient familial (1 807 € par demi-part ; parent isolé : 4 262 € pour la première part supplémentaire)
+  let plafondQF = 0;
+  const baseParts = fam.isole ? 1 : (fam.couple ? 2 : 1);
+  if (fam.isole) plafondQF = 4262 + Math.max(0, parts - 2) * 2 * 1807;
+  else if (fam.couple) plafondQF = (parts - 2) * 2 * 1807;
   let plafonnement = 0;
-  if(plafondQF > 0) {
+  if (plafondQF > 0) {
     const impotBase = calcImpot(revenuImposable / baseParts) * baseParts;
-    if(impotBase - impotBrut > plafondQF) {
-      plafonnement = impotBase - plafondQF - impotBrut;
-      impotBrut = impotBase - plafondQF;
-    }
+    if (impotBase - impotBrut > plafondQF) { plafonnement = impotBase - plafondQF - impotBrut; impotBrut = impotBase - plafondQF; }
   }
-  document.getElementById('row-qf').style.display = plafonnement > 0 ? '' : 'none';
-  document.getElementById('d-qf').textContent = fmt(plafonnement);
-
-  // Décote (si impôt < seuil)
-  let impotNet = impotBrut;
-  // Décote : seuils « personne seule » (célibataire, parent isolé) ou « couple »
-  const seuilDecote = couple ? 3277 : 1982;
-  if(impotBrut < seuilDecote) {
-    const decote = couple ? 1483 - impotBrut * 0.4525 : 897 - impotBrut * 0.4525;
-    impotNet = Math.max(0, impotBrut - Math.max(0, decote));
+  // Décote : seuils « personne seule » ou « couple »
+  let impot = impotBrut;
+  const seuilDecote = fam.couple ? 3277 : 1982;
+  if (impotBrut < seuilDecote) {
+    const decote = fam.couple ? 1483 - impotBrut * 0.4525 : 897 - impotBrut * 0.4525;
+    impot = Math.max(0, impotBrut - Math.max(0, decote));
   }
+  const cehr = calcCEHR(revenuImposable, fam.couple);
+  return { abattementForfait, fraisReelsPlusAvantageux, abattement, perPlafond, perDeduit, revenuImposable, revenuParPart, impotBrut, plafonnement, impot, cehr };
+}
 
-  const cehr = calcCEHR(revenuImposable, couple);
-  impotNet += cehr;
-  document.getElementById('row-cehr').style.display = cehr > 0 ? '' : 'none';
-  document.getElementById('d-cehr').textContent = fmt(cehr);
+// Impôt final : réductions (dons : non remboursable) puis crédits (emploi à domicile, garde : remboursables)
+function calcTotal(o) {
+  const ir = calcIR(o);
+  const reducDons = Math.min(Math.min(o.dons, 0.20 * ir.revenuImposable) * 0.66, ir.impot);
+  const creditEmploi = 0.5 * Math.min(o.emploi, 12000);
+  const creditGarde = 0.5 * Math.min(o.garde, 3500 * o.nbGarde);
+  const final = (ir.impot - reducDons) - creditEmploi - creditGarde + ir.cehr;
+  return { ir, reducDons, creditEmploi, creditGarde, final };
+}
 
+function calculate() {
+  const fam = lireFamille(), parts = fam.parts;
+  const o = {
+    fam,
+    revenus: +document.getElementById('revenus').value,
+    deductions: +document.getElementById('deductions').value,
+    fraisReels: +document.getElementById('fraisReels').value,
+    per: +document.getElementById('per').value,
+    dons: +document.getElementById('dons').value,
+    emploi: +document.getElementById('emploi').value,
+    garde: +document.getElementById('garde').value,
+    nbGarde: +document.getElementById('nbGarde').value
+  };
+  const revenus = o.revenus, deductions = o.deductions, fraisReels = o.fraisReels;
+  const euro = n => n.toLocaleString('fr-FR');
+  document.getElementById('v-revenus').innerHTML = euro(revenus) + ' <span>€/an</span>';
+  document.getElementById('v-deductions').innerHTML = euro(deductions) + ' <span>€</span>';
+  document.getElementById('v-frais-reels').innerHTML = euro(fraisReels) + ' <span>€</span>';
+  document.getElementById('v-per').innerHTML = euro(o.per) + ' <span>€/an</span>';
+  document.getElementById('v-dons').innerHTML = euro(o.dons) + ' <span>€/an</span>';
+  document.getElementById('v-emploi').innerHTML = euro(o.emploi) + ' <span>€/an</span>';
+  document.getElementById('v-garde').innerHTML = euro(o.garde) + ' <span>€/an</span>';
+
+  const T = calcTotal(o), ir = T.ir;
+  const impotNet = T.final;
+  const abattementForfait = ir.abattementForfait, abattement = ir.abattement, revenuImposable = ir.revenuImposable, revenuParPart = ir.revenuParPart, impotBrut = ir.impotBrut;
+  document.getElementById('d-abattement-label').textContent = ir.fraisReelsPlusAvantageux ? 'Frais réels déduits (plus avantageux)' : 'Abattement forfaitaire 10%';
+
+  document.getElementById('row-qf').style.display = ir.plafonnement > 0 ? '' : 'none';
+  document.getElementById('d-qf').textContent = fmt(ir.plafonnement);
+  document.getElementById('row-cehr').style.display = ir.cehr > 0 ? '' : 'none';
+  document.getElementById('d-cehr').textContent = fmt(ir.cehr);
+
+  // PER : économie d'impôt réelle (comparaison avec et sans versement)
+  const sansPer = o.per > 0 ? calcTotal({ ...o, per: 0 }).final - impotNet : 0;
+  document.getElementById('item-per').style.display = ir.perDeduit > 0 ? '' : 'none';
+  document.getElementById('r-per').textContent = fmt(Math.max(0, sansPer));
+  document.getElementById('row-per').style.display = ir.perDeduit > 0 ? '' : 'none';
+  document.getElementById('d-per').textContent = '- ' + fmt(ir.perDeduit);
+  document.getElementById('l-per').textContent = o.per > ir.perPlafond ? 'Versement PER déduit (plafonné à ' + fmt(ir.perPlafond) + ')' : 'Versement PER déduit';
+  // Effet d'une hausse de revenu de 1 000 €
+  const plus = calcTotal({ ...o, revenus: o.revenus + 1000 }).final - impotNet;
+  document.getElementById('r-plus').textContent = '+ ' + fmt(Math.max(0, plus));
+
+  // Réductions et crédits
+  [['dons', T.reducDons], ['emploi', T.creditEmploi], ['garde', T.creditGarde]].forEach(([k, v]) => {
+    document.getElementById('row-' + k).style.display = v > 0 ? '' : 'none';
+    document.getElementById('d-' + k).textContent = '- ' + fmt(v);
+  });
+
+  const rembourse = impotNet < 0;
+  document.getElementById('lbl-impot').textContent = rembourse ? 'Remboursement estimé' : 'Impôt annuel';
+  document.getElementById('l-net').textContent = rembourse ? 'Remboursement estimé' : 'Impôt net à payer';
   const tmi = getTMI(revenuParPart);
-  const tauxMoyen = revenus > 0 ? (impotNet / revenus * 100).toFixed(1) : 0;
+  const tauxMoyen = revenus > 0 ? (Math.max(0, impotNet) / revenus * 100).toFixed(1) : 0;
 
-  document.getElementById('r-impot').textContent = fmt(impotNet);
-  document.getElementById('r-mensuel').textContent = fmt(impotNet / 12);
+  document.getElementById('r-impot').textContent = fmt(Math.abs(impotNet));
+  document.getElementById('r-mensuel').textContent = fmt(Math.max(0, impotNet) / 12);
   document.getElementById('r-tmi').textContent = tmi + '%';
   document.getElementById('r-taux-moyen').textContent = tauxMoyen + '%';
   window.EcoViz && EcoViz.stack('viz-ir', [
-    { label: 'Impôt à payer', value: impotNet, color: '#F4B550' },
-    { label: 'Il vous reste', value: Math.max(0, revenus - impotNet), color: '#5EE0B5' }
+    { label: 'Impôt à payer', value: Math.max(0, impotNet), color: '#F4B550' },
+    { label: 'Il vous reste', value: Math.max(0, revenus - Math.max(0, impotNet)), color: '#5EE0B5' }
   ], { title: 'Répartition de vos revenus de l\'année' });
 
   document.getElementById('d-revenus').textContent = fmt(revenus);
@@ -484,7 +579,7 @@ function calculate() {
   document.getElementById('d-parts').textContent = String(parts).replace('.', ',') + ' part' + (parts > 1 ? 's' : '');
   document.getElementById('d-par-part').textContent = fmt(revenuParPart);
   document.getElementById('d-brut').textContent = fmt(impotBrut);
-  document.getElementById('d-net').textContent = fmt(impotNet);
+  document.getElementById('d-net').textContent = fmt(Math.abs(impotNet));
 
   // Barème avec tranche active
   const tbody = document.getElementById('bareme-body');
@@ -503,12 +598,16 @@ function calculate() {
 
   // Conseil
   const tip = document.getElementById('tip-text');
-  if(impotNet === 0) {
+  if(rembourse) {
+    tip.innerHTML = '<strong>💶 Remboursement :</strong> vos crédits d\'impôt dépassent l\'impôt dû : l\'écart vous est reversé par l\'administration fiscale.';
+  } else if(impotNet === 0) {
     tip.innerHTML = '<strong>✅ Non imposable :</strong> Vos revenus sont en dessous du seuil d\'imposition. Vous n\'avez pas d\'impôt à payer cette année.';
-  } else if(tmi >= 30) {
-    tip.innerHTML = `<strong>💡 Optimisation possible :</strong> Avec un TMI de ${tmi}%, chaque euro versé sur un PER vous économise ${tmi} centimes d'impôt. Un versement de 5 000 € sur un PER = ${fmt(5000 * tmi/100)} d'impôt en moins.`;
+  } else if(o.per > ir.perPlafond) {
+    tip.innerHTML = `<strong>ℹ️ Plafond PER :</strong> seuls ${fmt(ir.perPlafond)} de votre versement sont déductibles cette année (le reste peut parfois être reporté). Vérifiez votre plafond sur votre avis d'impôt.`;
+  } else if(tmi >= 30 && o.per === 0) {
+    tip.innerHTML = `<strong>💡 Optimisation possible :</strong> Avec un TMI de ${tmi}%, chaque euro versé sur un PER vous économise environ ${tmi} centimes d'impôt. Testez-le avec le curseur « Versement sur un PER » ci-dessus.`;
   } else {
-    tip.innerHTML = `<strong>💡 Conseil :</strong> Votre taux moyen est de ${tauxMoyen}%. Pensez à vérifier les déductions auxquelles vous avez droit : dons aux associations (66% déduit), emploi à domicile (50% déduit), et si vos frais professionnels réels (trajets, repas, double résidence...) dépassent ${fmt(abattementForfait)}, renseignez-les ci-dessus pour les déduire à la place de l'abattement forfaitaire.`;
+    tip.innerHTML = `<strong>💡 Conseil :</strong> Votre taux moyen est de ${tauxMoyen}%. Pensez aux réductions et crédits ci-dessus (dons, emploi à domicile, garde d'enfants) et, si vos frais professionnels réels dépassent ${fmt(abattementForfait)}, renseignez-les pour les déduire à la place de l'abattement forfaitaire.`;
   }
 }
 

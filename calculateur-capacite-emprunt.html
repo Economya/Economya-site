@@ -213,6 +213,19 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <input type="range" id="duree" min="5" max="30" step="1" value="20">
       </div>
       <div class="field">
+        <label for="typeBien">Type de bien visé</label>
+        <select id="typeBien" onchange="calculate()">
+          <option value="ancien">Logement ancien (frais de notaire ≈ 8 %)</option>
+          <option value="neuf">Logement neuf (frais de notaire ≈ 3 %)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="ptz">Prêt à taux zéro (si vous y avez droit)</label>
+        <div class="val" id="v-ptz">0 <span>€</span></div>
+        <input type="range" id="ptz" min="0" max="100000" step="1000" value="0">
+        <div class="hint" style="font-size:.78rem;color:var(--m);margin-top:.3rem">Renseignez le montant accordé : il s'ajoute au budget, sans intérêts, et se rembourse souvent après un différé.</div>
+      </div>
+      <div class="field">
         <label>Taux d'intérêt annuel</label>
         <div class="val" id="v-taux">3,6 <span>%</span></div>
         <input type="range" id="taux" min="2.5" max="5.5" step="0.1" value="3.6">
@@ -237,6 +250,10 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <span class="num" id="r-taux-endettement">—</span>
         <div class="lbl">Taux d'endettement</div>
       </div>
+      <div class="res-item">
+        <span class="num" id="r-prix-max">—</span>
+        <div class="lbl">Prix maximum du bien (hors frais de notaire)</div>
+      </div>
     </div>
   </div>
 
@@ -247,7 +264,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="detail-row"><span class="lbl">Autres crédits en cours</span><span id="d-credits">—</span></div>
     <div class="detail-row"><span class="lbl">Mensualité disponible pour l'immo</span><span id="d-mensualite">—</span></div>
     <div class="detail-row"><span class="lbl">Montant empruntable (taux <span id="d-taux-label">3,6</span>%)</span><span id="d-emprunt">—</span></div>
-    <div class="detail-row"><span class="lbl">Apport personnel</span><span id="d-apport">—</span></div>
+    <div class="detail-row"><span class="lbl">Apport personnel et PTZ</span><span id="d-apport">—</span></div>
     <div class="detail-row"><span class="lbl"><strong>Budget total acquisition</strong></span><span id="d-total">—</span></div>
   </div>
 
@@ -351,14 +368,20 @@ function calculate() {
 
   // Calcul montant empruntable
   const emprunt = mensualiteImmo * (1 - Math.pow(1 + tauxMensuel, -n)) / tauxMensuel;
-  const budgetTotal = emprunt + apport;
+  const ptz = +document.getElementById('ptz').value;
+  const typeBien = document.getElementById('typeBien').value;
+  const fraisNotaire = typeBien === 'neuf' ? 0.03 : 0.08;
+  document.getElementById('v-ptz').innerHTML = ptz.toLocaleString('fr-FR') + ' <span>€</span>';
+  const budgetTotal = emprunt + apport + ptz;
+  const prixMax = budgetTotal / (1 + fraisNotaire);
   const tauxEndettement = ((mensualiteImmo + credits) / revenus * 100).toFixed(0);
 
   document.getElementById('r-capacite').textContent = fmt(budgetTotal);
-  document.getElementById('r-sous').textContent = `budget total avec apport de ${fmt(apport)}`;
+  document.getElementById('r-sous').textContent = `budget total avec apport de ${fmt(apport)}` + (ptz > 0 ? ` et PTZ de ${fmt(ptz)}` : '');
   document.getElementById('r-mensualite').textContent = fmt(mensualiteImmo);
   document.getElementById('r-emprunt').textContent = fmt(emprunt);
   document.getElementById('r-taux-endettement').textContent = tauxEndettement + '%';
+  document.getElementById('r-prix-max').textContent = fmt(prixMax);
   if (window.EcoViz) {
     EcoViz.stack('viz-cap', [
       { label: 'Mensualité du crédit', value: mensualiteImmo, color: '#F4B550' },
@@ -372,14 +395,14 @@ function calculate() {
   document.getElementById('d-credits').textContent = '- ' + fmt(credits);
   document.getElementById('d-mensualite').textContent = fmt(mensualiteImmo);
   document.getElementById('d-emprunt').textContent = fmt(emprunt);
-  document.getElementById('d-apport').textContent = '+ ' + fmt(apport);
+  document.getElementById('d-apport').textContent = '+ ' + fmt(apport + ptz);
   document.getElementById('d-total').textContent = fmt(budgetTotal);
 
   // Biens
   const biensGrid = document.getElementById('biens-grid');
   biensGrid.innerHTML = '';
   BIENS.forEach(b => {
-    const possible = budgetTotal >= b.prix * 0.92; // avec frais de notaire
+    const possible = b.prix <= prixMax; // le prix doit tenir dans le budget une fois les frais de notaire payés
     biensGrid.innerHTML += `
       <div class="bien-card ${possible ? 'possible' : 'impossible'}">
         <div class="bien-icon">${b.icon}</div>

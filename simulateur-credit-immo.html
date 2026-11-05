@@ -245,6 +245,27 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </div>
   </div>
 
+  <div class="card">
+    <h2>🛡️ Assurance et frais <span style="font-size:.8rem;font-weight:500;color:var(--m)">(facultatif)</span></h2>
+    <div class="grid">
+      <div class="field">
+        <label for="assur">Assurance emprunteur (taux annuel)</label>
+        <div class="val" id="v-assur">0,30 <span>%</span></div>
+        <input type="range" id="assur" min="0" max="1" step="0.01" value="0.30">
+      </div>
+      <div class="field">
+        <label for="dossier">Frais de dossier</label>
+        <div class="val" id="v-dossier">0 <span>€</span></div>
+        <input type="range" id="dossier" min="0" max="3000" step="50" value="0">
+      </div>
+      <div class="field">
+        <label for="garantie">Frais de garantie (caution, hypothèque)</label>
+        <div class="val" id="v-garantie">0 <span>% du prêt</span></div>
+        <input type="range" id="garantie" min="0" max="3" step="0.1" value="0">
+      </div>
+    </div>
+  </div>
+
   <div class="results">
     <h2>📊 Résultats de votre simulation</h2>
     <div class="res-grid">
@@ -268,6 +289,18 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <span class="num" id="r-taux-effort">—</span>
         <div class="lbl">Taux d'effort (sur 3 500 €/mois)</div>
       </div>
+      <div class="res-item">
+        <span class="num" id="r-mens-ass">—</span>
+        <div class="lbl">Mensualité avec assurance</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-cout-total">—</span>
+        <div class="lbl">Coût total (intérêts + assurance + frais)</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-taeg">—</span>
+        <div class="lbl">TAEG estimé</div>
+      </div>
     </div>
   </div>
 
@@ -276,7 +309,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   </div>
 
   <div class="tableau">
-    <h2>📋 Tableau d'amortissement (5 premières années)</h2>
+    <h2 id="h-tableau">📋 Tableau d'amortissement (5 premières années)</h2>
     <table>
       <thead>
         <tr>
@@ -289,6 +322,32 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </thead>
       <tbody id="tableau-body"></tbody>
     </table>
+    <div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1rem">
+      <button type="button" id="btn-toutes" style="background:var(--gl);color:var(--gd);border:1px solid rgba(8,80,65,.2);border-radius:50px;padding:.55rem 1.1rem;font-weight:600;cursor:pointer;font-family:inherit">Voir toutes les années</button>
+      <button type="button" id="btn-csv" style="background:var(--gd);color:#fff;border:none;border-radius:50px;padding:.55rem 1.1rem;font-weight:600;cursor:pointer;font-family:inherit">Télécharger en CSV (mois par mois)</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚖️ Et sur une autre durée ?</h2>
+    <p style="font-size:.86rem;color:var(--m);margin-bottom:1rem">Même montant et même taux, durée différente : la mensualité baisse, mais les intérêts augmentent.</p>
+    <table>
+      <thead><tr><th>Durée</th><th>Mensualité</th><th>Intérêts</th><th>Coût total</th></tr></thead>
+      <tbody id="duree-body"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>🏁 Rembourser le prêt par anticipation</h2>
+    <div class="field">
+      <label for="ira">Je solde le prêt au bout de…</label>
+      <div class="val" id="v-ira">10 <span>ans</span></div>
+      <input type="range" id="ira" min="1" max="29" step="1" value="10">
+    </div>
+    <div class="detail-row" style="display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--b);font-size:.9rem"><span>Capital restant dû à ce moment</span><strong id="ira-crd">—</strong></div>
+    <div class="detail-row" style="display:flex;justify-content:space-between;padding:.6rem 0;border-bottom:1px solid var(--b);font-size:.9rem"><span>Intérêts que vous n'aurez pas à payer</span><strong id="ira-eco">—</strong></div>
+    <div class="detail-row" style="display:flex;justify-content:space-between;padding:.6rem 0;font-size:.9rem"><span>Indemnité de remboursement anticipé (maximum légal)</span><strong id="ira-ind">—</strong></div>
+    <p style="font-size:.78rem;color:var(--m);margin-top:.8rem">L'indemnité est plafonnée à 6 mois d'intérêts et à 3 % du capital restant dû. Votre contrat peut prévoir moins, voire rien.</p>
   </div>
 
   <div class="card">
@@ -420,6 +479,52 @@ function calculate() {
   const totalInterets = totalRembourse - emprunt;
   const tauxEffort = (mensualite / 3500 * 100).toFixed(1);
 
+  // Assurance, frais, TAEG
+  const assur = +document.getElementById('assur').value;
+  const dossier = +document.getElementById('dossier').value;
+  const garantiePct = +document.getElementById('garantie').value;
+  document.getElementById('v-assur').innerHTML = assur.toFixed(2).replace('.', ',') + ' <span>%</span>';
+  document.getElementById('v-dossier').innerHTML = dossier.toLocaleString('fr-FR') + ' <span>€</span>';
+  document.getElementById('v-garantie').innerHTML = garantiePct.toFixed(1).replace('.', ',') + ' <span>% du prêt</span>';
+  const assurMensuelle = emprunt * assur / 100 / 12;
+  const fraisGarantie = emprunt * garantiePct / 100;
+  const mensAss = mensualite + assurMensuelle;
+  const coutTotal = totalInterets + assurMensuelle * n + dossier + fraisGarantie;
+  let taeg = 0;
+  if (emprunt > 0) {
+    const net = emprunt - dossier - fraisGarantie;
+    let lo = 0, hi = 0.05;
+    const val = r => r === 0 ? mensAss * n : mensAss * (1 - Math.pow(1 + r, -n)) / r;
+    for (let i = 0; i < 80; i++) { const mid = (lo + hi) / 2; if (val(mid) > net) lo = mid; else hi = mid; }
+    taeg = (Math.pow(1 + (lo + hi) / 2, 12) - 1) * 100;
+  }
+  document.getElementById('r-mens-ass').textContent = fmtM(mensAss);
+  document.getElementById('r-cout-total').textContent = fmt(coutTotal);
+  document.getElementById('r-taeg').textContent = taeg.toFixed(2).replace('.', ',') + ' %';
+
+  // Autres durées
+  const dBody = document.getElementById('duree-body');
+  dBody.innerHTML = '';
+  [15, 20, 25].forEach(d => {
+    const nn = d * 12;
+    const mm = tauxM === 0 ? emprunt / nn : emprunt * tauxM * Math.pow(1 + tauxM, nn) / (Math.pow(1 + tauxM, nn) - 1);
+    const tr = document.createElement('tr');
+    if (d === duree) tr.className = 'active';
+    tr.innerHTML = `<td><strong>${d} ans</strong>${d === duree ? ' (votre choix)' : ''}</td><td>${fmtM(mm)}</td><td>${fmt(mm * nn - emprunt)}</td><td>${fmt(mm * nn)}</td>`;
+    dBody.appendChild(tr);
+  });
+
+  // Remboursement anticipé
+  const iraAns = Math.min(+document.getElementById('ira').value, Math.max(1, duree - 1));
+  document.getElementById('v-ira').innerHTML = iraAns + ' <span>ans</span>';
+  const kM = iraAns * 12;
+  const crd = tauxM === 0 ? emprunt * (1 - kM / n) : emprunt * (Math.pow(1 + tauxM, n) - Math.pow(1 + tauxM, kM)) / (Math.pow(1 + tauxM, n) - 1);
+  const interetsPayes = kM * mensualite - (emprunt - crd);
+  document.getElementById('ira-crd').textContent = fmt(Math.max(0, crd));
+  document.getElementById('ira-eco').textContent = fmt(Math.max(0, totalInterets - interetsPayes));
+  document.getElementById('ira-ind').textContent = fmt(Math.min(0.5 * taux / 100 * crd, 0.03 * crd));
+  window._eco = { emprunt, tauxM, n, mensualite, assurMensuelle };
+
   document.getElementById('r-mensualite').textContent = fmtM(mensualite);
   document.getElementById('r-emprunt').textContent = fmt(emprunt);
   document.getElementById('r-total').textContent = fmt(totalRembourse);
@@ -449,7 +554,9 @@ function calculate() {
   tbody.innerHTML = '';
   let capitalRestant = emprunt;
 
-  const maxAnnees = Math.min(5, duree);
+  const maxAnnees = window._ecoAll ? duree : Math.min(5, duree);
+  document.getElementById('h-tableau').textContent = window._ecoAll ? '📋 Tableau d\'amortissement complet' : '📋 Tableau d\'amortissement (5 premières années)';
+  document.getElementById('btn-toutes').textContent = window._ecoAll ? 'Réduire le tableau' : 'Voir toutes les années';
   for(let a = 1; a <= maxAnnees; a++) {
     let capitalAnnee = 0;
     let interetsAnnee = 0;
@@ -473,6 +580,22 @@ function calculate() {
 }
 
 document.querySelectorAll('input[type=range]').forEach(el => el.addEventListener('input', calculate));
+document.getElementById('btn-toutes').addEventListener('click', () => { window._ecoAll = !window._ecoAll; calculate(); });
+document.getElementById('btn-csv').addEventListener('click', () => {
+  const e = window._eco; if (!e) return;
+  let cap = e.emprunt;
+  const rows = ['Mois;Mensualité (hors assurance);Capital remboursé;Intérêts;Assurance;Capital restant dû'];
+  const f = x => (Math.round(x * 100) / 100).toFixed(2).replace('.', ',');
+  for (let m = 1; m <= e.n; m++) {
+    const i = cap * e.tauxM, c = e.mensualite - i; cap = Math.max(0, cap - c);
+    rows.push([m, f(e.mensualite), f(c), f(i), f(e.assurMensuelle), f(cap)].join(';'));
+  }
+  const blob = new Blob(['\ufeff' + rows.join('\n')], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'tableau-amortissement-economya.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+});
 calculate();
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">

@@ -228,6 +228,25 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         </select>
       </div>
       <div class="opt-field">
+        <label for="mois">Mois versés / an</label>
+        <select id="mois" onchange="calculate()">
+          <option value="12">12 mois</option>
+          <option value="13">13 mois (13e mois)</option>
+          <option value="14">14 mois</option>
+        </select>
+      </div>
+      <div class="opt-field">
+        <label for="quotite">Temps de travail</label>
+        <select id="quotite" onchange="calculate()">
+          <option value="1">Temps plein (35 h)</option>
+          <option value="0.9">90 %</option>
+          <option value="0.8">80 %</option>
+          <option value="0.7">70 %</option>
+          <option value="0.6">60 %</option>
+          <option value="0.5">50 %</option>
+        </select>
+      </div>
+      <div class="opt-field">
         <label>Prélèvement à la source</label>
         <label class="opt-check"><input type="checkbox" id="apres" onchange="calculate()"> Déduire mon prélèvement</label>
       </div>
@@ -253,6 +272,18 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="res-item">
         <span class="num" id="r-net-annuel">—</span>
         <div class="lbl">Net annuel</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-brut-annuel">—</span>
+        <div class="lbl">Brut annuel</div>
+      </div>
+      <div class="res-item">
+        <span class="num" id="r-horaire">—</span>
+        <div class="lbl">Net par heure</div>
+      </div>
+      <div class="res-item" id="item-cout">
+        <span class="num" id="r-cout">—</span>
+        <div class="lbl" id="lbl-cout">Coût employeur / mois (estimé)</div>
       </div>
       <div class="res-item">
         <span class="num" id="r-pas">—</span>
@@ -413,7 +444,9 @@ function calculate() {
   document.getElementById('pas-taux-field').style.display = apres ? '' : 'none';
   document.getElementById('note-statut').style.display = statut === 'fonctionnaire' ? '' : 'none';
 
-  if(periode === 'annuel') valeur = valeur / 12;
+  const nMois = +document.getElementById('mois').value || 12;
+  const quotite = +document.getElementById('quotite').value || 1;
+  if(periode === 'annuel') valeur = valeur / nMois;
 
   let brutMensuel, netAvantImpot, cot;
 
@@ -451,7 +484,20 @@ function calculate() {
   document.getElementById('row-pas2').style.display = apres ? '' : 'none';
   document.getElementById('row-net-apres').style.display = apres ? '' : 'none';
   document.getElementById('r-brut-mensuel').textContent = fmt(brutMensuel);
-  document.getElementById('r-net-annuel').textContent = fmt(netAffiche * 12);
+  document.getElementById('r-net-annuel').textContent = fmt(netAffiche * nMois);
+  document.getElementById('r-brut-annuel').textContent = fmt(brutMensuel * nMois);
+  // Taux horaire : 151,67 h par mois à temps plein
+  const heures = 151.67 * quotite;
+  document.getElementById('r-horaire').textContent = (netAffiche / heures).toFixed(2).replace('.', ',') + ' €';
+  // Coût employeur : estimation (≈ 42 % de charges patronales, 45 % pour un cadre, avant allègements)
+  const itemCout = document.getElementById('item-cout');
+  if (statut === 'fonctionnaire') { itemCout.style.display = 'none'; }
+  else {
+    itemCout.style.display = '';
+    const tx = statut === 'cadre' ? 0.45 : 0.42;
+    document.getElementById('r-cout').textContent = fmt(brutMensuel * (1 + tx));
+    document.getElementById('lbl-cout').textContent = 'Coût employeur / mois (≈ ' + Math.round(tx * 100) + ' % de charges)';
+  }
 
   document.getElementById('d-brut').textContent = fmt(brutMensuel);
   document.getElementById('d-secu').textContent = '- ' + fmt(cot.secu);

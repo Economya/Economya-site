@@ -241,6 +241,27 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </div>
   </div>
 
+  <div class="card">
+    <h2>🧾 Autres frais de l'achat <span style="font-size:.8rem;font-weight:500;color:var(--m)">(facultatif, pour un budget « tout compris »)</span></h2>
+    <div class="grid">
+      <div class="field">
+        <label for="agence">Frais d'agence à votre charge</label>
+        <div class="val" id="v-agence">0 <span>% du prix</span></div>
+        <input type="range" id="agence" min="0" max="7" step="0.5" value="0">
+      </div>
+      <div class="field">
+        <label for="garantie">Frais de garantie du prêt (caution ou hypothèque)</label>
+        <div class="val" id="v-garantie">0 <span>€</span></div>
+        <input type="range" id="garantie" min="0" max="10000" step="100" value="0">
+      </div>
+      <div class="field">
+        <label for="demenage">Déménagement, petits travaux, équipement</label>
+        <div class="val" id="v-demenage">0 <span>€</span></div>
+        <input type="range" id="demenage" min="0" max="30000" step="500" value="0">
+      </div>
+    </div>
+  </div>
+
   <div class="results">
     <h2>📊 Estimation de vos frais</h2>
     <div class="res-grid">
@@ -259,6 +280,10 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="res-item">
         <span class="num" id="r-type">—</span>
         <div class="lbl">Type de bien</div>
+      </div>
+      <div class="res-item" id="item-tout" style="display:none">
+        <span class="num" id="r-tout">—</span>
+        <div class="lbl">Budget tout compris (frais d'agence, garantie, installation)</div>
       </div>
     </div>
   </div>
@@ -434,6 +459,17 @@ function calculate() {
   const total = taxes + emoluments + debours + csi;
   const pctReel = (total / prix * 100);
   const budgetTotal = prix + total;
+
+  const agencePct = +document.getElementById('agence').value;
+  const garantieEur = +document.getElementById('garantie').value;
+  const demenageEur = +document.getElementById('demenage').value;
+  document.getElementById('v-agence').innerHTML = agencePct.toFixed(1).replace('.', ',') + ' <span>% du prix</span>';
+  document.getElementById('v-garantie').innerHTML = garantieEur.toLocaleString('fr-FR') + ' <span>€</span>';
+  document.getElementById('v-demenage').innerHTML = demenageEur.toLocaleString('fr-FR') + ' <span>€</span>';
+  const fraisAgence = prix * agencePct / 100;
+  const autres = fraisAgence + garantieEur + demenageEur;
+  document.getElementById('item-tout').style.display = autres > 0 ? '' : 'none';
+  document.getElementById('r-tout').textContent = fmt(budgetTotal + autres);
 
   document.getElementById('r-total').textContent = fmt(total);
   document.getElementById('r-pct').textContent = fmtPct(pctReel);
