@@ -263,6 +263,20 @@ a{text-decoration:none;color:inherit;}
 .biz-tag::before,.biz-tag::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,#C9A24A);}
 .biz-tag::after{transform:scaleX(-1);}
 .biz-sub{font-size:11.5px;color:var(--muted);letter-spacing:.02em;}
+@keyframes bizFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes bizDraw{0%{stroke-dashoffset:44;opacity:.2}35%,80%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:.2}}
+@keyframes bizPulse{0%,35%{r:2.6;opacity:0}45%{r:3.4;opacity:1}70%{r:2.6;opacity:1}100%{r:2.6;opacity:0}}
+@keyframes bizShine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes bizRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.biz-sign svg{animation:bizFloat 4.5s ease-in-out infinite;transition:transform .3s;}
+.biz-sign:hover svg{animation-play-state:paused;transform:scale(1.07) rotate(-3deg);}
+.biz-arrow{stroke-dasharray:44;animation:bizDraw 3.6s ease-in-out infinite;}
+.biz-dot{animation:bizPulse 3.6s ease-in-out infinite;}
+.biz-word{animation:bizRise .8s .1s both;}
+.biz-word em{background:linear-gradient(100deg,#F59E0B 20%,#FFE29A 45%,#F59E0B 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:bizShine 4.5s linear infinite;}
+.biz-tag{animation:bizRise .8s .25s both;}
+.biz-sub{animation:bizRise .8s .4s both;}
+@media (prefers-reduced-motion:reduce){.biz-sign *,.biz-sign svg{animation:none!important}.biz-arrow{stroke-dasharray:none}}
 .submit-btn:disabled{opacity:.5;cursor:not-allowed;}
 .form-msg{margin-top:14px;font-size:13px;padding:12px 14px;border-radius:10px;display:none;}
 .form-msg.ok{display:block;background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0;}
@@ -602,8 +616,8 @@ a{text-decoration:none;color:inherit;}
     <rect x="1" y="1" width="62" height="62" rx="18" fill="url(#bzBg)"/>
     <rect x="1.5" y="1.5" width="61" height="61" rx="17.5" fill="none" stroke="url(#bzGold)" stroke-opacity=".55"/>
     <path d="M20 44V20h20M20 32h15M20 44h22" fill="none" stroke="url(#bzGold)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M36 40l7-8 5 4 8-11" fill="none" stroke="#1D9E75" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle cx="56" cy="25" r="2.6" fill="#FDE68A"/>
+    <path class="biz-arrow" d="M36 40l7-8 5 4 8-11" fill="none" stroke="#2BD39A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle class="biz-dot" cx="56" cy="25" r="2.6" fill="#FDE68A"/>
   </svg>
   <div class="biz-word">Econom<em>ya</em></div>
   <div class="biz-tag">Business</div>
