@@ -94,39 +94,24 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 .action.saved-on .action-icon{filter:drop-shadow(0 1px 1px rgba(180,83,9,.2));}
 .action-icon{font-size:18px;}
 
-/* Signature Economya Network */
-.net-sign{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:7px;width:calc(100% - 24px);max-width:340px;margin:22px auto 6px;padding:20px 16px 16px;border-radius:18px;background:#060b1c;text-align:center;box-shadow:0 14px 28px -20px rgba(37,70,160,.55),0 0 0 1px rgba(160,190,255,.14);}
-.net-sign::before{content:"";position:absolute;inset:-40%;z-index:-2;background:radial-gradient(circle at 30% 35%,rgba(37,70,160,.60),transparent 38%),radial-gradient(circle at 72% 60%,rgba(214,190,130,.16),transparent 36%),radial-gradient(circle at 50% 100%,rgba(70,110,220,.30),transparent 40%);animation:netAurora 10s ease-in-out infinite alternate;}
-.net-sign::after{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(160,190,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(160,190,255,.08) 1px,transparent 1px);background-size:18px 18px;-webkit-mask-image:radial-gradient(circle at 50% 38%,#000 0,transparent 72%);mask-image:radial-gradient(circle at 50% 38%,#000 0,transparent 72%);animation:netGrid 6s linear infinite;}
-.net-p{position:absolute;z-index:-1;width:4px;height:4px;border-radius:50%;background:#A9C4FF;box-shadow:0 0 6px 1px rgba(91,140,255,.7);opacity:0;animation:netFloatUp 6s ease-in infinite;}
-.net-p:nth-child(1){left:12%;bottom:18%;animation-delay:0s}.net-p:nth-child(2){left:26%;bottom:8%;animation-delay:1.4s;background:#E8D5A3;box-shadow:0 0 10px 2px rgba(232,213,163,.8)}
-.net-p:nth-child(3){left:44%;bottom:4%;animation-delay:2.8s}.net-p:nth-child(4){left:63%;bottom:10%;animation-delay:.9s;background:#E8D5A3;box-shadow:0 0 10px 2px rgba(232,213,163,.8)}
-.net-p:nth-child(5){left:79%;bottom:6%;animation-delay:3.6s}.net-p:nth-child(6){left:90%;bottom:20%;animation-delay:2.1s}
-.net-orb{width:60px;height:60px;display:block;filter:drop-shadow(0 0 8px rgba(91,140,255,.55));animation:netBreathe 4.5s ease-in-out infinite;transition:transform .3s;}
-.net-sign:hover .net-orb{animation-play-state:paused;transform:scale(1.1);}
-.net-word{font-family:'Playfair Display',serif;font-weight:900;font-size:1.35rem;letter-spacing:-.01em;color:#fff;line-height:1;margin-top:2px;animation:netRise .8s .1s both;}
-.net-word em{font-style:normal;background:linear-gradient(100deg,#5B8CFF 15%,#EAF1FF 40%,#E8D5A3 60%,#5B8CFF 85%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:netShine 4s linear infinite;}
-.net-tag{display:flex;align-items:center;gap:9px;font-size:9px;font-weight:800;letter-spacing:.45em;padding-left:.45em;text-transform:uppercase;color:#A9C4FF;text-shadow:0 0 8px rgba(91,140,255,.6);animation:netRise .8s .25s both;}
-.net-tag::before,.net-tag::after{content:"";width:26px;height:1px;background:linear-gradient(90deg,transparent,#5B8CFF);}
-.net-tag::after{transform:scaleX(-1);}
-.net-sub{font-size:10.5px;color:rgba(255,255,255,.62);letter-spacing:.03em;animation:netRise .8s .4s both;}
-.net-spin{transform-origin:60px 60px;animation:netSpin 9s linear infinite;}
-.net-spin2{transform-origin:60px 60px;animation:netSpin 14s linear infinite reverse;}
-.net-spoke{stroke-dasharray:3 14;animation:netFlow 1.2s linear infinite;}
-.net-ring{transform-box:fill-box;transform-origin:center;animation:netRipple 3.2s ease-out infinite;}
-.net-ring:nth-of-type(2){animation-delay:1.06s}.net-ring:nth-of-type(3){animation-delay:2.13s}
-.net-core{transform-box:fill-box;transform-origin:center;animation:netCore 2s ease-in-out infinite;}
-@keyframes netAurora{0%{transform:translate(-4%,-3%) rotate(0deg) scale(1)}100%{transform:translate(5%,4%) rotate(18deg) scale(1.15)}}
-@keyframes netGrid{to{background-position:0 18px,18px 0}}
-@keyframes netFloatUp{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:1}100%{transform:translateY(-90px) scale(1.1);opacity:0}}
-@keyframes netBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-@keyframes netSpin{to{transform:rotate(360deg)}}
-@keyframes netFlow{to{stroke-dashoffset:-34}}
-@keyframes netRipple{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.2);opacity:0}}
-@keyframes netCore{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
-@keyframes netShine{0%{background-position:220% 0}100%{background-position:-220% 0}}
-@keyframes netRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.net-sign *,.net-sign::before,.net-sign::after{animation:none!important}}
+/* Signature Economya Network (pixel / cartoon) */
+.net-sign{display:flex;flex-direction:column;align-items:center;gap:8px;width:calc(100% - 24px);max-width:320px;margin:24px auto 8px;padding:20px 16px 16px;border-radius:16px;background:#0B1B3F;background-image:radial-gradient(rgba(255,255,255,.07) 1.2px,transparent 1.4px);background-size:10px 10px;border:3px solid #060f26;box-shadow:5px 5px 0 #FFB703;text-align:center;transition:transform .15s,box-shadow .15s;}
+.net-sign:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 #FFB703;}
+.net-orb{width:66px;height:66px;display:block;shape-rendering:crispEdges;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.45));}
+.net-word{font-family:'Fredoka','Baloo 2',system-ui,sans-serif;font-weight:700;font-size:1.55rem;letter-spacing:.01em;color:#fff;line-height:1;margin-top:2px;text-shadow:2px 2px 0 #060f26;}
+.net-word em{font-style:normal;color:#FFC857;}
+.net-tag{display:flex;align-items:center;gap:8px;font-family:'Press Start 2P',ui-monospace,monospace;font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:#8FB0FF;}
+.net-tag::before,.net-tag::after{content:"";width:6px;height:6px;background:#FF9F1C;box-shadow:8px 0 0 #FFD43B,-8px 0 0 #FF6B4A;margin:0 8px;}
+.net-sub{font-family:'Fredoka',system-ui,sans-serif;font-weight:400;font-size:11.5px;color:rgba(255,255,255,.72);}
+.net-bob{animation:netBob 1.6s steps(2,end) infinite;}
+.net-bob:nth-of-type(2){animation-delay:.4s}.net-bob:nth-of-type(3){animation-delay:.8s}.net-bob:nth-of-type(4){animation-delay:1.2s}
+.net-line{animation:netBlink 2.4s steps(1,end) infinite;}
+.net-line.l2{animation-delay:.3s}.net-line.l3{animation-delay:.6s}.net-line.l4{animation-delay:.9s}
+.net-eye{animation:netEye 3.2s steps(1,end) infinite;}
+@keyframes netBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-.6px)}}
+@keyframes netBlink{0%,100%{opacity:.35}25%,75%{opacity:1}}
+@keyframes netEye{0%,90%,100%{opacity:1}94%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.net-sign *{animation:none!important}.net-sign{transition:none}}
 .fab{position:fixed;bottom:24px;right:20px;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:50;cursor:pointer;}
 .fab:active{transform:scale(.93);}
 
@@ -197,6 +182,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <link rel="canonical" href="https://economya.fr/forum-astuces" />
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Astuces", "description": "Découvrez et partagez de vraies astuces pour économiser, votées et testées par la communauté Economya. Rejoignez la discussion gratuitement.", "url": "https://economya.fr/forum-astuces"}</script>
 <link rel="preconnect" href="https://awelbxqiltokhsoddako.supabase.co" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Press+Start+2P&display=swap">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap" rel="stylesheet"></noscript>
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#085041">
@@ -245,24 +231,7 @@ button{font-family:'Inter',sans-serif;cursor:pointer;}
 <div class="stories" id="stories"></div>
 <div id="feed"><div class="loading">Chargement des astuces...</div></div>
 <div class="net-sign" aria-label="Economya Network">
-  <i class="net-p"></i><i class="net-p"></i><i class="net-p"></i><i class="net-p"></i><i class="net-p"></i><i class="net-p"></i>
-  <svg class="net-orb" viewBox="0 0 120 120" role="img" aria-hidden="true">
-    <defs>
-      <linearGradient id="ntEdge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EAF1FF"/><stop offset=".5" stop-color="#5B8CFF"/><stop offset="1" stop-color="#E8D5A3"/></linearGradient>
-      <radialGradient id="ntFill" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#14307a"/><stop offset="1" stop-color="#040712"/></radialGradient>
-    </defs>
-    <g class="net-spin"><circle cx="60" cy="60" r="56" fill="none" stroke="url(#ntEdge)" stroke-width="1.6" stroke-dasharray="1 7" stroke-linecap="round"/><circle cx="60.0" cy="4.0" r="3.2" fill="#E8D5A3"/><circle cx="11.5" cy="88.0" r="2.6" fill="#5B8CFF"/></g>
-    <g class="net-spin2"><circle cx="60" cy="60" r="48" fill="none" stroke="#5B8CFF" stroke-opacity=".5" stroke-width="1" stroke-dasharray="14 10"/><circle cx="101.6" cy="84.0" r="2.6" fill="#A9C4FF"/><circle cx="18.4" cy="36.0" r="2.2" fill="#E8D5A3"/></g>
-    <path d="M60 14L98 36V84L60 106L22 84V36Z" fill="url(#ntFill)" stroke="url(#ntEdge)" stroke-width="2.4" stroke-linejoin="round"/>
-    <circle class="net-ring" cx="60" cy="60" r="34" fill="none" stroke="#5B8CFF" stroke-width="1.6"/>
-    <circle class="net-ring" cx="60" cy="60" r="34" fill="none" stroke="#5B8CFF" stroke-width="1.6"/>
-    <circle class="net-ring" cx="60" cy="60" r="34" fill="none" stroke="#5B8CFF" stroke-width="1.6"/>
-    <path d="M60.0 38.0L79.1 49.0L79.1 71.0L60.0 82.0L40.9 71.0L40.9 49.0Z" fill="none" stroke="#5B8CFF" stroke-opacity=".5" stroke-width="1.4" stroke-linejoin="round"/>
-    <path class="net-spoke" d="M60 60L60.0 38.0M60 60L79.1 49.0M60 60L79.1 71.0M60 60L60.0 82.0M60 60L40.9 71.0M60 60L40.9 49.0" fill="none" stroke="#EAF1FF" stroke-width="2.2" stroke-linecap="round"/>
-    <circle cx="60.0" cy="38.0" r="3.6" fill="#5B8CFF"/><circle cx="79.1" cy="49.0" r="3.6" fill="#E8D5A3"/><circle cx="79.1" cy="71.0" r="3.6" fill="#5B8CFF"/><circle cx="60.0" cy="82.0" r="3.6" fill="#E8D5A3"/><circle cx="40.9" cy="71.0" r="3.6" fill="#5B8CFF"/><circle cx="40.9" cy="49.0" r="3.6" fill="#E8D5A3"/>
-    <circle class="net-core" cx="60" cy="60" r="8" fill="#fff"/>
-    <circle cx="60" cy="60" r="3.6" fill="#2F5FD0"/>
-  </svg>
+  <svg class="net-orb" viewBox="0 0 11 11" role="img" aria-hidden="true"><g class="net-line"><rect x="2" y="2" width="1" height="1" fill="#7FA6FF"/><rect x="3" y="3" width="1" height="1" fill="#7FA6FF"/></g><g class="net-line l2"><rect x="8" y="2" width="1" height="1" fill="#7FA6FF"/><rect x="7" y="3" width="1" height="1" fill="#7FA6FF"/></g><g class="net-line l3"><rect x="2" y="8" width="1" height="1" fill="#7FA6FF"/><rect x="3" y="7" width="1" height="1" fill="#7FA6FF"/></g><g class="net-line l4"><rect x="8" y="8" width="1" height="1" fill="#7FA6FF"/><rect x="7" y="7" width="1" height="1" fill="#7FA6FF"/></g><g class="net-bob"><rect x="0" y="0" width="2" height="2" fill="#FFD43B"/></g><g class="net-bob"><rect x="9" y="0" width="2" height="2" fill="#FF9F1C"/></g><g class="net-bob"><rect x="0" y="9" width="2" height="2" fill="#FF6B4A"/></g><g class="net-bob"><rect x="9" y="9" width="2" height="2" fill="#FFC857"/></g><rect x="4" y="4" width="3" height="3" fill="#FFFFFF"/><rect class="net-eye" x="5" y="5" width="1" height="1" fill="#0B1B3F"/></svg>
   <div class="net-word">Econom<em>ya</em></div>
   <div class="net-tag">Network</div>
   <div class="net-sub">Le réseau social de l’épargne</div>
