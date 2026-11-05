@@ -255,28 +255,46 @@ a{text-decoration:none;color:inherit;}
 .submit-btn:active:not(:disabled){transform:translateY(0);}
 .submit-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
 /* Signature Economya Business */
-.biz-sign{display:flex;flex-direction:column;align-items:center;gap:10px;padding:34px 16px 6px;text-align:center;}
-.biz-sign svg{display:block;filter:drop-shadow(0 10px 18px rgba(184,134,11,.28));}
-.biz-word{font-family:'Playfair Display',serif;font-weight:900;font-size:1.7rem;letter-spacing:-.01em;color:#085041;line-height:1;}
-.biz-word em{color:var(--gold);font-style:normal;}
-.biz-tag{display:flex;align-items:center;gap:12px;font-size:10.5px;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:#8a6a1c;}
-.biz-tag::before,.biz-tag::after{content:"";width:38px;height:1px;background:linear-gradient(90deg,transparent,#C9A24A);}
+.biz-sign{position:relative;isolation:isolate;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:12px;width:calc(100% - 24px);max-width:560px;margin:34px auto 10px;padding:46px 20px 40px;border-radius:28px;background:#060504;text-align:center;box-shadow:0 30px 60px -28px rgba(201,162,74,.50),0 0 0 1px rgba(139,240,200,.14);}
+.biz-sign::before{content:"";position:absolute;inset:-40%;z-index:-2;background:radial-gradient(circle at 30% 35%,rgba(201,162,74,.50),transparent 38%),radial-gradient(circle at 72% 60%,rgba(255,226,154,.20),transparent 36%),radial-gradient(circle at 50% 100%,rgba(184,134,11,.35),transparent 40%);animation:bizAurora 10s ease-in-out infinite alternate;}
+.biz-sign::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;z-index:-1;background:linear-gradient(105deg,transparent,rgba(255,226,154,.16),transparent);transform:skewX(-18deg);animation:bizSheen 5s ease-in-out infinite;}
+.biz-p{position:absolute;z-index:-1;width:4px;height:4px;border-radius:50%;background:#FDE68A;box-shadow:0 0 10px 2px rgba(245,192,74,.85);opacity:0;animation:bizFloatUp 6s ease-in infinite;}
+.biz-p:nth-child(1){left:12%;bottom:18%;animation-delay:0s}.biz-p:nth-child(2){left:26%;bottom:8%;animation-delay:1.4s;background:#F5C04A;box-shadow:0 0 10px 2px rgba(245,192,74,.8)}
+.biz-p:nth-child(3){left:44%;bottom:4%;animation-delay:2.8s}.biz-p:nth-child(4){left:63%;bottom:10%;animation-delay:.9s;background:#F5C04A;box-shadow:0 0 10px 2px rgba(245,192,74,.8)}
+.biz-p:nth-child(5){left:79%;bottom:6%;animation-delay:3.6s}.biz-p:nth-child(6){left:90%;bottom:20%;animation-delay:2.1s}
+.biz-orb{width:112px;height:112px;display:block;filter:drop-shadow(0 0 18px rgba(245,192,74,.65)) drop-shadow(0 0 40px rgba(184,134,11,.45));animation:bizBreathe 4.5s ease-in-out infinite;transition:transform .3s;}
+.biz-sign:hover .biz-orb{animation-play-state:paused;transform:scale(1.1);}
+.biz-word{font-family:'Playfair Display',serif;font-weight:900;font-size:2.5rem;letter-spacing:-.015em;color:#fff;line-height:1;margin-top:4px;animation:bizRise .8s .1s both;}
+.biz-word em{font-style:normal;background:linear-gradient(100deg,#F5C04A 15%,#FFF8DC 40%,#F5C04A 60%,#F5C04A 85%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:bizShine 4s linear infinite;}
+.biz-tag{display:flex;align-items:center;gap:14px;font-size:12px;font-weight:800;letter-spacing:.55em;padding-left:.55em;text-transform:uppercase;color:#FDE68A;text-shadow:0 0 14px rgba(245,192,74,.85);animation:bizRise .8s .25s both;}
+.biz-tag::before,.biz-tag::after{content:"";width:46px;height:1px;background:linear-gradient(90deg,transparent,#F5C04A);box-shadow:0 0 8px #F5C04A;}
 .biz-tag::after{transform:scaleX(-1);}
-.biz-sub{font-size:11.5px;color:var(--muted);letter-spacing:.02em;}
-@keyframes bizFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@keyframes bizDraw{0%{stroke-dashoffset:44;opacity:.2}35%,80%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:.2}}
-@keyframes bizPulse{0%,35%{r:2.6;opacity:0}45%{r:3.4;opacity:1}70%{r:2.6;opacity:1}100%{r:2.6;opacity:0}}
-@keyframes bizShine{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.biz-sub{font-size:13px;color:rgba(255,255,255,.62);letter-spacing:.03em;animation:bizRise .8s .4s both;}
+.biz-spin{transform-origin:60px 60px;animation:bizSpin 9s linear infinite;}
+.biz-spin2{transform-origin:60px 60px;animation:bizSpin 14s linear infinite reverse;}
+.biz-spoke{stroke-dasharray:3 14;animation:bizFlow 1.2s linear infinite;}
+.biz-ring{transform-box:fill-box;transform-origin:center;animation:bizRipple 3.2s ease-out infinite;}
+.biz-ring:nth-of-type(2){animation-delay:1.06s}.biz-ring:nth-of-type(3){animation-delay:2.13s}
+.biz-core{transform-box:fill-box;transform-origin:center;animation:bizCore 2s ease-in-out infinite;}
+@keyframes bizAurora{0%{transform:translate(-4%,-3%) rotate(0deg) scale(1)}100%{transform:translate(5%,4%) rotate(18deg) scale(1.15)}}
+@keyframes bizGrid{to{background-position:0 28px,28px 0}}
+@keyframes bizFloatUp{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:1}100%{transform:translateY(-190px) scale(1.1);opacity:0}}
+@keyframes bizBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+@keyframes bizSpin{to{transform:rotate(360deg)}}
+@keyframes bizFlow{to{stroke-dashoffset:-34}}
+@keyframes bizRipple{0%{transform:scale(.3);opacity:.9}100%{transform:scale(1.2);opacity:0}}
+@keyframes bizCore{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@keyframes bizShine{0%{background-position:220% 0}100%{background-position:-220% 0}}
 @keyframes bizRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.biz-sign svg{animation:bizFloat 4.5s ease-in-out infinite;transition:transform .3s;}
-.biz-sign:hover svg{animation-play-state:paused;transform:scale(1.07) rotate(-3deg);}
-.biz-arrow{stroke-dasharray:44;animation:bizDraw 3.6s ease-in-out infinite;}
-.biz-dot{animation:bizPulse 3.6s ease-in-out infinite;}
-.biz-word{animation:bizRise .8s .1s both;}
-.biz-word em{background:linear-gradient(100deg,#F59E0B 20%,#FFE29A 45%,#F59E0B 70%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:bizShine 4.5s linear infinite;}
-.biz-tag{animation:bizRise .8s .25s both;}
-.biz-sub{animation:bizRise .8s .4s both;}
-@media (prefers-reduced-motion:reduce){.biz-sign *,.biz-sign svg{animation:none!important}.biz-arrow{stroke-dasharray:none}}
+@media (prefers-reduced-motion:reduce){.biz-sign *,.biz-sign::before,.biz-sign::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;z-index:-1;background:linear-gradient(105deg,transparent,rgba(255,226,154,.16),transparent);transform:skewX(-18deg);animation:bizSheen 5s ease-in-out infinite;}}
+@keyframes bizSheen{0%,20%{left:-60%}70%,100%{left:130%}}
+.biz-bar{transform-box:fill-box;transform-origin:bottom;animation:bizBar 2.8s ease-in-out infinite;}
+.biz-bar:nth-of-type(2){animation-delay:.35s}.biz-bar:nth-of-type(3){animation-delay:.7s}
+@keyframes bizBar{0%,100%{transform:scaleY(.55)}50%{transform:scaleY(1)}}
+.biz-arrow{stroke-dasharray:60;animation:bizDraw 3.6s ease-in-out infinite;}
+@keyframes bizDraw{0%{stroke-dashoffset:60}40%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:-60}}
+.biz-core{transform-box:fill-box;transform-origin:center;animation:bizCore 2s ease-in-out infinite;}
+@keyframes bizCore{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
 .submit-btn:disabled{opacity:.5;cursor:not-allowed;}
 .form-msg{margin-top:14px;font-size:13px;padding:12px 14px;border-radius:10px;display:none;}
 .form-msg.ok{display:block;background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0;}
@@ -608,16 +626,20 @@ a{text-decoration:none;color:inherit;}
 </div>
 
 <div class="biz-sign" aria-label="Economya Business">
-  <svg width="64" height="64" viewBox="0 0 64 64" role="img" aria-hidden="true">
+  <i class="biz-p"></i><i class="biz-p"></i><i class="biz-p"></i><i class="biz-p"></i><i class="biz-p"></i><i class="biz-p"></i>
+  <svg class="biz-orb" viewBox="0 0 120 120" role="img" aria-hidden="true">
     <defs>
-      <linearGradient id="bzBg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#14201c"/><stop offset="1" stop-color="#0A0A0A"/></linearGradient>
-      <linearGradient id="bzGold" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#B8860B"/><stop offset=".55" stop-color="#F5C04A"/><stop offset="1" stop-color="#FDE68A"/></linearGradient>
+      <linearGradient id="bzEdge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF8DC"/><stop offset=".5" stop-color="#F5C04A"/><stop offset="1" stop-color="#B8860B"/></linearGradient>
+      <linearGradient id="bzBgx" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c1810"/><stop offset="1" stop-color="#050403"/></linearGradient>
     </defs>
-    <rect x="1" y="1" width="62" height="62" rx="18" fill="url(#bzBg)"/>
-    <rect x="1.5" y="1.5" width="61" height="61" rx="17.5" fill="none" stroke="url(#bzGold)" stroke-opacity=".55"/>
-    <path d="M20 44V20h20M20 32h15M20 44h22" fill="none" stroke="url(#bzGold)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path class="biz-arrow" d="M36 40l7-8 5 4 8-11" fill="none" stroke="#2BD39A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <circle class="biz-dot" cx="56" cy="25" r="2.6" fill="#FDE68A"/>
+    <rect x="6" y="6" width="108" height="108" rx="32" fill="url(#bzBgx)" stroke="url(#bzEdge)" stroke-width="2.4"/>
+    <rect x="12" y="12" width="96" height="96" rx="27" fill="none" stroke="#FDE68A" stroke-opacity=".25"/>
+    <rect class="biz-bar" x="66" y="64" width="8" height="30" rx="3" fill="#F5C04A" fill-opacity=".35"/>
+    <rect class="biz-bar" x="78" y="52" width="8" height="42" rx="3" fill="#F5C04A" fill-opacity=".5"/>
+    <rect class="biz-bar" x="90" y="38" width="8" height="56" rx="3" fill="#F5C04A" fill-opacity=".7"/>
+    <path d="M36 88V32h40M36 60h30M36 88h42" fill="none" stroke="url(#bzEdge)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <path class="biz-arrow" d="M58 76l16-18 12 9 18-24" fill="none" stroke="#2BD39A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle class="biz-core" cx="104" cy="43" r="5" fill="#FFF8DC"/>
   </svg>
   <div class="biz-word">Econom<em>ya</em></div>
   <div class="biz-tag">Business</div>
