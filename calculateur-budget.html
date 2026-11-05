@@ -197,6 +197,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <meta name="theme-color" content="#085041">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/nav-compact.css">
+<link rel="stylesheet" href="/tools.css">
 </head>
 <body>
 <nav>
@@ -230,15 +231,15 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <p style="font-size:.85rem;color:var(--m);margin-bottom:1rem">La règle 50/30/20 est un point de départ, pas une obligation. Ajustez les curseurs si votre loyer pèse plus lourd, ou si vous voulez épargner davantage.</p>
     <div style="display:flex;flex-direction:column;gap:.9rem">
       <label style="display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:600;color:var(--m)">
-        🏠 Besoins essentiels : <span id="pct-besoins-val">50</span>%
+        <span>🏠 Besoins essentiels : <span id="pct-besoins-val">50</span>%</span>
         <input type="range" id="pct-besoins" min="10" max="90" value="50" step="1">
       </label>
       <label style="display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:600;color:var(--m)">
-        🎉 Envies & loisirs : <span id="pct-envies-val">30</span>%
+        <span>🎉 Envies & loisirs : <span id="pct-envies-val">30</span>%</span>
         <input type="range" id="pct-envies" min="0" max="80" value="30" step="1">
       </label>
       <label style="display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:600;color:var(--m)">
-        💰 Épargne : <span id="pct-epargne-val">20</span>%
+        <span>💰 Épargne : <span id="pct-epargne-val">20</span>%</span>
         <input type="range" id="pct-epargne" min="0" max="80" value="20" step="1">
       </label>
     </div>
@@ -402,6 +403,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
 
+<script src="/tools.js"></script>
 <script>
 const sliders = {
   besoins: document.getElementById('pct-besoins'),

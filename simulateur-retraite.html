@@ -152,11 +152,11 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <meta name="twitter:description" content="Estimez votre future pension de retraite et calculez combien épargner pour maintenir votre niveau de vie. Gratuit sur Economya.fr">
   <meta name="twitter:image" content="https://economya.fr/og-image.png">
 <link rel="canonical" href="https://economya.fr/simulateur-retraite" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#085041">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/nav-compact.css">
+<link rel="stylesheet" href="/tools.css">
 </head>
 <body>
 <nav>
@@ -310,13 +310,14 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
+<script src="/tools.js"></script>
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
 let chartRetraite;
 function dessinerGraphique(epargneMensuelle, capitalNecessaire, anneesRestantes) {
   const canvas = document.getElementById('chartRetraite');
-  if (!canvas || anneesRestantes <= 0) { if(chartRetraite){chartRetraite.destroy(); chartRetraite=null;} return; }
+  if (!canvas || anneesRestantes <= 0) { if(canvas && canvas._eco){canvas._eco._last=null; canvas._eco.innerHTML='';} return; }
   const r = 0.05 / 12;
   const labels = [], dataCapital = [];
   for (let a = 0; a <= anneesRestantes; a++) {
@@ -325,41 +326,11 @@ function dessinerGraphique(epargneMensuelle, capitalNecessaire, anneesRestantes)
     labels.push(a + ' an' + (a > 1 ? 's' : ''));
     dataCapital.push(Math.round(cap));
   }
-  if (typeof Chart === 'undefined') { var cw = canvas.closest('.chart-wrap'); if (cw) cw.style.display = 'none'; return; }
-  if (chartRetraite) chartRetraite.destroy();
-  chartRetraite = new Chart(canvas.getContext('2d'), {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: 'Capital épargné (PER/ETF à 5%/an)',
-          data: dataCapital,
-          borderColor: '#1D9E75',
-          backgroundColor: 'rgba(29,158,117,0.1)',
-          fill: true,
-          tension: 0.3,
-          pointRadius: 2,
-        },
-        {
-          label: 'Capital nécessaire pour combler le manque',
-          data: labels.map(() => Math.round(capitalNecessaire)),
-          borderColor: '#EF9F27',
-          borderDash: [6, 4],
-          pointRadius: 0,
-          fill: false,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { position: 'bottom' },
-        tooltip: { callbacks: { label: ctx => ctx.dataset.label + ' : ' + ctx.parsed.y.toLocaleString('fr-FR') + ' €' } },
-      },
-      scales: { y: { ticks: { callback: v => v >= 1000 ? (v/1000).toFixed(0) + 'k €' : v + ' €' } } },
-    },
-  });
+  var cw0 = canvas.closest('.chart-wrap'); if (cw0) cw0.style.display = '';
+  EcoViz.line('chartRetraite', labels, [
+    { name: 'Capital épargné (PER/ETF à 5 %/an)', color: '#1D9E75', data: dataCapital, fill: true },
+    { name: 'Capital nécessaire pour combler le manque', color: '#EF9F27', data: labels.map(function () { return Math.round(capitalNecessaire); }), dash: '7 5', width: 2 }
+  ], { label: "Capital épargné comparé au capital nécessaire" });
 }
 
 const TRIMESTRES_REQUIS_TAUX_PLEIN = 168; // ≈ 42 ans — repère moyen, varie réellement de 166 à 172 trimestres selon l'année de naissance (voir info-retraite.fr)

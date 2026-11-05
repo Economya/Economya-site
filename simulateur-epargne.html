@@ -180,6 +180,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <meta name="theme-color" content="#085041">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/nav-compact.css">
+<link rel="stylesheet" href="/tools.css">
 </head>
 <body>
 <nav>
@@ -346,7 +347,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="/tools.js"></script>
 <script>
 const fmt = n => {
   if(n >= 1000000) return (n/1000000).toFixed(1) + 'M €';
@@ -417,65 +418,16 @@ function calculate() {
     tipEl.innerHTML += ` <br><br><strong>📉 Attention à l'inflation :</strong> avec ${(inflation*100).toFixed(1)}% d'inflation moyenne anticipée, vos ${fmt(capitalFinal)} de demain n'achèteront que l'équivalent de ${fmt(capitalFinalReel)} aujourd'hui — un écart de ${fmt(perteInflation)} en pouvoir d'achat réel.`;
   }
 
-  // Graphique (s'il n'est pas disponible, les résultats chiffrés restent affichés)
-  if(typeof Chart === 'undefined') { var cw = document.querySelector('.chart-wrap'); if(cw) cw.style.display = 'none'; return; }
-  if(chart) chart.destroy();
-  const ctx = document.getElementById('myChart').getContext('2d');
-  chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: 'Capital avec intérêts',
-          data: dataCapital,
-          borderColor: '#1D9E75',
-          backgroundColor: 'rgba(29,158,117,0.1)',
-          fill: true,
-          tension: 0.4,
-          pointRadius: 3
-        },
-        {
-          label: 'Total versé',
-          data: dataVerse,
-          borderColor: '#EF9F27',
-          backgroundColor: 'rgba(239,159,39,0.05)',
-          fill: true,
-          tension: 0.4,
-          borderDash: [5,5],
-          pointRadius: 2
-        },
-        {
-          label: "Capital en pouvoir d'achat actuel",
-          data: dataCapitalReel,
-          borderColor: '#9333ea',
-          backgroundColor: 'rgba(147,51,234,0.05)',
-          fill: false,
-          tension: 0.4,
-          borderDash: [2,3],
-          pointRadius: 2
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: { position: 'bottom' },
-        tooltip: {
-          callbacks: {
-            label: ctx => ctx.dataset.label + ' : ' + ctx.parsed.y.toLocaleString('fr-FR') + ' €'
-          }
-        }
-      },
-      scales: {
-        y: {
-          ticks: {
-            callback: v => v >= 1000 ? (v/1000).toFixed(0) + 'k €' : v + ' €'
-          }
-        }
-      }
-    }
-  });
+  // Visualisations (sans bibliothèque externe)
+  EcoViz.stack('viz-ep', [
+    { label: 'Total versé', value: totalVerse, color: '#F4B550' },
+    { label: 'Intérêts gagnés', value: Math.max(0, interets), color: '#5EE0B5' }
+  ], { title: 'Ce que vous versez / ce que votre argent rapporte' });
+  EcoViz.line('myChart', labels, [
+    { name: 'Capital avec intérêts', color: '#1D9E75', data: dataCapital, fill: true },
+    { name: 'Total versé', color: '#EF9F27', data: dataVerse, dash: '6 5' },
+    { name: "Capital en pouvoir d'achat actuel", color: '#9333ea', data: dataCapitalReel, dash: '2 4' }
+  ], { label: "Évolution du capital sur la durée de l'épargne" });
 }
 
 document.querySelectorAll('input[type=range]').forEach(el => {

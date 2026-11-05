@@ -152,6 +152,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <meta name="theme-color" content="#085041">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/nav-compact.css">
+<link rel="stylesheet" href="/tools.css">
 </head>
 <body>
 <nav>
@@ -225,10 +226,6 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <div class="chart-card" style="background:#fff;border-radius:16px;border:1px solid rgba(0,0,0,0.08);padding:1.4rem 1.5rem;margin:1.5rem 0">
     <h3 style="margin-bottom:.8rem">📈 Coût cumulé dans le temps</h3>
     <svg id="chart-loyer-achat" viewBox="0 0 600 220" style="width:100%;height:auto;overflow:visible" preserveAspectRatio="xMidYMid meet"></svg>
-    <div style="display:flex;gap:1.2rem;margin-top:.6rem;font-size:.8rem;color:#5F5E5A">
-      <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#4f46e5;margin-right:.3rem"></span>Acheter</span>
-      <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#059669;margin-right:.3rem"></span>Louer</span>
-    </div>
   </div>
 
   <div class="point-bascule">
@@ -294,33 +291,17 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
+<script src="/tools.js"></script>
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
 function drawChart(serieAchat, serieLoyer, dureeActuelle) {
-  const svg = document.getElementById('chart-loyer-achat');
-  if (!svg) return;
-  const W = 600, H = 220, padL = 40, padR = 10, padT = 10, padB = 24;
-  const n = serieAchat.length; // 30 points (années 1 à 30)
-  const allVals = serieAchat.concat(serieLoyer);
-  const minV = Math.min(0, ...allVals);
-  const maxV = Math.max(...allVals);
-  const x = i => padL + (i / (n - 1)) * (W - padL - padR);
-  const y = v => H - padB - ((v - minV) / (maxV - minV || 1)) * (H - padT - padB);
-
-  const path = (serie) => serie.map((v, i) => `${i === 0 ? 'M' : 'L'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
-
-  const xActuel = x(Math.min(dureeActuelle, n) - 1);
-
-  svg.innerHTML = `
-    <line x1="${padL}" y1="${H-padB}" x2="${W-padR}" y2="${H-padB}" stroke="#e5e5e0" stroke-width="1"/>
-    <line x1="${xActuel.toFixed(1)}" y1="${padT}" x2="${xActuel.toFixed(1)}" y2="${H-padB}" stroke="#EF9F27" stroke-width="1.5" stroke-dasharray="4,3"/>
-    <path d="${path(serieAchat)}" fill="none" stroke="#4f46e5" stroke-width="2.5"/>
-    <path d="${path(serieLoyer)}" fill="none" stroke="#059669" stroke-width="2.5"/>
-    <text x="${xActuel.toFixed(1)}" y="${padT + 10}" font-size="11" fill="#EF9F27" text-anchor="middle">${dureeActuelle} ans</text>
-    <text x="${padL}" y="${H-6}" font-size="10" fill="#5F5E5A">1 an</text>
-    <text x="${W-padR}" y="${H-6}" font-size="10" fill="#5F5E5A" text-anchor="end">30 ans</text>
-  `;
+  if (!window.EcoViz) return;
+  const labels = serieAchat.map((_, i) => (i + 1) + ' an' + (i > 0 ? 's' : ''));
+  EcoViz.line('chart-loyer-achat', labels, [
+    { name: 'Acheter (coût net)', color: '#4f46e5', data: serieAchat },
+    { name: 'Louer (coût net)', color: '#059669', data: serieLoyer }
+  ], { label: "Coût cumulé de l'achat comparé à la location", mark: Math.min(dureeActuelle, serieAchat.length) - 1, markLabel: dureeActuelle + ' ans' });
 }
 
 // Taux indicatifs : crédit ~3,7% (moyenne marché 25 ans, septembre 2026), placement alternatif ~5%/an (ETF monde)
@@ -440,9 +421,9 @@ function calculate() {
 
   // Conseil
   const tip = document.getElementById('tip-text');
-  if(bascule <= 5) {
+  if(bascule > 0 && bascule <= 5) {
     tip.innerHTML = `<strong>💡 Achat très rentable :</strong> Avec ce loyer élevé par rapport au prix d'achat, l'achat devient rentable en seulement ${bascule} ans. Si vous comptez rester plus de ${bascule} ans, achetez sans hésiter.`;
-  } else if(bascule <= 10) {
+  } else if(bascule > 0 && bascule <= 10) {
     tip.innerHTML = `<strong>⚖️ Situation équilibrée :</strong> Le point de bascule est à ${bascule} ans. Si vous restez moins longtemps, louez. Si vous prévoyez de rester, achetez.`;
   } else {
     tip.innerHTML = `<strong>🏢 Location avantageuse :</strong> Le marché immobilier local est cher. Investissez votre apport en ETF World à 5%/an — vous serez plus riche qu'en achetant sur cette durée.`;

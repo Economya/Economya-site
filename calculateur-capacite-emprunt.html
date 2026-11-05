@@ -172,6 +172,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <meta name="theme-color" content="#085041">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/nav-compact.css">
+<link rel="stylesheet" href="/tools.css">
 </head>
 <body>
 <nav>
@@ -316,6 +317,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
+<script src="/tools.js"></script>
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
@@ -357,6 +359,13 @@ function calculate() {
   document.getElementById('r-mensualite').textContent = fmt(mensualiteImmo);
   document.getElementById('r-emprunt').textContent = fmt(emprunt);
   document.getElementById('r-taux-endettement').textContent = tauxEndettement + '%';
+  if (window.EcoViz) {
+    EcoViz.stack('viz-cap', [
+      { label: 'Mensualité du crédit', value: mensualiteImmo, color: '#F4B550' },
+      { label: 'Crédits en cours', value: credits, color: '#FF9AA2' },
+      { label: 'Il vous reste', value: Math.max(0, revenus - mensualiteImmo - credits), color: '#5EE0B5' }
+    ], { title: 'Vos revenus mensuels', unit: ' €' });
+  }
 
   document.getElementById('d-revenus').textContent = fmt(revenus);
   document.getElementById('d-max').textContent = fmt(mensualiteMax);

@@ -191,6 +191,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <meta name="theme-color" content="#085041">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/nav-compact.css">
+<link rel="stylesheet" href="/tools.css">
 </head>
 <body>
 <nav>
@@ -373,6 +374,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
 </footer>
+<script src="/tools.js"></script>
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
@@ -470,6 +472,10 @@ function calculate() {
   document.getElementById('r-mensuel').textContent = fmt(impotNet / 12);
   document.getElementById('r-tmi').textContent = tmi + '%';
   document.getElementById('r-taux-moyen').textContent = tauxMoyen + '%';
+  window.EcoViz && EcoViz.stack('viz-ir', [
+    { label: 'Impôt à payer', value: impotNet, color: '#F4B550' },
+    { label: 'Il vous reste', value: Math.max(0, revenus - impotNet), color: '#5EE0B5' }
+  ], { title: 'Répartition de vos revenus de l\'année' });
 
   document.getElementById('d-revenus').textContent = fmt(revenus);
   document.getElementById('d-abattement').textContent = '- ' + fmt(abattement);
