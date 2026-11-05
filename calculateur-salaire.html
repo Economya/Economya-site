@@ -36,6 +36,8 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .options{display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1rem}
 .opt-field{display:flex;flex-direction:column;gap:.3rem}
 .opt-field label{font-size:.75rem;font-weight:600;color:var(--m);text-transform:uppercase;letter-spacing:.05em}
+.opt-check{display:flex;align-items:center;gap:.4rem;font-size:.85rem !important;font-weight:500 !important;text-transform:none !important;letter-spacing:0 !important;color:var(--t) !important;padding:.4rem 0;cursor:pointer}
+.opt-field input[type=number]{border:1px solid var(--b);border-radius:8px;padding:.4rem .8rem;font-family:inherit;font-size:.85rem;background:var(--bg);color:var(--t);width:6rem}
 .opt-field select{border:1px solid var(--b);border-radius:8px;padding:.4rem .8rem;font-family:inherit;font-size:.85rem;background:var(--bg);color:var(--t)}
 .results{background:linear-gradient(135deg,#1e3a5f,#1d6fa4);border-radius:var(--r);padding:2rem;color:white;margin-bottom:1.5rem}
 .results h2{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1.5rem;color:rgba(255,255,255,.8)}
@@ -195,7 +197,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <main><div class="mobile-menu" id="mobileMenu"><button class="close-btn" onclick="toggleMenu()">X</button><a href="/">Accueil</a><a href="/community">Community</a><a href="/economya-business">💼 Business</a><a href="/a-propos">A propos</a><a href="/comparateurs">Comparateurs</a><a href="/outils-gratuits">Outils gratuits</a><a href="/jeux">Jeux</a><a href="/forum-astuces">💡 Astuces</a><a href="/recherche">Rechercher</a><a href="#" id="navAvMobile">👤 Mon compte</a><a href="#" id="navAvMobileLogout" style="display:none;color:#DC2626">🚪 Déconnexion</a></div>
 <div class="hero">
   <h1>Calculateur <em>Salaire Brut / Net</em> 2026</h1>
-  <p>Convertissez instantanément votre salaire brut en net, ou inversement. Cotisations et prélèvement à la source inclus.</p>
+  <p>Convertissez instantanément votre salaire brut en net, ou inversement. Cotisations incluses, prélèvement à la source en option.</p>
 </div>
 <div class="container">
   <div class="card">
@@ -224,7 +226,16 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
           <option value="cadre">Cadre</option>
         </select>
       </div>
+      <div class="opt-field">
+        <label>Prélèvement à la source</label>
+        <label class="opt-check"><input type="checkbox" id="apres" onchange="calculate()"> Déduire mon prélèvement</label>
+      </div>
+      <div class="opt-field" id="pas-taux-field" style="display:none">
+        <label for="taux-pas">Mon taux (%)</label>
+        <input type="number" id="taux-pas" value="5" min="0" max="45" step="0.1" oninput="calculate()">
+      </div>
     </div>
+    <p id="note-statut" style="display:none;font-size:.78rem;color:var(--m);margin:0 0 .8rem">Fonctionnaire : estimation sur le traitement indiciaire (retenue pour pension 11,10 %), hors primes et régimes particuliers.</p>
   </div>
 
   <div class="results">
@@ -232,7 +243,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="res-grid">
       <div class="res-item highlight">
         <span class="num" id="r-net-mensuel">—</span>
-        <div class="lbl">Net mensuel</div>
+        <div class="lbl" id="lbl-net">Net mensuel avant impôt</div>
       </div>
       <div class="res-item">
         <span class="num" id="r-brut-mensuel">—</span>
@@ -244,7 +255,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
       <div class="res-item">
         <span class="num" id="r-pas">—</span>
-        <div class="lbl">Prélèvement à la source</div>
+        <div class="lbl" id="lbl-pas">Prélèvement à la source</div>
       </div>
     </div>
   </div>
@@ -258,8 +269,8 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="detail-row"><span class="lbl">Chômage (CSG/CRDS)</span><span class="amt" id="d-chomage">—</span></div>
     <div class="detail-row"><span class="lbl">Prévoyance & autres</span><span class="amt" id="d-prev">—</span></div>
     <div class="detail-row total"><span class="lbl">Salaire net avant impôt</span><span class="amt" id="d-net-avant">—</span></div>
-    <div class="detail-row"><span class="lbl">Prélèvement à la source (estimé)</span><span class="amt" id="d-pas2">—</span></div>
-    <div class="detail-row total"><span class="lbl">💰 Salaire net après impôt</span><span class="amt" id="d-net-apres">—</span></div>
+    <div class="detail-row" id="row-pas2"><span class="lbl">Prélèvement à la source</span><span class="amt" id="d-pas2">—</span></div>
+    <div class="detail-row total" id="row-net-apres"><span class="lbl">💰 Salaire net après impôt</span><span class="amt" id="d-net-apres">—</span></div>
   </div>
 
   <div class="tip" id="tip-text">Chargement...</div>
@@ -357,29 +368,35 @@ function setMode(m) {
 }
 
 function calculerCotisations(brutMensuel, statut) {
-  // Barème 2026 confirmé (sources convergentes URSSAF/AGIRC-ARRCO) :
-  // PMSS (Plafond Mensuel de la Sécurité Sociale) = 4005€ en 2026
+  // Barème 2026 : PMSS (plafond mensuel de la Sécurité sociale) = 4 005 €
   const PMSS = 4005;
+
+  if(statut === 'fonctionnaire') {
+    // Estimation sur le traitement : retenue pension civile 11,10 %, CSG/CRDS 9,70 % sur 98,25 %,
+    // contribution de solidarité 1 % (hors primes, RAFP et régimes particuliers)
+    const pension = brutMensuel * 0.1110;
+    const csgF = brutMensuel * 0.9825 * 0.0970;
+    const solidarite = (brutMensuel - pension) * 0.01;
+    return { secu: 0, retraite: pension, retraite2: 0, csg: csgF, prev: solidarite, total: pension + csgF + solidarite };
+  }
+
   const trancheT1 = Math.min(brutMensuel, PMSS);
   const trancheT2 = Math.max(0, brutMensuel - PMSS);
 
-  // Maladie salariale : SUPPRIMÉE depuis 2018 (0%)
+  // Maladie salariale : supprimée depuis 2018
   const secu = 0;
 
-  // Vieillesse de base : plafonnée 6,90% (T1) + déplafonnée 0,40% (totalité)
-  const vieillessePlafonnee = trancheT1 * 0.0690;
-  const vieillesseDeplafonnee = brutMensuel * 0.0040;
-  const retraite = vieillessePlafonnee + vieillesseDeplafonnee;
+  // Vieillesse de base : 6,90 % plafonnée + 0,40 % déplafonnée
+  const retraite = trancheT1 * 0.0690 + brutMensuel * 0.0040;
 
-  // Retraite complémentaire AGIRC-ARRCO : 3,15% (T1, identique cadre/non-cadre
-  // depuis la fusion 2019) + 8,64% (T2, part au-delà du PMSS)
-  const retraite2 = trancheT1 * 0.0315 + trancheT2 * 0.0864;
+  // AGIRC-ARRCO : 3,15 % (T1) + 8,64 % (T2), plus CEG 0,86 % (T1) / 1,08 % (T2) et CET 0,14 % au-delà du plafond
+  const retraite2 = trancheT1 * (0.0315 + 0.0086) + trancheT2 * (0.0864 + 0.0108) + (brutMensuel > PMSS ? brutMensuel * 0.0014 : 0);
 
-  // CSG/CRDS : 9,70% sur 98,25% du brut (abattement frais professionnels)
+  // CSG/CRDS : 9,70 % sur 98,25 % du brut
   const csg = brutMensuel * 0.9825 * 0.0970;
 
-  // Prévoyance obligatoire cadre (1,5% sur T1) ; facultative non-cadre (~0,5%, variable)
-  const prev = statut === 'cadre' ? trancheT1 * 0.015 : brutMensuel * 0.005;
+  // Prévoyance obligatoire cadre (1,5 % sur T1) + APEC 0,024 % ; facultative non-cadre (~0,5 %)
+  const prev = statut === 'cadre' ? trancheT1 * 0.015 + Math.min(brutMensuel, 4 * PMSS) * 0.00024 : brutMensuel * 0.005;
 
   const total = secu + retraite + retraite2 + csg + prev;
   return { secu, retraite, retraite2, csg, prev, total };
@@ -389,6 +406,10 @@ function calculate() {
   let valeur = +document.getElementById('salaire').value || 0;
   const periode = document.getElementById('periode').value;
   const statut = document.getElementById('statut').value;
+  const apres = document.getElementById('apres').checked;
+  const tauxPAS = Math.min(Math.max(+document.getElementById('taux-pas').value || 0, 0), 45) / 100;
+  document.getElementById('pas-taux-field').style.display = apres ? '' : 'none';
+  document.getElementById('note-statut').style.display = statut === 'fonctionnaire' ? '' : 'none';
 
   if(periode === 'annuel') valeur = valeur / 12;
 
@@ -399,7 +420,8 @@ function calculate() {
     cot = calculerCotisations(brutMensuel, statut);
     netAvantImpot = brutMensuel - cot.total;
   } else {
-    netAvantImpot = valeur;
+    // La valeur saisie est le net voulu : après prélèvement si la case est cochée
+    netAvantImpot = apres && tauxPAS < 1 ? valeur / (1 - tauxPAS) : valeur;
     // Résolution itérative (le taux n'est plus fixe à cause du tranchement PMSS)
     brutMensuel = netAvantImpot / 0.78; // estimation initiale
     for (let i = 0; i < 8; i++) {
@@ -411,15 +433,18 @@ function calculate() {
     cot = calculerCotisations(brutMensuel, statut);
   }
 
-  // Prélèvement à la source estimé (taux moyen ~10% pour salaire médian)
-  const tauxPAS = netAvantImpot < 1500 ? 0.02 : netAvantImpot < 2500 ? 0.07 : netAvantImpot < 4000 ? 0.12 : 0.17;
-  const pas = netAvantImpot * tauxPAS;
-  const netApresImpot = netAvantImpot - pas;
+  // Prélèvement à la source : seulement si l'utilisateur l'a demandé, avec son propre taux
+  const pas = apres ? netAvantImpot * tauxPAS : 0;
+  const netAffiche = netAvantImpot - pas;
 
-  document.getElementById('r-net-mensuel').textContent = fmt(netApresImpot);
+  document.getElementById('r-net-mensuel').textContent = fmt(netAffiche);
+  document.getElementById('lbl-net').textContent = apres ? 'Net mensuel après impôt' : 'Net mensuel avant impôt';
+  document.getElementById('r-pas').textContent = apres ? fmt(pas) : '—';
+  document.getElementById('lbl-pas').textContent = apres ? 'Prélèvement à la source' : 'Prélèvement non déduit';
+  document.getElementById('row-pas2').style.display = apres ? '' : 'none';
+  document.getElementById('row-net-apres').style.display = apres ? '' : 'none';
   document.getElementById('r-brut-mensuel').textContent = fmt(brutMensuel);
-  document.getElementById('r-net-annuel').textContent = fmt(netApresImpot * 12);
-  document.getElementById('r-pas').textContent = fmt(pas);
+  document.getElementById('r-net-annuel').textContent = fmt(netAffiche * 12);
 
   document.getElementById('d-brut').textContent = fmt(brutMensuel);
   document.getElementById('d-secu').textContent = '- ' + fmt(cot.secu);
@@ -429,9 +454,9 @@ function calculate() {
   document.getElementById('d-prev').textContent = '- ' + fmt(cot.prev);
   document.getElementById('d-net-avant').textContent = fmt(netAvantImpot);
   document.getElementById('d-pas2').textContent = '- ' + fmt(pas);
-  document.getElementById('d-net-apres').textContent = fmt(netApresImpot);
+  document.getElementById('d-net-apres').textContent = fmt(netAffiche);
 
-  const ratio = (netApresImpot / brutMensuel * 100).toFixed(0);
+  const ratio = brutMensuel > 0 ? (netAffiche / brutMensuel * 100).toFixed(0) : 0;
   const tip = document.getElementById('tip-text');
   tip.innerHTML = `<strong>💡 Info :</strong> Votre salaire net représente <strong>${ratio}%</strong> de votre brut. La règle générale : le net avant impôt est environ 76-78% du brut (cotisations salariales ~22-25% selon le statut et le dépassement du plafond de la Sécurité sociale).`;
 }

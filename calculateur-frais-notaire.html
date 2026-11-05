@@ -223,6 +223,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <button class="type-btn" onclick="setType('neuf')" id="btn-neuf">🏗️ Neuf</button>
         <button class="type-btn" onclick="setType('terrain')" id="btn-terrain">🌱 Terrain</button>
       </div>
+      <label id="maj-wrap" style="display:flex;align-items:flex-start;gap:.5rem;margin-top:.9rem;font-size:.85rem;color:var(--m);cursor:pointer;line-height:1.4"><input type="checkbox" id="dept-majore" checked onchange="calculate()" style="margin-top:.2rem"> <span>Mon département applique le taux majoré (6,32 % de droits de mutation). Décochez si votre département est resté au taux de base (5,81 %).</span></label>
     </div>
 
     <div class="grid2">
@@ -407,9 +408,11 @@ function calculate() {
   document.getElementById('v-mobilier').innerHTML = mobilier.toLocaleString('fr-FR') + ' <span>€</span>';
 
   let taxes, tauxTotal, typeLabel;
+  const tauxDMTO = document.getElementById('dept-majore').checked ? 0.0632 : 0.0581;
+  document.getElementById('maj-wrap').style.display = typeActuel === 'neuf' ? 'none' : 'flex';
 
   if(typeActuel === 'ancien') {
-    taxes = base * 0.0632; // ~6,32% droits mutation ancien (taux majore 2026, majorite des departements)
+    taxes = base * tauxDMTO; // 6,32 % (taux majoré, majorité des départements) ou 5,81 % (taux de base)
     tauxTotal = 8;
     typeLabel = 'Ancien';
   } else if(typeActuel === 'neuf') {
@@ -417,7 +420,7 @@ function calculate() {
     tauxTotal = 3;
     typeLabel = 'Neuf';
   } else {
-    taxes = base * 0.0632; // taux majore 2026, meme regime DMTO que l'ancien
+    taxes = base * tauxDMTO; // même régime de droits de mutation que l'ancien
     tauxTotal = 8.5;
     typeLabel = 'Terrain';
   }

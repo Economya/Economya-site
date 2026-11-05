@@ -417,7 +417,8 @@ function calculate() {
     tipEl.innerHTML += ` <br><br><strong>📉 Attention à l'inflation :</strong> avec ${(inflation*100).toFixed(1)}% d'inflation moyenne anticipée, vos ${fmt(capitalFinal)} de demain n'achèteront que l'équivalent de ${fmt(capitalFinalReel)} aujourd'hui — un écart de ${fmt(perteInflation)} en pouvoir d'achat réel.`;
   }
 
-  // Graphique
+  // Graphique (s'il n'est pas disponible, les résultats chiffrés restent affichés)
+  if(typeof Chart === 'undefined') { var cw = document.querySelector('.chart-wrap'); if(cw) cw.style.display = 'none'; return; }
   if(chart) chart.destroy();
   const ctx = document.getElementById('myChart').getContext('2d');
   chart = new Chart(ctx, {

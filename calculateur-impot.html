@@ -222,8 +222,8 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
           <option value="2.5">Couple + 1 enfant (2,5 parts)</option>
           <option value="3">Couple + 2 enfants (3 parts)</option>
           <option value="4">Couple + 3 enfants (4 parts)</option>
-          <option value="1.5">Parent isolé + 1 enfant (1,5 part)</option>
-          <option value="2">Parent isolé + 2 enfants (2 parts)</option>
+          <option value="i2">Parent isolé + 1 enfant (2 parts)</option>
+          <option value="i2.5">Parent isolé + 2 enfants (2,5 parts)</option>
         </select>
       </div>
       <div class="field">
@@ -285,6 +285,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="detail-row"><span class="lbl">Nombre de parts fiscales</span><span id="d-parts">—</span></div>
     <div class="detail-row"><span class="lbl">Revenu par part</span><span id="d-par-part">—</span></div>
     <div class="detail-row"><span class="lbl">Impôt brut calculé</span><span id="d-brut">—</span></div>
+    <div class="detail-row" id="row-qf" style="display:none"><span class="lbl">dont plafonnement du quotient familial (impôt relevé)</span><span id="d-qf">—</span></div>
     <div class="detail-row" id="row-cehr" style="display:none"><span class="lbl">dont CEHR (contribution exceptionnelle sur les hauts revenus)</span><span id="d-cehr">—</span></div>
     <div class="detail-row"><span class="lbl"><strong>Impôt net à payer</strong></span><span id="d-net">—</span></div>
   </div>
@@ -410,7 +411,10 @@ function calcCEHR(rfr, couple) {
 
 function calculate() {
   const revenus = +document.getElementById('revenus').value;
-  const parts = +document.getElementById('situation').value;
+  const sitVal = document.getElementById('situation').value;
+  const isole = sitVal.charAt(0) === 'i';
+  const parts = parseFloat(sitVal.replace('i', ''));
+  const couple = !isole && parts >= 2;
   const deductions = +document.getElementById('deductions').value;
   const fraisReels = +document.getElementById('fraisReels').value;
 
@@ -427,18 +431,33 @@ function calculate() {
   const revenuImposable = Math.max(0, revenus - abattement - deductions);
   const revenuParPart = revenuImposable / parts;
 
-  const impotBrut = calcImpot(revenuParPart) * parts;
+  let impotBrut = calcImpot(revenuParPart) * parts;
+
+  // Plafonnement du quotient familial (revenus 2025) : l'avantage lié aux parts supplémentaires est limité.
+  // 1 807 € par demi-part ; parent isolé : 4 262 € pour la première part supplémentaire.
+  let plafondQF = 0, baseParts = isole ? 1 : (couple ? 2 : 1);
+  if(isole) plafondQF = 4262 + Math.max(0, parts - 2) * 2 * 1807;
+  else if(couple) plafondQF = (parts - 2) * 2 * 1807;
+  let plafonnement = 0;
+  if(plafondQF > 0) {
+    const impotBase = calcImpot(revenuImposable / baseParts) * baseParts;
+    if(impotBase - impotBrut > plafondQF) {
+      plafonnement = impotBase - plafondQF - impotBrut;
+      impotBrut = impotBase - plafondQF;
+    }
+  }
+  document.getElementById('row-qf').style.display = plafonnement > 0 ? '' : 'none';
+  document.getElementById('d-qf').textContent = fmt(plafonnement);
 
   // Décote (si impôt < seuil)
   let impotNet = impotBrut;
-  const seuilDecote = parts === 1 ? 1982 : 3277;
+  // Décote : seuils « personne seule » (célibataire, parent isolé) ou « couple »
+  const seuilDecote = couple ? 3277 : 1982;
   if(impotBrut < seuilDecote) {
-    const decote = parts === 1 ? 897 - impotBrut * 0.4525 : 1483 - impotBrut * 0.4525;
+    const decote = couple ? 1483 - impotBrut * 0.4525 : 897 - impotBrut * 0.4525;
     impotNet = Math.max(0, impotBrut - Math.max(0, decote));
   }
 
-  const sel = document.getElementById('situation');
-  const couple = sel.options[sel.selectedIndex].text.startsWith('Couple');
   const cehr = calcCEHR(revenuImposable, couple);
   impotNet += cehr;
   document.getElementById('row-cehr').style.display = cehr > 0 ? '' : 'none';
@@ -456,7 +475,7 @@ function calculate() {
   document.getElementById('d-abattement').textContent = '- ' + fmt(abattement);
   document.getElementById('d-deductions').textContent = deductions > 0 ? '- ' + fmt(deductions) : fmt(0);
   document.getElementById('d-imposable').textContent = fmt(revenuImposable);
-  document.getElementById('d-parts').textContent = parts + ' part' + (parts > 1 ? 's' : '');
+  document.getElementById('d-parts').textContent = String(parts).replace('.', ',') + ' part' + (parts > 1 ? 's' : '');
   document.getElementById('d-par-part').textContent = fmt(revenuParPart);
   document.getElementById('d-brut').textContent = fmt(impotBrut);
   document.getElementById('d-net').textContent = fmt(impotNet);

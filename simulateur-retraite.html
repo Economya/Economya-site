@@ -325,6 +325,7 @@ function dessinerGraphique(epargneMensuelle, capitalNecessaire, anneesRestantes)
     labels.push(a + ' an' + (a > 1 ? 's' : ''));
     dataCapital.push(Math.round(cap));
   }
+  if (typeof Chart === 'undefined') { var cw = canvas.closest('.chart-wrap'); if (cw) cw.style.display = 'none'; return; }
   if (chartRetraite) chartRetraite.destroy();
   chartRetraite = new Chart(canvas.getContext('2d'), {
     type: 'line',

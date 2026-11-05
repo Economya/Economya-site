@@ -219,6 +219,10 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <input type="number" id="montant" value="10000" min="0" max="100000" step="100">
         <span>€</span>
       </div>
+      <div style="margin-top:.8rem;display:flex;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.86rem">
+        <label for="tauxActuel">Aujourd'hui, cet argent me rapporte :</label>
+        <input type="number" id="tauxActuel" value="0" min="0" max="10" step="0.1" style="width:5rem;border:1px solid rgba(0,0,0,.15);border-radius:8px;padding:.35rem .6rem;font-family:inherit"> <span>% par an (0 si c'est sur un compte courant)</span>
+      </div>
       <div class="eligibilite" style="margin-top:.8rem;display:flex;flex-direction:column;gap:.4rem;font-size:.86rem">
         <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer"><input type="checkbox" id="eligibleLEP"> Je suis éligible au LEP (revenus modestes)</label>
         <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer"><input type="checkbox" id="eligibleLJ"> J'ai entre 12 et 25 ans (Livret Jeune)</label>
@@ -462,6 +466,15 @@ function renderRepartition(montant) {
   } else {
     tip.innerHTML = '';
   }
+
+  // Manque à gagner par rapport à la situation actuelle de l'utilisateur
+  if (montant > 0 && gainTotal > 0) {
+    const tauxActuel = Math.min(Math.max(+document.getElementById('tauxActuel').value || 0, 0), 10);
+    const perte = gainTotal - montant * tauxActuel / 100;
+    if (perte > 1) {
+      tip.innerHTML += `<div style="margin-top:.7rem"><strong>📉 Combien je perds ?</strong> En laissant ${fmt(montant)} à ${tauxActuel.toLocaleString('fr-FR')} % par an, vous passez à côté d'environ <strong>${fmt(perte)} par an</strong>, soit au moins ${fmt(perte * 5)} sur 5 ans (hors intérêts composés).</div>`;
+    }
+  }
 }
 
 function afficherFondsUrgence(montant) {
@@ -548,6 +561,7 @@ function calculate() {
 }
 
 document.getElementById('montant').addEventListener('input', calculate);
+document.getElementById('tauxActuel').addEventListener('input', calculate);
 document.getElementById('eligibleLEP').addEventListener('change', calculate);
 document.getElementById('eligibleLJ').addEventListener('change', calculate);
 document.getElementById('accepteBlocage').addEventListener('change', calculate);
@@ -712,5 +726,6 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 </div>
 <script src="account-nav.js" defer></script>
 <script src="/cookie-manage.js" defer></script>
+<script src="/maj-auto.js" defer></script>
 </body>
 </html>
