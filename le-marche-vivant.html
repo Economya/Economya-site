@@ -224,6 +224,7 @@ function startGame(){
   document.getElementById('screen-over').classList.remove('active');
   document.getElementById('hud').style.display='block';
   document.getElementById('resultBanner').classList.remove('show');
+  document.querySelector('.action-row').style.display = ''; // le bouton « Valider » restait caché après « Rejouer »
   resetParts();
   portfolioValue = START_VALUE; npcValue = START_VALUE; trend = 0; turn = 1;
   running = true;
@@ -262,7 +263,7 @@ function validateTurn(){
     endGame();
     return;
   }
-  resetParts();
+  // On garde la répartition du tour précédent : le joueur ne la refait pas à chaque tour, il l'ajuste.
   updateHud();
   renderAssets();
 }

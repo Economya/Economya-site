@@ -159,8 +159,9 @@ function startGame(){
   playerLane=1;playerY=0;tiles=[];coins=[];obstacles=[];particles=[];
   score=0;lives=3;combo=0;speed=2.5;scroll=0;spawnTimer=0;running=true;
   updateHud();
-  // Générer les premières tuiles
-  for(let d=0;d<20;d++) spawnRow(d*TILE_H);
+  // Piste complète dès le départ (du haut jusqu'en bas de l'écran), sans trou.
+  // Aucun bonus ni dette dans la zone du coureur : le joueur a le temps de voir venir le premier obstacle.
+  for(let y=-TILE_H*2;y<H+TILE_H*2;y+=TILE_H) spawnRow(y, y>H*0.25);
   if(!rafStarted){rafStarted=true;requestAnimationFrame(loop);}
 }
 
@@ -169,10 +170,10 @@ function updateHud(){
   document.getElementById('hudLives').textContent='❤️'.repeat(Math.max(0,lives));
 }
 
-function spawnRow(y){
+function spawnRow(y,sansObjet){
   for(let l=0;l<LANES;l++) tiles.push({lane:l,y,type:'floor'});
   // Spawner pièce ou obstacle
-  if(y<-200) return;
+  if(sansObjet) return;
   if(Math.random()<0.4){
     const lane=Math.floor(Math.random()*LANES);
     if(Math.random()<0.6) coins.push({lane,y:y-10,icon:COIN_ICONS[Math.floor(Math.random()*COIN_ICONS.length)],collected:false});
@@ -219,12 +220,11 @@ function loop(){
   if(running){
     scroll+=speed;
     if(speed<7)speed+=0.003;
-    spawnTimer+=speed;
-    if(spawnTimer>TILE_H){
-      spawnTimer=0;
-      spawnRow(-TILE_H*2);
-    }
     tiles.forEach(t=>t.y+=speed);
+    // Nouvelle rangée posée exactement au-dessus de la plus haute : la piste ne se troue plus.
+    let topY=Infinity;
+    for(const t of tiles){ if(t.y<topY) topY=t.y; }
+    while(topY>-TILE_H*2){ topY-=TILE_H; spawnRow(topY); }
     coins.forEach(c=>c.y+=speed);
     obstacles.forEach(o=>o.y+=speed);
 
@@ -317,9 +317,15 @@ function loop(){
 
   // Joueur
   const px=laneToX(playerLane),py=H*0.6;
-  ctx.font='28px serif';
+  // halo sous le coureur pour bien le repérer
+  ctx.save();
+  ctx.fillStyle='rgba(255,213,79,.22)';
+  ctx.beginPath();ctx.ellipse(px,py-4,26,11,0,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle='rgba(255,213,79,.7)';ctx.lineWidth=2;ctx.stroke();
+  ctx.restore();
+  ctx.font='38px serif';
   ctx.textAlign='center';ctx.textBaseline='middle';
-  ctx.fillText('🏃',px,py-TILE_H*0.5);
+  ctx.fillText('🏃',px,py-TILE_H*0.6);
 
   // Particules
   particles.forEach(p=>{

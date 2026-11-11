@@ -58,7 +58,7 @@ html{overflow-y:scroll}
   @keyframes rankPop{ 0%{opacity:0; transform:translateX(-50%) translateY(8px) scale(.85);} 20%{opacity:1; transform:translateX(-50%) translateY(0) scale(1.1);} 75%{opacity:1;} 100%{opacity:0; transform:translateX(-50%) translateY(-12px);} }
 
   canvas{ display:block; width:100%; height:100%; touch-action:none; }
-  .joy-hint{ position:absolute; top:14px; left:0; right:0; text-align:center; font-size:12.5px; color:var(--ink-dim); z-index:5; pointer-events:none; }
+  .joy-hint{ position:absolute; top:58px; left:0; right:0; text-align:center; font-size:12.5px; color:var(--ink-dim); z-index:5; pointer-events:none; }
 
   .joystick-base{
     position:absolute; bottom:26px; left:26px; width:132px; height:132px; border-radius:50%;
@@ -263,6 +263,37 @@ if(isTouchDevice){
   joystickBase.addEventListener('pointerdown', joyStart);
   window.addEventListener('pointermove', joyMove);
   window.addEventListener('pointerup', joyEnd);
+}
+
+// Clavier (ordinateur) : flèches ou ZQSD pour diriger la boule
+const touchesClavier = { g:false, d:false, h:false, b:false };
+const CARTE_TOUCHES = { ArrowLeft:'g', q:'g', a:'g', ArrowRight:'d', d:'d', ArrowUp:'h', z:'h', w:'h', ArrowDown:'b', s:'b' };
+function appliquerClavier(){
+  if(!running || joyActive) return;
+  const dx = (touchesClavier.d?1:0) - (touchesClavier.g?1:0);
+  const dy = (touchesClavier.b?1:0) - (touchesClavier.h?1:0);
+  if(dx || dy){
+    const d = Math.hypot(dx,dy);
+    joyDX = dx/d*JOY_MAXD; joyDY = dy/d*JOY_MAXD;
+    joystickKnob.style.transform = `translate(${joyDX}px, ${joyDY}px)`;
+  } else resetJoyKnob();
+}
+window.addEventListener('keydown', e=>{
+  const k = CARTE_TOUCHES[e.key] || CARTE_TOUCHES[(e.key||'').toLowerCase()];
+  if(!k) return;
+  touchesClavier[k] = true;
+  if(running) e.preventDefault();
+  appliquerClavier();
+});
+window.addEventListener('keyup', e=>{
+  const k = CARTE_TOUCHES[e.key] || CARTE_TOUCHES[(e.key||'').toLowerCase()];
+  if(!k) return;
+  touchesClavier[k] = false;
+  appliquerClavier();
+});
+if(!isTouchDevice){
+  const h = document.getElementById('joyHint');
+  if(h) h.textContent = 'Flèches du clavier ou joystick pour diriger votre boule';
 }
 
 function startGame(){

@@ -97,7 +97,7 @@ html{overflow-y:scroll}
 
 <div class="wrap" id="wrap">
   <div id="hud" style="display:none;">
-    <div class="hud-row"><span>Tempête <b id="hudStorm">1</b>/5</span><span>Œufs restants : <b id="hudEggs">12</b>/12</span></div>
+    <div class="hud-row"><span>Tempête <b id="hudStorm">1</b>/5</span><span>Œufs restants : <b id="hudEggs">12/12</b></span></div>
   </div>
   <div class="islands" id="islands"></div>
   <div class="action-row" id="actionRow" style="display:none;">
@@ -108,7 +108,7 @@ html{overflow-y:scroll}
   <div class="overlay active" id="screen-intro">
     <div class="eyebrow">Economya.fr · Simulation</div>
     <h1 class="title">L'Île aux <span>Œufs</span></h1>
-    <p class="lede">Répartissez vos 12 œufs entre 4 îles avant chaque tempête. À chaque tempête, une île au hasard perd tous ses œufs. 5 tempêtes au total : combien en récupérerez-vous à la fin ?</p>
+    <p class="lede">Répartissez vos 12 œufs entre 4 îles avant chaque tempête. À chaque tempête, une île au hasard perd tous ses œufs, pour de bon : vous redistribuez ensuite ceux qui restent. 5 tempêtes au total : combien en récupérerez-vous à la fin ?</p>
     <div class="disclaimer">⚠️ Simulation pédagogique fictive. Ne constitue en aucun cas un conseil en investissement.</div>
     <button class="btn btn-primary" onclick="startGame()">Jouer</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -134,10 +134,12 @@ const TOTAL_STORMS = 5;
 let islands = [];
 let stormsPassed = 0, running = false;
 let best = 0;
+// Œufs encore en vie : ceux qu'une tempête emporte sont perdus pour de bon (avant, on pouvait les reposer gratuitement).
+let pool = TOTAL_EGGS;
 
 try{ best = parseInt(localStorage.getItem('ileAuxOeufsBest')||'0',10); }catch(e){}
 
-function remainingEggs(){ return islands.reduce((s,i)=>s+i.eggs,0); }
+function remainingEggs(){ return pool; }
 function allocatedEggs(){ return islands.reduce((s,i)=>s+i.eggs,0); }
 
 function buildIslands(){
@@ -172,10 +174,10 @@ function renderIslands(){
   });
   const total = remainingEggs();
   const el = document.getElementById('btnLock');
-  if(el) el.disabled = total !== TOTAL_EGGS;
+  if(el) el.disabled = allocatedEggs() !== pool;
 }
 
-function budgetPool(){ return TOTAL_EGGS - allocatedEggs(); }
+function budgetPool(){ return pool - allocatedEggs(); }
 
 function updateHud(){
   document.getElementById('hudStorm').textContent = stormsPassed+1;
@@ -184,7 +186,7 @@ function updateHud(){
 
 function addEgg(i){
   if(!running) return;
-  if(allocatedEggs() >= TOTAL_EGGS) return;
+  if(allocatedEggs() >= pool) return;
   islands[i].eggs++;
   renderIslands(); updateHud();
 }
@@ -201,21 +203,22 @@ function startGame(){
   document.getElementById('hud').style.display='flex';
   document.getElementById('actionRow').style.display='block';
   buildIslands();
-  stormsPassed = 0; running = true;
+  stormsPassed = 0; running = true; pool = TOTAL_EGGS;
   updateHud(); renderIslands();
 }
 
 function lockAllocation(){
   if(!running) return;
   const total = allocatedEggs();
-  if(total !== TOTAL_EGGS) {
-    alert('Répartissez bien vos '+TOTAL_EGGS+' œufs avant de valider (il en reste '+(TOTAL_EGGS-total)+' à placer).');
+  if(total !== pool) {
+    alert('Répartissez bien vos '+pool+' œufs avant de valider (il en reste '+(pool-total)+' à placer).');
     return;
   }
   const banner = document.getElementById('stormBanner');
   banner.classList.add('show');
   setTimeout(()=>{
     const victim = Math.floor(Math.random()*ISLAND_COUNT);
+    pool -= islands[victim].eggs;
     islands[victim].eggs = 0;
     islands[victim].wiped = true;
     renderIslands(); updateHud();
@@ -224,7 +227,7 @@ function lockAllocation(){
     setTimeout(()=>{
       islands.forEach(isl=>isl.wiped=false);
       renderIslands();
-      if(stormsPassed >= TOTAL_STORMS){ endGame(); }
+      if(stormsPassed >= TOTAL_STORMS || pool <= 0){ endGame(); }
     }, 500);
   }, 1200);
 }

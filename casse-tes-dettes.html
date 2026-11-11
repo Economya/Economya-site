@@ -218,7 +218,22 @@ function launch(){
   ball.vy = Math.sin(angle)*ballSpeed;
 }
 canvas.addEventListener('pointerdown', e=>{ movePaddle(e.clientX); launch(); });
-canvas.addEventListener('pointermove', e=>{ if(e.buttons===1 || e.pointerType==='touch') movePaddle(e.clientX); });
+canvas.addEventListener('pointermove', e=>movePaddle(e.clientX)); // à la souris, la raquette suit le curseur sans maintenir le clic
+// Clavier (ordinateur) : flèches gauche / droite pour bouger, Espace ou flèche haut pour lancer la balle
+let keyDir = 0;
+window.addEventListener('keydown', e=>{
+  if(e.key==='ArrowLeft') keyDir = -1;
+  else if(e.key==='ArrowRight') keyDir = 1;
+  else if(e.code==='Space' || e.key==='ArrowUp') launch();
+  else return;
+  if(running) e.preventDefault();
+});
+window.addEventListener('keyup', e=>{ if(e.key==='ArrowLeft' || e.key==='ArrowRight') keyDir = 0; });
+setInterval(()=>{
+  if(!keyDir || !running) return;
+  paddle.x = Math.max(paddle.w/2, Math.min(W-paddle.w/2, paddle.x + keyDir*9));
+  if(!launched) ball.x = paddle.x;
+}, 16);
 canvas.addEventListener('touchmove', e=>{ movePaddle(e.touches[0].clientX); e.preventDefault(); }, {passive:false});
 canvas.addEventListener('touchstart', e=>{ movePaddle(e.touches[0].clientX); launch(); }, {passive:true});
 
