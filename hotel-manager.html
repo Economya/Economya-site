@@ -112,6 +112,9 @@ body{display:flex;align-items:flex-start;justify-content:center;padding:16px;ove
 .lesson b{color:var(--gold);}
 .btn-replay{background:var(--gold);color:#1A0A00;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;cursor:pointer;width:100%;margin-bottom:8px;font-family:'Space Grotesk',sans-serif;}
 .btn-share{background:var(--card);border:1px solid var(--border);color:var(--ink);border-radius:14px;padding:13px;font-size:14px;font-weight:600;cursor:pointer;width:100%;font-family:'Inter',sans-serif;}
+
+/* Correctif : le bloc légal passe sous le jeu au lieu de l'écraser en demi-largeur */
+body{flex-direction:column;align-items:center;justify-content:flex-start;padding-top:56px;}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">

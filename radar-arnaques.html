@@ -223,6 +223,9 @@ html{overflow-y:scroll}
     h1.title{ font-size:32px; }
     .card{ padding:22px 18px; min-height:200px; }
   }
+
+/* Correctif : le bloc légal passe sous le jeu au lieu de l'écraser en demi-largeur */
+body{flex-direction:column;align-items:center;justify-content:flex-start;padding-top:56px;}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
@@ -361,7 +364,9 @@ function startGame(){
   loadCard();
 }
 
+let answerLocked = false;
 function loadCard(){
+  answerLocked = false;
   if(idx >= order.length){ return endGame(); }
   const item = order[idx];
   document.getElementById('cardKind').textContent = item.kind;
@@ -403,6 +408,9 @@ function answer(saidScam){
 }
 
 function registerAnswer(saidScam){
+  if(answerLocked || idx >= order.length) return;
+  answerLocked = true;
+  clearInterval(timerInterval);
   const item = order[idx];
   const correct = saidScam === item.isScam;
   if(saidScam !== null && correct) score++;

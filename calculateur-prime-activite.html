@@ -239,8 +239,10 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="field">
         <label>Logement</label>
         <select id="logement" onchange="calculate()">
-          <option value="locataire">Locataire</option>
-          <option value="proprietaire">Propriétaire</option>
+          <option value="locataire">Locataire sans aide au logement</option>
+          <option value="locataire_apl">Locataire avec aide au logement (APL)</option>
+          <option value="proprietaire">Propriétaire avec un crédit en cours</option>
+          <option value="proprio_sans_credit">Propriétaire sans crédit</option>
           <option value="heberge">Hébergé gratuitement</option>
         </select>
       </div>
@@ -258,11 +260,11 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
       <div class="res-item">
         <span class="num" id="r-forfait">—</span>
-        <div class="lbl">Forfait logement inclus</div>
+        <div class="lbl">Forfait logement déduit</div>
       </div>
       <div class="res-item">
         <span class="num" id="r-plafond">—</span>
-        <div class="lbl">Plafond de revenus</div>
+        <div class="lbl">Montant forfaitaire du foyer</div>
       </div>
     </div>
   </div>
@@ -357,6 +359,9 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </script>
 
 </main>
+<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
+Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière. <strong>✅ Barèmes et taux vérifiés le 23/10/2026.</strong>
+</div>
 <footer>
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
@@ -365,16 +370,23 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <script>
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
-// Montants forfaitaires 2026 (approximatifs)
+// Montants forfaitaires au 1er avril 2026 (base : 638,28 € pour une personne seule).
+// Foyer : 2 personnes = 150 % ; +30 % par personne supplémentaire ; +40 % à partir du 3e enfant.
+// Parent isolé : montant majoré (128,412 % + 42,804 % par enfant).
 const FORFAITS = {
-  seul:   { base: 638.28, logement: 67.84, enfants: 0 },
-  couple: { base: 957.42, logement: 67.84, enfants: 0 },
-  seul1:  { base: 1092.84, logement: 101.77, enfants: 0 }, // montant forfaitaire majoré (isolement) parent isolé + 1 enfant, avril 2026
-  seul2:  { base: 1366.05, logement: 101.77, enfants: 0 }, // montant forfaitaire majoré (isolement) parent isolé + 2 enfants, avril 2026
-  couple1:{ base: 957.42, logement: 101.77, enfants: 127.66 },
-  couple2:{ base: 957.42, logement: 101.77, enfants: 255.31 },
-  couple3:{ base: 957.42, logement: 101.77, enfants: 382.97 },
+  seul:   { base: 638.28,  enfants: 0,      personnes: 1 },
+  couple: { base: 957.42,  enfants: 0,      personnes: 2 },
+  seul1:  { base: 1092.84, enfants: 0,      personnes: 2 }, // montant forfaitaire majoré (isolement) parent isolé + 1 enfant, avril 2026
+  seul2:  { base: 1366.05, enfants: 0,      personnes: 3 }, // montant forfaitaire majoré (isolement) parent isolé + 2 enfants, avril 2026
+  couple1:{ base: 957.42,  enfants: 191.48, personnes: 3 },
+  couple2:{ base: 957.42,  enfants: 382.97, personnes: 4 },
+  couple3:{ base: 957.42,  enfants: 638.28, personnes: 5 },
 };
+// Forfait logement : il s'AJOUTE AUX RESSOURCES (donc il réduit la prime) quand le foyer touche une aide
+// au logement ou n'a pas de charge de logement (hébergé gratuitement, propriétaire sans crédit).
+// 12 % du montant forfaitaire pour 1 personne, 16 % pour 2 personnes, 16,5 % pour 3 personnes ou plus.
+const FORFAIT_LOGEMENT = { 1: 76.59, 2: 153.19, 3: 189.57 };
+const LOGEMENT_AVEC_FORFAIT = { locataire_apl: true, proprio_sans_credit: true, heberge: true };
 
 function calculate() {
   const revenus = +document.getElementById('revenus').value;
@@ -386,11 +398,11 @@ function calculate() {
   document.getElementById('v-autres').innerHTML = autres.toLocaleString('fr-FR') + ' <span>€/mois</span>';
 
   const f = FORFAITS[situation];
-  const forfaitLogement = logement === 'heberge' ? 0 : f.logement;
-  const montantForaitaire = f.base + forfaitLogement + f.enfants;
+  const forfaitLogement = LOGEMENT_AVEC_FORFAIT[logement] ? FORFAIT_LOGEMENT[Math.min(3, f.personnes)] : 0;
+  const montantForaitaire = f.base + f.enfants;
 
   // Formule prime d'activité (barème officiel CAF au 1er avril 2026)
-  // PA = MF + 61% × RP + Bonification individuelle - RG
+  // PA = MF + 61% × RP + Bonification individuelle - RG - forfait logement éventuel
   // MF = montant forfaitaire
   // RP = revenus professionnels
   // RG = ressources globales du foyer
@@ -406,7 +418,7 @@ function calculate() {
   }
   const rg = revenus + autres;
   const bonification = bonificationIndividuelle(revenus);
-  const pa = montantForaitaire + 0.61 * revenus + bonification - rg;
+  const pa = montantForaitaire + 0.61 * revenus + bonification - rg - forfaitLogement;
   const prime = Math.max(0, Math.round(pa));
 
   const banner = document.getElementById('result-banner');
@@ -442,8 +454,8 @@ function calculate() {
     comments.push({ type: 'info', icon: '💡', txt: 'La prime d\'activité est conçue pour les travailleurs à revenus modestes. Si vous êtes en dessous de 1 500 €/mois, vous avez de bonnes chances d\'y avoir droit.' });
   }
 
-  if(logement === 'heberge') {
-    comments.push({ type: 'alerte', icon: '⚠️', txt: 'Hébergé gratuitement : le forfait logement n\'est pas appliqué, ce qui réduit le montant de votre prime.' });
+  if(forfaitLogement > 0) {
+    comments.push({ type: 'alerte', icon: '⚠️', txt: `Un forfait logement de ${fmt(forfaitLogement)} est compté dans vos ressources (aide au logement perçue ou logement sans charge) : il réduit d'autant votre prime.` });
   }
 
   const commentList = document.getElementById('comment-list');
@@ -610,9 +622,6 @@ if(btnValider){
 }
 })();
 </script>
-<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
-Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière. <strong>✅ Barèmes et taux vérifiés le 23/10/2026.</strong>
-</div>
 <script src="account-nav.js" defer></script>
 <script src="/cookie-manage.js" defer></script>
 </body>

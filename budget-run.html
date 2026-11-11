@@ -175,7 +175,9 @@ function startGame() {
     {x:W*0.85, y:H*0.1, w:100, speed:0.4},
   ];
 
-  // Spawn initial
+  // Spawn initial : ~2 s de répit avant le premier obstacle
+  spawnTimer = 110;
+  coinTimer = 45;
   spawnCoins();
 
   cancelAnimationFrame(raf);
@@ -421,7 +423,7 @@ function draw(now) {
   ctx.font = 'bold 12px Space Grotesk, sans-serif';
   ctx.fillStyle = 'rgba(255,255,255,.35)';
   ctx.textAlign = 'right';
-  ctx.fillText('Record: ' + best, W - 16, 30);
+  ctx.fillText('Record: ' + best, W - 56, 30);
 
   // Obstacles
   obstacles.forEach(o => {

@@ -471,13 +471,13 @@ function shareResult(btn){
   var card = btn.closest('.result-card');
   var typeEl = card ? card.querySelector('.result-type') : null;
   var type = typeEl ? typeEl.textContent.trim() : '';
-  var text = 'Je suis "' + type + '" ! Decouvre ton profil sur Economya : ' + location.href;
+  var text = 'Je suis "' + type + '" ! Découvre ton profil sur Economya : ' + location.href;
   if(navigator.share){
     navigator.share({text:text, url:location.href}).catch(function(){});
   } else if(navigator.clipboard){
     navigator.clipboard.writeText(text).then(function(){
       var old = btn.textContent;
-      btn.textContent = '✅ Copie !';
+      btn.textContent = '✅ Copié !';
       setTimeout(function(){ btn.textContent = old; }, 2000);
     });
   } else {

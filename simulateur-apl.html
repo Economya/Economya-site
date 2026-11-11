@@ -212,8 +212,8 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </div>
       <div class="field">
         <label>Revenus nets annuels du foyer</label>
-        <div class="val" id="v-revenus">18 000 <span>€/an</span></div>
-        <input type="range" id="revenus" min="0" max="50000" step="500" value="18000">
+        <div class="val" id="v-revenus">10 000 <span>€/an</span></div>
+        <input type="range" id="revenus" min="0" max="50000" step="500" value="10000">
       </div>
       <div class="field">
         <label>Situation familiale</label>
@@ -223,7 +223,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
           <option value="1enfant">Couple avec 1 enfant</option>
           <option value="2enfants">Couple avec 2 enfants</option>
           <option value="3enfants">Couple avec 3 enfants+</option>
-          <option value="parent_seul">Parent isolé</option>
+          <option value="parent_seul">Parent isolé avec 1 enfant</option>
         </select>
       </div>
       <div class="field">
@@ -351,6 +351,9 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </script>
 
 </main>
+<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
+Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière. <strong>✅ Barèmes et taux vérifiés le 23/10/2026.</strong>
+</div>
 <footer>
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
@@ -366,7 +369,7 @@ const PLAFONDS = {
   '1enfant':  [459, 404, 374],
   '2enfants': [526, 463, 428],
   '3enfants': [593, 522, 481],
-  parent_seul:[406, 359, 334],
+  parent_seul:[459, 404, 374], // parent isolé avec 1 enfant = barème « 1 personne à charge »
 };
 
 // Forfait charges CAF — dépend de la composition du foyer, PAS de la zone
@@ -377,8 +380,23 @@ const CHARGES_PAR_SITUATION = {
   '1enfant': 74.33,
   '2enfants': 88.07,
   '3enfants': 101.81,
-  parent_seul: 60.59,
+  parent_seul: 74.33,
 };
+
+// Paramètres de la participation personnelle (formule officielle des aides au logement en location) :
+//   PP = P0 + (TF + TL) × (R − R0)
+// TF : taux « famille » ; R0 : seuil de ressources annuel selon le foyer (valeurs du barème 2025,
+// revalorisées d'environ 1 % par an : l'écart sur le résultat est de quelques euros).
+const PARAMS_FOYER = {
+  seul:        { tf: 0.0283, r0: 5235 },
+  couple:      { tf: 0.0315, r0: 7501 },
+  '1enfant':   { tf: 0.0270, r0: 8946 },
+  '2enfants':  { tf: 0.0238, r0: 9147 },
+  '3enfants':  { tf: 0.0201, r0: 9498 },
+  parent_seul: { tf: 0.0270, r0: 8946 },
+};
+const P0_MINIMUM = 40;      // participation minimale (environ 40 €)
+const REDUCTION_FIXE = 5;   // réduction forfaitaire de 5 € appliquée depuis 2017
 
 function calculate() {
   const loyer = +document.getElementById('loyer').value;
@@ -393,25 +411,27 @@ function calculate() {
   const charges = CHARGES_PAR_SITUATION[situation];
   const loyerPris = Math.min(loyer, loyerPlafond);
 
-  // Formule simplifiée APL
-  // APL = Loyer pris en compte + Charges - Participation personnelle
-  const revenusMensuels = revenus / 12;
+  // Formule officielle : APL = L + C − PP − 5 €
+  //   L  = loyer retenu (plafonné selon la zone et le foyer)
+  //   C  = forfait charges
+  //   PP = P0 + (TF + TL) × (R − R0)
+  const p = PARAMS_FOYER[situation];
+  // P0 : 8,5 % de (L + C), avec un minimum
+  const p0 = Math.max(0.085 * (loyerPris + charges), P0_MINIMUM);
+  // TL : dépend du rapport entre le loyer retenu et le loyer plafond de la zone 2 du même foyer
+  const rl = loyerPris / PLAFONDS[situation][1];
+  let tl = 0;
+  if (rl >= 0.75) tl = 0.0045 * 0.30 + 0.0068 * (rl - 0.75);
+  else if (rl >= 0.45) tl = 0.0045 * (rl - 0.45);
+  // R : ressources annuelles retenues = revenus nets après l'abattement de 10 %, arrondies à la centaine supérieure
+  const ressources = Math.ceil(revenus * 0.9 / 100) * 100;
+  const pp = p0 + (p.tf + tl) * Math.max(0, ressources - p.r0);
 
-  // Participation personnelle (Rp) — simplifiée
-  let rp;
-  if(revenus <= 6000) rp = 0;
-  else if(revenus <= 12000) rp = (revenus - 6000) * 0.02;
-  else if(revenus <= 20000) rp = 120 + (revenus - 12000) * 0.04;
-  else if(revenus <= 30000) rp = 440 + (revenus - 20000) * 0.06;
-  else rp = 1040 + (revenus - 30000) * 0.08;
-
-  rp = rp / 12; // mensuel
-
-  let apl = loyerPris + charges - rp;
+  let apl = loyerPris + charges - pp - REDUCTION_FIXE;
   apl = Math.max(0, apl);
 
-  // Plafond APL = loyer pris en compte
-  apl = Math.min(apl, loyerPris);
+  // L'aide ne peut pas dépasser le loyer réellement payé
+  apl = Math.min(apl, loyer);
 
   // Minimum versable : 10€
   if(apl < 10) apl = 0;
@@ -431,7 +451,7 @@ function calculate() {
   } else if(apl < 100) {
     tip.innerHTML = `<strong>💡 Bon à savoir :</strong> Même une APL de ${fmt(apl)}/mois représente ${fmt(apl * 12)} sur l'année. Faites toujours la demande sur caf.fr — c'est gratuit et sans engagement.`;
   } else {
-    tip.innerHTML = `<strong>🎉 Bonne nouvelle :</strong> Vous pourriez recevoir environ ${fmt(apl)}/mois, soit ${fmt(apl * 12)}/an. Faites votre demande dès maintenant sur caf.fr — les versements sont rétroactifs au 1er du mois de la demande.`;
+    tip.innerHTML = `<strong>🎉 Bonne nouvelle :</strong> Vous pourriez recevoir environ ${fmt(apl)}/mois, soit ${fmt(apl * 12)}/an. Faites votre demande sans attendre sur caf.fr : le droit s'ouvre le mois qui suit la demande et l'aide n'est pas rétroactive.`;
   }
 }
 
@@ -592,9 +612,6 @@ if(btnValider){
 }
 })();
 </script>
-<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
-Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière. <strong>✅ Barèmes et taux vérifiés le 23/10/2026.</strong>
-</div>
 <script src="account-nav.js" defer></script>
 <script src="/cookie-manage.js" defer></script>
 </body>

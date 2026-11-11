@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <script src="/error-tracker.js"></script>
+<script src="/game-loop.js"></script>
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta charset="UTF-8">
@@ -173,6 +174,9 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </div>
 
 </main>
+<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
+Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
+</div>
 <footer>
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
   <span style="font-size:.75rem;margin-top:.4rem;display:block">© 2026 · <a href="/mentions-legales" style="color:rgba(255,255,255,.75);text-decoration:none">Mentions légales</a> · <a href="/politique-confidentialite" style="color:rgba(255,255,255,.75);text-decoration:none">Politique de confidentialité</a> · <a href="/cgu" style="color:rgba(255,255,255,.75);text-decoration:none">CGU</a> · <a href="mailto:contact@economya.fr" style="color:rgba(255,255,255,.75);text-decoration:none">Contact</a> · Economya peut percevoir une commission sur certains liens présents sur ce site, sans coût supplémentaire pour vous.</span>
@@ -181,6 +185,8 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <script>
 const canvas = document.getElementById('game-canvas');
 const ctx = canvas.getContext('2d');
+// Sur téléphone, on réduit la largeur logique : le jeu s'affiche 35 % plus grand.
+if (window.innerWidth < 560) { canvas.width = 480; }
 
 // Game state
 let gameState = 'idle'; // idle, playing, dead
@@ -688,9 +694,6 @@ if(btnValider){
 }
 })();
 </script>
-<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
-Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pas de valeur contractuelle. Ils sont basés sur les informations renseignées et des hypothèses générales qui peuvent ne pas correspondre à votre situation exacte. Nous recommandons de vérifier ces estimations auprès d'un professionnel avant toute décision financière.
-</div>
 <script src="account-nav.js" defer></script>
 <script src="/cookie-manage.js" defer></script>
 </body>
