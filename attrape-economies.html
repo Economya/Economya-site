@@ -117,6 +117,9 @@ html{overflow-y:scroll}
       <div class="legend-item"><span class="dot good"></span>À attraper</div>
       <div class="legend-item"><span class="dot bad"></span>À esquiver</div>
       <div class="legend-item"><span class="dot" style="background:var(--gold)"></span>⭐ Jackpot rare</div>
+      <div class="legend-item">🧺 Panier XL</div>
+      <div class="legend-item">⏳ Ralenti</div>
+      <div class="legend-item">❤️ Vie</div>
     </div>
     <button class="btn btn-primary" onclick="startGame()">Jouer</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -154,6 +157,13 @@ const BAD = [
   {emoji:'📉'}, {emoji:'🧾'}, {emoji:'💸'}, {emoji:'📢'}, {emoji:'⚠️'},
 ];
 const JACKPOT = {emoji:'⭐', pts:40};
+// Bonus spéciaux : panier élargi, chute ralentie, vie rendue
+const POUVOIRS = [
+  {emoji:'🧺', power:'xl'},
+  {emoji:'⏳', power:'lent'},
+  {emoji:'❤️', power:'vie'},
+];
+let xlTimer = 0, lentTimer = 0;
 
 let basket = { x:0, w:70, h:14 };
 let items = [];
@@ -175,7 +185,7 @@ function startGame(){
   document.getElementById('hud').style.display='flex';
   resize();
   basket.x = W/2; basket.w = 70;
-  items = []; score = 0; lives = 3; combo = 0;
+  items = []; score = 0; lives = 3; combo = 0; xlTimer = 0; lentTimer = 0;
   spawnTimer = 0; spawnInterval = 850; fallSpeed = 2.4; elapsed = 0;
   running = true;
   updateHud();
@@ -194,8 +204,10 @@ function showCombo(text){
 
 function spawnItem(){
   const isJackpot = Math.random() < 0.05;
-  const isGood = isJackpot ? true : Math.random() < 0.6;
-  const pool = isJackpot ? [JACKPOT] : (isGood ? GOOD : BAD);
+  const isPower = !isJackpot && Math.random() < 0.06;
+  const isGood = (isJackpot || isPower) ? true : Math.random() < 0.6;
+  let pool = isJackpot ? [JACKPOT] : (isGood ? GOOD : BAD);
+  if(isPower) pool = POUVOIRS.filter(q => q.power !== 'vie' || lives < 3);
   const def = pool[Math.floor(Math.random()*pool.length)];
   const baseX = 30 + Math.random()*(W-60);
   items.push({
@@ -205,6 +217,7 @@ function spawnItem(){
     good: isGood,
     jackpot: isJackpot,
     emoji: def.emoji,
+    power: def.power || null,
     pts: def.pts || 0,
     speed: (isJackpot ? fallSpeed*1.25 : fallSpeed) + Math.random()*0.6,
     driftAmp: 14 + Math.random()*(isJackpot ? 34 : 20),
@@ -262,10 +275,12 @@ function loop(ts){
 
     // le panier rétrécit progressivement avec le score (plus dur de viser)
     basket.w = Math.max(44, 70 - Math.floor(score/130)*3);
+    if(xlTimer > 0){ xlTimer--; basket.w = Math.round(basket.w * 1.7); }
+    if(lentTimer > 0) lentTimer--;
 
     for(let i=items.length-1;i>=0;i--){
       const it = items[i];
-      it.y += it.speed;
+      it.y += lentTimer > 0 ? it.speed * 0.5 : it.speed;
       it.x = Math.max(it.r, Math.min(W-it.r, it.baseX + Math.sin(it.y*it.driftFreq + it.phase)*it.driftAmp));
 
       const basketTop = H - 60;
@@ -273,7 +288,12 @@ function loop(ts){
       const hitY = it.y + it.r > basketTop && it.y < basketTop + basket.h + 10;
 
       if(hitY && hitX){
-        if(it.good){
+        if(it.power){
+          combo++;
+          if(it.power === 'xl'){ xlTimer = 480; showCombo('🧺 Panier XL pendant 8 s'); }
+          else if(it.power === 'lent'){ lentTimer = 360; showCombo('⏳ Chute ralentie pendant 6 s'); }
+          else { lives = Math.min(3, lives+1); showCombo('❤️ +1 vie'); }
+        } else if(it.good){
           combo++;
           const bonus = it.pts + Math.floor(combo/3)*2;
           score += bonus;

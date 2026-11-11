@@ -130,6 +130,8 @@ window.addEventListener('resize', resize);
 const COLS = 6, ROWS = 4, GAP = 6, MARGIN = 14, BRICK_H = 20, TOP_OFFSET = 60;
 
 let paddle = { w:84, h:14 };
+// Capsules bonus qui tombent parfois d'une brique cassée : raquette large ou vie
+let capsules = [], largeTimer = 0;
 let ball = { x:0, y:0, r:8, vx:0, vy:0 };
 let bricks = [];
 let score = 0, lives = 3, best = 0, wave = 1;
@@ -188,6 +190,7 @@ function startGame(){
   paddle.x = W/2;
   score = 0; lives = 3; wave = 1; ballSpeed = 4.2;
   particles = []; shake = 0;
+  capsules = []; largeTimer = 0; paddle.w = 84;
   buildBricks();
   resetBall();
   running = true;
@@ -304,6 +307,9 @@ function loop(){
         if(ball.x+ball.r > b.x && ball.x-ball.r < b.x+b.w && ball.y+ball.r > b.y && ball.y-ball.r < b.y+b.h){
           b.alive = false;
           score += b.type==='interest' ? 8 : 12;
+          if(Math.random() < 0.1 && capsules.length < 2){
+            capsules.push({ x:b.x+b.w/2, y:b.y+b.h/2, kind: (lives < 3 && Math.random() < 0.4) ? 'vie' : 'large' });
+          }
           spawnParticles(b.x+b.w/2, b.y+b.h/2, b.type==='interest' ? '255,155,75' : '255,77,109', 12);
           shake = Math.max(shake, 6);
           if(b.type==='interest'){
@@ -323,6 +329,26 @@ function loop(){
         nextWave();
       }
     }
+  }
+
+  // capsules bonus : elles tombent, la raquette les attrape
+  if(largeTimer > 0){ largeTimer--; if(largeTimer === 0) paddle.w = 84; }
+  for(let i=capsules.length-1;i>=0;i--){
+    const c = capsules[i];
+    if(running) c.y += 2.6;
+    if(c.y > H-52 && c.y < H-26 && Math.abs(c.x - paddle.x) < paddle.w/2 + 12){
+      if(c.kind === 'vie'){ lives = Math.min(3, lives+1); showCombo('❤️ +1 vie'); }
+      else { paddle.w = 130; largeTimer = 600; showCombo('↔️ Raquette large pendant 10 s'); }
+      updateHud();
+      capsules.splice(i,1);
+      continue;
+    }
+    if(c.y > H+20){ capsules.splice(i,1); continue; }
+    ctx.save();
+    ctx.font = '22px serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = '#fff';
+    ctx.fillText(c.kind === 'vie' ? '❤️' : '↔️', c.x, c.y);
+    ctx.restore();
   }
 
   // particules (mises à jour même hors partie active, pour finir leur animation)

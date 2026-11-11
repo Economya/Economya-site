@@ -64,7 +64,7 @@ h1 span{color:#FFD54F;}
 <div class="ov" id="oIntro">
   <div class="tag">🎮 Economya.fr</div>
   <h1>Happy<br><span>Budget</span></h1>
-  <p class="sub">Sautez sur les plateformes financières, montez le plus haut possible et accumulez des économies !</p>
+  <p class="sub">Sautez sur les plateformes financières, montez le plus haut possible et accumulez des économies !<br>🚀 Les Primes font rebondir très haut · 🛟 votre fonds d'urgence rattrape une chute.</p>
   <button class="btn" onclick="start()">🚀 Jouer !</button>
   <div class="brand">Un jeu <a href="https://economya.fr">Economya.fr</a></div>
 </div>
@@ -102,6 +102,10 @@ const PT = [
   {c:'#BF5AF2',e:'🏦',n:'PEA',      v:500},
   {c:'#FF453A',e:'💳',n:'Dette',    v:-200},
 ];
+// Plateforme spéciale : la Prime fait rebondir beaucoup plus haut
+const PT_PRIME = {c:'#5AC8FA',e:'🚀',n:'Prime',v:150,boost:true};
+// Fonds d'urgence : la première chute est rattrapée ; paliers d'altitude récompensés
+let filetDispo = true, prochainPalier = 1500;
 
 // State
 let P, plats, score, best, alive, raf, off, ftxt;
@@ -159,6 +163,7 @@ function mkPlat(worldY, safe, prevCx, gap) {
   } else {
     const badChance = 0.15 + diff*0.35;   // plus de Dette en altitude (15%→50%)
     t = Math.random()<badChance ? PT[4] : PT[Math.floor(Math.random()*4)];
+    if(t !== PT[4] && Math.random() < 0.09) t = PT_PRIME;
   }
   return {x, y:worldY, w, h:14, t, used:false};
 }
@@ -168,7 +173,7 @@ function start() {
   document.getElementById('oOver').classList.add('off');
   document.getElementById('ctrl').style.display='flex';
 
-  score=0; alive=true; off=0; ftxt=[];
+  score=0; alive=true; off=0; ftxt=[]; filetDispo = true; prochainPalier = 1500;
 
   // off = décalage caméra en Y monde (négatif = on monte)
   // Coordonnées monde : y augmente vers le bas
@@ -243,7 +248,7 @@ function update(dt) {
         bot >= p.y && botPrev <= p.y+p.h+1
       ){
         P.y = p.y - P.h;
-        P.vy = JV;
+        P.vy = p.t.boost ? JV*1.65 : JV;
         if(!p.used){
           p.used=true;
           score=Math.max(0,score+p.t.v);
@@ -274,8 +279,23 @@ function update(dt) {
   ftxt.forEach(f=>{f.y-=1.5*dt; f.life-=0.025*dt;});
   ftxt = ftxt.filter(f=>f.life>0);
 
-  // Game over : chute hors écran
-  if(P.y - off > H+80) { alive=false; endGame(); }
+  // Paliers d'altitude : bonus tous les 1 500 de hauteur
+  if(-off >= prochainPalier){
+    score += 300;
+    ftxt.push({x:W/2, y:off+H*0.3, txt:'⛰️ Palier ' + (prochainPalier/1500) + ' : +300€', c:'#FFD54F', life:2.2});
+    prochainPalier += 1500;
+    try { if (window.EcoFx) window.EcoFx.win(); } catch (e) {}
+  }
+
+  // Game over : chute hors écran (le fonds d'urgence rattrape la première chute)
+  if(P.y - off > H+80) {
+    if(filetDispo){
+      filetDispo = false;
+      P.y = off + H - 40; P.vy = JV*1.9;
+      ftxt.push({x:W/2, y:off+H*0.6, txt:'🛟 Fonds d\'urgence utilisé !', c:'#5AC8FA', life:2.4});
+      try { if (window.EcoFx) window.EcoFx.bad(); } catch (e) {}
+    } else { alive=false; endGame(); }
+  }
 }
 
 function render() {

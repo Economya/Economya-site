@@ -19,7 +19,7 @@
   // m : seuils [bronze, argent, or] · low : plus petit = meilleur · u : unité affichée · at : où insérer le panneau
   var CFG = {
     "attrape-economies": {"end": "#screen-over", "score": "#goScore", "live": "#hudScore", "lives": "#hudLives", "u": "pts", "m": [150, 350, 700]},
-    "boule-de-patrimoine": {"end": "#screen-over", "score": "#goScore", "live": "#hudSize", "u": "€", "m": [300, 1200, 4000]},
+    "boule-de-patrimoine": {"end": "#screen-over", "score": "#goScore", "live": "#hudSize", "u": "€", "m": [500, 2500, 10000]},
     "budget-run": {"end": "#ovOver", "score": "#ovScore", "u": "pièces", "m": [150, 350, 700]},
     "budget-tower": {"end": "#screen-over", "score": "#goScore", "live": "#hudScore", "u": "mois", "m": [5, 10, 18]},
     "casse-tes-dettes": {"end": "#screen-over", "score": "#goScore", "live": "#hudScore", "lives": "#hudLives", "u": "pts", "m": [150, 350, 800]},

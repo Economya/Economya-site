@@ -171,7 +171,7 @@ html{overflow-y:scroll}
   <div class="overlay active" id="screen-intro">
     <div class="eyebrow">Economya.fr · La tour</div>
     <h1 class="title">Budget<br><span>Tower</span></h1>
-    <p class="lede">Chaque mois, empile ton budget : loyer, plaisir, épargne. Vise juste pour faire grandir la tour — un geste raté et tout s'effondre.</p>
+    <p class="lede">Chaque mois, empile ton budget : loyer, plaisir, épargne. Vise juste pour faire grandir la tour — un geste raté et tout s'effondre. Trois poses parfaites d'affilée et ton bloc regagne de la largeur.</p>
     <div class="legend">
       <div class="legend-item"><span class="dot rent"></span>Loyer</div>
       <div class="legend-item"><span class="dot fun"></span>Plaisir</div>
@@ -329,7 +329,7 @@ function handleTap(){
   }
 
   const isPerfect = overlapW >= Math.min(moving.w, last.w) * 0.94;
-  const newW = isPerfect ? last.w : overlapW;
+  let newW = isPerfect ? last.w : overlapW;
   const newX = overlapLeft + overlapW/2;
 
   // débris qui tombent (parties coupées)
@@ -344,7 +344,11 @@ function handleTap(){
     }
   } else {
     combo++;
-    if(combo >= 2) showCombo('🔥 Combo x' + combo + ' — budget parfait !');
+    if(combo % 3 === 0){
+      // trois poses parfaites d'affilée : le bloc regagne de la largeur
+      newW = Math.min(blocks[0].w, newW + 14);
+      showCombo('💪 Combo x' + combo + ' — prime : bloc élargi !');
+    } else if(combo >= 2) showCombo('🔥 Combo x' + combo + ' — budget parfait !');
     for(let i=0;i<10;i++){
       particles.push({
         x: newX + (Math.random()-0.5)*newW, y: blocks.length*BLOCK_H,
@@ -356,6 +360,9 @@ function handleTap(){
 
   blocks.push({ x: newX, w: newW, catIdx: moving.catIdx });
   score++;
+  // paliers : 6 mois, puis chaque année complète
+  if(score === 6) showCombo('📅 6 mois de budget tenus !');
+  else if(score % 12 === 0) showCombo('🎉 ' + (score/12) + ' an' + (score > 12 ? 's' : '') + ' de budget tenu' + (score > 12 ? 's' : '') + ' !');
   updateHud();
   targetCameraY = blocks.length * BLOCK_H - H*0.62;
 

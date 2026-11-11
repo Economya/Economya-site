@@ -109,6 +109,8 @@ html{overflow-y:scroll}
   <div class="legend">
     <div class="legend-item">👆 Glissez le joystick</div>
     <div class="legend-item">📈 Grossissez pour tout avaler</div>
+    <div class="legend-item">⚡ Enchaînez : gains ×1,5 puis ×2</div>
+    <div class="legend-item">⏱️ Chaque palier : +5 s</div>
   </div>
   <button class="btn btn-primary" onclick="startGame()">Faire rouler la boule</button>
   <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -165,6 +167,8 @@ let ball = { x:0, y:0, r:16, value:0 };
 let objects = [];
 let running = false;
 let timeLeft = 60;
+// Enrichissements : enchaîner les absorptions multiplie les gains ; chaque palier de patrimoine offre 5 secondes
+let comboAbs = 0, lastAbsAt = 0;
 let best = 0;
 let joyActive = false, joyDX=0, joyDY=0;
 let rafStarted = false;
@@ -386,17 +390,23 @@ function loop(){
       const d = Math.hypot(ball.x-o.x, ball.y-o.y);
       if(d < ball.r + o.size*0.5){
         if(ball.r >= o.size*0.9){
-          ball.value += o.value;
+          const maintenant = performance.now();
+          comboAbs = (maintenant - lastAbsAt < 1500) ? comboAbs + 1 : 1;
+          lastAbsAt = maintenant;
+          const mult = comboAbs >= 6 ? 2 : comboAbs >= 3 ? 1.5 : 1;
+          const gain = Math.round(o.value * mult);
+          ball.value += gain;
           ball.r += Math.sqrt(o.size) * 0.35;
           spawnAbsorbBurst(o.x-ball.x+W/2, o.y-ball.y+H/2, '#FFD54F');
-          showAbsorb('+' + fmt(o.value), (o.y / ARENA_H) * H);
+          showAbsorb('+' + fmt(gain) + (mult > 1 ? ' ×' + mult : ''), (o.y / ARENA_H) * H);
           objects.splice(i,1);
           updateHud();
 
           for(let ri=0; ri<RANKS.length; ri++){
             if(ball.value >= RANKS[ri] && rankReached < ri){
               rankReached = ri;
-              showRank(RANK_LABELS[ri]);
+              timeLeft += 5;
+              showRank(RANK_LABELS[ri] + ' · +5 s');
             }
           }
         }

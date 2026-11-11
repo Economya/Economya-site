@@ -115,7 +115,7 @@ html{overflow-y:scroll}
   <div class="screen active" id="screen-intro">
     <div class="eyebrow">Economya.fr · Le tri</div>
     <h1 class="title">Tri de <span>Budget</span></h1>
-    <p class="lede">Des revenus et dépenses tombent. Triez-les dans la bonne colonne avant que le temps soit écoulé. Chaque erreur vous coûte une vie.</p>
+    <p class="lede">Des revenus et dépenses tombent. Triez-les dans la bonne colonne avant que le temps soit écoulé. Chaque erreur vous coûte une vie. À 10 bons tris, l'indice couleur disparaît et le rythme s'accélère ; 5 tris d'affilée rapportent un bonus.</p>
     <div class="cols-preview">
       <div class="col-badge" style="background:rgba(61,220,132,.2);color:#3DDC84;border:1px solid rgba(61,220,132,.4)">💰<br>Revenus</div>
       <div class="col-badge" style="background:rgba(79,195,247,.2);color:#4FC3F7;border:1px solid rgba(79,195,247,.4)">🏦<br>Épargne</div>
@@ -195,12 +195,31 @@ const ITEMS = [
   { emoji:'🎬', label:'Cinéma', cat:3 },
   { emoji:'👟', label:'Shopping', cat:3 },
   { emoji:'✈️', label:'Vacances', cat:3 },
+  // cartes supplémentaires
+  { emoji:'🧾', label:'Remboursement d\'impôt', cat:0 },
+  { emoji:'👕', label:'Vente d\'occasion', cat:0 },
+  { emoji:'🏘️', label:'Loyer perçu', cat:0 },
+  { emoji:'🎓', label:'Bourse d\'études', cat:0 },
+  { emoji:'🟢', label:'LEP', cat:1 },
+  { emoji:'🧓', label:'PER', cat:1 },
+  { emoji:'🛟', label:'Fonds d\'urgence', cat:1 },
+  { emoji:'🏡', label:'PEL', cat:1 },
+  { emoji:'🌐', label:'Box internet', cat:2 },
+  { emoji:'🩺', label:'Mutuelle', cat:2 },
+  { emoji:'🚆', label:'Abonnement transport', cat:2 },
+  { emoji:'💧', label:'Facture d\'eau', cat:2 },
+  { emoji:'🎤', label:'Concert', cat:3 },
+  { emoji:'🎮', label:'Jeu vidéo', cat:3 },
+  { emoji:'🍹', label:'Soirée bar', cat:3 },
+  { emoji:'🏖️', label:'Week-end', cat:3 },
 ];
 
 const COL_COLORS = ['#3DDC84','#4FC3F7','#FFA726','#CE93D8'];
 
 let score=0, lives=3, running=false, currentItem=null, timeLeft=100, best=0;
 let timerInterval=null, spawnInterval=null;
+// Enrichissements : série de bons tris, niveau 2 sans indice couleur à partir de 10, accélération progressive
+let serieTri = 0;
 
 try{ best = parseInt(localStorage.getItem('triBudgetBest')||'0',10); }catch(e){}
 
@@ -219,7 +238,7 @@ function showScreen(id){
 }
 
 function startGame(){
-  score=0; lives=3; running=true; timeLeft=100;
+  score=0; lives=3; running=true; timeLeft=100; serieTri=0;
   document.getElementById('hudScore').textContent='0';
   document.getElementById('hudLives').textContent='❤️❤️❤️';
   document.getElementById('timerBar').style.width='100%';
@@ -229,7 +248,7 @@ function startGame(){
   clearInterval(timerInterval);
   timerInterval = setInterval(()=>{
     if(!running) return;
-    timeLeft -= 1;
+    timeLeft -= 1 + Math.min(2, score/12); // de plus en plus vite
     document.getElementById('timerBar').style.width = timeLeft+'%';
     if(timeLeft<=0){ missItem(); }
   }, 80);
@@ -243,7 +262,7 @@ function spawnNext(){
   zone.innerHTML = '';
   const card = document.createElement('div');
   card.className = 'falling-card';
-  card.style.borderColor = COL_COLORS[currentItem.cat];
+  card.style.borderColor = score < 10 ? COL_COLORS[currentItem.cat] : 'rgba(255,255,255,.4)'; // niveau 2 : plus d'indice couleur
   card.innerHTML = `<span class="emoji">${currentItem.emoji}</span>${currentItem.label}`;
   zone.appendChild(card);
 }
@@ -252,11 +271,21 @@ function sort(colIdx){
   if(!running || !currentItem) return;
   if(colIdx === currentItem.cat){
     score++;
+    serieTri++;
+    let msg = '✅ +1';
+    if(serieTri % 5 === 0){ score++; msg = '🔥 Série x' + serieTri + ' · +2'; }
+    if(serieTri % 15 === 0 && lives < 3){
+      lives++;
+      document.getElementById('hudLives').textContent = '❤️'.repeat(lives);
+      msg = '❤️ Série x' + serieTri + ' · +1 vie';
+    }
+    if(score === 10 || (score === 11 && serieTri % 5 === 0)) msg = '⚡ Niveau 2 : sans indice couleur !';
     document.getElementById('hudScore').textContent = score;
     addToPile(colIdx, currentItem.cat);
-    showFeedback('✅ +1', COL_COLORS[colIdx]);
+    showFeedback(msg, COL_COLORS[colIdx]);
   } else {
     lives--;
+    serieTri = 0;
     document.getElementById('hudLives').textContent = '❤️'.repeat(Math.max(0,lives));
     showFeedback('❌ Raté !', '#FF5252');
     if(lives<=0){ endGame(); return; }
@@ -267,6 +296,7 @@ function sort(colIdx){
 function missItem(){
   if(!running) return;
   lives--;
+  serieTri = 0;
   document.getElementById('hudLives').textContent = '❤️'.repeat(Math.max(0,lives));
   showFeedback('⏱️ Trop lent !', '#FFA726');
   if(lives<=0){ endGame(); return; }
@@ -279,13 +309,12 @@ function addToPile(colIdx, cat){
   dot.className = 'pile-item';
   dot.style.background = COL_COLORS[cat];
   pile.appendChild(dot);
-  if(pile.children.length > 10){
-    lives--;
-    document.getElementById('hudLives').textContent = '❤️'.repeat(Math.max(0,lives));
-    pile.removeChild(pile.firstChild);
-    if(lives<=0){ endGame(); return; }
-  }
+  // pile pleine : on retire simplement le plus ancien (avant, 10 bons tris dans une colonne coûtaient une vie)
+  if(pile.children.length > 10) pile.removeChild(pile.firstChild);
 }
+
+// Clavier (ordinateur) : touches 1 à 4 pour les 4 colonnes
+window.addEventListener('keydown', e=>{ if(e.key >= '1' && e.key <= '4') sort(parseInt(e.key,10)-1); });
 
 function endGame(){
   running = false;

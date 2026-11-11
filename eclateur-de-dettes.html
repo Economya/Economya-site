@@ -88,6 +88,7 @@ html{overflow-y:scroll}
     <p class="lede">Visez et tirez sur les dettes qui dérivent. Une grosse dette se fragmente en mensualités plus petites — mais si elles s'accumulent trop vite, c'est la surcharge !</p>
     <div class="controls-hint">
       <span>👆 Maintenez pour viser et tirer</span>
+      <span>🔱 10 dettes d'affilée = tir triple</span>
     </div>
     <button class="btn btn-primary" onclick="startGame()">Jouer</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -127,6 +128,9 @@ let score = 0, lives = 3, best = 0, wave = 1, running = false;
 let rafStarted = false;
 let fireTimer = 0, aiming = false, aimX = 0, aimY = 0;
 let shipInvuln = 0;
+// Enrichissements : série de dettes détruites, tir triple, annonces à l'écran
+let serie = 0, tripleTimer = 0, msgTxt = '', msgLife = 0;
+function annonce(t){ msgTxt = t; msgLife = 130; }
 
 try{ best = parseInt(localStorage.getItem('eclateurDeDettesBest')||'0',10); }catch(e){}
 
@@ -171,7 +175,7 @@ function startGame(){
   buildStars();
   ship.x = W/2; ship.y = H-90; ship.angle = -Math.PI/2;
   bullets = []; particles = []; shake = 0;
-  score = 0; lives = 3; wave = 1; shipInvuln = 90;
+  score = 0; lives = 3; wave = 1; shipInvuln = 90; serie = 0; tripleTimer = 0; msgLife = 0;
   buildWave();
   running = true;
   updateHud();
@@ -194,11 +198,15 @@ canvas.addEventListener('pointerup', ()=>{ aiming = false; });
 function shoot(){
   if(fireTimer>0) return;
   fireTimer = 12;
-  bullets.push({
-    x: ship.x + Math.cos(ship.angle)*20,
-    y: ship.y + Math.sin(ship.angle)*20,
-    vx: Math.cos(ship.angle)*7, vy: Math.sin(ship.angle)*7,
-    life: 60
+  const angles = tripleTimer > 0 ? [-0.22, 0, 0.22] : [0];
+  angles.forEach(da=>{
+    const a = ship.angle + da;
+    bullets.push({
+      x: ship.x + Math.cos(a)*20,
+      y: ship.y + Math.sin(a)*20,
+      vx: Math.cos(a)*7, vy: Math.sin(a)*7,
+      life: 60
+    });
   });
 }
 
@@ -225,6 +233,7 @@ function loop(){
   battle: if(running){
     if(fireTimer>0) fireTimer--;
     if(shipInvuln>0) shipInvuln--;
+    if(tripleTimer>0) tripleTimer--;
 
     if(aiming){
       ship.angle = Math.atan2(aimY-ship.y, aimX-ship.x);
@@ -246,6 +255,8 @@ function loop(){
         if(dist < d.r){
           bullets.splice(i,1);
           score += (4-d.size)*15;
+          serie++;
+          if(serie % 10 === 0){ tripleTimer = 420; annonce('🔱 Série de ' + serie + ' : tir triple pendant 7 s'); }
           spawnParticles(d.x, d.y, 14);
           shake = Math.max(shake, 5);
           updateHud();
@@ -268,7 +279,7 @@ function loop(){
     if(shipInvuln<=0){
       for(const d of debts){
         if(Math.hypot(d.x-ship.x, d.y-ship.y) < d.r+14){
-          lives--; shipInvuln = 90; shake = 18; updateHud();
+          lives--; serie = 0; shipInvuln = 90; shake = 18; updateHud();
           ship.x = W/2; ship.y = H-90;
           if(lives<=0){ endGame(); break battle; }
           break;
@@ -277,7 +288,10 @@ function loop(){
     }
 
     if(debts.length === 0){
-      wave++; score += 30; updateHud();
+      wave++; score += 30;
+      if(wave % 3 === 1 && lives < 3){ lives++; annonce('Vague ' + wave + ' · ❤️ +1 vie'); }
+      else annonce('Vague ' + wave + ' · +30 pts');
+      updateHud();
       buildWave();
     }
   }
@@ -343,6 +357,20 @@ function loop(){
   ctx.restore();
 
   ctx.restore();
+  // annonce temporaire (vague, série)
+  if(msgLife > 0){
+    msgLife--;
+    ctx.save();
+    ctx.globalAlpha = Math.min(1, msgLife/25);
+    ctx.font = "bold 15px 'Space Grotesk', sans-serif";
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    const tw = ctx.measureText(msgTxt).width + 28;
+    ctx.fillStyle = 'rgba(0,0,0,.55)';
+    ctx.beginPath(); ctx.roundRect(W/2 - tw/2, 64, tw, 34, 17); ctx.fill();
+    ctx.fillStyle = '#7dd3fc';
+    ctx.fillText(msgTxt, W/2, 81);
+    ctx.restore();
+  }
   requestAnimationFrame(loop);
 }
 
