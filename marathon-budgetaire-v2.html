@@ -490,11 +490,35 @@ function chooseOption(idx){
   if(phase>=PHASES.length-1) document.getElementById('nextBtn').textContent='🏅 Voir mon résultat !';
 }
 
+// Aléas de course : environ une phase sur trois, un imprévu touche vos jauges (chaque marathon est différent).
+const ALEAS_COURSE=[
+  {txt:'🌬️ Vent de face : -6 % d\'énergie',fx:()=>{energie=clamp(energie-6);}},
+  {txt:'📣 Le public vous porte : +6 de moral',fx:()=>{moral=clamp(moral+6);}},
+  {txt:'🥵 Coup de chaud : -5 de force',fx:()=>{force=clamp(force-5);}},
+  {txt:'🍌 Ravitaillement offert : +5 % d\'énergie',fx:()=>{energie=clamp(energie+5);}},
+  {txt:'🩹 Ampoule au pied : -5 de moral',fx:()=>{moral=clamp(moral-5);}},
+  {txt:'🎽 Un coureur vous abrite du vent : +4 de force',fx:()=>{force=clamp(force+4);}},
+];
 function nextPhase(){
   phase++;
   renderPhaseRow();
   if(phase>=PHASES.length){endGame();}
-  else{loadPhase();updateHUD();}
+  else{
+    let aleaTxt='';
+    if(Math.random()<0.35){
+      const a=ALEAS_COURSE[Math.floor(Math.random()*ALEAS_COURSE.length)];
+      a.fx(); aleaTxt=a.txt;
+    }
+    loadPhase();updateHUD();
+    if(aleaTxt){
+      const area=document.getElementById('decisionArea');
+      const d=document.createElement('div');
+      d.style.cssText='margin:0 0 10px;padding:9px 12px;border-radius:12px;background:rgba(255,213,79,.1);border:1px solid rgba(255,213,79,.35);font-size:12.5px;font-weight:700;color:#FFD54F';
+      d.textContent='Aléa de course : '+aleaTxt+'.';
+      area.insertBefore(d,area.firstChild);
+      showToast(aleaTxt,'#FFD54F');
+    }
+  }
 }
 
 function endGame(){

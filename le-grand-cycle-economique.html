@@ -120,7 +120,7 @@ html{overflow-y:scroll}
   <div class="overlay active" id="screen-intro">
     <div class="eyebrow">Economya.fr · Cycle long terme</div>
     <h1 class="title">Le Grand Cycle <span>Économique</span></h1>
-    <p class="lede">14 années à traverser. À chaque tour, choisissez d'investir agressif, modéré, ou de sécuriser. Le risque accumulé augmente vos chances de subir un choc — mais la croissance accumulée est votre score final.</p>
+    <p class="lede">14 années à traverser, en quatre phases : expansion, surchauffe, récession, reprise. À chaque tour, choisissez d'investir agressif, modéré, ou de sécuriser : la bonne stratégie change avec la phase. Le risque accumulé augmente vos chances de subir un choc — mais la croissance accumulée est votre score final.</p>
     <div class="disclaimer">⚠️ Simulation pédagogique fictive. Ne constitue en aucun cas un conseil en investissement.</div>
     <button class="btn btn-primary" onclick="startGame()">Jouer</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -141,6 +141,14 @@ html{overflow-y:scroll}
 const TOTAL_YEARS = 14;
 let year = 1, risk = 15, growth = 0, running = false;
 let lastEventText = '';
+// Le cycle a quatre phases : la même stratégie ne rapporte pas pareil selon le moment.
+const PHASES = [
+  { nom:'🌤️ Expansion',  croissance:1.3, choc:0.8, conseil:'la croissance rapporte bien, les chocs sont rares' },
+  { nom:'🔥 Surchauffe', croissance:1.6, choc:1.6, conseil:'gains élevés, mais les chocs frappent plus souvent' },
+  { nom:'🌧️ Récession',  croissance:0.6, choc:1.2, conseil:'la croissance rapporte peu : protéger devient payant' },
+  { nom:'🌱 Reprise',    croissance:1.0, choc:0.7, conseil:'le risque retombe, bon moment pour réinvestir' },
+];
+function phaseDe(annee){ return PHASES[Math.floor((annee-1)/4) % PHASES.length]; }
 
 function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
 
@@ -169,7 +177,7 @@ function renderTurn(){
   const zone = document.getElementById('eventZone');
   zone.innerHTML = `
     <div class="event-card">
-      <div class="event-text${lastEventText.startsWith('⚡')?' shock':''}">${lastEventText || `Année ${year} — quelle stratégie pour cette période ?`}</div>
+      <div class="event-text${lastEventText.startsWith('⚡')?' shock':''}">${lastEventText || `Année ${year} — quelle stratégie pour cette période ?`}<br><span style="font-size:12px;opacity:.8">${phaseDe(year).nom} : ${phaseDe(year).conseil}</span></div>
       <div class="actions" id="actionsZone"></div>
     </div>`;
   const actionsEl = document.getElementById('actionsZone');
@@ -189,11 +197,12 @@ function renderTurn(){
 
 function playTurn(option){
   if(!running) return;
-  growth += option.growth;
+  const phase = phaseDe(year);
+  growth += Math.round(option.growth * phase.croissance);
   risk = clamp(risk + option.risk, 0, 100);
 
   // chance de choc de marché proportionnelle au risque accumulé
-  const shockChance = risk/260; // jusqu'à ~38% à risque max
+  const shockChance = risk/260 * phase.choc; // jusqu'à ~38% à risque max, modulé par la phase du cycle
   lastEventText = '';
   if(Math.random() < shockChance){
     const loss = Math.round(growth * (0.15 + Math.random()*0.25));

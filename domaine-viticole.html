@@ -245,13 +245,20 @@ body{flex-direction:column;align-items:center;justify-content:flex-start;padding
 
 <script>
 const METEOS=[
-  {icon:'☀️',label:'Ensoleillement parfait',cls:'sun'},
-  {icon:'🌧️',label:'Printemps pluvieux',cls:'rain'},
-  {icon:'🌩️',label:'Orages estivaux',cls:'storm'},
-  {icon:'❄️',label:'Gel printanier tardif',cls:'frost'},
-  {icon:'🌡️',label:'Canicule intense',cls:'hot'},
-  {icon:'🌟',label:'Millésime exceptionnel',cls:'perfect'},
+  {icon:'☀️',label:'Ensoleillement parfait',cls:'sun',mult:1.15,poids:25},
+  {icon:'🌧️',label:'Printemps pluvieux',cls:'rain',mult:0.9,poids:20},
+  {icon:'🌩️',label:'Orages estivaux',cls:'storm',mult:0.8,poids:15},
+  {icon:'❄️',label:'Gel printanier tardif',cls:'frost',mult:0.7,poids:10},
+  {icon:'🌡️',label:'Canicule intense',cls:'hot',mult:0.85,poids:15},
+  {icon:'🌟',label:'Millésime exceptionnel',cls:'perfect',mult:1.4,poids:15},
 ];
+// La météo est maintenant vraiment tirée au sort à chaque millésime, et elle pèse sur les recettes de l'année.
+let meteoCourante=METEOS[0];
+function tirerMeteo(){
+  let r=Math.random()*METEOS.reduce((a,m)=>a+m.poids,0);
+  for(const m of METEOS){ r-=m.poids; if(r<=0) return m; }
+  return METEOS[0];
+}
 
 const MILLESIMES=[
   {emoji:'🌱',title:'Structurer la vigne',meteo:0,context:'Première année. La vigne héritée a 40 ans mais est peu entretenue. Quelle approche ?',
@@ -345,9 +352,10 @@ function renderMillis(){
 function loadMillesime(){
   if(millesime>=MILLESIMES.length)return endGame();
   const m=MILLESIMES[millesime];
-  const meteo=METEOS[m.meteo];
+  meteoCourante=tirerMeteo();
+  const meteo=meteoCourante;
   const banner=document.getElementById('meteoBanner');
-  banner.textContent=meteo.icon+' '+meteo.label;
+  banner.textContent=meteo.icon+' '+meteo.label+' · recettes ×'+String(meteo.mult).replace('.',',');
   banner.className='meteo-banner '+meteo.cls;
   document.getElementById('dcEmoji').textContent=m.emoji;
   document.getElementById('dcMilli').textContent='Millésime '+(millesime+1)+'/'+MILLESIMES.length;
@@ -365,19 +373,21 @@ function loadMillesime(){
 }
 
 function choose(opt){
-  treso+=opt.dTreso;
+  // les recettes (gains) sont multipliées par la météo de l'année ; les dépenses ne changent pas
+  const gainTreso=opt.dTreso>0?Math.round(opt.dTreso*meteoCourante.mult/1000)*1000:opt.dTreso;
+  treso+=gainTreso;
   qual=Math.max(10,Math.min(20,qual+opt.dQual));
   stock=Math.max(0,stock+opt.dStock);
   prix=Math.max(8,prix+opt.dPrix);
   rep=Math.max(0,Math.min(100,rep+opt.dRep));
   renderHUD();
-  const isGood=opt.dTreso>=0||opt.dRep>=10;
+  const isGood=gainTreso>=0||opt.dRep>=10;
   document.getElementById('resultTitle').textContent=isGood?'✅ Bon choix !':'⚠️ Décision risquée';
-  document.getElementById('resultText').textContent=opt.result;
+  document.getElementById('resultText').textContent=opt.result+(opt.dTreso>0&&meteoCourante.mult!==1?' Effet météo ('+meteoCourante.label.toLowerCase()+') : recettes ×'+String(meteoCourante.mult).replace('.',',')+'.':'');
   document.getElementById('resultBox').classList.add('show');
   document.getElementById('optsList').innerHTML='';
   document.getElementById('btnNext').style.display='block';
-  showToast(opt.dTreso>=0?fmt(opt.dTreso)+' 📈':fmt(opt.dTreso)+' 📉');
+  showToast(gainTreso>=0?fmt(gainTreso)+' 📈':fmt(gainTreso)+' 📉');
   millesime++;
 }
 

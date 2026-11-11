@@ -331,6 +331,21 @@ const DECK = [
   { kind:"Appel", from:"Doctolib", text:"Bonjour, c'est le cabinet du Dr Martin, votre rendez-vous de demain 14h est confirmé.", isScam:false, explain:"Contact prévisible lié à une démarche que vous avez initiée vous-même, aucune demande d'argent ou de données." },
   { kind:"DM LinkedIn", from:"Sophie R. — Recruteuse RH", text:"Bonjour, votre profil correspond à un poste ouvert chez nous, seriez-vous disponible pour un échange téléphonique cette semaine ?", isScam:false, explain:"Pas de promesse irréaliste, pas de lien, pas de demande d'argent — une prise de contact professionnelle standard." },
   { kind:"SMS", from:"Ameli", text:"Votre carte Vitale a bien été mise à jour suite à votre déclaration de changement de situation.", isScam:false, explain:"Confirmation neutre d'une démarche officielle, aucun lien ni demande d'action urgente." },
+  // Messages supplémentaires : la partie tire 10 messages au hasard parmi les 24
+  { kind:"SMS", from:"06 44 12 98 03", text:"Coucou maman, j'ai cassé mon téléphone, c'est mon nouveau numéro. Tu peux m'avancer 480€ par virement ? Je t'explique ce soir.", isScam:true, explain:"Arnaque « faux proche » : numéro inconnu, urgence et demande d'argent. On rappelle toujours l'ancien numéro avant de payer." },
+  { kind:"Appel", from:"« Conseiller bancaire »", text:"Bonjour, service fraude de votre banque. Des paiements suspects sont en cours : validez l'opération que je vous envoie dans votre application pour les annuler.", isScam:true, explain:"Faux conseiller : une banque ne demande jamais de valider une opération ni de communiquer un code pour « annuler » une fraude." },
+  { kind:"SMS", from:"ANTAI", text:"Amende impayée : dernier rappel avant majoration. Réglez 35€ sur amendes-gouv-paiement.fr", isScam:true, explain:"Le seul site officiel est amendes.gouv.fr. Un nom de domaine allongé ou modifié est le signe classique d'un faux." },
+  { kind:"Email", from:"cpf-formation-officiel.com", text:"Vos droits CPF expirent dans 48h ! Cliquez pour les convertir en chèque cadeau de 500€.", isScam:true, explain:"Les droits CPF n'expirent pas et ne se convertissent pas en cadeau. Le démarchage CPF est interdit." },
+  { kind:"DM WhatsApp", from:"+44 7911 ...", text:"Bonjour, je suis recruteuse. Gagnez 200€ par jour en aimant des vidéos, 30 minutes suffisent. Intéressé(e) ?", isScam:true, explain:"Fausse offre d'emploi : gain facile, numéro étranger, contact non sollicité. On finit par vous demander de l'argent." },
+  { kind:"Email", from:"service-client@netfIix-compte.com", text:"Votre paiement a échoué. Mettez à jour votre carte bancaire sous 24h pour éviter la suspension de votre abonnement.", isScam:true, explain:"Adresse imitée (un « I » majuscule à la place du « l ») et urgence : on vérifie toujours depuis l'application officielle." },
+  { kind:"SMS", from:"Votre opérateur", text:"Votre facture du mois est disponible dans votre espace client. Montant : 15,99€, prélevé le 12.", isScam:false, explain:"Information habituelle, sans lien à cliquer ni demande de données : rien de suspect." },
+  { kind:"Email", from:"ne-pas-repondre@impots.gouv.fr", text:"Un nouveau document est disponible dans votre espace particulier. Connectez-vous depuis impots.gouv.fr pour le consulter.", isScam:false, explain:"Domaine officiel et aucune demande de paiement ni de coordonnées bancaires par email." },
+  { kind:"Appel", from:"Garage du Centre", text:"Bonjour, votre voiture est prête. Vous pouvez passer la récupérer avant 18h, la facture est de 240€ comme convenu.", isScam:false, explain:"Appel attendu, lié à une réparation que vous avez demandée, montant annoncé à l'avance." },
+  { kind:"SMS", from:"La Poste", text:"Votre colis sera livré demain entre 9h et 13h. Suivi disponible sur laposte.fr avec votre numéro de suivi.", isScam:false, explain:"Aucun paiement demandé et renvoi vers le site officiel : un vrai avis de livraison ne réclame pas de frais par SMS." },
+  { kind:"Email", from:"Votre mutuelle", text:"Votre remboursement de 23,50€ a été versé sur votre compte. Détail disponible dans votre espace adhérent.", isScam:false, explain:"Simple information de remboursement, sans lien pressant ni demande de coordonnées." },
+  { kind:"SMS", from:"3 67 00", text:"Code de vérification pour votre connexion : 482 913. Ne le communiquez à personne.", isScam:false, explain:"Code reçu après une connexion que vous venez de lancer. Il devient suspect seulement si quelqu'un vous le demande." },
+  { kind:"DM Instagram", from:"@concours_iphone_officiel", text:"Félicitations ! Vous avez gagné un iPhone. Payez seulement 2€ de frais d'envoi pour le recevoir.", isScam:true, explain:"On ne gagne pas à un concours auquel on n'a pas participé. Les « 2€ de frais » servent à récupérer votre carte bancaire." },
+  { kind:"Email", from:"Votre propriétaire", text:"Bonjour, la quittance de loyer du mois est en pièce jointe. Bonne journée.", isScam:false, explain:"Échange habituel avec un interlocuteur connu, sans demande inhabituelle." },
 ];
 
 // ---------- État ----------
@@ -358,7 +373,7 @@ function showScreen(id){
 }
 
 function startGame(){
-  order = shuffle(DECK);
+  order = shuffle(DECK).slice(0, 10); // Tirage de 10 messages parmi 24 : chaque partie est différente
   idx = 0; score = 0; answers = [];
   showScreen('screen-game');
   loadCard();

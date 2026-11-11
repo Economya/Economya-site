@@ -117,7 +117,7 @@ p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
 <div class="screen active" id="screen-intro">
   <div class="eyebrow">Economya.fr · Le memory</div>
   <h1 class="title">Memory <span>Finance</span></h1>
-  <p class="lede">Retournez les cartes pour trouver les paires : un concept financier + sa définition ou son taux. Le plus rapide gagne. 8 paires à trouver.</p>
+  <p class="lede">Retournez les cartes pour trouver les paires : un concept financier + sa définition ou son taux. Le plus rapide gagne. 8 paires à trouver, tirées au hasard parmi 20 : chaque partie est différente.</p>
   <button class="btn btn-primary" onclick="startGame()">Retourner les cartes</button>
   <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
 </div>
@@ -148,7 +148,8 @@ p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
 </div>
 
 <script>
-const PAIRS=[
+// 20 paires possibles : chaque partie en tire 8 au hasard, pour ne jamais rejouer exactement la même grille
+const TOUTES_PAIRES=[
   {concept:'📈 PEA',value:'Exonéré d\'impôt après 5 ans'},
   {concept:'🏦 Livret A',value:'Taux : 1,7 % en 2026'},
   {concept:'💰 SMIC net',value:'≈ 1 478 € / mois'},
@@ -157,7 +158,20 @@ const PAIRS=[
   {concept:'📊 Flat tax',value:'31,4 % sur revenus capital'},
   {concept:'🎓 ACRE',value:'Exonération création d\'entreprise'},
   {concept:'💎 LEP',value:'Taux : 2,5 % en 2026'},
+  {concept:'🏡 PEL',value:'Taux : 2 % (ouvert en 2026)'},
+  {concept:'🌱 LDDS',value:'Plafond : 12 000 €'},
+  {concept:'🧓 PER',value:'Versements déductibles du revenu'},
+  {concept:'📉 Inflation',value:'Hausse générale des prix'},
+  {concept:'🧾 TMI',value:'Taux de la dernière tranche d\'impôt'},
+  {concept:'🏘️ Frais de notaire (ancien)',value:'Environ 7 à 8 % du prix'},
+  {concept:'💳 TAEG',value:'Coût total annuel d\'un crédit'},
+  {concept:'🌍 ETF',value:'Fonds qui suit un indice'},
+  {concept:'🛟 Épargne de précaution',value:'3 à 6 mois de dépenses'},
+  {concept:'📜 Assurance-vie',value:'Fiscalité allégée après 8 ans'},
+  {concept:'⚖️ Règle 50/30/20',value:'Besoins / envies / épargne'},
+  {concept:'🔁 Intérêts composés',value:'Les intérêts rapportent des intérêts'},
 ];
+let PAIRS=TOUTES_PAIRES.slice(0,8);
 
 let cards=[],flipped=[],matched=0,attempts=0,errors=0;
 let startTime=0,timerInt=null,canFlip=true;
@@ -167,7 +181,8 @@ function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classL
 
 function startGame(){
   flipped=[];matched=0;attempts=0;errors=0;canFlip=true;
-  // Créer les paires mélangées
+  // Tirer 8 paires au hasard parmi les 20, puis les mélanger
+  PAIRS=TOUTES_PAIRES.slice().sort(()=>Math.random()-.5).slice(0,8);
   cards=[];
   PAIRS.forEach((p,i)=>{
     cards.push({id:i*2,pairId:i,type:'concept',text:p.concept,isFlipped:false,isMatched:false});

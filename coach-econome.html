@@ -358,9 +358,29 @@ function chooseOption(opt){
   if(budget<0){budget=0;showToast('Budget épuisé ! 😰','var(--red)');}
 }
 
+// Aléas de saison : une semaine sur trois environ, un imprévu change la donne (chaque saison est différente).
+const ALEAS=[
+  {txt:'🤕 Petite alerte physique : -6 en condition',fx:()=>{condition=clamp(condition-6);},si:()=>condition<45},
+  {txt:'🌟 Séance parfaite : +5 en mental',fx:()=>{mental=clamp(mental+5);}},
+  {txt:'🎁 Un sponsor local vous verse 30 €',fx:()=>{budget+=30;}},
+  {txt:'🌧️ Semaine pluvieuse : -3 en technique',fx:()=>{technique=clamp(technique-3);}},
+  {txt:'👏 Un partenaire d\'entraînement vous motive : +4 en condition',fx:()=>{condition=clamp(condition+4);}},
+  {txt:'💸 Frais d\'inscription imprévus : -20 €',fx:()=>{budget=Math.max(0,budget-20);}},
+];
 function nextWeek(){
   week++;
+  let aleaTxt='';
+  if(week<TOTAL_WEEKS && Math.random()<0.35){
+    const possibles=ALEAS.filter(a=>!a.si||a.si());
+    const a=possibles[Math.floor(Math.random()*possibles.length)];
+    a.fx(); aleaTxt=a.txt;
+  }
   loadWeek();
+  if(aleaTxt && week<TOTAL_WEEKS){
+    const d=document.getElementById('wcDesc');
+    d.innerHTML='<b style="color:var(--gold)">Aléa : '+aleaTxt+'.</b><br>'+d.textContent;
+    showToast(aleaTxt,'var(--gold)');
+  }
   updateHUD();
   renderSeason();
 }

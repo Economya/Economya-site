@@ -290,7 +290,8 @@ body{flex-direction:column;align-items:center;justify-content:flex-start;padding
 <script>
 // ---------- Données des scènes ----------
 // realTotal en euros, min/max = bornes du curseur
-const SCENES = [
+// 12 scènes possibles : chaque partie en tire 6 au hasard (prix indicatifs, arrondis pour le jeu)
+const TOUTES_SCENES = [
   {
     title: "🛒 Le panier de courses de la semaine",
     items: [
@@ -301,7 +302,7 @@ const SCENES = [
       {emoji:"🍝", name:"Pâtes 500g"},
       {emoji:"🍫", name:"Tablette de chocolat"},
     ],
-    realTotal: 34, min:0, max:80
+    realTotal: 19, min:0, max:50
   },
   {
     title: "🛋️ Le salon tout juste meublé",
@@ -356,7 +357,67 @@ const SCENES = [
     ],
     realTotal: 145, min:0, max:350
   },
+  {
+    title: "☕ Les pauses-café d'une semaine de bureau",
+    items: [
+      {emoji:"☕", name:"5 cafés à emporter"},
+      {emoji:"🥐", name:"2 viennoiseries"},
+      {emoji:"🥪", name:"1 sandwich"},
+    ],
+    realTotal: 24, min:0, max:60
+  },
+  {
+    title: "🎬 La sortie cinéma à quatre",
+    items: [
+      {emoji:"🎟️", name:"2 places adultes"},
+      {emoji:"🎫", name:"2 places enfants"},
+      {emoji:"🍿", name:"2 pop-corn"},
+      {emoji:"🥤", name:"4 boissons"},
+    ],
+    realTotal: 68, min:0, max:160
+  },
+  {
+    title: "📱 Les abonnements du mois",
+    items: [
+      {emoji:"📶", name:"Forfait mobile"},
+      {emoji:"🌐", name:"Box internet"},
+      {emoji:"📺", name:"2 plateformes de streaming"},
+      {emoji:"🎧", name:"Musique en illimité"},
+    ],
+    realTotal: 78, min:0, max:180
+  },
+  {
+    title: "🏖️ Le week-end à la mer à deux",
+    items: [
+      {emoji:"🏨", name:"2 nuits d'hôtel"},
+      {emoji:"⛽", name:"Essence aller-retour"},
+      {emoji:"🛣️", name:"Péages"},
+      {emoji:"🍽️", name:"2 restaurants"},
+    ],
+    realTotal: 400, min:0, max:900
+  },
+  {
+    title: "🐶 Un mois avec un chien",
+    items: [
+      {emoji:"🥣", name:"Croquettes"},
+      {emoji:"🦴", name:"Friandises"},
+      {emoji:"💊", name:"Antiparasitaire"},
+      {emoji:"🎾", name:"Jouet"},
+    ],
+    realTotal: 75, min:0, max:180
+  },
+  {
+    title: "👶 Un mois avec un bébé",
+    items: [
+      {emoji:"🧷", name:"3 paquets de couches"},
+      {emoji:"🍼", name:"2 boîtes de lait"},
+      {emoji:"🧻", name:"Lingettes"},
+      {emoji:"🥣", name:"Petits pots"},
+    ],
+    realTotal: 112, min:0, max:260
+  },
 ];
+let SCENES = TOUTES_SCENES.slice(0, 6);
 
 // ---------- État ----------
 let idx = 0;
@@ -370,6 +431,7 @@ function showScreen(id){
 }
 
 function startGame(){
+  SCENES = TOUTES_SCENES.slice().sort(()=>Math.random()-.5).slice(0, 6); // 6 scènes tirées au hasard
   idx = 0; totalScore = 0; results = [];
   showScreen('screen-game');
   loadScene();

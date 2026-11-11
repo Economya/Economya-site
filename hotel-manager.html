@@ -372,10 +372,14 @@ function choose(opt){
   sat=clamp(sat+opt.dSat,0,100);
   tarif=Math.max(60,tarif+opt.dTarif);
   ca+=opt.dCA;
+  // Bouche-à-oreille : des clients très satisfaits ramènent du monde, des clients mécontents en font partir.
+  let avisTxt='';
+  if(sat>=85){ ca+=2; avisTxt=' Bouche-à-oreille excellent : +2 % de CA.'; }
+  else if(sat<50){ ca-=2; avisTxt=' Mauvais avis en ligne : -2 % de CA.'; }
   renderHUD();
   const isGood=opt.dCA>=5||opt.dSat>=10;
   document.getElementById('resultTitle').textContent=isGood?'✅ Bonne décision !':'⚠️ Décision risquée';
-  document.getElementById('resultText').textContent=opt.result;
+  document.getElementById('resultText').textContent=opt.result+avisTxt;
   document.getElementById('resultBox').classList.add('show');
   document.getElementById('optsList').innerHTML='';
   document.getElementById('btnNext').style.display='block';
@@ -383,10 +387,31 @@ function choose(opt){
   period++;
 }
 
+// Aléas de saison : environ une période sur trois, un imprévu touche l'hôtel (chaque partie est différente).
+const ALEAS_HOTEL=[
+  {txt:'🎪 Festival en ville : +3 % de CA',fx:()=>{ca+=3;}},
+  {txt:'🚧 Travaux dans la rue : -2 % de CA',fx:()=>{ca-=2;}},
+  {txt:'⭐ Bel article dans un guide : +6 de satisfaction',fx:()=>{sat=clamp(sat+6,0,100);}},
+  {txt:'🧹 Arrêt maladie au ménage : -5 de satisfaction',fx:()=>{sat=clamp(sat-5,0,100);}},
+  {txt:'🚆 Grève des trains : -6 % d\'occupation',fx:()=>{occup=clamp(occup-6,0,100);}},
+  {txt:'💍 Un mariage réserve tout un étage : +8 % d\'occupation',fx:()=>{occup=clamp(occup+8,0,100);}},
+];
 function nextPeriod(){
   renderPeriods();
   if(period>=DECISIONS.length)endGame();
-  else loadDecision();
+  else {
+    let aleaTxt='';
+    if(Math.random()<0.35){
+      const a=ALEAS_HOTEL[Math.floor(Math.random()*ALEAS_HOTEL.length)];
+      a.fx(); aleaTxt=a.txt; renderHUD();
+    }
+    loadDecision();
+    if(aleaTxt){
+      const d=document.getElementById('dcContext');
+      d.innerHTML='<b style="color:#FFD54F">Aléa : '+aleaTxt+'.</b><br>'+d.textContent;
+      showToast(aleaTxt);
+    }
+  }
 }
 
 function endGame(){

@@ -150,7 +150,7 @@ const CARDS = [
     { label:"Reporter le règlement", effect:{capital:-10, risk:20} } ]},
   { type:'bonus', emoji:'🌟', text:"Grâce à votre gestion prudente, un bonus rare apparaît.", choices:[
     { label:"Encaisser le bonus", effect:{capital:80, risk:-4} },
-    { label:"Réinvestir le bonus (double ou rien)", effect:{capital: Math.random()<0.5?160:-20, risk:10} } ]},
+    { label:"Réinvestir le bonus (double ou rien)", effect:{capital:0, pari:[160,-20], risk:10} } ]},
   { type:'opportunite', emoji:'🏗️', text:"Un projet à fort potentiel cherche des financements.", choices:[
     { label:"Investir largement", effect:{capital:70, risk:20} },
     { label:"Investir un petit montant symbolique", effect:{capital:20, risk:5} } ]},
@@ -162,15 +162,35 @@ const CARDS = [
     { label:"Étaler le paiement", effect:{capital:-5, risk:10} } ]},
   { type:'bonus', emoji:'🎁', text:"Un cadeau inattendu récompense votre discipline.", choices:[
     { label:"Le garder de côté", effect:{capital:50, risk:-6} },
-    { label:"Le mettre en jeu", effect:{capital: Math.random()<0.5?100:0, risk:8} } ]},
+    { label:"Le mettre en jeu", effect:{capital:0, pari:[100,0], risk:8} } ]},
   { type:'opportunite', emoji:'🚪', text:"Une porte de sortie avantageuse s'ouvre sur une position existante.", choices:[
     { label:"Sortir maintenant avec le gain", effect:{capital:55, risk:-8} },
-    { label:"Attendre un gain plus grand", effect:{capital: Math.random()<0.5?90:-30, risk:16} } ]},
+    { label:"Attendre un gain plus grand", effect:{capital:0, pari:[90,-30], risk:16} } ]},
+  // cartes supplémentaires
+  { type:'opportunite', emoji:'🏠', text:"Un bien immobilier se libère sous le prix du marché.", choices:[
+    { label:"Acheter en s'endettant", effect:{capital:75, risk:22} },
+    { label:"Passer son tour", effect:{capital:5, risk:-4} } ]},
+  { type:'imprevu', emoji:'🚗', text:"La voiture tombe en panne la veille des vacances.", choices:[
+    { label:"Payer la réparation", effect:{capital:-32, risk:-3} },
+    { label:"Prendre un crédit conso", effect:{capital:-6, risk:18} } ]},
+  { type:'choc', emoji:'🏦', text:"Les taux d'intérêt remontent brutalement.", choices:[
+    { label:"Rembourser une partie de ses dettes", effect:{capital:-30, risk:-14} },
+    { label:"Ne rien changer", effect:{capital:-12, risk:10} } ]},
+  { type:'opportunite', emoji:'📚', text:"Une formation peut augmenter vos revenus futurs.", choices:[
+    { label:"S'y inscrire", effect:{capital:35, risk:2} },
+    { label:"Reporter à plus tard", effect:{capital:0, risk:0} } ]},
+  { type:'imprevu', emoji:'🩺', text:"Des frais de santé non remboursés arrivent.", choices:[
+    { label:"Utiliser l'épargne de précaution", effect:{capital:-25, risk:-4} },
+    { label:"Payer en plusieurs fois", effect:{capital:-9, risk:12} } ]},
+  { type:'bonus', emoji:'🏅', text:"Votre régularité paie : une prime de fidélité vous est versée.", choices:[
+    { label:"La placer en sécurité", effect:{capital:60, risk:-8} },
+    { label:"La jouer en bourse", effect:{capital:0, pari:[130,-10], risk:10} } ]},
 ];
 
 let capital = START_CAPITAL, risk = 20, turn = 1, running = false;
 let bonusUnlocked = false, goodStreak = 0;
 let best = 0;
+let dernierResultat = ''; // rappel de l'effet du choix précédent, affiché au-dessus de la carte suivante
 
 try{ best = parseInt(localStorage.getItem('rouedesscenariosBest')||'0',10); }catch(e){}
 
@@ -200,6 +220,7 @@ function pickCard(){
 function renderCard(card){
   const zone = document.getElementById('cardZone');
   zone.innerHTML = `
+    ${dernierResultat ? `<div style="text-align:center;font-size:12.5px;font-weight:700;margin:0 0 10px;opacity:.9">${dernierResultat}</div>` : ''}
     <div class="card">
       <div class="card-type">${ {opportunite:'Opportunité', choc:'Choc de marché', imprevu:'Imprévu', bonus:'Carte bonus'}[card.type] }</div>
       <div class="card-emoji">${card.emoji}</div>
@@ -218,10 +239,14 @@ function renderCard(card){
 
 function chooseOption(choice){
   if(!running) return;
-  capital += choice.effect.capital;
+  // pari : le résultat est tiré au moment du choix
+  const gain = choice.effect.pari ? (Math.random() < 0.5 ? choice.effect.pari[0] : choice.effect.pari[1]) : choice.effect.capital;
+  capital += gain;
   risk = clamp(risk + choice.effect.risk, 0, 100);
+  dernierResultat = 'Dernier choix : ' + (gain >= 0 ? '+' : '') + gain + ' pts · risque ' + (choice.effect.risk >= 0 ? '+' : '') + choice.effect.risk
+    + (choice.effect.pari ? (gain > 0 ? ' · pari gagné 🎉' : ' · pari perdu') : '');
 
-  if(choice.effect.risk <= 0 && choice.effect.capital >= 0) goodStreak++; else goodStreak = 0;
+  if(choice.effect.risk <= 0 && gain >= 0) goodStreak++; else goodStreak = 0;
   if(goodStreak >= 3) bonusUnlocked = true;
 
   updateHud();
@@ -244,7 +269,7 @@ function startGame(){
   document.getElementById('screen-intro').classList.remove('active');
   document.getElementById('screen-over').classList.remove('active');
   document.getElementById('hud').style.display='block';
-  capital = START_CAPITAL; risk = 20; turn = 1; bonusUnlocked = false; goodStreak = 0;
+  capital = START_CAPITAL; risk = 20; turn = 1; bonusUnlocked = false; goodStreak = 0; dernierResultat = '';
   running = true;
   updateHud();
   renderCard(pickCard());

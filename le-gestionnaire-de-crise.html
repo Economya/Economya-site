@@ -189,6 +189,77 @@ const EVENTS = [
       { label:"Négocier plus tard", effect:{cash:0, risk:0, opp:-8} }
     ]
   },
+  // Événements supplémentaires : 14 situations au lieu de 4
+  {
+    text: "🏦 La banque propose un découvert autorisé.",
+    choices: [
+      { label:"Accepter", effect:{cash:10, risk:10, opp:0} },
+      { label:"Refuser", effect:{cash:-2, risk:-4, opp:0} }
+    ]
+  },
+  {
+    text: "📦 Un fournisseur offre -15 % si vous payez comptant.",
+    choices: [
+      { label:"Payer comptant", effect:{cash:-10, risk:-2, opp:10} },
+      { label:"Garder la trésorerie", effect:{cash:0, risk:0, opp:-4} }
+    ]
+  },
+  {
+    text: "🧑‍💼 Un salarié clé demande une augmentation.",
+    choices: [
+      { label:"Accorder", effect:{cash:-8, risk:-8, opp:4} },
+      { label:"Refuser", effect:{cash:0, risk:10, opp:-4} }
+    ]
+  },
+  {
+    text: "🌧️ Mois creux : les ventes chutent.",
+    choices: [
+      { label:"Lancer une promo", effect:{cash:6, risk:4, opp:6} },
+      { label:"Réduire les dépenses", effect:{cash:3, risk:-4, opp:-6} }
+    ]
+  },
+  {
+    text: "🛡️ L'assurance professionnelle arrive à échéance.",
+    choices: [
+      { label:"Renouveler", effect:{cash:-8, risk:-12, opp:0} },
+      { label:"Faire l'impasse", effect:{cash:2, risk:14, opp:0} }
+    ]
+  },
+  {
+    text: "📈 Un concurrent ferme : ses clients cherchent une alternative.",
+    choices: [
+      { label:"Investir pour les capter", effect:{cash:-10, risk:4, opp:16} },
+      { label:"Rester prudent", effect:{cash:0, risk:-2, opp:-4} }
+    ]
+  },
+  {
+    text: "🧮 Un contrôle fiscal est annoncé.",
+    choices: [
+      { label:"Prendre un expert-comptable", effect:{cash:-8, risk:-12, opp:0} },
+      { label:"Gérer seul", effect:{cash:0, risk:10, opp:0} }
+    ]
+  },
+  {
+    text: "💡 Une idée de nouveau produit émerge.",
+    choices: [
+      { label:"Tester en petit", effect:{cash:-5, risk:2, opp:10} },
+      { label:"Tout miser dessus", effect:{cash:-14, risk:12, opp:18} }
+    ]
+  },
+  {
+    text: "🚚 Un client important est livré en retard.",
+    choices: [
+      { label:"Le dédommager", effect:{cash:-6, risk:-6, opp:4} },
+      { label:"Ne rien faire", effect:{cash:0, risk:8, opp:-8} }
+    ]
+  },
+  {
+    text: "💰 Excédent de trésorerie ce mois-ci.",
+    choices: [
+      { label:"Le mettre en réserve", effect:{cash:4, risk:-8, opp:0} },
+      { label:"Le réinvestir", effect:{cash:-6, risk:3, opp:12} }
+    ]
+  },
 ];
 
 let gauges = { cash:60, risk:30, opp:50 };

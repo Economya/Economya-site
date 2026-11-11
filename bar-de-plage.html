@@ -118,7 +118,7 @@ body{flex-direction:column;align-items:center;justify-content:flex-start;padding
 <div class="screen active" id="screen-intro">
   <div class="eyebrow">Economya.fr · Le bar de plage</div>
   <h1 class="title">Bar de <span>Plage</span></h1>
-  <p class="lede">Vous gérez un bar de plage sur la Côte d'Azur pendant la saison estivale. 10 journées de décisions : cocktails, stock, personnel, météo capricieuse. Maximisez votre CA avant la rentrée !</p>
+  <p class="lede">Vous gérez un bar de plage sur la Côte d'Azur pendant la saison estivale. 10 journées de décisions : cocktails, stock, personnel, météo capricieuse. Maximisez votre CA avant la rentrée ! Soignez vos avis clients : ils font monter ou baisser le chiffre de chaque journée.</p>
   <button class="btn btn-primary" onclick="startGame()">Ouvrir le parasol 🌴</button>
   <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
 </div>
@@ -276,9 +276,10 @@ function loadJour(){
   document.getElementById('resBox').classList.remove('show');
   document.getElementById('nextBtn').style.display='none';
   const opts=document.getElementById('optsList');opts.innerHTML='';
-  j.opts.forEach(opt=>{
+  // Options présentées dans un ordre aléatoire et sans code couleur : avant, la meilleure était toujours en vert.
+  j.opts.slice().sort(()=>Math.random()-.5).forEach(opt=>{
     const div=document.createElement('div');div.className='opt';
-    const col=opt.dCA>1200?'var(--green)':opt.dCA>800?'var(--gold)':'var(--orange)';
+    const col='var(--gold)';
     div.innerHTML=`<span class="opt-label">${opt.label}</span><span class="opt-val" style="color:${col}">${opt.val}</span>`;
     div.onclick=()=>choose(opt);
     opts.appendChild(div);
@@ -286,15 +287,19 @@ function loadJour(){
 }
 
 function choose(opt){
-  ca+=opt.dCA;
+  // Le chiffre du jour dépend aussi des avis clients (de ×0,7 à ×1,2) et de l'affluence réelle (±15 %).
+  const mSat=0.7+sat*0.1;
+  const mAff=0.85+Math.random()*0.3;
+  const gain=Math.round(opt.dCA*mSat*mAff/10)*10;
+  ca+=gain;
   stock=clamp(stock+opt.dStock,0,100);
   perso=Math.max(1,perso+opt.dPerso);
   prix=Math.max(5,prix+opt.dPrix);
   sat=clamp(sat+opt.dSat,0,5);
   renderDash();
-  showToast('+'+fmt(opt.dCA),'var(--green)');
-  document.getElementById('resTitle').textContent=opt.dCA>1400?'🌴 Excellente journée !':opt.dCA>800?'👍 Bonne journée':'😐 Journée moyenne';
-  document.getElementById('resText').textContent=opt.result;
+  showToast('+'+fmt(gain),'var(--green)');
+  document.getElementById('resTitle').textContent=gain>1400?'🌴 Excellente journée !':gain>800?'👍 Bonne journée':'😐 Journée moyenne';
+  document.getElementById('resText').textContent=opt.result+' Affluence '+(mAff>=1?'+':'')+Math.round((mAff-1)*100)+' % · avis clients ×'+mSat.toFixed(1).replace('.',',')+'.';
   document.getElementById('resBox').classList.add('show');
   document.getElementById('optsList').innerHTML='';
   document.getElementById('nextBtn').style.display='block';
