@@ -564,6 +564,7 @@ function loop(ts){
   ctx.beginPath(); ctx.ellipse(0,18,26,8,0,0,Math.PI*2); ctx.fill();
   ctx.font = '34px serif';
   ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillStyle = '#FFC94B'; // si l'appareil n'a pas l'emoji en couleur, la voiture reste bien visible
   ctx.fillText('🏎️', 0, 0);
   ctx.restore();
 

@@ -67,6 +67,12 @@
   var K = "economya_cookie_consent_v2";
   // PWA : service worker et bouton « Installer Economya » (voir pwa.js)
   try { var pw = document.createElement("script"); pw.src = "/pwa.js"; pw.defer = true; document.head.appendChild(pw); } catch (e) {}
+  // Jeux : sons, médailles et suggestions (voir game-plus.js). Chargé seulement sur les pages de jeu et sur /jeux.
+  try {
+    var ecoPath = location.pathname.replace(/\.html$/, "").replace(/\/+$/, "");
+    var ecoIsGame = ecoPath === "/jeux" || document.querySelector('a[aria-label="Retour aux jeux Economya"], a.nav-back[href="/jeux"], a.nav-back[href="/"]');
+    if (ecoIsGame) { var gp = document.createElement("script"); gp.src = "/game-plus.js"; gp.defer = true; document.head.appendChild(gp); }
+  } catch (e) {}
   function ready(fn) {
     if (document.readyState !== "loading") fn();
     else document.addEventListener("DOMContentLoaded", fn);
@@ -152,7 +158,7 @@
           back.style.opacity = ".72";
         }
         if (info) info.style.display = "none";
-        // Si un élément du bandeau de score se trouve sous la flèche, on le décale d'un cran vers la gauche.
+        // Si un élément du bandeau de score se trouve sous la flèche ou le bouton son, on le décale vers la gauche.
         var tries = 0;
         var clearCorner = function () {
           var list = document.querySelectorAll("#hud,.hud,.hud-row,.hud-top,.game-meta,#boardTrack");
@@ -160,11 +166,11 @@
             var el = list[j];
             if (el.getAttribute("data-eco-pad")) continue;
             var r = el.getBoundingClientRect();
-            if (r.width < 2 || r.height < 2 || r.top > 44 || r.bottom < 8 || r.right < window.innerWidth - 50) continue;
+            if (r.width < 2 || r.height < 2 || r.top > 44 || r.bottom < 8 || r.right < window.innerWidth - 92) continue;
             if (el.querySelector(".hud-row,.hud-top")) continue; // on décale la ligne intérieure, pas le conteneur
             el.setAttribute("data-eco-pad", "1");
             el.style.boxSizing = "border-box";
-            el.style.paddingRight = "50px";
+            el.style.paddingRight = "92px"; // place pour la flèche retour et le bouton son
           }
           if (++tries < 40) setTimeout(clearCorner, 750);
         };
