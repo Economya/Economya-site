@@ -234,8 +234,8 @@ const INGREDIENTS = [
   { id:'cake',     emoji:'🍰', name:'Part de cake',  price:3.2, nutri:10, cat:'autre' },
 ];
 
-// 3 recettes avec ingrédients cibles
-const RECIPES = [
+// 7 recettes possibles : chaque partie en tire 3 au hasard
+const TOUTES_RECETTES = [
   {
     name: 'Pâtes aux légumes 🍝',
     budget: 4.0,
@@ -253,8 +253,33 @@ const RECIPES = [
     budget: 3.0,
     targets: ['oeufs', 'tomates', 'epinards', 'fromage'],
     lesson: 'L\'œuf est l\'un des aliments les plus nutritifs au meilleur rapport qualité/prix : <b>0,20€ par unité</b> pour 6g de protéines. Un repas complet à moins de 1,50€.'
+  },
+  {
+    name: 'Riz sauté au poulet 🍚',
+    budget: 5.8,
+    targets: ['riz', 'poulet', 'carottes', 'oignons'],
+    lesson: 'Cuisiner en <b>double portion</b> fournit le déjeuner du lendemain : c\'est un repas à emporter de moins à acheter dans la semaine.'
+  },
+  {
+    name: 'Salade de thon 🥗',
+    budget: 6.2,
+    targets: ['thon', 'tomates', 'oeufs', 'olive'],
+    lesson: 'Les <b>conserves</b> (thon, légumineuses) se gardent longtemps : en avoir d\'avance évite la commande de dernière minute les soirs sans idée.'
+  },
+  {
+    name: 'Gratin de pommes de terre 🥔',
+    budget: 5.4,
+    targets: ['pommes_terre', 'fromage', 'oignons', 'beurre'],
+    lesson: 'La <b>pomme de terre</b> est l\'un des féculents les moins chers au kilo : une base idéale pour nourrir toute la tablée à petit prix.'
+  },
+  {
+    name: 'Curry de tofu 🍛',
+    budget: 4.8,
+    targets: ['tofu', 'riz', 'epinards', 'oignons'],
+    lesson: 'Alterner <b>protéines végétales et animales</b> allège le ticket de caisse sans sacrifier l\'équilibre du repas.'
   }
 ];
+let RECIPES = TOUTES_RECETTES.slice(0, 3);
 
 let score = 0, round = 0, running = false;
 let timeLeft = 30, timerInterval = null;
@@ -285,6 +310,7 @@ function shuffleArr(arr){
 }
 
 function startGame(){
+  RECIPES = TOUTES_RECETTES.slice().sort(()=>Math.random()-.5).slice(0, 3); // 3 recettes tirées au hasard parmi 7
   score=0; round=0; running=true; roundScores=[];
   showScreen('screen-game');
   loadRound();

@@ -38,7 +38,7 @@
     "le-grand-cycle-economique": {"end": "#screen-over", "score": "#goScore", "m": [95, 135, 210], "u": "pts"},
     "le-marche-vivant": {"end": "#screen-over", "score": "#goScore", "u": "pts", "m": [1030, 1070, 1120]},
     "bar-de-plage": {"end": "#screen-end", "score": "#endCA", "u": "€", "m": [6000, 10000, 15000]},
-    "chef-resto-v2": {"end": "#screen-end", "score": "#endCA", "live": "#hudCA", "u": "€", "m": [200, 300, 500]},
+    "chef-resto-v2": {"end": "#screen-end", "score": "#endCA", "live": "#hudCA", "u": "€", "m": [800, 1200, 1700]},
     "coach-econome": {"end": "#screen-end", "score": "#endPerf", "u": "%", "m": [35, 50, 70]},
     "domaine-viticole": {"end": "#screen-end", "score": "#endScore", "m": [50000, 80000, 150000], "u": "€"},
     "hotel-manager": {"end": "#screen-end", "score": "#endScore", "m": [10, 30, 60], "u": "% de CA"},

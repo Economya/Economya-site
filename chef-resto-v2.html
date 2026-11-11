@@ -121,7 +121,7 @@ p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
 <div class="screen active" id="screen-intro">
   <div class="eyebrow">Economya.fr · La restauration</div>
   <h1 class="title">Chef <span>Resto</span></h1>
-  <p class="lede">Service du soir. 8 tables, 3 minutes chrono. Les clients arrivent, attendent, commandent. Tapez une table qui attend pour la servir, choisissez les plats à forte marge, encaissez quand ils paient.</p>
+  <p class="lede">Service du soir. 8 tables, 3 minutes chrono. Les clients arrivent, attendent, commandent. Tapez une table qui attend pour la servir, choisissez les plats à forte marge, encaissez quand ils paient. Les meilleurs plats sont en quantité limitée, le plat du jour ⭐ rapporte 30 % de plus et une table servie vite laisse un pourboire.</p>
   <button class="btn btn-primary" onclick="startGame()">🍽️ Ouvrir le service</button>
   <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
 </div>
@@ -183,6 +183,16 @@ let activeTableId = null; // table actuellement ouverte dans le panneau
 let serviceTimeLeft = SERVICE_DURATION;
 let running = false;
 let mainInterval = null, spawnInterval = null;
+// Enrichissements : stocks limités (on ne peut pas vendre la même chose toute la soirée),
+// plat du jour qui change toutes les 30 s (+30 %), pourboire pour les tables servies vite.
+let stocks = {}, platDuJour = null, prochainPlatDuJour = 0;
+const STOCK_INITIAL = { 'Bouteille vin': 8, 'Entrecôte frites': 10, 'Dos de saumon': 10, 'Pizza truffe': 14, 'Pâtes carbonara': 40, 'Salade César': 40 };
+function changerPlatDuJour() {
+  const dispo = MENU.slice(0, 6).filter(i => (stocks[i.name] || 0) > 0 && i !== platDuJour);
+  if (!dispo.length) { platDuJour = null; return; }
+  platDuJour = dispo[Math.floor(Math.random() * dispo.length)];
+  showToast('⭐ Plat du jour : ' + platDuJour.emoji + ' ' + platDuJour.name + ' (+30 %)', 'var(--gold)');
+}
 
 // ─── Utilitaires ────────────────────────────────────────────
 function showToast(txt, color) {
@@ -205,6 +215,7 @@ function startGame() {
     id: i, state: 'empty', clients: 0, wait: 0, urgent: false, ca: 0
   }));
   ca = 0; tablesServed = 0; fugues = 0;
+  stocks = Object.assign({}, STOCK_INITIAL); platDuJour = null; prochainPlatDuJour = SERVICE_DURATION - 8;
   activeTableId = null;
   serviceTimeLeft = SERVICE_DURATION;
   running = true;
@@ -248,6 +259,9 @@ function tick() {
   const s = Math.floor(Math.max(0, serviceTimeLeft) % 60);
   document.getElementById('hudTimer').textContent = `${m}:${s.toString().padStart(2,'0')}`;
   document.getElementById('timerFill').style.width = (serviceTimeLeft / SERVICE_DURATION * 100) + '%';
+
+  // Plat du jour : il change toutes les 30 secondes
+  if (serviceTimeLeft <= prochainPlatDuJour) { changerPlatDuJour(); prochainPlatDuJour -= 30; }
 
   // Vieillissement des attentes
   tables.forEach(t => {
@@ -305,13 +319,17 @@ function openOrder(tableId) {
   items.forEach(item => {
     const div = document.createElement('div');
     div.className = 'menu-item';
+    const reste = stocks[item.name] || 0;
+    const assez = reste >= t.clients;
+    const duJour = item === platDuJour;
+    if (!assez) div.style.opacity = '.38';
     div.innerHTML = `
       <div class="mi-left">
-        <div class="mi-name">${item.emoji} ${item.name} · ${item.price}€/pers</div>
-        <div class="mi-price">Coût matière : ${item.cpa}€ · Total : ${item.price * t.clients}€</div>
+        <div class="mi-name">${item.emoji} ${item.name} · ${item.price}€/pers${duJour ? ' ⭐' : ''}</div>
+        <div class="mi-price">Coût matière : ${item.cpa}€ · Total : ${Math.round(item.price * t.clients * (duJour ? 1.3 : 1))}€ · ${assez ? 'reste ' + reste : 'rupture'}${duJour ? ' · plat du jour +30 %' : ''}</div>
       </div>
       <div class="mi-margin ${item.margin}">+${item.marginPct}%</div>`;
-    div.onclick = () => orderItem(tableId, item);
+    if (assez) div.onclick = () => orderItem(tableId, item);
     menuEl.appendChild(div);
   });
 
@@ -334,13 +352,19 @@ function closeOrder() {
 function orderItem(tableId, item) {
   const t = tables[tableId];
   if (!t || t.state !== 'serving') return;
-  const total = item.price * t.clients;
+  if ((stocks[item.name] || 0) < t.clients) return;
+  stocks[item.name] -= t.clients;
+  let total = item.price * t.clients;
+  if (item === platDuJour) total = Math.round(total * 1.3);
+  // pourboire : table servie en moins de 10 secondes d'attente
+  let pourboire = 0;
+  if (t.wait < 10) { pourboire = Math.max(1, Math.round(total * 0.1)); total += pourboire; }
   ca += total;
   t.ca += total;
   t.state = 'paying';
   activeTableId = null;
   document.getElementById('orderPanel').style.display = 'none';
-  showToast('+' + total + '€ ' + item.emoji, 'var(--green)');
+  showToast('+' + total + '€ ' + item.emoji + (pourboire ? ' (dont ' + pourboire + '€ de pourboire)' : ''), 'var(--green)');
   renderTables();
   updateHUD();
 }

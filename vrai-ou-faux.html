@@ -228,6 +228,9 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <button class="answer-btn btn-vrai" id="btn-vrai" onclick="answer(true)">✅ VRAI</button>
       <button class="answer-btn btn-faux" id="btn-faux" onclick="answer(false)">❌ FAUX</button>
     </div>
+    <div style="text-align:center;margin:.2rem 0 1rem">
+      <button type="button" id="btn-joker" onclick="jokerTemps()" style="background:transparent;border:1.5px dashed #EF9F27;color:#b46f06;border-radius:50px;padding:.5rem 1.1rem;font:700 .85rem inherit;cursor:pointer">⏱️ Joker : +5 secondes (2 restants)</button>
+    </div>
 
     <div class="feedback" id="feedback">
       <div class="feedback-icon" id="fb-icon"></div>
@@ -335,6 +338,7 @@ function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 function startGame() {
   questions = shuffle(ALL_QUESTIONS).slice(0, difficulty);
   currentQ = 0; score = 0; streak = 0; maxStreak = 0; correctCount = 0;
+  jokers = 2; majJoker();
   dots = new Array(difficulty).fill('pending');
 
   document.getElementById('screen-idle').style.display = 'none';
@@ -395,7 +399,7 @@ function startTimer() {
 }
 
 function updateTimerUI() {
-  const pct = timeLeft / 5;
+  const pct = Math.min(1, timeLeft / 5);
   const circumference = 188;
   document.getElementById('timer-circle').style.strokeDashoffset = circumference * (1 - pct);
   document.getElementById('timer-circle').style.stroke = timeLeft > 3 ? '#1D9E75' : timeLeft > 1.5 ? '#f97316' : '#ef4444';
@@ -403,6 +407,31 @@ function updateTimerUI() {
   el.textContent = Math.ceil(timeLeft);
   el.className = 'timer-num' + (timeLeft <= 2 ? ' urgent' : '');
 }
+
+// Joker : deux fois par partie, 5 secondes de réflexion en plus sur une question
+let jokers = 2;
+function majJoker() {
+  const b = document.getElementById('btn-joker');
+  if (!b) return;
+  b.textContent = jokers > 0 ? '⏱️ Joker : +5 secondes (' + jokers + ' restant' + (jokers > 1 ? 's' : '') + ')' : '⏱️ Jokers utilisés';
+  b.disabled = jokers <= 0;
+  b.style.opacity = jokers > 0 ? '1' : '.45';
+}
+function jokerTemps() {
+  if (answered || jokers <= 0) return;
+  jokers--;
+  timeLeft = Math.min(10, timeLeft + 5);
+  updateTimerUI();
+  majJoker();
+}
+// Clavier (ordinateur) : V ou flèche gauche = Vrai, F ou flèche droite = Faux
+document.addEventListener('keydown', function (e) {
+  const g = document.getElementById('btn-vrai');
+  if (!g || !g.offsetParent) return;
+  const k = (e.key || '').toLowerCase();
+  if (k === 'v' || k === 'arrowleft') answer(true);
+  else if (k === 'f' || k === 'arrowright') answer(false);
+});
 
 function timeUp() {
   answered = true; streak = 0;
@@ -419,7 +448,7 @@ function answer(val) {
   clearInterval(timerInterval);
   const q = questions[currentQ];
   const isCorrect = val === q.answer;
-  const timeBonus = Math.round(timeLeft * 20);
+  const timeBonus = Math.round(Math.min(5, timeLeft) * 20);
 
   document.getElementById('btn-' + (val ? 'vrai' : 'faux')).className = 'answer-btn ' + (isCorrect ? 'selected-correct' : 'selected-wrong');
   if(!isCorrect) document.getElementById('btn-' + (q.answer ? 'vrai' : 'faux')).className = 'answer-btn reveal';
