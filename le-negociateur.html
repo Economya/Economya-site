@@ -253,6 +253,9 @@ const ALL_SCENARIOS = [
 function shuffle(arr) { return [...arr].sort(() => Math.random() - 0.5); }
 
 let scenarios = [], round = 0, totalScore = 0, totalSaved = 0, bestScore = 0;
+// Meilleur score conservé d'une visite à l'autre
+try { bestScore = parseInt(localStorage.getItem('negociateurBest') || '0', 10) || 0; } catch (e) {}
+document.addEventListener('DOMContentLoaded', function () { var b = document.getElementById('stat-best'); if (b) b.textContent = bestScore; });
 let currentScenario, currentPrice, timerInterval, timeLeft;
 let vendeurMood = 50;
 
@@ -360,7 +363,7 @@ function showResult(type, saving, score) {
   const sc = currentScenario;
   totalSaved += Math.max(0, saving);
   totalScore += Math.max(0, score);
-  if(totalScore > bestScore) bestScore = totalScore;
+  if(totalScore > bestScore) { bestScore = totalScore; try { localStorage.setItem('negociateurBest', String(bestScore)); } catch (e) {} }
   const overlay = document.getElementById('result-overlay');
   overlay.className = 'result-overlay ' + type;
   overlay.style.display = 'block';

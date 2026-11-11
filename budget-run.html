@@ -67,6 +67,7 @@ h1 span{color:#FFD54F;}
     <div class="tag">🎮 Economya.fr · Style Nintendo</div>
     <h1>Budget<br><span>Run</span></h1>
     <p class="sub">Courez, sautez, collectez les pièces d'épargne ! Esquivez les dettes et les dépenses inutiles. Jusqu'où irez-vous ?</p>
+    <p class="sub" style="font-size:.82rem;opacity:.85;margin-top:-.4rem">3 vies · double saut · 🛡️ bouclier · 🧲 aimant à pièces</p>
     <button class="btn" onclick="startGame()">▶ Démarrer</button>
     <div class="brand">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
   </div>
@@ -108,6 +109,10 @@ const INITIAL_SPEED = 5;
 const PLAYER_W = 32, PLAYER_H = 40;
 
 let score, best, running, raf, speed, distance, elapsed;
+// Enrichissements : vies, invulnérabilité après un choc, bouclier, aimant, paliers de distance
+let lives = 3, invuln = 0, shield = false, magnet = 0, nextPalier = 250, toastTxt = '', toastLife = 0;
+const sfx = (n) => { try { if (window.EcoFx && window.EcoFx[n]) window.EcoFx[n](); } catch (e) {} };
+function toast(t){ toastTxt = t; toastLife = 110; }
 let player, coins, obstacles, particles, clouds;
 let keys = {};
 let jumping = false;
@@ -150,6 +155,7 @@ function startGame() {
   document.getElementById('jumpBtn').style.display = 'flex';
 
   score = 0;
+  lives = 3; invuln = 0; shield = false; magnet = 0; nextPalier = 250; toastTxt = ''; toastLife = 0;
   distance = 0;
   elapsed = 0;
   speed = INITIAL_SPEED;
@@ -160,7 +166,7 @@ function startGame() {
     y: H - GROUND_H - PLAYER_H,
     vy: 0,
     onGround: true,
-    jumpsLeft: 1,
+    jumpsLeft: 2, // double saut
     jumpAnim: 0,
     runFrame: 0,
     dead: false,
@@ -231,6 +237,15 @@ function spawnCoins() {
   }
 }
 
+const POWER_TYPES = [
+  {emoji:'🛡️',val:0,color:'#5AC8FA',r:17,power:'shield'},
+  {emoji:'🧲',val:0,color:'#FF9F0A',r:17,power:'magnet'},
+];
+function spawnPower() {
+  const type = POWER_TYPES[Math.floor(Math.random() * POWER_TYPES.length)];
+  coins.push({ x: W + 140, y: H - GROUND_H - PLAYER_H - 70 - Math.random() * 50, type, collected: false, bobOffset: 0, scale: 1 });
+}
+
 function spawnObstacle() {
   const obs = OBS_TYPES[Math.floor(Math.random() * OBS_TYPES.length)];
   obstacles.push({
@@ -266,6 +281,16 @@ function update(dt) {
   // secondes). Ici la vitesse augmente de façon linéaire et est plafonnée.
   speed = Math.min(INITIAL_SPEED + elapsed * 0.0028, INITIAL_SPEED * 2.4);
 
+  if(invuln > 0) invuln -= dt;
+  if(magnet > 0) magnet -= dt;
+  if(toastLife > 0) toastLife -= dt;
+  if(distance / 10 >= nextPalier) {
+    score += 10;
+    toast(nextPalier + ' m ! +10 🪙');
+    sfx('win');
+    nextPalier += 250;
+  }
+
   // Joueur
   player.vy += GRAVITY * dt;
   player.y += player.vy * dt;
@@ -274,7 +299,7 @@ function update(dt) {
     player.y = groundY;
     player.vy = 0;
     player.onGround = true;
-    player.jumpsLeft = 1;
+    player.jumpsLeft = 2;
   }
 
   // Animation course
@@ -293,6 +318,7 @@ function update(dt) {
   }
   if(coinTimer <= 0) {
     spawnCoins();
+    if(Math.random() < 0.14) spawnPower();
     coinTimer = 60 + Math.random() * 40;
   }
 
@@ -308,14 +334,21 @@ function update(dt) {
     c.x -= speed * dt;
     c.scale = 1 + Math.sin(now2 * 0.003 + c.bobOffset) * 0.1;
     if(!c.collected) {
+      if(magnet > 0 && !c.type.power) {
+        const mx = player.x + PLAYER_W/2 - c.x, my = player.y + PLAYER_H/2 - c.y;
+        if(Math.hypot(mx, my) < 190) { c.x += mx * 0.14 * dt; c.y += my * 0.14 * dt; }
+      }
       const dist = Math.hypot(player.x + PLAYER_W/2 - c.x, player.y + PLAYER_H/2 - c.y);
       if(dist < c.type.r + 16) {
         c.collected = true;
+        if(c.type.power === 'shield') { shield = true; toast('🛡️ Bouclier : le prochain choc est annulé'); }
+        else if(c.type.power === 'magnet') { magnet = 420; toast('🧲 Aimant : les pièces viennent à vous'); }
+        sfx(c.type.power ? 'win' : 'good');
         score += c.type.val;
         // Particules
         for(let i=0;i<6;i++) {
           const ang = (i/6)*Math.PI*2;
-          particles.push({x:c.x,y:c.y,vx:Math.cos(ang)*3,vy:Math.sin(ang)*3-1,life:1,color:c.type.color,r:4,text:'+'+ c.type.val});
+          particles.push({x:c.x,y:c.y,vx:Math.cos(ang)*3,vy:Math.sin(ang)*3-1,life:1,color:c.type.color,r:4,text:c.type.power ? '' : '+'+ c.type.val});
         }
         if(score > best) {
           best = score;
@@ -329,7 +362,7 @@ function update(dt) {
   // Obstacles
   for(const o of obstacles) {
     o.x -= speed * dt;
-    if(!o.hit && !player.onGround === false) {
+    if(!o.hit && invuln <= 0) {
       // Collision AABB
       if(
         player.x + 4 < o.x + o.w &&
@@ -337,8 +370,19 @@ function update(dt) {
         player.y + 4 < o.y + o.h &&
         player.y + PLAYER_H > o.y + 4
       ) {
-        gameOver();
-        return;
+        o.hit = true;
+        invuln = 80;
+        for(let i=0;i<10;i++) {
+          const ang = (i/10)*Math.PI*2;
+          particles.push({x:o.x+o.w/2,y:o.y+o.h/2,vx:Math.cos(ang)*4,vy:Math.sin(ang)*4-1,life:1,color:'#FF453A',r:4});
+        }
+        if(shield) { shield = false; toast('🛡️ Bouclier utilisé !'); sfx('good'); }
+        else {
+          lives--;
+          sfx('bad');
+          if(lives <= 0) { gameOver(); return; }
+          toast(lives === 1 ? 'Dernière vie !' : 'Aïe ! Encore ' + lives + ' vies');
+        }
       }
     }
   }
@@ -411,7 +455,26 @@ function draw(now) {
   ctx.font = 'bold 13px Space Grotesk, sans-serif';
   ctx.fillStyle = 'rgba(255,255,255,.3)';
   ctx.textAlign = 'left';
-  ctx.fillText('📏 ' + Math.floor(distance) + 'm', 16, 30);
+  ctx.fillText('📏 ' + Math.floor(distance / 10) + ' m', 16, 30);
+  // Vies et bonus actifs
+  ctx.font = '15px serif';
+  ctx.fillStyle = '#fff';
+  ctx.fillText('❤️'.repeat(Math.max(0, lives)) + (shield ? ' 🛡️' : '') + (magnet > 0 ? ' 🧲' : ''), 16, 54);
+  // Message temporaire (palier, bonus, choc)
+  if(toastLife > 0) {
+    ctx.save();
+    ctx.globalAlpha = Math.min(1, toastLife / 25);
+    ctx.font = 'bold 15px Space Grotesk, sans-serif';
+    ctx.textAlign = 'center';
+    const tw = ctx.measureText(toastTxt).width + 28;
+    ctx.fillStyle = 'rgba(0,0,0,.55)';
+    ctx.beginPath(); ctx.roundRect(W/2 - tw/2, 70, tw, 34, 17); ctx.fill();
+    ctx.fillStyle = '#FFD54F';
+    ctx.fillText(toastTxt, W/2, 92);
+    ctx.restore();
+    ctx.font = 'bold 13px Space Grotesk, sans-serif';
+    ctx.textAlign = 'left';
+  }
 
   // Score
   ctx.font = 'bold 20px Space Grotesk, sans-serif';
@@ -490,6 +553,7 @@ function drawPlayer() {
   const squish = player.jumpAnim > 0 ? 1 - player.jumpAnim * 0.2 : 1;
 
   ctx.save();
+  if(invuln > 0 && Math.floor(invuln / 5) % 2 === 0) ctx.globalAlpha = 0.35;
   ctx.translate(px + PLAYER_W/2, py + PLAYER_H/2 + bob);
   ctx.scale(squish > 0.8 ? 1/squish : 1, squish);
 

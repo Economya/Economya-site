@@ -317,6 +317,9 @@ const ALL_QUESTIONS = [
 
 let difficulty = 10, questions = [], currentQ = 0;
 let score = 0, streak = 0, maxStreak = 0, bestScore = 0, correctCount = 0;
+// Meilleur score conservé d'une visite à l'autre
+try { bestScore = parseInt(localStorage.getItem('vraiOuFauxBest') || '0', 10) || 0; } catch (e) {}
+document.addEventListener('DOMContentLoaded', function () { var b = document.getElementById('s-best'); if (b) b.textContent = bestScore; });
 let timerInterval, timeLeft = 5;
 let answered = false;
 let dots = [];
@@ -449,7 +452,7 @@ function updateStats() {
   document.getElementById('s-score').textContent = score;
   document.getElementById('s-streak').textContent = streak + (streak >= 2 ? '🔥' : '');
   document.getElementById('prog-score').textContent = score + ' pts';
-  if(score > bestScore) { bestScore = score; document.getElementById('s-best').textContent = bestScore; }
+  if(score > bestScore) { bestScore = score; document.getElementById('s-best').textContent = bestScore; try { localStorage.setItem('vraiOuFauxBest', String(bestScore)); } catch (e) {} }
   const pct = correctCount > 0 ? Math.round((correctCount / (currentQ + 1)) * 100) : 0;
   document.getElementById('s-correct').textContent = pct + '%';
 }

@@ -244,7 +244,12 @@ function endGame(){
   document.getElementById('endIcon').textContent=icon;
   document.getElementById('endTitle').textContent=title;
   document.getElementById('endTime').textContent=t+'s';
-  document.getElementById('endLabel').textContent=`pour ${PAIRS.length} paires — Record à battre : 25s`;
+  // Record personnel conservé d'une visite à l'autre
+  let rec = 0;
+  try { rec = parseInt(localStorage.getItem('memoryFinanceBest') || '0', 10) || 0; } catch (e) {}
+  const nouveau = !rec || t < rec;
+  if (nouveau) { rec = t; try { localStorage.setItem('memoryFinanceBest', String(t)); } catch (e) {} }
+  document.getElementById('endLabel').textContent=`pour ${PAIRS.length} paires — ` + (nouveau ? 'nouveau record personnel !' : `votre record : ${rec}s`) + ' · objectif : 25s';
   document.getElementById('endAttempts').textContent=attempts;
   document.getElementById('endErrors').textContent=errors;
   document.getElementById('endLesson').innerHTML=lesson;

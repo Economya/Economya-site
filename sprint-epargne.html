@@ -97,6 +97,9 @@ html{overflow-y:scroll}
     <div class="legend">
       <div class="legend-item">👆 Tapez pour sauter</div>
       <div class="legend-item">🪙 Collectionnez</div>
+      <div class="legend-item">⏫ Double saut</div>
+      <div class="legend-item">💎 Diamant = 5 pièces</div>
+      <div class="legend-item">❤️ Cœur = 1 vie</div>
     </div>
     <button class="btn btn-primary" onclick="startGame()">C'est parti !</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -186,6 +189,13 @@ function jump(){
     player.vy = JUMP_V;
     player.onGround = false;
     player.squash = 1.3;
+    player.jumps = 1;
+    spawnJumpDust();
+  } else if(player.jumps === 1){
+    // double saut : un deuxième appui en l'air relance le coureur
+    player.vy = JUMP_V * 0.9;
+    player.squash = 1.2;
+    player.jumps = 2;
     spawnJumpDust();
   }
 }
@@ -275,8 +285,17 @@ function loop(){
     // spawn pieces
     coinSpawnTimer -= 1;
     if(coinSpawnTimer <= 0){
-      const h = Math.random() < 0.5 ? groundY()-30 : groundY()-70;
-      coins.push({ x: W+30, y:h, r:11, collected:false, spin:0 });
+      const tirage = Math.random();
+      if(tirage < 0.07 && lives < 3){
+        // cœur : rend une vie
+        coins.push({ x: W+30, y: groundY()-95, r:13, collected:false, spin:0, kind:'coeur' });
+      } else if(tirage < 0.2){
+        // diamant en hauteur : il faut le double saut, il vaut 5 pièces
+        coins.push({ x: W+30, y: groundY()-150, r:13, collected:false, spin:0, kind:'diamant' });
+      } else {
+        const h = Math.random() < 0.5 ? groundY()-30 : groundY()-70;
+        coins.push({ x: W+30, y:h, r:11, collected:false, spin:0, kind:'piece' });
+      }
       coinSpawnTimer = 45 + Math.random()*30;
     }
 
@@ -308,10 +327,13 @@ function loop(){
       c.x -= speed; c.spin += 0.2;
       const d = Math.hypot(player.x+player.w/2-c.x, player.y+player.h/2-c.y);
       if(d < c.r + 16){
-        coinCount++;
+        if(c.kind === 'coeur'){ lives = Math.min(3, lives+1); showCombo('❤️ +1 vie'); }
+        else if(c.kind === 'diamant'){ coinCount += 5; showCombo('💎 +5'); }
+        else coinCount++;
         combo++;
         spawnCoinBurst(c.x, c.y);
-        if(combo>0 && combo%5===0) showCombo('🔥 Combo x'+combo);
+        // tous les 5 de combo : 2 pièces offertes
+        if(combo>0 && combo%5===0){ coinCount += 2; showCombo('🔥 Combo x'+combo+' · +2 🪙'); }
         coins.splice(i,1);
         updateHud();
         continue;
@@ -339,6 +361,14 @@ function loop(){
   // dessiner pieces
   coins.forEach(c=>{
     const scaleX = Math.abs(Math.cos(c.spin));
+    if(c.kind === 'coeur' || c.kind === 'diamant'){
+      ctx.save();
+      ctx.font = '24px serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#fff';
+      ctx.fillText(c.kind === 'coeur' ? '❤️' : '💎', c.x, c.y + Math.sin(c.spin)*3);
+      ctx.restore();
+      return;
+    }
     ctx.save();
     ctx.translate(c.x, c.y);
     ctx.scale(scaleX, 1);

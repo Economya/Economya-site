@@ -181,6 +181,20 @@
     take(same, 2); take(others, 1);
     return pick;
   }
+  // Couleur du texte du panneau : claire sur fond sombre, sombre sur fond clair (on lit le fond réel de l'écran de fin).
+  function isDarkBehind(el) {
+    for (var n = el; n && n.nodeType === 1; n = n.parentNode) {
+      var cs = getComputedStyle(n), src = cs.backgroundColor, m = src && src.match(/rgba?\(([^)]+)\)/);
+      var parts = m ? m[1].split(",").map(parseFloat) : null;
+      if (!parts || (parts.length > 3 && parts[3] < 0.5)) {
+        var g = cs.backgroundImage && cs.backgroundImage.indexOf("gradient") >= 0 ? cs.backgroundImage.match(/rgba?\(([^)]+)\)/) : null;
+        parts = g ? g[1].split(",").map(parseFloat) : null;
+        if (parts && parts.length > 3 && parts[3] < 0.5) parts = null;
+      }
+      if (parts) return (0.299 * parts[0] + 0.587 * parts[1] + 0.114 * parts[2]) < 140;
+    }
+    return true;
+  }
   var ICON = { a: "🕹️", g: "📈", q: "❓", p: "✨" };
   function renderPanel(score) {
     var old = document.getElementById("eco-plus"); if (old) old.parentNode.removeChild(old);
@@ -218,6 +232,7 @@
       var foot = end.querySelector(".brand-footer");
       if (foot && foot.parentNode) foot.parentNode.insertBefore(box, foot); else end.appendChild(box);
     }
+    if (box.parentNode) box.style.color = isDarkBehind(box.parentNode) ? "#f3f3f3" : "#1d1d1d";
     if (isNew && cfg.m) fx.medal(); else if (lv > 0) fx.win(); else fx.lose();
     (window.__ecoEnds = window.__ecoEnds || []).push(score);
   }

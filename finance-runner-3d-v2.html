@@ -176,7 +176,9 @@ function spawnRow(y,sansObjet){
   if(sansObjet) return;
   if(Math.random()<0.4){
     const lane=Math.floor(Math.random()*LANES);
-    if(Math.random()<0.6) coins.push({lane,y:y-10,icon:COIN_ICONS[Math.floor(Math.random()*COIN_ICONS.length)],collected:false});
+    const tirage=Math.random();
+    if(tirage<0.05&&lives<3) coins.push({lane,y:y-10,icon:'❤️',collected:false,kind:'vie'}); // cœur : rend une vie
+    else if(tirage<0.6) coins.push({lane,y:y-10,icon:COIN_ICONS[Math.floor(Math.random()*COIN_ICONS.length)],collected:false});
     else obstacles.push({lane,y:y-10,icon:DEBT_ICONS[Math.floor(Math.random()*DEBT_ICONS.length)],hit:false});
   }
 }
@@ -240,9 +242,12 @@ function loop(){
       if(c.collected)continue;
       const cx=laneToX(c.lane),cy=c.y;
       if(Math.abs(cx-px)<50&&Math.abs(cy-py)<40){
-        c.collected=true;score++;combo++;
+        c.collected=true;combo++;
+        if(c.kind==='vie'){lives=Math.min(3,lives+1);showCombo('❤️ +1 vie');}
+        else score++;
         spawnParticle(cx,cy,'#FFD54F');
-        if(combo>0&&combo%5===0)showCombo('🔥 x'+combo);
+        // tous les 5 de combo : 3 pièces offertes
+        if(combo>0&&combo%5===0){score+=3;showCombo('🔥 x'+combo+' · +3 🪙');}
         updateHud();
       }
     }
@@ -296,7 +301,7 @@ function loop(){
     ctx.font='22px serif';ctx.textAlign='center';ctx.textBaseline='middle';
     ctx.fillText(c.icon,cx,cy);
     ctx.font='bold 8px Inter,sans-serif';ctx.fillStyle='#34D399';
-    ctx.fillText('BONUS',cx,cy+16);
+    ctx.fillText(c.kind==='vie'?'VIE':'BONUS',cx,cy+16);
     ctx.restore();
   });
 

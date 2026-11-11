@@ -162,7 +162,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   </div>
 
   <div class="tip-box" id="tip-box">
-    💡 <strong>Comment jouer :</strong> Cliquez sur "Jouer" puis appuyez sur <strong>Espace</strong> ou le bouton <strong>Sauter</strong> pour éviter les dépenses inutiles. Récupérez les pièces vertes pour économiser !
+    💡 <strong>Comment jouer :</strong> Cliquez sur "Jouer" puis appuyez sur <strong>Espace</strong> ou le bouton <strong>Sauter</strong> pour éviter les dépenses inutiles (un second appui en l'air fait un <strong>double saut</strong>). Récupérez les pièces vertes pour économiser, et enchaînez 5 esquives pour un bonus !
   </div>
 
   <div class="scores">
@@ -193,6 +193,12 @@ let gameState = 'idle'; // idle, playing, dead
 let score = 0, savings = 0, lives = 3, level = 1;
 let frame = 0, speed = 4;
 let bestScore = 0, totalSaved = 0, gamesPlayed = 0;
+// Statistiques conservées d'une visite à l'autre
+try {
+  const st = JSON.parse(localStorage.getItem('inflationRunStats') || 'null');
+  if (st) { bestScore = st.best || 0; totalSaved = st.saved || 0; gamesPlayed = st.games || 0; }
+} catch (e) {}
+function saveStats() { try { localStorage.setItem('inflationRunStats', JSON.stringify({ best: bestScore, saved: totalSaved, games: gamesPlayed })); } catch (e) {} }
 let scoreHistory = [];
 
 // Player
@@ -453,10 +459,20 @@ function gameLoop() {
   obstacles.forEach(obs => {
     obs.x -= speed;
     drawObstacle(obs);
+    if(!obs.passed && obs.x + obs.w < player.x) {
+      obs.passed = true;
+      serieEsquives++;
+      if(serieEsquives % 5 === 0) {
+        score += 100; savings += 20; totalSaved += 20;
+        document.getElementById('tip-box').innerHTML = '🔥 <strong>Série de ' + serieEsquives + ' esquives !</strong> +100 points et +20 € économisés.';
+        try { if (window.EcoFx) window.EcoFx.win(); } catch (e) {}
+      }
+    }
 
     // Collision with player
     if(checkCollision(player, obs)) {
       lives--;
+      serieEsquives = 0;
       obstacles = obstacles.filter(o => o !== obs);
       showTip();
       if(lives <= 0) {
@@ -489,12 +505,19 @@ function jump() {
   if(player.onGround) {
     player.vy = player.jumpForce;
     player.onGround = false;
+    player.jumps = 1;
+  } else if(player.jumps === 1) {
+    // double saut : un second appui en l'air
+    player.vy = player.jumpForce * 0.85;
+    player.jumps = 2;
   }
 }
+// Série d'esquives : tous les 5 obstacles évités sans être touché, un bonus
+let serieEsquives = 0;
 
 function startGame() {
   gameState = 'playing';
-  score = 0; savings = 0; lives = 3; level = 1;
+  score = 0; savings = 0; lives = 3; level = 1; serieEsquives = 0;
   frame = 0; speed = 4;
   obstacles = []; coins = [];
   obstacleTimer = 0; coinTimer = 0;
@@ -512,6 +535,7 @@ function startGame() {
 function gameOver() {
   gameState = 'dead';
   if(score > bestScore) bestScore = score;
+  saveStats();
   updateScoreHistory();
   updateHUD();
   showTip();
@@ -531,6 +555,8 @@ function restartGame() {
 document.addEventListener('keydown', e => {
   if(e.code === 'Space') { e.preventDefault(); jump(); }
 });
+
+updateHUD();
 
 // Touch/click on canvas
 canvas.addEventListener('click', jump);
