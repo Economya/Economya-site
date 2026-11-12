@@ -210,6 +210,9 @@ var dilemmas = [
   {title:"Faire ses courses au supermarché classique ou en circuit court plus cher ?",a:"Supermarché classique",b:"Circuit court",fact:"Le circuit court peut coûter plus cher à l'achat, mais réduit souvent le gaspillage alimentaire grâce à des quantités mieux adaptées aux besoins réels du foyer.",source:"Economya.fr"}
 ];
 
+// Option « audacieuse » (plus de risque ou d'engagement) de chaque dilemme, quand la question s'y prête
+var BOLD = {"Louer ou acheter son logement ?":"b","CDI à salaire fixe ou freelance à revenus variables ?":"b","Tout investir en bourse ou tout sur un Livret A ?":"a","Voiture neuve à crédit ou occasion payée cash ?":"a","Acheter neuf à crédit ou occasion sans dette ?":"a","Investir dans l'immobilier locatif ou en bourse ?":"a","Garder son épargne liquide ou la bloquer sur un placement long terme ?":"b","Épargner d'abord ou se faire plaisir d'abord chaque mois ?":"b"};
+var picks = [], locked = false, boldCount = 0, safeCount = 0;
 var current = 0;
 var countA = 0;
 var countB = 0;
@@ -228,7 +231,8 @@ function startGame(){
   shuffled = shuffleArray(dilemmas);
   current = 0;
   countA = 0;
-  countB = 0;
+  countB = 0; picks = []; locked = false; boldCount = 0; safeCount = 0;
+  document.getElementById('s-a').textContent = '0'; document.getElementById('s-b').textContent = '0';
   document.getElementById('screen-idle').style.display = 'none';
   document.getElementById('screen-game').style.display = 'block';
   document.getElementById('screen-result').classList.remove('show');
@@ -245,10 +249,15 @@ function showDilemma(){
   document.getElementById('choice-a').classList.remove('chosen');
   document.getElementById('choice-b').classList.remove('chosen');
   document.getElementById('fact-card').classList.remove('show');
+  locked = false;
 }
 
 function chooseOption(opt){
+  if(locked) return;
+  locked = true;
   var d = shuffled[current];
+  picks.push({title:d.title, label: opt === 'a' ? d.a : d.b});
+  if(BOLD[d.title]){ if(BOLD[d.title] === opt) boldCount++; else safeCount++; }
   document.getElementById('choice-a').classList.toggle('chosen', opt === 'a');
   document.getElementById('choice-b').classList.toggle('chosen', opt === 'b');
   if(opt === 'a'){ countA++; document.getElementById('s-a').textContent = countA; }
@@ -270,8 +279,18 @@ function nextDilemma(){
 function showResult(){
   document.getElementById('screen-game').style.display = 'none';
   document.getElementById('screen-result').classList.add('show');
-  var text = 'Tu as choisi l\'option A ' + countA + ' fois et l\'option B ' + countB + ' fois sur ' + shuffled.length + ' dilemmes. Chaque situation est différente — l\'idée n\'est pas qu\'il y ait une bonne réponse, mais de connaître les faits avant de décider.';
+  var text = 'Sur ' + shuffled.length + ' dilemmes, il n\'y a pas de bonne ou de mauvaise réponse. Chaque situation est différente — l\'idée n\'est pas qu\'il y ait une bonne réponse, mais de connaître les faits avant de décider.';
+  var tot = boldCount + safeCount, profil = '', pct = 50;
+  if(tot){ pct = Math.round(boldCount / tot * 100);
+    profil = pct >= 67 ? '🚀 Profil audacieux' : pct <= 33 ? '🛡️ Profil prudent' : '⚖️ Profil équilibré'; }
+  text = (profil ? profil + ' : tu as pris l\'option la plus risquée ou engageante ' + boldCount + ' fois sur ' + tot + ' dilemmes où cela s\'applique. ' : '') + text;
   document.getElementById('result-text').textContent = text;
+  var box = document.getElementById('result-recap');
+  if(!box){ box = document.createElement('div'); box.id = 'result-recap'; box.style.cssText = 'text-align:left;font-size:.85rem;line-height:1.5;margin:1rem 0'; document.getElementById('result-text').after(box); }
+  if(tot){
+    box.innerHTML = '<div style="height:10px;border-radius:6px;background:linear-gradient(90deg,#1D9E75,#EF9F27);position:relative;margin:.3rem 0 .2rem"><span style="position:absolute;top:-4px;left:calc(' + pct + '% - 9px);width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid #085041"></span></div><div style="display:flex;justify-content:space-between;font-size:.72rem;color:#5f5e5a"><span>Prudent</span><span>Audacieux</span></div>';
+  } else { box.innerHTML = ''; }
+  box.innerHTML += '<details style="margin-top:.8rem"><summary style="cursor:pointer;font-weight:600">Revoir mes ' + picks.length + ' choix</summary>' + picks.map(function(x){ return '<div style="margin-top:.35rem">• ' + x.title + ' → <b>' + x.label + '</b></div>'; }).join('') + '</details>';
 }
 
 function restartGame(){

@@ -122,7 +122,9 @@ html{overflow-y:scroll}
   }
 
   /* RÉSULTATS */
-  #results-screen{display:none;flex-direction:column;justify-content:center;height:100%;gap:0;}
+  #results-screen{display:none;flex-direction:column;justify-content:flex-start;height:100%;overflow-y:auto;gap:0;padding-top:16px;padding-bottom:24px;}
+  #results-screen>.res-top{margin-top:auto}
+  #results-screen>.brand{margin-bottom:auto}
   .res-top{text-align:center;margin-bottom:28px;}
   .res-emoji{font-size:56px;display:block;margin-bottom:8px;}
   .res-score{font-size:52px;font-weight:800;letter-spacing:-.04em;color:var(--gd);line-height:1;}
@@ -323,12 +325,14 @@ const LESSONS = [
 ];
 
 let questions=[], currentQ=0, score=0, correct=0, streak=0, bestStreak=0;
-let timerInterval=null, timeLeft=10, totalTime=0, answered=false;
+let timerInterval=null, timeLeft=10, totalTime=0, answered=false, missed=[];
 
-function shuffle(arr){return arr.sort(()=>Math.random()-.5)}
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=arr[i];arr[i]=arr[j];arr[j]=t;}return arr}
+// Évite que la bonne réponse soit toujours du même côté
+function randomSide(q){ if(Math.random()<.5){ return {cat:q.cat,q:q.q,a:q.b,b:q.a,correct:q.correct==='a'?'b':'a',economy:q.economy,explication:q.explication}; } return q; }
 
 function startGame(){
-  questions = shuffle([...QUESTIONS]).slice(0,10);
+  questions = shuffle([...QUESTIONS]).slice(0,10).map(randomSide); missed=[];
   currentQ=0; score=0; correct=0; streak=0; bestStreak=0; totalTime=0;
   document.getElementById('intro-screen').style.display='none';
   document.getElementById('results-screen').style.display='none';
@@ -395,7 +399,7 @@ function choose(side){
       t.classList.remove('show'); void t.offsetWidth; t.classList.add('show');
     }
   } else {
-    streak=0;
+    streak=0; missed.push({q:q.q,good:q[q.correct].name,economy:q.economy,timeout:!side});
     if(side)document.getElementById('deal-'+side).classList.add('wrong');
     document.getElementById('deal-'+q.correct).classList.add('correct');
   }
@@ -423,6 +427,13 @@ function showResults(){
   document.getElementById('rs1').textContent=correct+'/'+questions.length;
   document.getElementById('rs2').textContent=Math.round(totalTime/questions.length)+'s';
   document.getElementById('rs3').textContent='x'+bestStreak;
+  let best=0; try{best=parseInt(localStorage.getItem('bonDealBest')||'0',10)||0;}catch(e){}
+  const rec=score>best; if(rec){try{localStorage.setItem('bonDealBest',String(score));}catch(e){}}
+  let box=document.getElementById('resExtra');
+  if(!box){box=document.createElement('div');box.id='resExtra';box.style.cssText='font-size:13px;line-height:1.5;margin:0 0 12px;text-align:center';document.getElementById('resLesson').before(box);}
+  const lost=missed.reduce((a,m)=>a+m.economy,0);
+  box.innerHTML=(rec?'🏅 <b>Nouveau record !</b>':'🏅 Record : <b>'+best.toLocaleString('fr-FR')+'€</b>')+
+    (missed.length?'<div style="margin-top:8px;text-align:left;background:rgba(0,0,0,.04);border-radius:10px;padding:8px 10px"><b>📚 À retenir ('+lost.toLocaleString('fr-FR')+'€/an manqués)</b>'+missed.map(m=>'<div style="margin-top:4px">• '+m.q+' → <b>'+m.good+'</b>'+(m.timeout?' <i>(temps écoulé)</i>':'')+'</div>').join('')+'</div>':'<div style="margin-top:6px">🎯 Sans faute !</div>');
   document.getElementById('resLesson').innerHTML=LESSONS[Math.floor(Math.random()*LESSONS.length)];
 }
 

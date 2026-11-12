@@ -363,6 +363,9 @@ const EVENTS = [
 
 let strat = 'prudent', year = 0, capital = 10000, history = [], totalReturn = 0;
 let answered = false;
+let ivScores = [], ivRisky = 0, ivBestPicks = 0, ivOrder = [];
+const IV_RISK_CLASS = {'faible':'neu','modéré':'neu','élevé':'neg','spéculatif':'neg','très élevé':'neg'};
+function ivShuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); const t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
 
 function setStrat(s) {
   strat = s;
@@ -371,7 +374,7 @@ function setStrat(s) {
 }
 
 function startGame() {
-  year = 0; capital = 10000; history = [10000]; totalReturn = 0;
+  year = 0; capital = 10000; history = [10000]; totalReturn = 0; ivScores = []; ivRisky = 0; ivBestPicks = 0;
   document.getElementById('screen-idle').style.display = 'none';
   document.getElementById('screen-game').style.display = 'block';
   loadEvent();
@@ -393,16 +396,17 @@ function loadEvent() {
     `<span class="impact-tag ${i.type}">${i.label}</span>`
   ).join('');
 
-  document.getElementById('choices').innerHTML = ev.choices.map((c, i) => `
+  ivOrder = ivShuffle(ev.choices.map((c, i) => i));
+  document.getElementById('choices').innerHTML = ivOrder.map(i => { const c = ev.choices[i]; return `
     <button class="choice-btn" onclick="selectChoice(${i})">
       <span class="choice-icon">${c.icon}</span>
       <div class="choice-text">
         <div class="choice-title">${c.title}</div>
         <div class="choice-desc">${c.desc}</div>
       </div>
-      <span class="choice-return ${c.type}">${c.return_pct > 0 ? '+' : ''}${c.return_pct}%</span>
+      <span class="choice-return ${IV_RISK_CLASS[c.risk] || 'neu'}" style="font-size:.72rem;font-family:inherit">Risque<br>${c.risk}</span>
     </button>
-  `).join('');
+  `; }).join('');
 
   document.getElementById('p-annee').textContent = `An ${year+1}/10`;
   updatePortfolio();
@@ -431,6 +435,21 @@ function selectChoice(idx) {
   changeEl.textContent = (choice.return_pct >= 0 ? '+' : '') + choice.return_pct + '% → ' + capital.toLocaleString('fr-FR') + '€';
   changeEl.className = 'yr-change ' + (choice.return_pct >= 0 ? 'up' : 'down');
   document.getElementById('yr-expl').textContent = choice.result;
+
+  // Note de décision : on juge la qualité du raisonnement, pas seulement le gain
+  ivScores.push(choice.score);
+  if (choice.risk === 'spéculatif' || choice.risk === 'très élevé') ivRisky++;
+  const bestScore = Math.max.apply(null, ev.choices.map(c => c.score));
+  const best = ev.choices.find(c => c.score === bestScore);
+  if (choice.score === bestScore) ivBestPicks++;
+  let extra = document.getElementById('yr-extra');
+  if (!extra) { extra = document.createElement('div'); extra.id = 'yr-extra'; extra.style.cssText = 'margin:.7rem 0;padding:.7rem .9rem;border-radius:10px;background:#F1EFE8;font-size:.82rem;line-height:1.5;color:#2C2C2A'; document.getElementById('yr-expl').after(extra); }
+  const profilNote = (strat === 'prudent' && (choice.risk === 'élevé' || choice.risk === 'spéculatif' || choice.risk === 'très élevé'))
+    ? '<br>⚠️ Ce choix sort de ton profil <b>Prudent</b>.'
+    : (strat === 'dynamique' && choice.risk === 'faible') ? '<br>⚠️ Un choix très prudent pour un profil <b>Dynamique</b>.' : '';
+  extra.innerHTML = `🧠 Qualité de la décision : <b>${choice.score}/100</b>` +
+    (choice.score === bestScore ? ' — la meilleure option de l\'année 🎯' : `<br>💡 Meilleure option : <b>${best.title}</b> (${best.score}/100, ${best.return_pct > 0 ? '+' : ''}${best.return_pct}%)`) +
+    (choice.score < 40 && choice.return_pct > 15 ? '<br>🎲 Gain obtenu, mais surtout grâce à la chance : cette décision ne serait pas reproductible.' : '') + profilNote;
 
   updatePortfolio();
   updateGraph();
@@ -486,14 +505,41 @@ function showFinal() {
   document.getElementById('f-perf').textContent = (perf >= 0 ? '+' : '') + perf + '%';
   document.getElementById('f-gain').textContent = (gain >= 0 ? '+' : '') + gain.toLocaleString('fr-FR') + '€';
 
+  const ivAvg = ivScores.length ? ivScores.reduce((x, y) => x + y, 0) / ivScores.length : 0;
+  if (perf >= 80 && ivAvg < 60) {
+    document.getElementById('f-title').textContent = 'Gros gains… un peu de chance ?';
+    document.getElementById('f-emoji').textContent = '🍀';
+  }
   const lesson = capital >= etfWorld ?
     {h:'🏆 Leçon : Votre stratégie a battu le marché !', p:`Vous avez fait mieux qu'un ETF World qui aurait rapporté ~${etfWorld.toLocaleString('fr-FR')}€. Mais attention : battre le marché sur 10 ans relève souvent de la chance. Sur 20 ans, 95% des gérants actifs sous-performent l'ETF World.`} :
     {h:'📚 Leçon : L\'ETF World aurait fait mieux', p:`Un simple ETF World investi en 2015 aurait transformé vos 10 000€ en environ ${etfWorld.toLocaleString('fr-FR')}€ (+150%). La leçon : la diversification passive bat souvent les stratégies actives sur le long terme.`};
 
   document.getElementById('f-lesson').innerHTML = `<h4>${lesson.h}</h4><p>${lesson.p}</p>`;
+
+  // Note de décision, record et comparaison avec le marché
+  const avgScore = ivScores.length ? Math.round(ivScores.reduce((a, b) => a + b, 0) / ivScores.length) : 0;
+  let best = 0;
+  try { best = parseInt(localStorage.getItem('investisseurBest') || '0', 10) || 0; } catch (e) {}
+  const newRecord = capital > best;
+  if (newRecord) { try { localStorage.setItem('investisseurBest', String(capital)); } catch (e) {} }
+  const grade = avgScore >= 80 ? 'Stratège' : avgScore >= 65 ? 'Investisseur discipliné' : avgScore >= 50 ? 'Investisseur moyen' : 'Joueur de casino';
+  const w = Math.max(5, Math.min(100, Math.round(capital / Math.max(capital, etfWorld) * 100)));
+  const we = Math.max(5, Math.min(100, Math.round(etfWorld / Math.max(capital, etfWorld) * 100)));
+  document.getElementById('f-lesson').insertAdjacentHTML('afterend', `
+    <div style="background:#fff;border:1px solid #e0ddd2;border-radius:14px;padding:1rem;margin:1rem 0;text-align:left;font-size:.88rem;line-height:1.55">
+      <div><b>🧠 Note de décision : ${avgScore}/100</b> — ${grade}</div>
+      <div>🎯 Meilleure option choisie ${ivBestPicks} fois sur ${ivScores.length} · 🎲 ${ivRisky} pari${ivRisky > 1 ? 's' : ''} spéculatif${ivRisky > 1 ? 's' : ''}</div>
+      <div style="margin-top:.6rem;font-size:.78rem;color:#5f5e5a">Ton capital vs ETF World (ordre de grandeur)</div>
+      <div style="background:#eee;border-radius:6px;margin:.2rem 0"><div style="width:${w}%;background:#1D9E75;color:#fff;border-radius:6px;padding:2px 8px;font-size:.74rem;white-space:nowrap;overflow:hidden">Toi ${capital.toLocaleString('fr-FR')} €</div></div>
+      <div style="background:#eee;border-radius:6px"><div style="width:${we}%;background:#EF9F27;color:#2C2C2A;border-radius:6px;padding:2px 8px;font-size:.74rem;white-space:nowrap;overflow:hidden">ETF ~${etfWorld.toLocaleString('fr-FR')} €</div></div>
+      <div style="margin-top:.6rem">${newRecord ? '🏅 Nouveau record personnel !' : '🏅 Record : ' + best.toLocaleString('fr-FR') + ' €'}</div>
+      <div style="margin-top:.4rem;font-size:.74rem;color:#5f5e5a">Chiffres simplifiés à but pédagogique, ce n'est pas un conseil en investissement. Les performances passées ne préjugent pas des performances futures.</div>
+    </div>`);
 }
 
 function restartGame() {
+  document.querySelectorAll('#screen-final .final-grid ~ div[style*="border-radius:14px"]').forEach(e => e.remove());
+  const ex = document.getElementById('yr-extra'); if (ex) ex.remove();
   document.getElementById('screen-final').style.display = 'none';
   document.getElementById('screen-idle').style.display = 'block';
 }
