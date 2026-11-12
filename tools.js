@@ -325,5 +325,70 @@
     t.dispatchEvent(new Event("input", { bubbles: true }));
   }, true);
 
+  /* Mémorisation des saisies : on retrouve ses valeurs en revenant sur l'outil (stockage local, cet appareil uniquement) */
+  var MEM_KEY = "eco_outil_" + location.pathname.replace(/\.html$/, "").replace(/\/+$/, "");
+  function memFields() {
+    return [].filter.call(document.querySelectorAll("main input[id], main select[id], main textarea[id], .container input[id], .container select[id], .wrap input[id], .wrap select[id]"), function (el) {
+      if (el.closest("#economya-cookie-banner, .eco-cmpbar, .eco-cmp-chk, .mobile-menu, nav, header, footer")) return false;
+      var ty = (el.type || "").toLowerCase();
+      return ["password", "email", "search", "hidden", "file", "submit", "button"].indexOf(ty) === -1 && !/search|recherche/i.test(el.id);
+    });
+  }
+  function memLoad() { try { return JSON.parse(localStorage.getItem(MEM_KEY)) || null; } catch (e) { return null; } }
+  function memSave() {
+    var data = {};
+    memFields().forEach(function (el) { data[el.id] = (el.type === "checkbox" || el.type === "radio") ? el.checked : el.value; });
+    try { localStorage.setItem(MEM_KEY, JSON.stringify(data)); } catch (e) {}
+    memNote(true);
+  }
+  var memT = null;
+  function memOnUser(e) {
+    if (!e.isTrusted || !e.target || !e.target.id) return;
+    if (memFields().indexOf(e.target) === -1) return;
+    clearTimeout(memT); memT = setTimeout(memSave, 400);
+  }
+  function memNote(show) {
+    var first = memFields()[0]; if (!first) return;
+    var box = first.closest(".card") || first.parentElement; if (!box) return;
+    var n = document.getElementById("eco-mem");
+    if (!show) { if (n) n.remove(); return; }
+    if (n) return;
+    n = document.createElement("p"); n.id = "eco-mem";
+    n.style.cssText = "font-size:.74rem;color:#5F5E5A;margin:.8rem 0 0;display:flex;gap:.5rem;align-items:center;flex-wrap:wrap";
+    n.innerHTML = '💾 Vos valeurs sont mémorisées sur cet appareil. <button type="button" style="background:none;border:none;padding:0;color:#0F6E56;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer">Revenir aux valeurs par défaut</button>';
+    n.querySelector("button").addEventListener("click", function () { try { localStorage.removeItem(MEM_KEY); } catch (e) {} location.reload(); });
+    box.appendChild(n);
+  }
+  function memRestore() {
+    var data = memLoad(); if (!data) return;
+    // 1) listes et cases d'abord (elles peuvent pré-remplir d'autres champs), 2) puis les champs de saisie
+    var champs = memFields(), sel = champs.filter(function (el) { return el.tagName === "SELECT" || el.type === "checkbox" || el.type === "radio"; });
+    apply(sel); apply(champs.filter(function (el) { return sel.indexOf(el) === -1; }));
+    memNote(true);
+  }
+  function apply(liste) {
+    var data = memLoad() || {};
+    var changed = [];
+    liste.forEach(function (el) {
+      if (!(el.id in data)) return;
+      var v = data[el.id];
+      if (el.type === "checkbox" || el.type === "radio") { if (el.checked !== !!v) { el.checked = !!v; changed.push(el); } }
+      else if (el.tagName === "SELECT") { if ([].some.call(el.options, function (o) { return o.value === v; }) && el.value !== v) { el.value = v; changed.push(el); } }
+      else if (el.value !== String(v)) { el.value = v; changed.push(el); }
+    });
+    function fire(el) { el.dispatchEvent(new Event("input", { bubbles: true })); el.dispatchEvent(new Event("change", { bubbles: true })); }
+    changed.forEach(fire);
+    // Un champ peut avoir été recalculé par un autre : on remet la valeur saisie par l'utilisateur
+    changed.forEach(function (el) {
+      var v = data[el.id];
+      if (el.type === "checkbox" || el.type === "radio" || el.tagName === "SELECT") return;
+      if (el.value !== String(v)) { el.value = v; fire(el); }
+    });
+  }
+  document.addEventListener("input", memOnUser, true);
+  document.addEventListener("change", memOnUser, true);
+  function memInit() { setTimeout(memRestore, 60); }
+  if (document.readyState === "complete") memInit(); else window.addEventListener("load", memInit);
+
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", enhance); else enhance();
 })();

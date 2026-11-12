@@ -412,7 +412,7 @@ function renderList(category, containerId) {
   const container = document.getElementById(containerId);
   ABONNEMENTS[category].forEach((abo, i) => {
     const id = `${category}_${i}`;
-    etats[id] = { prix: abo.prix, statut: 'neutre' };
+    etats[id] = { prix: abo.prix, statut: 'neutre', nom: abo.nom };
     const div = document.createElement('div');
     div.className = 'abo-item';
     div.id = `item_${id}`;
@@ -430,7 +430,9 @@ function renderList(category, containerId) {
 }
 
 function updatePrix(id, val) {
-  etats[id].prix = +val || 0;
+  etats[id].prix = Math.max(0, +val || 0);
+  etats[id].modif = true;
+  const p = document.querySelector(`#item_${id} .abo-prix`); if (p) p.textContent = etats[id].prix.toFixed(2).replace('.', ',') + ' €/mois';
   updateBilan();
 }
 
@@ -468,12 +470,35 @@ function ajouterCustom() {
 
 function updateNom(id, val) { etats[id].nom = val; }
 
+const CLE_ABOS = 'economya_checklist_abos';
+function sauverAbos() {
+  const d = {};
+  Object.entries(etats).forEach(([id, e]) => { if (!id.startsWith('custom') && (e.statut !== 'neutre' || e.modif)) d[id] = { s: e.statut, p: e.prix }; });
+  try { localStorage.setItem(CLE_ABOS, JSON.stringify(d)); } catch (err) {}
+}
+function restaurerAbos() {
+  let d = null;
+  try { d = JSON.parse(localStorage.getItem(CLE_ABOS)); } catch (err) {}
+  if (!d) return;
+  Object.entries(d).forEach(([id, v]) => {
+    const e = etats[id], item = document.getElementById('item_' + id);
+    if (!e || !item) return;
+    if (typeof v.p === 'number' && v.p !== e.prix) { e.prix = v.p; e.modif = true; const inp = item.querySelector('.abo-input'); if (inp) inp.value = v.p; }
+    e.statut = v.s || 'neutre';
+    item.querySelectorAll('.btn-garde, .btn-coupe').forEach(b => b.classList.remove('active'));
+    if (e.statut === 'garde') item.querySelector('.btn-garde').classList.add('active');
+    if (e.statut === 'coupe') item.querySelector('.btn-coupe').classList.add('active');
+  });
+  updateBilan();
+}
+
 function updateBilan() {
+  sauverAbos();
   let total = 0, garde = 0, coupe = 0;
   const coupeList = [];
 
   Object.entries(etats).forEach(([id, e]) => {
-    if(e.prix > 0) {
+    if(e.prix > 0 && e.statut !== 'neutre') {
       total += e.prix;
       if(e.statut === 'garde') garde += e.prix;
       if(e.statut === 'coupe') {
@@ -512,6 +537,7 @@ renderList('sport', 'list-sport');
 renderList('tech', 'list-tech');
 renderList('presse', 'list-presse');
 renderList('autres', 'list-autres');
+restaurerAbos();
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">

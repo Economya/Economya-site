@@ -147,6 +147,14 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .eco-idea-btn svg{width:17px;height:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
 .eco-idea-btn:hover{transform:scale(1.08);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.35),0 4px 12px rgba(245,158,11,.45)}
 .ic{width:1em;height:1em;display:inline-block;vertical-align:-0.14em;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hub-filter{position:sticky;top:58px;z-index:20;background:rgba(3,11,26,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:.7rem .2rem .6rem;margin:0 0 1rem;border-bottom:1px solid rgba(100,150,255,.15)}
+.hub-filter input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(100,150,255,.25);border-radius:12px;padding:.6rem .9rem;color:#fff;font:inherit;font-size:.9rem;outline:none}
+.hub-filter input:focus{border-color:#EF9F27}
+.hub-chips{display:flex;gap:.4rem;overflow-x:auto;padding:.55rem 0 .1rem;scrollbar-width:none}
+.hub-chips::-webkit-scrollbar{display:none}
+.hub-chips button{flex:0 0 auto;background:rgba(255,255,255,.06);border:1px solid rgba(100,150,255,.25);color:#fff;border-radius:99px;padding:.4rem .8rem;font:inherit;font-size:.8rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.hub-chips button.on{background:#EF9F27;border-color:#EF9F27;color:#071226}
+.hub-count{font-size:.75rem;color:rgba(255,255,255,.6);margin-top:.35rem}
 </style>
 <link rel="canonical" href="https://economya.fr/jeux" />
 <meta property="og:type" content="website">
@@ -599,6 +607,18 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
 <div class="container">
   <div class="section-title">🕹️ Tous les jeux</div>
+  <div class="hub-filter" id="hubFilter">
+    <input type="search" id="hubQ" placeholder="Rechercher un jeu (budget, épargne, quiz…)" aria-label="Rechercher un jeu">
+    <div class="hub-chips" role="group" aria-label="Filtrer les jeux">
+      <button type="button" class="on" data-f="tous">Tous</button>
+      <button type="button" data-f="a">🕹️ Arcade</button>
+      <button type="button" data-f="g">📈 Gestion</button>
+      <button type="button" data-f="q">❓ Quiz & défis</button>
+      <button type="button" data-f="p">✨ Profil & fun</button>
+      <button type="button" data-f="todo">🏅 Sans médaille</button>
+    </div>
+    <div class="hub-count" id="hubCount"></div>
+  </div>
   <div class="games-grid">
 
     <a class="game-card" href="/inflation-run">
@@ -1476,6 +1496,29 @@ if(btnValider){
 </script>
 <script src="account-nav.js" defer></script>
 <script src="/cookie-manage.js" defer></script>
+<script>
+(function(){
+  var FAM = {"inflation-run": "a", "ou-vivre-mieux": "q", "calendrier-bons-plans": "q", "le-bon-deal": "q", "le-negociateur": "g", "roue-economies": "q", "jackpot-finance": "q", "vrai-ou-faux": "q", "finance-wrapped": "p", "aura-financiere": "p", "investisseur-virtuel": "g", "primo-accedant": "g", "budget-tower": "a", "radar-arnaques": "q", "tas-combien-dans-les-mains": "q", "attrape-economies": "a", "boule-de-patrimoine": "a", "sprint-epargne": "a", "tri-de-budget": "a", "grand-prix-epargne": "a", "eclateur-de-dettes": "a", "casse-tes-dettes": "a", "le-gestionnaire-de-crise": "a", "le-marche-vivant": "g", "la-roue-des-scenarios": "g", "le-grand-cycle-economique": "g", "la-machine-a-reves": "p", "ton-annee-bons-plans": "p", "ton-totem-financier": "p", "le-trophee-du-jour": "p", "le-sosie-celebre-de-ton-epargne": "p", "le-mur-des-bravos": "p", "chef-econome": "a", "coach-econome": "g", "chef-resto-v2": "g", "marathon-budgetaire-v2": "g", "finance-runner-3d-v2": "a", "bar-de-plage": "g", "domaine-viticole": "g", "hotel-manager": "g", "memory-finance": "a", "budget-run": "a", "happy-budget": "a", "prix-party": "q", "ile-aux-oeufs": "g", "pile-ou-face-financier": "q"};
+  (function caler(){ var nav = document.querySelector('nav'), hf = document.getElementById('hubFilter'); if (!nav || !hf) return;
+    var cs = getComputedStyle(nav); hf.style.top = (cs.position === 'sticky' || cs.position === 'fixed') ? nav.offsetHeight + 'px' : '0px'; })();
+  var q = document.getElementById('hubQ'), chips = document.querySelectorAll('#hubFilter .hub-chips button'), f = 'tous';
+  var cards = [].slice.call(document.querySelectorAll('.games-grid a.game-card'));
+  function medals(){ try { return JSON.parse(localStorage.getItem('economya_medailles')) || {}; } catch (e) { return {}; } }
+  function norm(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  function run(){
+    var m = medals(), t = norm(q.value.trim()), n = 0;
+    cards.forEach(function (c) {
+      var slug = (c.getAttribute('href') || '').replace(/^\//, '');
+      var ok = (f === 'tous' || (f === 'todo' ? !m[slug] : FAM[slug] === f)) && (!t || norm(c.innerText).indexOf(t) !== -1);
+      c.style.display = ok ? '' : 'none'; if (ok) n++;
+    });
+    document.getElementById('hubCount').textContent = n + ' jeu' + (n > 1 ? 'x' : '') + (f === 'tous' && !t ? '' : ' trouvé' + (n > 1 ? 's' : ''));
+  }
+  [].forEach.call(chips, function (b) { b.addEventListener('click', function () { f = b.dataset.f; [].forEach.call(chips, function (x) { x.classList.toggle('on', x === b); }); run(); }); });
+  q.addEventListener('input', run);
+  run();
+})();
+</script>
 </body>
 
 </html>

@@ -98,6 +98,14 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .eco-idea-btn svg{width:17px;height:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
 .eco-idea-btn:hover{transform:scale(1.08);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.35),0 4px 12px rgba(245,158,11,.45)}
 .ic{width:1em;height:1em;display:inline-block;vertical-align:-0.14em;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hub-filter{position:sticky;top:0;z-index:20;background:rgba(247,247,245,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:.8rem 0 .5rem;margin:-1rem 0 1.4rem;border-bottom:1px solid rgba(0,0,0,.06)}
+.hub-filter input{width:100%;background:#fff;border:1.5px solid rgba(0,0,0,.12);border-radius:12px;padding:.65rem .95rem;font:inherit;font-size:.92rem;outline:none}
+.hub-filter input:focus{border-color:#1D9E75}
+.hub-chips{display:flex;gap:.4rem;overflow-x:auto;padding:.55rem 0 .1rem;scrollbar-width:none}
+.hub-chips::-webkit-scrollbar{display:none}
+.hub-chips a{flex:0 0 auto;background:#fff;border:1px solid rgba(0,0,0,.1);color:#085041;border-radius:99px;padding:.38rem .8rem;font-size:.78rem;font-weight:600;text-decoration:none;white-space:nowrap}
+.hub-chips a:hover{border-color:#1D9E75}
+.hub-empty{font-size:.85rem;color:#5F5E5A;padding:.6rem 0}
 </style>
 <link rel="canonical" href="https://economya.fr/outils-gratuits" />
 <meta property="og:type" content="website">
@@ -175,13 +183,18 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <div class="hero">
   <div class="hero-eyebrow">— Economya · Outils gratuits —</div>
   <h1>Outils gratuits<br><em>pour vos finances</em></h1>
-  <p>Simulateurs, calculateurs, quiz et comparateurs 100% gratuits pour prendre les meilleures décisions.</p>
+  <p>Simulateurs, calculateurs, quiz et comparateurs 100% gratuits pour y voir plus clair avant de décider.</p>
   <div class="hero-stats">
     <div class="stat"><div class="snum">30</div><div class="slbl">Outils disponibles</div></div><div class="stat"><div class="snum accent">100%</div><div class="slbl">Gratuit</div></div></div>
 </div>
 </div>
 
 <div class="container">
+  <div class="hub-filter" id="hubFilter">
+    <input type="search" id="hubQ" placeholder="Que voulez-vous calculer ? (impôt, salaire, crédit…)" aria-label="Rechercher un outil">
+    <div class="hub-chips" id="hubChips" role="navigation" aria-label="Catégories d'outils"></div>
+    <div class="hub-empty" id="hubEmpty" hidden>Aucun outil ne correspond. Essayez un autre mot (ex : « épargne », « loyer »).</div>
+  </div>
 
   <div class="section-title"><svg class="ic"><use href="#ic-wallet"/></svg>Épargne & Budget</div>
   <div class="tools-grid">
@@ -622,5 +635,29 @@ if(btnValider){
 </script>
 <script src="account-nav.js" defer></script>
 <script src="/cookie-manage.js" defer></script>
+<script>
+(function(){
+  (function caler(){ var nav = document.querySelector('nav'), hf = document.getElementById('hubFilter'); if (!nav || !hf) return;
+    var cs = getComputedStyle(nav); hf.style.top = (cs.position === 'sticky' || cs.position === 'fixed') ? nav.offsetHeight + 'px' : '0px'; })();
+  var q = document.getElementById('hubQ'), chips = document.getElementById('hubChips'), empty = document.getElementById('hubEmpty');
+  var titles = [].slice.call(document.querySelectorAll('.container > .section-title'));
+  function norm(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); }
+  titles.forEach(function (t, i) {
+    t.id = t.id || 'cat-' + i; t.style.scrollMarginTop = '150px';
+    var b = document.createElement('a'); b.href = '#' + t.id; b.textContent = t.textContent.trim();
+    chips.appendChild(b);
+  });
+  q.addEventListener('input', function () {
+    var v = norm(q.value.trim()), total = 0;
+    titles.forEach(function (t) {
+      var grid = t.nextElementSibling; if (!grid) return;
+      var n = 0;
+      [].forEach.call(grid.querySelectorAll('.tool-card'), function (c) { var ok = !v || norm(c.innerText).indexOf(v) !== -1; c.style.display = ok ? '' : 'none'; if (ok) n++; });
+      t.style.display = grid.style.display = n ? '' : 'none'; total += n;
+    });
+    empty.hidden = total > 0;
+  });
+})();
+</script>
 </body>
 </html>

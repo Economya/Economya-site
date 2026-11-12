@@ -610,5 +610,39 @@ if(btnValider){
 </script>
 <script src="account-nav.js" defer></script>
 <script src="/cookie-manage.js" defer></script>
+<script>
+/* Quiz : retour à la question précédente, ordre des réponses mélangé (quiz de profil), petite animation */
+(function(){
+  var cards = [].slice.call(document.querySelectorAll('.question-card')); if (!cards.length) return;
+  var profil = typeof scores !== 'undefined';
+  if (profil) cards.forEach(function (c) {
+    var box = c.querySelector('.options'); if (!box) return;
+    var opts = [].slice.call(box.querySelectorAll('.option'));
+    for (var i = opts.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = opts[i]; opts[i] = opts[j]; opts[j] = t; }
+    opts.forEach(function (o) { box.appendChild(o); });
+  });
+  var st = document.createElement('style');
+  st.textContent = '.btn-prev-q{background:none;border:1.5px solid rgba(0,0,0,.15);color:inherit;opacity:.8;border-radius:50px;padding:.6rem 1.2rem;font:inherit;font-size:.88rem;cursor:pointer;margin:.6rem .4rem 0 0}.btn-prev-q:hover{opacity:1}.question-card.active{animation:qIn .35s ease}@keyframes qIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.option{transition:transform .12s}.option:active{transform:scale(.98)}';
+  document.head.appendChild(st);
+  cards.forEach(function (c, i) {
+    if (i === 0) return;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'btn-prev-q'; b.textContent = '← Question précédente';
+    var next = c.querySelector('.btn-next');
+    if (next && next.parentNode) next.parentNode.insertBefore(b, next.nextSibling); else c.appendChild(b);
+    b.addEventListener('click', function () {
+      var pc = cards[i - 1], sel = pc.querySelector('.option.selected');
+      if (sel) {
+        var d = sel.dataset;
+        if (profil) { for (var k in d) if (Object.prototype.hasOwnProperty.call(scores, d[k])) scores[d[k]]--; }
+        else if (typeof totalScore !== 'undefined' && d.score !== undefined) totalScore -= +d.score;
+      }
+      c.classList.remove('active'); pc.classList.add('active');
+      currentQ = i - 1; if (typeof updateProgress === 'function') updateProgress();
+      if (sel) sel.click();
+      pc.scrollIntoView({behavior: 'smooth', block: 'center'});
+    });
+  });
+})();
+</script>
 </body>
 </html>
