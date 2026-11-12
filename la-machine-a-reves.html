@@ -21,6 +21,8 @@ html{overflow-y:scroll}
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html,body{height:100%;}
+  html{background:#0a0616}
+  body{background-attachment:fixed}
   body{
     background:radial-gradient(circle at 50% -10%, var(--bg-top) 0%, var(--bg-bottom) 65%);
     color:var(--ink); font-family:'Inter',system-ui,sans-serif;
@@ -54,6 +56,42 @@ html{overflow-y:scroll}
   .reveal-title span{ color:var(--gold); }
   .reveal-amount{ font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:44px; color:var(--good); margin-bottom:6px; }
   .reveal-sub{ font-size:13px; color:var(--ink-dim); margin-bottom:24px; max-width:320px; }
+  .tabs{display:flex;gap:6px;background:var(--panel);border:1px solid var(--panel-line);border-radius:14px;padding:4px;margin-bottom:18px;width:100%;max-width:340px}
+  .tab{flex:1;border:none;background:none;color:var(--ink-dim);font:inherit;font-weight:700;font-size:13px;padding:10px 6px;border-radius:10px;cursor:pointer}
+  .tab.on{background:var(--gold);color:#2A1900}
+  .mode{width:100%;display:flex;flex-direction:column;align-items:center}
+  .presets{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+  .presets button{flex:1;min-width:60px;border:1px solid var(--panel-line);background:var(--panel);color:var(--ink);border-radius:10px;padding:7px 4px;font:inherit;font-size:12px;font-weight:600;cursor:pointer}
+  .presets button.on{background:rgba(255,201,75,.18);border-color:var(--gold);color:var(--gold)}
+  .dream-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;width:100%;max-width:340px;margin-bottom:14px}
+  .dream{border:1.5px solid var(--panel-line);background:var(--panel);color:var(--ink);border-radius:12px;padding:8px 4px;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:transform .15s}
+  .dream span{font-size:24px}.dream small{font-size:10px;line-height:1.2;color:var(--ink-dim);min-height:2.4em}.dream b{font-size:11px;color:var(--gold)}
+  .dream.on{border-color:var(--gold);background:rgba(255,201,75,.12);transform:scale(1.03)}
+  .custom-dream{gap:6px;width:100%;max-width:340px;margin-bottom:14px}
+  .custom-dream input{flex:1;min-width:0;background:var(--panel);border:1px solid var(--panel-line);border-radius:10px;padding:10px;color:var(--ink);font:inherit;font-size:14px;user-select:text}
+  .custom-dream input[type=number]{max-width:120px}
+  .panel{width:100%;max-width:360px;background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;padding:14px;margin-bottom:14px;text-align:left}
+  .panel-title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;margin-bottom:8px}
+  .split{display:flex;height:12px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.08)}
+  .split i{display:block;height:100%;transition:width .8s ease}
+  #splitVerse{background:var(--gold)}#splitInt{background:var(--good)}
+  .split-leg{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--ink-dim);margin:7px 0 10px;flex-wrap:wrap}
+  .split-leg b{color:var(--ink)}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}.dot.v{background:var(--gold)}.dot.i{background:var(--good)}
+  #chart{width:100%;height:150px;display:block;overflow:visible}
+  #chart .courbe{stroke-dasharray:900;stroke-dashoffset:900;animation:trace 1.4s ease forwards}
+  @keyframes trace{to{stroke-dashoffset:0}}
+  #chart .jalon circle{fill:#fff}
+  #chart .jalon text{font-size:11px;text-anchor:middle}
+  .chart-x{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-dim);margin-top:4px}
+  .rung{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--panel-line);font-size:13px;opacity:.6}
+  .rung:last-of-type{border-bottom:none}
+  .rung.ok{opacity:1}
+  .rung .ri{font-size:20px}.rung .rl small{display:block;font-size:11px;color:var(--ink-dim)}
+  .rung .rt{font-size:12px;font-weight:700;color:var(--ink-dim);text-align:right}
+  .rung.ok .rt{color:var(--good)}
+  .ladder-note{font-size:11px;color:var(--ink-dim);margin-top:8px}
+  #screen-reveal{justify-content:flex-start;padding-top:60px}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
@@ -85,27 +123,62 @@ html{overflow-y:scroll}
 
   <div class="screen" id="screen-form">
     <div class="eyebrow">Vos paramètres</div>
-    <h2 class="title">Combien, et <span>pendant combien de temps</span> ?</h2>
-    <div class="slider-block">
-      <div class="slider-label"><span>Épargne mensuelle</span><b id="lblAmount">50€</b></div>
-      <input type="range" id="sliderAmount" min="10" max="400" step="10" value="50" oninput="updateLabels()">
+    <div class="tabs" role="tablist">
+      <button class="tab on" id="tab-a" onclick="setMode('a')">💶 J'épargne…</button>
+      <button class="tab" id="tab-b" onclick="setMode('b')">🎯 J'ai un rêve…</button>
     </div>
+
+    <div id="mode-a" class="mode">
+      <h2 class="title">Combien, et <span>pendant combien de temps</span> ?</h2>
+      <div class="slider-block">
+        <div class="slider-label"><span>Épargne mensuelle</span><b id="lblAmount">50€</b></div>
+        <input type="range" id="sliderAmount" min="10" max="1000" step="10" value="50" oninput="updateLabels()">
+        <div class="presets"><button onclick="preset(20)">20 €</button><button onclick="preset(50)">50 €</button><button onclick="preset(100)">100 €</button><button onclick="preset(200)">200 €</button></div>
+      </div>
+    </div>
+
+    <div id="mode-b" class="mode" style="display:none">
+      <h2 class="title">Quel est <span>votre rêve</span> ?</h2>
+      <div class="dream-grid" id="dreamGrid"></div>
+      <div class="custom-dream" id="customDream" style="display:none">
+        <input type="text" id="customName" maxlength="40" placeholder="Mon rêve (ex : un piano)">
+        <input type="number" id="customPrice" min="50" max="500000" step="50" placeholder="Prix en €">
+      </div>
+    </div>
+
     <div class="slider-block">
       <div class="slider-label"><span>Sur combien de temps</span><b id="lblYears">5 ans</b></div>
       <input type="range" id="sliderYears" min="1" max="30" step="1" value="5" oninput="updateLabels()">
     </div>
-    <button class="btn btn-primary" onclick="reveal()">✨ Révéler mon rêve</button>
-    <div class="hint">Hypothèse illustrative de rendement (4%/an), non garantie. Simulation pédagogique, pas un conseil en investissement.</div>
+    <div class="slider-block">
+      <div class="slider-label"><span>Hypothèse de rendement</span><b id="lblRate">2 %/an</b></div>
+      <div class="presets rate" id="rates"><button data-r="0">Sans intérêts</button><button data-r="2" class="on">2 %/an</button><button data-r="4">4 %/an</button></div>
+    </div>
+    <button class="btn btn-primary" onclick="reveal()">✨ Révéler</button>
+    <div class="hint">Hypothèses illustratives et non garanties : un livret rapporte souvent moins, un placement en actions peut rapporter plus mais aussi baisser. Simulation pédagogique, pas un conseil en investissement.</div>
   </div>
 
   <div class="screen" id="screen-reveal">
     <div class="eyebrow">Votre projection</div>
     <div class="reveal-icon" id="revealIcon">🎈</div>
-    <div class="reveal-title">Dans <span id="revealYears">5 ans</span>, ça peut représenter</div>
+    <div class="reveal-title" id="revealTitle">Dans <span id="revealYears">5 ans</span>, ça peut représenter</div>
     <div class="reveal-amount" id="revealAmount">3 200€</div>
     <div class="reveal-title" style="font-size:19px;" id="revealDream">un joli city trip 🌍</div>
-    <div class="reveal-sub">En mettant <b id="revealBase"></b>€/mois de côté, avec une hypothèse illustrative de rendement de 4%/an.</div>
-    <button class="btn btn-primary" onclick="showScreen('screen-form')">Essayer un autre montant</button>
+    <div class="reveal-sub" id="revealSub"></div>
+
+    <div class="panel">
+      <div class="split"><i id="splitVerse"></i><i id="splitInt"></i></div>
+      <div class="split-leg"><span><b class="dot v"></b>Versé : <b id="legVerse">0 €</b></span><span><b class="dot i"></b>Intérêts : <b id="legInt">0 €</b></span></div>
+      <svg id="chart" viewBox="0 0 320 150" preserveAspectRatio="none" aria-label="Évolution de l'épargne"></svg>
+      <div class="chart-x"><span>Aujourd'hui</span><span id="chartEnd">5 ans</span></div>
+    </div>
+
+    <div class="panel ladder-panel">
+      <div class="panel-title">🪜 L'échelle des rêves</div>
+      <div id="ladder"></div>
+    </div>
+
+    <button class="btn btn-primary" onclick="showScreen('screen-form')">Essayer autre chose</button>
     <button class="btn btn-ghost" onclick="shareResult()">Partager mon rêve</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
   </div>
@@ -113,66 +186,169 @@ html{overflow-y:scroll}
 </div>
 
 <script>
+// Budgets indicatifs (ordres de grandeur) pour donner corps à l'épargne
 const DREAMS = [
-  { max:400, icon:'☕', label:"un joli resto entre amis 🍽️" },
-  { max:1200, icon:'🎒', label:"un week-end évasion 🌍" },
-  { max:3500, icon:'🌍', label:"un beau voyage à l'étranger ✈️" },
-  { max:8000, icon:'🛵', label:"un scooter ou un bon apport voiture 🚗" },
-  { max:20000, icon:'🌎', label:"un tour du monde en mode roots 🎒" },
-  { max:45000, icon:'🏡', label:"un bel apport pour un logement 🏡" },
-  { max:Infinity, icon:'🌴', label:"une année sabbatique complète 🌴" },
+  { cost:150,   icon:'🍽️', label:"un resto entre amis" },
+  { cost:500,   icon:'🎧', label:"un bel équipement high-tech" },
+  { cost:900,   icon:'🏖️', label:"un week-end évasion" },
+  { cost:2500,  icon:'✈️', label:"un voyage à l'étranger" },
+  { cost:4000,  icon:'🛵', label:"un scooter" },
+  { cost:9000,  icon:'🚗', label:"un apport pour une voiture" },
+  { cost:16000, icon:'🌎', label:"un tour du monde en mode sac à dos" },
+  { cost:30000, icon:'🏡', label:"un apport pour un logement" },
 ];
 
-let lastResult = null;
+let lastResult = null, mode = 'a', taux = 2, reveChoisi = 3;
 
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0});
 }
+const eur = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
 function updateLabels(){
-  document.getElementById('lblAmount').textContent = document.getElementById('sliderAmount').value+'€';
-  document.getElementById('lblYears').textContent = document.getElementById('sliderYears').value+' an'+(document.getElementById('sliderYears').value>1?'s':'');
+  document.getElementById('lblAmount').textContent = document.getElementById('sliderAmount').value+' €';
+  const y = +document.getElementById('sliderYears').value;
+  document.getElementById('lblYears').textContent = y+' an'+(y>1?'s':'');
+  document.getElementById('lblRate').textContent = taux === 0 ? 'sans intérêts' : taux + ' %/an';
+}
+function preset(v){ document.getElementById('sliderAmount').value = v; updateLabels(); fxTap(); }
+function fxTap(){ if (window.EcoFx) { try { EcoFx.tap(); } catch (e) {} } }
+
+function setMode(m){
+  mode = m;
+  document.getElementById('tab-a').classList.toggle('on', m === 'a');
+  document.getElementById('tab-b').classList.toggle('on', m === 'b');
+  document.getElementById('mode-a').style.display = m === 'a' ? '' : 'none';
+  document.getElementById('mode-b').style.display = m === 'b' ? '' : 'none';
 }
 
-function computeFutureValue(monthly, years){
-  const annualRate = 0.04;
-  const monthlyRate = annualRate/12;
-  const n = years*12;
-  let fv = 0;
-  for(let i=0;i<n;i++){ fv = (fv + monthly) * (1+monthlyRate); }
+function renderDreamGrid(){
+  document.getElementById('dreamGrid').innerHTML = DREAMS.map((d, i) => `
+    <button class="dream ${i === reveChoisi ? 'on' : ''}" onclick="choisirReve(${i})"><span>${d.icon}</span><small>${d.label}</small><b>≈ ${eur(d.cost)}</b></button>`).join('') +
+    `<button class="dream ${reveChoisi === -1 ? 'on' : ''}" onclick="choisirReve(-1)"><span>✍️</span><small>Mon propre rêve</small><b>prix libre</b></button>`;
+  document.getElementById('customDream').style.display = reveChoisi === -1 ? 'flex' : 'none';
+}
+function choisirReve(i){ reveChoisi = i; renderDreamGrid(); fxTap(); }
+
+document.getElementById('rates').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  taux = +b.dataset.r;
+  document.querySelectorAll('#rates button').forEach(x => x.classList.toggle('on', x === b));
+  updateLabels(); fxTap();
+});
+
+// Versement en début de mois, intérêts mensuels
+function computeFutureValue(monthly, years, rate){
+  const r = rate / 100 / 12; let fv = 0;
+  for (let i = 0; i < years * 12; i++) fv = (fv + monthly) * (1 + r);
   return fv;
 }
-
-function pickDream(amount){
-  return DREAMS.find(d => amount <= d.max) || DREAMS[DREAMS.length-1];
+function serie(monthly, years, rate){
+  const r = rate / 100 / 12, pts = [0]; let fv = 0;
+  for (let i = 1; i <= years * 12; i++) { fv = (fv + monthly) * (1 + r); pts.push(fv); }
+  return pts;
+}
+function mensualitePour(cible, years, rate){
+  const r = rate / 100 / 12, n = years * 12;
+  if (r === 0) return cible / n;
+  return cible * r / ((1 + r) * (Math.pow(1 + r, n) - 1));
+}
+function moisPour(cible, monthly, rate){
+  const r = rate / 100 / 12; let fv = 0, m = 0;
+  while (fv < cible && m < 600) { fv = (fv + monthly) * (1 + r); m++; }
+  return m;
+}
+function duree(m){
+  if (m >= 600) return 'plus de 50 ans';
+  const a = Math.floor(m / 12), r = m % 12;
+  return (a ? a + ' an' + (a > 1 ? 's' : '') : '') + (a && r ? ' et ' : '') + (r ? r + ' mois' : '');
 }
 
 function reveal(){
-  const amount = parseInt(document.getElementById('sliderAmount').value,10);
-  const years = parseInt(document.getElementById('sliderYears').value,10);
-  const fv = Math.round(computeFutureValue(amount, years));
-  const dream = pickDream(fv);
-
-  lastResult = { amount, years, fv, dream };
+  const years = +document.getElementById('sliderYears').value;
+  let amount, dream, fv;
+  if (mode === 'b') {
+    if (reveChoisi === -1) {
+      const prix = Math.max(50, Math.min(500000, +document.getElementById('customPrice').value || 0));
+      if (!prix) { document.getElementById('customPrice').focus(); return; }
+      dream = {cost: prix, icon: '✨', label: (document.getElementById('customName').value.trim() || 'mon rêve')};
+    } else dream = DREAMS[reveChoisi];
+    amount = mensualitePour(dream.cost, years, taux);
+    fv = dream.cost;
+  } else {
+    amount = +document.getElementById('sliderAmount').value;
+    fv = computeFutureValue(amount, years, taux);
+    dream = DREAMS.slice().reverse().find(d => fv >= d.cost) || {icon:'🌱', label:'une première réserve qui grandit', cost:0};
+  }
+  const verse = amount * years * 12;
+  const interets = Math.max(0, fv - verse);
+  lastResult = { amount, years, fv, dream, mode };
 
   document.getElementById('revealIcon').textContent = dream.icon;
-  document.getElementById('revealYears').textContent = years+' an'+(years>1?'s':'');
-  document.getElementById('revealAmount').textContent = fv.toLocaleString('fr-FR')+'€';
-  document.getElementById('revealDream').textContent = 'ça peut être '+dream.label;
-  document.getElementById('revealBase').textContent = amount;
+  if (mode === 'b') {
+    document.getElementById('revealTitle').innerHTML = `Pour <span>${dream.label}</span> dans ${years} an${years > 1 ? 's' : ''}, mettez de côté`;
+    document.getElementById('revealAmount').textContent = eur(Math.ceil(amount)) + '/mois';
+    document.getElementById('revealDream').textContent = `soit environ ${(amount / 30).toLocaleString('fr-FR', {maximumFractionDigits: 2, minimumFractionDigits: 2})} € par jour`;
+  } else {
+    document.getElementById('revealTitle').innerHTML = `Dans <span id="revealYears">${years} an${years > 1 ? 's' : ''}</span>, ça peut représenter`;
+    document.getElementById('revealAmount').textContent = eur(fv);
+    document.getElementById('revealDream').textContent = 'ça peut être ' + dream.label + ' ' + dream.icon;
+  }
+  document.getElementById('revealSub').textContent = (mode === 'b' ? `Objectif : ${eur(dream.cost)}. ` : `En mettant ${eur(amount)}/mois de côté. `) +
+    (taux ? `Hypothèse illustrative de rendement de ${taux} %/an, non garantie.` : 'Sans intérêts : uniquement vos versements.');
+
+  // Versé vs intérêts
+  const tot = verse + interets || 1;
+  document.getElementById('splitVerse').style.width = (verse / tot * 100) + '%';
+  document.getElementById('splitInt').style.width = (interets / tot * 100) + '%';
+  document.getElementById('legVerse').textContent = eur(verse);
+  document.getElementById('legInt').textContent = eur(interets);
+
+  // Courbe
+  const pts = serie(amount, years, taux), max = Math.max(pts[pts.length - 1], 1);
+  const X = i => i / (pts.length - 1) * 316 + 2, Y = v => 146 - v / max * 136;
+  const ligne = pts.map((v, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(v).toFixed(1)).join(' ');
+  const versLigne = pts.map((v, i) => (i ? 'L' : 'M') + X(i).toFixed(1) + ' ' + Y(amount * i).toFixed(1)).join(' ');
+  let dernierX = -99;
+  const jalons = DREAMS.filter(d => d.cost <= max).map(d => {
+    const m = pts.findIndex(v => v >= d.cost);
+    if (m <= 0 || X(m) - dernierX < 22) return '';
+    dernierX = X(m);
+    return m > 0 ? `<g class="jalon"><circle cx="${X(m).toFixed(1)}" cy="${Y(pts[m]).toFixed(1)}" r="3.5"/><text x="${X(m).toFixed(1)}" y="${(Y(pts[m]) - 7).toFixed(1)}">${d.icon}</text></g>` : '';
+  }).join('');
+  document.getElementById('chart').innerHTML = `
+    <defs><linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3DDC84" stop-opacity=".45"/><stop offset="1" stop-color="#3DDC84" stop-opacity="0"/></linearGradient></defs>
+    <path d="${ligne} L318 146 L2 146 Z" fill="url(#gArea)"/>
+    <path d="${versLigne}" fill="none" stroke="#FFC94B" stroke-width="1.5" stroke-dasharray="4 4" opacity=".8"/>
+    <path class="courbe" d="${ligne}" fill="none" stroke="#3DDC84" stroke-width="2.5" stroke-linecap="round"/>
+    ${jalons}`;
+  document.getElementById('chartEnd').textContent = years + ' an' + (years > 1 ? 's' : '');
+
+  // Échelle des rêves
+  document.getElementById('ladder').innerHTML = DREAMS.map(d => {
+    const m = moisPour(d.cost, amount, taux);
+    const ok = m <= years * 12;
+    return `<div class="rung ${ok ? 'ok' : ''}"><span class="ri">${d.icon}</span><span class="rl">${d.label}<small>≈ ${eur(d.cost)}</small></span><span class="rt">${ok ? '✓ ' : ''}${duree(m)}</span></div>`;
+  }).join('') + `<p class="ladder-note">Temps nécessaire avec ${eur(amount)}/mois. Budgets indicatifs.</p>`;
 
   showScreen('screen-reveal');
+  if (window.EcoFx) { try { EcoFx.win(); } catch (e) {} }
 }
 
 function shareResult(){
   if(!lastResult) return;
-  const text = `En mettant ${lastResult.amount}€/mois de côté pendant ${lastResult.years} ans, ça peut représenter ${lastResult.fv.toLocaleString('fr-FR')}€ — ${lastResult.dream.label} ! Simulation sur La Machine à Rêves (Economya.fr) ✨`;
-  const url = 'https://economya.fr';
+  const r = lastResult;
+  const text = r.mode === 'b'
+    ? `Pour ${r.dream.label} dans ${r.years} ans, il me suffit de mettre ${Math.ceil(r.amount)} €/mois de côté ! Simulation sur La Machine à Rêves d'Economya.fr`
+    : `En mettant ${r.amount} €/mois de côté pendant ${r.years} ans, ça peut représenter ${Math.round(r.fv).toLocaleString('fr-FR')} € : ${r.dream.label} ! Simulation sur La Machine à Rêves d'Economya.fr`;
+  const url = 'https://economya.fr/la-machine-a-reves';
   if(navigator.share){ navigator.share({title:'La Machine à Rêves', text, url}).catch(()=>{}); }
   else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
 }
 
+renderDreamGrid();
 updateLabels();
 </script>
 <div style="text-align:center;padding:18px 16px 26px;font-size:11px;color:#8a8a8a;font-family:Arial,Helvetica,sans-serif;background:transparent;">© 2026 Economya.fr &middot; <a href="/mentions-legales" style="color:#8a8a8a;text-decoration:underline;">Mentions légales</a> &middot; <a href="/politique-confidentialite" style="color:#8a8a8a;text-decoration:underline;">Confidentialité</a> &middot; <a href="/cgu" style="color:#8a8a8a;text-decoration:underline;">CGU</a> &middot; <a href="mailto:contact@economya.fr" style="color:#8a8a8a;text-decoration:underline;">Contact</a></div>

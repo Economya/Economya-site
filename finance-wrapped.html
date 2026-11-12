@@ -103,6 +103,35 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .s7-sub{font-size:.88rem;color:rgba(255,255,255,.7);margin-bottom:2rem;line-height:1.5}
 .s7-url{font-size:.75rem;color:rgba(255,255,255,.4);letter-spacing:.1em}
 
+/* STORIES */
+.slides-wrap{user-select:none;-webkit-user-select:none}
+.story-bars{position:absolute;top:.55rem;left:.8rem;right:.8rem;display:flex;gap:4px;z-index:3;pointer-events:none}
+.story-bars i{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.28);overflow:hidden;display:block}
+.story-bars i b{display:block;height:100%;width:0;background:#fff}
+.story-bars i.done b{width:100%}
+.story-bars i.run b{animation:fwBar var(--d,6s) linear forwards}
+.story-bars.paused i.run b{animation-play-state:paused}
+@keyframes fwBar{to{width:100%}}
+.slide{cursor:pointer}
+.slide-num{top:1.2rem}
+.slide.active>*{animation:fwIn .55s ease both}
+.slide.active>*:nth-child(2){animation-delay:.05s}.slide.active>*:nth-child(3){animation-delay:.15s}.slide.active>*:nth-child(4){animation-delay:.25s}.slide.active>*:nth-child(5){animation-delay:.35s}.slide.active>*:nth-child(6){animation-delay:.45s}
+@keyframes fwIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.slide-logo{animation:none!important}
+.s2-marks{position:relative;height:1.1rem;font-size:.62rem;color:rgba(255,255,255,.75);margin-bottom:.25rem}
+.s2-marks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.s2-marks span::after{content:'';position:absolute;left:50%;top:1.05rem;width:1px;height:12px;background:rgba(255,255,255,.6)}
+.s2-note{font-size:.6rem;color:rgba(255,255,255,.5);margin-top:1.5rem}
+.btn-story{display:block;width:100%;margin:.6rem 0;background:linear-gradient(135deg,#a855f7,#EF9F27);color:#fff;border:none}
+.nav-play{padding:.6rem .9rem!important;font-size:.7rem!important;letter-spacing:-.1em}
+.slide-nav{gap:.4rem}
+.slide-nav .nav-btn{white-space:nowrap;padding:.6rem 1rem}
+@media(max-width:400px){.slide-nav .dots{gap:.25rem}.slide-nav .dot{width:6px;height:6px}}
+.s2-marks span.bas{top:2.1rem}
+.s2-marks span.bas::after{top:-.75rem}
+.s2-marks{margin-bottom:.25rem}
+.s2-bar-wrap{padding-bottom:1rem}
+@media(prefers-reduced-motion:reduce){.slide.active>*{animation:none}}
 /* NAVIGATION */
 .slide-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
 .nav-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:white;padding:.6rem 1.5rem;border-radius:50px;cursor:pointer;font-family:inherit;font-weight:600;font-size:.85rem}
@@ -230,7 +259,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </div>
 
     <div class="field">
-      <label>Votre objectif 2027</label>
+      <label>Votre objectif pour l'an prochain</label>
       <select id="f-objectif">
         <option value="epargne">💰 Épargner plus</option>
         <option value="immo">🏠 Acheter un bien</option>
@@ -249,7 +278,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <!-- Slide 1 -->
     <div class="slide s1 active" id="slide-0">
       <div class="slide-num">1/7</div>
-      <div class="s1-year">ÉCONOMYA · 2026</div>
+      <div class="s1-year">ÉCONOMYA · <span class="fw-annee">2026</span></div>
       <div class="s1-title">Finance<br>Wrapped</div>
       <div class="s1-sub">Votre année en chiffres</div>
       <div class="s1-name" id="s1-name">—</div>
@@ -261,12 +290,11 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="slide-num">2/7</div>
       <div class="s2-label">Vous avez gagné</div>
       <div class="s2-amount" id="s2-amount">—</div>
-      <div class="s2-sub">en 2026 💪</div>
+      <div class="s2-sub">en <span class="fw-annee">2026</span> 💪</div>
       <div class="s2-bar-wrap">
-        <div style="display:flex;justify-content:space-between;font-size:.72rem;color:rgba(255,255,255,.65);margin-bottom:.3rem">
-          <span>SMIC</span><span>Médiane FR</span><span>Top 10%</span>
-        </div>
+        <div class="s2-marks" id="s2-marks"></div>
         <div class="s2-bar"><div class="s2-bar-fill" id="s2-bar" style="width:50%"></div></div>
+        <div class="s2-note">Repères de salaires nets mensuels : ordres de grandeur</div>
       </div>
       <div class="slide-logo">ECONOMYA.FR</div>
     </div>
@@ -293,7 +321,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <!-- Slide 5 -->
     <div class="slide s5" id="slide-4">
       <div class="slide-num">5/7</div>
-      <div class="s5-title">Vos stats 2026</div>
+      <div class="s5-title">Vos stats <span class="fw-annee">2026</span></div>
       <div class="stats-list" id="s5-stats"></div>
       <div class="slide-logo">ECONOMYA.FR</div>
     </div>
@@ -301,7 +329,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <!-- Slide 6 -->
     <div class="slide s6" id="slide-5">
       <div class="slide-num">6/7</div>
-      <div class="s6-title">Objectif 2027</div>
+      <div class="s6-title">Objectif <span class="fw-annee1">2027</span></div>
       <div class="s6-goal" id="s6-goal">—</div>
       <div class="s6-sub" id="s6-sub">—</div>
       <div class="s6-tip" id="s6-tip">—</div>
@@ -318,15 +346,18 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="slide-logo">ECONOMYA.FR</div>
     </div>
 
+    <div class="story-bars" id="story-bars"></div>
     <!-- NAV -->
     <div class="slide-nav">
-      <button class="nav-btn" id="btn-prev" onclick="prevSlide()" disabled>← Préc.</button>
+      <button class="nav-btn" id="btn-prev" onclick="prevSlide(true)" disabled>← Préc.</button>
       <div class="dots" id="dots"></div>
-      <button class="nav-btn" id="btn-next" onclick="nextSlide()">Suiv. →</button>
+      <button class="nav-btn" id="btn-next" onclick="nextSlide(true)">Suiv. →</button>
+      <button class="nav-btn nav-play" id="btn-play" onclick="toggleAuto()" aria-label="Lecture automatique">❚❚</button>
     </div>
 
     <div class="share-box">
-      <p>📸 Faites une capture d'écran et partagez sur Instagram !</p>
+      <p>📸 Téléchargez votre story au format Instagram (1080 × 1920)</p>
+      <button class="share-btn btn-story" onclick="telechargerStory()">⬇️ Télécharger ma story</button>
       <div class="share-btns">
         <button class="share-btn btn-tw" onclick="shareTwitter()">𝕏 Partager</button>
         <button class="share-btn btn-copy" onclick="copyText()">📋 Copier</button>
@@ -348,6 +379,15 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 <script>
 let currentSlide = 0;
 let userData = {};
+const NB_SLIDES = 7, DUREE_SLIDE = 6000;
+const ANNEE = new Date().getMonth() < 2 ? new Date().getFullYear() - 1 : new Date().getFullYear();
+let autoTimer = null, autoOn = true;
+// Repères (salaires nets mensuels, ordres de grandeur) pour situer le revenu
+const REPERES = [{v:1440, t:'SMIC ≈ 1 440 €'}, {v:2200, t:'Médiane ≈ 2 200 €'}, {v:4100, t:'Top 10 % ≈ 4 100 €'}];
+const ECHELLE = [800, 6000];
+function posEchelle(v){ return Math.max(2, Math.min(98, (v - ECHELLE[0]) / (ECHELLE[1] - ECHELLE[0]) * 100)); }
+document.querySelectorAll('.fw-annee').forEach(e => e.textContent = ANNEE);
+document.querySelectorAll('.fw-annee1').forEach(e => e.textContent = ANNEE + 1);
 
 function updateVal(inputId, valId, suffix) {
   const val = document.getElementById(inputId).value;
@@ -363,21 +403,21 @@ const PROFILS = {
   epargne: {
     low:  {emoji:'🌱', nom:'Le Planteur de Graines', desc:'Vous épargnez peu mais vous avez compris l\'essentiel : commencer. Chaque euro mis de côté est une graine plantée pour l\'avenir.'},
     mid:  {emoji:'🦅', nom:'L\'Architecte Financier', desc:'Vous construisez méthodiquement votre avenir. Votre discipline est votre plus grande force.'},
-    high: {emoji:'🏆', nom:'Le Maître de l\'Argent', desc:'Vous êtes dans le top 10% des épargnants français. Votre futur vous remercie.'},
+    high: {emoji:'🏆', nom:'Le Maître de l\'Argent', desc:'Vous mettez de côté une part de vos revenus supérieure à la moyenne des ménages français. Votre futur vous remercie.'},
   },
   depense: {
-    loyer:     {emoji:'🏠', stat:'Logement', conseils:'Renégociez votre loyer ou comparez les offres — jusqu\'à 200€/mois économisés.'},
+    loyer:     {emoji:'🏠', stat:'Logement', conseils:'Comparez avec les loyers du quartier, et vérifiez vos droits aux APL et l\'encadrement des loyers dans votre ville.'},
     food:      {emoji:'🍕', stat:'Alimentation', conseils:'Le batch cooking du dimanche peut diviser ce poste par 2.'},
     transport: {emoji:'🚗', stat:'Transport', conseils:'Calculez le vrai coût de votre voiture — vous serez surpris.'},
-    shopping:  {emoji:'🛍️', stat:'Shopping', conseils:'La règle des 48h avant tout achat non prévu réduit les achats impulsifs de 60%.'},
-    loisirs:   {emoji:'🎬', stat:'Loisirs', conseils:'Des sorties épanouissantes existent à petit prix — explorez notre guide.'},
-    voyages:   {emoji:'✈️', stat:'Voyages', conseils:'Nos 7 techniques pour payer les vols moitié prix peuvent transformer vos habitudes.'},
+    shopping:  {emoji:'🛍️', stat:'Shopping', conseils:'La règle des 48 h : attendez deux jours avant tout achat non prévu. L\'envie passe souvent.'},
+    loisirs:   {emoji:'🎬', stat:'Loisirs', conseils:'Musées gratuits le 1er dimanche du mois, médiathèque, cartes jeunes ou seniors : les sorties à petit prix ne manquent pas.'},
+    voyages:   {emoji:'✈️', stat:'Voyages', conseils:'Dates flexibles, réservation anticipée et alertes de prix : les écarts de tarif sont souvent importants.'},
   },
   objectifs: {
     epargne:  {titre:'Épargner +X€/mois', tip:'Automatisez un virement le 1er du mois. Ce que vous ne voyez pas, vous ne le dépensez pas.'},
     immo:     {titre:'Acheter un bien', tip:'Simulez votre capacité d\'emprunt sur Economya.fr — vous êtes peut-être plus proche que vous ne pensez.'},
     dette:    {titre:'Rembourser mes dettes', tip:'Méthode avalanche : remboursez d\'abord le crédit avec le taux le plus élevé.'},
-    retraite: {titre:'Préparer ma retraite', tip:'Ouvrir un PER dès maintenant + versements défiscalisés = double avantage.'},
+    retraite: {titre:'Préparer ma retraite', tip:'Le PER permet de déduire vos versements de votre revenu imposable (dans certaines limites) : plus votre tranche d\'imposition est élevée, plus c\'est intéressant.'},
     liberte:  {titre:'Liberté financière', tip:'La règle des 4% : vous avez besoin de 25x vos dépenses annuelles pour être financièrement libre.'},
     voyage:   {titre:'Financer un voyage de rêve', tip:'Créez un compte épargne dédié "voyage" et alimentez-le automatiquement.'},
   }
@@ -401,12 +441,13 @@ function generateWrapped() {
 
   // Slide 2
   document.getElementById('s2-amount').textContent = revenuAnnuel.toLocaleString('fr-FR') + '€';
-  const barPct = Math.min(100, Math.max(5, (revenu - 800) / (5000 - 800) * 100));
-  document.getElementById('s2-bar').style.width = barPct + '%';
+  document.getElementById('s2-bar').style.width = posEchelle(revenu) + '%';
+  document.getElementById('s2-marks').innerHTML = REPERES.map((r, i) => `<span class="${i === 1 ? 'bas' : ''}" style="left:${posEchelle(r.v)}%">${r.t.split(' ≈')[0]}</span>`).join('');
+  userData.revenuAnnuel = revenuAnnuel; userData.epargneAnnuelle = epargneAnnuelle;
 
   // Slide 3
   const epargneEmoji = epargne >= 20 ? '🏆' : epargne >= 10 ? '💪' : epargne >= 5 ? '🌱' : '😅';
-  const epargneMsg = epargne >= 20 ? 'Vous êtes dans le top 15% des épargnants français. Félicitations !' :
+  const epargneMsg = epargne >= 20 ? 'C\'est plus que le taux d\'épargne moyen des ménages français, qui tourne autour de 15 à 18 % ces dernières années (INSEE). Bravo !' :
     epargne >= 10 ? 'Vous respectez la règle des 10% recommandée par les experts financiers.' :
     epargne >= 5 ? 'C\'est un bon début ! Augmenter progressivement vers 15-20% changera tout.' :
     'Pas d\'inquiétude — automatiser un petit virement mensuel suffit pour commencer.';
@@ -428,24 +469,33 @@ function generateWrapped() {
     <div class="stat-row"><span class="stat-label">💸 Dépenses annuelles</span><span class="stat-value">${depenseAnnuelle.toLocaleString('fr-FR')}€</span></div>
     <div class="stat-row"><span class="stat-label">${dep.emoji} Poste principal</span><span class="stat-value">${dep.stat}</span></div>
     <div class="stat-row"><span class="stat-label">📈 Taux d'épargne</span><span class="stat-value">${epargne}%</span></div>
+    <div class="stat-row"><span class="stat-label">🔭 Dans 10 ans à ce rythme</span><span class="stat-value">${(epargneAnnuelle * 10).toLocaleString('fr-FR')}€</span></div>
+    <div class="stat-row"><span class="stat-label">✨ Placé à 3 %/an (hypothèse)</span><span class="stat-value">${Math.round(epargneAnnuelle * ((Math.pow(1.03, 10) - 1) / 0.03)).toLocaleString('fr-FR')}€</span></div>
   `;
+  userData.conseil = dep.conseils;
 
   // Slide 6
   const obj = PROFILS.objectifs[objectif];
   const goalText = objectif === 'epargne' ? `+${Math.round(revenu * 0.05).toLocaleString('fr-FR')}€/mois` : obj.titre.replace('X', Math.round(revenu * 0.05).toLocaleString('fr-FR'));
   document.getElementById('s6-goal').textContent = goalText;
-  document.getElementById('s6-sub').textContent = 'Votre priorité numéro 1 en 2027';
-  document.getElementById('s6-tip').textContent = '💡 ' + obj.tip;
+  document.getElementById('s6-sub').textContent = 'Votre priorité numéro 1 en ' + (ANNEE + 1);
+  document.getElementById('s6-tip').dataset.dep = dep.conseils;
+  document.getElementById('s6-tip').innerHTML = '💡 ' + obj.tip + '<br><br>' + dep.emoji + ' ' + dep.conseils;
 
   // Slide 7
   document.getElementById('s7-title').textContent = `Bravo ${prenom} !`;
-  document.getElementById('s7-sub').textContent = `Vous avez épargné ${epargne}% de vos revenus en 2026. En 2027, vous pouvez faire encore mieux. Economya.fr vous accompagne chaque semaine.`;
+  document.getElementById('s7-sub').textContent = epargne > 0
+    ? `Vous avez mis de côté ${epargne} % de vos revenus en ${ANNEE}, soit environ ${epargneAnnuelle.toLocaleString('fr-FR')} €. En ${ANNEE + 1}, +1 point d'épargne, c'est ${Math.round(revenuAnnuel / 100).toLocaleString('fr-FR')} € de plus. Economya.fr vous accompagne !`
+    : `${ANNEE + 1} peut être l'année du premier virement d'épargne : même 20 € par mois, c'est 240 € à la fin de l'année. Economya.fr vous accompagne !`;
 
   // Show slides
   document.getElementById('form-section').style.display = 'none';
   document.getElementById('slides-wrap').style.display = 'block';
   buildDots();
+  autoOn = true;
+  document.getElementById('btn-play').textContent = '❚❚';
   showSlide(0);
+  document.getElementById('slides-wrap').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function buildDots() {
@@ -453,6 +503,31 @@ function buildDots() {
   dots.innerHTML = Array.from({length:7}, (_,i) =>
     `<div class="dot${i===0?' active':''}" id="dot-${i}"></div>`
   ).join('');
+}
+
+function animerCompteur(el, cible, suffixe) {
+  const t0 = performance.now();
+  (function pas(now) {
+    const p = Math.min(1, (now - t0) / 900);
+    el.textContent = Math.round(cible * (1 - Math.pow(1 - p, 3))).toLocaleString('fr-FR') + suffixe;
+    if (p < 1) requestAnimationFrame(pas);
+  })(t0);
+}
+
+function majBarres() {
+  const bars = document.getElementById('story-bars');
+  bars.innerHTML = Array.from({length: NB_SLIDES}, (_, i) => `<i class="${i < currentSlide || currentSlide === NB_SLIDES - 1 ? 'done' : i === currentSlide && autoOn ? 'run' : i === currentSlide ? 'done' : ''}" style="--d:${DUREE_SLIDE}ms"><b></b></i>`).join('');
+}
+
+function planifier() {
+  clearTimeout(autoTimer);
+  if (autoOn && currentSlide < NB_SLIDES - 1) autoTimer = setTimeout(() => nextSlide(false), DUREE_SLIDE);
+}
+
+function toggleAuto() {
+  autoOn = !autoOn;
+  document.getElementById('btn-play').textContent = autoOn ? '❚❚' : '▶';
+  majBarres(); planifier();
 }
 
 function showSlide(n) {
@@ -465,22 +540,86 @@ function showSlide(n) {
   document.getElementById('btn-prev').disabled = n === 0;
   document.getElementById('btn-next').disabled = n === 6;
   document.getElementById('btn-next').textContent = n === 6 ? 'Fin ✓' : 'Suiv. →';
+  if (n === 1) animerCompteur(document.getElementById('s2-amount'), userData.revenuAnnuel || 0, '€');
+  if (n === 2) animerCompteur(document.getElementById('s3-pct'), userData.epargne || 0, '%');
+  if (window.EcoFx) { try { n === 6 ? EcoFx.win() : EcoFx.tap(); } catch (e) {} }
+  majBarres(); planifier();
 }
 
-function nextSlide() { if(currentSlide < 6) showSlide(currentSlide + 1); }
-function prevSlide() { if(currentSlide > 0) showSlide(currentSlide - 1); }
+function nextSlide(manuel) { if (currentSlide < 6) showSlide(currentSlide + 1); }
+function prevSlide(manuel) { if (currentSlide > 0) showSlide(currentSlide - 1); }
+
+// Toucher la story : à gauche = précédent, ailleurs = suivant
+document.querySelectorAll('.slide').forEach(sl => sl.addEventListener('click', e => {
+  if (e.target.closest('#eco-plus, a, button')) return;
+  const r = sl.getBoundingClientRect();
+  (e.clientX - r.left) < r.width * 0.3 ? prevSlide(true) : nextSlide(true);
+}));
+// Navigation clavier et balayage
+document.addEventListener('keydown', e => {
+  if (document.getElementById('slides-wrap').style.display !== 'block') return;
+  if (e.key === 'ArrowRight') nextSlide(true);
+  if (e.key === 'ArrowLeft') prevSlide(true);
+});
+(function(){
+  let x0 = null;
+  const w = document.getElementById('slides-wrap');
+  w.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, {passive: true});
+  w.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 50) { dx < 0 ? nextSlide(true) : prevSlide(true); }
+  }, {passive: true});
+})();
+
+// Story téléchargeable (1080 × 1920)
+function telechargerStory() {
+  const c = document.createElement('canvas'); c.width = 1080; c.height = 1920;
+  const g = c.getContext('2d');
+  const grad = g.createLinearGradient(0, 0, 1080, 1920);
+  grad.addColorStop(0, '#1a0a2e'); grad.addColorStop(.55, '#7c2d92'); grad.addColorStop(1, '#EF9F27');
+  g.fillStyle = grad; g.fillRect(0, 0, 1080, 1920);
+  g.textAlign = 'center'; g.fillStyle = 'rgba(255,255,255,.7)';
+  g.font = '600 40px system-ui, sans-serif'; g.fillText('ECONOMYA · ' + ANNEE, 540, 230);
+  g.fillStyle = '#fff'; g.font = '900 150px Georgia, serif'; g.fillText('Finance', 540, 420); g.fillText('Wrapped', 540, 570);
+  g.fillStyle = '#EF9F27'; g.font = '800 80px Georgia, serif'; g.fillText(userData.prenom || 'Vous', 540, 720);
+  const profil = document.getElementById('s4-profil').textContent;
+  const lignes = [
+    ['💰 Revenus annuels', (userData.revenuAnnuel || 0).toLocaleString('fr-FR') + ' €'],
+    ['📈 Taux d\'épargne', (userData.epargne || 0) + ' %'],
+    ['🏦 Épargne de l\'année', (userData.epargneAnnuelle || 0).toLocaleString('fr-FR') + ' €'],
+    ['🎯 Objectif ' + (ANNEE + 1), document.getElementById('s6-goal').textContent],
+  ];
+  g.fillStyle = 'rgba(255,255,255,.12)';
+  if (g.roundRect) { g.beginPath(); g.roundRect(110, 820, 860, 640, 40); g.fill(); } else g.fillRect(110, 820, 860, 640);
+  g.font = '700 60px system-ui, sans-serif'; g.fillStyle = '#fff';
+  g.fillText(document.getElementById('s4-emoji').textContent + ' ' + profil, 540, 920);
+  lignes.forEach((l, i) => {
+    const y = 1050 + i * 115;
+    g.textAlign = 'left'; g.font = '500 44px system-ui, sans-serif'; g.fillStyle = 'rgba(255,255,255,.75)'; g.fillText(l[0], 170, y);
+    g.textAlign = 'right'; g.font = '800 50px system-ui, sans-serif'; g.fillStyle = '#fff'; g.fillText(l[1], 910, y);
+  });
+  g.textAlign = 'center'; g.fillStyle = 'rgba(255,255,255,.85)'; g.font = '600 46px system-ui, sans-serif';
+  g.fillText('Crée le tien sur economya.fr', 540, 1700);
+  c.toBlob(b => {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(b); a.download = 'finance-wrapped-' + ANNEE + '.png';
+    document.body.appendChild(a); a.click(); a.remove();
+  }, 'image/png');
+}
 
 function shareTwitter() {
-  const text = `Mon Finance Wrapped 2026 🎉 J'épargne ${userData.epargne}% de mes revenus. Et vous ? Créez le vôtre sur economya.fr #FinanceWrapped #Economya`;
+  const text = `Mon Finance Wrapped ${ANNEE} 🎉 J'épargne ${userData.epargne}% de mes revenus. Et vous ? Créez le vôtre sur economya.fr #FinanceWrapped #Economya`;
   window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
 }
 
 function copyText() {
-  const text = `Mon Finance Wrapped 2026 🎉\n💰 Revenus : ${(userData.revenu * 12).toLocaleString('fr-FR')}€/an\n🏦 Épargne : ${userData.epargne}%\nCréez le vôtre sur economya.fr`;
+  const text = `Mon Finance Wrapped ${ANNEE} 🎉\n💰 Revenus : ${(userData.revenu * 12).toLocaleString('fr-FR')}€/an\n🏦 Épargne : ${userData.epargne}%\nCréez le vôtre sur economya.fr`;
   navigator.clipboard.writeText(text).then(() => alert('Copié ! Collez sur vos réseaux 📋'));
 }
 
 function restart() {
+  clearTimeout(autoTimer);
   document.getElementById('form-section').style.display = 'block';
   document.getElementById('slides-wrap').style.display = 'none';
 }

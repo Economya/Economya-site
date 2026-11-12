@@ -58,7 +58,10 @@
     "primo-accedant": {"end": "#report"},
     "ou-vivre-mieux": {"end": "#results.played"},
     "calendrier-bons-plans": {"end": "#cal-bravo.show"},
-    "roue-economies": {"end": "#roue-fin.show"}
+    "roue-economies": {"end": "#roue-fin.show"},
+    "jackpot-finance": {"end": "#jp-fin.show"},
+    "finance-wrapped": {"end": "#slide-6.active"},
+    "la-machine-a-reves": {"end": "#screen-reveal.active"}
   };
 
   var KEY_MED = "economya_medailles", KEY_SND = "economya_son";
