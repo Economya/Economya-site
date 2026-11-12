@@ -22,7 +22,7 @@
 //                                 (defaut : alertes@economya.fr, qui
 //                                 fonctionne car le domaine economya.fr
 //                                 est verifie dans Resend).
-//   - WEBHOOK_SECRET           : optionnel, meme mecanisme que pour
+//   - WEBHOOK_SECRET           : OBLIGATOIRE, meme mecanisme que pour
 //                                 notify-business-submission (header
 //                                 x-webhook-secret), si defini il
 //                                 s'applique aux deux fonctions.
@@ -60,12 +60,19 @@ exports.handler = async function (event) {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
 
+  // Secret OBLIGATOIRE : sans lui, n'importe qui pourrait appeler cette URL
+  // et faire partir des emails depuis le domaine economya.fr. Si la variable
+  // WEBHOOK_SECRET n'est pas définie dans Netlify, la fonction refuse tout.
   const expectedSecret = process.env.WEBHOOK_SECRET;
-  if (expectedSecret) {
-    const got = event.headers['x-webhook-secret'] || event.headers['X-Webhook-Secret'];
-    if (got !== expectedSecret) {
-      return { statusCode: 401, body: 'Unauthorized' };
-    }
+  if (!expectedSecret) {
+    console.error('notify-category-alert: WEBHOOK_SECRET manquante, appel refusé');
+    return { statusCode: 500, body: 'WEBHOOK_SECRET not configured' };
+  }
+  const got = String(event.headers['x-webhook-secret'] || event.headers['X-Webhook-Secret'] || '');
+  const a = Buffer.from(got);
+  const b = Buffer.from(expectedSecret);
+  if (a.length !== b.length || !require('crypto').timingSafeEqual(a, b)) {
+    return { statusCode: 401, body: 'Unauthorized' };
   }
 
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
