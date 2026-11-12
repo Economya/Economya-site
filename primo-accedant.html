@@ -199,10 +199,10 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       </select>
     </div>
     <div class="field">
-      <label>Charges mensuelles actuelles (loyer, crédits...)</label>
+      <label>Crédits en cours qui resteront après l'achat (auto, conso…)</label>
       <div class="slider-wrap">
-        <input type="range" id="charges" min="0" max="3000" step="50" value="800" oninput="upd('charges','v-charges','€/mois')">
-        <span class="field-val" id="v-charges">800€/mois</span>
+        <input type="range" id="charges" min="0" max="2000" step="25" value="0" oninput="upd('charges','v-charges','€/mois')">
+        <span class="field-val" id="v-charges">0€/mois</span>
       </div>
     </div>
     <div class="field">
@@ -296,7 +296,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
     <div class="result-box warn">
       <h4>⚠️ Taux d'endettement maximum</h4>
-      <p>La règle légale : vos mensualités (crédit + charges) ne doivent pas dépasser 35% de vos revenus nets. Les banques sont très strictes sur ce point depuis 2022.</p>
+      <p>La norme du HCSF, contraignante pour les banques depuis 2022 : vos mensualités de crédit, assurance comprise, ne doivent pas dépasser 35 % de vos revenus nets. Les banques peuvent y déroger pour une petite partie de leurs dossiers seulement.</p>
     </div>
     <div class="nav-btns">
       <button class="btn-prev" onclick="prevStep(3)">← Retour</button>
@@ -374,7 +374,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 </div>
 
 <script>
-let data = {revenu:3000, charges:800, prix:200000, apport:20000, duree:20, contrat:'cdi', ville:'grande', typeBien:'ancien', surface:65};
+const TAUX_CREDIT = 0.034; // taux moyen indicatif 2026 (harmonisé avec les autres outils)
+const TAUX_ASSU = 0.002;
+function isNeuf(){ return data.typeBien === 'neuf' || data.typeBien === 'maison-neuve'; }
+function tauxNotaire(){ return isNeuf() ? 0.025 : 0.08; }
+function mensualiteDe(capital, ans){ const t = TAUX_CREDIT/12, n = ans*12; if(capital <= 0) return 0; return capital * t * Math.pow(1+t, n) / (Math.pow(1+t, n) - 1); }
+function capitalDe(mens, ans){ const t = TAUX_CREDIT/12, n = ans*12; if(mens <= 0) return 0; return mens * (1 - Math.pow(1+t, -n)) / t; }
+let data = {revenu:3000, charges:0, prix:200000, apport:20000, duree:20, contrat:'cdi', ville:'grande', typeBien:'ancien', surface:65};
 let currentStep = 0;
 
 function upd(id, valId, suffix) {
@@ -399,8 +405,14 @@ function updateCurrentCalcs() {
 
 function calcBudget() {
   data.prix = parseInt(document.getElementById('prix').value);
-  const maxEmprunt = data.revenu * 0.35 * 12 * parseInt(document.getElementById('duree')?.value || 20) * 0.85;
-  const budgetMax = maxEmprunt + data.apport;
+  const ans = parseInt(document.getElementById('duree')?.value || 20);
+  // Mensualité max = 35 % des revenus, moins les crédits en cours et l'assurance (approx. 0,2 %/an du capital)
+  const mensMax = data.revenu * 0.35 - data.charges;
+  const t = TAUX_CREDIT/12, n = ans*12;
+  const facteur = t * Math.pow(1+t, n) / (Math.pow(1+t, n) - 1) + TAUX_ASSU/12;
+  const maxEmprunt = mensMax > 0 ? mensMax / facteur : 0;
+  // L'emprunt + l'apport financent le prix ET les frais de notaire
+  const budgetMax = Math.max(0, (maxEmprunt + data.apport) / (1 + tauxNotaire()));
   const prixM2 = {paris:10000, grande:4500, moyenne:2800, rural:1800};
   const pm2 = prixM2[data.ville] || 3000;
   const surfaceFinancable = Math.round(budgetMax / pm2);
@@ -412,7 +424,9 @@ function calcBudget() {
       <div class="calc-row"><span class="lbl">Budget max estimé</span><span class="val">${Math.round(budgetMax).toLocaleString('fr-FR')}€</span></div>
       <div class="calc-row"><span class="lbl">Prix/m² moyen</span><span class="val">${pm2.toLocaleString('fr-FR')}€/m²</span></div>
       <div class="calc-row"><span class="lbl">Surface finançable</span><span class="val">~${surfaceFinancable}m²</span></div>
+      <div class="calc-row"><span class="lbl">Prix estimé pour ${data.surface}m² dans cette zone</span><span class="val">~${(data.surface*pm2).toLocaleString('fr-FR')}€</span></div>
     </div>
+    <p style="font-size:.78rem;color:var(--m);margin:.4rem 0 0">Estimation sur ${ans} ans à ${(TAUX_CREDIT*100).toFixed(1).replace('.',',')} % (hors assurance), apport de ${data.apport.toLocaleString('fr-FR')}€ et frais de notaire inclus.</p>
     <div class="result-box ${ok ? 'good' : 'warn'}">
       <h4>${ok ? '✅ Budget compatible' : '⚠️ Budget à revoir'}</h4>
       <p>${ok ? `Votre budget est compatible avec le bien visé. Vous pouvez financer environ ${surfaceFinancable}m² dans votre zone cible.` : `Le bien visé dépasse votre budget estimé de ${(data.prix - Math.round(budgetMax)).toLocaleString('fr-FR')}€. Envisagez un bien moins cher ou augmentez votre apport.`}</p>
@@ -422,7 +436,7 @@ function calcBudget() {
 function calcApport() {
   data.apport = parseInt(document.getElementById('apport').value);
   const pctApport = Math.round(data.apport / data.prix * 100);
-  const fraisNotaire = Math.round(data.prix * (data.typeBien === 'neuf' ? 0.025 : 0.08));
+  const fraisNotaire = Math.round(data.prix * tauxNotaire());
   const apportMinRecomm = fraisNotaire + Math.round(data.prix * 0.10);
 
   let status, msg;
@@ -444,22 +458,21 @@ function calcApport() {
 function calcCredit() {
   const duree = parseInt(document.getElementById('duree')?.value || 20);
   data.duree = duree;
-  const montantEmprunte = data.prix - data.apport + Math.round(data.prix * 0.08);
-  const taux = 0.034; // 3,4% en 2026 (harmonise avec les autres outils)
-  const tauxMensuel = taux / 12;
+  const montantEmprunte = Math.max(0, data.prix - data.apport + Math.round(data.prix * tauxNotaire()));
   const n = duree * 12;
-  const mensualite = Math.round(montantEmprunte * tauxMensuel * Math.pow(1 + tauxMensuel, n) / (Math.pow(1 + tauxMensuel, n) - 1));
+  const mensualite = Math.round(mensualiteDe(montantEmprunte, duree));
   const coutTotal = mensualite * n;
-  const interets = coutTotal - montantEmprunte;
-  const tauxEndettement = Math.round((mensualite + data.charges) / data.revenu * 100);
-  const assurance = Math.round(montantEmprunte * 0.002 / 12);
+  const interets = Math.max(0, coutTotal - montantEmprunte);
+  const assurance = Math.round(montantEmprunte * TAUX_ASSU / 12);
+  // Norme HCSF : crédit + assurance + autres crédits ≤ 35 % des revenus nets
+  const tauxEndettement = Math.round((mensualite + assurance + data.charges) / data.revenu * 100);
 
   const ok = tauxEndettement <= 35;
 
   document.getElementById('credit-result').innerHTML = `
     <div class="calc-table">
       <div class="calc-row"><span class="lbl">Montant emprunté</span><span class="val">${montantEmprunte.toLocaleString('fr-FR')}€</span></div>
-      <div class="calc-row"><span class="lbl">Taux (2026)</span><span class="val">3,5%</span></div>
+      <div class="calc-row"><span class="lbl">Taux indicatif (2026)</span><span class="val">${(TAUX_CREDIT*100).toFixed(1).replace('.',',')} %</span></div>
       <div class="calc-row"><span class="lbl">Mensualité crédit</span><span class="val">${mensualite.toLocaleString('fr-FR')}€/mois</span></div>
       <div class="calc-row"><span class="lbl">+ Assurance emprunteur</span><span class="val">+${assurance}€/mois</span></div>
       <div class="calc-row"><span class="lbl">Coût total des intérêts</span><span class="val">${interets.toLocaleString('fr-FR')}€</span></div>
@@ -474,10 +487,11 @@ function calcCredit() {
   data.montantEmprunte = montantEmprunte;
   data.tauxEndettement = tauxEndettement;
   data.interets = interets;
+  data.assurance = assurance;
 }
 
 function calcFrais() {
-  const fraisNotaire = Math.round(data.prix * (data.typeBien === 'neuf' ? 0.025 : 0.08));
+  const fraisNotaire = Math.round(data.prix * tauxNotaire());
   const fraisDossier = 1000;
   const garantie = Math.round(data.montantEmprunte * 0.015);
   const assuranceCout = Math.round(data.montantEmprunte * 0.002 / 12 * 12);
@@ -521,7 +535,7 @@ function calcBilan() {
     <div class="calc-table">
       <div class="calc-row"><span class="lbl">Prix du bien</span><span class="val">${data.prix.toLocaleString('fr-FR')}€</span></div>
       <div class="calc-row"><span class="lbl">Apport</span><span class="val">${data.apport.toLocaleString('fr-FR')}€ (${Math.round(data.apport/data.prix*100)}%)</span></div>
-      <div class="calc-row"><span class="lbl">Mensualité totale</span><span class="val">${(data.mensualite||0).toLocaleString('fr-FR')}€/mois</span></div>
+      <div class="calc-row"><span class="lbl">Mensualité (assurance comprise)</span><span class="val">${((data.mensualite||0)+(data.assurance||0)).toLocaleString('fr-FR')}€/mois</span></div>
       <div class="calc-row"><span class="lbl">Taux d'endettement</span><span class="val">${data.tauxEndettement||0}%</span></div>
       <div class="calc-row"><span class="lbl">Frais totaux annexes</span><span class="val">${(data.totalFrais||0).toLocaleString('fr-FR')}€</span></div>
       <div class="calc-row"><span class="lbl">Budget global nécessaire</span><span class="val">${(data.budgetTotal||0).toLocaleString('fr-FR')}€</span></div>
@@ -549,6 +563,8 @@ function calcScore() {
   if(data.apport >= (data.totalFrais || 0)) score += 15;
   else if(data.apport >= (data.totalFrais || 0) * 0.7) score += 8;
 
+  // Un endettement très au-dessus de 35 % rend le dossier difficile, quel que soit le reste
+  if((data.tauxEndettement || 0) > 45) score = Math.min(score, 35);
   return Math.min(100, score);
 }
 
@@ -566,6 +582,32 @@ function showReport() {
     <div class="rg"><span class="rg-val">${(data.totalFrais||0).toLocaleString('fr-FR')}€</span><span class="rg-lbl">Frais annexes</span></div>
     <div class="rg"><span class="rg-val">${score}/100</span><span class="rg-lbl">Score de préparation</span></div>
   `;
+  // Plan d'action personnalisé : quels leviers rendent le projet finançable ?
+  const leviers = [];
+  const ans = data.duree || 20;
+  const mensDispo = data.revenu * 0.35 - data.charges;
+  const capMax = capitalDe(mensDispo / (1 + TAUX_ASSU/12 / (mensualiteDe(1, ans) || 1)), ans);
+  const prixMax = Math.max(0, Math.round((capMax + data.apport) / (1 + tauxNotaire()) / 1000) * 1000);
+  if ((data.tauxEndettement || 0) > 35) {
+    const besoinApport = Math.max(0, Math.round((data.prix * (1 + tauxNotaire()) - capMax) / 1000) * 1000);
+    leviers.push('🏷️ Viser un bien autour de <b>' + prixMax.toLocaleString('fr-FR') + '€</b> avec votre apport actuel.');
+    leviers.push('💰 Ou porter votre apport à environ <b>' + besoinApport.toLocaleString('fr-FR') + '€</b> pour ce bien.');
+    if (ans < 25) {
+      const cap25 = capitalDe(mensDispo / (1 + TAUX_ASSU/12 / (mensualiteDe(1, 25) || 1)), 25);
+      const prix25 = Math.max(0, Math.round((cap25 + data.apport) / (1 + tauxNotaire()) / 1000) * 1000);
+      leviers.push('⏳ Ou passer à 25 ans : budget possible d\'environ <b>' + prix25.toLocaleString('fr-FR') + '€</b> (mais plus d\'intérêts).');
+    }
+    if (data.charges > 0) leviers.push('🧾 Solder vos crédits en cours (' + data.charges.toLocaleString('fr-FR') + '€/mois) libère directement de la capacité.');
+  } else {
+    leviers.push('✅ Votre projet respecte les 35 %. Marge de prix estimée jusqu\'à <b>' + prixMax.toLocaleString('fr-FR') + '€</b> dans les mêmes conditions.');
+  }
+  if (data.apport < (data.totalFrais || 0)) leviers.push('📦 Épargnez encore ' + ((data.totalFrais || 0) - data.apport).toLocaleString('fr-FR') + '€ pour couvrir tous les frais annexes.');
+  if (data.contrat === 'cdd') leviers.push('📄 En CDD/intérim, un historique de 2-3 ans de revenus réguliers ou un co-emprunteur en CDI rassure la banque.');
+  if (data.contrat === 'tns') leviers.push('📄 Indépendant : préparez vos 3 derniers bilans, la banque retiendra souvent la moyenne.');
+  if (data.revenu * 12 <= 52000) leviers.push('🏡 Renseignez-vous sur le PTZ (prêt à taux zéro) : selon votre zone, vos revenus et le type de bien, il peut compléter votre financement.');
+  let box = document.getElementById('plan-action');
+  if (!box) { box = document.createElement('div'); box.id = 'plan-action'; document.getElementById('report-grid').after(box); }
+  box.innerHTML = '<div class="result-box ' + ((data.tauxEndettement || 0) > 35 ? 'warn' : 'good') + '" style="margin:1rem 0"><h4>🎯 Votre plan d\'action</h4>' + leviers.map(l => '<p style="margin:.35rem 0">' + l + '</p>').join('') + '<p style="font-size:.75rem;opacity:.75;margin-top:.6rem">Estimations indicatives (taux ' + (TAUX_CREDIT*100).toFixed(1).replace('.',',') + ' %, frais de notaire ' + (isNeuf() ? '2,5' : '8') + ' %). Seule une banque ou un courtier peut confirmer votre capacité réelle.</p></div>';
 }
 
 function nextStep(step) {
@@ -578,6 +620,8 @@ function nextStep(step) {
     const el = document.getElementById(id);
     if(el) data[id.replace('-','_')] = el.value;
   });
+  data.typeBien = data.type_bien || data.typeBien;
+  data.duree = parseInt(data.duree) || 20;
 
   document.getElementById('step-' + step).classList.remove('active');
   currentStep = step + 1;
