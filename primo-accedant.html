@@ -580,7 +580,7 @@ function showReport() {
     <div class="rg"><span class="rg-val">${(data.mensualite||0).toLocaleString('fr-FR')}€</span><span class="rg-lbl">Mensualité</span></div>
     <div class="rg"><span class="rg-val">${data.tauxEndettement||0}%</span><span class="rg-lbl">Taux d'endettement</span></div>
     <div class="rg"><span class="rg-val">${(data.totalFrais||0).toLocaleString('fr-FR')}€</span><span class="rg-lbl">Frais annexes</span></div>
-    <div class="rg"><span class="rg-val">${score}/100</span><span class="rg-lbl">Score de préparation</span></div>
+    <div class="rg"><span class="rg-val" id="rg-score">${score}/100</span><span class="rg-lbl">Score de préparation</span></div>
   `;
   // Plan d'action personnalisé : quels leviers rendent le projet finançable ?
   const leviers = [];

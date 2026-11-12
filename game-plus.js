@@ -43,8 +43,8 @@
     "domaine-viticole": {"end": "#screen-end", "score": "#endScore", "m": [50000, 80000, 150000], "u": "€"},
     "hotel-manager": {"end": "#screen-end", "score": "#endScore", "m": [10, 30, 60], "u": "% de CA"},
     "marathon-budgetaire-v2": {"end": "#screen-end", "score": "#endPerf", "m": [50, 70, 85], "u": "%"},
-    "le-negociateur": {"end": "#screen-final"},
-    "investisseur-virtuel": {"end": "#screen-final"},
+    "le-negociateur": {"end": "#screen-final", "score": "#f-pct", "u": "%", "m": [40, 60, 80]},
+    "investisseur-virtuel": {"end": "#screen-final", "score": "#f-note", "u": "/100", "m": [60, 72, 82]},
     "radar-arnaques": {"end": "#screen-result", "score": "#resultScore", "m": [6, 8, 10], "u": "bonnes réponses"},
     "le-bon-deal": {"end": "#results-screen", "score": "#resScore", "m": [2000, 3500, 5000], "u": "€"},
     "vrai-ou-faux": {"end": "#screen-results", "score": "#r-score", "u": "pts", "m": [600, 1000, 1400]},
@@ -54,7 +54,8 @@
     "aura-financiere": {"end": "#result"},
     "le-sosie-celebre-de-ton-epargne": {"end": "#screen-result"},
     "ton-totem-financier": {"end": "#screen-result"},
-    "ton-annee-bons-plans": {"end": "#card-final"}
+    "ton-annee-bons-plans": {"end": "#card-final"},
+    "primo-accedant": {"end": "#report"}
   };
 
   var KEY_MED = "economya_medailles", KEY_SND = "economya_son";

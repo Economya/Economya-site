@@ -221,7 +221,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="final-grid">
       <div class="fitem"><span class="fitem-val" id="f-score">0</span><span class="fitem-lbl">Score</span></div>
       <div class="fitem"><span class="fitem-val" id="f-saved">0€</span><span class="fitem-lbl">Économisé</span></div>
-      <div class="fitem"><span class="fitem-val" id="f-rounds">0/5</span><span class="fitem-lbl">Négociations</span></div>
+      <div class="fitem"><span class="fitem-val" id="f-pct">0%</span><span class="fitem-lbl">Du rabais max</span></div>
     </div>
     <button class="btn-restart" onclick="restartGame()">🔄 Rejouer</button>
   </div>
@@ -435,7 +435,7 @@ function showFinal() {
   document.getElementById('final-sub').textContent = `Vous avez économisé ${totalSaved.toLocaleString('fr-FR')}€ sur 5 négociations.`;
   document.getElementById('f-score').textContent = totalScore;
   document.getElementById('f-saved').textContent = totalSaved.toLocaleString('fr-FR') + '€';
-  document.getElementById('f-rounds').textContent = '5/5';
+  document.getElementById('f-pct').textContent = Math.max(0, Math.min(100, Math.round(pct))) + '%';
 }
 
 function restartGame() {
