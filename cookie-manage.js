@@ -214,7 +214,7 @@
   try {
     var st = document.createElement("style");
     st.id = "economya-contraste";
-    st.textContent = "#ecoCtaJoinBtn,#ecoNlJoinBtn{color:#2C2C2A!important}";
+    st.textContent = "#ecoCtaJoinBtn,#ecoNlJoinBtn{color:#2C2C2A!important}#economya-cookie-banner p,#economya-cookie-banner label{color:#fff!important}";
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
   function fondSombre(el) {

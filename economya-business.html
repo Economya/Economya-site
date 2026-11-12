@@ -347,7 +347,7 @@ a{text-decoration:none;color:inherit;}
 
 <div class="filters">
   <div class="filter-row" id="filterRow" style="overflow:visible">
-    <select id="catSelect" onchange="setCat(this.value)" style="width:100%;border:none;background:transparent;font-family:inherit;font-size:14px;font-weight:700;color:var(--ink);padding:9px 10px;cursor:pointer;outline:none">
+    <select id="catSelect" aria-label="Filtrer les offres par catégorie" onchange="setCat(this.value)" style="width:100%;border:none;background:transparent;font-family:inherit;font-size:14px;font-weight:700;color:var(--ink);padding:9px 10px;cursor:pointer;outline:none">
       <option value="all">Toutes les catégories</option>
       <option value="📱 Téléphonie">📱 Téléphonie</option>
       <option value="🛒 Courses & Alimentation">🛒 Courses & Alimentation</option>
@@ -531,11 +531,11 @@ a{text-decoration:none;color:inherit;}
     <h2>Déposer votre offre</h2>
     <form id="bizForm">
       <div class="row2">
-        <div class="field"><label>Nom de l'entreprise *</label><input type="text" id="f-nom" required maxlength="80"></div>
-        <div class="field"><label>Email de contact *</label><input type="email" id="f-email" required maxlength="120"></div>
+        <div class="field"><label for="f-nom">Nom de l'entreprise *</label><input type="text" id="f-nom" required maxlength="80"></div>
+        <div class="field"><label for="f-email">Email de contact *</label><input type="email" id="f-email" required maxlength="120"></div>
       </div>
       <div class="row2">
-        <div class="field"><label>Catégorie *</label>
+        <div class="field"><label for="f-cat">Catégorie *</label>
           <select id="f-cat" required>
             <option value="">Choisir…</option>
             <option value="📱 Téléphonie">📱 Téléphonie</option>
@@ -559,13 +559,13 @@ a{text-decoration:none;color:inherit;}
             <option value="💡 Autre">💡 Autre</option>
           </select>
         </div>
-        <div class="field"><label>Ville (si offre locale)</label><input type="text" id="f-ville" maxlength="60" placeholder="Laissez vide si offre nationale/en ligne"></div>
+        <div class="field"><label for="f-ville">Ville (si offre locale)</label><input type="text" id="f-ville" maxlength="60" placeholder="Laissez vide si offre nationale/en ligne"></div>
       </div>
-      <div class="field"><label>Titre de l'offre *</label><input type="text" id="f-titre" required maxlength="100" placeholder="Ex : -20% sur l'entrée pour les moins de 26 ans"></div>
-      <div class="field"><label>Description *</label><textarea id="f-desc" required maxlength="500" placeholder="Détaillez votre offre, ses conditions, sa durée…"></textarea></div>
+      <div class="field"><label for="f-titre">Titre de l'offre *</label><input type="text" id="f-titre" required maxlength="100" placeholder="Ex : -20% sur l'entrée pour les moins de 26 ans"></div>
+      <div class="field"><label for="f-desc">Description *</label><textarea id="f-desc" required maxlength="500" placeholder="Détaillez votre offre, ses conditions, sa durée…"></textarea></div>
       <div class="row2">
-        <div class="field"><label>Dates de validité</label><input type="text" id="f-dates" maxlength="60" placeholder="Ex : jusqu'au 31/12"></div>
-        <div class="field"><label>Site web</label><input type="url" id="f-web" maxlength="200" placeholder="https://"></div>
+        <div class="field"><label for="f-dates">Dates de validité</label><input type="text" id="f-dates" maxlength="60" placeholder="Ex : jusqu'au 31/12"></div>
+        <div class="field"><label for="f-web">Site web</label><input type="url" id="f-web" maxlength="200" placeholder="https://"></div>
       </div>
       <div class="field">
         <label>Visibilité souhaitée</label>
