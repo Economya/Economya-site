@@ -194,6 +194,9 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 })();
 </script>
 
+<div class="economya-disclaimer-simulateur" style="font-size:0.8rem;color:#5F5E5A;background:#f7f7f5;border-left:3px solid #1D9E75;padding:10px 14px;margin:1.5rem auto;max-width:680px;line-height:1.5;">
+Définitions à visée pédagogique, simplifiées et générales. Les règles fiscales et les taux évoluent : vérifiez-les sur les sites officiels (service-public.fr, impots.gouv.fr). Ce lexique ne constitue pas un conseil financier personnalisé.
+</div>
 </main>
 <footer>
   <strong>Economya.fr</strong> · Le réseau social de l'épargne · Conçu en France<br>
@@ -223,7 +226,7 @@ const TERMES = [
   { lettre:'D', nom:'Dividende', badge:'Investissement', def:'Part des bénéfices d\'une entreprise distribuée à ses actionnaires. Revenu passif pour l\'investisseur. Fiscalisé en France à 30% (flat tax).', exemple:'Ex : si vous possédez 100 actions à 2 €/an de dividende, vous recevez 200 €/an.' },
   // E
   { lettre:'E', nom:'Épargne de précaution', badge:'Épargne', def:'Réserve d\'argent liquide disponible immédiatement pour faire face aux imprévus (panne, chômage, urgence). Recommandation : 3 à 6 mois de dépenses fixes, placée sur un Livret A.', exemple:'Ex : si vos dépenses fixes sont de 1 500 €/mois, visez 4 500-9 000 € de précaution.' },
-  { lettre:'E', nom:'ETF', badge:'Investissement', def:'Exchange Traded Fund (fonds indiciel coté). Produit financier qui réplique la performance d\'un indice boursier (ex: CAC 40, S&P 500). Frais très bas (~0,2%/an), diversification automatique. Idéal pour les particuliers.', exemple:'Ex : un ETF World investi dans 1 600 entreprises mondiales pour 0,2%/an de frais.' },
+  { lettre:'E', nom:'ETF', badge:'Investissement', def:'Exchange Traded Fund (fonds indiciel coté). Produit financier qui réplique la performance d\'un indice boursier (ex: CAC 40, S&P 500). Frais souvent bas, diversification automatique. Très utilisé par les particuliers, avec un risque de perte en capital comme tout placement en actions.', exemple:'Ex : un ETF World investi dans 1 600 entreprises mondiales pour 0,2%/an de frais.' },
   { lettre:'E', nom:'Euribor', badge:'Crédit', def:'Taux de référence interbancaire européen. Sert de base pour calculer les taux des crédits immobiliers à taux variable. Fluctue selon la politique de la BCE.', exemple:'' },
   // F
   { lettre:'F', nom:'Flat Tax', badge:'Fiscalité', def:'Prélèvement Forfaitaire Unique (PFU) de 30% sur les revenus du capital (dividendes, intérêts, plus-values). Simplifie la fiscalité des placements financiers en France depuis 2018.', exemple:'Ex : 1 000 € de plus-value sur actions = 300 € d\'impôt avec la flat tax.' },
@@ -246,7 +249,7 @@ const TERMES = [
   // O
   { lettre:'O', nom:'Obligation', badge:'Investissement', def:'Titre de dette émis par une entreprise ou un État. En achetant une obligation, vous prêtez de l\'argent en échange d\'intérêts. Moins risqué que les actions, moins rentable aussi.', exemple:'' },
   // P
-  { lettre:'P', nom:'PEA', badge:'Investissement', def:'Plan d\'Épargne en Actions. Enveloppe fiscale pour investir en Bourse. Après 5 ans, les gains sont exonérés d\'impôt (seuls les prélèvements sociaux restent dus). Plafond 150 000 €. L\'outil préféré des investisseurs particuliers.', exemple:'Ex : 10 000 € investis en ETF sur PEA pendant 20 ans à 7%/an = ~38 000 € sans impôt.' },
+  { lettre:'P', nom:'PEA', badge:'Investissement', def:'Plan d\'Épargne en Actions. Enveloppe fiscale pour investir en Bourse. Après 5 ans, les gains sont exonérés d\'impôt (seuls les prélèvements sociaux restent dus). Plafond 150 000 €. L\'outil préféré des investisseurs particuliers.', exemple:'Ex : 10 000 € placés 20 ans à 7 %/an (hypothèse non garantie) ≈ 38 700 €, gains exonérés d\'impôt sur le revenu après 5 ans (hors prélèvements sociaux).' },
   { lettre:'P', nom:'PEL', badge:'Épargne', def:'Plan d\'Épargne Logement. Taux 2% (ouverture 2026), plafond 61 200 €. Bloqué 4 ans minimum. Permet d\'obtenir un prêt immobilier à taux préférentiel. Fiscalisé.', exemple:'' },
   { lettre:'P', nom:'PER', badge:'Retraite', def:'Plan d\'Épargne Retraite. Placement long terme permettant de déduire les versements de votre revenu imposable. Bloqué jusqu\'à la retraite (sauf cas exceptionnels). Idéal si vous êtes fortement imposé.', exemple:'Ex : 5 000 € versés sur PER avec TMI à 30% = 1 500 € d\'économie d\'impôt immédiate.' },
   { lettre:'P', nom:'Plus-value', badge:'Investissement', def:'Gain réalisé lors de la vente d\'un bien (immobilier, action) à un prix supérieur à son prix d\'achat. Imposable en France (flat tax 30% pour les valeurs mobilières).', exemple:'Ex : achat d\'une action à 50 €, revendue à 80 € = plus-value de 30 €.' },

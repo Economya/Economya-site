@@ -236,7 +236,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="detail-row"><span class="lbl">Pension estimée</span><span id="d-pension">—</span></div>
     <div class="detail-row"><span class="lbl">Manque mensuel à la retraite</span><span id="d-manque">—</span></div>
     <div class="detail-row"><span class="lbl">Capital nécessaire (règle des 4%)</span><span id="d-capital">—</span></div>
-    <div class="detail-row"><span class="lbl">Épargne mensuelle recommandée</span><span id="d-epargne-mois">—</span></div>
+    <div class="detail-row"><span class="lbl">Épargne mensuelle nécessaire (estimation)</span><span id="d-epargne-mois">—</span></div>
     <div class="detail-row"><span class="lbl"><strong>Avec PER (déduction fiscale)</strong></span><span id="d-per">—</span></div>
   </div>
 
@@ -315,7 +315,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 </footer>
 <script src="/tools.js"></script>
 <script>
-const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+const fmt = n => (Math.round(n) || 0).toLocaleString('fr-FR') + ' €';
 
 let chartRetraite;
 function dessinerGraphique(epargneMensuelle, capitalNecessaire, anneesRestantes) {
@@ -331,7 +331,7 @@ function dessinerGraphique(epargneMensuelle, capitalNecessaire, anneesRestantes)
   }
   var cw0 = canvas.closest('.chart-wrap'); if (cw0) cw0.style.display = '';
   EcoViz.line('chartRetraite', labels, [
-    { name: 'Capital épargné (PER/ETF à 5 %/an)', color: '#1D9E75', data: dataCapital, fill: true },
+    { name: 'Capital épargné (hypothèse 5 %/an, non garantie)', color: '#1D9E75', data: dataCapital, fill: true },
     { name: 'Capital nécessaire pour combler le manque', color: '#EF9F27', data: labels.map(function () { return Math.round(capitalNecessaire); }), dash: '7 5', width: 2 }
   ], { label: "Capital épargné comparé au capital nécessaire" });
 }
@@ -403,11 +403,11 @@ function calculate() {
 
   const tip = document.getElementById('tip-text');
   if(anneesRestantes > 20) {
-    tip.innerHTML = `<strong>💡 Vous avez du temps !</strong> Avec ${anneesRestantes} ans devant vous, même ${fmt(epargneMensuelle * 0.5)}/mois investi en ETF World peut faire une grande différence grâce aux intérêts composés. Commencez maintenant, même petit.`;
+    tip.innerHTML = `<strong>💡 Vous avez du temps !</strong> Avec ${anneesRestantes} ans devant vous, même ${fmt(epargneMensuelle * 0.5)}/mois mis de côté régulièrement peut faire une grande différence grâce aux intérêts composés. Commencer tôt, même petit, aide beaucoup.`;
   } else if(anneesRestantes > 10) {
-    tip.innerHTML = `<strong>⚡ Le moment d'agir !</strong> Ouvrez un PER maintenant — vous déduisez vos versements de vos impôts ET préparez votre retraite. Double avantage. Visez ${fmt(epargneMensuelle)}/mois.`;
+    tip.innerHTML = `<strong>⚡ Le moment d'agir !</strong> Pour atteindre votre objectif, il faudrait mettre de côté environ ${fmt(epargneMensuelle)}/mois. Bon à savoir : les versements sur un PER sont déductibles du revenu imposable, dans certaines limites.`;
   } else {
-    tip.innerHTML = `<strong>🚨 Urgent !</strong> Il vous reste ${anneesRestantes} ans. Maximisez vos versements PER et PEA immédiatement. Consultez un conseiller en gestion de patrimoine pour optimiser votre stratégie.`;
+    tip.innerHTML = `<strong>🚨 Urgent !</strong> Il vous reste ${anneesRestantes} ans. L'effort d'épargne nécessaire est élevé. Pour une stratégie adaptée à votre situation, un professionnel agréé (conseiller en investissements financiers) peut vous aider. Pensez aussi à vérifier votre relevé de carrière sur info-retraite.fr.`;
   }
   if(ratioCarriere < 1) {
     tip.innerHTML += ` <br><br><strong>⚠️ Carrière incomplète :</strong> avec un début de carrière à ${debutCarriere} ans, vous auriez environ ${trimestresCotises} trimestres cotisés au moment du départ, contre ${TRIMESTRES_REQUIS_TAUX_PLEIN} pour le taux plein — ce qui réduit la pension de ce calcul d'environ ${((1 - ratioCarriere) * 100).toFixed(0)}%. Partir plus tard ou racheter des trimestres peut combler cet écart.`;

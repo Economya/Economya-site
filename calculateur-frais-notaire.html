@@ -409,7 +409,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 <script src="/tools.js"></script>
 <script>
 let typeActuel = 'ancien';
-const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+const fmt = n => (Math.round(n) || 0).toLocaleString('fr-FR') + ' €';
 const fmtPct = n => n.toFixed(1) + '%';
 
 function setType(type) {

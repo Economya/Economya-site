@@ -173,3 +173,4 @@ table{font-variant-numeric:tabular-nums}
 .eco-cmpbar{flex-wrap:wrap;justify-content:center;width:calc(100% - 24px);max-width:420px}
 .eco-cmpbar-t{flex-basis:100%;text-align:center}
 }
+.eco-cmpbar:not(.on){visibility:hidden;transition:transform .3s cubic-bezier(.2,.8,.3,1),visibility 0s .3s}

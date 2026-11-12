@@ -260,7 +260,9 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   </div>
 
   <div class="card">
-    <h2>🏆 Les banques en ligne les plus intéressantes</h2>
+    <h2>🏦 Quelques banques en ligne à comparer</h2>
+    <p class="comp-transp" style="font-size:.74rem;color:#5F5E5A;line-height:1.5;margin:-.2rem 0 .9rem">ℹ️ <b>Comment fonctionne ce comparatif :</b> sélection d'offres présentée sans classement. Liste non exhaustive d'offres grand public ; tarifs et conditions indicatifs, à vérifier sur le site de chaque fournisseur. Certains liens peuvent être affiliés : Economya peut alors percevoir une commission, sans surcoût pour vous.</p>
+
     <div class="banks" id="banks-list"><!-- généré par JS --></div>
   </div>
 
@@ -405,7 +407,7 @@ const ONLINE_BANKS = [
   },
 ];
 
-function fmt(n){ return Math.round(n).toLocaleString('fr-FR') + ' €'; }
+function fmt(n){ return (Math.round(n) || 0).toLocaleString('fr-FR') + ' €'; }
 
 function calculate(){
   const frais = Math.max(0, +document.getElementById('frais').value || 0);
@@ -432,7 +434,7 @@ function calculate(){
   const invest10ans = prime * Math.pow(1 + tauxPlacement, 10) + (r > 0 ? economieMensuelle * (Math.pow(1 + r, 120) - 1) / r : economieMensuelle * 120);
   const investTip = document.getElementById('invest-tip');
   if (frais > 0 || prime > 0) {
-    investTip.innerHTML = `<strong>📈 Et si vous investissiez cette économie ?</strong> En plaçant ${fmt(economieMensuelle)}/mois (+ la prime de bienvenue) à 5%/an plutôt que de les laisser filer en frais bancaires, vous auriez <strong>${fmt(invest10ans)}</strong> dans 10 ans.`;
+    investTip.innerHTML = `<strong>📈 Et si vous investissiez cette économie ?</strong> En plaçant ${fmt(economieMensuelle)}/mois (+ la prime de bienvenue) à 5 %/an (hypothèse illustrative, non garantie) plutôt que de les laisser filer en frais bancaires, vous auriez <strong>${fmt(invest10ans)}</strong> dans 10 ans.`;
   } else {
     investTip.innerHTML = '';
   }

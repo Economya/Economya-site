@@ -378,7 +378,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 </footer>
 <script src="/tools.js"></script>
 <script>
-const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+const fmt = n => (Math.round(n) || 0).toLocaleString('fr-FR') + ' €';
 
 // Estimations pour 12 000 km/an, prix constatés mi-octobre 2026 (gazole/SP95 moyenne nationale, kWh tarif base)
 const MOTORISATIONS = {

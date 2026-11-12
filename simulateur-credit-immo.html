@@ -453,7 +453,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 
 <script src="/tools.js"></script>
 <script>
-const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+const fmt = n => (Math.round(n) || 0).toLocaleString('fr-FR') + ' €';
 const fmtM = n => (Math.round(n * 100) / 100).toLocaleString('fr-FR', {minimumFractionDigits:2, maximumFractionDigits:2}) + ' €';
 
 function calculate() {

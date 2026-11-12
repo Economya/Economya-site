@@ -379,7 +379,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 <script>
 const fmt = n => {
   if(n >= 1000000) return (n/1000000).toFixed(1) + 'M €';
-  if(n >= 1000) return Math.round(n).toLocaleString('fr-FR') + ' €';
+  if(n >= 1000) return (Math.round(n) || 0).toLocaleString('fr-FR') + ' €';
   return Math.round(n) + ' €';
 };
 

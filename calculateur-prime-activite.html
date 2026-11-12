@@ -368,7 +368,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 </footer>
 <script src="/tools.js"></script>
 <script>
-const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+const fmt = n => (Math.round(n) || 0).toLocaleString('fr-FR') + ' €';
 
 // Montants forfaitaires au 1er avril 2026 (base : 638,28 € pour une personne seule).
 // Foyer : 2 personnes = 150 % ; +30 % par personne supplémentaire ; +40 % à partir du 3e enfant.

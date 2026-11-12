@@ -359,7 +359,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 </footer>
 <script src="/tools.js"></script>
 <script>
-const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+const fmt = n => (Math.round(n) || 0).toLocaleString('fr-FR') + ' €';
 
 function generer() {
   const rev = +document.getElementById('revenus').value || 0;

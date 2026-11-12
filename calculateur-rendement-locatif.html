@@ -310,7 +310,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 </footer>
 <script src="/tools.js"></script>
 <script>
-const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+const fmt = n => (Math.round(n) || 0).toLocaleString('fr-FR') + ' €'; // évite l'affichage « -0 € »
 const pct = n => n.toFixed(2) + '%';
 
 function calculate() {
@@ -387,13 +387,13 @@ function calculate() {
   const tip = document.getElementById('tip-text');
   if(rendNetNet >= 6) {
     tip.className = 'tip bon';
-    tip.innerHTML = `<strong>✅ Excellent investissement !</strong> Un rendement net-net de ${pct(rendNetNet)} est très au-dessus de la moyenne française (3-4%). Ce bien est rentable. Le cashflow mensuel de ${fmt(cashflowMensuel)} vous enrichit chaque mois.`;
+    tip.innerHTML = `<strong>✅ Rendement élevé.</strong> Un rendement net-net de ${pct(rendNetNet)} est très au-dessus de la moyenne française (3-4%). Dans ces hypothèses, le cashflow mensuel est de ${fmt(cashflowMensuel)}. Prévoyez tout de même vacance locative, travaux et impayés.`;
   } else if(rendNetNet >= 4) {
     tip.className = 'tip moyen';
-    tip.innerHTML = `<strong>⚖️ Investissement correct.</strong> Un rendement de ${pct(rendNetNet)} est dans la moyenne. Pour optimiser : envisagez le LMNP ou le régime réel pour réduire votre fiscalité et améliorer le rendement net-net.`;
+    tip.innerHTML = `<strong>⚖️ Investissement correct.</strong> Un rendement de ${pct(rendNetNet)} est dans la moyenne. Le régime fiscal (micro-foncier, réel, LMNP…) influe beaucoup sur le net-net : renseignez-vous ou faites-vous accompagner par un professionnel.`;
   } else {
     tip.className = 'tip mauvais';
-    tip.innerHTML = `<strong>⚠️ Rendement faible.</strong> ${pct(rendNetNet)} net-net est en dessous des standards. À ce rendement, un ETF World à 7%/an serait plus rentable sans les contraintes de la gestion locative. Négociez le prix d'achat ou augmentez le loyer.`;
+    tip.innerHTML = `<strong>⚠️ Rendement faible.</strong> ${pct(rendNetNet)} net-net est en dessous des standards. À ce niveau, d'autres placements pourraient faire mieux, sans les contraintes de la gestion locative (mais avec leurs propres risques). Pistes : négocier le prix d'achat ou revoir le loyer dans les limites autorisées.`;
   }
 }
 

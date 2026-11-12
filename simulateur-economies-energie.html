@@ -328,7 +328,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 </footer>
 <script src="/tools.js"></script>
 <script>
-const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+const fmt = n => (Math.round(n) || 0).toLocaleString('fr-FR') + ' €'; // évite l'affichage « -0 € »
 
 const ACTIONS = [
   { icon:'🌡️', titre:'Baisser le chauffage d\'1°C', desc:'Réduit la facture de 7% — passer de 20°C à 19°C', eco_pct: 0.07, categorie:'chauffage' },
@@ -388,7 +388,7 @@ function calculate() {
             <p>${a.desc}</p>
           </div>
         </div>
-        <div class="action-eco">-${fmt(a.eco)}/an</div>
+        <div class="action-eco">${Math.round(a.eco) > 0 ? '-' + fmt(a.eco) + '/an' : '—'}</div>
       </div>
     `;
   });

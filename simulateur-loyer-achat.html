@@ -216,7 +216,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="compare-row"><span class="lbl">Loyer mensuel</span><span class="val" id="l-loyer">—</span></div>
       <div class="compare-row"><span class="lbl">Charges locatives</span><span class="val" id="l-charges">—</span></div>
       <div class="compare-row"><span class="lbl">Loyers totaux payés</span><span class="val" id="l-total">—</span></div>
-      <div class="compare-row"><span class="lbl">Apport investi (5%/an)</span><span class="val" id="l-apport">—</span></div>
+      <div class="compare-row"><span class="lbl">Apport placé (hypothèse 5 %/an)</span><span class="val" id="l-apport">—</span></div>
       <div class="compare-row"><span class="lbl">Gain sur placement apport</span><span class="val" id="l-gain">—</span></div>
       <div class="compare-row"><span class="lbl">Écart mensuel investi (si locataire moins cher)</span><span class="val" id="l-gain-mensuel">—</span></div>
       <div class="compare-row"><span class="lbl"><strong>Coût net final</strong></span><span class="val" id="l-net">—</span></div>
@@ -296,7 +296,7 @@ Les résultats fournis par cet outil sont donnés à titre indicatif et n'ont pa
 </footer>
 <script src="/tools.js"></script>
 <script>
-const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+const fmt = n => (Math.round(n) || 0).toLocaleString('fr-FR') + ' €';
 
 function drawChart(serieAchat, serieLoyer, dureeActuelle) {
   if (!window.EcoViz) return;
@@ -425,11 +425,11 @@ function calculate() {
   // Conseil
   const tip = document.getElementById('tip-text');
   if(bascule > 0 && bascule <= 5) {
-    tip.innerHTML = `<strong>💡 Achat très rentable :</strong> Avec ce loyer élevé par rapport au prix d'achat, l'achat devient rentable en seulement ${bascule} ans. Si vous comptez rester plus de ${bascule} ans, achetez sans hésiter.`;
+    tip.innerHTML = `<strong>💡 Achat très rentable :</strong> Avec ce loyer élevé par rapport au prix d'achat, l'achat devient rentable en seulement ${bascule} ans. Si vous comptez rester plus de ${bascule} ans, l'achat semble le plus intéressant dans ces hypothèses.`;
   } else if(bascule > 0 && bascule <= 10) {
-    tip.innerHTML = `<strong>⚖️ Situation équilibrée :</strong> Le point de bascule est à ${bascule} ans. Si vous restez moins longtemps, louez. Si vous prévoyez de rester, achetez.`;
+    tip.innerHTML = `<strong>⚖️ Situation équilibrée :</strong> Le point de bascule est à ${bascule} ans. En dessous, la location semble plus intéressante ; au-delà, l'achat.`;
   } else {
-    tip.innerHTML = `<strong>🏢 Location avantageuse :</strong> Le marché immobilier local est cher. Investissez votre apport en ETF World à 5%/an — vous serez plus riche qu'en achetant sur cette durée.`;
+    tip.innerHTML = `<strong>🏢 Location avantageuse :</strong> Dans ces hypothèses, louer et placer son apport (hypothèse de 5 %/an, non garantie) donne un meilleur résultat sur cette durée. Les marchés financiers comme l'immobilier comportent des risques.`;
   }
 }
 
