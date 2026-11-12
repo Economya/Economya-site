@@ -206,3 +206,32 @@
     (document.head || document.documentElement).appendChild(st);
   } catch (e) {}
 })();
+
+/* Lisibilité (audit d'accessibilité) :
+   - bouton « Voir les astuces » : texte foncé sur fond orange (contraste suffisant) ;
+   - bandeau des liens légaux en bas de page : couleur adaptée au fond, clair ou sombre. */
+(function () {
+  try {
+    var st = document.createElement("style");
+    st.id = "economya-contraste";
+    st.textContent = "#ecoCtaJoinBtn,#ecoNlJoinBtn{color:#2C2C2A!important}";
+    (document.head || document.documentElement).appendChild(st);
+  } catch (e) {}
+  function fondSombre(el) {
+    while (el && el.nodeType === 1) {
+      var bg = getComputedStyle(el).backgroundColor, m = bg && bg.match(/rgba?\(([^)]+)\)/);
+      if (m) { var p = m[1].split(",").map(parseFloat); if (p.length < 4 || p[3] > 0.5) return (0.299 * p[0] + 0.587 * p[1] + 0.114 * p[2]) < 128; }
+      el = el.parentElement;
+    }
+    return false;
+  }
+  function ajuster() {
+    [].forEach.call(document.querySelectorAll('div[style*="color:#8a8a8a"]'), function (d) {
+      if (!d.querySelector('a[href="/mentions-legales"]')) return;
+      var c = fondSombre(d.parentElement) ? "#B4B4B4" : "#5F5E5A";
+      d.style.color = c;
+      [].forEach.call(d.querySelectorAll("a"), function (a) { a.style.color = c; });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ajuster); else ajuster();
+})();

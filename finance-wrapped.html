@@ -186,6 +186,9 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 .eco-idea-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;flex-shrink:0;color:#fff;text-decoration:none;background:radial-gradient(circle at 26% 20%,rgba(255,255,255,.95) 0%,rgba(255,255,255,0) 22%),radial-gradient(circle at 35% 30%,#FFE9B0 0%,#F59E0B 42%,#7C4A03 75%,#3D2401 100%);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.2),0 3px 8px rgba(0,0,0,.4);transition:transform .15s ease,box-shadow .15s ease}
 .eco-idea-btn svg{width:17px;height:17px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.45))}
 .eco-idea-btn:hover{transform:scale(1.08);box-shadow:inset -3px -3px 5px rgba(0,0,0,.55),inset 2px 2px 4px rgba(255,255,255,.7),0 0 0 1px rgba(255,255,255,.35),0 4px 12px rgba(245,158,11,.45)}
+
+/* contraste (audit accessibilité) */
+footer{color:rgba(255,255,255,.6)!important}
 </style>
 <link rel="canonical" href="https://economya.fr/finance-wrapped" />
 <meta property="og:type" content="website">
@@ -233,7 +236,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="field">
       <label>Revenu mensuel net</label>
       <div class="slider-wrap">
-        <input type="range" id="f-revenu" min="800" max="10000" step="100" value="2500" oninput="updateVal('f-revenu','v-revenu','€')">
+        <input type="range" id="f-revenu" aria-label="Revenu mensuel net" min="800" max="10000" step="100" value="2500" oninput="updateVal('f-revenu','v-revenu','€')">
         <span class="slider-val" id="v-revenu">2 500€</span>
       </div>
     </div>
@@ -241,14 +244,14 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="field">
       <label>% épargné chaque mois</label>
       <div class="slider-wrap">
-        <input type="range" id="f-epargne" min="0" max="60" step="1" value="10" oninput="updateVal('f-epargne','v-epargne','%')">
+        <input type="range" id="f-epargne" aria-label="Part de vos revenus épargnée" min="0" max="60" step="1" value="10" oninput="updateVal('f-epargne','v-epargne','%')">
         <span class="slider-val" id="v-epargne">10%</span>
       </div>
     </div>
 
     <div class="field">
       <label>Poste de dépense principal</label>
-      <select id="f-depense">
+      <select id="f-depense" aria-label="Poste de dépense principal">
         <option value="loyer">🏠 Loyer / Logement</option>
         <option value="food">🍕 Alimentation / Restaurants</option>
         <option value="transport">🚗 Transport / Voiture</option>
@@ -260,7 +263,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
     <div class="field">
       <label>Votre objectif pour l'an prochain</label>
-      <select id="f-objectif">
+      <select id="f-objectif" aria-label="Votre objectif pour l'an prochain">
         <option value="epargne">💰 Épargner plus</option>
         <option value="immo">🏠 Acheter un bien</option>
         <option value="dette">💳 Rembourser mes dettes</option>

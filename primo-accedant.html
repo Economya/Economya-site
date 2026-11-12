@@ -185,13 +185,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="field">
       <label>Revenu mensuel net du foyer</label>
       <div class="slider-wrap">
-        <input type="range" id="revenu" min="1500" max="8000" step="100" value="3000" oninput="upd('revenu','v-revenu','€/mois')">
+        <input type="range" id="revenu" aria-label="Revenu mensuel net du foyer" min="1500" max="8000" step="100" value="3000" oninput="upd('revenu','v-revenu','€/mois')">
         <span class="field-val" id="v-revenu">3 000€/mois</span>
       </div>
     </div>
     <div class="field">
       <label>Situation professionnelle</label>
-      <select id="contrat">
+      <select id="contrat" aria-label="Situation professionnelle">
         <option value="cdi">CDI (salarié)</option>
         <option value="fonct">Fonctionnaire</option>
         <option value="tns">Indépendant / TNS (3+ ans)</option>
@@ -201,13 +201,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="field">
       <label>Crédits en cours qui resteront après l'achat (auto, conso…)</label>
       <div class="slider-wrap">
-        <input type="range" id="charges" min="0" max="2000" step="25" value="0" oninput="upd('charges','v-charges','€/mois')">
+        <input type="range" id="charges" aria-label="Crédits en cours qui resteront après l'achat" min="0" max="2000" step="25" value="0" oninput="upd('charges','v-charges','€/mois')">
         <span class="field-val" id="v-charges">0€/mois</span>
       </div>
     </div>
     <div class="field">
       <label>Ville ou région cible</label>
-      <select id="ville">
+      <select id="ville" aria-label="Ville ou région cible">
         <option value="paris">Paris / IDF (très tendu)</option>
         <option value="grande">Grande ville (Lyon, Bordeaux, Nantes...)</option>
         <option value="moyenne">Ville moyenne</option>
@@ -225,13 +225,13 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="field">
       <label>Prix du bien visé</label>
       <div class="slider-wrap">
-        <input type="range" id="prix" min="50000" max="800000" step="5000" value="200000" oninput="upd('prix','v-prix','€')">
+        <input type="range" id="prix" aria-label="Prix du bien visé" min="50000" max="800000" step="5000" value="200000" oninput="upd('prix','v-prix','€')">
         <span class="field-val" id="v-prix">200 000€</span>
       </div>
     </div>
     <div class="field">
       <label>Type de bien</label>
-      <select id="type-bien">
+      <select id="type-bien" aria-label="Type de bien">
         <option value="ancien">Appartement ancien</option>
         <option value="neuf">Appartement neuf</option>
         <option value="maison">Maison ancienne</option>
@@ -241,7 +241,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="field">
       <label>Surface souhaitée</label>
       <div class="slider-wrap">
-        <input type="range" id="surface" min="20" max="200" step="5" value="65" oninput="upd('surface','v-surface','m²')">
+        <input type="range" id="surface" aria-label="Surface souhaitée" min="20" max="200" step="5" value="65" oninput="upd('surface','v-surface','m²')">
         <span class="field-val" id="v-surface">65m²</span>
       </div>
     </div>
@@ -261,7 +261,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="field">
       <label>Apport disponible</label>
       <div class="slider-wrap">
-        <input type="range" id="apport" min="0" max="200000" step="1000" value="20000" oninput="upd('apport','v-apport','€')">
+        <input type="range" id="apport" aria-label="Apport disponible" min="0" max="200000" step="1000" value="20000" oninput="upd('apport','v-apport','€')">
         <span class="field-val" id="v-apport">20 000€</span>
       </div>
     </div>
@@ -285,7 +285,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
     <div class="field">
       <label>Durée du prêt souhaitée</label>
-      <select id="duree" onchange="calcCredit()">
+      <select id="duree" aria-label="Durée du prêt souhaitée" onchange="calcCredit()">
         <option value="15">15 ans</option>
         <option value="20" selected>20 ans</option>
         <option value="25">25 ans</option>
