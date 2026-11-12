@@ -184,3 +184,25 @@
     }
   });
 })();
+
+/* Confort sur téléphone (écrans tactiles uniquement) :
+   - champs de saisie en 16 px minimum : sinon Safari iOS zoome automatiquement au toucher ;
+   - zones à toucher agrandies (fil d'Ariane, boutons de partage, puces) ;
+   - curseurs plus faciles à attraper (zone tactile de 32 px, piste visuelle inchangée). */
+(function () {
+  try {
+    var css = "@media (hover:none) and (pointer:coarse){" +
+      "input:not([type=range]):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]),select,textarea{font-size:16px!important}" +
+      "[aria-label=\"Fil d'Ariane\"] a{display:inline-block;padding:.45rem .1rem}" +
+      "a[href*=\"facebook.com/sharer\"],a[href*=\"twitter.com/intent\"],a[href*=\"linkedin.com/sharing\"],a[href^=\"whatsapp:\"],a[href*=\"pinterest.com/pin\"]{padding-top:.7rem!important;padding-bottom:.7rem!important}" +
+      "html input[type=range][min]{box-sizing:content-box!important;padding:12px 0!important;margin-top:.2rem!important;margin-bottom:.2rem!important;background-clip:content-box!important}" +
+      "#ecoCtaJoinBtn,#ecoNlJoinBtn{min-height:44px;display:inline-flex!important;align-items:center;justify-content:center}" +
+      ".eco-cmp-chk{min-height:40px;display:inline-flex;align-items:center;gap:.4rem;padding:.2rem .5rem .2rem 0}" +
+      "input[type=checkbox],input[type=radio]{min-width:22px;min-height:22px}" +
+      "}";
+    var st = document.createElement("style");
+    st.id = "economya-touch";
+    st.textContent = css;
+    (document.head || document.documentElement).appendChild(st);
+  } catch (e) {}
+})();

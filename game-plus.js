@@ -123,6 +123,29 @@
   var cfg = CFG[slug];
   if (!cfg) return;
 
+  /* ---------- Jeux d'action : conseil « mode portrait » sur téléphone tenu à l'horizontale ---------- */
+  (function () {
+    var me = null; GAMES.forEach(function (g) { if (g[0] === slug) me = g; });
+    if (!me || me[2] !== "a" || slug === "inflation-run" || !window.matchMedia) return;
+    var mq = window.matchMedia("(orientation: landscape) and (max-height: 500px) and (pointer: coarse)");
+    var ignore = false, box = null;
+    function maj() {
+      if (mq.matches && !ignore) {
+        if (!box) {
+          box = document.createElement("div");
+          box.id = "eco-portrait";
+          box.style.cssText = "position:fixed;inset:0;z-index:100000;background:rgba(5,10,25,.94);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;font-family:system-ui,sans-serif;padding:20px";
+          box.innerHTML = '<div style="font-size:44px;animation:ecoRot 1.6s ease-in-out infinite">📱</div><div style="font-size:17px;font-weight:700">Tournez votre téléphone</div><div style="font-size:13px;opacity:.75;max-width:320px">Ce jeu se joue en mode portrait, pour un écran plus grand et des commandes plus précises.</div><button type="button" style="margin-top:6px;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:99px;padding:10px 18px;font:inherit;font-size:13px">Continuer quand même</button><style>@keyframes ecoRot{0%,100%{transform:rotate(90deg)}50%{transform:rotate(0)}}</style>';
+          box.querySelector("button").addEventListener("click", function () { ignore = true; maj(); });
+          document.body.appendChild(box);
+        }
+        box.style.display = "flex";
+      } else if (box) box.style.display = "none";
+    }
+    if (mq.addEventListener) mq.addEventListener("change", maj); else if (mq.addListener) mq.addListener(maj);
+    if (document.body) maj(); else document.addEventListener("DOMContentLoaded", maj);
+  })();
+
   /* ---------- Sons et vibrations ---------- */
   var soundOn = load(KEY_SND, true) !== false, actx = null;
   function audio() {
@@ -171,7 +194,7 @@
     var b = document.createElement("button");
     b.id = "eco-son"; b.type = "button";
     var hasBack = !!document.querySelector('a[aria-label="Retour aux jeux Economya"]');
-    b.style.cssText = "position:fixed;z-index:999998;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.6);color:#fff;font-size:15px;line-height:1;cursor:pointer;padding:0;opacity:.78;" + (hasBack ? "top:8px;right:48px;display:none" : "bottom:16px;left:12px");
+    b.style.cssText = "position:fixed;z-index:999998;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.6);color:#fff;font-size:15px;line-height:1;cursor:pointer;padding:0;opacity:.78;" + (hasBack ? "top:8px;right:48px;display:none" : "bottom:16px;left:12px");
     // Sur les jeux plein écran, le bouton apparaît à côté de la flèche retour dès que la partie commence.
     if (hasBack) { var iv = setInterval(function () { if (document.documentElement.classList.contains("economya-play-mode")) { b.style.display = ""; clearInterval(iv); } }, 250); }
     function paint() { b.textContent = soundOn ? "🔊" : "🔇"; b.setAttribute("aria-label", soundOn ? "Couper le son" : "Activer le son"); b.title = b.getAttribute("aria-label"); }
@@ -266,4 +289,25 @@
     }, 200);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
+
+/* Qualité adaptative : si l'appareil peine (plus de 20 % d'images lentes), on coupe les effets de lueur
+   (shadowBlur), très coûteux sur les téléphones modestes. Le jeu reste identique, en un peu moins brillant. */
+(function () {
+  try {
+    var proto = window.CanvasRenderingContext2D && CanvasRenderingContext2D.prototype;
+    var desc = proto && Object.getOwnPropertyDescriptor(proto, "shadowBlur");
+    if (!desc || !desc.set || !document.querySelector("canvas")) return;
+    Object.defineProperty(proto, "shadowBlur", { configurable: true, enumerable: desc.enumerable, get: desc.get,
+      set: function (v) { desc.set.call(this, window.__ecoLowFx ? 0 : v); } });
+    var raf = window.requestAnimationFrame.bind(window), last = 0, n = 0, slow = 0, essais = 0;
+    function tick() {
+      var now = performance.now();
+      if (last && !document.hidden) { var d = now - last; if (d > 4 && d < 250) { n++; if (d > 30) slow++; } }
+      last = now;
+      if (n >= 120) { if (slow / n > 0.2) { window.__ecoLowFx = true; return; } n = 0; slow = 0; if (++essais > 15) return; }
+      raf(tick);
+    }
+    raf(tick);
+  } catch (e) {}
 })();

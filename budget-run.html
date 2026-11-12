@@ -511,17 +511,10 @@ function draw(now) {
   // Pièces
   coins.forEach(c => {
     if(c.collected) return;
-    ctx.save();
-    ctx.translate(c.x, c.y);
-    ctx.scale(c.scale, c.scale);
-    // Halo
-    ctx.shadowColor = c.type.color;
-    ctx.shadowBlur = 12;
-    ctx.font = (c.type.r * 2) + 'px serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(c.type.emoji, 0, 0);
-    ctx.restore();
+    // Sprite pré-rendu (emoji + halo) : évite un flou coûteux recalculé à chaque image sur téléphone
+    const spr = spriteCoin(c.type);
+    const w = spr.width / DPR * c.scale, h = spr.height / DPR * c.scale;
+    ctx.drawImage(spr, c.x - w / 2, c.y - h / 2, w, h);
   });
 
   // Particules
@@ -529,8 +522,6 @@ function draw(now) {
     ctx.save();
     ctx.globalAlpha = p.life;
     ctx.fillStyle = p.color;
-    ctx.shadowColor = p.color;
-    ctx.shadowBlur = 6;
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
     ctx.fill();
@@ -544,6 +535,21 @@ function draw(now) {
 
   // Joueur
   drawPlayer();
+}
+
+const SPRITES_COIN = {};
+function spriteCoin(t) {
+  const k = t.emoji + '|' + t.r + '|' + t.color;
+  if (SPRITES_COIN[k]) return SPRITES_COIN[k];
+  const pad = 14, size = t.r * 2 + pad * 2;
+  const c = document.createElement('canvas');
+  c.width = Math.ceil(size * DPR); c.height = Math.ceil(size * DPR);
+  const g = c.getContext('2d');
+  g.scale(DPR, DPR);
+  g.shadowColor = t.color; g.shadowBlur = 12;
+  g.font = (t.r * 2) + 'px serif'; g.textAlign = 'center'; g.textBaseline = 'middle';
+  g.fillText(t.emoji, size / 2, size / 2);
+  return (SPRITES_COIN[k] = c);
 }
 
 function drawPlayer() {

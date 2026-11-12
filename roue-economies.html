@@ -185,7 +185,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     <div class="result-tip" id="res-tip">—</div>
     <a class="res-lien" id="res-lien" href="#" style="display:none"></a>
     <div class="result-actions">
-      <button class="btn-apply" id="btn-apply" onclick="applyTip()">✅ Je l'applique !</button>
+      <button class="btn-apply" id="btn-apply" onclick="applyTip()">✅ Je l'applique&nbsp;!</button>
       <button class="btn-share" onclick="shareTip()">📤 Partager</button>
     </div>
   </div>
@@ -233,48 +233,53 @@ const ctx = canvas.getContext('2d');
 const N = ASTUCES.length;
 const arc = (2 * Math.PI) / N;
 const TAILLE = 320;
+let DPR = 1;
 (function hiDpi(){
-  const dpr = Math.min(3, window.devicePixelRatio || 1);
-  canvas.width = TAILLE * dpr; canvas.height = TAILLE * dpr;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  DPR = Math.min(2, window.devicePixelRatio || 1);
+  canvas.width = TAILLE * DPR; canvas.height = TAILLE * DPR;
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
 })();
 
-function drawWheel(rotation) {
-  ctx.clearRect(0, 0, TAILLE, TAILLE);
+// La roue est dessinée une seule fois dans une image hors écran, puis simplement tournée à chaque image :
+// beaucoup plus fluide sur téléphone que de tout redessiner 60 fois par seconde.
+let roueImg = null;
+function construireRoue() {
+  roueImg = document.createElement('canvas');
+  roueImg.width = TAILLE * DPR; roueImg.height = TAILLE * DPR;
+  const g = roueImg.getContext('2d');
+  g.setTransform(DPR, 0, 0, DPR, 0, 0);
   const cx = TAILLE / 2, cy = TAILLE / 2, r = cx - 4;
   for (let i = 0; i < N; i++) {
-    const start = rotation + i * arc - Math.PI / 2;
-    const end = start + arc;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, r, start, end);
-    ctx.closePath();
-    ctx.fillStyle = COLORS[i % COLORS.length];
-    ctx.fill();
-    if (history.some(h => h === ASTUCES[i]) && i !== highlight) { ctx.fillStyle = 'rgba(255,255,255,.28)'; ctx.fill(); }
-    ctx.strokeStyle = 'rgba(255,255,255,.35)';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-    if (i === highlight) {
-      ctx.save(); ctx.lineWidth = 5; ctx.strokeStyle = '#FDE68A'; ctx.shadowColor = '#FDE68A'; ctx.shadowBlur = 16; ctx.stroke(); ctx.restore();
-    }
-    ctx.save();
-    ctx.translate(cx, cy);
-    ctx.rotate(start + arc / 2);
-    ctx.textAlign = 'right';
-    ctx.fillStyle = 'white';
-    ctx.font = 'bold 11px "DM Sans", system-ui, sans-serif';
-    ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = 2;
-    ctx.fillText(ASTUCES[i].emoji + ' ' + ASTUCES[i].title.split(' ').slice(0, 2).join(' '), r - 10, 4);
-    ctx.restore();
+    const start = i * arc - Math.PI / 2, end = start + arc;
+    g.beginPath(); g.moveTo(cx, cy); g.arc(cx, cy, r, start, end); g.closePath();
+    g.fillStyle = COLORS[i % COLORS.length]; g.fill();
+    if (history.some(h => h === ASTUCES[i])) { g.fillStyle = 'rgba(255,255,255,.28)'; g.fill(); }
+    g.strokeStyle = 'rgba(255,255,255,.35)'; g.lineWidth = 1.5; g.stroke();
+    g.save(); g.translate(cx, cy); g.rotate(start + arc / 2);
+    g.textAlign = 'right'; g.fillStyle = 'white';
+    g.font = 'bold 11px "DM Sans", system-ui, sans-serif';
+    g.shadowColor = 'rgba(0,0,0,.35)'; g.shadowBlur = 2;
+    g.fillText(ASTUCES[i].emoji + ' ' + ASTUCES[i].title.split(' ').slice(0, 2).join(' '), r - 10, 4);
+    g.restore();
   }
-  // Clous sur le bord
   for (let i = 0; i < N; i++) {
-    const a = rotation + i * arc - Math.PI / 2;
-    ctx.beginPath(); ctx.arc(cx + Math.cos(a) * (r - 3), cy + Math.sin(a) * (r - 3), 2.6, 0, 2 * Math.PI);
-    ctx.fillStyle = '#fff'; ctx.fill();
+    const a2 = i * arc - Math.PI / 2;
+    g.beginPath(); g.arc(cx + Math.cos(a2) * (r - 3), cy + Math.sin(a2) * (r - 3), 2.6, 0, 2 * Math.PI);
+    g.fillStyle = '#fff'; g.fill();
   }
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.stroke();
+  g.beginPath(); g.arc(cx, cy, r, 0, 2 * Math.PI); g.lineWidth = 4; g.strokeStyle = 'rgba(255,255,255,.9)'; g.stroke();
+}
+
+function drawWheel(rotation) {
+  if (!roueImg) construireRoue();
+  const cx = TAILLE / 2, cy = TAILLE / 2, r = cx - 4;
+  ctx.clearRect(0, 0, TAILLE, TAILLE);
+  ctx.save(); ctx.translate(cx, cy); ctx.rotate(rotation); ctx.drawImage(roueImg, -cx, -cy, TAILLE, TAILLE); ctx.restore();
+  if (highlight >= 0) {
+    const start = rotation + highlight * arc - Math.PI / 2;
+    ctx.save(); ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, r, start, start + arc); ctx.closePath();
+    ctx.lineWidth = 5; ctx.strokeStyle = '#FDE68A'; ctx.shadowColor = '#FDE68A'; ctx.shadowBlur = 16; ctx.stroke(); ctx.restore();
+  }
   ctx.beginPath(); ctx.arc(cx, cy, 26, 0, 2 * Math.PI); ctx.fillStyle = 'white'; ctx.fill();
 }
 
@@ -354,7 +359,7 @@ function showResult(astuce) {
   const card = document.getElementById('result-card');
   card.style.display = 'block';
   card.style.borderColor = astuce.color;
-  if (!deja) addToHistory(astuce);
+  if (!deja) { addToHistory(astuce); construireRoue(); drawWheel(angle); }
   card.scrollIntoView({behavior:'smooth', block:'center'});
 }
 
@@ -389,7 +394,7 @@ function majBoutonPlan() {
   const b = document.getElementById('btn-apply');
   if (!currentResult || !b) return;
   const inPlan = dejaDansPlan(currentResult);
-  b.textContent = inPlan ? '✓ Dans mon plan' : '✅ Je l\'applique !';
+  b.textContent = inPlan ? '✓ Dans mon plan' : '✅ Je l\'applique\u00a0!';
   b.classList.toggle('on', inPlan);
 }
 
@@ -435,7 +440,7 @@ function rejouer() {
   document.getElementById('spins-left').textContent = maxSpins;
   document.getElementById('total-val').textContent = '0 €';
   document.getElementById('total-sub').textContent = 'Tournez la roue pour commencer !';
-  renderHistory(); drawWheel(angle);
+  renderHistory(); construireRoue(); drawWheel(angle);
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 

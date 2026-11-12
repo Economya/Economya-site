@@ -27,10 +27,11 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .hero p{font-size:.95rem;color:rgba(255,255,255,.75);max-width:500px;margin:0 auto}
 .container{max-width:900px;margin:0 auto;padding:2.5rem 1.5rem}
 .search-wrap{background:var(--w);border-radius:50px;border:2px solid var(--g);padding:.6rem 1.2rem;display:flex;align-items:center;gap:.8rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(29,158,117,.1)}
-.search-wrap input{border:none;background:transparent;font-size:1rem;font-family:inherit;width:100%;outline:none;color:var(--t)}
+.search-wrap input{border:none;background:transparent;font-size:1rem;font-family:inherit;width:100%;outline:none;color:var(--t);padding:.55rem 0}
+.search-wrap{cursor:text}
 .search-wrap span{font-size:1.2rem;flex-shrink:0}
 .alpha-nav{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:2rem}
-.alpha-btn{background:var(--w);border:1px solid var(--b);border-radius:8px;padding:.3rem .6rem;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--m);font-family:inherit;transition:all .2s}
+.alpha-btn{min-width:38px;min-height:38px;background:var(--w);border:1px solid var(--b);border-radius:8px;padding:.3rem .6rem;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--m);font-family:inherit;transition:all .2s}
 .alpha-btn:hover,.alpha-btn.active{background:var(--gd);color:white;border-color:var(--gd)}
 .letter-section{margin-bottom:2.5rem}
 .letter-title{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gd);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:3px solid var(--g)}
@@ -144,7 +145,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
   <p>Plus de 100 termes financiers expliqués simplement. Fini le jargon incompréhensible.</p>
 </div>
 <div class="container">
-  <div class="search-wrap">
+  <div class="search-wrap" onclick="document.getElementById('search').focus()">
     <span>🔍</span>
     <input type="text" id="search" placeholder="Rechercher un terme (ex: ETF, PEA, APL...)" oninput="filterTerms()">
   </div>
