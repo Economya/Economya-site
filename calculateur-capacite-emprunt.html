@@ -137,7 +137,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         "name": "Le taux utilisé dans ce simulateur est-il garanti ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Non, vous pouvez l'ajuster vous-même avec le curseur dédié (3,6% par défaut). Utilisez le taux proposé par votre banque ou votre courtier pour un résultat fiable."
+          "text": "Non, vous pouvez l'ajuster vous-même avec le curseur dédié (3,7% par défaut). Utilisez le taux proposé par votre banque ou votre courtier pour un résultat fiable."
         }
       },
       {
@@ -228,7 +228,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <div class="field">
         <label>Taux d'intérêt annuel</label>
         <div class="val" id="v-taux">3,6 <span>%</span></div>
-        <input type="range" id="taux" min="2.5" max="5.5" step="0.1" value="3.6">
+        <input type="range" id="taux" min="2.5" max="5.5" step="0.1" value="3.7">
       </div>
     </div>
   </div>
@@ -291,7 +291,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
     </details>
     <details style="margin-bottom:.9rem">
       <summary style="font-weight:700;cursor:pointer">Le taux utilisé dans ce simulateur est-il garanti ?</summary>
-      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non, et c'est pour ça que vous pouvez désormais l'ajuster vous-même avec le curseur "Taux d'intérêt annuel" (3,6% par défaut, moyenne de marché sur 20 ans en septembre 2026). Les taux réels varient selon votre profil (apport, durée, revenus, historique bancaire) et évoluent chaque mois : utilisez le taux proposé par votre banque ou votre courtier pour un résultat au plus proche de la réalité.</p>
+      <p style="margin-top:.5rem;color:#5F5E5A;line-height:1.6">Non, et c'est pour ça que vous pouvez désormais l'ajuster vous-même avec le curseur "Taux d'intérêt annuel" (3,7% par défaut, moyenne de marché sur 20 ans en novembre 2026). Les taux réels varient selon votre profil (apport, durée, revenus, historique bancaire) et évoluent chaque mois : utilisez le taux proposé par votre banque ou votre courtier pour un résultat au plus proche de la réalité.</p>
     </details>
     <details>
       <summary style="font-weight:700;cursor:pointer">Le "reste à vivre" est-il pris en compte par les banques ?</summary>
@@ -366,7 +366,7 @@ function calculate() {
 
   const mensualiteMax = revenus * 0.35;
   const mensualiteImmo = Math.max(0, mensualiteMax - credits);
-  const tauxMensuel = (taux / 100) / 12; // Taux ajustable par l'utilisateur — 3,6% par défaut (moyenne marché ~20 ans, septembre 2026). Vérifiez le taux réel proposé par votre banque avant toute décision.
+  const tauxMensuel = (taux / 100) / 12; // Taux ajustable par l'utilisateur — 3,7% par défaut (moyenne marché ~20 ans, novembre 2026). Vérifiez le taux réel proposé par votre banque avant toute décision.
   const n = duree * 12;
 
   // Calcul montant empruntable
