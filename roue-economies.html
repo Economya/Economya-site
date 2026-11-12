@@ -37,7 +37,23 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 /* WHEEL WRAP */
 .wheel-wrap{position:relative;width:320px;margin:0 auto 1.5rem;user-select:none}
 .wheel-pointer{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:2rem;z-index:10;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))}
-canvas#wheel{display:block;border-radius:50%;box-shadow:0 8px 32px rgba(0,0,0,.15);cursor:pointer}
+canvas#wheel{display:block;width:100%;height:auto;aspect-ratio:1;border-radius:50%;box-shadow:0 8px 32px rgba(0,0,0,.15),0 0 0 6px #fff,0 0 0 9px rgba(160,120,0,.35);cursor:pointer}
+.wheel-pointer{transform-origin:50% 20%}
+.wheel-pointer.tic{animation:roueTic .12s ease}
+@keyframes roueTic{0%{transform:translateX(-50%) rotate(0)}50%{transform:translateX(-50%) rotate(-14deg)}100%{transform:translateX(-50%) rotate(0)}}
+.res-lien{display:inline-block;margin:0 0 .8rem;font-size:.84rem;font-weight:700;color:var(--gd);text-decoration:none;border-bottom:2px solid var(--a)}
+.btn-apply.on{background:var(--gd)}
+.in-plan{font-size:.7rem;font-weight:700;color:var(--g);white-space:nowrap}
+.plan{border:2px solid var(--g)}
+.plan-total{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;color:var(--g);margin-bottom:.6rem;line-height:1.1}
+.plan-total small{display:block;font-family:inherit;font-size:.78rem;font-weight:600;color:var(--m);margin-top:.2rem}
+.plan-del{background:none;border:none;color:var(--m);cursor:pointer;font-size:.9rem;padding:.2rem .4rem}
+.plan-note{font-size:.74rem;color:var(--m);margin-top:.6rem}
+.roue-fin{display:none;background:var(--w);border-radius:16px;border:2px solid var(--a);padding:1.3rem;margin-bottom:1.2rem;text-align:center;animation:popIn .4s ease}
+.roue-fin.show{display:block}
+.roue-fin .fin-emoji{font-size:2.6rem}
+.roue-fin h3{font-family:'Playfair Display',serif;color:var(--gd);font-size:1.3rem;margin:.3rem 0}
+.roue-fin p{font-size:.88rem;color:var(--t);line-height:1.55;margin-bottom:1rem}
 .wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:52px;height:52px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 2px 8px rgba(0,0,0,.2);cursor:pointer;z-index:5}
 
 /* SPIN BTN */
@@ -73,7 +89,7 @@ canvas#wheel{display:block;border-radius:50%;box-shadow:0 8px 32px rgba(0,0,0,.1
 .spin-counter{text-align:center;font-size:.82rem;color:var(--m);margin-bottom:1rem}
 .spin-counter span{font-weight:700;color:var(--gd)}
 
-@media(max-width:400px){.wheel-wrap{width:280px}}
+@media(max-width:400px){.wheel-wrap{width:min(280px,82vw)}}
 
 /* Menu hamburger mobile */
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
@@ -167,12 +183,15 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <span class="saving-lbl">économisés par an</span>
     </div>
     <div class="result-tip" id="res-tip">—</div>
+    <a class="res-lien" id="res-lien" href="#" style="display:none"></a>
     <div class="result-actions">
-      <button class="btn-apply" onclick="applyTip()">✅ Je l'applique !</button>
+      <button class="btn-apply" id="btn-apply" onclick="applyTip()">✅ Je l'applique !</button>
       <button class="btn-share" onclick="shareTip()">📤 Partager</button>
     </div>
   </div>
 
+  <div class="roue-fin" id="roue-fin"></div>
+  <div class="history plan" id="mon-plan" style="display:none"></div>
   <div class="history" id="history">
     <h3>📋 Astuces découvertes</h3>
     <div id="history-list"><div class="empty-history">Tournez la roue pour découvrir des astuces !</div></div>
@@ -181,40 +200,49 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
 <script>
 const ASTUCES = [
-  {emoji:'📱', cat:'Téléphonie', color:'#7c3aed', title:'Changer de forfait mobile', saving:300, tip:'Passez à un forfait low-cost (RED, Prixtel, Free) au lieu des opérateurs historiques. Même réseau, 3x moins cher. Économie moyenne : 25€/mois.', article:'article-113.html'},
-  {emoji:'☕', cat:'Quotidien', color:'#92400e', title:'Café maison vs café au bar', saving:600, tip:'1 café à 2€ par jour = 720€/an. Une cafetière à 30€ + café moulu = 60€/an. Économie nette : 660€ pour un seul geste.', article:'article-35.html'},
-  {emoji:'🏦', cat:'Banque', color:'#1e40af', title:'Banque en ligne gratuite', saving:150, tip:'Les banques traditionnelles coûtent en moyenne 150€/an en frais divers. Boursobank, Hello Bank, Fortuneo sont 100% gratuites.', article:'article-182.html'},
-  {emoji:'📺', cat:'Streaming', color:'#be185d', title:'Partager ses abonnements', saving:250, tip:'Netflix + Spotify + Disney+ en solo = 40€/mois. Partagez via Sharesub avec 3 amis = 12€/mois. Économie : 28€/mois, 336€/an.', article:'article-13.html'},
-  {emoji:'🛒', cat:'Courses', color:'#065f46', title:'Switcher vers Lidl ou Aldi', saving:400, tip:'Un panier identique coûte 22% moins cher chez Lidl vs Carrefour. Sur 400€/mois de courses : 88€ économisés par mois, soit 1 056€/an.', article:'article-3.html'},
-  {emoji:'💊', cat:'Santé', color:'#7f1d1d', title:'Génériques au lieu des marques', saving:120, tip:'Le Doliprane à 3,20€ vs paracétamol générique à 1,10€. Multipliez par tous vos médicaments courants : 120€/an d\'économies facilement.', article:'article-18.html'},
-  {emoji:'⚡', cat:'Énergie', color:'#713f12', title:'Éteindre les veilles', saving:150, tip:'Les appareils en veille représentent 10% de votre facture électricité. Une multiprise à interrupteur (8€) éteint tout d\'un geste. Économie : 150€/an.', article:'article-110.html'},
-  {emoji:'🚗', cat:'Transport', color:'#1e3a5f', title:'Comparer son assurance auto', saving:350, tip:'80% des automobilistes n\'ont pas comparé leur assurance depuis 2 ans. En moyenne, comparer économise 30€/mois. Soit 350€/an.', article:'article-61.html'},
-  {emoji:'🏠', cat:'Logement', color:'#14532d', title:'Renégocier son assurance habitation', saving:156, tip:'Les assurances habitation augmentent automatiquement chaque année. Comparer et changer prend 15 min et économise 13€/mois en moyenne.', article:'article-9.html'},
-  {emoji:'🍕', cat:'Alimentation', color:'#7c2d12', title:'Batch cooking le dimanche', saving:2400, tip:'2h de cuisine le dimanche = 5 déjeuners préparés. Au lieu de 12€/repas au resto : 3€/repas maison. Économie : 45€/semaine, 2 340€/an.', article:'article-84.html'},
-  {emoji:'💡', cat:'Éclairage', color:'#713f12', title:'Passer aux ampoules LED', saving:80, tip:'Une LED consomme 8x moins qu\'une halogène. Équiper tout un logement coûte 80€ et économise 80€/an en électricité. Amorti en 1 an.', article:'article-54.html'},
-  {emoji:'📚', cat:'Culture', color:'#1e3a8a', title:'Bibliothèque municipale', saving:300, tip:'Un livre moyen coûte 18€. Lire 1 livre par mois via la médiathèque = 216€ économisés. Accès gratuit ou quasi-gratuit dans toutes les communes.', article:'article-22.html'},
-  {emoji:'🧴', cat:'Beauté', color:'#831843', title:'Cosmétiques marques distributeur', saving:200, tip:'Les crèmes Lidl ou Aldi sont souvent formulées par les mêmes labos que les grandes marques. Économie : 15 à 20€/mois, 200€/an.', article:'article-36.html'},
-  {emoji:'🎬', cat:'Loisirs', color:'#4a1d96', title:'UGC ou CGR au lieu des multiplexes', saving:120, tip:'Le cinéma UGC Illimité (23€/mois) = illimité. Vs 13€ la séance : à partir de 2 séances/mois vous êtes gagnant. 120€/an économisés.', article:'article-143.html'},
-  {emoji:'🐕', cat:'Animaux', color:'#78350f', title:'Mutuelle animaux vs soins directs', saving:400, tip:'Une mutuelle chien à 20€/mois couvre les soins à 80%. Une seule opération (800€+) et la mutuelle est rentabilisée pour 3 ans.', article:'article-79.html'},
-  {emoji:'🧹', cat:'Maison', color:'#166534', title:'Produits ménagers maison', saving:180, tip:'Vinaigre blanc + bicarbonate + savon noir = 3 produits qui remplacent 15 produits du supermarché. Économie : 15€/mois, 180€/an.', article:'article-186.html'},
+  {emoji:'📱', cat:'Téléphonie', color:'#7c3aed', title:'Changer de forfait mobile', saving:300, tip:'Les forfaits sans engagement des marques low-cost (RED, Prixtel, Free, Sosh…) utilisent les mêmes réseaux que les grands opérateurs, souvent pour 2 à 3 fois moins cher. Exemple : 35 €/mois → 10 €/mois = 300 €/an.', lien:'/forfaits-5g-pas-cher', lienTxt:'Comparer les forfaits'},
+  {emoji:'☕', cat:'Quotidien', color:'#92400e', title:'Café maison plutôt qu\'au bar', saving:660, tip:'1 café à 2 € par jour ouvré ou presque, c\'est environ 720 €/an. Une cafetière à 30 € et du café moulu reviennent à environ 60 €/an. Économie nette : environ 660 €.'},
+  {emoji:'🏦', cat:'Banque', color:'#1e40af', title:'Passer à une banque en ligne', saving:150, tip:'Carte, tenue de compte, frais divers : une banque traditionnelle coûte souvent plus de 100 €/an. Plusieurs banques en ligne proposent un compte et une carte gratuits sous conditions.', lien:'/banque-en-ligne-vs-traditionnelle', lienTxt:'Banque en ligne ou traditionnelle ?'},
+  {emoji:'📺', cat:'Streaming', color:'#be185d', title:'Faire le ménage dans ses abonnements', saving:240, tip:'Netflix, Disney+, Spotify, salle de sport, presse… Listez tout ce qui est prélevé chaque mois et gardez seulement ce que vous utilisez vraiment. Alterner les plateformes (1 à la fois) suffit souvent. 20 €/mois en moins = 240 €/an.'},
+  {emoji:'🛒', cat:'Courses', color:'#065f46', title:'Passer à une enseigne discount', saving:960, tip:'Sur un panier comparable, les enseignes discount sont souvent 15 à 25 % moins chères. Sur 400 €/mois de courses, cela représente environ 60 à 100 € par mois, soit autour de 960 €/an.', lien:'/calculateur-budget', lienTxt:'Faire mon budget'},
+  {emoji:'💊', cat:'Santé', color:'#7f1d1d', title:'Génériques et marques de pharmacie', saving:60, tip:'Demandez le générique et, pour les produits non remboursés (vitamines, pastilles, crèmes), la marque de la pharmacie : souvent 30 à 50 % moins cher pour la même composition.'},
+  {emoji:'⚡', cat:'Énergie', color:'#713f12', title:'Éteindre les veilles', saving:80, tip:'Box, TV, console, chargeurs : les veilles pèsent une part non négligeable de la consommation électrique hors chauffage. Une multiprise à interrupteur (environ 10 €) coupe tout d\'un geste.', lien:'/simulateur-economies-energie', lienTxt:'Simuler mes économies d\'énergie'},
+  {emoji:'🚗', cat:'Transport', color:'#1e3a5f', title:'Comparer son assurance auto', saving:250, tip:'Après 1 an de contrat, la loi Hamon permet de changer d\'assurance auto à tout moment, sans frais : le nouvel assureur s\'occupe de la résiliation. Comparer chaque année évite de payer les hausses automatiques.', lien:'/calculateur-cout-voiture', lienTxt:'Calculer le coût de ma voiture'},
+  {emoji:'🏠', cat:'Logement', color:'#14532d', title:'Renégocier son assurance habitation', saving:156, tip:'Les cotisations augmentent souvent à chaque échéance. Comme pour l\'auto, la loi Hamon permet de changer à tout moment après 1 an. 15 minutes de comparaison peuvent faire gagner environ 13 €/mois.'},
+  {emoji:'🍱', cat:'Alimentation', color:'#7c2d12', title:'Batch cooking le dimanche', saving:2340, tip:'2 h de cuisine le dimanche = 5 déjeuners préparés. 3 € le repas maison au lieu de 12 € au restaurant : 45 €/semaine, soit environ 2 340 €/an sur 52 semaines.'},
+  {emoji:'💡', cat:'Éclairage', color:'#713f12', title:'Passer aux ampoules LED', saving:80, tip:'Une LED consomme environ 5 fois moins qu\'une halogène et dure bien plus longtemps. Équiper tout un logement s\'amortit en général en un an ou deux.', lien:'/simulateur-economies-energie', lienTxt:'Simuler mes économies d\'énergie'},
+  {emoji:'📚', cat:'Culture', color:'#1e3a8a', title:'Bibliothèque municipale', saving:216, tip:'Un livre coûte en moyenne autour de 18 €. Emprunter 1 livre par mois à la médiathèque, c\'est environ 216 € économisés par an. L\'inscription est gratuite ou très peu chère dans la plupart des communes.'},
+  {emoji:'🧴', cat:'Beauté', color:'#831843', title:'Cosmétiques de marque distributeur', saving:200, tip:'Crèmes, shampoings, gels douche : les marques distributeur sont souvent bien notées dans les tests de consommateurs pour un prix 2 à 3 fois plus bas. 15 à 20 €/mois d\'économie, environ 200 €/an.'},
+  {emoji:'🎬', cat:'Loisirs', color:'#4a1d96', title:'Carte cinéma illimitée', saving:120, tip:'Une carte illimitée coûte environ 20 à 25 €/mois. Avec une place à 12-13 €, elle devient rentable dès 2 séances par mois. Si vous allez au cinéma moins souvent, privilégiez les tarifs réduits et les avant-premières.'},
+  {emoji:'🧺', cat:'Seconde main', color:'#78350f', title:'Acheter d\'occasion', saving:300, tip:'Vêtements, meubles, électroménager reconditionné, jouets : l\'occasion coûte souvent 30 à 70 % moins cher que le neuf. Revendre ce qui dort dans les placards complète l\'économie.'},
+  {emoji:'🧹', cat:'Maison', color:'#166534', title:'Produits ménagers maison', saving:180, tip:'Vinaigre blanc, bicarbonate et savon noir remplacent une grande partie des produits ménagers du supermarché. Environ 15 €/mois d\'économie, soit 180 €/an.'},
 ];
 
-const COLORS = ['#1D9E75','#EF9F27','#7c3aed','#1e40af','#be185d','#065f46','#7f1d1d','#713f12','#1e3a5f','#14532d','#7c2d12','#1e3a8a','#831843','#4a1d96','#78350f','#166534'];
+const COLORS = ['#1D9E75','#EF9F27','#7c3aed','#1e40af','#be185d','#065f46','#7f1d1d','#b45309','#1e3a5f','#14532d','#7c2d12','#1e3a8a','#831843','#4a1d96','#78350f','#166534'];
 
 let spinning = false, totalSavings = 0, spinCount = 0, maxSpins = 10;
-let history = [], currentResult = null;
-let angle = 0;
+let history = [], currentResult = null, currentIdx = -1;
+let angle = 0, highlight = -1;
+const CLE_PLAN = 'economya_roue_plan';
+function lirePlan(){ try { return JSON.parse(localStorage.getItem(CLE_PLAN)) || []; } catch (e) { return []; } }
+function ecrirePlan(p){ try { localStorage.setItem(CLE_PLAN, JSON.stringify(p)); } catch (e) {} }
+let plan = lirePlan();
 
 const canvas = document.getElementById('wheel');
 const ctx = canvas.getContext('2d');
 const N = ASTUCES.length;
 const arc = (2 * Math.PI) / N;
+const TAILLE = 320;
+(function hiDpi(){
+  const dpr = Math.min(3, window.devicePixelRatio || 1);
+  canvas.width = TAILLE * dpr; canvas.height = TAILLE * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+})();
 
 function drawWheel(rotation) {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const cx = canvas.width / 2, cy = canvas.height / 2, r = cx - 4;
-
-  for(let i = 0; i < N; i++) {
+  ctx.clearRect(0, 0, TAILLE, TAILLE);
+  const cx = TAILLE / 2, cy = TAILLE / 2, r = cx - 4;
+  for (let i = 0; i < N; i++) {
     const start = rotation + i * arc - Math.PI / 2;
     const end = start + arc;
     ctx.beginPath();
@@ -223,122 +251,207 @@ function drawWheel(rotation) {
     ctx.closePath();
     ctx.fillStyle = COLORS[i % COLORS.length];
     ctx.fill();
-    ctx.strokeStyle = 'rgba(255,255,255,.3)';
+    if (history.some(h => h === ASTUCES[i]) && i !== highlight) { ctx.fillStyle = 'rgba(255,255,255,.28)'; ctx.fill(); }
+    ctx.strokeStyle = 'rgba(255,255,255,.35)';
     ctx.lineWidth = 1.5;
     ctx.stroke();
-
+    if (i === highlight) {
+      ctx.save(); ctx.lineWidth = 5; ctx.strokeStyle = '#FDE68A'; ctx.shadowColor = '#FDE68A'; ctx.shadowBlur = 16; ctx.stroke(); ctx.restore();
+    }
     ctx.save();
     ctx.translate(cx, cy);
     ctx.rotate(start + arc / 2);
     ctx.textAlign = 'right';
     ctx.fillStyle = 'white';
-    ctx.font = 'bold 11px DM Sans';
-    ctx.fillText(ASTUCES[i].emoji + ' ' + ASTUCES[i].title.split(' ').slice(0,2).join(' '), r - 10, 4);
+    ctx.font = 'bold 11px "DM Sans", system-ui, sans-serif';
+    ctx.shadowColor = 'rgba(0,0,0,.35)'; ctx.shadowBlur = 2;
+    ctx.fillText(ASTUCES[i].emoji + ' ' + ASTUCES[i].title.split(' ').slice(0, 2).join(' '), r - 10, 4);
     ctx.restore();
   }
+  // Clous sur le bord
+  for (let i = 0; i < N; i++) {
+    const a = rotation + i * arc - Math.PI / 2;
+    ctx.beginPath(); ctx.arc(cx + Math.cos(a) * (r - 3), cy + Math.sin(a) * (r - 3), 2.6, 0, 2 * Math.PI);
+    ctx.fillStyle = '#fff'; ctx.fill();
+  }
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(255,255,255,.9)'; ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx, cy, 26, 0, 2 * Math.PI); ctx.fillStyle = 'white'; ctx.fill();
+}
 
-  // Center circle
-  ctx.beginPath();
-  ctx.arc(cx, cy, 26, 0, 2 * Math.PI);
-  ctx.fillStyle = 'white';
-  ctx.fill();
-  ctx.strokeStyle = 'rgba(0,0,0,.1)';
-  ctx.lineWidth = 2;
-  ctx.stroke();
+// Index du secteur sous le pointeur (en haut de la roue)
+function indexSousPointeur(rot) {
+  const a = ((-rot) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+  return Math.floor(a / arc) % N;
 }
 
 function spinWheel() {
-  if(spinning || spinCount >= maxSpins) return;
-  spinning = true;
+  if (spinning || spinCount >= maxSpins) return;
+  spinning = true; highlight = -1;
   document.getElementById('spin-btn').disabled = true;
   document.getElementById('result-card').style.display = 'none';
+  const ptr = document.querySelector('.wheel-pointer');
 
-  const extraSpins = (Math.floor(Math.random() * 5) + 5) * 2 * Math.PI;
-  const targetAngle = angle + extraSpins + Math.random() * 2 * Math.PI;
-  const duration = 3000 + Math.random() * 1000;
+  // On vise de préférence une astuce pas encore tirée
+  const restantes = ASTUCES.map((a, i) => i).filter(i => !history.includes(ASTUCES[i]));
+  const cible = restantes.length ? restantes[Math.floor(Math.random() * restantes.length)] : Math.floor(Math.random() * N);
+  const offset = (cible + 0.15 + Math.random() * 0.7) * arc;            // position dans le secteur
+  const base = angle - (angle % (2 * Math.PI));
+  const tours = (Math.floor(Math.random() * 3) + 5) * 2 * Math.PI;
+  const targetAngle = base + tours + (2 * Math.PI - offset);
+  const duration = 3200 + Math.random() * 900;
   const start = performance.now();
   const startAngle = angle;
+  let dernier = indexSousPointeur(angle);
 
   function animate(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
+    const progress = Math.min((now - start) / duration, 1);
     const ease = 1 - Math.pow(1 - progress, 4);
     angle = startAngle + (targetAngle - startAngle) * ease;
     drawWheel(angle);
-
-    if(progress < 1) {
-      requestAnimationFrame(animate);
-    } else {
-      angle = targetAngle % (2 * Math.PI);
-      drawWheel(angle);
-      spinning = false;
-      spinCount++;
-      showResult(getResult());
-      document.getElementById('spin-btn').disabled = spinCount >= maxSpins;
-      document.getElementById('spin-count').textContent = spinCount;
-      document.getElementById('spins-left').textContent = Math.max(0, maxSpins - spinCount);
+    const idx = indexSousPointeur(angle);
+    if (idx !== dernier) {
+      dernier = idx;
+      if (ptr) { ptr.classList.remove('tic'); void ptr.offsetWidth; ptr.classList.add('tic'); }
+      if (window.EcoFx && progress > 0.35) { try { EcoFx.tap(); } catch (e) {} }
     }
+    if (progress < 1) { requestAnimationFrame(animate); return; }
+    angle = targetAngle % (2 * Math.PI);
+    spinning = false;
+    spinCount++;
+    currentIdx = indexSousPointeur(angle);
+    highlight = currentIdx;
+    drawWheel(angle);
+    if (window.EcoFx) { try { EcoFx.good(); } catch (e) {} }
+    showResult(ASTUCES[currentIdx]);
+    document.getElementById('spin-btn').disabled = spinCount >= maxSpins;
+    document.getElementById('spin-count').textContent = spinCount;
+    document.getElementById('spins-left').textContent = Math.max(0, maxSpins - spinCount);
+    if (spinCount >= maxSpins) setTimeout(afficherFin, 400);
   }
   requestAnimationFrame(animate);
 }
 
-function getResult() {
-  const normalized = ((2 * Math.PI - (angle % (2 * Math.PI))) + Math.PI / 2) % (2 * Math.PI);
-  const idx = Math.floor(normalized / arc) % N;
-  return ASTUCES[idx];
-}
+function getResult() { return ASTUCES[indexSousPointeur(angle)]; }
+
+function dejaDansPlan(a) { return plan.indexOf(a.title) !== -1; }
 
 function showResult(astuce) {
   currentResult = astuce;
-  totalSavings += astuce.saving;
-
+  const deja = history.includes(astuce);
+  if (!deja) totalSavings += astuce.saving;
   document.getElementById('res-emoji').textContent = astuce.emoji;
   document.getElementById('res-cat').textContent = astuce.cat;
   document.getElementById('res-cat').style.color = astuce.color;
   document.getElementById('res-title').textContent = astuce.title;
-  document.getElementById('res-saving').textContent = astuce.saving.toLocaleString('fr-FR') + '€';
+  animerNombre(document.getElementById('res-saving'), astuce.saving, ' €');
   document.getElementById('res-tip').textContent = astuce.tip;
+  const lien = document.getElementById('res-lien');
+  if (astuce.lien) { lien.href = astuce.lien; lien.textContent = '🔗 ' + astuce.lienTxt; lien.style.display = 'inline-block'; }
+  else lien.style.display = 'none';
+  majBoutonPlan();
+  animerNombre(document.getElementById('total-val'), totalSavings, ' €');
+  document.getElementById('total-sub').textContent = `${history.length + (deja ? 0 : 1)} astuce${history.length + (deja ? 0 : 1) > 1 ? 's' : ''} découverte${history.length + (deja ? 0 : 1) > 1 ? 's' : ''} : économies annuelles potentielles`;
+  const card = document.getElementById('result-card');
+  card.style.display = 'block';
+  card.style.borderColor = astuce.color;
+  if (!deja) addToHistory(astuce);
+  card.scrollIntoView({behavior:'smooth', block:'center'});
+}
 
-  document.getElementById('total-val').textContent = totalSavings.toLocaleString('fr-FR') + '€';
-  document.getElementById('total-sub').textContent = `En appliquant ${spinCount} astuce${spinCount > 1 ? 's' : ''} — économies annuelles potentielles`;
-
-  document.getElementById('result-card').style.display = 'block';
-  document.getElementById('result-card').style.borderColor = astuce.color;
-
-  addToHistory(astuce);
-  document.getElementById('result-card').scrollIntoView({behavior:'smooth', block:'center'});
+function animerNombre(el, cible, suffixe) {
+  const depart = parseInt((el.textContent || '0').replace(/\D/g, ''), 10) || 0;
+  const t0 = performance.now();
+  (function pas(now) {
+    const p = Math.min(1, (now - t0) / 600);
+    el.textContent = Math.round(depart + (cible - depart) * (1 - Math.pow(1 - p, 3))).toLocaleString('fr-FR') + suffixe;
+    if (p < 1) requestAnimationFrame(pas);
+  })(t0);
 }
 
 function addToHistory(astuce) {
   history.unshift(astuce);
+  renderHistory();
+}
+
+function renderHistory() {
   const list = document.getElementById('history-list');
+  if (!history.length) { list.innerHTML = '<div class="empty-history">Tournez la roue pour découvrir des astuces !</div>'; return; }
   list.innerHTML = history.map(a => `
     <div class="history-item">
       <span class="history-emoji">${a.emoji}</span>
-      <span class="history-title">${a.title}</span>
-      <span class="history-saving">${a.saving.toLocaleString('fr-FR')}€/an</span>
+      <span class="history-title">${a.title}${dejaDansPlan(a) ? ' <span class="in-plan">✓ dans mon plan</span>' : ''}</span>
+      <span class="history-saving">${a.saving.toLocaleString('fr-FR')} €/an</span>
     </div>
   `).join('');
 }
 
+function majBoutonPlan() {
+  const b = document.getElementById('btn-apply');
+  if (!currentResult || !b) return;
+  const inPlan = dejaDansPlan(currentResult);
+  b.textContent = inPlan ? '✓ Dans mon plan' : '✅ Je l\'applique !';
+  b.classList.toggle('on', inPlan);
+}
+
 function applyTip() {
-  if(currentResult) {
-    window.open(currentResult.article, '_blank');
-  }
+  if (!currentResult) return;
+  const t = currentResult.title;
+  if (dejaDansPlan(currentResult)) plan = plan.filter(x => x !== t); else plan.push(t);
+  ecrirePlan(plan);
+  if (window.EcoFx && dejaDansPlan(currentResult)) { try { EcoFx.win(); } catch (e) {} }
+  majBoutonPlan(); renderHistory(); renderPlan();
+}
+
+function renderPlan() {
+  const box = document.getElementById('mon-plan');
+  const items = ASTUCES.filter(a => dejaDansPlan(a));
+  if (!items.length) { box.style.display = 'none'; return; }
+  const total = items.reduce((s, a) => s + a.saving, 0);
+  box.style.display = 'block';
+  box.innerHTML = `<h3>🎯 Mon plan d'économies</h3>
+    <div class="plan-total">${total.toLocaleString('fr-FR')} €<small>/an si vous appliquez ces ${items.length} astuce${items.length > 1 ? 's' : ''}, soit ${Math.round(total / 12).toLocaleString('fr-FR')} €/mois</small></div>
+    ${items.map(a => `<div class="history-item"><span class="history-emoji">${a.emoji}</span><span class="history-title">${a.title}</span><button class="plan-del" onclick="retirerPlan('${a.title.replace(/'/g, "\\'")}')" aria-label="Retirer">✕</button></div>`).join('')}
+    <p class="plan-note">Votre plan est gardé sur cet appareil : revenez le compléter quand vous voulez.</p>`;
+}
+
+function retirerPlan(t) { plan = plan.filter(x => x !== t); ecrirePlan(plan); renderPlan(); renderHistory(); majBoutonPlan(); }
+
+function afficherFin() {
+  const fin = document.getElementById('roue-fin');
+  const nbPlan = history.filter(dejaDansPlan).length;
+  fin.innerHTML = `<div class="fin-emoji">🏁</div><h3>10 tours joués !</h3>
+    <p>Vous avez découvert <b>${history.length} astuces</b> pour un potentiel de <b>${totalSavings.toLocaleString('fr-FR')} €/an</b>.${nbPlan ? ` ${nbPlan} sont déjà dans votre plan.` : ' Ajoutez celles qui vous parlent à votre plan.'}</p>
+    <button class="spin-btn" onclick="rejouer()">🔄 Rejouer une partie</button>`;
+  fin.classList.add('show');
+  fin.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function rejouer() {
+  spinCount = 0; totalSavings = 0; history = []; currentResult = null; highlight = -1;
+  document.getElementById('roue-fin').classList.remove('show');
+  document.getElementById('result-card').style.display = 'none';
+  document.getElementById('spin-btn').disabled = false;
+  document.getElementById('spin-count').textContent = 0;
+  document.getElementById('spins-left').textContent = maxSpins;
+  document.getElementById('total-val').textContent = '0 €';
+  document.getElementById('total-sub').textContent = 'Tournez la roue pour commencer !';
+  renderHistory(); drawWheel(angle);
+  window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
 function shareTip() {
-  if(currentResult) {
-    const text = `🎡 J'ai découvert que "${currentResult.title}" peut m'économiser ${currentResult.saving.toLocaleString('fr-FR')}€/an ! Testez la Roue des Économies sur economya.fr`;
-    if(navigator.share) {
-      navigator.share({title:'Economya.fr', text, url:'https://economya.fr/roue-economies.html'});
+  if (currentResult) {
+    const text = `🎡 J'ai découvert que "${currentResult.title}" peut m'économiser ${currentResult.saving.toLocaleString('fr-FR')} €/an ! Testez la Roue des Économies sur economya.fr`;
+    if (navigator.share) {
+      navigator.share({title:'Economya.fr', text, url:'https://economya.fr/roue-economies'});
     } else {
-      navigator.clipboard.writeText(text).then(() => alert('Copié !'));
+      navigator.clipboard.writeText(text + ' https://economya.fr/roue-economies').then(() => alert('Copié !'));
     }
   }
 }
 
 drawWheel(0);
+renderPlan();
 </script>
 <script>function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}</script><div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
 <div style="max-width:1100px;margin:0 auto;">

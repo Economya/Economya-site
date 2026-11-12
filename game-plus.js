@@ -57,7 +57,8 @@
     "ton-annee-bons-plans": {"end": "#card-final"},
     "primo-accedant": {"end": "#report"},
     "ou-vivre-mieux": {"end": "#results.played"},
-    "calendrier-bons-plans": {"end": "#cal-bravo.show"}
+    "calendrier-bons-plans": {"end": "#cal-bravo.show"},
+    "roue-economies": {"end": "#roue-fin.show"}
   };
 
   var KEY_MED = "economya_medailles", KEY_SND = "economya_son";
