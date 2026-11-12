@@ -59,6 +59,43 @@ html{overflow-y:scroll}
   .sosie-name{ font-family:'Space Grotesk',sans-serif; font-weight:900; font-size:21px; color:var(--gold); margin-bottom:4px; }
   .sosie-title{ font-size:12px; color:var(--ink-dim); margin-bottom:12px; font-style:italic; }
   .sosie-desc{ font-size:13.5px; color:var(--ink-dim); line-height:1.6; }
+  html{background:#08040E}
+  body{background-attachment:fixed}
+  :root{--star:#C77DFF}
+  .q-head{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:320px;margin-bottom:10px;font-size:12px;color:var(--ink-dim);font-weight:700}
+  .q-back{background:none;border:1px solid var(--panel-line);color:var(--ink-dim);border-radius:99px;padding:5px 12px;font:inherit;font-size:12px;cursor:pointer}
+  .q-text.in{animation:fadeIn .35s ease}
+  .option-btn{animation:fadeIn .3s ease both}
+  .option-btn.chosen{border-color:var(--gold)!important;background:rgba(199,125,255,.16)!important}
+  .cover{position:relative;width:100%;max-width:330px;border-radius:20px;padding:20px 18px 22px;margin-bottom:14px;overflow:hidden;background:linear-gradient(170deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1.5px solid var(--panel-line);box-shadow:0 20px 60px -20px var(--star)}
+  .cover::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,var(--star),transparent 60%);opacity:.28}
+  .cover>*{position:relative}
+  .cover-mast{font-family:Georgia,serif;font-weight:900;font-size:44px;letter-spacing:.02em;color:var(--star);line-height:1;text-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .cover-sub{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-dim);margin:4px 0 6px}
+  .cover-pct{position:absolute;top:84px;right:12px;width:74px;height:74px;border-radius:50%;background:var(--star);color:#1a0526;display:flex;flex-direction:column;align-items:center;justify-content:center;transform:rotate(12deg);box-shadow:0 6px 18px rgba(0,0,0,.35);animation:stampIn .6s .3s cubic-bezier(.3,1.6,.4,1) both}
+  .cover-pct b{font-family:'Space Grotesk',sans-serif;font-size:18px;line-height:1}
+  .cover-pct small{font-size:7.5px;font-weight:800;text-transform:uppercase;line-height:1.1;text-align:center}
+  .cover .sosie-emoji{font-size:96px;margin:6px 0 2px}
+  .cover-quote{font-family:Georgia,serif;font-style:italic;font-size:16px;margin-top:10px}
+  .cover-film{font-size:12px;color:var(--ink-dim);margin-top:6px}
+  .info-card{width:100%;max-width:330px;background:var(--panel);border:1px solid var(--panel-line);border-radius:18px;padding:14px;margin-bottom:12px;text-align:left}
+  .info-card .sosie-desc{margin-bottom:8px}
+  .info-row{display:flex;gap:10px;margin:8px 0}
+  .info-row>span{font-size:22px}
+  .info-row b,.ic-title{display:block;font-family:'Space Grotesk',sans-serif;font-size:14px;margin-bottom:2px}
+  .info-row p{font-size:13px;color:var(--ink-dim);line-height:1.5}
+  .duo{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;text-align:center}
+  .duo>span{font-size:34px}.duo .plus{font-size:20px;color:var(--ink-dim)}
+  .duo p{flex-basis:100%;font-size:13px;color:var(--ink-dim);line-height:1.5}
+  .duo b{color:var(--ink)}
+  .mix{display:grid;grid-template-columns:24px 1fr 70px 36px;gap:6px;align-items:center;margin:6px 0;font-size:12px}
+  .mix span:first-child{font-size:18px}.mix-n{color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.mix b{text-align:right}
+  .mix-bar{height:8px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}
+  .mix-bar i{display:block;height:100%;border-radius:99px;animation:barIn 1s ease both}
+  @keyframes barIn{from{width:0}}
+  @keyframes stampIn{from{transform:scale(.3) rotate(0);opacity:0}to{transform:rotate(12deg);opacity:1}}
+  .dl{margin-top:0;margin-bottom:6px}
+  #screen-result{justify-content:flex-start;padding-top:60px}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
@@ -83,12 +120,13 @@ html{overflow-y:scroll}
   <div class="screen active" id="screen-intro">
     <div class="eyebrow">Economya.fr · Personnalité</div>
     <h1 class="title">Le Sosie Célèbre <span>de ton Épargne</span></h1>
-    <p class="lede">Un mini quiz pour révéler quel personnage (inventé, promis) partage ton style d'épargne. Que du positif au menu.</p>
+    <p class="lede">7 questions pour découvrir quel personnage (inventé, promis) partage ton style d'épargne… et faire la une d'<b>Éco Star</b>, le magazine de ton épargne.</p>
     <button class="btn btn-primary" onclick="startQuiz()">Trouver mon sosie</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
   </div>
 
   <div class="screen" id="screen-quiz">
+    <div class="q-head"><button class="q-back" id="qBack" onclick="questionPrecedente()">← Retour</button><span id="qCount">1 / 7</span></div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
     <div class="q-text" id="qText"></div>
     <div class="options" id="qOptions"></div>
@@ -96,12 +134,24 @@ html{overflow-y:scroll}
 
   <div class="screen" id="screen-result">
     <div class="eyebrow">Ton sosie</div>
-    <div class="sosie-card">
+    <div class="cover">
+      <div class="cover-mast">ÉCO STAR</div>
+      <div class="cover-sub">Le magazine de ton épargne · <span id="coverMonth"></span></div>
+      <div class="cover-pct"><b id="coverPct">87 %</b><small>de ressemblance</small></div>
       <div class="sosie-emoji" id="sosieEmoji">🧙</div>
       <div class="sosie-name" id="sosieName">Le Sage du Village</div>
-      <div class="sosie-title" id="sosieTitle">— légende locale de la finance tranquille —</div>
-      <div class="sosie-desc" id="sosieDesc">On vient te demander conseil avant chaque grosse décision. Ta sagesse tranquille inspire confiance.</div>
+      <div class="sosie-title" id="sosieTitle">—</div>
+      <div class="cover-quote" id="coverReplique"></div>
+      <div class="cover-film" id="coverFilm"></div>
     </div>
+    <div class="info-card">
+      <p class="sosie-desc" id="sosieDesc"></p>
+      <div class="info-row"><span>✍️</span><div><b>Ta signature</b><p id="sosieSignature"></p></div></div>
+      <div class="info-row"><span>💡</span><div><b>Une piste pour toi</b><p id="sosiePiste"></p></div></div>
+    </div>
+    <div class="info-card duo" id="sosieDuo"></div>
+    <div class="info-card"><b class="ic-title">🎭 Tes ressemblances</b><div id="sosieMix"></div></div>
+    <button class="btn btn-ghost dl" onclick="telechargerUne()">⬇️ Télécharger ma une</button>
     <button class="btn btn-primary" onclick="shareResult()">Partager mon sosie</button>
     <button class="btn btn-ghost" onclick="startQuiz()">Refaire le test</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -112,45 +162,76 @@ html{overflow-y:scroll}
 <script>
 const QUESTIONS = [
   { text:"Face à une belle occasion inattendue, tu...", options:[
-    { label:"L'observes avant de bouger", scores:{sage:2} },
-    { label:"Fonces avec calcul", scores:{aventurier:1, strategist:1} },
-    { label:"Demandes l'avis d'un proche", scores:{genereux:2} },
-    { label:"Compares plusieurs options d'abord", scores:{strategist:2} } ]},
+    { label:"🔎 L'observes avant de bouger", scores:{sage:2} },
+    { label:"🚀 Fonces, mais avec un calcul en tête", scores:{aventurier:1, strategist:1} },
+    { label:"💬 Demandes l'avis d'un proche", scores:{genereux:2} },
+    { label:"📊 Compares plusieurs options d'abord", scores:{strategist:2} } ]},
   { text:"Ton style au quotidien, c'est plutôt...", options:[
-    { label:"Discret et efficace", scores:{strategist:2} },
-    { label:"Curieux et ouvert aux nouveautés", scores:{aventurier:2} },
-    { label:"Chaleureux, tu penses aussi aux autres", scores:{genereux:2} },
-    { label:"Calme et réfléchi", scores:{sage:2} } ]},
-  { text:"Un imprévu financier surgit, ta réaction ?", options:[
-    { label:"Tu gères ça avec sang-froid", scores:{sage:1, strategist:1} },
-    { label:"Tu y vois une occasion d'apprendre", scores:{aventurier:2} },
-    { label:"Tu t'assures que tout le monde va bien d'abord", scores:{genereux:2} },
-    { label:"Tu as déjà un plan B prêt", scores:{strategist:2} } ]},
+    { label:"🎯 Discret et efficace", scores:{strategist:2} },
+    { label:"🌍 Curieux et ouvert aux nouveautés", scores:{aventurier:2} },
+    { label:"🤗 Chaleureux, tu penses aussi aux autres", scores:{genereux:2} },
+    { label:"🍵 Calme et réfléchi", scores:{sage:2} } ]},
+  { text:"Un imprévu financier surgit. Ta réaction ?", options:[
+    { label:"🧊 Tu gères avec sang-froid", scores:{sage:1, strategist:1} },
+    { label:"📚 Tu y vois une occasion d'apprendre", scores:{aventurier:2} },
+    { label:"🫂 Tu vérifies d'abord que tout le monde va bien", scores:{genereux:2} },
+    { label:"🅱️ Tu as déjà un plan B prêt", scores:{strategist:2} } ]},
   { text:"Ce qui te motive le plus à épargner ?", options:[
-    { label:"La tranquillité d'esprit", scores:{sage:2} },
-    { label:"Les projets et aventures à venir", scores:{aventurier:2} },
-    { label:"Pouvoir aider ceux que tu aimes", scores:{genereux:2} },
-    { label:"Le plaisir d'avoir un plan qui marche", scores:{strategist:2} } ]},
+    { label:"😌 La tranquillité d'esprit", scores:{sage:2} },
+    { label:"🎒 Les projets et aventures à venir", scores:{aventurier:2} },
+    { label:"💝 Pouvoir aider ceux que tu aimes", scores:{genereux:2} },
+    { label:"✅ Le plaisir d'avoir un plan qui marche", scores:{strategist:2} } ]},
+  { text:"Ton week-end idéal ?", options:[
+    { label:"📖 Lecture et balade au calme", scores:{sage:2} },
+    { label:"🗺️ Une destination jamais vue", scores:{aventurier:2} },
+    { label:"🍽️ Un grand repas avec tes proches", scores:{genereux:2} },
+    { label:"🛠️ Avancer sur un projet perso", scores:{strategist:2} } ]},
+  { text:"Si tu étais une appli...", options:[
+    { label:"📝 Un carnet de notes", scores:{sage:2} },
+    { label:"🧭 Une carte du monde", scores:{aventurier:2} },
+    { label:"🎁 Une cagnotte entre amis", scores:{genereux:2} },
+    { label:"📈 Un tableur bien rangé", scores:{strategist:2} } ]},
+  { text:"Le compliment qu'on te fait le plus souvent ?", options:[
+    { label:"🦉 « Tu es de bon conseil »", scores:{sage:2} },
+    { label:"✨ « Tu es inspirant·e »", scores:{aventurier:2} },
+    { label:"💛 « Tu es adorable »", scores:{genereux:2} },
+    { label:"🗂️ « Tu es super organisé·e »", scores:{strategist:2} } ]},
 ];
 
+// Personnages inventés (aucune personne réelle)
 const SOSIES = {
-  sage: { emoji:'🧙', name:'Le Sage du Village', title:'légende locale de la finance tranquille', desc:"On vient te demander conseil avant chaque grosse décision. Ta sagesse tranquille inspire confiance à tout le monde." },
-  aventurier: { emoji:'🧭', name:"L'Aventurier Prudent", title:'explorateur qui garde toujours une carte de secours', desc:"Tu aimes explorer de nouvelles idées, mais jamais sans un filet de sécurité bien pensé. Le meilleur des deux mondes." },
-  genereux: { emoji:'🎁', name:"Le Généreux Épargnant", title:'celui qui pense toujours aussi aux autres', desc:"Ta gestion de l'argent n'oublie jamais ceux que tu aimes. Une générosité qui reste toujours réfléchie." },
-  strategist: { emoji:'♟️', name:'Le Stratège Discret', title:'joueur d\u2019échecs de la vie quotidienne', desc:"Tu vois toujours plusieurs coups à l'avance. Ta discipline tranquille finit toujours par payer." },
+  sage: { emoji:'🧙', name:'Le Sage du Village', title:'légende locale de la finance tranquille', couleur:'#a78bfa',
+    desc:"On vient te demander ton avis avant chaque grosse décision. Ta sagesse tranquille inspire confiance à tout le monde.",
+    replique:"« Dormons dessus, on décidera demain. »", film:"La Force Tranquille", signature:"Une épargne de précaution toujours là au bon moment.",
+    piste:"Ta prudence est un atout. Pense juste à fixer une date de décision pour ne pas laisser passer tes projets." },
+  aventurier: { emoji:'🧭', name:"L'Aventurier Prudent", title:'explorateur qui garde toujours une carte de secours', couleur:'#38bdf8',
+    desc:"Tu aimes explorer de nouvelles idées, mais jamais sans un filet de sécurité bien pensé. Le meilleur des deux mondes.",
+    replique:"« On y va… mais j'ai vérifié la météo. »", film:"L'Odyssée du Budget", signature:"Une cagnotte dédiée à chaque aventure.",
+    piste:"Une épargne par projet (voyage, matériel…) alimentée automatiquement rend chaque aventure plus sereine." },
+  genereux: { emoji:'🎁', name:"Le Généreux Épargnant", title:'celui qui pense toujours aussi aux autres', couleur:'#f472b6',
+    desc:"Ta gestion de l'argent n'oublie jamais ceux que tu aimes. Une générosité qui reste toujours réfléchie.",
+    replique:"« Et toi, ça va ? »", film:"Le Cœur sur la Main", signature:"Une enveloppe cadeaux et entraide prévue à l'avance.",
+    piste:"Une enveloppe « générosité » dans ton budget te permet de donner sans te mettre en difficulté. Bon à savoir : certains dons à des associations ouvrent droit à une réduction d'impôt." },
+  strategist: { emoji:'♟️', name:'Le Stratège Discret', title:'joueur d’échecs de la vie quotidienne', couleur:'#facc15',
+    desc:"Tu vois toujours plusieurs coups à l'avance. Ta discipline tranquille finit toujours par payer.",
+    replique:"« J'ai un tableau pour ça. »", film:"Échec et Mat aux Dépenses", signature:"Un budget suivi au centime près.",
+    piste:"Automatise ce qui peut l'être (virements, factures) : ton plan tournera même quand tu seras occupé·e." },
 };
+const CLES = Object.keys(SOSIES);
 
-let currentQ = 0;
-let scores = {};
+let currentQ = 0, choix = [], ordres = [], scores = {};
+function melanger(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function fx(n){ if (window.EcoFx) { try { EcoFx[n](); } catch (e) {} } }
 
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0});
 }
 
 function startQuiz(){
-  currentQ = 0;
-  scores = { sage:0, aventurier:0, genereux:0, strategist:0 };
+  currentQ = 0; choix = [];
+  ordres = QUESTIONS.map(q => melanger(q.options));
   showScreen('screen-quiz');
   renderQuestion();
 }
@@ -158,45 +239,93 @@ function startQuiz(){
 function renderQuestion(){
   const q = QUESTIONS[currentQ];
   document.getElementById('progressFill').style.width = (currentQ/QUESTIONS.length*100)+'%';
-  document.getElementById('qText').textContent = q.text;
+  document.getElementById('qCount').textContent = (currentQ + 1) + ' / ' + QUESTIONS.length;
+  document.getElementById('qBack').style.visibility = currentQ > 0 ? 'visible' : 'hidden';
+  const qt = document.getElementById('qText'); qt.textContent = q.text;
+  qt.classList.remove('in'); void qt.offsetWidth; qt.classList.add('in');
   const opts = document.getElementById('qOptions');
   opts.innerHTML = '';
-  q.options.forEach(o=>{
+  ordres[currentQ].forEach((o, i) => {
     const btn = document.createElement('button');
-    btn.className = 'option-btn';
+    btn.className = 'option-btn' + (choix[currentQ] === o ? ' chosen' : '');
+    btn.style.animationDelay = (i * 60) + 'ms';
     btn.textContent = o.label;
-    btn.addEventListener('click', ()=>selectOption(o));
+    btn.addEventListener('click', () => selectOption(o, btn));
     opts.appendChild(btn);
   });
 }
 
-function selectOption(option){
-  Object.keys(option.scores).forEach(k=>{ scores[k] = (scores[k]||0) + option.scores[k]; });
-  currentQ++;
-  if(currentQ >= QUESTIONS.length){ revealSosie(); return; }
-  renderQuestion();
+function selectOption(option, btn){
+  choix[currentQ] = option;
+  btn.classList.add('chosen'); fx('tap');
+  setTimeout(() => {
+    currentQ++;
+    if (currentQ >= QUESTIONS.length) { revealSosie(); return; }
+    renderQuestion();
+  }, 200);
 }
+function questionPrecedente(){ if (currentQ > 0) { currentQ--; renderQuestion(); } }
 
 function revealSosie(){
-  let best = 'sage', bestScore = -1;
-  Object.keys(scores).forEach(k=>{ if(scores[k] > bestScore){ bestScore = scores[k]; best = k; } });
-  const sosie = SOSIES[best];
+  scores = { sage:0, aventurier:0, genereux:0, strategist:0 };
+  choix.forEach(o => Object.keys(o.scores).forEach(k => { scores[k] += o.scores[k]; }));
+  const max = Math.max(...Object.values(scores));
+  const exaequo = CLES.filter(k => scores[k] === max);
+  let best = exaequo[0];
+  for (let i = choix.length - 1; i >= 0 && exaequo.length > 1; i--) {
+    const k = Object.keys(choix[i].scores).sort((a, b) => choix[i].scores[b] - choix[i].scores[a])[0];
+    if (exaequo.includes(k)) { best = k; break; }
+  }
+  const total = Object.values(scores).reduce((a, b) => a + b, 0) || 1;
+  const pct = k => Math.round(scores[k] / total * 100);
+  const duo = CLES.filter(k => k !== best).sort((a, b) => scores[b] - scores[a])[0];
+  const sosie = SOSIES[best], s2 = SOSIES[duo];
+  const ressemblance = Math.min(99, 55 + Math.round(pct(best) * 0.45));
 
+  document.documentElement.style.setProperty('--star', sosie.couleur);
+  document.getElementById('coverMonth').textContent = new Date().toLocaleDateString('fr-FR', {month:'long', year:'numeric'}).toUpperCase();
   document.getElementById('sosieEmoji').textContent = sosie.emoji;
   document.getElementById('sosieName').textContent = sosie.name;
-  document.getElementById('sosieTitle').textContent = '— '+sosie.title+' —';
+  document.getElementById('sosieTitle').textContent = '— ' + sosie.title + ' —';
   document.getElementById('sosieDesc').textContent = sosie.desc;
+  document.getElementById('coverPct').textContent = ressemblance + ' %';
+  document.getElementById('coverReplique').textContent = sosie.replique;
+  document.getElementById('coverFilm').textContent = '🎬 « ' + sosie.film + ' »';
+  document.getElementById('sosieSignature').textContent = sosie.signature;
+  document.getElementById('sosiePiste').textContent = sosie.piste;
+  document.getElementById('sosieMix').innerHTML = CLES.slice().sort((a, b) => scores[b] - scores[a]).map(k => `<div class="mix"><span>${SOSIES[k].emoji}</span><span class="mix-n">${SOSIES[k].name}</span><div class="mix-bar"><i style="width:${pct(k)}%;background:${SOSIES[k].couleur}"></i></div><b>${pct(k)}%</b></div>`).join('');
+  document.getElementById('sosieDuo').innerHTML = `<span>${sosie.emoji}</span><span class="plus">+</span><span>${s2.emoji}</span><p>Ton duo de stars : <b>${sosie.name}</b> et une touche de <b>${s2.name}</b>. ${s2.signature}</p>`;
 
-  window._sosieResult = sosie;
+  window._sosieResult = Object.assign({key: best, ressemblance}, sosie);
   showScreen('screen-result');
+  fx('win');
+}
+
+function telechargerUne(){
+  const s = window._sosieResult; if (!s) return;
+  const c = document.createElement('canvas'); c.width = 1080; c.height = 1920;
+  const g = c.getContext('2d');
+  const gr = g.createLinearGradient(0, 0, 1080, 1920); gr.addColorStop(0, '#1E1030'); gr.addColorStop(1, '#08040E');
+  g.fillStyle = gr; g.fillRect(0, 0, 1080, 1920);
+  const rg = g.createRadialGradient(540, 820, 40, 540, 820, 520); rg.addColorStop(0, s.couleur + 'cc'); rg.addColorStop(1, s.couleur + '00');
+  g.fillStyle = rg; g.fillRect(0, 250, 1080, 1150);
+  g.textAlign = 'center'; g.fillStyle = s.couleur; g.font = '900 150px Georgia, serif'; g.fillText('ÉCO STAR', 540, 230);
+  g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '600 36px system-ui, sans-serif'; g.fillText('LE MAGAZINE DE TON ÉPARGNE · ' + document.getElementById('coverMonth').textContent, 540, 300);
+  g.font = '340px system-ui, sans-serif'; g.fillText(s.emoji, 540, 900);
+  g.fillStyle = '#fff'; g.font = '900 86px Georgia, serif'; g.fillText(s.name, 540, 1130);
+  g.fillStyle = 'rgba(255,255,255,.85)'; g.font = 'italic 500 48px Georgia, serif'; g.fillText(s.replique, 540, 1230);
+  g.fillStyle = s.couleur; g.font = '900 120px system-ui, sans-serif'; g.fillText(s.ressemblance + ' %', 540, 1430);
+  g.fillStyle = 'rgba(255,255,255,.75)'; g.font = '600 40px system-ui, sans-serif'; g.fillText('de ressemblance', 540, 1490);
+  g.fillStyle = 'rgba(255,255,255,.75)'; g.font = '600 44px system-ui, sans-serif'; g.fillText('Trouve ton sosie sur economya.fr', 540, 1780);
+  c.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'mon-sosie-eco-star.png'; document.body.appendChild(a); a.click(); a.remove(); }, 'image/png');
 }
 
 function shareResult(){
   const s = window._sosieResult;
   const text = s
-    ? `Mon sosie financier est ${s.emoji} ${s.name} sur Economya.fr ! Découvre le tien sur Le Sosie Célèbre de ton Épargne :`
+    ? `Mon sosie d'épargne est ${s.emoji} ${s.name} (${s.ressemblance} % de ressemblance) ! Réplique culte : ${s.replique} Découvre le tien sur Economya.fr`
     : `Découvre ton sosie financier sur Economya.fr 🎭`;
-  const url = 'https://economya.fr';
+  const url = 'https://economya.fr/le-sosie-celebre-de-ton-epargne';
   if(navigator.share){ navigator.share({title:'Le Sosie Célèbre de ton Épargne', text, url}).catch(()=>{}); }
   else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
 }

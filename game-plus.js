@@ -52,16 +52,18 @@
     "tas-combien-dans-les-mains": {"end": "#screen-result", "score": "#finalPct", "m": [50, 70, 85], "u": "%"},
     "pile-ou-face-financier": {"end": "#screen-result"},
     "aura-financiere": {"end": "#result"},
-    "le-sosie-celebre-de-ton-epargne": {"end": "#screen-result"},
-    "ton-totem-financier": {"end": "#screen-result"},
-    "ton-annee-bons-plans": {"end": "#card-final"},
+    "le-sosie-celebre-de-ton-epargne": {"end": "#screen-result.active"},
+    "ton-totem-financier": {"end": "#screen-result.active"},
+    "ton-annee-bons-plans": {"end": "#card-final.active"},
     "primo-accedant": {"end": "#report"},
     "ou-vivre-mieux": {"end": "#results.played"},
     "calendrier-bons-plans": {"end": "#cal-bravo.show"},
     "roue-economies": {"end": "#roue-fin.show"},
     "jackpot-finance": {"end": "#jp-fin.show"},
     "finance-wrapped": {"end": "#slide-6.active"},
-    "la-machine-a-reves": {"end": "#screen-reveal.active"}
+    "la-machine-a-reves": {"end": "#screen-reveal.active"},
+    "le-trophee-du-jour": {"end": "#screen-trophy.active"},
+    "le-mur-des-bravos": {"end": "#milestone.show"}
   };
 
   var KEY_MED = "economya_medailles", KEY_SND = "economya_son";
@@ -232,6 +234,7 @@
       h += '<a href="/' + g[0] + '" style="background:rgba(127,127,127,.16);border:1px solid rgba(127,127,127,.38);color:inherit;border-radius:999px;padding:7px 12px;font-size:12.5px;font-weight:600;text-decoration:none;line-height:1.2">' + ICON[g[2]] + " " + g[1] + "</a>";
     });
     h += "</div>";
+    h += '<div style="margin-top:12px;font-size:10.5px;opacity:.6;line-height:1.4">🎓 Jeu pédagogique : informations générales, sans valeur de conseil personnalisé. Economya n\'est pas un conseiller financier agréé.</div>';
     box.innerHTML = h;
     var end = q(cfg.end), at = q(cfg.at);
     if (at && at.parentNode) at.parentNode.insertBefore(box, at.nextSibling);

@@ -32,7 +32,7 @@ html{overflow-y:scroll}
   }
   .card.active{ display:flex; animation:cardIn .4s cubic-bezier(.2,.8,.3,1); }
   @keyframes cardIn{ from{opacity:0; transform:scale(.95);} to{opacity:1; transform:scale(1);} }
-  .progress-dots{ position:absolute; top:16px; left:16px; right:16px; display:flex; gap:5px; z-index:5; }
+  .progress-dots{ position:absolute; top:16px; left:16px; right:104px; display:flex; gap:5px; z-index:5; }
   .dot{ flex:1; height:4px; border-radius:99px; background:rgba(255,255,255,.2); overflow:hidden; }
   .dot.done{ background:var(--gold); }
   .dot.current::after{ content:''; display:block; height:100%; background:var(--gold); animation:fillDot 4s linear forwards; }
@@ -56,6 +56,31 @@ html{overflow-y:scroll}
   .badge{ background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:12px; padding:10px 12px; font-size:12px; font-weight:700; }
 
   .lede{color:var(--ink-dim); font-size:14px; line-height:1.55; margin-bottom:22px; max-width:320px;}
+  .float{animation:tabFloat 2.4s ease-in-out infinite}
+  @keyframes tabFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .pop{animation:tabPop .45s cubic-bezier(.2,1.6,.4,1)}
+  @keyframes tabPop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
+  .q-btns{display:flex;flex-direction:column;align-items:center;width:100%;max-width:300px;margin-top:6px}
+  .q-btns .btn{width:100%}
+  .q-back{position:absolute;bottom:22px;background:none;border:none;color:var(--ink-dim);font:inherit;font-size:13px;cursor:pointer}
+  .wrapc{cursor:pointer}
+  .ring{position:relative;width:150px;height:150px;margin-bottom:16px}
+  .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .ring circle{fill:none;stroke-width:10}
+  .ring-bg{stroke:rgba(255,255,255,.12)}
+  .ring-fg{stroke:var(--good);stroke-linecap:round;transition:stroke-dashoffset 1.1s ease}
+  .ring-txt{position:absolute;inset:0;display:flex;align-items:baseline;justify-content:center;padding-top:48px}
+  .ring-txt b{font-family:'Space Grotesk',sans-serif;font-size:46px;font-weight:900;color:var(--good)}
+  .ring-txt small{font-size:16px;color:var(--ink-dim);margin-left:3px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px;max-width:320px}
+  .chip{background:rgba(61,220,132,.12);border:1px solid rgba(61,220,132,.35);border-radius:99px;padding:5px 10px;font-size:12px;font-weight:600;animation:tabPop .4s ease both}
+  .badge-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:340px;margin:10px 0}
+  .badge{background:rgba(255,255,255,.05);border:1px dashed rgba(255,255,255,.18);border-radius:12px;padding:10px 8px;font-size:12px;font-weight:700;color:rgba(255,255,255,.45);animation:tabPop .4s ease both}
+  .badge.on{background:rgba(255,201,75,.12);border:1px solid rgba(255,201,75,.5);color:var(--ink)}
+  .prev-year{margin-top:14px;font-size:12px;color:var(--ink-dim)}
+  #defiTxt a{color:var(--gold);font-weight:700}
+  #defiTxt b{color:var(--ink)}
+  @media(max-height:640px){.big-emoji{font-size:44px;margin-bottom:8px}.ring{width:120px;height:120px}.ring-txt{padding-top:36px}}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
@@ -79,65 +104,72 @@ html{overflow-y:scroll}
   <div class="progress-dots" id="progressDots" style="display:none;"></div>
 
   <div class="card active" id="card-intro">
-    <div class="eyebrow">Economya.fr · Récap</div>
-    <div class="big-emoji">🎉</div>
+    <div class="eyebrow">Economya.fr · Récap <span class="an"></span></div>
+    <div class="big-emoji float">🎉</div>
     <h1 class="card-title">Ton Année <span>Bons Plans</span></h1>
-    <p class="lede">Réponds à 3 petites questions et découvre ton récap ludique de l'année — que des bonnes nouvelles.</p>
+    <p class="lede">8 petits gestes malins, 8 réponses rapides : découvre tes économies estimées de l'année, tes badges et ton défi pour l'an prochain.</p>
     <button class="btn btn-primary" onclick="startQuiz()">Découvrir mon récap</button>
+    <div class="prev-year" id="prevYear"></div>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
   </div>
 
-  <div class="card" id="card-q1">
-    <div class="eyebrow">Question 1/3</div>
-    <div class="card-title">As-tu résilié un abonnement inutile cette année ?</div>
-    <button class="btn btn-primary" onclick="answer('q1', true)">Oui, au moins une fois</button>
-    <button class="btn btn-ghost" onclick="answer('q1', false)">Pas encore</button>
+  <div class="card" id="card-q">
+    <div class="eyebrow" id="qNum">Geste 1/8</div>
+    <div class="big-emoji pop" id="qEmoji">✂️</div>
+    <div class="card-title" id="qText">—</div>
+    <div class="card-sub" id="qHint">—</div>
+    <div class="q-btns">
+      <button class="btn btn-primary" onclick="answer(true)">✅ Oui</button>
+      <button class="btn btn-ghost" onclick="answer(false)">Pas encore</button>
+    </div>
+    <button class="q-back" id="qBack" onclick="questionPrecedente()">← Retour</button>
   </div>
 
-  <div class="card" id="card-q2">
-    <div class="eyebrow">Question 2/3</div>
-    <div class="card-title">Compares-tu les prix avant un gros achat ?</div>
-    <button class="btn btn-primary" onclick="answer('q2', true)">Souvent</button>
-    <button class="btn btn-ghost" onclick="answer('q2', false)">Rarement</button>
-  </div>
-
-  <div class="card" id="card-q3">
-    <div class="eyebrow">Question 3/3</div>
-    <div class="card-title">As-tu mis un peu d'argent de côté ce mois-ci ?</div>
-    <button class="btn btn-primary" onclick="answer('q3', true)">Oui</button>
-    <button class="btn btn-ghost" onclick="answer('q3', false)">Pas ce mois-ci</button>
-  </div>
-
-  <div class="card" id="wrap-1" onclick="nextWrap()">
-    <div class="eyebrow">Ton année en chiffres</div>
-    <div class="big-emoji">🏷️</div>
-    <div class="card-title">Tu as l'œil pour <span>les bons plans</span></div>
-    <div class="card-stat" id="statBonsPlans">12</div>
-    <div class="card-sub">occasions estimées où ta vigilance t'a fait éviter une dépense inutile cette année.</div>
+  <div class="card wrapc" id="wrap-1" onclick="nextWrap()">
+    <div class="eyebrow">Ton année en gestes</div>
+    <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="ring-bg"/><circle cx="60" cy="60" r="52" class="ring-fg" id="ringFg"/></svg><div class="ring-txt"><b id="statGestes">0</b><small>/ 8</small></div></div>
+    <div class="card-title">gestes malins <span>cette année</span></div>
+    <div class="card-sub" id="gestesSub">—</div>
     <div class="tap-hint">Touchez pour continuer →</div>
   </div>
 
-  <div class="card" id="wrap-2" onclick="nextWrap()">
+  <div class="card wrapc" id="wrap-2" onclick="nextWrap()">
+    <div class="eyebrow">Tes économies estimées</div>
+    <div class="big-emoji">💸</div>
+    <div class="card-stat" id="statEco">0 €</div>
+    <div class="card-sub">sur l'année, grâce à tes bons réflexes (estimation indicative)</div>
+    <div class="chips" id="ecoChips"></div>
+    <div class="tap-hint">Touchez pour continuer →</div>
+  </div>
+
+  <div class="card wrapc" id="wrap-3" onclick="nextWrap()">
     <div class="eyebrow">Ton style</div>
-    <div class="big-emoji" id="styleEmoji">🦉</div>
-    <div class="card-title">Ton profil de l'année :<br><span id="styleLabel">L'Épargnant Attentif</span></div>
-    <div class="card-sub" id="styleDesc">Toujours un œil sur ses finances, sans jamais se priver de l'essentiel.</div>
+    <div class="big-emoji float" id="styleEmoji">🦉</div>
+    <div class="card-title">Ton profil de l'année :<br><span id="styleLabel">—</span></div>
+    <div class="card-sub" id="styleDesc">—</div>
     <div class="tap-hint">Touchez pour continuer →</div>
   </div>
 
-  <div class="card" id="wrap-3" onclick="nextWrap()">
+  <div class="card wrapc" id="wrap-4" onclick="nextWrap()">
     <div class="eyebrow">Tes badges</div>
-    <div class="big-emoji">🏅</div>
     <div class="card-title">Débloqués <span>cette année</span></div>
-    <div class="badge-row" id="badgeRow"></div>
+    <div class="badge-grid" id="badgeRow"></div>
+    <div class="tap-hint">Touchez pour continuer →</div>
+  </div>
+
+  <div class="card wrapc" id="wrap-5" onclick="nextWrap()">
+    <div class="eyebrow">Ton défi pour <span class="an1"></span></div>
+    <div class="big-emoji pop" id="defiEmoji">🎯</div>
+    <div class="card-title" id="defiTitre">—</div>
+    <div class="card-sub" id="defiTxt">—</div>
     <div class="tap-hint">Touchez pour continuer →</div>
   </div>
 
   <div class="card" id="card-final">
     <div class="eyebrow">Bravo !</div>
-    <div class="big-emoji">🎊</div>
-    <div class="card-title">Ton année a été <span>plutôt belle</span></div>
-    <p class="lede">Continue sur cette lancée l'année prochaine — chaque petit geste compte.</p>
+    <div class="big-emoji float">🎊</div>
+    <div class="card-title" id="finalTitre">Ton année a été <span>plutôt belle</span></div>
+    <p class="lede" id="finalTxt">Continue sur cette lancée l'année prochaine : chaque petit geste compte.</p>
     <button class="btn btn-primary" onclick="shareResult()">Partager mon récap</button>
     <button class="btn btn-ghost" onclick="restart()">Recommencer</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -145,73 +177,134 @@ html{overflow-y:scroll}
 </div>
 
 <script>
-const ORDER = ['card-intro','card-q1','card-q2','card-q3','wrap-1','wrap-2','wrap-3','card-final'];
-let currentIdx = 0;
-let answers = { q1:null, q2:null, q3:null };
+// Chaque geste : estimation indicative d'économie annuelle (0 = geste utile mais non chiffré)
+const GESTES = [
+  {id:'abo',    emoji:'✂️', q:'As-tu résilié au moins un abonnement inutile cette année ?', hint:'Streaming, salle de sport, appli, magazine…', eco:120, badge:'🎉 Chasseur d\'abonnements', defi:'Fais la liste de tous tes prélèvements mensuels et coupe ce que tu n\'utilises plus.'},
+  {id:'compare',emoji:'🔍', q:'Compares-tu les prix avant un gros achat ?', hint:'Comparateurs, historique des prix, avis…', eco:100, badge:'🔍 Comparateur pro', defi:'Avant tout achat de plus de 100 €, compare au moins 3 offres et regarde l\'historique des prix.'},
+  {id:'epargne',emoji:'🐷', q:'As-tu mis de l\'argent de côté régulièrement ?', hint:'Même 10 € par mois, ça compte !', eco:0, badge:'🐷 Épargnant régulier', defi:'Programme un virement automatique vers ton épargne le jour de la paie, même petit.'},
+  {id:'telecom',emoji:'📱', q:'As-tu changé ou renégocié ton forfait mobile ou ta box ?', hint:'Offre moins chère, appel au service client…', eco:150, badge:'📱 Négociateur télécom', defi:'Compare ton forfait mobile et ta box : les offres sans engagement baissent souvent.', lien:'/forfaits-5g-pas-cher'},
+  {id:'assur',  emoji:'🛡️', q:'As-tu comparé tes assurances (auto, habitation…) ?', hint:'Depuis la loi Hamon, on peut changer après 1 an.', eco:150, badge:'🛡️ Assuré malin', defi:'À la prochaine échéance, demande 2 ou 3 devis d\'assurance : 15 minutes peuvent faire gagner beaucoup.'},
+  {id:'occasion',emoji:'♻️', q:'As-tu acheté d\'occasion ou reconditionné ?', hint:'Vêtements, téléphone, meubles, électroménager…', eco:150, badge:'♻️ Pro de la seconde main', defi:'Pour ton prochain achat d\'équipement, regarde d\'abord le reconditionné ou l\'occasion.'},
+  {id:'midi',   emoji:'🍱', q:'As-tu souvent apporté ton déjeuner au travail ou en cours ?', hint:'Batch cooking, restes de la veille…', eco:500, badge:'🍱 Chef du midi', defi:'Essaie d\'apporter ton déjeuner 2 jours par semaine : c\'est déjà plusieurs centaines d\'euros par an.'},
+  {id:'revente',emoji:'🏷️', q:'As-tu revendu des objets dont tu ne te servais plus ?', hint:'Vêtements, jeux, high-tech, meubles…', eco:200, badge:'🏷️ Vendeur malin', defi:'Fais le tour de tes placards : ce qui dort peut financer un projet.'},
+];
+const ANNEE = new Date().getMonth() < 2 ? new Date().getFullYear() - 1 : new Date().getFullYear();
+const ORDER = ['card-intro','card-q','wrap-1','wrap-2','wrap-3','wrap-4','wrap-5','card-final'];
+let currentIdx = 0, qIdx = 0, answers = [];
+let resultat = null;
+document.querySelectorAll('.an').forEach(e => e.textContent = ANNEE);
+document.querySelectorAll('.an1').forEach(e => e.textContent = ANNEE + 1);
+const eur = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+function fx(n){ if (window.EcoFx) { try { EcoFx[n](); } catch (e) {} } }
+
+(function precedent(){
+  try {
+    const p = JSON.parse(localStorage.getItem('economya_annee_bons_plans'));
+    if (p && p.annee) document.getElementById('prevYear').textContent = `Ton dernier récap (${p.annee}) : ${p.gestes}/8 gestes, ≈ ${eur(p.eco)} économisés.`;
+  } catch (e) {}
+})();
 
 function showCard(id){
   document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const el = document.getElementById(id);
+  el.classList.add('active');
+  const i = ORDER.indexOf(id), dots = document.getElementById('progressDots');
+  if (i >= 2 && i <= 6) {
+    dots.style.display = 'flex';
+    dots.innerHTML = [2,3,4,5,6].map(k => `<div class="dot ${k < i ? 'done' : k === i ? 'current' : ''}"></div>`).join('');
+  } else dots.style.display = 'none';
+  if (id === 'wrap-1') animerAnneau();
+  if (id === 'wrap-2') compter(document.getElementById('statEco'), resultat.eco, ' €');
+  if (id === 'wrap-4') fx('good');
+  if (id === 'card-final') fx('win');
 }
 
-function startQuiz(){
-  currentIdx = 1;
-  showCard(ORDER[currentIdx]);
+function startQuiz(){ currentIdx = 1; qIdx = 0; answers = []; afficherQuestion(); showCard('card-q'); }
+
+function afficherQuestion(){
+  const g = GESTES[qIdx];
+  document.getElementById('qNum').textContent = `Geste ${qIdx + 1}/${GESTES.length}`;
+  const em = document.getElementById('qEmoji'); em.textContent = g.emoji;
+  em.classList.remove('pop'); void em.offsetWidth; em.classList.add('pop');
+  document.getElementById('qText').textContent = g.q;
+  document.getElementById('qHint').textContent = g.hint;
+  document.getElementById('qBack').style.visibility = qIdx > 0 ? 'visible' : 'hidden';
 }
 
-function answer(q, val){
-  answers[q] = val;
-  currentIdx++;
-  if(ORDER[currentIdx].startsWith('wrap-1')) prepareWrapped();
-  showCard(ORDER[currentIdx]);
+function answer(val){
+  answers[qIdx] = val;
+  fx(val ? 'good' : 'tap');
+  qIdx++;
+  if (qIdx < GESTES.length) { afficherQuestion(); return; }
+  prepareWrapped();
+  currentIdx = 2; showCard(ORDER[currentIdx]);
 }
+function questionPrecedente(){ if (qIdx > 0) { qIdx--; afficherQuestion(); } }
 
 function nextWrap(){
   currentIdx++;
-  if(currentIdx >= ORDER.length) return;
+  if (currentIdx >= ORDER.length) return;
   showCard(ORDER[currentIdx]);
 }
 
+function compter(el, cible, suffixe){
+  const t0 = performance.now();
+  (function pas(now){ const p = Math.min(1, (now - t0) / 1000); el.textContent = Math.round(cible * (1 - Math.pow(1 - p, 3))).toLocaleString('fr-FR') + suffixe; if (p < 1) requestAnimationFrame(pas); })(t0);
+}
+function animerAnneau(){
+  const n = resultat.gestes, c = 2 * Math.PI * 52;
+  const fg = document.getElementById('ringFg');
+  fg.style.strokeDasharray = c; fg.style.strokeDashoffset = c;
+  requestAnimationFrame(() => requestAnimationFrame(() => { fg.style.strokeDashoffset = c * (1 - n / GESTES.length); }));
+  compter(document.getElementById('statGestes'), n, '');
+}
+
 function prepareWrapped(){
-  const yesCount = Object.values(answers).filter(v=>v===true).length;
-  const bonsPlans = 4 + yesCount*6 + Math.floor(Math.random()*4);
-  document.getElementById('statBonsPlans').textContent = bonsPlans;
+  const faits = GESTES.filter((g, i) => answers[i]);
+  const gestes = faits.length;
+  const eco = faits.reduce((s, g) => s + g.eco, 0);
+  document.getElementById('gestesSub').textContent = gestes === GESTES.length ? 'Sans faute, impressionnant !' : gestes >= 5 ? 'Une très belle année de réflexes malins.' : gestes >= 2 ? 'De bonnes bases, et de la marge pour progresser.' : 'Chaque année commence par un premier geste : le tien arrive !';
+  document.getElementById('ecoChips').innerHTML = faits.filter(g => g.eco).map(g => `<span class="chip">${g.emoji} ≈ ${eur(g.eco)}</span>`).join('') || '<span class="chip">🌱 La suite s\'annonce belle</span>';
 
   const profiles = [
-    { min:0, emoji:'🌱', label:"Le Débutant Motivé", desc:"Tu poses les bonnes bases, la suite s'annonce belle." },
-    { min:1, emoji:'🦉', label:"L'Épargnant Attentif", desc:"Toujours un œil sur ses finances, sans jamais se priver de l'essentiel." },
-    { min:2, emoji:'🦊', label:"Le Malin des Bons Plans", desc:"Tu sais reconnaître une bonne affaire à des kilomètres." },
-    { min:3, emoji:'🏆', label:"Le Champion de l'Année", desc:"Rigueur, régularité et flair : le trio gagnant est là." },
+    { min:0, emoji:'🌱', label:"Le Débutant Motivé", desc:"Tu poses les bonnes bases : la suite s'annonce belle." },
+    { min:2, emoji:'🦉', label:"L'Épargnant Attentif", desc:"Toujours un œil sur tes finances, sans te priver de l'essentiel." },
+    { min:4, emoji:'🦊', label:"Le Malin des Bons Plans", desc:"Tu sais reconnaître une bonne affaire à des kilomètres." },
+    { min:6, emoji:'🏆', label:"Le Champion de l'Année", desc:"Rigueur, régularité et flair : le trio gagnant est là." },
   ];
-  const profile = [...profiles].reverse().find(p=>yesCount>=p.min);
+  const profile = [...profiles].reverse().find(p => gestes >= p.min);
   document.getElementById('styleEmoji').textContent = profile.emoji;
   document.getElementById('styleLabel').textContent = profile.label;
   document.getElementById('styleDesc').textContent = profile.desc;
 
-  const allBadges = [
-    { cond:answers.q1, label:'🎉 Chasseur d\'abonnements' },
-    { cond:answers.q2, label:'🔍 Comparateur pro' },
-    { cond:answers.q3, label:'🐷 Petit épargnant' },
-    { cond:true, label:'✨ Présent toute l\'année' },
-  ];
-  const badgeRow = document.getElementById('badgeRow');
-  badgeRow.innerHTML = allBadges.filter(b=>b.cond).map(b=>`<div class="badge">${b.label}</div>`).join('');
+  document.getElementById('badgeRow').innerHTML = GESTES.map((g, i) => `<div class="badge ${answers[i] ? 'on' : ''}" style="animation-delay:${i * 70}ms">${answers[i] ? g.badge : '🔒 ' + g.badge.replace(/^\S+\s/, '')}</div>`).join('');
 
-  window._wrappedResult = { bonsPlans, profile };
+  const restants = GESTES.filter((g, i) => !answers[i]);
+  const defi = restants.sort((a, b) => b.eco - a.eco)[0];
+  if (defi) {
+    document.getElementById('defiEmoji').textContent = defi.emoji;
+    document.getElementById('defiTitre').innerHTML = `Débloque <span>${defi.badge.replace(/^\S+\s/, '')}</span>`;
+    document.getElementById('defiTxt').innerHTML = defi.defi + (defi.eco ? ` <br><b>Potentiel : ≈ ${eur(defi.eco)}/an.</b>` : '') + (defi.lien ? `<br><a href="${defi.lien}" onclick="event.stopPropagation()">🔗 L'outil Economya qui aide</a>` : '');
+  } else {
+    document.getElementById('defiEmoji').textContent = '👑';
+    document.getElementById('defiTitre').innerHTML = 'Garde <span>la couronne</span>';
+    document.getElementById('defiTxt').textContent = 'Tu as tout débloqué ! Ton défi : refaire aussi bien l\'an prochain… et partager tes astuces sur la communauté Economya.';
+  }
+  document.getElementById('finalTitre').innerHTML = gestes >= 4 ? 'Ton année a été <span>vraiment belle</span>' : 'Ton année a été <span>pleine de promesses</span>';
+  document.getElementById('finalTxt').textContent = `${gestes}/8 gestes malins et environ ${eur(eco)} d'économies estimées. Rendez-vous en ${ANNEE + 1} pour faire encore mieux !`;
+
+  resultat = { gestes, eco, profile };
+  try { localStorage.setItem('economya_annee_bons_plans', JSON.stringify({annee: ANNEE, gestes, eco})); } catch (e) {}
 }
 
-function restart(){
-  currentIdx = 0;
-  answers = { q1:null, q2:null, q3:null };
-  showCard(ORDER[0]);
-}
+function restart(){ currentIdx = 0; answers = []; showCard(ORDER[0]); }
 
 function shareResult(){
-  const r = window._wrappedResult;
+  const r = resultat;
   const text = r
-    ? `Mon année sur Economya.fr : ${r.bonsPlans} bons plans repérés et le profil "${r.profile.label}" ${r.profile.emoji} — découvre le tien sur Ton Année Bons Plans !`
+    ? `Mon année ${ANNEE} : ${r.gestes}/8 gestes malins, environ ${r.eco.toLocaleString('fr-FR')} € économisés et le profil "${r.profile.label}" ${r.profile.emoji} ! Découvre le tien sur Ton Année Bons Plans (Economya.fr)`
     : `Découvre ton récap positif de l'année sur Ton Année Bons Plans (Economya.fr) 🎉`;
-  const url = 'https://economya.fr';
+  const url = 'https://economya.fr/ton-annee-bons-plans';
   if(navigator.share){ navigator.share({title:'Ton Année Bons Plans', text, url}).catch(()=>{}); }
   else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
 }

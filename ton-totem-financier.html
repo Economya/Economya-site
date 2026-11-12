@@ -21,6 +21,8 @@ html{overflow-y:scroll}
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html,body{height:100%;}
+  html{background:#04120E}
+  body{background-attachment:fixed}
   body{
     background:radial-gradient(circle at 50% -10%, var(--bg-top) 0%, var(--bg-bottom) 65%);
     color:var(--ink); font-family:'Inter',system-ui,sans-serif;
@@ -60,6 +62,45 @@ html{overflow-y:scroll}
   .totem-desc{ font-size:13.5px; color:var(--ink-dim); line-height:1.6; }
   .totem-traits{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-top:14px; }
   .trait{ background:rgba(255,255,255,.08); border-radius:10px; padding:6px 10px; font-size:11.5px; font-weight:700; }
+  :root{--totem:#FFC94B}
+  .q-head{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:320px;margin-bottom:10px;font-size:12px;color:var(--ink-dim);font-weight:700}
+  .q-back{background:none;border:1px solid var(--panel-line);color:var(--ink-dim);border-radius:99px;padding:5px 12px;font:inherit;font-size:12px;cursor:pointer}
+  .mini-pole{display:flex;gap:4px;justify-content:center;min-height:30px;margin:-12px 0 14px;font-size:22px}
+  .mini-pole span{animation:popIn .35s ease both}
+  .q-text.in{animation:fadeIn .35s ease}
+  .option-btn{animation:fadeIn .3s ease both}
+  .option-btn.chosen{border-color:var(--gold)!important;background:rgba(255,201,75,.14)!important}
+  .totem-card{position:relative;overflow:hidden;box-shadow:0 0 60px -10px var(--totem)}
+  .totem-card::before{content:'';position:absolute;inset:-40%;background:radial-gradient(circle,var(--totem) 0%,transparent 55%);opacity:.18;animation:totemGlow 4s ease-in-out infinite}
+  @keyframes totemGlow{50%{opacity:.32;transform:scale(1.08)}}
+  .totem-card>*{position:relative}
+  .pole{display:flex;flex-direction:column-reverse;align-items:center;gap:0;font-size:26px;line-height:1.15;margin-bottom:4px}
+  .pole span{animation:poleIn .4s cubic-bezier(.3,1.5,.4,1) both;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+  @keyframes poleIn{from{transform:translateY(-30px) scale(.5);opacity:0}to{transform:none;opacity:1}}
+  .info-card{width:100%;max-width:320px;background:var(--panel);border:1px solid var(--panel-line);border-radius:18px;padding:14px;margin-bottom:12px;text-align:left}
+  .info-row{display:flex;gap:10px;margin:6px 0}
+  .info-row>span{font-size:22px}
+  .info-row b,.ic-title{display:block;font-family:'Space Grotesk',sans-serif;font-size:14px;margin-bottom:2px}
+  .info-row p{font-size:13px;color:var(--ink-dim);line-height:1.5}
+  .amis{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:320px;margin-bottom:12px}
+  .amis div{background:var(--panel);border:1px solid var(--panel-line);border-radius:16px;padding:10px}
+  .amis span{font-size:28px;display:block}.amis small{display:block;font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.06em}.amis b{font-size:12.5px}
+  .mix{display:grid;grid-template-columns:26px 1fr 38px;gap:8px;align-items:center;margin:5px 0;font-size:12px}
+  .mix span{font-size:18px}.mix b{text-align:right}
+  .mix-bar{height:8px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}
+  .mix-bar i{display:block;height:100%;border-radius:99px;animation:barIn 1s ease both}
+  @keyframes barIn{from{width:0}}
+  .coll-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:6px}
+  .coll{border:1px dashed var(--panel-line);border-radius:12px;padding:8px 2px;text-align:center}
+  .coll span{font-size:24px;display:block;filter:grayscale(1);opacity:.45}
+  .coll small{font-size:9.5px;color:var(--ink-dim);display:block;line-height:1.2;margin-top:2px}
+  .coll.on{border-style:solid;border-color:rgba(255,201,75,.45);background:rgba(255,201,75,.07)}
+  .coll.on span{filter:none;opacity:1}
+  .coll.new{animation:popIn .6s cubic-bezier(.3,1.6,.4,1)}
+  #collCount{font-weight:600;color:var(--gold);font-size:12px}
+  .ic-note{font-size:11.5px;color:var(--ink-dim);margin-top:8px}
+  .dl{margin-top:0;margin-bottom:6px}
+  #screen-result{justify-content:flex-start;padding-top:60px}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
@@ -84,13 +125,15 @@ html{overflow-y:scroll}
   <div class="screen active" id="screen-intro">
     <div class="eyebrow">Economya.fr · Portrait chinois</div>
     <h1 class="title">Ton Totem <span>Financier</span></h1>
-    <p class="lede">Quelques associations rapides et fun pour découvrir ton totem — toujours flatteur, promis.</p>
+    <p class="lede">7 associations rapides pour révéler ton animal totem, ton super-pouvoir financier… et compléter ta collection des 5 totems.</p>
     <button class="btn btn-primary" onclick="startQuiz()">Découvrir mon totem</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
   </div>
 
   <div class="screen" id="screen-quiz">
+    <div class="q-head"><button class="q-back" id="qBack" onclick="questionPrecedente()">← Retour</button><span id="qCount">1 / 7</span></div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="mini-pole" id="miniPole"></div>
     <div class="q-text" id="qText"></div>
     <div class="options" id="qOptions"></div>
   </div>
@@ -98,11 +141,21 @@ html{overflow-y:scroll}
   <div class="screen" id="screen-result">
     <div class="eyebrow">Ton totem</div>
     <div class="totem-card">
+      <div class="pole" id="pole"></div>
       <div class="totem-emoji" id="totemEmoji">🦉</div>
       <div class="totem-name" id="totemName">La Chouette Prévoyante</div>
       <div class="totem-desc" id="totemDesc">Toujours un coup d'avance, tu vois venir les choses avant tout le monde.</div>
       <div class="totem-traits" id="totemTraits"></div>
     </div>
+    <div class="info-card">
+      <div class="info-row"><span>⚡</span><div><b>Ton super-pouvoir</b><p id="totemPouvoir"></p></div></div>
+      <div class="info-row"><span>🪤</span><div><b>Ton piège</b><p id="totemPiege"></p></div></div>
+      <div class="info-row"><span>💡</span><div><b>Ton astuce</b><p id="totemAstuce"></p></div></div>
+    </div>
+    <div class="amis" id="totemAmis"></div>
+    <div class="info-card"><b class="ic-title">🧬 Ton ADN de totems</b><div id="totemMix"></div></div>
+    <div class="info-card"><b class="ic-title">📚 Ta collection <span id="collCount"></span></b><div class="coll-grid" id="collection"></div><p class="ic-note">Refais le test un autre jour pour découvrir d'autres facettes de toi.</p></div>
+    <button class="btn btn-ghost dl" onclick="telechargerTotem()">⬇️ Télécharger ma carte totem</button>
     <button class="btn btn-primary" onclick="shareResult()">Partager mon totem</button>
     <button class="btn btn-ghost" onclick="startQuiz()">Refaire le test</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -115,7 +168,7 @@ const QUESTIONS = [
   { text:"Si ton rapport à l'épargne était un animal...", options:[
     { label:"🦉 Une chouette (observatrice)", scores:{sage:2, strategist:1} },
     { label:"🦊 Un renard (malin)", scores:{malin:2, strategist:1} },
-    { label:"🐢 Une tortue (patiente)", scores:{sage:2, zen:1} },
+    { label:"🐢 Une tortue (patiente)", scores:{zen:2, sage:1} },
     { label:"🐿️ Un écureuil (prévoyant)", scores:{prevoyant:2, sage:1} } ]},
   { text:"...et une saison ?", options:[
     { label:"🍂 L'automne, on prépare l'hiver", scores:{prevoyant:2} },
@@ -123,36 +176,61 @@ const QUESTIONS = [
     { label:"🌱 Le printemps, tout est possible", scores:{malin:1, strategist:1} },
     { label:"❄️ L'hiver, la rigueur avant tout", scores:{strategist:2} } ]},
   { text:"...et un plat ?", options:[
-    { label:"🍲 Un bon plat mijoté (ça prend son temps)", scores:{sage:2} },
+    { label:"🍲 Un bon plat mijoté (ça prend son temps)", scores:{sage:1, zen:1} },
     { label:"🍱 Un bento bien organisé", scores:{strategist:2} },
     { label:"🍯 Un pot de miel qu'on garde précieusement", scores:{prevoyant:2} },
-    { label:"🍹 Un cocktail, un peu d'audace", scores:{malin:1, zen:1} } ]},
+    { label:"🍹 Un cocktail, un peu d'audace", scores:{malin:2} } ]},
   { text:"...et une météo ?", options:[
-    { label:"🌤️ Ensoleillé avec quelques nuages, réaliste", scores:{sage:1, zen:1} },
+    { label:"🌤️ Ensoleillé avec quelques nuages, réaliste", scores:{sage:2} },
     { label:"🌈 Après la pluie le beau temps, optimiste", scores:{zen:2} },
     { label:"🧭 Changeant, tu t'adaptes", scores:{malin:2} },
-    { label:"📋 Prévisible, tu aimes anticiper", scores:{prevoyant:2} } ]},
+    { label:"📋 Prévisible, tu aimes anticiper", scores:{prevoyant:1, strategist:1} } ]},
+  { text:"...et un objet ?", options:[
+    { label:"🧮 Un boulier, chaque centime compte", scores:{strategist:2} },
+    { label:"🔭 Une longue-vue, on voit loin", scores:{sage:2} },
+    { label:"🗝️ Un trousseau de clés, toujours une solution", scores:{malin:2} },
+    { label:"🫙 Un bocal à pièces", scores:{prevoyant:2} } ]},
+  { text:"...et un lieu ?", options:[
+    { label:"🏡 Une maison bien rangée", scores:{strategist:1, prevoyant:1} },
+    { label:"🏞️ Un lac au calme", scores:{zen:2} },
+    { label:"🏙️ Une ville pleine d'opportunités", scores:{malin:2} },
+    { label:"📚 Une bibliothèque", scores:{sage:2} } ]},
+  { text:"...et une devise ?", options:[
+    { label:"🐌 « Rien ne sert de courir »", scores:{zen:2} },
+    { label:"🧠 « Savoir, c'est pouvoir »", scores:{sage:2} },
+    { label:"🎯 « Un plan, puis l'action »", scores:{strategist:2} },
+    { label:"🌰 « Les petits ruisseaux font les grandes rivières »", scores:{prevoyant:2} } ]},
 ];
 
 const TOTEMS = {
-  sage: { emoji:'🦉', name:'La Chouette Prévoyante', desc:"Toujours un coup d'avance, tu vois venir les choses avant tout le monde et gardes la tête froide.", traits:['Observateur','Posé','Fiable'] },
-  malin: { emoji:'🦊', name:'Le Renard Malin', desc:"Tu sais repérer les bonnes occasions et flairer les pièges à dépenses à des kilomètres.", traits:['Vif','Débrouillard','Curieux'] },
-  strategist: { emoji:'🐝', name:"L'Abeille Stratège", desc:"Organisé, méthodique, tu construis patiemment quelque chose de solide, une cellule à la fois.", traits:['Organisé','Rigoureux','Constant'] },
-  prevoyant: { emoji:'🐿️', name:"L'Écureuil Prévoyant", desc:"Tu adores mettre un peu de côté régulièrement, sans même y penser. Une vraie fourmi joyeuse.", traits:['Prévoyant','Discipliné','Serein'] },
-  zen: { emoji:'🐢', name:'La Tortue Zen', desc:"Tu avances sans stress, à ton rythme, et tu arrives loin justement parce que tu ne te précipites jamais.", traits:['Patient','Zen','Endurant'] },
+  sage: { emoji:'🦉', name:'La Chouette Clairvoyante', couleur:'#a78bfa', desc:"Toujours un coup d'avance : tu vois venir les choses avant tout le monde et tu gardes la tête froide.", traits:['Observateur','Posé','Fiable'],
+    pouvoir:"Tu te renseignes avant de décider : tu évites les arnaques et les achats regrettés.", piege:"À force de tout analyser, tu peux repousser des décisions utiles (épargner, investir).", astuce:"Fixe-toi une date limite pour décider : l'analyse est une force, l'attente infinie un coût.", allie:'malin', defi:'zen' },
+  malin: { emoji:'🦊', name:'Le Renard Malin', couleur:'#fb923c', desc:"Tu sais repérer les bonnes occasions et flairer les pièges à dépenses à des kilomètres.", traits:['Vif','Débrouillard','Curieux'],
+    pouvoir:"Tu dénicheras toujours le bon plan, la promo cachée ou le meilleur tarif.", piege:"Une promo n'est une économie que si tu avais besoin de l'objet.", astuce:"Avant chaque « affaire », demande-toi : l'aurais-je acheté au prix normal ?", allie:'strategist', defi:'prevoyant' },
+  strategist: { emoji:'🐝', name:"L'Abeille Stratège", couleur:'#facc15', desc:"Organisée et méthodique, tu construis patiemment quelque chose de solide, une alvéole à la fois.", traits:['Organisé','Rigoureux','Constant'],
+    pouvoir:"Un budget clair et des objectifs chiffrés : tu sais où va chaque euro.", piege:"Trop de rigueur peut rendre le budget pesant et finir abandonné.", astuce:"Garde une ligne « plaisir » dans ton budget : un plan qu'on tient vaut mieux qu'un plan parfait.", allie:'sage', defi:'malin' },
+  prevoyant: { emoji:'🐿️', name:"L'Écureuil Prévoyant", couleur:'#4ade80', desc:"Tu adores mettre un peu de côté régulièrement, sans même y penser. Un vrai stock de noisettes !", traits:['Prévoyant','Discipliné','Rassurant'],
+    pouvoir:"Ton épargne de précaution te protège des imprévus : panne, réparation, coup dur.", piege:"Des noisettes qui dorment sur un compte courant perdent de la valeur avec l'inflation.", astuce:"Une fois 3 à 6 mois de dépenses de côté, regarde ce que tes réserves pourraient rapporter.", allie:'zen', defi:'strategist' },
+  zen: { emoji:'🐢', name:'La Tortue Zen', couleur:'#38bdf8', desc:"Tu avances sans stress, à ton rythme, et tu arrives loin justement parce que tu ne te précipites jamais.", traits:['Patient','Zen','Endurant'],
+    pouvoir:"Ta patience est l'arme secrète du long terme : tu ne paniques pas quand tout s'agite.", piege:"Trop de détente peut laisser filer des frais ou des abonnements inutiles.", astuce:"Un rendez-vous de 15 minutes par mois avec tes comptes suffit à garder le cap, sans stress.", allie:'prevoyant', defi:'sage' },
 };
+const CLES = Object.keys(TOTEMS);
 
-let currentQ = 0;
+let currentQ = 0, choix = [], ordres = [];
 let scores = {};
+function melanger(a){ a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function fx(n){ if (window.EcoFx) { try { EcoFx[n](); } catch (e) {} } }
+function lireCollection(){ try { return JSON.parse(localStorage.getItem('economya_totems')) || []; } catch (e) { return []; } }
 
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0});
 }
 
 function startQuiz(){
-  currentQ = 0;
-  scores = { sage:0, malin:0, strategist:0, prevoyant:0, zen:0 };
+  currentQ = 0; choix = [];
+  ordres = QUESTIONS.map(q => melanger(q.options));
   showScreen('screen-quiz');
   renderQuestion();
 }
@@ -160,45 +238,97 @@ function startQuiz(){
 function renderQuestion(){
   const q = QUESTIONS[currentQ];
   document.getElementById('progressFill').style.width = (currentQ/QUESTIONS.length*100)+'%';
-  document.getElementById('qText').textContent = q.text;
+  document.getElementById('qCount').textContent = (currentQ + 1) + ' / ' + QUESTIONS.length;
+  const qt = document.getElementById('qText'); qt.textContent = q.text;
+  qt.classList.remove('in'); void qt.offsetWidth; qt.classList.add('in');
+  document.getElementById('qBack').style.visibility = currentQ > 0 ? 'visible' : 'hidden';
   const opts = document.getElementById('qOptions');
   opts.innerHTML = '';
-  q.options.forEach(o=>{
+  ordres[currentQ].forEach((o, i) => {
     const btn = document.createElement('button');
-    btn.className = 'option-btn';
+    btn.className = 'option-btn' + (choix[currentQ] === o ? ' chosen' : '');
+    btn.style.animationDelay = (i * 60) + 'ms';
     btn.textContent = o.label;
-    btn.addEventListener('click', ()=>selectOption(o));
+    btn.addEventListener('click', () => selectOption(o, btn));
     opts.appendChild(btn);
   });
+  // Mât du totem qui se construit au fil des réponses
+  document.getElementById('miniPole').innerHTML = choix.slice(0, currentQ).map(o => `<span>${o.label.split(' ')[0]}</span>`).join('');
 }
 
-function selectOption(option){
-  Object.keys(option.scores).forEach(k=>{ scores[k] = (scores[k]||0) + option.scores[k]; });
-  currentQ++;
-  if(currentQ >= QUESTIONS.length){ revealTotem(); return; }
-  renderQuestion();
+function selectOption(option, btn){
+  choix[currentQ] = option;
+  btn.classList.add('chosen'); fx('tap');
+  setTimeout(() => {
+    currentQ++;
+    if (currentQ >= QUESTIONS.length) { revealTotem(); return; }
+    renderQuestion();
+  }, 200);
 }
+function questionPrecedente(){ if (currentQ > 0) { currentQ--; renderQuestion(); } }
 
 function revealTotem(){
-  let best = 'sage', bestScore = -1;
-  Object.keys(scores).forEach(k=>{ if(scores[k] > bestScore){ bestScore = scores[k]; best = k; } });
+  scores = { sage:0, malin:0, strategist:0, prevoyant:0, zen:0 };
+  choix.forEach(o => Object.keys(o.scores).forEach(k => { scores[k] += o.scores[k]; }));
+  const max = Math.max(...Object.values(scores));
+  const exaequo = CLES.filter(k => scores[k] === max);
+  let best = exaequo[0];
+  // Égalité : on garde le totem le plus présent dans les dernières réponses
+  for (let i = choix.length - 1; i >= 0 && exaequo.length > 1; i--) {
+    const k = Object.keys(choix[i].scores).sort((a, b) => choix[i].scores[b] - choix[i].scores[a])[0];
+    if (exaequo.includes(k)) { best = k; break; }
+  }
   const totem = TOTEMS[best];
+  const coll = lireCollection();
+  const nouveau = !coll.includes(best);
+  if (nouveau) { coll.push(best); try { localStorage.setItem('economya_totems', JSON.stringify(coll)); } catch (e) {} }
 
+  document.documentElement.style.setProperty('--totem', totem.couleur);
   document.getElementById('totemEmoji').textContent = totem.emoji;
   document.getElementById('totemName').textContent = totem.name;
   document.getElementById('totemDesc').textContent = totem.desc;
   document.getElementById('totemTraits').innerHTML = totem.traits.map(t=>`<div class="trait">${t}</div>`).join('');
+  document.getElementById('pole').innerHTML = choix.map((o, i) => `<span style="animation-delay:${(choix.length - i) * 90}ms">${o.label.split(' ')[0]}</span>`).reverse().join('');
+  document.getElementById('totemPouvoir').textContent = totem.pouvoir;
+  document.getElementById('totemPiege').textContent = totem.piege;
+  document.getElementById('totemAstuce').textContent = totem.astuce;
+  const al = TOTEMS[totem.allie], de = TOTEMS[totem.defi];
+  document.getElementById('totemAmis').innerHTML = `<div><span>${al.emoji}</span><small>Ton allié</small><b>${al.name}</b></div><div><span>${de.emoji}</span><small>Ton opposé</small><b>${de.name}</b></div>`;
+  const total = Object.values(scores).reduce((a, b) => a + b, 0) || 1;
+  document.getElementById('totemMix').innerHTML = CLES.slice().sort((a, b) => scores[b] - scores[a]).map(k => `<div class="mix"><span>${TOTEMS[k].emoji}</span><div class="mix-bar"><i style="width:${Math.round(scores[k] / total * 100)}%;background:${TOTEMS[k].couleur}"></i></div><b>${Math.round(scores[k] / total * 100)}%</b></div>`).join('');
+  document.getElementById('collection').innerHTML = CLES.map(k => `<div class="coll ${coll.includes(k) ? 'on' : ''} ${k === best && nouveau ? 'new' : ''}"><span>${coll.includes(k) ? TOTEMS[k].emoji : '❔'}</span><small>${coll.includes(k) ? TOTEMS[k].name.replace(/^(La|Le|L')\s?/, '') : '???'}</small></div>`).join('');
+  document.getElementById('collCount').textContent = coll.length + '/5' + (coll.length === 5 ? ' · collection complète ! 🏆' : '');
 
   window._totemResult = totem;
   showScreen('screen-result');
+  fx(nouveau ? 'win' : 'good');
+}
+
+function telechargerTotem(){
+  const t = window._totemResult; if (!t) return;
+  const c = document.createElement('canvas'); c.width = 1080; c.height = 1920;
+  const g = c.getContext('2d');
+  const gr = g.createLinearGradient(0, 0, 0, 1920); gr.addColorStop(0, '#0E2A24'); gr.addColorStop(1, '#04120E');
+  g.fillStyle = gr; g.fillRect(0, 0, 1080, 1920);
+  const rg = g.createRadialGradient(540, 620, 30, 540, 620, 420); rg.addColorStop(0, t.couleur + 'aa'); rg.addColorStop(1, t.couleur + '00');
+  g.fillStyle = rg; g.fillRect(0, 150, 1080, 950);
+  g.textAlign = 'center'; g.fillStyle = '#FFC94B'; g.font = '700 44px system-ui, sans-serif'; g.fillText('🐾 MON TOTEM FINANCIER', 540, 210);
+  g.font = '300px system-ui, sans-serif'; g.fillText(t.emoji, 540, 760);
+  const em = choix.map(o => o.label.split(' ')[0]);
+  g.font = '86px system-ui, sans-serif';
+  em.forEach((e, i) => g.fillText(e, 540 + (i - (em.length - 1) / 2) * 120, 960));
+  g.fillStyle = '#F0FFF8'; g.font = '900 84px Georgia, serif'; g.fillText(t.name, 540, 1180);
+  g.font = '600 50px system-ui, sans-serif'; g.fillStyle = 'rgba(240,255,248,.85)'; g.fillText(t.traits.join(' · '), 540, 1290);
+  g.font = '600 46px system-ui, sans-serif'; g.fillStyle = '#8FC7B0'; g.fillText('Découvre le tien sur economya.fr', 540, 1760);
+  c.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'mon-totem-financier.png'; document.body.appendChild(a); a.click(); a.remove(); }, 'image/png');
 }
 
 function shareResult(){
   const t = window._totemResult;
   const text = t
-    ? `Mon totem financier est ${t.emoji} ${t.name} sur Economya.fr ! Découvre le tien sur Ton Totem Financier :`
+    ? `Mon totem financier est ${t.emoji} ${t.name} ! Mon super-pouvoir : ${t.pouvoir.charAt(0).toLowerCase() + t.pouvoir.slice(1)} Découvre le tien sur Ton Totem Financier (Economya.fr)`
     : `Découvre ton totem financier sur Economya.fr 🐾`;
-  const url = 'https://economya.fr';
+  const url = 'https://economya.fr/ton-totem-financier';
   if(navigator.share){ navigator.share({title:'Ton Totem Financier', text, url}).catch(()=>{}); }
   else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }
 }

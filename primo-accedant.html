@@ -270,7 +270,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 
     <div class="result-box warn" style="margin-top:1rem">
       <h4>💡 Le saviez-vous ?</h4>
-      <p>Un apport de 10% minimum est recommandé. Il couvre généralement les frais de notaire et rassure la banque. Avec 20%, vous obtenez les meilleurs taux du marché.</p>
+      <p>Les banques demandent souvent un apport d'au moins 10 % : il couvre généralement les frais de notaire et rassure le prêteur. Un apport plus élevé peut aider à négocier de meilleures conditions.</p>
     </div>
     <div class="nav-btns">
       <button class="btn-prev" onclick="prevStep(2)">← Retour</button>
@@ -450,7 +450,7 @@ function calcApport() {
       <div class="calc-row"><span class="lbl">Apport</span><span class="val">${data.apport.toLocaleString('fr-FR')}€</span></div>
       <div class="calc-row"><span class="lbl">% du prix</span><span class="val">${pctApport}%</span></div>
       <div class="calc-row"><span class="lbl">Frais de notaire estimés</span><span class="val">${fraisNotaire.toLocaleString('fr-FR')}€</span></div>
-      <div class="calc-row"><span class="lbl">Apport recommandé minimum</span><span class="val">${apportMinRecomm.toLocaleString('fr-FR')}€</span></div>
+      <div class="calc-row"><span class="lbl">Apport souvent demandé (repère)</span><span class="val">${apportMinRecomm.toLocaleString('fr-FR')}€</span></div>
     </div>
     <div class="result-box ${status}"><h4>${status === 'good' ? '✅' : status === 'warn' ? '⚠️' : '❌'} ${pctApport}% d'apport</h4><p>${msg}</p></div>`;
 }

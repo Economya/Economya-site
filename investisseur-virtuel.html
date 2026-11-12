@@ -255,7 +255,7 @@ const EVENTS = [
     impacts:[{label:'Actions +18%',type:'good'},{label:'Obligations +2%',type:'neutral'},{label:'Livret A 1%',type:'neutral'}],
     choices:[
       {icon:'📈',title:'Tout en actions',desc:'ETF MSCI World — profiter de la hausse',return_pct:18,score:80,risk:'élevé',result:'Excellent ! Les marchés ont effectivement progressé de 18% cette année.',type:'pos'},
-      {icon:'⚖️',title:'60% actions / 40% obligations',desc:'Portefeuille équilibré',return_pct:11,score:60,risk:'modéré',result:'Bon choix équilibré. Vous profitez partiellement de la hausse.',type:'pos'},
+      {icon:'⚖️',title:'60% actions / 40% obligations',desc:'Portefeuille équilibré',return_pct:11,score:75,risk:'modéré',result:'Bon choix équilibré. Vous profitez partiellement de la hausse.',type:'pos'},
       {icon:'🏦',title:'Garder sur le Livret A',desc:'Sécurité maximale à 1%',return_pct:1,score:20,risk:'faible',result:'Vous avez raté la hausse des marchés. Le Livret A protège mais ne fait pas fructifier.',type:'neu'},
       {icon:'🏠',title:'Investir en SCPI',desc:'Pierre-papier à 4-5%',return_pct:4.5,score:40,risk:'modéré',result:'Choix stable. Les SCPI ont bien performé mais moins que les actions.',type:'pos'},
     ]
@@ -265,7 +265,7 @@ const EVENTS = [
     desc:'2016 est marqué par deux chocs politiques majeurs. Le Brexit en juin puis l\'élection de Trump en novembre créent une forte volatilité. Les marchés chutent puis rebondissent.',
     impacts:[{label:'Volatilité extrême',type:'bad'},{label:'Actions -5% puis +10%',type:'neutral'},{label:'Or +8%',type:'good'}],
     choices:[
-      {icon:'💰',title:'Acheter pendant la panique',desc:'Profiter de la baisse pour acheter',return_pct:12,score:90,risk:'élevé',result:'Brillant ! Acheter pendant la panique du Brexit a été la meilleure décision de l\'année.',type:'pos'},
+      {icon:'💰',title:'Acheter pendant la panique',desc:'Profiter de la baisse pour acheter',return_pct:12,score:75,risk:'élevé',result:'Payant avec le recul… mais sur le moment, personne ne savait si la baisse allait continuer. Rester investi était déjà une très bonne décision.',type:'pos'},
       {icon:'🥇',title:'Investir dans l\'or',desc:'Valeur refuge en période d\'incertitude',return_pct:8,score:60,risk:'modéré',result:'Bonne stratégie. L\'or a bien joué son rôle de valeur refuge.',type:'pos'},
       {icon:'😰',title:'Vendre par précaution',desc:'Passer en cash pour éviter la crise',return_pct:-2,score:0,risk:'faible',result:'Erreur classique : vendre dans la panique et rater le rebond qui a suivi.',type:'neg'},
       {icon:'⚖️',title:'Ne rien changer',desc:'Rester investi et ignorer le bruit',return_pct:7,score:70,risk:'modéré',result:'La stratégie passive a bien fonctionné. Le marché a rebondi après les chocs.',type:'pos'},
@@ -277,8 +277,8 @@ const EVENTS = [
     impacts:[{label:'Actions tech +30%',type:'good'},{label:'Bitcoin +1900%',type:'good'},{label:'Marchés record',type:'good'}],
     choices:[
       {icon:'₿',title:'Investir en Bitcoin',desc:'La crypto qui monte à 20 000$',return_pct:500,score:30,risk:'spéculatif',result:'Gain énorme MAIS le Bitcoin va chuter de 80% l\'année suivante. La chance n\'est pas une stratégie.',type:'pos'},
-      {icon:'💻',title:'ETF technologie',desc:'NASDAQ, GAFAM, secteur tech',return_pct:28,score:80,risk:'élevé',result:'Excellent ! Le secteur technologique a été le grand gagnant de 2017.',type:'pos'},
-      {icon:'🌍',title:'ETF World diversifié',desc:'Exposition globale équilibrée',return_pct:18,score:75,risk:'modéré',result:'Très bon résultat. La diversification mondiale a bien fonctionné.',type:'pos'},
+      {icon:'💻',title:'ETF technologie',desc:'NASDAQ, GAFAM, secteur tech',return_pct:28,score:65,risk:'élevé',result:'Excellent ! Le secteur technologique a été le grand gagnant de 2017.',type:'pos'},
+      {icon:'🌍',title:'ETF World diversifié',desc:'Exposition globale équilibrée',return_pct:18,score:85,risk:'modéré',result:'Très bon résultat. La diversification mondiale a bien fonctionné.',type:'pos'},
       {icon:'🏦',title:'Fonds euros assurance vie',desc:'Sécurité garantie à 1,5%',return_pct:1.5,score:20,risk:'faible',result:'Vous avez raté une année exceptionnelle. Le fonds euros protège mais ne crée pas de richesse.',type:'neu'},
     ]
   },
@@ -309,10 +309,10 @@ const EVENTS = [
     desc:'Mars 2020 : les marchés chutent de -35% en 3 semaines. C\'est la panique totale. Mais dès avril, un rebond historique commence. L\'année se termine en hausse !',
     impacts:[{label:'Chute -35% en mars',type:'bad'},{label:'Rebond +50% ensuite',type:'good'},{label:'Tech +40% sur l\'année',type:'good'}],
     choices:[
-      {icon:'🦁',title:'Acheter massivement pendant le crash',desc:'Investir tout pendant la panique de mars',return_pct:45,score:95,risk:'élevé',result:'LÉGENDAIRE ! Acheter pendant le crash COVID a été l\'opportunité du siècle.',type:'pos'},
-      {icon:'⚖️',title:'Maintenir le cap et ne pas céder',desc:'Ignorer la panique et rester investi',return_pct:12,score:80,risk:'modéré',result:'Excellente décision. Le marché a récupéré et vous avez évité de cristalliser des pertes.',type:'pos'},
+      {icon:'🦁',title:'Acheter massivement pendant le crash',desc:'Investir tout pendant la panique de mars',return_pct:45,score:70,risk:'élevé',result:'Très payant avec le recul. Mais tout investir au cœur d\'une panique suppose une épargne de précaution solide et d\'accepter que la chute puisse continuer.',type:'pos'},
+      {icon:'⚖️',title:'Maintenir le cap et ne pas céder',desc:'Ignorer la panique et rester investi',return_pct:12,score:90,risk:'modéré',result:'Excellente décision. Le marché a récupéré et vous avez évité de cristalliser des pertes.',type:'pos'},
       {icon:'😱',title:'Vendre en mars pour éviter la catastrophe',desc:'Passer en cash pendant la crise',return_pct:-30,score:0,risk:'faible',result:'Catastrophe ! Vous avez vendu au plus bas et raté le rebond de +70%.',type:'neg'},
-      {icon:'💻',title:'Miser sur la tech et le télétravail',desc:'Zoom, Amazon, Netflix...',return_pct:60,score:85,risk:'élevé',result:'Génie ! Les valeurs tech et télétravail ont explosé pendant le COVID.',type:'pos'},
+      {icon:'💻',title:'Miser sur la tech et le télétravail',desc:'Zoom, Amazon, Netflix...',return_pct:60,score:50,risk:'élevé',result:'Gros gain avec le recul. Mais miser sur un seul thème concentre le risque : plusieurs de ces valeurs ont ensuite fortement baissé.',type:'pos'},
     ]
   },
   {
@@ -331,7 +331,7 @@ const EVENTS = [
     desc:'2022 : l\'inflation explose (+10%), les banques centrales remontent les taux violemment. Actions -20%, obligations -15%, crypto -70%. Aucun actif traditionnel n\'est épargné.',
     impacts:[{label:'Actions -20%',type:'bad'},{label:'Obligations -15%',type:'bad'},{label:'Crypto -70%',type:'bad'}],
     choices:[
-      {icon:'🛢️',title:'Matières premières et énergie',desc:'Le pétrole et le gaz explosent',return_pct:35,score:75,risk:'élevé',result:'Brillant ! Le seul secteur qui a bien performé en 2022 était l\'énergie.',type:'pos'},
+      {icon:'🛢️',title:'Matières premières et énergie',desc:'Le pétrole et le gaz explosent',return_pct:35,score:50,risk:'élevé',result:'Bien vu cette année, mais impossible à prévoir à l\'avance, et ces secteurs sont très volatils.',type:'pos'},
       {icon:'💎',title:'Maintenir le DCA mensuel',desc:'Investir régulièrement malgré la tempête',return_pct:-12,score:85,risk:'modéré',result:'Stratégie gagnante à long terme. Vous achetez moins cher pour le rebond futur.',type:'neg'},
       {icon:'💵',title:'Passer en cash et attendre',desc:'Éviter la tempête',return_pct:0,score:40,risk:'faible',result:'Vous évitez les pertes mais perdez face à l\'inflation. Neutre n\'est pas une victoire en période d\'inflation.',type:'neu'},
       {icon:'📉',title:'Short le marché',desc:'Parier sur la baisse',return_pct:20,score:30,risk:'très élevé',result:'Gain cette année mais stratégie très risquée. Timer le marché est quasi-impossible.',type:'pos'},
@@ -342,7 +342,7 @@ const EVENTS = [
     desc:'2023 : ChatGPT change tout. Les valeurs IA (Nvidia, Microsoft, Google) s\'envolent. Les marchés rebondissent fortement malgré les doutes économiques.',
     impacts:[{label:'Nvidia +240%',type:'good'},{label:'S&P500 +24%',type:'good'},{label:'Tech +50%',type:'good'}],
     choices:[
-      {icon:'🤖',title:'Miser sur l\'IA — Nvidia, Microsoft',desc:'La révolution de l\'intelligence artificielle',return_pct:120,score:85,risk:'élevé',result:'JACKPOT ! Nvidia a gagné +240% en 2023. L\'IA est la tendance du siècle.',type:'pos'},
+      {icon:'🤖',title:'Miser sur l\'IA — Nvidia, Microsoft',desc:'La révolution de l\'intelligence artificielle',return_pct:120,score:45,risk:'élevé',result:'Spectaculaire avec le recul. Mais concentrer son épargne sur quelques actions expose à de fortes chutes : Nvidia avait perdu environ la moitié de sa valeur en 2022.',type:'pos'},
       {icon:'🌍',title:'ETF World — rester diversifié',desc:'Profiter de la hausse globale',return_pct:22,score:80,risk:'modéré',result:'Très bon. L\'ETF World a bien capturé la hausse tech via les GAFAM.',type:'pos'},
       {icon:'🏦',title:'Obligations — taux élevés attractifs',desc:'Les taux à 4% pour la première fois depuis 10 ans',return_pct:4,score:55,risk:'faible',result:'Choix sécurisé. Les obligations à 4% sont attractives mais vous ratez le boom tech.',type:'neu'},
       {icon:'🏠',title:'SCPI et immobilier papier',desc:'Rendement stable à 5%',return_pct:5,score:50,risk:'modéré',result:'Stable mais décevant comparé au rebond boursier. L\'immobilier souffre des taux élevés.',type:'neu'},
@@ -353,8 +353,8 @@ const EVENTS = [
     desc:'2024 : les marchés continuent leur ascension portés par l\'IA et l\'économie américaine. Nouveaux records historiques. Les investisseurs disciplinés sont récompensés.',
     impacts:[{label:'S&P500 +23%',type:'good'},{label:'Nvidia +170%',type:'good'},{label:'ETF World +20%',type:'good'}],
     choices:[
-      {icon:'📈',title:'Renforcer les positions en ETF',desc:'Profiter des records pour rester investi',return_pct:20,score:85,risk:'modéré',result:'Parfait ! La discipline à long terme est récompensée. Nouveaux records.',type:'pos'},
-      {icon:'🤖',title:'Doubler la mise sur l\'IA',desc:'Nvidia, Microsoft, Meta...',return_pct:55,score:75,risk:'élevé',result:'Excellent ! Les valeurs IA ont encore surperformé le marché.',type:'pos'},
+      {icon:'📈',title:'Renforcer les positions en ETF',desc:'Profiter des records pour rester investi',return_pct:20,score:90,risk:'modéré',result:'La discipline à long terme a été récompensée cette année.',type:'pos'},
+      {icon:'🤖',title:'Doubler la mise sur l\'IA',desc:'Nvidia, Microsoft, Meta...',return_pct:55,score:45,risk:'élevé',result:'Encore gagnant cette année, mais c\'est un pari concentré : la diversification protège mieux sur la durée.',type:'pos'},
       {icon:'💰',title:'Sécuriser les gains',desc:'Vendre et placer en fonds euros',return_pct:3,score:30,risk:'faible',result:'Trop prudent. Les marchés ont encore progressé de 20%.',type:'neu'},
       {icon:'🔄',title:'Rééquilibrer — prendre des bénéfices tech',desc:'Vendre les gagnants, diversifier',return_pct:15,score:70,risk:'modéré',result:'Bonne gestion. Vous sécurisez des gains et restez investi.',type:'pos'},
     ]
@@ -448,7 +448,7 @@ function selectChoice(idx) {
     ? '<br>⚠️ Ce choix sort de ton profil <b>Prudent</b>.'
     : (strat === 'dynamique' && choice.risk === 'faible') ? '<br>⚠️ Un choix très prudent pour un profil <b>Dynamique</b>.' : '';
   extra.innerHTML = `🧠 Qualité de la décision : <b>${choice.score}/100</b>` +
-    (choice.score === bestScore ? ' — la meilleure option de l\'année 🎯' : `<br>💡 Meilleure option : <b>${best.title}</b> (${best.score}/100, ${best.return_pct > 0 ? '+' : ''}${best.return_pct}%)`) +
+    (choice.score === bestScore ? ' : la décision la plus solide de l\'année 🎯' : `<br>💡 Décision la plus solide (avec le recul) : <b>${best.title}</b> (${best.score}/100, ${best.return_pct > 0 ? '+' : ''}${best.return_pct}%)`) +
     (choice.score < 40 && choice.return_pct > 15 ? '<br>🎲 Gain obtenu, mais surtout grâce à la chance : cette décision ne serait pas reproductible.' : '') + profilNote;
 
   updatePortfolio();
@@ -511,7 +511,7 @@ function showFinal() {
     document.getElementById('f-emoji').textContent = '🍀';
   }
   const lesson = capital >= etfWorld ?
-    {h:'🏆 Leçon : Votre stratégie a battu le marché !', p:`Vous avez fait mieux qu'un ETF World qui aurait rapporté ~${etfWorld.toLocaleString('fr-FR')}€. Mais attention : battre le marché sur 10 ans relève souvent de la chance. Sur 20 ans, 95% des gérants actifs sous-performent l'ETF World.`} :
+    {h:'🏆 Leçon : Votre stratégie a battu le marché !', p:`Vous avez fait mieux qu'un ETF World qui aurait rapporté ~${etfWorld.toLocaleString('fr-FR')}€. Mais attention : battre le marché sur 10 ans relève souvent de la chance. Sur longue période, une large majorité des fonds gérés activement font moins bien que leur indice de référence (études SPIVA).`} :
     {h:'📚 Leçon : L\'ETF World aurait fait mieux', p:`Un simple ETF World investi en 2015 aurait transformé vos 10 000€ en environ ${etfWorld.toLocaleString('fr-FR')}€ (+150%). La leçon : la diversification passive bat souvent les stratégies actives sur le long terme.`};
 
   document.getElementById('f-lesson').innerHTML = `<h4>${lesson.h}</h4><p>${lesson.p}</p>`;
@@ -528,7 +528,7 @@ function showFinal() {
   document.getElementById('f-lesson').insertAdjacentHTML('afterend', `
     <div style="background:#fff;border:1px solid #e0ddd2;border-radius:14px;padding:1rem;margin:1rem 0;text-align:left;font-size:.88rem;line-height:1.55">
       <div><b>🧠 Note de décision : <span id="f-note">${avgScore}</span>/100</b> — ${grade}</div>
-      <div>🎯 Meilleure option choisie ${ivBestPicks} fois sur ${ivScores.length} · 🎲 ${ivRisky} pari${ivRisky > 1 ? 's' : ''} spéculatif${ivRisky > 1 ? 's' : ''}</div>
+      <div>🎯 Décision la plus solide choisie ${ivBestPicks} fois sur ${ivScores.length} · 🎲 ${ivRisky} pari${ivRisky > 1 ? 's' : ''} spéculatif${ivRisky > 1 ? 's' : ''}</div>
       <div style="margin-top:.6rem;font-size:.78rem;color:#5f5e5a">Ton capital vs ETF World (ordre de grandeur)</div>
       <div style="background:#eee;border-radius:6px;margin:.2rem 0"><div style="width:${w}%;background:#1D9E75;color:#fff;border-radius:6px;padding:2px 8px;font-size:.74rem;white-space:nowrap;overflow:hidden">Toi ${capital.toLocaleString('fr-FR')} €</div></div>
       <div style="background:#eee;border-radius:6px"><div style="width:${we}%;background:#EF9F27;color:#2C2C2A;border-radius:6px;padding:2px 8px;font-size:.74rem;white-space:nowrap;overflow:hidden">ETF ~${etfWorld.toLocaleString('fr-FR')} €</div></div>
