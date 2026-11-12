@@ -48,12 +48,27 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .result-hero{text-align:center;padding:1.5rem 0;border-bottom:1px solid var(--b);margin-bottom:1rem}
 .result-hero .emoji{font-size:2.5rem;display:block;margin-bottom:.3rem}
 .result-hero h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gd)}
-.city-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--b);font-size:.88rem}
+.city-row{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--b);font-size:.88rem}
 .city-row:last-child{border-bottom:none}
 .city-name{font-weight:700;color:var(--t);display:flex;align-items:center;gap:.4rem}
 .city-name .rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--gl);color:var(--gd);font-size:.7rem;font-weight:900}
 .city-equiv{font-family:'Playfair Display',serif;font-weight:900;color:var(--g);font-size:1.05rem}
 .city-equiv.worse{color:var(--m)}
+.crit-row{display:flex;flex-wrap:wrap;gap:.45rem}
+.crit{border:1.5px solid var(--b);background:#fff;border-radius:99px;padding:.45rem .8rem;font:inherit;font-size:.82rem;cursor:pointer;color:var(--t)}
+.crit.on{background:var(--gl);border-color:var(--g);color:var(--gd);font-weight:700}
+.city-detail{display:block;font-size:.72rem;color:var(--m);font-weight:400;margin-top:.15rem}
+.city-equiv small{display:block;font-family:inherit;font-size:.68rem;font-weight:600;text-align:right}
+.city-bar{flex-basis:100%;height:7px;border-radius:99px;background:#E1F5EE;overflow:hidden;margin-top:.45rem;display:flex}
+.city-bar i{display:block;height:100%;background:linear-gradient(90deg,#F59E0B,#DC2626);border-radius:99px 0 0 99px;transition:width .6s ease}
+.city-row{animation:ovmIn .35s ease both}
+@keyframes ovmIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.podium{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;align-items:end;margin:0 0 1rem}
+.podium div{background:var(--gl);border-radius:12px 12px 6px 6px;text-align:center;padding:.6rem .3rem;font-size:.78rem;font-weight:700;color:var(--gd)}
+.podium div b{display:block;font-size:1.5rem;line-height:1.2}
+.podium .p1{padding-top:1.3rem;background:linear-gradient(180deg,#FDE68A,#FEF3C7)}
+.podium .p2{padding-top:.9rem}
+.effort-bad{color:#DC2626}.effort-ok{color:var(--g)}
 .city-current{background:var(--al);border-radius:10px;padding:.5rem .7rem;margin:0 -0.7rem}
 .tip{background:#f0fdf4;border-left:4px solid var(--g);border-radius:0 12px 12px 0;padding:1rem 1.2rem;font-size:.85rem;color:var(--t);line-height:1.6;margin-top:1.2rem}
 .share-row{display:flex;gap:.5rem;margin-top:1rem}
@@ -140,7 +155,24 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
         <option value="saintetienne">Saint-Étienne</option>
       </select>
     </div>
-    <button class="btn-go" onclick="calculer()">Comparer les villes →</button>
+    <div class="field">
+      <label for="surface">🏠 Le logement dont vous avez besoin</label>
+      <select id="surface">
+        <option value="25">Studio (~25 m²)</option>
+        <option value="45" selected>T2 (~45 m²)</option>
+        <option value="65">T3 (~65 m²)</option>
+        <option value="85">T4 (~85 m²)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>✨ Ce qui compte pour vous (facultatif)</label>
+      <div class="crit-row" id="criteres">
+        <button type="button" class="crit" data-c="mer">🌊 Proche de la mer</button>
+        <button type="button" class="crit" data-c="montagne">⛰️ Montagne</button>
+        <button type="button" class="crit" data-c="tgv">🚄 ≈ 2 h max de Paris en TGV</button>
+      </div>
+    </div>
+    <button class="btn-go" onclick="calculer(true)">Comparer les villes →</button>
   </div>
 
   <div class="results" id="results">
@@ -178,67 +210,104 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <script>
 // Loyers moyens 2026 (€/m², appartement standard, source: agrégation données marché 2026 - LocService, Meilleurtaux/Lokimo, observatoires des loyers)
 const VILLES = {
-  paris:        {nom:'Paris',         emoji:'🗼', loyerM2: 33.0},
-  lyon:         {nom:'Lyon',          emoji:'🦁', loyerM2: 15.2},
-  nice:         {nom:'Nice',          emoji:'🌊', loyerM2: 19.0},
-  bordeaux:     {nom:'Bordeaux',      emoji:'🍷', loyerM2: 15.6},
-  montpellier:  {nom:'Montpellier',   emoji:'☀️', loyerM2: 14.8},
-  marseille:    {nom:'Marseille',     emoji:'⛵', loyerM2: 14.5},
-  rennes:       {nom:'Rennes',        emoji:'🏰', loyerM2: 13.7},
-  strasbourg:   {nom:'Strasbourg',    emoji:'🏛️', loyerM2: 13.3},
-  lille:        {nom:'Lille',         emoji:'🎡', loyerM2: 13.6},
+  paris:        {nom:'Paris',         emoji:'🗼', loyerM2: 33.0, tags:['tgv']},
+  lyon:         {nom:'Lyon',          emoji:'🦁', loyerM2: 15.2, tags:['tgv']},
+  nice:         {nom:'Nice',          emoji:'🌊', loyerM2: 19.0, tags:['mer']},
+  bordeaux:     {nom:'Bordeaux',      emoji:'🍷', loyerM2: 15.6, tags:['tgv']},
+  montpellier:  {nom:'Montpellier',   emoji:'☀️', loyerM2: 14.8, tags:['mer']},
+  marseille:    {nom:'Marseille',     emoji:'⛵', loyerM2: 14.5, tags:['mer']},
+  rennes:       {nom:'Rennes',        emoji:'🏰', loyerM2: 13.7, tags:['tgv']},
+  strasbourg:   {nom:'Strasbourg',    emoji:'🏛️', loyerM2: 13.3, tags:['tgv']},
+  lille:        {nom:'Lille',         emoji:'🎡', loyerM2: 13.6, tags:['tgv']},
   toulouse:     {nom:'Toulouse',      emoji:'🚀', loyerM2: 13.0},
-  nantes:       {nom:'Nantes',        emoji:'🌳', loyerM2: 12.5},
-  grenoble:     {nom:'Grenoble',      emoji:'⛰️', loyerM2: 12.4},
+  nantes:       {nom:'Nantes',        emoji:'🌳', loyerM2: 12.5, tags:['tgv']},
+  grenoble:     {nom:'Grenoble',      emoji:'⛰️', loyerM2: 12.4, tags:['montagne']},
   saintetienne: {nom:'Saint-Étienne', emoji:'🏭', loyerM2: 9.5},
 };
 
 const PART_LOYER = 0.30; // part moyenne du loyer dans un budget mensuel
 const fmt = n => Math.round(n).toLocaleString('fr-FR') + ' €';
 
-function calculer() {
-  const salaire = +document.getElementById('salaire').value || 2200;
+const CRIT_LABEL = {mer:'proche de la mer', montagne:'à la montagne', tgv:'à ≈ 2 h de Paris'};
+function criteresActifs(){ return [...document.querySelectorAll('#criteres .crit.on')].map(b => b.dataset.c); }
+document.addEventListener('click', e => {
+  const b = e.target.closest && e.target.closest('#criteres .crit');
+  if (!b) return;
+  b.classList.toggle('on');
+  if (document.getElementById('results').classList.contains('show')) calculer(false);
+});
+
+function calculer(parUtilisateur) {
+  const salaire = Math.max(0, +document.getElementById('salaire').value || 2200);
   const villeActuelle = document.getElementById('ville').value;
-  const refLoyer = VILLES[villeActuelle].loyerM2;
+  const surface = +document.getElementById('surface').value || 45;
+  const crits = criteresActifs();
+  const loyerActuel = VILLES[villeActuelle].loyerM2 * surface;
 
-  // Equivalent de pouvoir d'achat dans chaque ville :
-  // on ajuste uniquement la part "loyer" du budget en fonction du ratio de loyer au m²
-  const resultats = Object.entries(VILLES).map(([key, v]) => {
-    const ratio = v.loyerM2 / refLoyer;
-    const equivalent = salaire * (1 - PART_LOYER) + salaire * PART_LOYER * (refLoyer / v.loyerM2);
-    return {key, ...v, equivalent, ratio};
-  }).sort((a, b) => b.equivalent - a.equivalent);
-
-  const meilleure = resultats[0];
+  // Même salaire partout : on compare le loyer pour la surface voulue et le « reste pour vivre »
+  let resultats = Object.entries(VILLES).map(([key, v]) => {
+    const loyer = v.loyerM2 * surface;
+    const reste = salaire - loyer;
+    const effort = salaire > 0 ? loyer / salaire * 100 : 0;
+    const gainAn = (loyerActuel - loyer) * 12;
+    return {key, ...v, loyer, reste, effort, gainAn};
+  }).sort((a, b) => b.reste - a.reste);
+  const filtrees = crits.length ? resultats.filter(r => r.key === villeActuelle || crits.every(c => (r.tags || []).includes(c))) : resultats;
+  const candidates = filtrees.filter(r => r.key !== villeActuelle || !crits.length || crits.every(c => (r.tags || []).includes(c)));
+  const meilleure = candidates[0] || resultats[0];
   const actuelle = resultats.find(r => r.key === villeActuelle);
+  const resterMieux = candidates.length && meilleure.key !== villeActuelle && meilleure.reste < actuelle.reste;
 
   document.getElementById('r-emoji').textContent = meilleure.emoji;
-  document.getElementById('r-titre').textContent =
-    meilleure.key === villeActuelle
+  document.getElementById('r-titre').textContent = !candidates.length
+      ? 'Aucune ville ne coche tous ces critères'
+      : resterMieux
+      ? `Rester à ${actuelle.nom} reste plus avantageux`
+      : meilleure.key === villeActuelle
       ? `Vous êtes déjà bien installé à ${meilleure.nom} !`
       : `Vous vivriez mieux à ${meilleure.nom}`;
 
   const list = document.getElementById('city-list');
-  list.innerHTML = resultats.map((r, i) => {
+  const top = candidates.slice(0, 3);
+  const podium = top.length === 3 ? `<div class="podium">
+      <div class="p2"><b>${top[1].emoji}</b>2. ${top[1].nom}</div>
+      <div class="p1"><b>${top[0].emoji}</b>1. ${top[0].nom}</div>
+      <div class="p3"><b>${top[2].emoji}</b>3. ${top[2].nom}</div></div>` : '';
+  list.innerHTML = podium + filtrees.map((r, i) => {
     const isCurrent = r.key === villeActuelle;
-    const cls = r.equivalent < salaire ? 'worse' : '';
+    const diff = Math.round(r.gainAn);
+    const diffTxt = isCurrent ? 'votre ville' : (diff >= 0 ? '+' : '−') + Math.abs(diff).toLocaleString('fr-FR') + ' €/an';
     return `
       <div class="city-row ${isCurrent ? 'city-current' : ''}">
-        <span class="city-name"><span class="rank">${i+1}</span>${r.emoji} ${r.nom}${isCurrent ? ' (vous)' : ''}</span>
-        <span class="city-equiv ${cls}">${fmt(r.equivalent)}</span>
-      </div>`;
-  }).join('');
+        <span class="city-name"><span class="rank">${i+1}</span><span>${r.emoji} ${r.nom}${isCurrent ? ' (vous)' : ''}
+          <span class="city-detail">Loyer ≈ ${fmt(r.loyer)}/mois · <span class="${r.effort > 33 ? 'effort-bad' : 'effort-ok'}">${Math.round(r.effort)} % du salaire</span></span></span></span>
+        <span class="city-equiv ${r.reste < (salaire - loyerActuel) ? 'worse' : ''}">${fmt(r.reste)}<small>${diffTxt}</small></span>
+        <span class="city-bar" title="Part du salaire consacrée au loyer"><i style="width:${Math.min(100, Math.round(r.effort))}%"></i></span>
+      </div>`.replace('class="city-row', 'style="animation-delay:' + (i * 35) + 'ms" class="city-row');
+  }).join('') + '<p style="font-size:.74rem;color:var(--m);margin:.6rem 0 0">Montant affiché : ce qu\'il vous reste chaque mois après le loyer (hors charges).</p>';
 
-  const ecart = Math.round(((meilleure.equivalent - salaire) / salaire) * 100);
   const tip = document.getElementById('r-tip');
-  if (meilleure.key === villeActuelle) {
-    tip.innerHTML = `💡 Avec ${fmt(salaire)}/mois, ${meilleure.nom} offre déjà le meilleur équilibre coût de la vie / salaire parmi les 13 villes comparées.`;
+  const effortActuel = salaire > 0 ? loyerActuel / salaire * 100 : 0;
+  let html;
+  if (!candidates.length) {
+    html = `💡 Aucune des 13 villes n'est à la fois ${crits.map(c => CRIT_LABEL[c]).join(' et ')}. Retirez un critère pour comparer.`;
+  } else if (resterMieux) {
+    html = `💡 Parmi les villes ${crits.map(c => CRIT_LABEL[c]).join(' et ')}, la moins chère est ${meilleure.nom}, mais pour ${surface} m² vous y paieriez environ <strong>${fmt(meilleure.loyer - loyerActuel)} de plus par mois</strong> qu'à ${actuelle.nom}.`;
+  } else if (meilleure.key === villeActuelle) {
+    html = `💡 Pour un logement de ${surface} m², ${meilleure.nom} est déjà la ville la moins chère ${crits.length ? 'parmi celles qui correspondent à vos critères' : 'des 13 villes comparées'}.`;
   } else {
-    tip.innerHTML = `💡 Avec le même salaire de ${fmt(salaire)}/mois, votre pouvoir d'achat à ${meilleure.nom} équivaudrait à environ <strong>${fmt(meilleure.equivalent)}</strong> à ${VILLES[villeActuelle].nom} (+${ecart}% de pouvoir d'achat réel). Avant de songer à déménager, pensez aussi à vérifier le marché de l'emploi local dans votre secteur.`;
+    html = `💡 Pour ${surface} m², vous paieriez environ <strong>${fmt(loyerActuel - meilleure.loyer)} de moins par mois</strong> à ${meilleure.nom}, soit <strong>${fmt(meilleure.gainAn)} par an</strong>${crits.length ? ' (en restant ' + crits.map(c => CRIT_LABEL[c]).join(' et ') + ')' : ''}.`;
   }
+  if (effortActuel > 33) html += `<br>⚠️ Aujourd'hui, votre loyer estimé représente ${Math.round(effortActuel)} % de votre salaire : au-delà d'un tiers, les propriétaires et les banques deviennent réticents.`;
+  html += `<br><span style="font-size:.78rem;opacity:.8">Attention : on suppose le même salaire partout. En pratique, les salaires sont souvent plus élevés dans les grandes métropoles.</span>`;
+  tip.innerHTML = html;
 
-  document.getElementById('results').classList.add('show');
-  document.getElementById('results').scrollIntoView({behavior:'smooth', block:'start'});
+  const res = document.getElementById('results');
+  res.classList.add('show');
+  if (parUtilisateur) {
+    res.classList.add('played');
+    res.scrollIntoView({behavior:'smooth', block:'start'});
+  }
 }
 
 function partager() {
@@ -255,7 +324,7 @@ function partager() {
 
 function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.toggle("open");document.body.style.overflow=m.classList.contains("open")?"hidden":"";}
 
-window.addEventListener('DOMContentLoaded', calculer);
+window.addEventListener('DOMContentLoaded', () => calculer(false));
 </script>
 
 <div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">

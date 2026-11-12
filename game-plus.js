@@ -55,7 +55,9 @@
     "le-sosie-celebre-de-ton-epargne": {"end": "#screen-result"},
     "ton-totem-financier": {"end": "#screen-result"},
     "ton-annee-bons-plans": {"end": "#card-final"},
-    "primo-accedant": {"end": "#report"}
+    "primo-accedant": {"end": "#report"},
+    "ou-vivre-mieux": {"end": "#results.played"},
+    "calendrier-bons-plans": {"end": "#cal-bravo.show"}
   };
 
   var KEY_MED = "economya_medailles", KEY_SND = "economya_son";

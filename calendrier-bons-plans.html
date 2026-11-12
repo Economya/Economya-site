@@ -42,12 +42,36 @@ nav{display:flex;justify-content:space-between;align-items:center;padding:.9rem 
 .month-btn .m-emoji{font-size:1.3rem;display:block;margin-bottom:.2rem}
 .month-btn .m-name{font-size:.72rem;font-weight:700;color:var(--gd)}
 .month-btn.current{box-shadow:0 0 0 2px var(--a)}
+.month-btn{position:relative;overflow:hidden}
+.month-btn .m-dots{display:flex;justify-content:center;gap:3px;margin-top:.3rem}
+.month-btn .m-dots i{width:6px;height:6px;border-radius:50%;background:var(--b);display:block}
+.month-btn .m-dots i.on{background:var(--g)}
+.month-btn.done{background:linear-gradient(180deg,#E1F5EE,#fff)}
+.month-btn.done::after{content:'✓';position:absolute;top:3px;right:6px;font-size:.7rem;font-weight:900;color:var(--g)}
+.month-btn .m-now{position:absolute;top:0;left:0;right:0;background:var(--a);color:#2C2C2A;font-size:.55rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:1px 0}
+.month-btn.current .m-emoji{margin-top:.5rem}
+.year-card{background:var(--w);border:1px solid var(--b);border-radius:16px;padding:1rem 1.1rem;margin-bottom:1rem}
+.year-top{display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;font-size:.88rem;color:var(--gd);font-weight:700}
+.year-top span:last-child{color:var(--m);font-weight:600}
+.year-track,.month-track{height:9px;border-radius:99px;background:var(--gl,#E1F5EE);overflow:hidden;margin:.55rem 0 .3rem}
+.year-track i,.month-track i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--g),#5DCAA5);border-radius:99px;transition:width .5s ease}
+.year-next{font-size:.8rem;color:var(--m);line-height:1.45}
+.month-prog{display:flex;align-items:center;gap:.6rem;margin:-.3rem 0 .4rem}
+.month-prog .month-track{flex:1}
+.month-prog span{font-size:.75rem;color:var(--m);font-weight:700;white-space:nowrap}
+.cal-bravo{display:none;margin:.8rem 0 0;padding:.7rem .9rem;border-radius:12px;background:#E1F5EE;color:var(--gd);font-weight:700;font-size:.88rem;text-align:center;animation:calPop .4s ease}
+.cal-bravo.show{display:block}
+@keyframes calPop{from{transform:scale(.92);opacity:0}to{transform:none;opacity:1}}
 .card{background:var(--w);border-radius:var(--r);border:1px solid var(--b);padding:1.5rem;margin-bottom:1.2rem;box-shadow:0 4px 20px rgba(0,0,0,.04)}
 .card-header{text-align:center;margin-bottom:1rem;padding-bottom:1rem;border-bottom:1px solid var(--b)}
 .card-header .emoji{font-size:2.5rem;display:block;margin-bottom:.3rem}
 .card-header h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gd)}
 .card-header .period{font-size:.78rem;color:var(--m);text-transform:uppercase;letter-spacing:.05em;font-weight:700}
-.action-item{display:flex;gap:.7rem;padding:.8rem 0;border-bottom:1px solid var(--b)}
+.action-item{display:flex;gap:.7rem;padding:.8rem 0;border-bottom:1px solid var(--b);cursor:pointer;transition:opacity .2s}
+.action-item.fait .action-text strong{text-decoration:line-through;text-decoration-color:var(--g)}
+.action-item.fait{opacity:.7}
+.action-check{flex-shrink:0;align-self:center;border:2px solid var(--b);background:#fff;border-radius:99px;padding:.3rem .65rem;font:inherit;font-size:.72rem;font-weight:700;color:var(--m);cursor:pointer;white-space:nowrap}
+.action-item.fait .action-check{background:var(--g);border-color:var(--g);color:#fff}
 .action-item:last-child{border-bottom:none}
 .action-num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--g);color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem}
 .action-text strong{display:block;color:var(--t);font-size:.92rem;margin-bottom:.15rem}
@@ -151,10 +175,15 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <div class="hero">
   <span class="hero-badge">📅 Calendrier interactif</span>
   <h1>Le Calendrier<br>des Bons Plans</h1>
-  <p>Cliquez sur un mois et découvrez les 3 meilleures actions à faire pour économiser, dès maintenant.</p>
+  <p>Chaque mois, les actions qui font économiser. Cochez-les au fur et à mesure et suivez votre année.</p>
 </div>
 
 <div class="wrap">
+  <div class="year-card" id="year-card">
+    <div class="year-top"><span>🗓️ Mon année <b id="y-annee"></b></span><span id="y-count">0 action faite</span></div>
+    <div class="year-track"><i id="y-bar"></i></div>
+    <div class="year-next" id="y-next"></div>
+  </div>
   <div class="months-grid" id="months-grid"></div>
 
   <div class="card">
@@ -163,12 +192,15 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
       <h2 id="m-titre">Choisissez un mois</h2>
       <div class="period" id="m-periode"></div>
     </div>
+    <div class="month-prog"><div class="month-track"><i id="m-bar"></i></div><span id="m-count"></span></div>
     <div id="actions-list"></div>
+    <div class="cal-bravo" id="cal-bravo">🎉 Mois validé ! Toutes les actions sont faites.</div>
     <div class="share-row">
       <button class="btn-share" onclick="partager()">📤 Partager</button>
       <button class="btn-next" onclick="moisActuel()">📍 Mois actuel</button>
+      <button class="btn-share" onclick="rappelAgenda()">🔔 Rappel agenda</button>
     </div>
-    <p class="source-note">Calendrier mis à jour chaque année. Les soldes et le Black Friday suivent des dates officielles fixées par economie.gouv.fr / info.gouv.fr ; la déclaration d'impôts varie selon votre département — vérifiez toujours les dates exactes de l'année en cours sur impots.gouv.fr.</p>
+    <p class="source-note">Calendrier mis à jour chaque année. Les soldes suivent des dates officielles (economie.gouv.fr) ; le Black Friday et les French Days sont des opérations commerciales sans date légale ; la déclaration d'impôts varie selon votre département — vérifiez toujours les dates exactes de l'année en cours sur impots.gouv.fr.</p>
   </div>
 </div>
 
@@ -210,6 +242,7 @@ const MOIS = [
     {titre:'Vérifiez vos garanties carte bancaire avant de partir', desc:'Beaucoup de cartes premium incluent une assurance voyage qui peut vous éviter une souscription séparée.'},
   ]},
   {id:7, nom:'Août', emoji:'🌅', periode:'Tout le mois', actions:[
+    {titre:'Nouveaux taux des livrets au 1er août', desc:'Comme en février, les taux du Livret A, du LDDS et du LEP peuvent être révisés au 1er août. Vérifiez que votre épargne de précaution reste sur le meilleur support (le LEP si vous y avez droit).'},
     {titre:'Allocation de rentrée scolaire (ARS)', desc:'L\'ARS est généralement versée mi-août par la CAF, automatiquement pour les foyers éligibles sous conditions de ressources.'},
     {titre:'Anticipez les fournitures de rentrée', desc:'Comparez les prix avant la dernière semaine d\'août, période où la demande fait grimper les tarifs.'},
     {titre:'Vérifiez votre mutuelle avant la rentrée santé', desc:'Profitez de la fin de l\'été pour comparer les offres avant la reprise des consultations de rentrée.'},
@@ -237,8 +270,63 @@ const MOIS = [
 ];
 
 let moisActif = 0;
+const ANNEE = new Date().getFullYear();
+const CLE_CAL = 'economya_calendrier_' + ANNEE;
+function lireFait(){ try { return JSON.parse(localStorage.getItem(CLE_CAL)) || {}; } catch (e) { return {}; } }
+function ecrireFait(f){ try { localStorage.setItem(CLE_CAL, JSON.stringify(f)); } catch (e) {} }
+let FAIT = lireFait();
+function estFait(m, i){ return !!FAIT[m + '-' + i]; }
+function nbFaits(m){ return MOIS[m].actions.filter((a, i) => estFait(m, i)).length; }
+function basculer(m, i){
+  const k = m + '-' + i;
+  if (FAIT[k]) delete FAIT[k]; else FAIT[k] = 1;
+  ecrireFait(FAIT);
+  afficherMois(m, true);
+  majGrille(); majAnnee();
+  if (window.EcoFx) { try { if (!FAIT[k]) EcoFx.tap(); else if (nbFaits(m) === MOIS[m].actions.length) EcoFx.win(); else EcoFx.good(); } catch (e) {} }
+}
+function majGrille(){
+  document.querySelectorAll('.month-btn').forEach((btn, m) => {
+    const n = nbFaits(m), t = MOIS[m].actions.length;
+    btn.classList.toggle('done', n === t);
+    const d = btn.querySelector('.m-dots');
+    if (d) d.innerHTML = MOIS[m].actions.map((a, i) => `<i class="${estFait(m, i) ? 'on' : ''}"></i>`).join('');
+  });
+}
+function majAnnee(){
+  const total = MOIS.reduce((a, m) => a + m.actions.length, 0);
+  const faits = MOIS.reduce((a, m, i) => a + nbFaits(i), 0);
+  document.getElementById('y-annee').textContent = ANNEE;
+  document.getElementById('y-count').textContent = faits + ' / ' + total + ' action' + (faits > 1 ? 's' : '') + ' faite' + (faits > 1 ? 's' : '');
+  document.getElementById('y-bar').style.width = Math.round(faits / total * 100) + '%';
+  const cur = new Date().getMonth(), nxt = (cur + 1) % 12;
+  const reste = MOIS[cur].actions.length - nbFaits(cur);
+  document.getElementById('y-next').innerHTML = (reste > 0
+    ? `👉 Ce mois-ci (${MOIS[cur].nom}) : encore <b>${reste}</b> action${reste > 1 ? 's' : ''} à faire.`
+    : `✅ ${MOIS[cur].nom} est validé.`) + ` Le mois prochain : <b>${MOIS[nxt].actions[0].titre}</b>.`;
+}
+function rappelAgenda(){
+  const m = MOIS[moisActif];
+  const now = new Date();
+  let an = now.getFullYear();
+  if (moisActif < now.getMonth()) an++;
+  const d = an + String(moisActif + 1).padStart(2, '0') + '01';
+  const fin = an + String(moisActif + 1).padStart(2, '0') + '02';
+  const esc = t => t.replace(/[\\,;]/g, c => '\\' + c);
+  const desc = m.actions.map((a, i) => (i + 1) + '. ' + esc(a.titre)).join('\\n') + '\\nhttps://economya.fr/calendrier-bons-plans';
+  const ics = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Economya//Calendrier//FR','BEGIN:VEVENT',
+    'UID:economya-cal-' + d + '@economya.fr','DTSTAMP:' + now.toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z',
+    'DTSTART;VALUE=DATE:' + d,'DTEND;VALUE=DATE:' + fin,
+    'SUMMARY:' + esc('💰 Bons plans ' + (/^[AEIOUÉaeiou]/.test(m.nom) ? 'd\'' : 'de ') + m.nom.toLowerCase() + ' (Economya)'),'DESCRIPTION:' + desc,
+    'BEGIN:VALARM','TRIGGER:PT9H','ACTION:DISPLAY','DESCRIPTION:Bons plans du mois','END:VALARM',
+    'END:VEVENT','END:VCALENDAR'].join('\r\n');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([ics], {type: 'text/calendar'}));
+  a.download = 'bons-plans-' + m.nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') + '.ics';
+  document.body.appendChild(a); a.click(); a.remove();
+}
 
-function afficherMois(id) {
+function afficherMois(id, sansAnim) {
   moisActif = id;
   const m = MOIS[id];
 
@@ -250,15 +338,21 @@ function afficherMois(id) {
   document.getElementById('m-titre').textContent = m.nom;
   document.getElementById('m-periode').textContent = m.periode;
 
+  document.getElementById('m-periode').textContent = m.actions.length + ' actions à cocher';
   document.getElementById('actions-list').innerHTML = m.actions.map((a, i) => `
-    <div class="action-item">
-      <span class="action-num">${i+1}</span>
+    <div class="action-item ${estFait(id, i) ? 'fait' : ''}" onclick="basculer(${id}, ${i})">
+      <span class="action-num">${estFait(id, i) ? '✓' : i+1}</span>
       <div class="action-text">
         <strong>${a.titre}</strong>
         <span>${a.desc}</span>
       </div>
+      <button type="button" class="action-check" aria-pressed="${estFait(id, i)}">${estFait(id, i) ? 'Fait ✓' : 'À faire'}</button>
     </div>
   `).join('');
+  const n = nbFaits(id);
+  document.getElementById('m-bar').style.width = Math.round(n / m.actions.length * 100) + '%';
+  document.getElementById('m-count').textContent = n + '/' + m.actions.length;
+  document.getElementById('cal-bravo').classList.toggle('show', n === m.actions.length);
 }
 
 function initGrid() {
@@ -267,7 +361,9 @@ function initGrid() {
   grid.innerHTML = MOIS.map(m => `
     <button class="month-btn ${m.id === moisCourant ? 'current' : ''}" onclick="afficherMois(${m.id})">
       <span class="m-emoji">${m.emoji}</span>
+      ${m.id === moisCourant ? '<span class="m-now">Ce mois</span>' : ''}
       <span class="m-name">${m.nom.slice(0,3)}</span>
+      <span class="m-dots"></span>
     </button>
   `).join('');
 }
@@ -279,7 +375,7 @@ function moisActuel() {
 
 function partager() {
   const m = MOIS[moisActif];
-  const text = `📅 ${m.nom} : "${m.actions[0].titre}" — découvrez les 3 meilleures astuces du mois sur le Calendrier des Bons Plans d'economya.fr !`;
+  const text = `📅 ${m.nom} : "${m.actions[0].titre}" — découvrez les astuces du mois sur le Calendrier des Bons Plans d'economya.fr !`;
   if (navigator.share) {
     navigator.share({title:'Economya.fr', text, url:'https://economya.fr/calendrier-bons-plans.html'});
   } else {
@@ -293,6 +389,7 @@ function toggleMenu(){var m=document.getElementById("mobileMenu");m.classList.to
 window.addEventListener('DOMContentLoaded', function(){
   initGrid();
   afficherMois(new Date().getMonth());
+  majGrille(); majAnnee();
 });
 </script>
 
