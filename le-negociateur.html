@@ -149,7 +149,7 @@ nav{flex-wrap:wrap;row-gap:.5rem;column-gap:.7rem}
 <div class="hero">
   <div class="hero-badge">🤝 Jeu de Négociation</div>
   <h1>Le <em>Négociateur</em></h1>
-  <p>Négociez le prix d'une voiture, d'un loyer, d'un forfait... Économisez un maximum en temps limité !</p>
+  <p>Négociez le prix d'une voiture, d'un loyer, d'un forfait... Économisez un maximum en temps limité ! Chaque argument ne sert qu'une fois, et un vendeur agacé lâche moins, voire met fin à la discussion.</p>
 </div>
 <div class="stats-bar">
   <div class="stat-item"><span class="stat-val" id="stat-score">0</span><span class="stat-lbl">Score</span></div>
@@ -258,6 +258,12 @@ try { bestScore = parseInt(localStorage.getItem('negociateurBest') || '0', 10) |
 document.addEventListener('DOMContentLoaded', function () { var b = document.getElementById('stat-best'); if (b) b.textContent = bestScore; });
 let currentScenario, currentPrice, timerInterval, timeLeft;
 let vendeurMood = 50;
+let argumentsUtilises = {};
+// Correction des données : dans 18 scénarios sur 20, l'objectif affiché était plus bas que le prix plancher du vendeur,
+// donc objectif inatteignable (la partie finissait toujours au chrono). On remet les deux valeurs dans le bon ordre.
+ALL_SCENARIOS.forEach(function (sc) {
+  if (sc.minAccept > sc.target) { var t = sc.target; sc.target = sc.minAccept; sc.minAccept = t; }
+});
 
 function startGame() {
   scenarios = shuffle(ALL_SCENARIOS).slice(0, 5);
@@ -274,6 +280,7 @@ function loadScenario() {
   currentScenario = sc;
   currentPrice = sc.prix;
   vendeurMood = 50;
+  argumentsUtilises = {}; // chaque argument ne sert qu'une fois par négociation
   document.getElementById('sc-emoji').textContent = sc.emoji;
   document.getElementById('sc-title').textContent = sc.title;
   document.getElementById('sc-context').textContent = sc.context;
@@ -321,28 +328,62 @@ function updateTimer() {
 function useAction(idx) {
   const sc = currentScenario;
   const action = sc.actions[idx];
-  currentPrice = Math.max(sc.minAccept, currentPrice + action.impact);
+  if (argumentsUtilises[idx]) return;
+  argumentsUtilises[idx] = true;
+  const boutons = document.querySelectorAll('#action-grid .action-btn');
+  if (boutons[idx]) { boutons[idx].disabled = true; boutons[idx].style.opacity = '.4'; boutons[idx].style.cursor = 'default'; }
+  // L'humeur du vendeur pèse sur ce qu'il lâche : favorable +15 %, agacé -25 %
+  const facteur = vendeurMood > 70 ? 1.15 : vendeurMood > 40 ? 1 : 0.75;
+  currentPrice = Math.max(sc.minAccept, currentPrice + Math.round(action.impact * facteur));
   document.getElementById('sc-price').textContent = currentPrice.toLocaleString('fr-FR') + '€';
   const response = action.responses[Math.floor(Math.random() * action.responses.length)];
   document.getElementById('v-bubble').textContent = response;
   vendeurMood += action.type === 'good' ? 5 : action.type === 'risky' ? -10 : 0;
   updateMood();
-  if(currentPrice <= sc.target) { clearInterval(timerInterval); showResult('win', sc.prix - currentPrice, action.score + 50); }
+  if(currentPrice <= sc.target) { clearInterval(timerInterval); showResult('win', sc.prix - currentPrice, action.score + 50); return; }
+  // Trop de pression : le vendeur met fin à la discussion
+  if(vendeurMood <= 15) {
+    clearInterval(timerInterval);
+    document.getElementById('v-bubble').textContent = "Écoutez, on va en rester là. Bonne journée.";
+    const eco = sc.prix - currentPrice;
+    showResult(eco > 0 ? 'partial' : 'lose', eco, 10);
+  }
 }
 
 function makeCustomOffer() {
   const val = parseInt(document.getElementById('custom-input').value);
   const sc = currentScenario;
   if(!val || isNaN(val)) return;
-  if(val >= sc.minAccept && val < currentPrice) {
+  const bulle = document.getElementById('v-bubble');
+  if(val >= currentPrice) { bulle.textContent = `Mon prix est ${currentPrice.toLocaleString('fr-FR')}€.`; return; }
+  // Le vendeur ne lâche qu'une partie de sa marge à chaque offre, selon son humeur
+  const marge = currentPrice - sc.minAccept;
+  const part = vendeurMood > 70 ? 0.6 : vendeurMood > 40 ? 0.4 : 0.2;
+  const plancher = Math.round(currentPrice - marge * part);
+  if(val >= plancher) {
+    // offre raisonnable : acceptée
     currentPrice = val;
     document.getElementById('sc-price').textContent = currentPrice.toLocaleString('fr-FR') + '€';
+    vendeurMood += 3;
+    updateMood();
     if(val <= sc.target) { clearInterval(timerInterval); showResult('win', sc.prix - val, 80); }
-    else { document.getElementById('v-bubble').textContent = `${val.toLocaleString('fr-FR')}€... C'est juste, je peux faire ça.`; }
-  } else if(val < sc.minAccept) {
-    document.getElementById('v-bubble').textContent = `${val.toLocaleString('fr-FR')}€ ? C'est trop bas, impossible.`;
+    else bulle.textContent = `${val.toLocaleString('fr-FR')}€... C'est juste, je peux faire ça.`;
   } else {
-    document.getElementById('v-bubble').textContent = `Mon prix est ${currentPrice.toLocaleString('fr-FR')}€.`;
+    // offre trop basse : le vendeur fait une contre-proposition et s'agace un peu
+    vendeurMood -= val < sc.minAccept ? 12 : 6;
+    updateMood();
+    if(plancher < currentPrice) {
+      currentPrice = plancher;
+      document.getElementById('sc-price').textContent = currentPrice.toLocaleString('fr-FR') + '€';
+      bulle.textContent = `${val.toLocaleString('fr-FR')}€ ? Non. Je peux descendre à ${plancher.toLocaleString('fr-FR')}€, pas plus pour l'instant.`;
+      if(currentPrice <= sc.target) { clearInterval(timerInterval); showResult('win', sc.prix - currentPrice, 60); return; }
+    } else bulle.textContent = `${val.toLocaleString('fr-FR')}€ ? C'est trop bas, impossible.`;
+    if(vendeurMood <= 15) {
+      clearInterval(timerInterval);
+      bulle.textContent = "Vous n'êtes pas sérieux. On arrête là.";
+      const eco = sc.prix - currentPrice;
+      showResult(eco > 0 ? 'partial' : 'lose', eco, 10);
+    }
   }
 }
 
