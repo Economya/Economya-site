@@ -45,9 +45,9 @@ html{overflow-y:scroll}
   .brand-footer{margin-top:16px; font-size:12px; color:var(--ink-dim);}
   .brand-footer a{color:var(--gold); text-decoration:none; font-weight:700;}
 
-  #hud{ padding:14px 16px 4px; }
+  #hud{ padding:52px 16px 4px; }
   .board-track{ display:flex; gap:4px; overflow-x:auto; padding:8px 4px 14px; }
-  .board-tile{ min-width:26px; height:26px; border-radius:7px; background:rgba(255,255,255,.06); border:1px solid var(--panel-line); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--ink-dim); flex-shrink:0; }
+  .board-tile{ flex:1; min-width:18px; height:26px; border-radius:7px; background:rgba(255,255,255,.06); border:1px solid var(--panel-line); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--ink-dim); flex-shrink:0; }
   .board-tile.done{ background:rgba(255,201,75,.18); border-color:var(--gold); color:var(--gold); }
   .board-tile.current{ background:var(--gold); color:#2A1900; transform:scale(1.15); }
 
@@ -64,14 +64,26 @@ html{overflow-y:scroll}
   .event-text{ font-size:13.5px; line-height:1.5; margin-bottom:14px; color:var(--ink-dim); }
   .event-text.shock{ color:var(--bad); font-weight:700; }
   .actions{ display:flex; flex-direction:column; gap:8px; }
-  .action-btn{ border:none; border-radius:12px; padding:13px 10px; font-family:'Inter',sans-serif; font-weight:600; font-size:13px; background:rgba(255,255,255,.05); border:1px solid var(--panel-line); color:var(--ink); cursor:pointer; text-align:left; }
+  .action-btn{ border:none; border-radius:12px; padding:10px 12px; font-family:'Inter',sans-serif; font-weight:600; font-size:13px; background:rgba(255,255,255,.05); border:1px solid var(--panel-line); color:var(--ink); cursor:pointer; text-align:left; }
   .action-btn:active{ transform:scale(.98); }
   .action-btn.aggressive{ border-color:rgba(255,77,109,.4); }
   .action-btn.moderate{ border-color:rgba(255,201,75,.4); }
   .action-btn.safe{ border-color:rgba(61,220,132,.4); }
+  .action-btn.hedge{ border-color:rgba(120,170,255,.45); }
+  .ab-top{ display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+  .ab-top i{ font-style:normal; font-size:11.5px; font-weight:700; color:var(--ink-dim); white-space:nowrap; }
+  .ab-sub{ display:block; font-size:11.5px; font-weight:500; color:var(--ink-dim); margin-top:2px; }
+  .phase-line{ display:flex; flex-direction:column; gap:2px; margin-bottom:10px; font-size:13.5px; }
+  .phase-line span{ font-size:12px; color:var(--ink-dim); }
+  .signal{ font-size:12px; font-weight:600; color:#FFB020; background:rgba(255,176,32,.1); border:1px solid rgba(255,176,32,.35); border-radius:10px; padding:7px 10px; margin-bottom:10px; }
+  .event-text.result{ margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid var(--panel-line); font-size:12.5px; }
+  .board-tile.shock{ border-color:var(--bad); box-shadow:0 0 0 1px var(--bad) inset; }
+  .chart{ height:56px; margin-top:2px; } .chart svg{ width:100%; height:100%; display:block; }
+  .hedge-badge{ margin-top:6px; font-size:11.5px; font-weight:700; color:#9CC0FF; background:rgba(120,170,255,.12); border:1px solid rgba(120,170,255,.4); border-radius:99px; padding:4px 10px; }
+  .go-stats{ font-size:13px; color:var(--ink-dim); margin-bottom:16px; } .go-stats b{ color:var(--ink); }
 
   .go-score{font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:48px; color:var(--gold); line-height:1; margin:6px 0 4px;}
-  .go-label{font-size:13px; color:var(--ink-dim); margin-bottom:20px;}
+  .go-label{font-size:13px; color:var(--ink-dim); margin-bottom:8px;}
   .rivals{ width:100%; max-width:320px; margin:0 auto 20px; text-align:left; }
   .rival-row{ display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:10px; margin-bottom:6px; background:var(--panel); border:1px solid var(--panel-line); font-size:13px; }
   .rival-row.me{ background:rgba(255,201,75,.16); border-color:rgba(255,201,75,.5); font-weight:700; }
@@ -110,6 +122,8 @@ html{overflow-y:scroll}
         <div class="gauge-label"><span>📈 Croissance accumulée</span><span id="growthLabel">0</span></div>
         <div class="gauge-track"><div class="gauge-fill growth" id="growthFill" style="width:0%"></div></div>
       </div>
+      <div class="chart" id="growthChart"></div>
+      <span class="hedge-badge" id="hedgeBadge" style="display:none;"></span>
     </div>
   </div>
 
@@ -118,7 +132,7 @@ html{overflow-y:scroll}
   <div class="overlay active" id="screen-intro">
     <div class="eyebrow">Economya.fr · Cycle long terme</div>
     <h1 class="title">Le Grand Cycle <span>Économique</span></h1>
-    <p class="lede">14 années à traverser, en quatre phases : expansion, surchauffe, récession, reprise. À chaque tour, choisissez d'investir agressif, modéré, ou de sécuriser : la bonne stratégie change avec la phase. Le risque accumulé augmente vos chances de subir un choc — mais la croissance accumulée est votre score final.</p>
+    <p class="lede">14 années à traverser, en quatre phases : expansion, surchauffe, récession, reprise. Leur durée change à chaque partie : guettez les signaux de retournement. Chaque année, choisissez d'investir, de sécuriser ou de vous couvrir : chaque option affiche son gain et son risque de choc. La croissance accumulée est votre score.</p>
     <div class="disclaimer">⚠️ Simulation pédagogique fictive. Ne constitue en aucun cas un conseil en investissement.</div>
     <button class="btn btn-primary" onclick="startGame()">Jouer</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -128,6 +142,7 @@ html{overflow-y:scroll}
     <div class="eyebrow" id="goEyebrow">Cycle terminé</div>
     <div class="go-score" id="goScore">0</div>
     <div class="go-label">croissance finale accumulée</div>
+    <div class="go-stats" id="goStats"></div>
     <div class="rivals" id="goRivals"></div>
     <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
     <button class="btn btn-ghost" onclick="shareResult()">Partager mon résultat</button>
@@ -136,19 +151,47 @@ html{overflow-y:scroll}
 </div>
 
 <script>
+/* Le Grand Cycle Économique : 14 années, quatre phases dont la durée change à chaque partie.
+   Chaque option affiche son gain et son risque de choc : la bonne stratégie dépend de la phase. */
 const TOTAL_YEARS = 14;
 let year = 1, risk = 15, growth = 0, running = false;
-let lastEventText = '';
-// Le cycle a quatre phases : la même stratégie ne rapporte pas pareil selon le moment.
-const PHASES = [
-  { nom:'🌤️ Expansion',  croissance:1.3, choc:0.8, conseil:'la croissance rapporte bien, les chocs sont rares' },
-  { nom:'🔥 Surchauffe', croissance:1.6, choc:1.6, conseil:'gains élevés, mais les chocs frappent plus souvent' },
-  { nom:'🌧️ Récession',  croissance:0.6, choc:1.2, conseil:'la croissance rapporte peu : protéger devient payant' },
-  { nom:'🌱 Reprise',    croissance:1.0, choc:0.7, conseil:'le risque retombe, bon moment pour réinvestir' },
-];
-function phaseDe(annee){ return PHASES[Math.floor((annee-1)/4) % PHASES.length]; }
+let lastEventText = '', lastShock = false;
+let cycle = [], signaux = [], hist = [], couverture = 0, nbChocs = 0, perteChocs = 0, best = 0;
+try{ best = parseInt(localStorage.getItem('grandCycleBest')||'0',10) || 0; }catch(e){}
 
+const PHASES = [
+  { nom:'🌤️ Expansion',  ico:'🌤️', croissance:1.3, choc:0.8, conseil:'la croissance rapporte bien, les chocs sont rares' },
+  { nom:'🔥 Surchauffe', ico:'🔥', croissance:1.6, choc:1.6, conseil:'gains élevés, mais les chocs frappent plus souvent' },
+  { nom:'🌧️ Récession',  ico:'🌧️', croissance:0.6, choc:1.2, conseil:'la croissance rapporte peu : protéger devient payant' },
+  { nom:'🌱 Reprise',    ico:'🌱', croissance:1.0, choc:0.7, conseil:'le risque retombe, bon moment pour réinvestir' },
+];
+const OPTIONS = [
+  { label:'Investir agressif', cls:'aggressive', growth:14, risk:16 },
+  { label:'Investir modéré',   cls:'moderate',   growth:7,  risk:6 },
+  { label:'Sécuriser',         cls:'safe',       growth:1,  risk:-10 },
+  { label:'Se couvrir',        cls:'hedge',      growth:-3, risk:-2, couvre:true },
+];
+
+// Le cycle garde son ordre (expansion, surchauffe, récession, reprise) mais chaque phase dure de 2 à 4 ans
+// et la partie ne démarre pas toujours au même endroit : impossible de l'apprendre par cœur.
+function genererCycle(){
+  cycle = [0]; signaux = [false];
+  let p = Math.random()<0.5 ? 0 : (Math.random()<0.5 ? 3 : 1);
+  while(cycle.length <= TOTAL_YEARS){
+    const duree = 2 + Math.floor(Math.random()*3);
+    for(let i=0;i<duree && cycle.length<=TOTAL_YEARS;i++){
+      cycle.push(p);
+      // signal de retournement : fiable la dernière année d'une phase (3 fois sur 4), parfois une fausse alerte
+      signaux.push(i===duree-1 ? Math.random()<0.75 : Math.random()<0.1);
+    }
+    p = (p+1) % PHASES.length;
+  }
+}
+function phaseDe(annee){ return PHASES[cycle[annee]]; }
 function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
+function gainDe(o, annee){ return o.growth>0 ? Math.round(o.growth * phaseDe(annee).croissance) : o.growth; }
+// Le risque de choc grimpe plus vite que le risque accumulé : rester en surrégime coûte cher.
+function chanceChoc(r, annee){ return Math.min(0.9, Math.pow(r/100,2) * 0.6 * phaseDe(annee).choc); }
 
 function renderBoard(){
   const track = document.getElementById('boardTrack');
@@ -156,38 +199,58 @@ function renderBoard(){
   for(let i=1;i<=TOTAL_YEARS;i++){
     const t = document.createElement('div');
     t.className = 'board-tile' + (i<year?' done':'') + (i===year?' current':'');
-    t.textContent = i;
+    t.textContent = i<=year ? PHASES[cycle[i]].ico : i;
+    if(i<year && hist[i] && hist[i].choc) t.classList.add('shock');
+    t.title = 'Année '+i;
     track.appendChild(t);
   }
+}
+
+function renderChart(){
+  const el = document.getElementById('growthChart'); if(!el) return;
+  const W=320,H=56,max=Math.max(60, ...hist.map(h=>h?h.g:0));
+  const X=i=>6+(W-12)*i/TOTAL_YEARS, Y=g=>H-5-(H-12)*g/max;
+  let pts='', dots='';
+  hist.forEach((h,i)=>{ if(!h) return; pts+=X(i)+','+Y(h.g)+' '; if(h.choc) dots+=`<circle cx="${X(i)}" cy="${Y(h.g)}" r="4" fill="#FF4D6D"/>`; });
+  const last = hist[hist.length-1];
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Courbe de la croissance accumulée">
+    <line x1="6" y1="${H-5}" x2="${W-6}" y2="${H-5}" stroke="rgba(255,255,255,.14)"/>
+    <polyline points="${pts}" fill="none" stroke="#FFC94B" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    ${dots}${last?`<circle cx="${X(hist.length-1)}" cy="${Y(last.g)}" r="3.5" fill="#FFC94B"/>`:''}</svg>`;
 }
 
 function updateGauges(){
   document.getElementById('riskFill').style.width = risk+'%';
   document.getElementById('riskLabel').textContent = Math.round(risk);
-  const growthPct = Math.min(100, growth/2.2);
+  const growthPct = Math.min(100, growth/1.5);
   document.getElementById('growthFill').style.width = growthPct+'%';
   document.getElementById('growthLabel').textContent = Math.round(growth);
+  const c = document.getElementById('hedgeBadge');
+  if(c){ c.style.display = couverture>0 ? 'inline-block' : 'none'; c.textContent = '🛡️ Couverture active ('+couverture+' an'+(couverture>1?'s':'')+')'; }
+  renderChart();
 }
 
 function renderTurn(){
   renderBoard();
   updateGauges();
+  const ph = phaseDe(year);
   const zone = document.getElementById('eventZone');
   zone.innerHTML = `
     <div class="event-card">
-      <div class="event-text${lastEventText.startsWith('⚡')?' shock':''}">${lastEventText || `Année ${year} — quelle stratégie pour cette période ?`}<br><span style="font-size:12px;opacity:.8">${phaseDe(year).nom} : ${phaseDe(year).conseil}</span></div>
+      ${lastEventText?`<div class="event-text result${lastShock?' shock':''}">${lastEventText}</div>`:''}
+      <div class="phase-line"><b>Année ${year} · ${ph.nom}</b><span>${ph.conseil}</span></div>
+      ${signaux[year]?'<div class="signal">📰 Signaux de retournement : la phase pourrait changer l\'an prochain.</div>':''}
       <div class="actions" id="actionsZone"></div>
     </div>`;
   const actionsEl = document.getElementById('actionsZone');
-  const options = [
-    { label:"Investir agressif", cls:"aggressive", growth:14, risk:16, desc:"Fort potentiel, fort risque" },
-    { label:"Investir modéré", cls:"moderate", growth:7, risk:6, desc:"Équilibre risque/croissance" },
-    { label:"Sécuriser", cls:"safe", growth:1, risk:-10, desc:"Protège, mais peu de croissance" },
-  ];
-  options.forEach(o=>{
+  OPTIONS.forEach(o=>{
+    const g = gainDe(o, year), r2 = clamp(risk+o.risk,0,100), ch = Math.round(chanceChoc(r2, year)*100);
     const btn = document.createElement('button');
     btn.className = 'action-btn '+o.cls;
-    btn.innerHTML = `${o.label}<br><span style="font-size:11px; color:var(--ink-dim);">${o.desc}</span>`;
+    const detail = o.couvre
+      ? `−${Math.abs(g)} pts · le prochain choc est divisé par 2 pendant 2 ans`
+      : `+${g} pts · risque ${o.risk>0?'+':'−'}${Math.abs(o.risk)}`;
+    btn.innerHTML = `<span class="ab-top"><b>${o.label}</b><i>choc : ${ch} %</i></span><span class="ab-sub">${detail}</span>`;
     btn.addEventListener('click', ()=>playTurn(o));
     actionsEl.appendChild(btn);
   });
@@ -195,23 +258,27 @@ function renderTurn(){
 
 function playTurn(option){
   if(!running) return;
-  const phase = phaseDe(year);
-  growth += Math.round(option.growth * phase.croissance);
+  const g = gainDe(option, year);
+  growth = Math.max(0, growth + g);
   risk = clamp(risk + option.risk, 0, 100);
+  if(option.couvre) couverture = 3; // décompté en fin d'année : couvre cette année et les deux suivantes
 
-  // chance de choc de marché proportionnelle au risque accumulé
-  const shockChance = risk/260 * phase.choc; // jusqu'à ~38% à risque max, modulé par la phase du cycle
-  lastEventText = '';
-  if(Math.random() < shockChance){
-    const loss = Math.round(growth * (0.15 + Math.random()*0.25));
+  lastEventText = `Année ${year} · ${option.label} : ${g>=0?'+':'−'}${Math.abs(g)} pts.`;
+  lastShock = false;
+  if(Math.random() < chanceChoc(risk, year)){
+    let loss = Math.round(growth * (0.15 + Math.random()*0.25));
+    const couvert = couverture>0;
+    if(couvert) loss = Math.round(loss/2);
     growth = Math.max(0, growth - loss);
     risk = clamp(risk - 20, 0, 100);
-    lastEventText = `⚡ Un choc de marché frappe cette année : -${loss} pts de croissance, mais le risque retombe.`;
+    nbChocs++; perteChocs += loss; lastShock = true;
+    lastEventText += ` ⚡ Choc de marché : −${loss} pts${couvert?' (amorti par votre couverture)':''}, le risque retombe.`;
   }
+  if(couverture>0) couverture--;
+  hist[year] = { g:growth, choc:lastShock };
 
-  updateGauges();
   year++;
-  if(year > TOTAL_YEARS){ endGame(); return; }
+  if(year > TOTAL_YEARS){ updateGauges(); endGame(); return; }
   renderTurn();
 }
 
@@ -219,17 +286,20 @@ function startGame(){
   document.getElementById('screen-intro').classList.remove('active');
   document.getElementById('screen-over').classList.remove('active');
   document.getElementById('hud').style.display='block';
-  year = 1; risk = 15; growth = 0; lastEventText = '';
+  year = 1; risk = 15; growth = 0; lastEventText = ''; lastShock = false;
+  couverture = 0; nbChocs = 0; perteChocs = 0; hist = [{g:0,choc:false}];
+  genererCycle();
   running = true;
   renderTurn();
 }
 
 function computeRank(finalGrowth){
   const rivals = [
-    { name:"Le prudent constant", score:95 },
-    { name:"Le joueur équilibré", score:135 },
-    { name:"L'audacieux jamais rattrapé", score:210 },
-    { name:"Celui qui a tout perdu à un choc tardif", score:40 },
+    { name:"Le prudent constant", score:20 },
+    { name:"Celui qui a tout perdu à un choc tardif", score:45 },
+    { name:"Le joueur équilibré", score:75 },
+    { name:"Le stratège du cycle", score:105 },
+    { name:"L'audacieux jamais rattrapé", score:135 },
   ];
   const combined = rivals.map(r=>({...r, me:false}));
   combined.push({ name:"Toi", score:finalGrowth, me:true });
@@ -243,7 +313,12 @@ function endGame(){
   document.getElementById('eventZone').innerHTML = '';
 
   const finalGrowth = Math.round(growth);
+  const record = finalGrowth > best;
+  if(record){ best = finalGrowth; try{ localStorage.setItem('grandCycleBest', String(best)); }catch(e){} }
   document.getElementById('goScore').textContent = finalGrowth+' pts';
+  document.getElementById('goStats').innerHTML =
+    (nbChocs ? `Chocs subis : <b>${nbChocs}</b> (−${perteChocs} pts)` : 'Aucun choc subi') +
+    ` · Record : <b>${best} pts</b>${record&&finalGrowth>0?' 🎉':''}`;
 
   const standings = computeRank(finalGrowth);
   const rivalsEl = document.getElementById('goRivals');

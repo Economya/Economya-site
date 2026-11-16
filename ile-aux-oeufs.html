@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>L'Île aux Œufs — Economya.fr</title>
-<meta name="description" content="Répartissez vos œufs entre plusieurs îles avant la tempête. Simulation pédagogique Economya.fr.">
+<meta name="description" content="Répartissez vos œufs entre quatre îles plus ou moins exposées avant chaque tempête : un jeu pour comprendre risque et diversification. Simulation pédagogique Economya.fr.">
 <link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 html{overflow-y:scroll}
@@ -44,20 +44,35 @@ html{overflow-y:scroll}
   .btn-ghost{background:transparent; border:1.5px solid var(--panel-line); color:var(--ink); margin-top:12px; padding:13px 30px; font-size:14px;}
   .brand-footer{margin-top:16px; font-size:12px; color:var(--ink-dim);}
   .brand-footer a{color:var(--gold); text-decoration:none; font-weight:700;}
-  #hud{display:flex; flex-direction:column; gap:6px; padding:14px 18px; position:relative; z-index:2;}
+  #hud{display:flex; flex-direction:column; gap:6px; padding:16px 108px 12px 18px; position:relative; z-index:2;}
   .hud-row{display:flex; align-items:center; justify-content:space-between; font-size:13px;}
   .hud-row b{font-family:'Space Grotesk',sans-serif; font-size:16px;}
-  .islands{flex:1; display:grid; grid-template-columns:repeat(2,1fr); gap:14px; padding:8px 16px; position:relative; z-index:2;}
+  .islands{flex:1; display:grid; grid-template-columns:repeat(2,1fr); gap:10px; padding:6px 16px; position:relative; z-index:2; min-height:0;}
   .island{
     background:linear-gradient(180deg, rgba(75,201,255,.1), rgba(75,201,255,.02));
     border:1.5px solid var(--panel-line); border-radius:18px; display:flex; flex-direction:column;
     align-items:center; justify-content:center; padding:10px; position:relative; overflow:hidden;
   }
   .island.wiped{ background:linear-gradient(180deg, rgba(255,77,109,.25), rgba(255,77,109,.05)); border-color:rgba(255,77,109,.5); }
-  .island-eggs{font-size:22px; letter-spacing:2px; min-height:30px; text-align:center;}
+  .island-eggs{font-size:15px; letter-spacing:1px; min-height:22px; text-align:center; line-height:1.3;}
+  .isl-name{font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:14px; margin-bottom:5px; text-align:center;}
+  .isl-risk{display:flex; align-items:center; gap:6px; width:100%; font-size:11px; color:var(--ink-dim);}
+  .isl-risk::before{content:'Risque';}
+  .isl-risk b{color:var(--ink); font-size:12px; min-width:34px; text-align:right;}
+  .isl-risk-bar{flex:1; height:6px; border-radius:99px; background:rgba(255,255,255,.1); overflow:hidden;}
+  .isl-risk-bar i{display:block; height:100%; width:0; border-radius:99px; transition:width .4s ease, background .4s ease;}
+  .isl-rule{font-size:11px; color:var(--ink-dim); margin:4px 0 6px;}
+  .isl-gain{min-height:16px; font-size:12px; font-weight:800; color:var(--good);}
+  .isl-gain.bad{color:var(--bad);}
+  .isl-all{width:auto; padding:0 10px; font-size:12px;}
+  .round-msg{margin:0 16px 4px; padding:10px 12px; border-radius:12px; background:var(--panel); border:1px solid var(--panel-line); font-size:12.5px; line-height:1.45; color:var(--ink-dim); min-height:58px; position:relative; z-index:2;}
+  .round-msg b{color:var(--ink);} .round-msg b.bad{color:var(--bad);} .round-msg b.good{color:var(--good);}
+  .quick-row{display:flex; gap:8px; margin-bottom:10px;}
+  .btn-quick{flex:1; border:1px solid var(--panel-line); background:var(--panel); color:var(--ink); border-radius:12px; padding:10px 6px; font-family:'Inter',system-ui,sans-serif; font-weight:600; font-size:12.5px; cursor:pointer;}
+  .btn-quick:active{transform:scale(.97);}
   .island-count{font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:15px; margin-top:4px;}
   .island-btns{display:flex; gap:6px; margin-top:8px;}
-  .isl-btn{border:none; border-radius:10px; width:32px; height:32px; font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:16px; cursor:pointer; background:var(--panel); border:1px solid var(--panel-line); color:var(--ink);}
+  .isl-btn{border:none; border-radius:10px; width:38px; height:36px; touch-action:manipulation; font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:16px; cursor:pointer; background:var(--panel); border:1px solid var(--panel-line); color:var(--ink);}
   .isl-btn:active{transform:scale(.92);}
   .isl-btn:disabled{opacity:.35; cursor:not-allowed;}
   .storm-banner{
@@ -78,7 +93,7 @@ html{overflow-y:scroll}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
 <meta property="og:title" content="L'Île aux Œufs — Economya.fr">
-<meta property="og:description" content="Répartissez vos œufs entre plusieurs îles avant la tempête. Simulation pédagogique Economya.fr.">
+<meta property="og:description" content="Répartissez vos œufs entre quatre îles plus ou moins exposées avant chaque tempête : un jeu pour comprendre risque et diversification. Simulation pédagogique Economya.fr.">
 <meta property="og:url" content="https://economya.fr/ile-aux-oeufs">
 <meta property="og:image" content="https://economya.fr/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -95,18 +110,20 @@ html{overflow-y:scroll}
 
 <div class="wrap" id="wrap">
   <div id="hud" style="display:none;">
-    <div class="hud-row"><span>Tempête <b id="hudStorm">1</b>/5</span><span>Œufs restants : <b id="hudEggs">12/12</b></span></div>
+    <div class="hud-row"><span>Tempête <b id="hudStorm">1</b>/5</span><span>Œufs : <b id="hudEggs">12</b></span><span>À placer : <b id="hudFree">12</b></span></div>
   </div>
+  <div class="round-msg" id="roundMsg" style="display:none;" aria-live="polite"></div>
   <div class="islands" id="islands"></div>
   <div class="action-row" id="actionRow" style="display:none;">
+    <div class="quick-row"><button type="button" class="btn-quick" onclick="equilibrer()">⚖️ Répartir également</button><button type="button" class="btn-quick" onclick="toutReprendre()">↺ Tout reprendre</button></div>
     <button class="btn-lock" id="btnLock" onclick="lockAllocation()">🌊 Valider et affronter la tempête</button>
   </div>
-  <div class="storm-banner" id="stormBanner">🌊 Tempête !</div>
+  <div class="storm-banner" id="stormBanner">🌊 La tempête approche…</div>
 
   <div class="overlay active" id="screen-intro">
     <div class="eyebrow">Economya.fr · Simulation</div>
     <h1 class="title">L'Île aux <span>Œufs</span></h1>
-    <p class="lede">Répartissez vos 12 œufs entre 4 îles avant chaque tempête. À chaque tempête, une île au hasard perd tous ses œufs, pour de bon : vous redistribuez ensuite ceux qui restent. 5 tempêtes au total : combien en récupérerez-vous à la fin ?</p>
+    <p class="lede">Répartissez vos 12 œufs entre 4 îles. À chaque tempête, une île perd tous ses œufs ; sur les autres, des œufs naissent. Mais les îles les plus fertiles sont aussi les plus exposées, et la météo change à chaque tour. 5 tempêtes : combien d'œufs à la fin ?</p>
     <div class="disclaimer">⚠️ Simulation pédagogique fictive. Ne constitue en aucun cas un conseil en investissement.</div>
     <button class="btn btn-primary" onclick="startGame()">Jouer</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -115,9 +132,9 @@ html{overflow-y:scroll}
   <div class="overlay" id="screen-over">
     <div class="eyebrow">Toutes les tempêtes passées</div>
     <div class="go-score" id="goScore">0</div>
-    <div class="go-label">œufs sauvés sur 12</div>
+    <div class="go-label">œufs à la fin (12 au départ)</div>
     <div class="go-compare" id="goCompare"></div>
-    <div class="go-best">Record : <b id="goBest">0</b>/12</div>
+    <div class="go-best">Record : <b id="goBest">0</b> œufs</div>
     <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
     <button class="btn btn-ghost" onclick="shareResult()">Partager mon résultat</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -125,130 +142,203 @@ html{overflow-y:scroll}
 </div>
 
 <script>
+/* L'Île aux Œufs : chaque île a son caractère (plus elle fait naître d'œufs, plus elle est exposée),
+   la météo annonce le risque de chaque île avant chaque tempête : c'est au joueur de doser. */
 const TOTAL_EGGS = 12;
-const ISLAND_COUNT = 4;
 const TOTAL_STORMS = 5;
+// poids = exposition de base à la tempête ; naissances = part d'œufs qui naissent si l'île est épargnée
+const ILES = [
+  { nom:'Île Refuge',   emoji:'🏝️', poids:1, div:0, regle:'aucune naissance' },
+  { nom:'Île Verte',    emoji:'🌴', poids:2, div:3, regle:'+1 œuf pour 3' },
+  { nom:'Île du Large', emoji:'⛵', poids:3, div:2, regle:'+1 œuf pour 2' },
+  { nom:'Île Volcan',   emoji:'🌋', poids:5, div:1, regle:'chaque œuf en donne 1' },
+];
+const ISLAND_COUNT = ILES.length;
 
 let islands = [];
-let stormsPassed = 0, running = false;
-let best = 0;
-// Œufs encore en vie : ceux qu'une tempête emporte sont perdus pour de bon (avant, on pouvait les reposer gratuitement).
-let pool = TOTAL_EGGS;
+let stormsPassed = 0, running = false, busy = false;
+let best = 0, pool = TOTAL_EGGS, perdus = 0, nes = 0;
+let risques = [0,0,0,0];
 
-try{ best = parseInt(localStorage.getItem('ileAuxOeufsBest')||'0',10); }catch(e){}
+try{ best = parseInt(localStorage.getItem('ileAuxOeufsBest2')||'0',10) || 0; }catch(e){}
 
 function remainingEggs(){ return pool; }
 function allocatedEggs(){ return islands.reduce((s,i)=>s+i.eggs,0); }
+function aPlacer(){ return pool - allocatedEggs(); }
+function pluriel(n){ return n+' œuf'+(n>1?'s':''); }
 
 function buildIslands(){
   const el = document.getElementById('islands');
   el.innerHTML = '';
   islands = [];
-  for(let i=0;i<ISLAND_COUNT;i++){
-    islands.push({ eggs:0, wiped:false });
+  ILES.forEach((def,i)=>{
+    islands.push({ eggs:0, wiped:false, gain:0 });
     const div = document.createElement('div');
     div.className = 'island';
     div.id = 'island'+i;
     div.innerHTML = `
+      <div class="isl-name">${def.emoji} ${def.nom}</div>
+      <div class="isl-risk"><span class="isl-risk-bar"><i id="islRiskFill${i}"></i></span><b id="islRisk${i}">0 %</b></div>
+      <div class="isl-rule">🐣 ${def.regle}</div>
       <div class="island-eggs" id="islandEggs${i}"></div>
       <div class="island-count" id="islandCount${i}">0 œuf</div>
+      <div class="isl-gain" id="islGain${i}"></div>
       <div class="island-btns">
-        <button class="isl-btn" onclick="removeEgg(${i})">−</button>
-        <button class="isl-btn" onclick="addEgg(${i})">+</button>
+        <button class="isl-btn" data-act="moins" data-i="${i}" aria-label="Retirer un œuf de ${def.nom}">−</button>
+        <button class="isl-btn" data-act="plus" data-i="${i}" aria-label="Ajouter un œuf sur ${def.nom}">+</button>
+        <button class="isl-btn isl-all" data-act="tout" data-i="${i}" aria-label="Placer tous les œufs restants sur ${def.nom}">Tout</button>
       </div>`;
     el.appendChild(div);
-  }
+  });
 }
 
 function renderIslands(){
   islands.forEach((isl,i)=>{
     const eggsEl = document.getElementById('islandEggs'+i);
-    const countEl = document.getElementById('islandCount'+i);
-    const div = document.getElementById('island'+i);
     if(!eggsEl) return;
-    eggsEl.textContent = '🥚'.repeat(isl.eggs);
-    countEl.textContent = isl.eggs+' œuf'+(isl.eggs>1?'s':'');
-    div.classList.toggle('wiped', isl.wiped);
+    eggsEl.textContent = isl.eggs>8 ? '🥚'.repeat(8)+' +'+(isl.eggs-8) : '🥚'.repeat(isl.eggs);
+    document.getElementById('islandCount'+i).textContent = pluriel(isl.eggs);
+    document.getElementById('island'+i).classList.toggle('wiped', isl.wiped);
+    const g = document.getElementById('islGain'+i);
+    g.textContent = isl.wiped ? '🌊 emportée' : (isl.gain>0 ? '🐣 +'+isl.gain : '');
+    g.classList.toggle('bad', isl.wiped);
+    const pct = Math.round(risques[i]*100);
+    document.getElementById('islRisk'+i).textContent = pct+' %';
+    const f = document.getElementById('islRiskFill'+i);
+    f.style.width = Math.min(100, pct*1.6)+'%';
+    f.style.background = pct>=35 ? 'var(--bad)' : pct>=20 ? '#FFB020' : 'var(--good)';
   });
-  const total = remainingEggs();
-  const el = document.getElementById('btnLock');
-  if(el) el.disabled = allocatedEggs() !== pool;
+  const reste = aPlacer();
+  const lock = document.getElementById('btnLock');
+  if(lock){
+    lock.disabled = reste !== 0 || busy;
+    lock.textContent = reste>0 ? 'Encore '+pluriel(reste)+' à placer' : '🌊 Valider et affronter la tempête';
+  }
+  document.querySelectorAll('.isl-btn').forEach(b=>{
+    const i = +b.dataset.i, a = b.dataset.act;
+    b.disabled = busy || (a==='moins' ? islands[i].eggs<=0 : reste<=0);
+  });
 }
-
-function budgetPool(){ return pool - allocatedEggs(); }
 
 function updateHud(){
-  document.getElementById('hudStorm').textContent = stormsPassed+1;
-  document.getElementById('hudEggs').textContent = remainingEggs()+'/'+TOTAL_EGGS;
+  document.getElementById('hudStorm').textContent = Math.min(TOTAL_STORMS, stormsPassed+1);
+  document.getElementById('hudEggs').textContent = pool;
+  document.getElementById('hudFree').textContent = aPlacer();
 }
+function setMsg(html){ document.getElementById('roundMsg').innerHTML = html; }
 
-function addEgg(i){
-  if(!running) return;
-  if(allocatedEggs() >= pool) return;
-  islands[i].eggs++;
+function addEgg(i){ if(!running||busy||aPlacer()<=0) return; islands[i].eggs++; renderIslands(); updateHud(); }
+function removeEgg(i){ if(!running||busy||islands[i].eggs<=0) return; islands[i].eggs--; renderIslands(); updateHud(); }
+function addAll(i){ if(!running||busy) return; const r=aPlacer(); if(r<=0) return; islands[i].eggs+=r; renderIslands(); updateHud(); }
+function equilibrer(){
+  if(!running||busy) return;
+  const q=Math.floor(pool/ISLAND_COUNT); let r=pool-q*ISLAND_COUNT;
+  islands.forEach(isl=>{ isl.eggs=q+(r>0?1:0); if(r>0) r--; });
   renderIslands(); updateHud();
 }
-function removeEgg(i){
-  if(!running) return;
-  if(islands[i].eggs <= 0) return;
-  islands[i].eggs--;
-  renderIslands(); updateHud();
+function toutReprendre(){ if(!running||busy) return; islands.forEach(isl=>isl.eggs=0); renderIslands(); updateHud(); }
+
+// Boutons − / + / Tout : un appui simple, ou un appui maintenu qui répète (pratique quand on a beaucoup d'œufs)
+(function(){
+  let timer=null, n=0;
+  function agir(b){ const i=+b.dataset.i, a=b.dataset.act; if(a==='plus') addEgg(i); else if(a==='moins') removeEgg(i); else addAll(i); }
+  function stop(){ if(timer){ clearTimeout(timer); timer=null; } }
+  document.addEventListener('pointerdown', e=>{
+    const b = e.target.closest && e.target.closest('.isl-btn'); if(!b||b.disabled) return;
+    e.preventDefault(); agir(b); n=0; stop();
+    if(b.dataset.act==='tout') return;
+    const rep=()=>{ if(b.disabled){ stop(); return; } agir(b); n++; timer=setTimeout(rep, n>12?40:90); };
+    timer=setTimeout(rep, 380);
+  });
+  ['pointerup','pointercancel','pointerleave'].forEach(ev=>document.addEventListener(ev, stop, true));
+  // clavier (Entrée / Espace sur un bouton sélectionné)
+  document.addEventListener('keydown', e=>{
+    if(e.key!=='Enter'&&e.key!==' ') return;
+    const b = document.activeElement; if(b&&b.classList&&b.classList.contains('isl-btn')&&!b.disabled){ e.preventDefault(); agir(b); }
+  });
+})();
+
+function nouvelleMeteo(){
+  const w = ILES.map(d=>d.poids);
+  const a = Math.floor(Math.random()*ISLAND_COUNT);
+  let b = Math.floor(Math.random()*(ISLAND_COUNT-1)); if(b>=a) b++;
+  w[a] += 3; w[b] = Math.max(0.5, w[b]-1);
+  const tot = w.reduce((s,x)=>s+x,0);
+  risques = w.map(x=>x/tot);
+  islands.forEach(isl=>{ isl.gain=0; isl.wiped=false; });
+  setMsg(`📡 <b>Météo de la tempête ${stormsPassed+1}</b> : le vent se lève sur <b>${ILES[a].nom}</b> ; <b>${ILES[b].nom}</b> est mieux abritée. Déplacez vos œufs si besoin.`);
 }
 
 function startGame(){
   document.getElementById('screen-intro').classList.remove('active');
   document.getElementById('screen-over').classList.remove('active');
   document.getElementById('hud').style.display='flex';
+  document.getElementById('roundMsg').style.display='block';
   document.getElementById('actionRow').style.display='block';
   buildIslands();
-  stormsPassed = 0; running = true; pool = TOTAL_EGGS;
+  stormsPassed = 0; running = true; busy = false; pool = TOTAL_EGGS; perdus = 0; nes = 0;
+  nouvelleMeteo();
   updateHud(); renderIslands();
 }
 
+function tirerVictime(){
+  let r = Math.random(), i = 0;
+  for(; i<ISLAND_COUNT-1; i++){ r -= risques[i]; if(r<0) break; }
+  return i;
+}
+
 function lockAllocation(){
-  if(!running) return;
-  const total = allocatedEggs();
-  if(total !== pool) {
-    alert('Répartissez bien vos '+pool+' œufs avant de valider (il en reste '+(pool-total)+' à placer).');
-    return;
-  }
+  if(!running||busy) return;
+  if(aPlacer() !== 0) return;
+  busy = true; renderIslands();
   const banner = document.getElementById('stormBanner');
   banner.classList.add('show');
   setTimeout(()=>{
-    const victim = Math.floor(Math.random()*ISLAND_COUNT);
-    pool -= islands[victim].eggs;
-    islands[victim].eggs = 0;
-    islands[victim].wiped = true;
-    renderIslands(); updateHud();
+    const victim = tirerVictime();
+    const perte = islands[victim].eggs;
+    pool -= perte; perdus += perte;
+    islands[victim].eggs = 0; islands[victim].wiped = true;
+    let naiss = 0;
+    islands.forEach((isl,i)=>{
+      isl.gain = 0;
+      if(i===victim || !ILES[i].div) return;
+      isl.gain = Math.floor(isl.eggs/ILES[i].div);
+      isl.eggs += isl.gain; naiss += isl.gain;
+    });
+    pool += naiss; nes += naiss;
     banner.classList.remove('show');
     stormsPassed++;
+    setMsg(`🌊 La tempête a frappé <b>${ILES[victim].nom}</b> : ${perte>0?'<b class="bad">−'+pluriel(perte)+'</b>':'aucun œuf perdu'}. ${naiss>0?'🐣 <b class="good">+'+pluriel(naiss)+'</b> sur les îles épargnées.':'Aucune naissance cette fois.'}`);
+    renderIslands(); updateHud();
     setTimeout(()=>{
-      islands.forEach(isl=>isl.wiped=false);
-      renderIslands();
-      if(stormsPassed >= TOTAL_STORMS || pool <= 0){ endGame(); }
-    }, 500);
+      if(stormsPassed >= TOTAL_STORMS || pool <= 0){ endGame(); return; }
+      busy = false;
+      nouvelleMeteo();
+      renderIslands(); updateHud();
+    }, 2300);
   }, 1200);
 }
 
 function endGame(){
-  running = false;
+  running = false; busy = false;
   document.getElementById('hud').style.display='none';
+  document.getElementById('roundMsg').style.display='none';
   document.getElementById('actionRow').style.display='none';
 
   const saved = remainingEggs();
-  if(saved > best){ best = saved; try{ localStorage.setItem('ileAuxOeufsBest', String(best)); }catch(e){} }
+  if(saved > best){ best = saved; try{ localStorage.setItem('ileAuxOeufsBest2', String(best)); }catch(e){} }
 
-  document.getElementById('goScore').textContent = saved+'/'+TOTAL_EGGS;
-  const worstCase = "0";
+  document.getElementById('goScore').textContent = saved;
+  const bilan = saved>TOTAL_EGGS ? 'Vous finissez avec plus d\'œufs qu\'au départ.' : saved===TOTAL_EGGS ? 'Vous retrouvez exactement votre mise de départ.' : saved>0 ? 'Vous finissez avec moins d\'œufs qu\'au départ.' : 'Tout a été emporté.';
   document.getElementById('goCompare').innerHTML =
-    `Si vous aviez tout misé sur une seule île, une tempête sur cette île vous aurait fait perdre <b>tous vos œufs d'un coup</b>. En répartissant, vous ne perdez jamais plus d'un quart à chaque tempête.`;
-  document.getElementById('goBest').textContent = best+'/'+TOTAL_EGGS;
+    `${bilan} Tempêtes : <b>−${pluriel(perdus)}</b> · naissances : <b>+${pluriel(nes)}</b>.<br>Les îles qui font naître le plus d'œufs sont aussi les plus exposées : c'est le couple risque / rendement. Répartir évite de tout perdre d'un coup.`;
+  document.getElementById('goBest').textContent = best;
   document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-over').classList.add('active');
 }
 
 function shareResult(){
-  const text = `J'ai sauvé ${remainingEggs()}/${TOTAL_EGGS} œufs après 5 tempêtes sur L'Île aux Œufs (Economya.fr) 🥚 Sauras-tu mieux répartir que moi ?`;
+  const text = `J'ai fini avec ${remainingEggs()} œufs (12 au départ) après 5 tempêtes sur L'Île aux Œufs (Economya.fr) 🥚 Sauras-tu mieux doser le risque que moi ?`;
   const url = 'https://economya.fr';
   if(navigator.share){ navigator.share({title:"L'Île aux Œufs", text, url}).catch(()=>{}); }
   else { navigator.clipboard.writeText(text+' '+url).then(()=>alert('Résultat copié ! 🎉')); }

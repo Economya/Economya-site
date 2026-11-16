@@ -236,6 +236,15 @@ function loop(){
   sky.addColorStop(0, '#4FC3F7'); sky.addColorStop(1, '#B3E5FC');
   ctx.fillStyle = sky; ctx.fillRect(0,0,W,groundY());
 
+  // soleil et collines en parallaxe (décor seulement)
+  { const gy=groundY(); window.__spT=(window.__spT||0)+(running?1:0.2);
+    ctx.fillStyle='rgba(255,236,150,.35)';ctx.beginPath();ctx.arc(W*0.8,gy*0.24,44,0,6.283);ctx.fill();
+    ctx.fillStyle='#FFE27A';ctx.beginPath();ctx.arc(W*0.8,gy*0.24,26,0,6.283);ctx.fill();
+    for(const [amp,len,spd,col,base] of [[26,190,0.25,'#8FD3A9',0.80],[18,120,0.6,'#5FB98A',0.9]]){
+      ctx.fillStyle=col;ctx.beginPath();ctx.moveTo(0,gy);
+      for(let x=0;x<=W+8;x+=8){ctx.lineTo(x,gy*base-amp*(1+Math.sin((x+window.__spT*spd)/len*6.283)+0.5*Math.sin((x+window.__spT*spd)/len*14.1)));}
+      ctx.lineTo(W,gy);ctx.closePath();ctx.fill(); } }
+
   // nuages
   clouds.forEach(c=>{
     if(running) c.x -= c.speed;

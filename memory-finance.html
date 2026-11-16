@@ -49,6 +49,9 @@ p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
 
 /* Grille memory */
 .memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
+.memory-grid.expert{gap:6px;}
+.memory-grid.expert .mem-card{aspect-ratio:1/0.82;}
+.memory-grid.expert .card-face{font-size:10.5px;padding:4px;}
 .mem-card{
   aspect-ratio:3/4;border-radius:12px;cursor:pointer;
   position:relative;transform-style:preserve-3d;
@@ -116,13 +119,14 @@ p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
   <div class="eyebrow">Economya.fr · Le memory</div>
   <h1 class="title">Memory <span>Finance</span></h1>
   <p class="lede">Retournez les cartes pour trouver les paires : un concept financier + sa définition ou son taux. Le plus rapide gagne. 8 paires à trouver, tirées au hasard parmi 20 : chaque partie est différente.</p>
-  <button class="btn btn-primary" onclick="startGame()">Retourner les cartes</button>
+  <button class="btn btn-primary" onclick="startGame(8)">Retourner les cartes</button>
+  <button class="btn btn-ghost" onclick="startGame(12)">🔥 Mode expert · 12 paires</button>
   <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
 </div>
 
 <div id="screen-game" style="display:none;">
   <div class="hud">
-    <div class="hud-pairs">🃏 <span id="pairsFound">0</span>/8</div>
+    <div class="hud-pairs">🃏 <span id="pairsFound">0</span>/<span id="pairsTotal">8</span></div>
     <div class="hud-timer" id="timerDisplay">0s</div>
   </div>
   <div class="progress-bar-w"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
@@ -140,6 +144,7 @@ p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
   </div>
   <div class="lesson" id="endLesson"></div>
   <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
+  <button class="btn btn-ghost" id="btnAutreMode" onclick="startGame(NB===12?8:12)">🔥 Essayer le mode expert (12 paires)</button>
   <button class="btn btn-ghost" onclick="share()">Partager</button>
   <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
 </div>
@@ -177,10 +182,15 @@ let startTime=0,timerInt=null,canFlip=true;
 function showToast(t,c){const el=document.getElementById('toast');el.textContent=t;if(c)el.style.color=c;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');}
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-game').style.display=(id==='screen-game')?'block':'none';if(id!=='screen-game')document.getElementById(id).classList.add('active');}
 
-function startGame(){
+let NB=8; // 8 paires en mode normal, 12 en mode expert
+function startGame(n){
+  if(n) NB=n;
   flipped=[];matched=0;attempts=0;errors=0;canFlip=true;
-  // Tirer 8 paires au hasard parmi les 20, puis les mélanger
-  PAIRS=TOUTES_PAIRES.slice().sort(()=>Math.random()-.5).slice(0,8);
+  // Tirer les paires au hasard parmi les 20, puis les mélanger
+  PAIRS=TOUTES_PAIRES.slice().sort(()=>Math.random()-.5).slice(0,NB);
+  document.getElementById('pairsTotal').textContent=NB;
+  document.getElementById('memoryGrid').classList.toggle('expert',NB===12);
+  const am=document.getElementById('btnAutreMode'); if(am) am.textContent=NB===12?'Revenir au mode normal (8 paires)':'🔥 Essayer le mode expert (12 paires)';
   cards=[];
   PAIRS.forEach((p,i)=>{
     cards.push({id:i*2,pairId:i,type:'concept',text:p.concept,isFlipped:false,isMatched:false});
@@ -194,7 +204,7 @@ function startGame(){
   timerInt=setInterval(()=>{
     const t=Math.floor((Date.now()-startTime)/1000);
     document.getElementById('timerDisplay').textContent=t+'s';
-    if(t>60)document.getElementById('timerDisplay').classList.add('urgent');
+    if(t>(NB===12?100:60))document.getElementById('timerDisplay').classList.add('urgent');
   },200);
 }
 
@@ -250,8 +260,9 @@ function flipCard(i){
 function endGame(){
   clearInterval(timerInt);
   const t=Math.floor((Date.now()-startTime)/1000);
-  const icon=t<30?'🏆':t<60?'⭐':'😊';
-  const title=t<30?'Mémoire de génie !':t<60?'Très bonne mémoire !':'Memory complété !';
+  const k=NB===12?1.7:1; // le mode expert laisse plus de temps
+  const icon=t<30*k?'🏆':t<60*k?'⭐':'😊';
+  const title=(t<30*k?'Mémoire de génie !':t<60*k?'Très bonne mémoire !':'Memory complété !')+(NB===12?' (mode expert)':'');
   const lesson=errors<3?'<b>Mémoire exceptionnelle !</b> Vous avez retenu les concepts financiers clés du premier coup. Ces réflexes sont précieux dans la vraie vie.':
     '<b>À retenir :</b> Livret A (1,7%), LEP (2,5%), PEA (exonéré après 5 ans), taux d\'endettement (35% max) — ce sont les 4 chiffres que tout Français devrait connaître.';
   document.getElementById('endIcon').textContent=icon;

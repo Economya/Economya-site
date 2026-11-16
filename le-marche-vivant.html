@@ -81,6 +81,23 @@ html{overflow-y:scroll}
   .go-label{font-size:13px; color:var(--ink-dim); margin-bottom:6px;}
   .go-compare{font-size:13px; color:var(--ink-dim); margin-bottom:20px; max-width:320px; line-height:1.5;}
   .go-compare b{color:var(--ink);}
+
+  .mv-chart{ height:58px; margin-top:8px; } .mv-chart svg{ width:100%; height:100%; display:block; }
+  .mv-legend{ display:flex; gap:14px; font-size:11px; color:var(--ink-dim); margin-top:2px; }
+  .mv-legend i{ display:inline-block; width:10px; height:3px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+  .mv-news{ margin-top:8px; padding:8px 10px; border-radius:10px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); font-size:12.5px; line-height:1.4; }
+  .mv-news i{ font-style:normal; opacity:.65; font-size:11.5px; }
+  .result-row.total{ border-top:1px solid rgba(255,255,255,.14); margin-top:4px; padding-top:6px; font-weight:700; }
+  .go-best{ font-size:13px; color:var(--ink-dim); margin-bottom:16px; } .go-best b{ color:var(--ink); }
+
+  /* mise en page compacte : tout tient sur un écran de téléphone */
+  .hud-row{ padding-right:96px; }
+  .mv-chart{ height:44px; }
+  .asset{ padding:8px 12px; } .asset-top{ margin-bottom:5px; } .asset-bar-track{ height:7px; margin-bottom:5px; }
+  .part-btn{ width:32px; height:30px; } .assets{ gap:7px; }
+  .result-banner{ padding:8px 12px; margin-bottom:8px; display:none; grid-template-columns:1fr 1fr; column-gap:16px; }
+  .result-banner.show{ display:grid; } .result-row.total{ grid-column:1 / -1; }
+  .action-row{ padding:10px 16px 12px; }
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
@@ -104,6 +121,9 @@ html{overflow-y:scroll}
   <div id="hud" style="display:none;">
     <div class="hud-row"><span class="hud-turn">Tour <b id="hudTurn">1</b>/8</span><span class="hud-value" id="hudValue">1000 pts</span></div>
     <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="mv-chart" id="mvChart"></div>
+    <div class="mv-legend"><span><i style="background:#FFC94B"></i>Vous</span><span><i style="background:#8FA9C7"></i>Profil prudent</span></div>
+    <div class="mv-news" id="mvNews" aria-live="polite"></div>
   </div>
   <div class="result-banner" id="resultBanner"></div>
   <div class="assets" id="assets"></div>
@@ -115,7 +135,7 @@ html{overflow-y:scroll}
   <div class="overlay active" id="screen-intro">
     <div class="eyebrow">Economya.fr · Simulation</div>
     <h1 class="title">Le Marché <span>Vivant</span></h1>
-    <p class="lede">Répartissez vos 10 parts entre 4 classes d'actifs fictives à chaque tour. Le marché évolue selon sa propre tendance — à vous de la suivre ou de vous en protéger, tour après tour, sur 8 tours.</p>
+    <p class="lede">Répartissez vos 10 parts entre 4 classes d'actifs fictives. À chaque tour, un bulletin donne le climat du marché (une indication, pas une certitude) : à vous de suivre la tendance ou de vous en protéger. 8 tours pour faire mieux qu'un profil prudent qui ne bouge jamais.</p>
     <div class="disclaimer">⚠️ Simulation pédagogique fictive, actifs génériques imaginaires. Ne constitue en aucun cas un conseil en investissement.</div>
     <button class="btn btn-primary" onclick="startGame()">Jouer</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -126,6 +146,7 @@ html{overflow-y:scroll}
     <div class="go-score" id="goScore">0</div>
     <div class="go-label">valeur finale du portefeuille</div>
     <div class="go-compare" id="goCompare"></div>
+    <div class="go-best">Record : <b id="goBest">0</b> pts</div>
     <button class="btn btn-primary" onclick="startGame()">Rejouer</button>
     <button class="btn btn-ghost" onclick="shareResult()">Partager mon résultat</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a> — votre meilleur allié finance</div>
@@ -150,6 +171,31 @@ const NPC_ALLOCATION = { liquidites:5, obligations:3, actions:2, volatils:0 };
 let trend = 0;
 let turn = 1;
 let running = false;
+let histMe = [], histNpc = [], best = 0, meilleurTour = null, pireTour = null;
+try{ best = parseInt(localStorage.getItem('marcheVivantBest')||'0',10) || 0; }catch(e){}
+
+// Bulletin de climat : il reflète la tendance du moment, avec une part d'erreur (ce n'est pas une prévision sûre).
+function bulletin(){
+  const s = trend + (Math.random()-0.5)*0.7;
+  const t = s>0.45 ? '🟢 Climat très porteur : les actifs risqués ont le vent en poupe.'
+          : s>0.15 ? '🟢 Climat plutôt favorable aux actifs risqués.'
+          : s>-0.15 ? '⚪ Marché hésitant, sans direction claire.'
+          : s>-0.45 ? '🟠 Climat fragile : la prudence gagne du terrain.'
+          : '🔴 Climat très tendu : les actifs risqués souffrent.';
+  document.getElementById('mvNews').innerHTML = '<b>📰 Tour '+turn+'</b> · '+t+' <i>(indication, pas une certitude)</i>';
+}
+function renderChart(){
+  const el = document.getElementById('mvChart'); if(!el) return;
+  const W=320,H=58,all=histMe.concat(histNpc);
+  const mn=Math.min(960,...all)-8, mx=Math.max(1040,...all)+8;
+  const X=i=>6+(W-12)*i/TOTAL_TURNS, Y=v=>H-4-(H-8)*(v-mn)/(mx-mn);
+  const line=a=>a.map((v,i)=>X(i)+','+Y(v)).join(' ');
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Évolution de votre portefeuille et du profil prudent">
+    <line x1="6" y1="${Y(START_VALUE)}" x2="${W-6}" y2="${Y(START_VALUE)}" stroke="rgba(255,255,255,.18)" stroke-dasharray="3 4"/>
+    <polyline points="${line(histNpc)}" fill="none" stroke="#8FA9C7" stroke-width="2" stroke-linejoin="round"/>
+    <polyline points="${line(histMe)}" fill="none" stroke="#FFC94B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${X(histMe.length-1)}" cy="${Y(histMe[histMe.length-1])}" r="3.5" fill="#FFC94B"/></svg>`;
+}
 
 function resetParts(){ parts = { liquidites:3, obligations:3, actions:3, volatils:1 }; }
 
@@ -224,9 +270,11 @@ function startGame(){
   document.getElementById('resultBanner').classList.remove('show');
   document.querySelector('.action-row').style.display = ''; // le bouton « Valider » restait caché après « Rejouer »
   resetParts();
-  portfolioValue = START_VALUE; npcValue = START_VALUE; trend = 0; turn = 1;
+  portfolioValue = START_VALUE; npcValue = START_VALUE; turn = 1;
+  trend = (Math.random()-0.5)*0.9; // chaque partie démarre dans un climat différent
+  histMe = [START_VALUE]; histNpc = [START_VALUE]; meilleurTour = null; pireTour = null;
   running = true;
-  updateHud();
+  updateHud(); bulletin(); renderChart();
   renderAssets();
 }
 
@@ -244,15 +292,21 @@ function validateTurn(){
   let weighted = 0;
   ASSETS.forEach(a=>{ weighted += (parts[a.key]/TOTAL_PARTS) * returns[a.key]; });
 
+  const avant = portfolioValue, npcR = npcWeighted(returns);
   portfolioValue *= (1 + weighted/100);
-  npcValue *= (1 + npcWeighted(returns)/100);
+  npcValue *= (1 + npcR/100);
+  histMe.push(portfolioValue); histNpc.push(npcValue);
+  if(!meilleurTour || weighted > meilleurTour.r) meilleurTour = { t:turn, r:weighted };
+  if(!pireTour || weighted < pireTour.r) pireTour = { t:turn, r:weighted };
 
   const banner = document.getElementById('resultBanner');
   banner.innerHTML = ASSETS.map(a=>{
     const v = returns[a.key];
     return `<div class="result-row"><span>${a.name}</span><span class="pct ${v>=0?'pos':'neg'}">${v>=0?'+':''}${v.toFixed(1)}%</span></div>`;
-  }).join('');
+  }).join('') + `<div class="result-row total"><span>Votre portefeuille (tour ${turn})</span><span class="pct ${weighted>=0?'pos':'neg'}">${weighted>=0?'+':'−'}${Math.abs(weighted).toFixed(1)} % · ${portfolioValue-avant>=0?'+':'−'}${Math.abs(Math.round(portfolioValue-avant))} pts</span></div>`
+   + `<div class="result-row"><span>Profil prudent</span><span class="pct ${npcR>=0?'pos':'neg'}">${npcR>=0?'+':'−'}${Math.abs(npcR).toFixed(1)} %</span></div>`;
   banner.classList.add('show');
+  renderChart();
 
   trend = Math.max(-1, Math.min(1, trend + (Math.random()-0.5)*0.6));
   turn++;
@@ -262,7 +316,7 @@ function validateTurn(){
     return;
   }
   // On garde la répartition du tour précédent : le joueur ne la refait pas à chaque tour, il l'ajuste.
-  updateHud();
+  updateHud(); bulletin();
   renderAssets();
 }
 
@@ -276,6 +330,9 @@ function endGame(){
   const finalValue = Math.round(portfolioValue);
   const npcFinal = Math.round(npcValue);
 
+  const record = finalValue > best;
+  if(record){ best = finalValue; try{ localStorage.setItem('marcheVivantBest', String(best)); }catch(e){} }
+  document.getElementById('goBest').textContent = best;
   document.getElementById('goScore').textContent = finalValue+' pts';
   const compareEl = document.getElementById('goCompare');
   if(finalValue >= npcFinal){
@@ -283,6 +340,8 @@ function endGame(){
   } else {
     compareEl.innerHTML = `Un profil prudent qui n'a jamais bougé de sa répartition fixe aurait terminé à <b>${npcFinal} pts</b> — soit ${npcFinal-finalValue} pts de plus que votre gestion active sur ce cycle.`;
   }
+  const fm = r => (r>=0?'+':'−')+Math.abs(r).toFixed(1)+' %';
+  if(meilleurTour && pireTour) compareEl.innerHTML += `<br>Votre meilleur tour : <b>tour ${meilleurTour.t} (${fm(meilleurTour.r)})</b> · le plus difficile : <b>tour ${pireTour.t} (${fm(pireTour.r)})</b>.`;
   document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-over').classList.add('active');
 }

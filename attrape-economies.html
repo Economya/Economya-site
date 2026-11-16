@@ -253,11 +253,36 @@ window.addEventListener('keyup', e=>{ if(e.key==='ArrowLeft' || e.key==='ArrowRi
 setInterval(()=>{ if(keyDir && running) basket.x = Math.max(basket.w/2, Math.min(W-basket.w/2, basket.x + keyDir*9)); }, 16);
 canvas.addEventListener('touchmove', e=>{ moveBasket(e.touches[0].clientX); e.preventDefault(); }, {passive:false});
 
-function loop(ts){
-  ctx.clearRect(0,0,W,H);
+// Décor et effets dessinés : ciel du soir, ville au loin, étincelles et « +points » à chaque prise
+let fxParts = [], fxTexts = [], fxFlash = 0, fxFrame = 0;
+const FX_STARS = []; for(let i=0;i<40;i++) FX_STARS.push([Math.random(), Math.random()*0.6, Math.random()*1.3+0.4, Math.random()*6.28]);
+const FX_TOWERS = []; { let x=-0.03; while(x<1.03){ const w=0.05+Math.random()*0.08; FX_TOWERS.push([x,w,0.3+Math.random()*0.7,Math.random()]); x+=w+0.006; } }
+function fx(x,y,color,text){
+  for(let i=0;i<9;i++){ const a=Math.random()*6.283, v=1.5+Math.random()*3; fxParts.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-2.5,life:1,color}); }
+  if(text) fxTexts.push({x,y:y-14,text,life:1,color});
+}
+function drawDecor(){
   const bg = ctx.createLinearGradient(0,0,0,H);
-  bg.addColorStop(0,'rgba(255,255,255,.02)'); bg.addColorStop(1,'rgba(0,0,0,.05)');
+  bg.addColorStop(0,'#0B0A24'); bg.addColorStop(0.6,'#231547'); bg.addColorStop(1,'#3A1D52');
   ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle = '#fff';
+  for(const st of FX_STARS){ ctx.globalAlpha = 0.3+0.5*Math.abs(Math.sin(fxFrame*0.02+st[3])); ctx.fillRect(st[0]*W, st[1]*H, st[2], st[2]); }
+  ctx.globalAlpha = 1;
+  const base = H-34;
+  for(const t of FX_TOWERS){
+    const h = H*0.2*t[2], x = t[0]*W, w = t[1]*W;
+    ctx.fillStyle = '#120C2E'; ctx.fillRect(x, base-h, w+1, h);
+    ctx.fillStyle = 'rgba(255,201,75,.5)';
+    for(let k=0;k<4;k++){ const r=Math.abs(Math.sin(t[3]*91+k*17.3)); if(r>0.45) ctx.fillRect(x+w*(0.2+0.55*Math.abs(Math.sin(t[3]*37+k*5.1))), base-h*(0.2+0.7*r), 2, 2); }
+  }
+  ctx.fillStyle = '#0A0720'; ctx.fillRect(0, base, W, H-base);
+  ctx.fillStyle = 'rgba(255,201,75,.35)'; ctx.fillRect(0, base, W, 2);
+}
+
+function loop(ts){
+  fxFrame++;
+  ctx.clearRect(0,0,W,H);
+  drawDecor();
 
   if(running){
     elapsed++;
@@ -288,6 +313,7 @@ function loop(ts){
       if(hitY && hitX){
         if(it.power){
           combo++;
+          fx(it.x, H-66, '#8FE0FF');
           if(it.power === 'xl'){ xlTimer = 480; showCombo('🧺 Panier XL pendant 8 s'); }
           else if(it.power === 'lent'){ lentTimer = 360; showCombo('⏳ Chute ralentie pendant 6 s'); }
           else { lives = Math.min(3, lives+1); showCombo('❤️ +1 vie'); }
@@ -295,11 +321,13 @@ function loop(ts){
           combo++;
           const bonus = it.pts + Math.floor(combo/3)*2;
           score += bonus;
+          fx(it.x, H-66, it.jackpot ? '#FFC94B' : '#3DDC84', '+'+bonus);
           if(it.jackpot) showCombo('⭐ Jackpot +'+bonus);
           else if(combo>=3 && combo%3===0) showCombo('🔥 Combo x'+combo);
         } else {
           combo = 0;
           lives--;
+          fx(it.x, H-66, '#FF4D6D'); fxFlash = 1;
           updateHud();
           if(lives<=0){ endGame(); break; }
         }
@@ -320,6 +348,14 @@ function loop(ts){
   items.forEach(it=>{
     const glowColor = it.jackpot ? '255,201,75' : (it.good ? '61,220,132' : '255,77,109');
 
+    // traînée de chute + jeton plein derrière l'objet
+    ctx.save();
+    const tr = ctx.createLinearGradient(0, it.y-it.r*3.2, 0, it.y);
+    tr.addColorStop(0, `rgba(${glowColor},0)`); tr.addColorStop(1, `rgba(${glowColor},0.28)`);
+    ctx.fillStyle = tr; ctx.beginPath();
+    ctx.moveTo(it.x-it.r*0.75, it.y); ctx.lineTo(it.x, it.y-it.r*3.2); ctx.lineTo(it.x+it.r*0.75, it.y); ctx.fill();
+    ctx.fillStyle = 'rgba(14,10,36,.92)'; ctx.beginPath(); ctx.arc(it.x, it.y, it.r+2, 0, Math.PI*2); ctx.fill();
+    ctx.restore();
     // halo coloré derrière l'objet (vert = bonus, rouge = malus)
     ctx.save();
     const glow = ctx.createRadialGradient(it.x, it.y, 2, it.x, it.y, it.r+10);
@@ -335,9 +371,9 @@ function loop(ts){
     ctx.stroke();
     ctx.restore();
 
-    ctx.font = '32px serif';
+    ctx.font = '27px serif';
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    ctx.fillText(it.emoji, it.x, it.y);
+    ctx.fillText(it.emoji, it.x, it.y+1);
 
     // pastille +/- en coin, toujours lisible même si l'emoji prête à confusion
     ctx.save();
@@ -355,14 +391,31 @@ function loop(ts){
   // panier
   ctx.save();
   ctx.translate(basket.x, H-60);
-  ctx.fillStyle = 'rgba(255,201,75,.9)';
-  ctx.beginPath();
-  ctx.roundRect(-basket.w/2, 0, basket.w, basket.h, 8);
-  ctx.fill();
-  ctx.font = '22px serif';
-  ctx.textAlign='center'; ctx.textBaseline='bottom';
-  ctx.fillText('🧺', 0, -2);
+  {
+    // panier tressé dessiné (anse, corps en osier, bord doré) ; la zone de prise reste le bord du haut
+    const bw = basket.w, bh = 30, xl = xlTimer > 0;
+    ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.beginPath(); ctx.ellipse(0, bh+4, bw*0.5, 5, 0, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = '#B9812F'; ctx.lineWidth = 4; ctx.beginPath(); ctx.ellipse(0, 2, bw*0.36, 20, 0, Math.PI, Math.PI*2); ctx.stroke();
+    const g = ctx.createLinearGradient(0,0,0,bh); g.addColorStop(0,'#E0A64A'); g.addColorStop(1,'#8E5A1E');
+    ctx.fillStyle = g; ctx.beginPath();
+    ctx.moveTo(-bw/2, 2); ctx.lineTo(bw/2, 2); ctx.lineTo(bw*0.38, bh); ctx.quadraticCurveTo(0, bh+5, -bw*0.38, bh); ctx.closePath(); ctx.fill();
+    ctx.save(); ctx.clip(); ctx.strokeStyle = 'rgba(70,40,10,.45)'; ctx.lineWidth = 1.5;
+    for(let x=-bw; x<bw; x+=8){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x+14,bh+6); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x+14,0); ctx.lineTo(x,bh+6); ctx.stroke(); }
+    ctx.restore();
+    ctx.fillStyle = xl ? '#8FE0FF' : '#FFC94B'; ctx.beginPath(); ctx.roundRect(-bw/2-3, -2, bw+6, 8, 4); ctx.fill();
+  }
   ctx.restore();
+
+  // étincelles, « +points » et flash rouge
+  fxParts.forEach(q=>{ q.x+=q.vx; q.y+=q.vy; q.vy+=0.2; q.life-=0.035; });
+  fxParts = fxParts.filter(q=>q.life>0);
+  fxParts.forEach(q=>{ ctx.globalAlpha = Math.max(0,q.life); ctx.fillStyle = q.color; ctx.beginPath(); ctx.arc(q.x,q.y,3,0,Math.PI*2); ctx.fill(); });
+  fxTexts.forEach(t=>{ t.y-=1.1; t.life-=0.025; });
+  fxTexts = fxTexts.filter(t=>t.life>0);
+  ctx.font = "800 18px 'Space Grotesk', system-ui, sans-serif"; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  fxTexts.forEach(t=>{ ctx.globalAlpha = Math.max(0,t.life); ctx.fillStyle = t.color; ctx.fillText(t.text, t.x, t.y); });
+  ctx.globalAlpha = 1;
+  if(fxFlash > 0){ ctx.fillStyle = 'rgba(255,77,109,'+(fxFlash*0.28)+')'; ctx.fillRect(0,0,W,H); fxFlash -= 0.06; }
 
   requestAnimationFrame(loop);
 }
