@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Finance Runner 3D — Economya.fr</title>
-<meta name="description" content="Courez sur un chemin isométrique, collectez les économies dorées et évitez les dettes. Jeu d'arcade 3D gratuit sur le thème de l'épargne, Economya.fr.">
+<meta name="description" content="Foncez sur une piste en 3D : ramassez les pièces, contournez les murs de dettes et sautez les barrières. Jeu d'arcade 3D gratuit sur le thème de l'épargne, Economya.fr.">
 <link rel="stylesheet" href="/fonts/fonts.css">
 <style>
 html{overflow-y:scroll}
@@ -24,14 +24,14 @@ body{
   display:flex;align-items:center;justify-content:center;
 }
 .wrap{width:100%;height:100%;max-width:460px;position:relative;margin:0 auto;}
-.overlay{position:absolute;inset:0;z-index:10;display:none;flex-direction:column;align-items:center;justify-content:center;padding:26px;background:rgba(8,12,20,.85);text-align:center;}
+.overlay{position:absolute;inset:0;z-index:10;display:none;flex-direction:column;align-items:center;justify-content:center;padding:26px;background:rgba(8,12,20,.74);text-align:center;}
 .overlay.active{display:flex;animation:fadeIn .3s ease;}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px;}
 .eyebrow::before{content:'🏃';}
 h1.title{font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:800;letter-spacing:-0.02em;line-height:1.1;margin-bottom:12px;}
 h1.title span{color:var(--gold);}
-p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;max-width:340px;}
+p.lede{color:#9DB4CF;font-size:14px;line-height:1.55;margin-bottom:20px;max-width:340px;}
 .legend{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;justify-content:center;}
 .leg{display:flex;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:7px 12px;font-size:12px;font-weight:600;}
 .btn{border:none;border-radius:14px;padding:15px 34px;font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:transform .12s ease;}
@@ -52,24 +52,24 @@ p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;m
 .combo-label.show{animation:comboPop .6s ease forwards;}
 @keyframes comboPop{0%{opacity:0;transform:translateX(-50%) scale(.8);}20%{opacity:1;transform:translateX(-50%) scale(1.1);}80%{opacity:1;}100%{opacity:0;transform:translateX(-50%) translateY(-14px);}}
 
-/* Contrôles tactiles */
-.ctrl-left,.ctrl-right{position:absolute;bottom:0;z-index:5;width:50%;height:35%;opacity:0;cursor:pointer;}
-.ctrl-left{left:0;}
-.ctrl-right{right:0;}
+/* Contrôles tactiles : toute la zone de jeu (gauche / droite / glisser vers le haut) + bouton Sauter */
+.wrap{touch-action:none;overflow:hidden;}
+.jump-btn{position:absolute;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:6;border:1.5px solid rgba(255,213,79,.7);background:rgba(8,12,20,.6);color:var(--gold);font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:15px;padding:12px 26px;border-radius:99px;cursor:pointer;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);}
+.jump-btn:active{transform:translateX(-50%) scale(.95);background:rgba(255,213,79,.18);}
 
 canvas{display:block;width:100%;height:100%;}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
 <meta property="og:title" content="Finance Runner 3D — Economya.fr">
-<meta property="og:description" content="Courez sur un chemin isométrique, collectez les économies dorées et évitez les dettes. Jeu d'arcade 3D gratuit sur le thème de l'épargne, Economya.fr.">
+<meta property="og:description" content="Foncez sur une piste en 3D : ramassez les pièces, contournez les murs de dettes et sautez les barrières. Jeu d'arcade 3D gratuit sur le thème de l'épargne, Economya.fr.">
 <meta property="og:url" content="https://economya.fr/finance-runner-3d-v2">
 <meta property="og:image" content="https://economya.fr/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="fr_FR">
 <link rel="canonical" href="https://economya.fr/finance-runner-3d-v2" />
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Game", "name": "Finance Runner 3D", "description": "Courez sur un chemin isométrique, collectez les économies dorées et évitez les dettes. Jeu d'arcade 3D gratuit sur le thème de l'épargne, Economya.fr.", "url": "https://economya.fr/finance-runner-3d-v2"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Game", "name": "Finance Runner 3D", "description": "Foncez sur une piste en 3D : ramassez les pièces, contournez les murs de dettes et sautez les barrières. Jeu d'arcade 3D gratuit sur le thème de l'épargne, Economya.fr.", "url": "https://economya.fr/finance-runner-3d-v2"}</script>
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#085041">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -84,16 +84,15 @@ canvas{display:block;width:100%;height:100%;}
     <div class="hud-lives" id="hudLives">❤️❤️❤️</div>
   </div>
   <div class="combo-label" id="comboLabel"></div>
-  <div class="ctrl-left" onclick="moveLeft()"></div>
-  <div class="ctrl-right" onclick="moveRight()"></div>
+  <button class="jump-btn" id="jumpBtn" type="button" onclick="jump()" aria-label="Sauter" style="display:none;">▲ Sauter</button>
 
   <div class="overlay active" id="screen-intro">
     <div class="eyebrow">Economya.fr · Le runner</div>
     <h1 class="title">Finance <span>Runner 3D</span></h1>
-    <p class="lede">Courez sur un chemin isométrique. Collectez les économies dorées, évitez les dettes qui barrent le chemin. Tapez gauche/droite pour changer de lane.</p>
+    <p class="lede">Foncez sur une piste en 3D. Ramassez les pièces, changez de couloir pour éviter les murs de dettes et sautez par-dessus les barrières.</p>
     <div class="legend">
-      <div class="leg">⬅️ Tap gauche = lane gauche</div>
-      <div class="leg">➡️ Tap droit = lane droite</div>
+      <div class="leg">⬅️ ➡️ Toucher à gauche / à droite : changer de couloir</div>
+      <div class="leg">⬆️ Glisser vers le haut ou bouton Sauter</div>
     </div>
     <button class="btn btn-primary" onclick="startGame()">Courir !</button>
     <div class="brand-footer">Un jeu <a href="https://economya.fr" target="_blank">Economya.fr</a></div>
@@ -111,34 +110,36 @@ canvas{display:block;width:100%;height:100%;}
 </div>
 
 <script>
+/* Finance Runner 3D : piste en perspective (caméra derrière le coureur), dessinée sans bibliothèque externe.
+   Trois couloirs, murs de dettes à contourner, barrières à sauter, pièces à ramasser. */
 const canvas=document.getElementById('game');
 const ctx=canvas.getContext('2d');
 const wrap=document.getElementById('wrap');
-let W,H,DPR;
+let W=360,H=640,DPR=1,HOR=0,RY=0,LANE=0,KS=1;
 function resize(){
   DPR=Math.min(window.devicePixelRatio||1,2);
-  W=wrap.clientWidth;H=wrap.clientHeight;
+  W=wrap.clientWidth||360;H=wrap.clientHeight||640;
   canvas.width=W*DPR;canvas.height=H*DPR;
   ctx.setTransform(DPR,0,0,DPR,0,0);
+  HOR=H*0.33;RY=H*0.45;LANE=Math.min(W*0.27,124);KS=Math.max(.8,Math.min(1.25,H/660));
 }
 window.addEventListener('resize',resize);
 
-// Isometric config
-const LANES=3;
-const TILE_W=80,TILE_H=40;
-const ISO_X=(W)=>W;
-const ISO_Y=(W,D)=>H*0.35+D*TILE_H*0.5-W*TILE_H*0.5;
+// Projection : D = distance caméra-coureur ; un objet à la profondeur z est réduit du facteur D/(z+D).
+const D=6,ZFAR=74,ROW=6;
+function P(x,z,h){const s=D/(z+D);return {x:W/2+x*LANE*s,y:HOR+RY*s-(h||0)*KS*s,s:s};}
 
-let playerLane=1,playerY=0;
-let tiles=[],coins=[],obstacles=[],particles=[];
+const LBL=['DETTE','AGIOS','FRAIS','CRÉDIT','DÉCOUVERT'];
+let objs=[],deco=[],particles=[];
 let score=0,lives=3,combo=0,best=0,running=false;
-let speed=2.5,scroll=0,spawnTimer=0;
+let speed=0.22,dist=0,rowAcc=0,decoAcc=0,rowN=0,cool=0,coinRun={lane:0,left:0};
+let lane=0,px=0,py=0,vy=0,runPh=0,invul=0,shake=0,flash=0,frame=0,hurdlesSeen=0;
 let rafStarted=false;
+try{best=parseInt(localStorage.getItem('financeRunner3DBest')||'0',10)||0;}catch(e){}
 
-try{best=parseInt(localStorage.getItem('financeRunner3DBest')||'0',10);}catch(e){}
-
-const DEBT_ICONS=['🧾','📉','💸','⚠️'];
-const COIN_ICONS=['🪙','💰','💵'];
+// Décor fixe : étoiles et silhouette de ville au loin
+const STARS=[];for(let i=0;i<46;i++)STARS.push([Math.random(),Math.random()*0.9,Math.random()*1.4+0.4,Math.random()*6.28]);
+const SKY=[];{let x=-0.05;while(x<1.05){const w=0.035+Math.random()*0.06;SKY.push([x,w,0.25+Math.random()*0.75,Math.random()]);x+=w+0.004;}}
 
 function showScreen(id){
   document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
@@ -148,201 +149,325 @@ function showCombo(t){
   const el=document.getElementById('comboLabel');
   el.textContent=t;el.classList.remove('show');void el.offsetWidth;el.classList.add('show');
 }
+function updateHud(){
+  document.getElementById('hudScore').textContent=score;
+  document.getElementById('hudLives').textContent='❤️'.repeat(Math.max(0,lives));
+}
+
+function addDeco(z){
+  for(const side of[-1,1]){
+    deco.push({k:'tower',side:side,z:z+Math.random()*3,off:1.3+Math.random()*1.5,w:0.9+Math.random()*0.7,
+      hgt:170+Math.random()*290,hue:205+Math.random()*70,seed:Math.random()*1000});
+  }
+  deco.push({k:'lamp',side:-1,z:z+4.5});deco.push({k:'lamp',side:1,z:z+4.5});
+}
+function resetWorld(){
+  objs=[];deco=[];particles=[];
+  for(let z=4;z<ZFAR;z+=9)addDeco(z);
+  dist=0;rowAcc=0;decoAcc=0;rowN=0;cool=3;coinRun={lane:0,left:0};
+}
 
 function startGame(){
   resize();
   document.getElementById('screen-intro').classList.remove('active');
   document.getElementById('screen-over').classList.remove('active');
   document.getElementById('hud').style.display='flex';
-  playerLane=1;playerY=0;tiles=[];coins=[];obstacles=[];particles=[];
-  score=0;lives=3;combo=0;speed=2.5;scroll=0;spawnTimer=0;running=true;
+  document.getElementById('jumpBtn').style.display='block';
+  resetWorld();
+  lane=0;px=0;py=0;vy=0;invul=0;shake=0;flash=0;hurdlesSeen=0;
+  score=0;lives=3;combo=0;speed=0.22;running=true;
   updateHud();
-  // Piste complète dès le départ (du haut jusqu'en bas de l'écran), sans trou.
-  // Aucun bonus ni dette dans la zone du coureur : le joueur a le temps de voir venir le premier obstacle.
-  for(let y=-TILE_H*2;y<H+TILE_H*2;y+=TILE_H) spawnRow(y, y>H*0.25);
-  if(!rafStarted){rafStarted=true;requestAnimationFrame(loop);}
 }
 
-function updateHud(){
-  document.getElementById('hudScore').textContent=score;
-  document.getElementById('hudLives').textContent='❤️'.repeat(Math.max(0,lives));
+function startRun(){coinRun={lane:Math.floor(Math.random()*3)-1,left:3+Math.floor(Math.random()*3)};}
+function spawnRow(z){
+  rowN++;
+  let rowCoin=null;
+  if(coinRun.left>0){rowCoin={t:'coin',lane:coinRun.lane,z:z,h:24};objs.push(rowCoin);coinRun.left--;}
+  if(cool>0){cool--;if(coinRun.left<=0&&Math.random()<0.4)startRun();return;}
+  const hard=Math.min(1,score/60),r=Math.random();
+  if(r<0.36+hard*0.14){
+    // mur(s) de dettes : il reste toujours au moins un couloir libre (celui de la file de pièces en cours)
+    const free=coinRun.left>0||rowCoin?coinRun.lane:Math.floor(Math.random()*3)-1;
+    const lanes=[-1,0,1].filter(l=>l!==free);
+    if(Math.random()>0.35+hard*0.35)lanes.splice(Math.floor(Math.random()*2),1);
+    lanes.forEach(l=>objs.push({t:'wall',lane:l,z:z,label:LBL[Math.floor(Math.random()*LBL.length)]}));
+    if(coinRun.left<=0&&!rowCoin&&Math.random()<0.6)coinRun={lane:free,left:3};
+    cool=2;
+  }else if(r<0.52+hard*0.14&&rowN>8){
+    // barrière basse sur toute la largeur : il faut sauter (une pièce attend en l'air)
+    objs.push({t:'hurdle',z:z,n:hurdlesSeen++});
+    if(rowCoin)rowCoin.h=78;else objs.push({t:'coin',lane:Math.floor(Math.random()*3)-1,z:z,h:78});
+    cool=2;
+  }else if(r<0.57&&lives<3&&!rowCoin){
+    objs.push({t:'heart',lane:Math.floor(Math.random()*3)-1,z:z,h:28});cool=1;
+  }else if(coinRun.left<=0&&r<0.92)startRun();
 }
 
-function spawnRow(y,sansObjet){
-  for(let l=0;l<LANES;l++) tiles.push({lane:l,y,type:'floor'});
-  // Spawner pièce ou obstacle
-  if(sansObjet) return;
-  if(Math.random()<0.4){
-    const lane=Math.floor(Math.random()*LANES);
-    const tirage=Math.random();
-    if(tirage<0.05&&lives<3) coins.push({lane,y:y-10,icon:'❤️',collected:false,kind:'vie'}); // cœur : rend une vie
-    else if(tirage<0.6) coins.push({lane,y:y-10,icon:COIN_ICONS[Math.floor(Math.random()*COIN_ICONS.length)],collected:false});
-    else obstacles.push({lane,y:y-10,icon:DEBT_ICONS[Math.floor(Math.random()*DEBT_ICONS.length)],hit:false});
-  }
-}
+function moveLeft(){if(!running)return;lane=Math.max(-1,lane-1);}
+function moveRight(){if(!running)return;lane=Math.min(1,lane+1);}
+function jump(){if(!running||py>0)return;vy=9.4;py=0.01;}
 
-function laneToX(lane){
-  const cx=W/2;
-  const offsets=[-TILE_W*0.6,0,TILE_W*0.6];
-  return cx+offsets[lane];
-}
-
-function moveLeft(){if(!running)return;playerLane=Math.max(0,playerLane-1);}
-function moveRight(){if(!running)return;playerLane=Math.min(LANES-1,playerLane+1);}
-
-// Swipe
-let touchStartX=0;
-canvas.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;});
-canvas.addEventListener('touchend',e=>{
-  const dx=e.changedTouches[0].clientX-touchStartX;
-  if(Math.abs(dx)>30){if(dx<0)moveLeft();else moveRight();}
+// Commandes : toucher à gauche / à droite, glisser vers le haut pour sauter, flèches et espace au clavier
+let ts=null;
+wrap.addEventListener('pointerdown',e=>{
+  if(!running||(e.target.closest&&e.target.closest('.overlay,button,a')))return;
+  ts={x:e.clientX,y:e.clientY};
 });
+wrap.addEventListener('pointerup',e=>{
+  if(!ts||!running){ts=null;return;}
+  const dx=e.clientX-ts.x,dy=e.clientY-ts.y;ts=null;
+  if(dy<-28&&Math.abs(dy)>Math.abs(dx)){jump();return;}
+  if(Math.abs(dx)>28){if(dx<0)moveLeft();else moveRight();return;}
+  const r=wrap.getBoundingClientRect();
+  if(e.clientX-r.left<r.width/2)moveLeft();else moveRight();
+});
+wrap.addEventListener('pointercancel',()=>{ts=null;});
 window.addEventListener('keydown',e=>{
-  if(e.key==='ArrowLeft')moveLeft();
-  if(e.key==='ArrowRight')moveRight();
+  if(!running)return;
+  if(e.key==='ArrowLeft'){moveLeft();e.preventDefault();}
+  else if(e.key==='ArrowRight'){moveRight();e.preventDefault();}
+  else if(e.key==='ArrowUp'||e.key===' '||e.code==='Space'){jump();e.preventDefault();}
 });
 
-function spawnParticle(x,y,color){
-  for(let i=0;i<6;i++){
-    const ang=Math.random()*Math.PI*2;
-    particles.push({x,y,vx:Math.cos(ang)*2.5,vy:Math.sin(ang)*2.5-2,life:1,color});
+function burst(x,y,color,n){
+  for(let i=0;i<(n||8);i++){
+    const a=Math.random()*6.283,v=1.5+Math.random()*3;
+    particles.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-2,life:1,color:color});
   }
 }
+function hit(o){
+  o.done=true;
+  if(invul>0)return;
+  lives--;combo=0;invul=70;shake=14;flash=1;
+  const p=P(px,0,40);burst(p.x,p.y,'#F87171',14);
+  updateHud();
+  if(lives<=0){running=false;endGame();}
+}
 
-function loop(){
-  ctx.clearRect(0,0,W,H);
-
-  // Fond dégradé
-  const bg=ctx.createLinearGradient(0,0,0,H);
-  bg.addColorStop(0,'#0D1520');bg.addColorStop(1,'#080C14');
-  ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
-
-  if(running){
-    scroll+=speed;
-    if(speed<7)speed+=0.003;
-    tiles.forEach(t=>t.y+=speed);
-    // Nouvelle rangée posée exactement au-dessus de la plus haute : la piste ne se troue plus.
-    let topY=Infinity;
-    for(const t of tiles){ if(t.y<topY) topY=t.y; }
-    while(topY>-TILE_H*2){ topY-=TILE_H; spawnRow(topY); }
-    coins.forEach(c=>c.y+=speed);
-    obstacles.forEach(o=>o.y+=speed);
-
-    // Nettoyage
-    tiles=tiles.filter(t=>t.y<H+80);
-    coins=coins.filter(c=>c.y<H+80);
-    obstacles=obstacles.filter(o=>o.y<H+80);
-
-    // Collision coins
-    const px=laneToX(playerLane),py=H*0.6;
-    for(let i=coins.length-1;i>=0;i--){
-      const c=coins[i];
-      if(c.collected)continue;
-      const cx=laneToX(c.lane),cy=c.y;
-      if(Math.abs(cx-px)<50&&Math.abs(cy-py)<40){
-        c.collected=true;combo++;
-        if(c.kind==='vie'){lives=Math.min(3,lives+1);showCombo('❤️ +1 vie');}
-        else score++;
-        spawnParticle(cx,cy,'#FFD54F');
-        // tous les 5 de combo : 3 pièces offertes
-        if(combo>0&&combo%5===0){score+=3;showCombo('🔥 x'+combo+' · +3 🪙');}
-        updateHud();
-      }
+function update(){
+  frame++;
+  const v=running?speed:0.07;
+  if(running){speed=Math.min(0.5,speed+0.00007);}
+  dist+=v;
+  deco.forEach(d=>d.z-=v);
+  deco=deco.filter(d=>d.z>-D+0.6);
+  decoAcc+=v;while(decoAcc>=9){decoAcc-=9;addDeco(ZFAR-decoAcc);}
+  particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.18;p.life-=0.035;});
+  particles=particles.filter(p=>p.life>0);
+  if(shake>0)shake--;if(flash>0)flash-=0.05;
+  if(!running)return;
+  rowAcc+=v;while(rowAcc>=ROW){rowAcc-=ROW;spawnRow(ZFAR-rowAcc);}
+  px+=(lane-px)*0.24;
+  if(py>0||vy>0){py+=vy;vy-=0.5;if(py<=0){py=0;vy=0;}}
+  runPh+=0.16+speed*0.5;
+  if(invul>0)invul--;
+  for(const o of objs){
+    o.z-=v;
+    if(o.done||o.z>0.9||o.z<-0.9)continue;
+    if(o.t==='wall'){if(Math.abs(px-o.lane)<0.6)hit(o);}
+    else if(o.t==='hurdle'){if(py<26)hit(o);else if(!o.ok){o.ok=true;}}
+    else if(Math.abs(px-o.lane)<0.62&&Math.abs(py-(o.h-24))<50){
+      o.done=true;combo++;
+      const p=P(o.lane,o.z,o.h);
+      if(o.t==='heart'){lives=Math.min(3,lives+1);showCombo('❤️ +1 vie');burst(p.x,p.y,'#F87171',10);}
+      else{score++;burst(p.x,p.y,'#FFD54F',8);}
+      // tous les 5 de combo : 3 pièces offertes
+      if(combo>0&&combo%5===0){score+=3;showCombo('🔥 x'+combo+' · +3 🪙');}
+      updateHud();
     }
-    // Collision obstacles
-    for(let i=obstacles.length-1;i>=0;i--){
-      const o=obstacles[i];
-      if(o.hit)continue;
-      const ox=laneToX(o.lane),oy=o.y;
-      if(Math.abs(ox-px)<45&&Math.abs(oy-py)<35){
-        o.hit=true;lives--;combo=0;
-        spawnParticle(ox,oy,'#F87171');
-        updateHud();
-        if(lives<=0){running=false;endGame();}
-      }
-    }
-    particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.15;p.life-=0.04;});
-    particles=particles.filter(p=>p.life>0);
   }
+  objs=objs.filter(o=>o.z>-4.3&&!(o.done&&o.t!=='wall'&&o.t!=='hurdle'));
+}
 
-  // Dessiner tuiles (pseudo-isometric)
-  const sorted=[...tiles].sort((a,b)=>a.y-b.y);
-  sorted.forEach(t=>{
-    const x=laneToX(t.lane),y=t.y;
-    if(y<-60||y>H+60)return;
-    const topColor='#1A2840',sideColor='#0E1A2A',lineColor='#203050';
-    const hw=TILE_W*0.45,hh=TILE_H*0.4;
-    // Top
-    ctx.beginPath();
-    ctx.moveTo(x,y-hh);ctx.lineTo(x+hw,y);ctx.lineTo(x,y+hh);ctx.lineTo(x-hw,y);
-    ctx.closePath();ctx.fillStyle=topColor;ctx.fill();
-    ctx.strokeStyle=lineColor;ctx.lineWidth=1;ctx.stroke();
-    // Left side
-    const depth=12;
-    ctx.beginPath();
-    ctx.moveTo(x-hw,y);ctx.lineTo(x-hw,y+depth);ctx.lineTo(x,y+hh+depth);ctx.lineTo(x,y+hh);
-    ctx.closePath();ctx.fillStyle=sideColor;ctx.fill();
-    // Right side
-    ctx.beginPath();
-    ctx.moveTo(x+hw,y);ctx.lineTo(x+hw,y+depth);ctx.lineTo(x,y+hh+depth);ctx.lineTo(x,y+hh);
-    ctx.closePath();ctx.fillStyle='#0B1520';ctx.fill();
-  });
+function quad(a,b,c,d,fill){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.lineTo(c.x,c.y);ctx.lineTo(d.x,d.y);ctx.closePath();ctx.fillStyle=fill;ctx.fill();}
+function rr(x,y,w,h,r){ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,r);else ctx.rect(x,y,w,h);}
+function hash(n){const x=Math.sin(n*127.1)*43758.5453;return x-Math.floor(x);}
 
-  // Pièces (fond VERT clair)
-  coins.filter(c=>!c.collected).forEach(c=>{
-    if(c.y<-20||c.y>H+20)return;
-    const cx=laneToX(c.lane), cy=c.y-TILE_H*0.6;
-    ctx.save();
-    ctx.beginPath();ctx.roundRect(cx-22,cy-22,44,44,10);
-    ctx.fillStyle='rgba(52,211,153,.35)';ctx.fill();
-    ctx.strokeStyle='rgba(52,211,153,.9)';ctx.lineWidth=2;ctx.stroke();
-    ctx.font='22px serif';ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillText(c.icon,cx,cy);
-    ctx.font='bold 8px Inter,sans-serif';ctx.fillStyle='#34D399';
-    ctx.fillText(c.kind==='vie'?'VIE':'BONUS',cx,cy+16);
-    ctx.restore();
-  });
-
-  // Obstacles (fond ROUGE clair)
-  obstacles.filter(o=>!o.hit).forEach(o=>{
-    if(o.y<-20||o.y>H+20)return;
-    const ox=laneToX(o.lane), oy=o.y-TILE_H*0.6;
-    ctx.save();
-    ctx.beginPath();ctx.roundRect(ox-22,oy-22,44,44,10);
-    ctx.fillStyle='rgba(248,113,113,.35)';ctx.fill();
-    ctx.strokeStyle='rgba(248,113,113,.9)';ctx.lineWidth=2;ctx.stroke();
-    ctx.font='22px serif';ctx.textAlign='center';ctx.textBaseline='middle';
-    ctx.fillText(o.icon,ox,oy);
-    ctx.font='bold 8px Inter,sans-serif';ctx.fillStyle='#F87171';
-    ctx.fillText('DETTE',ox,oy+16);
-    ctx.restore();
-  });
-
-  // Joueur
-  const px=laneToX(playerLane),py=H*0.6;
-  // halo sous le coureur pour bien le repérer
-  ctx.save();
-  ctx.fillStyle='rgba(255,213,79,.22)';
-  ctx.beginPath();ctx.ellipse(px,py-4,26,11,0,0,Math.PI*2);ctx.fill();
-  ctx.strokeStyle='rgba(255,213,79,.7)';ctx.lineWidth=2;ctx.stroke();
+function drawSky(){
+  const g=ctx.createLinearGradient(0,0,0,HOR);
+  g.addColorStop(0,'#050817');g.addColorStop(0.62,'#161A44');g.addColorStop(1,'#4A2466');
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,HOR+1);
+  ctx.fillStyle='#fff';
+  for(const s of STARS){ctx.globalAlpha=0.35+0.45*Math.abs(Math.sin(frame*0.02+s[3]));ctx.fillRect(s[0]*W,s[1]*HOR,s[2],s[2]);}
+  ctx.globalAlpha=1;
+  // soleil couchant rayé
+  const sr=Math.min(W*0.3,HOR*0.62),sx=W/2,sy=HOR-sr*0.2;
+  const sg=ctx.createLinearGradient(0,sy-sr,0,sy+sr);sg.addColorStop(0,'#FFD54F');sg.addColorStop(0.55,'#FF8A5B');sg.addColorStop(1,'#E0449A');
+  ctx.save();ctx.beginPath();ctx.rect(0,0,W,HOR);ctx.clip();
+  ctx.globalAlpha=0.16;ctx.fillStyle='#FF8A5B';ctx.beginPath();ctx.arc(sx,sy,sr*1.5,0,6.283);ctx.fill();ctx.globalAlpha=1;
+  ctx.fillStyle=sg;ctx.beginPath();ctx.arc(sx,sy,sr,0,6.283);ctx.fill();
+  ctx.fillStyle='#3A1F5E';
+  for(let i=0;i<6;i++){const y=sy+sr*(0.02+i*0.17),hh=1.5+i*1.5;ctx.fillRect(sx-sr,y,sr*2,hh);}
+  // silhouette de ville
+  for(const b of SKY){
+    const bh=HOR*0.3*b[2],bx=b[0]*W,bw=b[1]*W;
+    ctx.fillStyle='#0B1030';ctx.fillRect(bx,HOR-bh,bw+1,bh);
+    ctx.fillStyle='rgba(255,213,79,.55)';
+    for(let k=0;k<3;k++){if(hash(b[3]*100+k)>0.5)ctx.fillRect(bx+bw*(0.2+0.3*hash(b[3]*7+k)),HOR-bh*(0.25+0.6*hash(b[3]*13+k)),1.6,1.6);}
+  }
   ctx.restore();
-  ctx.font='38px serif';
-  ctx.textAlign='center';ctx.textBaseline='middle';
-  ctx.fillText('🏃',px,py-TILE_H*0.6);
-
-  // Particules
-  particles.forEach(p=>{
-    ctx.save();ctx.globalAlpha=Math.max(p.life,0);
-    ctx.fillStyle=p.color;
-    ctx.beginPath();ctx.arc(p.x,p.y,3,0,Math.PI*2);ctx.fill();
-    ctx.restore();
-  });
-
-  requestAnimationFrame(loop);
 }
+
+function drawGround(){
+  const g=ctx.createLinearGradient(0,HOR,0,H);
+  g.addColorStop(0,'#1A1038');g.addColorStop(0.35,'#0B1024');g.addColorStop(1,'#060912');
+  ctx.fillStyle=g;ctx.fillRect(0,HOR,W,H-HOR);
+  // grille néon au sol : lignes fuyantes + traverses qui défilent
+  ctx.lineWidth=1;ctx.strokeStyle='rgba(120,90,255,.28)';
+  ctx.beginPath();
+  for(let k=-11;k<=11;k++){if(Math.abs(k)<2)continue;const a=P(k*1.5,ZFAR),b=P(k*1.5,-D+1.3);ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);}
+  ctx.stroke();
+  const off=dist%6;
+  for(let z=-off;z<ZFAR;z+=6){if(z<-D+1.3)continue;const p=P(0,z);ctx.globalAlpha=Math.min(0.5,p.s*0.9);ctx.beginPath();ctx.moveTo(0,p.y);ctx.lineTo(W,p.y);ctx.stroke();}
+  ctx.globalAlpha=1;
+  // piste
+  const ZN=-D+1.25;
+  quad(P(-1.5,ZFAR),P(1.5,ZFAR),P(1.5,ZN),P(-1.5,ZN),'#141B33');
+  const o3=dist%12;
+  for(let z=-o3-12;z<ZFAR;z+=12){const z0=Math.max(ZN,z),z1=Math.min(ZFAR,z+6);if(z1<=z0)continue;quad(P(-1.5,z1),P(1.5,z1),P(1.5,z0),P(-1.5,z0),'rgba(255,255,255,.04)');}
+  // tirets de séparation des couloirs
+  for(const x of[-0.5,0.5]){for(let z=-off-6;z<ZFAR;z+=6){const z0=Math.max(ZN,z),z1=Math.min(ZFAR,z+2.6);if(z1<=z0)continue;
+    quad(P(x-0.025,z1),P(x+0.025,z1),P(x+0.025,z0),P(x-0.025,z0),'rgba(255,255,255,.34)');}}
+  // bordures lumineuses
+  for(const sd of[-1,1]){
+    const col=sd<0?'#34D399':'#FFD54F';
+    quad(P(sd*1.5-0.05,ZFAR),P(sd*1.5+0.05,ZFAR),P(sd*1.5+0.05,ZN),P(sd*1.5-0.05,ZN),col);
+    ctx.globalAlpha=0.16;quad(P(sd*1.5-0.22,ZFAR),P(sd*1.5+0.22,ZFAR),P(sd*1.5+0.22,ZN),P(sd*1.5-0.22,ZN),col);ctx.globalAlpha=1;
+  }
+}
+
+function drawTower(o){
+  const x=o.side*(1.5+o.off),p=P(x,o.z),w=o.w*LANE*p.s,h=o.hgt*KS*p.s;
+  const xi=x-o.side*o.w/2,a=P(xi,o.z),b=P(xi,o.z+3.2),hb=o.hgt*KS*b.s;
+  ctx.globalAlpha=Math.min(1,(ZFAR-o.z)/12);
+  ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(a.x,a.y-h);ctx.lineTo(b.x,b.y-hb);ctx.lineTo(b.x,b.y);ctx.closePath();
+  ctx.fillStyle='hsl('+o.hue+',42%,9%)';ctx.fill();
+  ctx.fillStyle='hsl('+o.hue+',40%,15%)';ctx.fillRect(p.x-w/2,p.y-h,w,h);
+  ctx.fillStyle='hsl('+o.hue+',70%,60%)';ctx.fillRect(p.x-w/2,p.y-h,w,Math.max(1,2.5*p.s));
+  if(p.s>0.13){
+    const rows=Math.min(7,Math.floor(o.hgt/52)),cw=w/4.2,ch=h/(rows*1.7+0.6);
+    for(let r=0;r<rows;r++)for(let c=0;c<3;c++){
+      const lit=hash(o.seed+r*3.1+c*7.7);
+      ctx.fillStyle=lit>0.5?(lit>0.85?'rgba(52,211,153,.8)':'rgba(255,213,79,.78)'):'rgba(255,255,255,.06)';
+      ctx.fillRect(p.x-w/2+cw*(0.45+c*1.15),p.y-h+ch*(0.8+r*1.7),cw*0.8,ch);
+    }
+  }
+  ctx.globalAlpha=1;
+}
+function drawLamp(o){
+  const x=o.side*1.82,a=P(x,o.z),t=P(x,o.z,150),e=P(o.side*1.62,o.z,150);
+  ctx.globalAlpha=Math.min(1,(ZFAR-o.z)/12);
+  ctx.strokeStyle='#2A3558';ctx.lineWidth=Math.max(1,4*a.s);ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(t.x,t.y);ctx.lineTo(e.x,e.y);ctx.stroke();
+  ctx.fillStyle='rgba(255,220,150,.16)';ctx.beginPath();ctx.arc(e.x,e.y,12*a.s,0,6.283);ctx.fill();
+  ctx.fillStyle='#FFE9B0';ctx.beginPath();ctx.arc(e.x,e.y,5*a.s,0,6.283);ctx.fill();
+  ctx.globalAlpha=1;
+}
+function shadow(x,z,r){const g=P(x,z);ctx.fillStyle='rgba(0,0,0,.34)';ctx.beginPath();ctx.ellipse(g.x,g.y,r*g.s,r*0.32*g.s,0,0,6.283);ctx.fill();}
+function drawCoin(o){
+  const p=P(o.lane,o.z,o.h),r=17*KS*p.s,wb=Math.abs(Math.cos(frame*0.11+o.z*0.6));
+  ctx.globalAlpha=Math.min(1,(ZFAR-o.z)/10);
+  shadow(o.lane,o.z,13*KS);
+  ctx.fillStyle='rgba(255,213,79,.2)';ctx.beginPath();ctx.arc(p.x,p.y,r*1.75,0,6.283);ctx.fill();
+  ctx.fillStyle='#B8860B';ctx.beginPath();ctx.ellipse(p.x,p.y,r*Math.max(0.16,wb),r,0,0,6.283);ctx.fill();
+  ctx.fillStyle='#FFD54F';ctx.beginPath();ctx.ellipse(p.x,p.y,r*Math.max(0.1,wb)*0.82,r*0.82,0,0,6.283);ctx.fill();
+  if(wb>0.55&&p.s>0.3){ctx.fillStyle='#8A5A00';ctx.font='800 '+Math.round(r*1.15)+'px "Space Grotesk",system-ui,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('€',p.x,p.y+r*0.06);}
+  ctx.globalAlpha=1;
+}
+function drawHeart(o){
+  const p=P(o.lane,o.z,o.h+Math.sin(frame*0.1)*4),r=15*KS*p.s;
+  shadow(o.lane,o.z,12*KS);
+  ctx.fillStyle='rgba(248,113,113,.22)';ctx.beginPath();ctx.arc(p.x,p.y,r*1.8,0,6.283);ctx.fill();
+  ctx.fillStyle='#F87171';ctx.beginPath();
+  ctx.moveTo(p.x,p.y+r*0.9);ctx.bezierCurveTo(p.x-r*1.5,p.y-r*0.2,p.x-r*0.7,p.y-r*1.2,p.x,p.y-r*0.4);
+  ctx.bezierCurveTo(p.x+r*0.7,p.y-r*1.2,p.x+r*1.5,p.y-r*0.2,p.x,p.y+r*0.9);ctx.fill();
+}
+function drawWall(o){
+  const p=P(o.lane,o.z),w=LANE*0.86*p.s,h=82*KS*p.s,b=P(o.lane,o.z+1.7),wb=LANE*0.86*b.s,hb=82*KS*b.s;
+  ctx.globalAlpha=(o.done?0.3:1)*Math.min(1,(ZFAR-o.z)/10);
+  shadow(o.lane,o.z,LANE*0.5);
+  ctx.beginPath();ctx.moveTo(p.x-w/2,p.y-h);ctx.lineTo(p.x+w/2,p.y-h);ctx.lineTo(b.x+wb/2,b.y-hb);ctx.lineTo(b.x-wb/2,b.y-hb);ctx.closePath();ctx.fillStyle='#FCA5A5';ctx.fill();
+  const g=ctx.createLinearGradient(0,p.y-h,0,p.y);g.addColorStop(0,'#F87171');g.addColorStop(1,'#991B1B');
+  ctx.fillStyle=g;rr(p.x-w/2,p.y-h,w,h,5*p.s);ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,.35)';ctx.lineWidth=Math.max(1,2*p.s);ctx.stroke();
+  if(p.s>0.22){
+    ctx.fillStyle='#fff';ctx.textAlign='center';ctx.textBaseline='middle';
+    // panneau danger
+    const ty=p.y-h*0.62,tr=13*KS*p.s;
+    ctx.beginPath();ctx.moveTo(p.x,ty-tr);ctx.lineTo(p.x+tr,ty+tr*0.8);ctx.lineTo(p.x-tr,ty+tr*0.8);ctx.closePath();ctx.fillStyle='#FFD54F';ctx.fill();
+    ctx.fillStyle='#7A1010';ctx.font='900 '+Math.round(tr*1.25)+'px system-ui,sans-serif';ctx.fillText('!',p.x,ty+tr*0.18);
+    ctx.fillStyle='#fff';ctx.font='800 '+Math.max(6,Math.round(13*KS*p.s))+'px "Space Grotesk",system-ui,sans-serif';
+    ctx.fillText(o.label,p.x,p.y-h*0.2);
+  }
+  ctx.globalAlpha=1;
+}
+function drawHurdle(o){
+  const l=P(-1.5,o.z,0),r=P(1.5,o.z,0),s=l.s,top=32*KS*s,bh=13*KS*s;
+  ctx.globalAlpha=(o.done?0.3:1)*Math.min(1,(ZFAR-o.z)/10);
+  ctx.fillStyle='rgba(0,0,0,.3)';ctx.fillRect(l.x,l.y-2*s,r.x-l.x,5*s);
+  ctx.fillStyle='#CBD5E1';ctx.fillRect(l.x-3*s,l.y-top,6*s,top);ctx.fillRect(r.x-3*s,r.y-top,6*s,top);
+  const n=9,sw=(r.x-l.x)/n;
+  for(let i=0;i<n;i++){ctx.fillStyle=i%2?'#fff':'#FB923C';ctx.fillRect(l.x+i*sw,l.y-top,sw+0.5,bh);}
+  if(s>0.2&&o.n<4&&!o.done){
+    ctx.fillStyle='#FB923C';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.font='800 '+Math.max(7,Math.round(15*KS*s))+'px "Space Grotesk",system-ui,sans-serif';
+    ctx.fillText('▲ SAUTEZ',W/2,l.y-top-14*KS*s);
+  }
+  ctx.globalAlpha=1;
+}
+function drawRunner(){
+  const p=P(px,0,py),k=KS,air=py>0;
+  shadow(px,0,24*k*(1-Math.min(0.6,py/160)));
+  if(invul>0&&Math.floor(invul/5)%2)ctx.globalAlpha=0.35;
+  ctx.save();ctx.translate(p.x,p.y);ctx.rotate((lane-px)*0.2);ctx.scale(k,k);
+  ctx.lineCap='round';ctx.lineJoin='round';
+  const s1=Math.sin(runPh),s2=Math.sin(runPh+Math.PI);
+  // jambes
+  ctx.strokeStyle='#1E2A4A';ctx.lineWidth=8;
+  for(const [sx,sn] of[[-6,s1],[6,s2]]){
+    const lift=air?14:Math.max(0,sn)*13,fx=sx+(air?sx*0.6:sn*3);
+    ctx.beginPath();ctx.moveTo(sx,-36);ctx.lineTo(fx,-5-lift);ctx.stroke();
+    ctx.fillStyle='#FFD54F';ctx.beginPath();ctx.ellipse(fx,-3-lift,6.5,3.6,0,0,6.283);ctx.fill();
+  }
+  // bras
+  ctx.strokeStyle='#22B07E';ctx.lineWidth=7;
+  for(const [sx,sn] of[[-15,s2],[15,s1]]){ctx.beginPath();ctx.moveTo(sx*0.85,-63);ctx.lineTo(sx+(sx>0?4:-4),air?-78:-46+sn*8);ctx.stroke();}
+  // buste (vu de dos) et sigle
+  ctx.fillStyle='#34D399';rr(-14,-70,28,38,10);ctx.fill();
+  ctx.fillStyle='#22B07E';rr(-14,-44,28,12,6);ctx.fill();
+  ctx.fillStyle='#0B3B2C';ctx.font='800 15px "Space Grotesk",system-ui,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('€',0,-55);
+  // tête
+  ctx.fillStyle='#F2C9A0';ctx.beginPath();ctx.arc(0,-82,11.5,0,6.283);ctx.fill();
+  ctx.fillStyle='#3B2A1A';ctx.beginPath();ctx.arc(0,-84,12,Math.PI*0.95,Math.PI*2.05);ctx.fill();
+  ctx.restore();ctx.globalAlpha=1;
+}
+
+function draw(){
+  ctx.save();
+  if(shake>0)ctx.translate((Math.random()-0.5)*shake,(Math.random()-0.5)*shake);
+  drawSky();drawGround();
+  // du plus lointain au plus proche ; le coureur (z = 0) est inséré à sa place
+  const list=deco.concat(objs);list.sort((a,b)=>b.z-a.z);
+  let runnerDone=false;
+  for(const o of list){
+    if(!runnerDone&&o.z<0){drawRunner();runnerDone=true;}
+    if(o.k==='tower')drawTower(o);else if(o.k==='lamp')drawLamp(o);
+    else if(o.t==='coin')drawCoin(o);else if(o.t==='heart')drawHeart(o);
+    else if(o.t==='wall')drawWall(o);else if(o.t==='hurdle')drawHurdle(o);
+  }
+  if(!runnerDone)drawRunner();
+  particles.forEach(p=>{ctx.globalAlpha=Math.max(p.life,0);ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,3.2,0,6.283);ctx.fill();});
+  ctx.globalAlpha=1;
+  ctx.restore();
+  if(flash>0){ctx.fillStyle='rgba(248,113,113,'+(flash*0.32)+')';ctx.fillRect(0,0,W,H);}
+}
+
+function loop(){update();draw();requestAnimationFrame(loop);}
 
 function endGame(){
   document.getElementById('hud').style.display='none';
+  document.getElementById('jumpBtn').style.display='none';
   if(score>best){best=score;try{localStorage.setItem('financeRunner3DBest',String(best));}catch(e){}}
   document.getElementById('goScore').textContent=score;
   document.getElementById('goBest').textContent=best;
@@ -356,7 +481,9 @@ function shareResult(){
   else navigator.clipboard.writeText(text+' '+url).then(()=>alert('Copié !'));
 }
 
-resize();
+// La piste défile déjà derrière l'écran d'accueil
+resize();resetWorld();
+if(!rafStarted){rafStarted=true;requestAnimationFrame(loop);}
 </script>
 <a href="/mentions-legales" aria-label="Informations légales" style="position:fixed;top:6px;left:6px;z-index:99999;font-size:10px;color:rgba(120,120,120,.55);text-decoration:none;font-family:Arial,Helvetica,sans-serif;background:rgba(255,255,255,.65);padding:2px 5px;border-radius:6px;">⚖️</a>
 <div id="economya-cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#085041;color:#ffffff;padding:18px 20px;box-shadow:0 -2px 10px rgba(0,0,0,0.15);">
