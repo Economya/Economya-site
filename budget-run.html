@@ -405,6 +405,31 @@ function draw(now) {
   ctx.fillStyle = skyGrad;
   ctx.fillRect(0, 0, W, H);
 
+  // Décor (visuel seulement) : étoiles, lune et deux plans de ville qui défilent à des vitesses différentes
+  {
+    ctx.save();
+    const gy = H - GROUND_H, d = (typeof distance === 'number' ? distance : 0);
+    ctx.fillStyle = '#fff';
+    for(let i=0;i<40;i++){ const sx=(i*97.3)%W, sy=((i*53.7)%(gy*0.6)); ctx.globalAlpha=0.25+0.45*Math.abs(Math.sin(now*0.002+i)); ctx.fillRect(sx,sy,1.6,1.6); }
+    ctx.globalAlpha = 1;
+    ctx.fillStyle='rgba(255,236,190,.12)'; ctx.beginPath(); ctx.arc(W*0.78,gy*0.2,44,0,6.283); ctx.fill();
+    ctx.fillStyle='#FFE9B8'; ctx.beginPath(); ctx.arc(W*0.78,gy*0.2,22,0,6.283); ctx.fill();
+    for(const [par,hk,col,lit] of [[0.12,0.34,'#0E1630',0.35],[0.3,0.22,'#141E3C',0.6]]){
+      const period = 520, off = (d*par) % period;
+      for(let k=-1;k<Math.ceil(W/period)+1;k++){
+        for(let j=0;j<8;j++){
+          const r=Math.abs(Math.sin((j+1)*12.9898+hk*78.2)), bw=38+r*34, bh=gy*hk*(0.45+0.55*Math.abs(Math.sin((j+1)*4.7+hk*9)));
+          const x=k*period+j*65-off;
+          if(x>W||x+bw<0) continue;
+          ctx.fillStyle=col; ctx.fillRect(x,gy-bh,bw,bh);
+          ctx.fillStyle='rgba(255,201,75,'+lit+')';
+          for(let w=0;w<5;w++){ const q=Math.abs(Math.sin(j*7.1+w*3.3+hk*5)); if(q>0.4) ctx.fillRect(x+bw*(0.15+0.7*Math.abs(Math.sin(j*2.3+w*1.7))),gy-bh*(0.15+0.75*q),2,2); }
+        }
+      }
+    }
+    ctx.restore();
+  }
+
   // Nuages
   clouds.forEach(c => {
     ctx.fillStyle = 'rgba(255,255,255,.05)';

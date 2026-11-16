@@ -95,7 +95,7 @@ html{overflow-y:scroll}
 </div>
 <div class="rank-toast" id="rankToast"></div>
 <div class="absorb-toast" id="absorbToast"></div>
-<div class="joy-hint" id="joyHint" style="display:none;">Glissez le joystick pour diriger votre boule</div>
+<div class="joy-hint" id="joyHint" style="display:none;">Posez le doigt n'importe où et glissez dans la direction voulue · cercle rouge = encore trop gros</div>
 <div class="joystick-base" id="joystickBase">
   <div class="joystick-knob" id="joystickKnob"></div>
 </div>
@@ -267,6 +267,27 @@ if(isTouchDevice){
   window.addEventListener('pointerup', joyEnd);
 }
 
+// Téléphone : on peut aussi poser le doigt n'importe où sur l'écran et glisser dans la direction voulue
+// (le point de départ du doigt sert de centre, comme un joystick qui apparaît sous le doigt).
+(function(){
+  if(!isTouchDevice) return;
+  let origine = null;
+  function horsJeu(t){ return t && t.closest && t.closest('#joystickBase,.joystick-base,.overlay,button,a'); }
+  document.addEventListener('touchstart', e=>{
+    if(!running || horsJeu(e.target)) return;
+    const t = e.touches[0]; origine = { x:t.clientX, y:t.clientY }; joyActive = true;
+  }, {passive:true});
+  document.addEventListener('touchmove', e=>{
+    if(!origine || !running) return;
+    const t = e.touches[0]; let dx = t.clientX-origine.x, dy = t.clientY-origine.y; const d = Math.hypot(dx,dy);
+    if(d > JOY_MAXD){ dx = dx/d*JOY_MAXD; dy = dy/d*JOY_MAXD; }
+    joyDX = dx; joyDY = dy; joystickKnob.style.transform = `translate(${dx}px, ${dy}px)`;
+    if(e.cancelable) e.preventDefault();
+  }, {passive:false});
+  const fin = ()=>{ if(origine){ origine = null; joyActive = false; resetJoyKnob(); } };
+  document.addEventListener('touchend', fin); document.addEventListener('touchcancel', fin);
+})();
+
 // Clavier (ordinateur) : flèches ou ZQSD pour diriger la boule
 const touchesClavier = { g:false, d:false, h:false, b:false };
 const CARTE_TOUCHES = { ArrowLeft:'g', q:'g', a:'g', ArrowRight:'d', d:'d', ArrowUp:'h', z:'h', w:'h', ArrowDown:'b', s:'b' };
@@ -375,7 +396,8 @@ function loop(){
 
   if(running){
     const speed = 6.5;
-    if(joyActive){
+    // au clavier (ordinateur), la boule n'avançait pas : le déplacement n'était pris en compte qu'avec le joystick
+    if(joyActive || touchesClavier.g || touchesClavier.d || touchesClavier.h || touchesClavier.b){
       const d = Math.hypot(joyDX,joyDY) || 1;
       ball.x += (joyDX/d) * speed * Math.min(1, d/20);
       ball.y += (joyDY/d) * speed * Math.min(1, d/20);
@@ -443,8 +465,15 @@ function loop(){
   ctx.fillStyle = '#ffffff';
   ctx.textAlign='center'; ctx.textBaseline='middle';
   objects.forEach(o=>{
+    const avalable = ball.r >= o.size*0.9;
+    // repère visuel : halo vert = vous pouvez l'avaler, cercle rouge en pointillés = encore trop gros
+    ctx.save();
+    if(avalable){ ctx.fillStyle = 'rgba(61,220,132,.16)'; ctx.beginPath(); ctx.arc(o.x, o.y, o.size*0.62, 0, Math.PI*2); ctx.fill(); }
+    else { ctx.strokeStyle = 'rgba(255,107,129,.8)'; ctx.lineWidth = 2; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.arc(o.x, o.y, o.size*0.66, 0, Math.PI*2); ctx.stroke(); }
+    ctx.restore();
+    ctx.fillStyle = '#ffffff';
     ctx.font = (o.size) + 'px serif';
-    ctx.globalAlpha = ball.r >= o.size*0.9 ? 1 : 0.55;
+    ctx.globalAlpha = avalable ? 1 : 0.55;
     ctx.fillText(o.icon, o.x, o.y);
     ctx.globalAlpha = 1;
   });

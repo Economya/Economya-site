@@ -134,7 +134,8 @@ let objs=[],deco=[],particles=[];
 let score=0,lives=3,combo=0,best=0,running=false;
 let speed=0.22,dist=0,rowAcc=0,decoAcc=0,rowN=0,cool=0,coinRun={lane:0,left:0};
 let lane=0,px=0,py=0,vy=0,runPh=0,invul=0,shake=0,flash=0,frame=0,hurdlesSeen=0;
-let rafStarted=false;
+let rafStarted=false,hintT=0,nbParties=0;
+try{nbParties=parseInt(localStorage.getItem('financeRunner3DParties')||'0',10)||0;}catch(e){}
 try{best=parseInt(localStorage.getItem('financeRunner3DBest')||'0',10)||0;}catch(e){}
 
 // Décor fixe : étoiles et silhouette de ville au loin
@@ -176,6 +177,8 @@ function startGame(){
   resetWorld();
   lane=0;px=0;py=0;vy=0;invul=0;shake=0;flash=0;hurdlesSeen=0;
   score=0;lives=3;combo=0;speed=0.22;running=true;
+  // les trois premières parties : rappel des gestes pendant 5 secondes
+  hintT=nbParties<3?300:0;nbParties++;try{localStorage.setItem('financeRunner3DParties',String(nbParties));}catch(e){}
   updateHud();
 }
 
@@ -256,6 +259,7 @@ function update(){
   particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=0.18;p.life-=0.035;});
   particles=particles.filter(p=>p.life>0);
   if(shake>0)shake--;if(flash>0)flash-=0.05;
+  if(hintT>0&&running)hintT--;
   if(!running)return;
   rowAcc+=v;while(rowAcc>=ROW){rowAcc-=ROW;spawnRow(ZFAR-rowAcc);}
   px+=(lane-px)*0.24;
@@ -461,6 +465,18 @@ function draw(){
   ctx.globalAlpha=1;
   ctx.restore();
   if(flash>0){ctx.fillStyle='rgba(248,113,113,'+(flash*0.32)+')';ctx.fillRect(0,0,W,H);}
+  if(hintT>0&&running){
+    // rappel des gestes, qui s'efface tout seul
+    ctx.save();ctx.globalAlpha=Math.min(1,hintT/40)*(0.75+0.25*Math.sin(frame*0.12));
+    ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillStyle='#fff';
+    ctx.font='800 34px "Space Grotesk",system-ui,sans-serif';
+    ctx.fillText('◀',W*0.13,H*0.6);ctx.fillText('▶',W*0.87,H*0.6);
+    ctx.font='700 13px "Space Grotesk",system-ui,sans-serif';
+    ctx.fillText('touchez',W*0.13,H*0.6+30);ctx.fillText('touchez',W*0.87,H*0.6+30);
+    ctx.font='800 15px "Space Grotesk",system-ui,sans-serif';
+    ctx.fillText('▲ glissez vers le haut pour sauter',W/2,H*0.47);
+    ctx.restore();
+  }
 }
 
 function loop(){update();draw();requestAnimationFrame(loop);}

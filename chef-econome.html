@@ -72,7 +72,7 @@ html{overflow-y:scroll}
   .gauge-fill{ height:100%;border-radius:99px;transition:width .3s ease,background .3s ease; }
 
   /* Tapis roulant */
-  .belt-wrap{ background:var(--belt);border:2px solid var(--belt-line);border-radius:16px;padding:12px;margin-bottom:10px;position:relative;overflow:hidden;height:110px; }
+  .belt-wrap{ background:var(--belt);border:2px solid var(--belt-line);border-radius:16px;padding:12px;margin-bottom:10px;position:relative;overflow:hidden;height:128px; }
   .belt-items{ display:flex;align-items:center;gap:10px;position:absolute;top:50%;transform:translateY(-50%);white-space:nowrap;transition:none; }
   .belt-item{
     display:inline-flex;flex-direction:column;align-items:center;gap:3px;
@@ -84,9 +84,9 @@ html{overflow-y:scroll}
   .belt-item:active{ transform:scale(.92); }
   .belt-item.selected{ border-color:rgba(255,213,79,.7);background:rgba(255,213,79,.1); }
   .belt-item .b-emoji{ font-size:24px; }
-  .belt-item .b-name{ font-size:9.5px;font-weight:600;color:var(--ink-dim);text-align:center;line-height:1.2; }
-  .belt-item .b-price{ font-size:9px;color:var(--orange); }
-  .belt-item .b-nutri{ font-size:9px;color:var(--green); }
+  .belt-item .b-name{ font-size:10.5px;font-weight:600;color:var(--ink-dim);text-align:center;line-height:1.2; }
+  .belt-item .b-price{ font-size:11.5px;font-weight:800;color:var(--orange); }
+  .belt-item .b-nutri{ font-size:10.5px;font-weight:700;color:var(--green); }
 
   /* Panier sélection */
   .basket{ background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 14px;min-height:52px;margin-bottom:10px; }
@@ -386,7 +386,8 @@ function startBeltAnimation(){
     if(!beltEl) return;
     const totalW = beltEl.scrollWidth / 2;
     if(Math.abs(beltPos) >= totalW) beltPos = 0;
-    beltEl.style.transform = `translateX(${beltPos}px)`;
+    // on garde le centrage vertical : sans lui, les cartes glissaient vers le bas et le prix était coupé
+    beltEl.style.transform = `translate(${beltPos}px,-50%)`;
     beltAnim = requestAnimationFrame(animate);
   }
   animate();

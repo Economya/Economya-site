@@ -75,6 +75,17 @@ html{overflow-y:scroll}
   .rival-row.me .rival-pos{ color:var(--gold); }
   .rival-name{ flex:1; }
   .rival-score{ color:var(--ink-dim); }
+
+  .roue-wrap{ position:relative; width:230px; height:230px; margin:18px auto 10px; }
+  .roue{ position:absolute; inset:0; border-radius:50%; border:6px solid rgba(255,255,255,.85); box-shadow:0 12px 34px rgba(0,0,0,.45), inset 0 0 0 2px rgba(0,0,0,.25);
+    background:conic-gradient(#3DDC84 0 90deg, #FF4D6D 90deg 180deg, #FFA726 180deg 270deg, #FFC94B 270deg 360deg);
+    transition:transform 1.3s cubic-bezier(.17,.8,.2,1); }
+  .roue span{ position:absolute; left:50%; top:50%; font-size:34px; line-height:1; transform:translate(-50%,-50%) rotate(var(--a)) translateY(-68px) rotate(calc(-1 * var(--a))); }
+  .roue-moyeu{ position:absolute; left:50%; top:50%; width:34px; height:34px; margin:-17px 0 0 -17px; border-radius:50%; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.4); }
+  .roue-fleche{ position:absolute; left:50%; top:-10px; margin-left:-12px; z-index:2; border-left:12px solid transparent; border-right:12px solid transparent; border-top:22px solid #fff; filter:drop-shadow(0 2px 3px rgba(0,0,0,.5)); }
+  .roue-txt{ text-align:center; font-size:13px; font-weight:700; opacity:.75; }
+  .card{ animation:rouePop .3s ease; } @keyframes rouePop{ from{ transform:scale(.94); opacity:0; } to{ transform:none; opacity:1; } }
+  .hud-row{ padding-right:96px; }
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
@@ -215,7 +226,30 @@ function pickCard(){
   return CARDS[0];
 }
 
+// La roue : elle tourne avant chaque carte et s'arrête sur la famille de la carte tirée (le tirage lui-même ne change pas).
+const ROUE_ANGLES = { opportunite:45, choc:135, imprevu:225, bonus:315 };
+let roueTour = 0;
 function renderCard(card){
+  const zone = document.getElementById('cardZone');
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){ afficherCarte(card); return; }
+  zone.innerHTML = `
+    ${dernierResultat ? `<div style="text-align:center;font-size:12.5px;font-weight:700;margin:0 0 10px;opacity:.9">${dernierResultat}</div>` : ''}
+    <div class="roue-wrap" aria-hidden="true">
+      <div class="roue-fleche"></div>
+      <div class="roue" id="roue">
+        <span style="--a:45deg">💡</span><span style="--a:135deg">⚡</span><span style="--a:225deg">🎲</span><span style="--a:315deg">🎁</span>
+      </div>
+      <div class="roue-moyeu"></div>
+    </div>
+    <div class="roue-txt">La roue tourne…</div>`;
+  const roue = document.getElementById('roue');
+  roueTour++;
+  const cible = 360*3 + (360 - ROUE_ANGLES[card.type]) + (Math.random()*50 - 25);
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{ roue.style.transform = 'rotate('+cible+'deg)'; }));
+  const monTour = roueTour;
+  setTimeout(()=>{ if(running && monTour === roueTour) afficherCarte(card); }, 1500);
+}
+function afficherCarte(card){
   const zone = document.getElementById('cardZone');
   zone.innerHTML = `
     ${dernierResultat ? `<div style="text-align:center;font-size:12.5px;font-weight:700;margin:0 0 10px;opacity:.9">${dernierResultat}</div>` : ''}

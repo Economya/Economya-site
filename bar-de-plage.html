@@ -91,6 +91,17 @@ p.lede{color:var(--ink-dim);font-size:14px;line-height:1.55;margin-bottom:20px;}
 
 /* Correctif : le bloc légal passe sous le jeu au lieu de l'écraser en demi-largeur */
 body{flex-direction:column;align-items:center;justify-content:flex-start;padding-top:56px;}
+
+  /* lecture visuelle : scène, effets attendus des options, bilan chiffré */
+  .eco-scene{ border-radius:16px; overflow:hidden; margin:0 0 10px; border:1px solid rgba(255,255,255,.14); box-shadow:0 8px 22px rgba(0,0,0,.28); line-height:0; }
+  .eco-scene svg{ display:block; width:100%; height:auto; }
+  .eco-hints{ display:flex; flex-wrap:wrap; gap:4px; margin-top:5px; }
+  .eco-hints i{ font-style:normal; font-size:11px; font-weight:700; line-height:1; padding:3px 6px; border-radius:99px; background:rgba(127,127,127,.18); white-space:nowrap; }
+  .eco-hints i.up{ color:#3DDC84; } .eco-hints i.dn{ color:#FF6B81; } .eco-hints i.nu{ color:#8FD3FF; }
+  .eco-legend{ font-size:11px; opacity:.7; text-align:center; margin:8px 0 0; }
+  .eco-bilan{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .eco-bilan span{ font-size:12px; font-weight:800; padding:4px 9px; border-radius:99px; background:rgba(127,127,127,.18); }
+  .eco-bilan span.up{ color:#3DDC84; } .eco-bilan span.dn{ color:#FF6B81; } .eco-bilan span.nu{ color:#8FD3FF; }
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
@@ -278,7 +289,7 @@ function loadJour(){
   j.opts.slice().sort(()=>Math.random()-.5).forEach(opt=>{
     const div=document.createElement('div');div.className='opt';
     const col='var(--gold)';
-    div.innerHTML=`<span class="opt-label">${opt.label}</span><span class="opt-val" style="color:${col}">${opt.val}</span>`;
+    div.innerHTML=`<span class="opt-label">${opt.label}${ecoHints([['💰',opt.dCA],['📦',opt.dStock],['⭐',opt.dSat],['🧑‍🍳',opt.dPerso],['🏷️',opt.dPrix,1]])}</span><span class="opt-val" style="color:${col}">${opt.val}</span>`;
     div.onclick=()=>choose(opt);
     opts.appendChild(div);
   });
@@ -319,6 +330,54 @@ function endGame(){
   document.getElementById('endLesson').innerHTML=lesson;
   showScreen('screen-end');
 }
+
+
+/* ---------- Lecture visuelle (affichage seulement, les règles du jeu ne changent pas) ---------- */
+// petites pastilles sous chaque option : ce qu'elle fait monter ▲ ou baisser ▼ (bleu = ni bon ni mauvais en soi)
+function ecoHints(list){
+  const h=list.filter(x=>x[1]).map(x=>`<i class="${x[2]?'nu':x[1]>0?'up':'dn'}">${x[0]} ${x[1]>0?'▲':'▼'}</i>`).join('');
+  return h?`<span class="eco-hints">${h}</span>`:'';
+}
+function ecoNb(v,dec){ return (Math.round(Math.abs(v)*Math.pow(10,dec||0))/Math.pow(10,dec||0)).toLocaleString('fr-FR'); }
+// bilan chiffré après le choix : ce qui a réellement bougé
+function ecoBilan(av,ap,boxId){
+  const box=document.getElementById(boxId); if(!box) return;
+  let el=document.getElementById('ecoBilan'); if(!el){ el=document.createElement('div'); el.id='ecoBilan'; el.className='eco-bilan'; box.appendChild(el); }
+  el.innerHTML=ap.map((a,i)=>{ const d=a[1]-av[i][1]; if(Math.abs(d)<1e-9) return ''; return `<span class="${a[4]?'nu':d>0?'up':'dn'}">${a[0]} ${d>0?'+':'−'}${ecoNb(d,a[3])}${a[2]}</span>`; }).join('');
+}
+function ecoInit(boxId){
+  const g=document.getElementById('screen-game'); if(!g||document.getElementById('ecoScene')) return;
+  const sc=document.createElement('div'); sc.id='ecoScene'; sc.className='eco-scene'; sc.setAttribute('aria-hidden','true'); g.insertBefore(sc,g.firstChild);
+  const o=document.getElementById('optsList'); if(o){ const l=document.createElement('div'); l.className='eco-legend'; l.textContent='Sous chaque option : ce qu\'elle fait monter ▲ ou baisser ▼'; o.parentNode.insertBefore(l,o.nextSibling); }
+}
+
+function ecoScene(){
+  const el=document.getElementById('ecoScene'); if(!el) return;
+  const j=JOURS[Math.min(jour,JOURS.length-1)], pluie=/⛈|🌧|🌩/.test(j.meteo||'');
+  let s=`<svg viewBox="0 0 360 132" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${pluie?'#56657A':'#5CC6F2'}"/><stop offset="1" stop-color="${pluie?'#93A0AE':'#D4F3FF'}"/></linearGradient></defs>`;
+  s+=`<rect width="360" height="70" fill="url(#bs)"/>`;
+  if(pluie){ for(let i=0;i<26;i++) s+=`<line x1="${8+i*14}" y1="${4+(i*37)%40}" x2="${3+i*14}" y2="${16+(i*37)%40}" stroke="#DCE8F2" stroke-width="1.2" opacity=".7"/>`; s+=`<text x="300" y="34" font-size="26">⛈️</text>`; }
+  else s+=`<circle cx="312" cy="26" r="15" fill="#FFD54F"/><circle cx="312" cy="26" r="22" fill="#FFD54F" opacity=".25"/>`;
+  s+=`<rect y="60" width="360" height="26" fill="${pluie?'#3B7C98':'#2AA9D8'}"/><path d="M0 66 q15 -5 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0" fill="none" stroke="#fff" stroke-width="1.5" opacity=".55"/>`;
+  s+=`<rect y="84" width="360" height="48" fill="#F3D9A4"/>`;
+  // la paillote : bouteilles = stock, serveurs = équipe
+  s+=`<polygon points="6,52 62,26 118,52" fill="#C9973F"/><rect x="16" y="52" width="5" height="52" fill="#7A4E24"/><rect x="103" y="52" width="5" height="52" fill="#7A4E24"/><rect x="12" y="92" width="100" height="22" rx="3" fill="#8B5A2B"/><rect x="12" y="90" width="100" height="5" rx="2" fill="#B9812F"/>`;
+  const nb=Math.max(0,Math.min(8,Math.round(stock/12.5)));
+  for(let i=0;i<nb;i++) s+=`<rect x="${24+i*10}" y="62" width="5" height="14" rx="1.5" fill="${['#3DDC84','#FF8A5B','#4BC9FF','#FFC94B'][i%4]}"/>`;
+  s+=`<rect x="22" y="76" width="82" height="2.5" fill="#7A4E24"/>`;
+  for(let i=0;i<Math.min(4,perso);i++) s+=`<text x="${24+i*21}" y="92" font-size="15">🧑‍🍳</text>`;
+  s+=`<rect x="34" y="97" width="56" height="13" rx="3" fill="#fff"/><text x="62" y="107" font-size="9" font-weight="700" text-anchor="middle" fill="#7A4E24" font-family="sans-serif">🍹 ${prix} €</text>`;
+  // la plage : plus les avis sont bons, plus il y a de monde sous les parasols
+  const nc=Math.max(0,Math.min(10,Math.round(sat*2)));
+  for(let i=0;i<5;i++){ const x=140+i*44; s+=`<text x="${x}" y="100" font-size="26">⛱️</text>`;
+    if(i*2<nc) s+=`<text x="${x-2}" y="122" font-size="14">${['🧍','🧍‍♀️','🧑','👩','🧔'][i]}</text>`;
+    if(i*2+1<nc) s+=`<text x="${x+14}" y="124" font-size="14">${['👩','🧑','🧍‍♀️','🧍','👧'][i]}</text>`; }
+  el.innerHTML=s+'</svg>';
+}
+function ecoEtat(){ return [['💰',ca,' €',0],['📦',stock,' %',0],['⭐',sat,'',1],['🧑‍🍳',perso,'',0],['🏷️',prix,' €',0,1]]; }
+{ const r0=renderDash; renderDash=function(){ r0(); ecoInit(); ecoScene(); };
+  const c0=choose; choose=function(opt){ const av=ecoEtat(); c0(opt); ecoBilan(av,ecoEtat(),'resBox'); };
+  const l0=loadJour; loadJour=function(){ l0(); ecoInit(); ecoScene(); }; }
 
 function share(){
   const text=`J'ai généré ${fmt(ca)} en une saison sur Bar de Plage (Economya.fr) 🌴 À toi de gérer le parasol !`;

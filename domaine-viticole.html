@@ -128,6 +128,17 @@ body{flex-direction:column;align-items:center;justify-content:flex-start;padding
 
 /* contraste (audit accessibilité) */
 .brand{color:#96939a!important}
+
+  /* lecture visuelle : scène, effets attendus des options, bilan chiffré */
+  .eco-scene{ border-radius:16px; overflow:hidden; margin:0 0 10px; border:1px solid rgba(255,255,255,.14); box-shadow:0 8px 22px rgba(0,0,0,.28); line-height:0; }
+  .eco-scene svg{ display:block; width:100%; height:auto; }
+  .eco-hints{ display:flex; flex-wrap:wrap; gap:4px; margin-top:5px; }
+  .eco-hints i{ font-style:normal; font-size:11px; font-weight:700; line-height:1; padding:3px 6px; border-radius:99px; background:rgba(127,127,127,.18); white-space:nowrap; }
+  .eco-hints i.up{ color:#3DDC84; } .eco-hints i.dn{ color:#FF6B81; } .eco-hints i.nu{ color:#8FD3FF; }
+  .eco-legend{ font-size:11px; opacity:.7; text-align:center; margin:8px 0 0; }
+  .eco-bilan{ display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .eco-bilan span{ font-size:12px; font-weight:800; padding:4px 9px; border-radius:99px; background:rgba(127,127,127,.18); }
+  .eco-bilan span.up{ color:#3DDC84; } .eco-bilan span.dn{ color:#FF6B81; } .eco-bilan span.nu{ color:#8FD3FF; }
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
@@ -367,7 +378,7 @@ function loadMillesime(){
   const opts=document.getElementById('optsList');opts.innerHTML='';
   m.options.forEach(opt=>{
     const div=document.createElement('div');div.className='opt';
-    div.innerHTML=`<div class="opt-name">${opt.name}</div><div class="opt-detail">${opt.detail}</div><span class="opt-badge ${opt.cls}">${opt.badge}</span>`;
+    div.innerHTML=`<div class="opt-name">${opt.name}</div><div class="opt-detail">${opt.detail}</div>${ecoHints([['💶',opt.dTreso],['🍇',opt.dQual],['🍾',opt.dStock],['📣',opt.dRep],['🏷️',opt.dPrix,1]])}<span class="opt-badge ${opt.cls}">${opt.badge}</span>`;
     div.onclick=()=>choose(opt);
     opts.appendChild(div);
   });
@@ -410,6 +421,52 @@ function endGame(){
   document.getElementById('endLesson').innerHTML='💡 '+LESSONS[Math.floor(Math.random()*LESSONS.length)];
   showScreen('screen-end');
 }
+
+
+/* ---------- Lecture visuelle (affichage seulement, les règles du jeu ne changent pas) ---------- */
+// petites pastilles sous chaque option : ce qu'elle fait monter ▲ ou baisser ▼ (bleu = ni bon ni mauvais en soi)
+function ecoHints(list){
+  const h=list.filter(x=>x[1]).map(x=>`<i class="${x[2]?'nu':x[1]>0?'up':'dn'}">${x[0]} ${x[1]>0?'▲':'▼'}</i>`).join('');
+  return h?`<span class="eco-hints">${h}</span>`:'';
+}
+function ecoNb(v,dec){ return (Math.round(Math.abs(v)*Math.pow(10,dec||0))/Math.pow(10,dec||0)).toLocaleString('fr-FR'); }
+// bilan chiffré après le choix : ce qui a réellement bougé
+function ecoBilan(av,ap,boxId){
+  const box=document.getElementById(boxId); if(!box) return;
+  let el=document.getElementById('ecoBilan'); if(!el){ el=document.createElement('div'); el.id='ecoBilan'; el.className='eco-bilan'; box.appendChild(el); }
+  el.innerHTML=ap.map((a,i)=>{ const d=a[1]-av[i][1]; if(Math.abs(d)<1e-9) return ''; return `<span class="${a[4]?'nu':d>0?'up':'dn'}">${a[0]} ${d>0?'+':'−'}${ecoNb(d,a[3])}${a[2]}</span>`; }).join('');
+}
+function ecoInit(boxId){
+  const g=document.getElementById('screen-game'); if(!g||document.getElementById('ecoScene')) return;
+  const sc=document.createElement('div'); sc.id='ecoScene'; sc.className='eco-scene'; sc.setAttribute('aria-hidden','true'); g.insertBefore(sc,g.firstChild);
+  const o=document.getElementById('optsList'); if(o){ const l=document.createElement('div'); l.className='eco-legend'; l.textContent='Sous chaque option : ce qu\'elle fait monter ▲ ou baisser ▼'; o.parentNode.insertBefore(l,o.nextSibling); }
+}
+
+function ecoScene(){
+  const el=document.getElementById('ecoScene'); if(!el) return;
+  const m=meteoCourante||{}, cls=m.cls||'sun';
+  const CIEL={sun:['#5CC6F2','#D4F3FF'],rain:['#6B7A8C','#A9B5C2'],storm:['#39414F','#7C8795'],frost:['#A9C8E8','#EAF4FF'],hot:['#F2994A','#FFE0A8'],perfect:['#F2C14E','#FFF3C4']}[cls]||['#5CC6F2','#D4F3FF'];
+  let s=`<svg viewBox="0 0 360 132" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ds" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${CIEL[0]}"/><stop offset="1" stop-color="${CIEL[1]}"/></linearGradient></defs><rect width="360" height="132" fill="url(#ds)"/>`;
+  s+=`<text x="300" y="34" font-size="26">${m.icon||'☀️'}</text>`;
+  if(cls==='rain'||cls==='storm') for(let i=0;i<24;i++) s+=`<line x1="${10+i*15}" y1="${6+(i*37)%44}" x2="${5+i*15}" y2="${18+(i*37)%44}" stroke="#E3EDF5" stroke-width="1.2" opacity=".7"/>`;
+  s+=`<path d="M0 78 Q90 40 180 70 T360 60 V132 H0 Z" fill="#7DBB5E"/><path d="M0 96 Q120 70 220 92 T360 84 V132 H0 Z" fill="#5FA046"/>`;
+  s+=`<text x="16" y="62" font-size="30">🏰</text>`;
+  // les rangs de vigne : plus la qualité monte, plus les grappes sont nombreuses et foncées
+  const q=Math.max(0,Math.min(1,(qual-10)/10)), ng=1+Math.round(q*3), col=`hsl(${285-q*25},${45+q*30}%,${52-q*20}%)`;
+  for(let r=0;r<3;r++) for(let c=0;c<9;c++){ const x=70+c*31+r*8, y=88+r*14;
+    s+=`<circle cx="${x}" cy="${y}" r="7" fill="${cls==='frost'?'#9CC3A0':'#3E8A3A'}"/>`;
+    for(let k=0;k<ng;k++) s+=`<circle cx="${x-4+k*3}" cy="${y+3+(k%2)*2}" r="2" fill="${col}"/>`; }
+  // les barriques : le stock de bouteilles en cave
+  const nb=Math.max(0,Math.min(8,Math.round(stock/2500)));
+  for(let i=0;i<nb;i++) s+=`<ellipse cx="${14+i*13}" cy="122" rx="6" ry="8" fill="#8B5A2B" stroke="#5A3618" stroke-width="1"/>`;
+  s+=`<rect x="232" y="6" width="56" height="15" rx="4" fill="rgba(255,255,255,.85)"/><text x="260" y="17" font-size="9" font-weight="800" text-anchor="middle" fill="#5A2A4A" font-family="sans-serif">${'★'.repeat(Math.max(1,Math.round(rep/20)))}${'☆'.repeat(5-Math.max(1,Math.round(rep/20)))}</text>`;
+  s+=`<rect x="300" y="100" width="52" height="24" rx="5" fill="#fff"/><text x="326" y="116" font-size="11" font-weight="800" text-anchor="middle" fill="#5A2A4A" font-family="sans-serif">🍾 ${prix} €</text>`;
+  el.innerHTML=s+'</svg>';
+}
+function ecoEtat(){ return [['💶',treso,' €',0],['🍇',qual,' de qualité',1],['🍾',stock,' bouteilles',0],['📣',rep,' de réputation',0],['🏷️',prix,' € la bouteille',0,1]]; }
+{ const r0=renderHUD; renderHUD=function(){ r0(); ecoInit(); ecoScene(); };
+  const c0=choose; choose=function(opt){ const av=ecoEtat(); c0(opt); ecoBilan(av,ecoEtat(),'resultBox'); };
+  const l0=loadMillesime; loadMillesime=function(){ l0(); ecoInit(); ecoScene(); }; }
 
 function share(){
   const t=`J'ai terminé mes 8 millésimes avec ${treso.toLocaleString('fr-FR')}€ de trésorerie sur Economya.fr 🍇 À toi de gérer ton domaine !`;

@@ -214,6 +214,7 @@ const ECO_TOWERS=[];{let x=-0.03;while(x<1.03){const w=0.05+Math.random()*0.09;E
 let ecoFrame=0;
 function ecoDecor(mode){
   ecoFrame++;
+  ctx.save();
   const g=ctx.createLinearGradient(0,0,0,H);
   if(mode==='espace'){g.addColorStop(0,'#05061A');g.addColorStop(1,'#150B33');}
   else if(mode==='grille'){g.addColorStop(0,'#0A0B22');g.addColorStop(1,'#1B0F3A');}
@@ -241,6 +242,7 @@ function ecoDecor(mode){
     for(const t of ECO_TOWERS){const h=H*0.22*t[2],x=t[0]*W,w=t[1]*W;ctx.fillStyle='#140E33';ctx.fillRect(x,H-h,w+1,h);
       ctx.fillStyle='rgba(255,201,75,.45)';for(let k=0;k<4;k++){const r=Math.abs(Math.sin(t[3]*91+k*17.3));if(r>0.45)ctx.fillRect(x+w*(0.2+0.55*Math.abs(Math.sin(t[3]*37+k*5.1))),H-h*(0.2+0.7*r),2,2);}}
   }
+  ctx.restore();
 }
 
 function loop(){

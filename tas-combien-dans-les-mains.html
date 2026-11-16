@@ -510,7 +510,11 @@ function endGame(){
   const avgPct = Math.round(totalScore / (SCENES.length * MAX_PER_ROUND) * 100);
   document.getElementById('finalPct').textContent = avgPct + '%';
   document.getElementById('receiptTotal').textContent = totalScore + ' / ' + (SCENES.length*MAX_PER_ROUND);
-  document.getElementById('receiptDate').textContent = new Date().toLocaleDateString('fr-FR', {day:'2-digit', month:'2-digit', year:'numeric'}) + ' — economya.fr';
+  // record personnel (gardé d'une visite à l'autre)
+  let rec = 0; try{ rec = parseInt(localStorage.getItem('tasCombienBest')||'0',10) || 0; }catch(e){}
+  const nouveauRec = avgPct > rec;
+  if(nouveauRec){ rec = avgPct; try{ localStorage.setItem('tasCombienBest', String(rec)); }catch(e){} }
+  document.getElementById('receiptDate').textContent = new Date().toLocaleDateString('fr-FR', {day:'2-digit', month:'2-digit', year:'numeric'}) + ' — economya.fr · Record : ' + rec + ' %' + (nouveauRec && avgPct > 0 ? ' 🎉' : '');
 
   const lines = document.getElementById('receiptLines');
   lines.innerHTML = '';

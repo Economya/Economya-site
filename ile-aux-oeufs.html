@@ -277,6 +277,7 @@ function startGame(){
   document.getElementById('actionRow').style.display='block';
   buildIslands();
   stormsPassed = 0; running = true; busy = false; pool = TOTAL_EGGS; perdus = 0; nes = 0;
+  islands.forEach(isl=>{ isl.eggs = TOTAL_EGGS/ISLAND_COUNT; }); // répartition de départ : 3 œufs par île
   nouvelleMeteo();
   updateHud(); renderIslands();
 }

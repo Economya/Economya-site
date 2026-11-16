@@ -367,6 +367,21 @@ function loop(ts){
   // piste (asphalte + lignes de voies défilantes)
   ctx.fillStyle = '#1c1c22';
   ctx.fillRect(0,0,W,H);
+  {
+    // décor de circuit (visuel seulement) : asphalte plus clair au centre, vibreurs et traits de vitesse
+    ctx.save();
+    const g = ctx.createLinearGradient(0,0,W,0);
+    g.addColorStop(0,'#14141a'); g.addColorStop(0.5,'#2a2a33'); g.addColorStop(1,'#14141a');
+    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+    const off = (typeof laneDashOffset === 'number' ? laneDashOffset : 0);
+    for(let y=-40+off, n=0; y<H; y+=20, n++){
+      ctx.fillStyle = n%2 ? '#F2F0E8' : '#E0343C';
+      ctx.fillRect(0,y,9,20); ctx.fillRect(W-9,y,9,20);
+    }
+    ctx.fillStyle = 'rgba(255,255,255,.05)';
+    for(let i=0;i<14;i++){ const x=12+((i*61.7)%(W-24)), y=((i*137.5+off*(3+i%3)*2)%(H+60))-30; ctx.fillRect(x,y,1.5,26); }
+    ctx.restore();
+  }
   ctx.save();
   ctx.strokeStyle = 'rgba(232,228,216,0.18)';
   ctx.lineWidth = 3;

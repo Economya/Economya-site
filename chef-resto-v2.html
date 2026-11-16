@@ -420,7 +420,11 @@ function endGame() {
   document.getElementById('endCA').textContent = ca + '€';
   document.getElementById('endTables').textContent = tablesServed;
   document.getElementById('endFugues').textContent = fugues;
-  document.getElementById('endLesson').innerHTML = lesson;
+  // record personnel (gardé d'une visite à l'autre)
+  let rec = 0; try { rec = parseInt(localStorage.getItem('chefRestoBest')||'0',10) || 0; } catch (e) {}
+  const nouveauRec = ca > rec;
+  if (nouveauRec) { rec = ca; try { localStorage.setItem('chefRestoBest', String(rec)); } catch (e) {} }
+  document.getElementById('endLesson').innerHTML = lesson + `<br><br>🏅 Record : <b>${rec}€</b>${nouveauRec && ca > 0 ? ' — nouveau record 🎉' : ''}`;
   showScreen('screen-end');
 }
 

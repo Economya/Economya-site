@@ -137,7 +137,7 @@
     var floating = link.getAttribute("data-eco-float") ? link : null;
     if (back || info || floating) {
       // Jeux plein écran : pas de zoom par double appui quand on tape vite (le pincement pour zoomer reste possible).
-      if (back) { try { document.documentElement.style.touchAction = "manipulation"; } catch (e) {} }
+      if (back) { try { document.documentElement.style.touchAction = "manipulation"; document.documentElement.style.overscrollBehavior = "none"; document.body.style.overscrollBehavior = "none"; } catch (e) {} }
       var played = false;
       var enterPlay = function (ev) {
         if (played) return;

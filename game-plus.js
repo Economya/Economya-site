@@ -91,6 +91,35 @@
   }
   function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
 
+  /* ---------- Progression commune : expérience, niveau, série de jours ---------- */
+  var KEY_XP = "economya_xp";
+  function jour(d) { return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+  function niveauDe(xp) { return Math.floor(Math.sqrt(xp / 50)) + 1; }      // niveau 2 à 50 XP, 3 à 200, 4 à 450…
+  function seuil(niv) { return 50 * niv * niv; }
+  function progression() {
+    var p = load(KEY_XP, null);
+    if (!p || typeof p.xp !== "number") p = { xp: 0, serie: 0, jour: "" };
+    // une série se perd si on saute un jour
+    var hier = new Date(); hier.setDate(hier.getDate() - 1);
+    if (p.jour !== jour(new Date()) && p.jour !== jour(hier)) p.serie = 0;
+    return p;
+  }
+  function gagnerXp(n) {
+    var p = progression(), avant = niveauDe(p.xp), auj = jour(new Date());
+    if (p.jour !== auj) { p.serie = (p.serie || 0) + 1; p.jour = auj; }
+    p.xp += n; save(KEY_XP, p);
+    return { p: p, gain: n, monte: niveauDe(p.xp) > avant };
+  }
+  function ligneProgression(p) {
+    var niv = niveauDe(p.xp), bas = niv > 1 ? seuil(niv - 1) : 0, haut = seuil(niv);
+    var pct = Math.max(4, Math.min(100, Math.round((p.xp - bas) / (haut - bas) * 100)));
+    return '<div style="display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap;font-size:12.5px;font-weight:700">' +
+      '<span>⭐ Niveau ' + niv + '</span>' +
+      '<span style="flex:0 0 90px;height:7px;border-radius:99px;background:rgba(127,127,127,.3);overflow:hidden"><i style="display:block;height:100%;width:' + pct + '%;background:#FFC94B;border-radius:99px"></i></span>' +
+      '<span style="opacity:.8">' + p.xp + ' / ' + haut + ' XP</span>' +
+      (p.serie > 1 ? '<span>🔥 ' + p.serie + ' jours</span>' : '') + '</div>';
+  }
+
   /* ---------- Page /jeux : médailles sur les cartes ---------- */
   if (slug === "jeux") {
     var store = load(KEY_MED, {}), total = 0, got = 0;
@@ -116,6 +145,13 @@
       line.style.cssText = "margin:-.4rem 0 1rem;font:600 .9rem 'DM Sans',system-ui,sans-serif;opacity:.85";
       line.textContent = "🏅 Mes médailles : " + got + " / " + total + (got ? "" : " — jouez pour gagner les premières !");
       title.parentNode.insertBefore(line, title.nextSibling);
+      var pj = progression();
+      if (pj.xp > 0) {
+        var lp = document.createElement("div");
+        lp.style.cssText = "margin:-.5rem 0 1rem;font-family:'DM Sans',system-ui,sans-serif;display:flex;justify-content:flex-start";
+        lp.innerHTML = ligneProgression(pj);
+        line.parentNode.insertBefore(lp, line.nextSibling);
+      }
     }
     return;
   }
@@ -251,6 +287,12 @@
     } else if (isNew) {
       h += '<div style="font-size:13px;font-weight:600;opacity:.9">🎖️ Jeu terminé : médaille ajoutée à votre collection.</div>';
     }
+    // expérience : 10 XP par partie terminée, 25 de plus par nouvelle médaille
+    var res = gagnerXp(10 + (isNew ? 25 * Math.max(1, lv - prev) : 0));
+    h += '<div style="margin-top:12px">' + ligneProgression(res.p) + '<div style="font-size:12px;margin-top:4px;opacity:.85">+' + res.gain + ' XP' + (res.monte ? ' · niveau ' + niveauDe(res.p.xp) + ' atteint 🎉' : '') + '</div></div>';
+    // bouton de partage, seulement si l'écran de fin du jeu n'en propose pas déjà un
+    var finEl = q(cfg.end), aPartage = finEl && /partag/i.test(finEl.textContent || "");
+    if (!aPartage) h += '<button type="button" data-eco-share="1" style="margin-top:12px;border:1px solid rgba(127,127,127,.5);background:rgba(127,127,127,.16);color:inherit;border-radius:999px;padding:10px 18px;font:700 13.5px inherit;font-family:inherit;cursor:pointer">📤 Partager mon résultat</button>';
     var sug = suggestions();
     h += '<div style="margin-top:14px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.65;font-weight:700">Encore un jeu ?</div><div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:8px">';
     sug.forEach(function (g) {
@@ -259,6 +301,21 @@
     h += "</div>";
     h += '<div style="margin-top:12px;font-size:10.5px;opacity:.6;line-height:1.4">🎓 Jeu pédagogique : informations générales, sans valeur de conseil personnalisé. Economya n\'est pas un conseiller financier agréé.</div>';
     box.innerHTML = h;
+    var sb = box.querySelector("[data-eco-share]");
+    if (sb) sb.addEventListener("click", function () {
+      var titre = slug; GAMES.forEach(function (g) { if (g[0] === slug) titre = g[1]; });
+      var u = cfg.u ? (cfg.u.charAt(0) === "/" || cfg.u === "%" ? "" : " ") + cfg.u : "";
+      var txt = (score != null && !isNaN(score) && cfg.score)
+        ? "J'ai fait " + fmt(score) + u + " sur « " + titre + " » (Economya.fr) 🎯 À toi de jouer !"
+        : "Je viens de terminer « " + titre + " » sur Economya.fr 🎯 À toi de jouer !";
+      var url = "https://economya.fr/" + slug;
+      if (navigator.share) { navigator.share({ title: titre, text: txt, url: url }).catch(function () {}); }
+      else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt + " " + url).then(function () {
+          var old = sb.textContent; sb.textContent = "✅ Résultat copié"; setTimeout(function () { sb.textContent = old; }, 1800);
+        }).catch(function () {});
+      }
+    });
     var end = q(cfg.end), at = q(cfg.at);
     if (at && at.parentNode) at.parentNode.insertBefore(box, at.nextSibling);
     else if (end) {

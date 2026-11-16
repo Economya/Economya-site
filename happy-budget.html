@@ -301,6 +301,13 @@ function render() {
   const bg=cx.createLinearGradient(0,0,0,H);
   bg.addColorStop(0,'#050810'); bg.addColorStop(1,'#0F1628');
   cx.fillStyle=bg; cx.fillRect(0,0,W,H);
+  // nébuleuses douces : le ciel change de teinte à mesure qu'on monte (décor seulement)
+  cx.save();
+  for(const [fx,fy,r,c] of [[0.15,0.3,0.7,'120,80,255'],[0.9,0.75,0.6,'255,90,160'],[0.5,1.1,0.8,'40,200,220']]){
+    const ny=((fy*H+off*0.08)%(H*1.4))-H*0.2, n=cx.createRadialGradient(fx*W,ny,0,fx*W,ny,r*W);
+    n.addColorStop(0,'rgba('+c+',.13)'); n.addColorStop(1,'rgba('+c+',0)'); cx.fillStyle=n; cx.fillRect(0,0,W,H);
+  }
+  cx.restore();
 
   // Étoiles
   cx.fillStyle='rgba(255,255,255,.2)';
@@ -367,9 +374,12 @@ function render() {
 
     // Icône + label
     if(p.w>60){
-      cx.font='10px Arial'; cx.textAlign='center'; cx.textBaseline='middle';
-      cx.fillStyle='rgba(0,0,0,.75)';
-      cx.fillText(p.t.e+' '+p.t.n, cxp, cyp);
+      // libellé lisible : icône dans la plateforme, nom au-dessus en clair avec un contour sombre
+      cx.font='13px Arial'; cx.textAlign='center'; cx.textBaseline='middle';
+      cx.fillText(p.t.e, cxp, cyp);
+      cx.font="700 11.5px 'Space Grotesk',system-ui,sans-serif";
+      cx.lineWidth=3; cx.strokeStyle='rgba(5,8,16,.85)'; cx.strokeText(p.t.n, cxp, sy-9);
+      cx.fillStyle='#fff'; cx.fillText(p.t.n, cxp, sy-9);
     } else {
       cx.font='14px Arial'; cx.textAlign='center'; cx.textBaseline='middle';
       cx.fillText(p.t.e, cxp, cyp);

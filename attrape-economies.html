@@ -262,6 +262,7 @@ function fx(x,y,color,text){
   if(text) fxTexts.push({x,y:y-14,text,life:1,color});
 }
 function drawDecor(){
+  ctx.save();
   const bg = ctx.createLinearGradient(0,0,0,H);
   bg.addColorStop(0,'#0B0A24'); bg.addColorStop(0.6,'#231547'); bg.addColorStop(1,'#3A1D52');
   ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
@@ -277,6 +278,7 @@ function drawDecor(){
   }
   ctx.fillStyle = '#0A0720'; ctx.fillRect(0, base, W, H-base);
   ctx.fillStyle = 'rgba(255,201,75,.35)'; ctx.fillRect(0, base, W, 2);
+  ctx.restore();
 }
 
 function loop(ts){
@@ -371,6 +373,7 @@ function loop(ts){
     ctx.stroke();
     ctx.restore();
 
+    ctx.fillStyle = '#fff';
     ctx.font = '27px serif';
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillText(it.emoji, it.x, it.y+1);

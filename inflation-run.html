@@ -517,6 +517,8 @@ function jump() {
 let serieEsquives = 0;
 
 function startGame() {
+  // Sur téléphone, on amène le jeu au centre de l'écran : la zone de jeu et le bouton Sauter restent visibles.
+  try { canvas.scrollIntoView({behavior:'smooth', block:'center'}); } catch (e) {}
   gameState = 'playing';
   score = 0; savings = 0; lives = 3; level = 1; serieEsquives = 0;
   frame = 0; speed = 4;

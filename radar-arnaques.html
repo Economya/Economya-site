@@ -456,6 +456,11 @@ function endGame(){
 
   document.getElementById('badgeEmoji').textContent = emoji;
   document.getElementById('badgeTitle').textContent = title;
+  // record personnel (gardé d'une visite à l'autre)
+  let rec = 0; try{ rec = parseInt(localStorage.getItem('radarArnaquesBest')||'0',10) || 0; }catch(e){}
+  const nouveauRec = score > rec;
+  if(nouveauRec){ rec = score; try{ localStorage.setItem('radarArnaquesBest', String(rec)); }catch(e){} }
+  sub += ' Record : ' + rec + '/' + order.length + (nouveauRec && score > 0 ? ' 🎉' : '') + '.';
   document.getElementById('badgeSub').textContent = sub;
 
   const recap = document.getElementById('recap');

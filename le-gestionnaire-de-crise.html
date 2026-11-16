@@ -87,6 +87,14 @@ html{overflow-y:scroll}
   .go-label{font-size:13px; color:var(--ink-dim); margin-bottom:6px;}
   .go-best{font-size:13px; color:var(--ink-dim); margin-bottom:16px;}
   .go-best b{color:var(--ink);}
+
+  /* tableau de bord en direct : courbes des trois jauges et conseil du moment (remplit la zone centrale) */
+  .hud-top{padding-right:96px;}
+  .dash{position:absolute; inset:6px 16px 10px; display:flex; flex-direction:column; gap:8px; z-index:0;}
+  .dash canvas{flex:1; width:100%; min-height:0; border-radius:16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1);}
+  .dash-msg{min-height:38px; display:flex; align-items:center; justify-content:center; text-align:center; font-size:13.5px; font-weight:700; border-radius:12px; padding:8px 10px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1);}
+  .dash-msg.alerte{color:#FF8A9B; border-color:rgba(255,77,109,.5); background:rgba(255,77,109,.1);}
+  .event-banner{z-index:3;}
 </style>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Economya.fr">
@@ -124,6 +132,7 @@ html{overflow-y:scroll}
   </div>
 
   <div class="stage" id="stage">
+    <div class="dash" id="dash"><canvas id="dashCanvas"></canvas><div class="dash-msg" id="dashMsg" aria-live="polite"></div></div>
     <div class="event-banner" id="eventBanner">
       <div class="event-text" id="eventText"></div>
       <div class="event-timer-track"><div class="event-timer-fill" id="eventTimerFill"></div></div>
@@ -416,6 +425,41 @@ function endGame(reason){
   document.querySelectorAll('.overlay').forEach(s=>s.classList.remove('active'));
   document.getElementById('screen-over').classList.add('active');
 }
+
+// Tableau de bord : historique des trois jauges (30 dernières secondes) + conseil du moment. Affichage seulement.
+(function(){
+  const cv=document.getElementById('dashCanvas'), msg=document.getElementById('dashMsg'); if(!cv) return;
+  const c=cv.getContext('2d'); let hist=[], last=0;
+  const COL={cash:'#FFC94B',risk:'#FF4D6D',opp:'#4BC9FF'}, ICO={cash:'💰',risk:'⚠️',opp:'🎯'};
+  function tick(now){
+    requestAnimationFrame(tick);
+    if(!running){ if(hist.length){ hist=[]; msg.textContent=''; msg.className='dash-msg'; } return; }
+    if(now-last>200){ last=now; hist.push({cash:gauges.cash,risk:gauges.risk,opp:gauges.opp}); if(hist.length>150) hist.shift(); }
+    const dpr=Math.min(window.devicePixelRatio||1,2), W=cv.clientWidth, H=cv.clientHeight; if(!W||!H) return;
+    if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){ cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); }
+    c.setTransform(dpr,0,0,dpr,0,0); c.clearRect(0,0,W,H);
+    const L=12,R=44,T=12,B=12, Y=v=>T+(H-T-B)*(1-v/100), X=i=>L+(W-L-R)*i/149;
+    // zones de danger : risque trop haut, trésorerie trop basse
+    c.fillStyle='rgba(255,77,109,.09)'; c.fillRect(L,Y(100),W-L-R,Y(85)-Y(100)); c.fillRect(L,Y(15),W-L-R,Y(0)-Y(15));
+    c.strokeStyle='rgba(255,255,255,.08)'; c.lineWidth=1; c.beginPath();
+    for(const v of[25,50,75]){ c.moveTo(L,Y(v)); c.lineTo(W-R,Y(v)); } c.stroke();
+    c.fillStyle='rgba(255,255,255,.35)'; c.font='10px Inter,system-ui,sans-serif'; c.textBaseline='middle'; c.textAlign='left';
+    c.fillText('risque critique',L+6,Y(92)); c.fillText('trésorerie critique',L+6,Y(8));
+    for(const k of ['opp','cash','risk']){
+      c.strokeStyle=COL[k]; c.lineWidth=2.5; c.lineJoin='round'; c.beginPath();
+      hist.forEach((h,i)=>{ const x=X(i+150-hist.length), y=Y(h[k]); if(i) c.lineTo(x,y); else c.moveTo(x,y); }); c.stroke();
+      const v=hist.length?hist[hist.length-1][k]:gauges[k];
+      c.fillStyle=COL[k]; c.beginPath(); c.arc(X(149),Y(v),4,0,6.283); c.fill();
+      c.font='15px serif'; c.textAlign='left'; c.fillText(ICO[k],W-R+8,Y(v));
+    }
+    let t='✅ Situation stable : gardez l\'équilibre.', al=false;
+    if(gauges.cash<25){ t='💰 Trésorerie basse : encaissez vite !'; al=true; }
+    else if(gauges.risk>75){ t='⚠️ Risque élevé : sécurisez !'; al=true; }
+    else if(gauges.opp<25){ t='🎯 Les opportunités s\'épuisent : saisissez-en.'; }
+    if(msg.textContent!==t){ msg.textContent=t; msg.className='dash-msg'+(al?' alerte':''); }
+  }
+  requestAnimationFrame(tick);
+})();
 
 function shareResult(){
   const seconds = Math.floor(elapsed/1000);
