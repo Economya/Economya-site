@@ -271,19 +271,17 @@ window.addEventListener('keydown', e=>{
   if(e.key==='ArrowLeft') moveLane(-1);
   if(e.key==='ArrowRight') moveLane(1);
 });
-let touchStartX = null;
-canvas.addEventListener('touchstart', e=>{ touchStartX = e.touches[0].clientX; });
-canvas.addEventListener('touchend', e=>{
-  if(touchStartX===null) return;
-  const dx = e.changedTouches[0].clientX - touchStartX;
-  if(Math.abs(dx) > 30) moveLane(dx>0?1:-1);
-  touchStartX = null;
-});
-canvas.addEventListener('pointerdown', e=>{
+// Un geste = un seul changement de voie : glisser à gauche/droite, ou toucher la moitié gauche/droite de la piste.
+let gesteX = null;
+canvas.addEventListener('pointerdown', e=>{ gesteX = e.clientX; });
+canvas.addEventListener('pointerup', e=>{
+  if(gesteX===null) return;
+  const dx = e.clientX - gesteX; gesteX = null;
+  if(Math.abs(dx) > 30){ moveLane(dx>0?1:-1); return; }
   const rect = canvas.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  moveLane(x < W/2 ? -1 : 1);
+  moveLane(e.clientX - rect.left < W/2 ? -1 : 1);
 });
+canvas.addEventListener('pointercancel', ()=>{ gesteX = null; });
 
 function spawnItem(){
   const isStar = Math.random() < 0.05;
@@ -507,14 +505,15 @@ function loop(ts){
       if(lane===b.safeLane) continue;
       const bx0 = (W/LANES)*lane + 4;
       const bw = (W/LANES) - 8;
-      ctx.fillStyle = 'rgba(255,77,109,0.88)';
-      ctx.fillRect(bx0, b.y, bw, b.h);
-      ctx.strokeStyle = 'rgba(255,255,255,0.6)';
-      ctx.lineWidth = 2;
-      ctx.strokeRect(bx0, b.y, bw, b.h);
-      ctx.font = '16px serif';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText('🚧', bx0+bw/2, b.y+b.h/2);
+      ctx.save();
+      ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.fillRect(bx0+3, b.y+6, bw, b.h);
+      ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(bx0, b.y, bw, b.h, 6); else ctx.rect(bx0, b.y, bw, b.h);
+      ctx.fillStyle = '#F2F0E8'; ctx.fill(); ctx.clip();
+      ctx.fillStyle = '#E0343C';
+      for(let x=bx0-b.h; x<bx0+bw; x+=24){ ctx.beginPath(); ctx.moveTo(x,b.y+b.h); ctx.lineTo(x+b.h,b.y); ctx.lineTo(x+b.h+12,b.y); ctx.lineTo(x+12,b.y+b.h); ctx.fill(); }
+      ctx.restore();
+      ctx.fillStyle = '#FFC94B';
+      ctx.beginPath(); ctx.arc(bx0+7, b.y+b.h/2, 4, 0, Math.PI*2); ctx.arc(bx0+bw-7, b.y+b.h/2, 4, 0, Math.PI*2); ctx.fill();
     }
   });
 
@@ -575,10 +574,23 @@ function loop(ts){
   ctx.translate(kartX, kartY);
   ctx.fillStyle = 'rgba(255,201,75,.18)';
   ctx.beginPath(); ctx.ellipse(0,18,26,8,0,0,Math.PI*2); ctx.fill();
-  ctx.font = '34px serif';
-  ctx.textAlign='center'; ctx.textBaseline='middle';
-  ctx.fillStyle = '#FFC94B'; // si l'appareil n'a pas l'emoji en couleur, la voiture reste bien visible
-  ctx.fillText('🏎️', 0, 0);
+  // monoplace dessinée, vue de dessus : elle penche quand on change de voie
+  ctx.rotate((kartTargetX - kartX) * 0.006);
+  const rr = (x,y,w,h,r)=>{ ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x,y,w,h,r); else ctx.rect(x,y,w,h); ctx.fill(); };
+  if(running){ // flammes d'échappement
+    const fl = 10 + Math.random()*10;
+    ctx.fillStyle = 'rgba(255,140,40,.85)'; ctx.beginPath(); ctx.moveTo(-5,30); ctx.lineTo(0,30+fl); ctx.lineTo(5,30); ctx.fill();
+    ctx.fillStyle = 'rgba(255,230,120,.9)'; ctx.beginPath(); ctx.moveTo(-2.5,30); ctx.lineTo(0,30+fl*0.55); ctx.lineTo(2.5,30); ctx.fill();
+  }
+  ctx.fillStyle = '#14141a'; rr(-21,-22,9,15,3); rr(12,-22,9,15,3); rr(-23,11,11,18,3); rr(12,11,11,18,3); // roues
+  ctx.fillStyle = '#1FCF93'; rr(-19,-33,38,6,2);                                   // aileron avant
+  ctx.fillStyle = '#17A877'; rr(-20,25,40,7,2);                                    // aileron arrière
+  const cg = ctx.createLinearGradient(-10,0,10,0); cg.addColorStop(0,'#17A877'); cg.addColorStop(0.5,'#3CE6AE'); cg.addColorStop(1,'#17A877');
+  ctx.fillStyle = cg; ctx.beginPath();                                             // coque
+  ctx.moveTo(-3,-34); ctx.lineTo(3,-34); ctx.lineTo(9,-8); ctx.lineTo(11,24); ctx.lineTo(-11,24); ctx.lineTo(-9,-8); ctx.closePath(); ctx.fill();
+  ctx.fillStyle = '#FFC94B'; rr(-2,-30,4,22,2);                                    // bande dorée
+  ctx.fillStyle = '#0B1A2A'; ctx.beginPath(); ctx.ellipse(0,4,6,9,0,0,Math.PI*2); ctx.fill();   // cockpit
+  ctx.fillStyle = '#FFC94B'; ctx.beginPath(); ctx.arc(0,5,4,0,Math.PI*2); ctx.fill();            // casque
   ctx.restore();
 
   ctx.restore();
